@@ -1,0 +1,1042 @@
+2014-04-22 14:45:41,741 INFO  [Log] **************************************************************************************** 
+2014-04-22 14:45:41,742 INFO  [Log] **************************************************************************************** 
+2014-04-22 14:45:41,742 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2014-04-22 14:45:41,742 INFO  [Log] **************************************************************************************** 
+2014-04-22 14:45:41,743 INFO  [Log] **************************************************************************************** 
+2014-04-22 14:45:42,302 INFO  [Log] Excel sheet opened 
+2014-04-22 14:45:42,302 INFO  [Log] Total number of Row used return as < 2 >. 
+2014-04-22 14:45:59,257 INFO  [Log] New driver instantiated 
+2014-04-22 14:45:59,358 INFO  [Log] Implicit wait applied on the driver for 10 seconds 
+2014-04-22 14:46:12,211 INFO  [Log] Web application launched successfully 
+2014-04-22 14:46:12,488 INFO  [Log] My Account link is found on the Home Page 
+2014-04-22 14:46:12,588 INFO  [Log] Click action is perfromed on My Account link 
+2014-04-22 14:46:17,885 INFO  [Log] Username text box is found on the Login Page 
+2014-04-22 14:46:17,956 INFO  [Log] testuser_1 is entered in UserName text box 
+2014-04-22 14:46:17,977 INFO  [Log] Password text box is found on the Login page 
+2014-04-22 14:46:18,039 INFO  [Log] Test@123 is entered in Password text box 
+2014-04-22 14:46:18,055 INFO  [Log] Submit button is found on the Login page 
+2014-04-22 14:46:18,715 INFO  [Log] Click action is performed on Submit button 
+2014-04-22 14:46:31,327 INFO  [Log] Log Out link is found on the Home Page 
+2014-04-22 14:46:31,574 INFO  [Log] Product category link is found under Top Navigation 
+2014-04-22 14:46:31,927 INFO  [Log] Accessories link is found under Product Category 
+2014-04-22 14:46:32,006 INFO  [Log] Click action is performed on the selected Product Type 
+2014-04-22 14:46:32,007 INFO  [Log] Product Type Accessories is selected from the Top menu 
+2014-04-22 14:46:37,285 INFO  [Log] Add to Cart button is found for Product 2 
+2014-04-22 14:46:37,458 INFO  [Log] Product 2 is selected from the Product listing page 
+2014-04-22 14:46:38,517 INFO  [Log] Go to Cart button is found on the Cart Pop Up window 
+2014-04-22 14:46:41,771 INFO  [Log] Product Name for purchased product is found on the Check Out Page 
+2014-04-22 14:46:41,824 INFO  [Log] Product Price for purchased product is found on the Check Out Page 
+2014-04-22 14:46:41,860 INFO  [Log] Continue button is found on the Check Out Page 
+2014-04-22 14:46:41,957 INFO  [Log] Email text box on Payment Details page is found. 
+2014-04-22 14:46:43,029 INFO  [Log] Email text box on Payment Details page is found. 
+2014-04-22 14:46:43,108 INFO  [Log] tooolsqa@gmail.com is entered as First Name on the Payment detail page 
+2014-04-22 14:46:43,126 INFO  [Log] First Name text box on Payment Details page is found. 
+2014-04-22 14:46:43,201 INFO  [Log] First Name text box on Payment Details page is found. 
+2014-04-22 14:46:43,356 INFO  [Log] Lakshay is entered as First Name on the Payment detail page 
+2014-04-22 14:46:43,366 INFO  [Log] Last Name text box on Payment Details page is found. 
+2014-04-22 14:46:43,453 INFO  [Log] Last Name text box on Payment Details page is found. 
+2014-04-22 14:46:43,560 INFO  [Log] Sharma is entered as Last Name on the Payment detail page 
+2014-04-22 14:46:43,568 INFO  [Log] Address text box on Payment Details page is found. 
+2014-04-22 14:46:43,756 INFO  [Log] Address text box on Payment Details page is found. 
+2014-04-22 14:46:44,151 INFO  [Log] 35, Marconi House, Walker Road is entered as Address on the Payment detail page 
+2014-04-22 14:46:44,162 INFO  [Log] City text box on Payment Details page is found. 
+2014-04-22 14:46:44,244 INFO  [Log] City text box on Payment Details page is found. 
+2014-04-22 14:46:44,393 INFO  [Log] Newcastle is entered as City on the Payment detail page 
+2014-04-22 14:46:44,509 INFO  [Log] Country dropdown on Payment Details page is found. 
+2014-04-22 14:46:44,570 INFO  [Log] United Kingdom is Selected as Country on the Payment detail page 
+2014-04-22 14:46:44,633 INFO  [Log] Phone text box on Payment Details page is found. 
+2014-04-22 14:46:44,740 INFO  [Log] Phone text box on Payment Details page is found. 
+2014-04-22 14:46:44,868 INFO  [Log] 07777777777 is entered as Phone on the Payment detail page 
+2014-04-22 14:46:44,876 INFO  [Log] Same as Billing address check box on Payment Details page is found. 
+2014-04-22 14:46:44,890 INFO  [Log] Purchase button on Payment Details page is found. 
+2014-04-22 14:46:47,948 INFO  [Log] Click action is performed on Purchase button on the Payment detail page 
+2014-04-22 14:46:47,959 INFO  [Log] Product name is found on the Confirmation Page 
+2014-04-22 14:46:47,985 INFO  [Log] Product price is found on the Confirmation Page 
+2014-04-22 14:46:48,185 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-             XXXXXXXXXXXXXXXXXXXXXX 
+2014-04-22 14:46:48,185 INFO  [Log] X 
+2014-04-22 14:46:48,185 INFO  [Log] X 
+2014-04-22 14:46:48,186 INFO  [Log] X 
+2014-04-22 14:46:48,186 INFO  [Log] X 
+2014-04-22 17:32:40,212 INFO  [Log] New driver instantiated 
+2014-04-22 17:32:40,227 INFO  [Log] Implicit wait applied on the driver for 10 seconds 
+2014-04-22 17:32:58,881 INFO  [Log] Web application launched 
+2014-04-22 17:32:59,000 INFO  [Log] Click action performed on My Account link 
+2014-04-22 17:35:15,781 INFO  [Log] New driver instantiated 
+2014-04-22 17:35:15,799 INFO  [Log] Implicit wait applied on the driver for 10 seconds 
+2014-04-22 17:35:33,430 INFO  [Log] Web application launched 
+2014-04-22 17:35:33,539 INFO  [Log] Click action performed on My Account link 
+2014-04-22 17:47:58,080 INFO  [Log] New driver instantiated 
+2014-04-22 17:47:58,101 INFO  [Log] Implicit wait applied on the driver for 10 seconds 
+2014-04-22 17:48:15,116 INFO  [Log] Web application launched 
+2014-04-22 17:48:36,220 INFO  [Log] Click action performed on My Account link 
+2014-04-22 17:48:37,787 INFO  [Log] Username entered in the Username text box 
+2014-04-22 17:48:37,877 INFO  [Log] Password entered in the Password text box 
+2014-04-22 17:48:38,576 INFO  [Log] Click action performed on Submit button 
+2014-04-22 17:48:45,875 INFO  [Log] Click action performed on Log out link 
+2014-04-22 17:48:46,110 INFO  [Log] Browser closed 
+2016-11-04 16:49:34,179 INFO  [Log] **************************************************************************************** 
+2016-11-04 16:49:34,179 INFO  [Log] **************************************************************************************** 
+2016-11-04 16:49:34,179 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-04 16:49:34,179 INFO  [Log] **************************************************************************************** 
+2016-11-04 16:49:34,179 INFO  [Log] **************************************************************************************** 
+2016-11-04 16:51:41,777 INFO  [Log] **************************************************************************************** 
+2016-11-04 16:51:41,778 INFO  [Log] **************************************************************************************** 
+2016-11-04 16:51:41,778 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-04 16:51:41,778 INFO  [Log] **************************************************************************************** 
+2016-11-04 16:51:41,778 INFO  [Log] **************************************************************************************** 
+2016-11-04 16:54:08,569 INFO  [Log] **************************************************************************************** 
+2016-11-04 16:54:08,569 INFO  [Log] **************************************************************************************** 
+2016-11-04 16:54:08,569 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_002       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-04 16:54:08,569 INFO  [Log] **************************************************************************************** 
+2016-11-04 16:54:08,569 INFO  [Log] **************************************************************************************** 
+2016-11-04 16:57:36,180 INFO  [Log] **************************************************************************************** 
+2016-11-04 16:57:36,180 INFO  [Log] **************************************************************************************** 
+2016-11-04 16:57:36,180 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_002       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-04 16:57:36,180 INFO  [Log] **************************************************************************************** 
+2016-11-04 16:57:36,180 INFO  [Log] **************************************************************************************** 
+2016-11-04 17:00:11,484 INFO  [Log] **************************************************************************************** 
+2016-11-04 17:00:11,485 INFO  [Log] **************************************************************************************** 
+2016-11-04 17:00:11,485 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_002       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-04 17:00:11,485 INFO  [Log] **************************************************************************************** 
+2016-11-04 17:00:11,485 INFO  [Log] **************************************************************************************** 
+2016-11-04 17:02:09,064 INFO  [Log] **************************************************************************************** 
+2016-11-04 17:02:09,064 INFO  [Log] **************************************************************************************** 
+2016-11-04 17:02:09,064 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-04 17:02:09,064 INFO  [Log] **************************************************************************************** 
+2016-11-04 17:02:09,064 INFO  [Log] **************************************************************************************** 
+2016-11-04 17:06:59,980 INFO  [Log] **************************************************************************************** 
+2016-11-04 17:06:59,980 INFO  [Log] **************************************************************************************** 
+2016-11-04 17:06:59,980 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-04 17:06:59,980 INFO  [Log] **************************************************************************************** 
+2016-11-04 17:06:59,980 INFO  [Log] **************************************************************************************** 
+2016-11-04 17:10:09,412 INFO  [Log] **************************************************************************************** 
+2016-11-04 17:10:09,413 INFO  [Log] **************************************************************************************** 
+2016-11-04 17:10:09,413 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-04 17:10:09,413 INFO  [Log] **************************************************************************************** 
+2016-11-04 17:10:09,413 INFO  [Log] **************************************************************************************** 
+2016-11-04 17:12:04,499 INFO  [Log] **************************************************************************************** 
+2016-11-04 17:12:04,499 INFO  [Log] **************************************************************************************** 
+2016-11-04 17:12:04,499 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-04 17:12:04,499 INFO  [Log] **************************************************************************************** 
+2016-11-04 17:12:04,499 INFO  [Log] **************************************************************************************** 
+2016-11-04 17:13:50,445 INFO  [Log] **************************************************************************************** 
+2016-11-04 17:13:50,445 INFO  [Log] **************************************************************************************** 
+2016-11-04 17:13:50,445 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-04 17:13:50,445 INFO  [Log] **************************************************************************************** 
+2016-11-04 17:13:50,445 INFO  [Log] **************************************************************************************** 
+2016-11-04 17:14:24,214 INFO  [Log] **************************************************************************************** 
+2016-11-04 17:14:24,214 INFO  [Log] **************************************************************************************** 
+2016-11-04 17:14:24,214 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-04 17:14:24,215 INFO  [Log] **************************************************************************************** 
+2016-11-04 17:14:24,215 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:12:03,791 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:12:03,792 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:12:03,792 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-06 01:12:03,792 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:12:03,792 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:15:07,488 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:15:07,488 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:15:07,489 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-06 01:15:07,489 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:15:07,489 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:17:04,815 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:17:04,815 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:17:04,815 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-06 01:17:04,815 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:17:04,815 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:17:05,191 INFO  [Log] Excel sheet opened 
+2016-11-06 01:17:05,191 INFO  [Log] Total number of Row used return as < 2 >. 
+2016-11-06 01:17:05,248 ERROR [Log] Class Utils | Method OpenBrowser | Exception desc : Cannot find firefox binary in PATH. Make sure firefox is installed. OS appears to be: VISTA
+Build info: version: 'unknown', revision: '1969d75', time: '2016-10-18 09:43:45 -0700'
+System info: host: 'D025KAYO', ip: '192.168.56.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_102'
+Driver info: driver.version: FirefoxDriver 
+2016-11-06 01:17:05,253 ERROR [Log] My Acocunt link is not found on the Home Page 
+2016-11-06 01:17:05,325 ERROR [Log] Class Utils | Method takeScreenshot | Exception occured while capturing ScreenShot : null 
+2016-11-06 01:17:05,328 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-             XXXXXXXXXXXXXXXXXXXXXX 
+2016-11-06 01:17:05,328 INFO  [Log] X 
+2016-11-06 01:17:05,328 INFO  [Log] X 
+2016-11-06 01:17:05,328 INFO  [Log] X 
+2016-11-06 01:17:05,328 INFO  [Log] X 
+2016-11-06 01:21:03,574 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:21:03,574 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:21:03,575 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-06 01:21:03,575 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:21:03,575 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:21:03,937 INFO  [Log] Excel sheet opened 
+2016-11-06 01:21:03,937 INFO  [Log] Total number of Row used return as < 2 >. 
+2016-11-06 01:21:03,980 ERROR [Log] Class Utils | Method OpenBrowser | Exception desc : The path to the driver executable must be set by the webdriver.gecko.driver system property; for more information, see https://github.com/mozilla/geckodriver. The latest version can be downloaded from https://github.com/mozilla/geckodriver/releases 
+2016-11-06 01:21:03,985 ERROR [Log] My Acocunt link is not found on the Home Page 
+2016-11-06 01:21:04,048 ERROR [Log] Class Utils | Method takeScreenshot | Exception occured while capturing ScreenShot : null 
+2016-11-06 01:21:04,051 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-             XXXXXXXXXXXXXXXXXXXXXX 
+2016-11-06 01:21:04,051 INFO  [Log] X 
+2016-11-06 01:21:04,051 INFO  [Log] X 
+2016-11-06 01:21:04,051 INFO  [Log] X 
+2016-11-06 01:21:04,051 INFO  [Log] X 
+2016-11-06 01:23:14,024 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:23:14,024 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:23:14,024 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-06 01:23:14,024 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:23:14,024 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:23:14,345 INFO  [Log] Excel sheet opened 
+2016-11-06 01:23:14,345 INFO  [Log] Total number of Row used return as < 2 >. 
+2016-11-06 01:23:14,385 ERROR [Log] Class Utils | Method OpenBrowser | Exception desc : The path to the driver executable must be set by the webdriver.gecko.driver system property; for more information, see https://github.com/mozilla/geckodriver. The latest version can be downloaded from https://github.com/mozilla/geckodriver/releases 
+2016-11-06 01:23:14,391 ERROR [Log] My Acocunt link is not found on the Home Page 
+2016-11-06 01:23:14,446 ERROR [Log] Class Utils | Method takeScreenshot | Exception occured while capturing ScreenShot : null 
+2016-11-06 01:23:14,449 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-             XXXXXXXXXXXXXXXXXXXXXX 
+2016-11-06 01:23:14,449 INFO  [Log] X 
+2016-11-06 01:23:14,449 INFO  [Log] X 
+2016-11-06 01:23:14,449 INFO  [Log] X 
+2016-11-06 01:23:14,449 INFO  [Log] X 
+2016-11-06 01:25:06,122 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:25:06,123 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:25:06,123 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-06 01:25:06,123 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:25:06,123 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:25:06,470 INFO  [Log] Excel sheet opened 
+2016-11-06 01:25:06,470 INFO  [Log] Total number of Row used return as < 2 >. 
+2016-11-06 01:25:06,512 ERROR [Log] Class Utils | Method OpenBrowser | Exception desc : The path to the driver executable must be set by the webdriver.gecko.driver system property; for more information, see https://github.com/mozilla/geckodriver. The latest version can be downloaded from https://github.com/mozilla/geckodriver/releases 
+2016-11-06 01:25:06,516 ERROR [Log] My Acocunt link is not found on the Home Page 
+2016-11-06 01:25:06,571 ERROR [Log] Class Utils | Method takeScreenshot | Exception occured while capturing ScreenShot : null 
+2016-11-06 01:25:06,574 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-             XXXXXXXXXXXXXXXXXXXXXX 
+2016-11-06 01:25:06,574 INFO  [Log] X 
+2016-11-06 01:25:06,574 INFO  [Log] X 
+2016-11-06 01:25:06,574 INFO  [Log] X 
+2016-11-06 01:25:06,574 INFO  [Log] X 
+2016-11-06 01:27:53,018 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:27:53,018 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:27:53,018 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-06 01:27:53,018 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:27:53,018 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:27:53,353 INFO  [Log] Excel sheet opened 
+2016-11-06 01:27:53,353 INFO  [Log] Total number of Row used return as < 2 >. 
+2016-11-06 01:27:53,394 ERROR [Log] Class Utils | Method OpenBrowser | Exception desc : The path to the driver executable must be set by the webdriver.gecko.driver system property; for more information, see https://github.com/mozilla/geckodriver. The latest version can be downloaded from https://github.com/mozilla/geckodriver/releases 
+2016-11-06 01:27:53,399 ERROR [Log] My Acocunt link is not found on the Home Page 
+2016-11-06 01:27:53,472 ERROR [Log]  
+2016-11-06 01:27:53,474 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-             XXXXXXXXXXXXXXXXXXXXXX 
+2016-11-06 01:27:53,474 INFO  [Log] X 
+2016-11-06 01:27:53,474 INFO  [Log] X 
+2016-11-06 01:27:53,474 INFO  [Log] X 
+2016-11-06 01:27:53,474 INFO  [Log] X 
+2016-11-06 01:29:47,668 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:29:47,668 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:29:47,668 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-06 01:29:47,668 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:29:47,668 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:29:48,003 INFO  [Log] Excel sheet opened 
+2016-11-06 01:29:48,003 INFO  [Log] Total number of Row used return as < 2 >. 
+2016-11-06 01:29:48,043 ERROR [Log] Class Utils | Method OpenBrowser | Exception desc : The path to the driver executable must be set by the webdriver.gecko.driver system property; for more information, see https://github.com/mozilla/geckodriver. The latest version can be downloaded from https://github.com/mozilla/geckodriver/releases 
+2016-11-06 01:29:48,050 ERROR [Log] My Acocunt link is not found on the Home Page 
+2016-11-06 01:29:48,116 ERROR [Log] Class Utils | Method takeScreenshot | Exception occured while capturing ScreenShot : null 
+2016-11-06 01:29:48,118 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-             XXXXXXXXXXXXXXXXXXXXXX 
+2016-11-06 01:29:48,118 INFO  [Log] X 
+2016-11-06 01:29:48,119 INFO  [Log] X 
+2016-11-06 01:29:48,119 INFO  [Log] X 
+2016-11-06 01:29:48,119 INFO  [Log] X 
+2016-11-06 01:31:45,369 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:31:45,369 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:31:45,369 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-06 01:31:45,369 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:31:45,369 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:31:45,706 INFO  [Log] Excel sheet opened 
+2016-11-06 01:31:45,707 INFO  [Log] Total number of Row used return as < 2 >. 
+2016-11-06 01:31:45,746 ERROR [Log] Class Utils | Method OpenBrowser | Exception desc : The path to the driver executable must be set by the webdriver.gecko.driver system property; for more information, see https://github.com/mozilla/geckodriver. The latest version can be downloaded from https://github.com/mozilla/geckodriver/releases 
+2016-11-06 01:31:45,752 ERROR [Log] My Acocunt link is not found on the Home Page 
+2016-11-06 01:31:45,755 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-             XXXXXXXXXXXXXXXXXXXXXX 
+2016-11-06 01:31:45,755 INFO  [Log] X 
+2016-11-06 01:31:45,755 INFO  [Log] X 
+2016-11-06 01:31:45,755 INFO  [Log] X 
+2016-11-06 01:31:45,755 INFO  [Log] X 
+2016-11-06 01:33:17,252 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:33:17,252 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:33:17,252 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-06 01:33:17,252 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:33:17,252 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:33:17,584 INFO  [Log] Excel sheet opened 
+2016-11-06 01:33:17,584 INFO  [Log] Total number of Row used return as < 2 >. 
+2016-11-06 01:33:17,625 ERROR [Log] Class Utils | Method OpenBrowser | Exception desc : The path to the driver executable must be set by the webdriver.gecko.driver system property; for more information, see https://github.com/mozilla/geckodriver. The latest version can be downloaded from https://github.com/mozilla/geckodriver/releases 
+2016-11-06 01:33:17,630 ERROR [Log] My Acocunt link is not found on the Home Page 
+2016-11-06 01:33:17,634 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-             XXXXXXXXXXXXXXXXXXXXXX 
+2016-11-06 01:33:17,634 INFO  [Log] X 
+2016-11-06 01:33:17,634 INFO  [Log] X 
+2016-11-06 01:33:17,634 INFO  [Log] X 
+2016-11-06 01:33:17,634 INFO  [Log] X 
+2016-11-06 01:37:29,504 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:37:29,504 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:37:29,504 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-06 01:37:29,504 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:37:29,504 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:37:29,827 INFO  [Log] Excel sheet opened 
+2016-11-06 01:37:29,827 INFO  [Log] Total number of Row used return as < 2 >. 
+2016-11-06 01:37:31,719 ERROR [Log] My Acocunt link is not found on the Home Page 
+2016-11-06 01:37:31,908 ERROR [Log] no such element: Unable to locate element: {"method":"xpath","selector":".//*[@id='account']/a"}
+  (Session info: chrome=54.0.2840.87)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 149 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: 'unknown', revision: '1969d75', time: '2016-10-18 09:43:45 -0700'
+System info: host: 'D025KAYO', ip: '192.168.56.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_102'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\THIENK~1\AppData\Local\Temp\scoped_dir10004_23369}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.87, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: c81f529a217f0470c5f3b4a389ed27c9
+*** Element info: {Using=xpath, value=.//*[@id='account']/a} 
+2016-11-06 01:37:31,910 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-             XXXXXXXXXXXXXXXXXXXXXX 
+2016-11-06 01:37:31,910 INFO  [Log] X 
+2016-11-06 01:37:31,910 INFO  [Log] X 
+2016-11-06 01:37:31,910 INFO  [Log] X 
+2016-11-06 01:37:31,910 INFO  [Log] X 
+2016-11-06 01:39:59,604 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:39:59,605 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:39:59,605 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-06 01:39:59,605 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:39:59,605 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:39:59,942 INFO  [Log] Excel sheet opened 
+2016-11-06 01:39:59,942 INFO  [Log] Total number of Row used return as < 2 >. 
+2016-11-06 01:40:02,611 ERROR [Log] My Acocunt link is not found on the Home Page 
+2016-11-06 01:40:02,854 ERROR [Log] no such element: Unable to locate element: {"method":"xpath","selector":".//*[@id='account']/a"}
+  (Session info: chrome=54.0.2840.87)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 34 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: 'unknown', revision: '1969d75', time: '2016-10-18 09:43:45 -0700'
+System info: host: 'D025KAYO', ip: '192.168.56.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_102'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\THIENK~1\AppData\Local\Temp\scoped_dir10688_2043}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.87, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: eab5357d3f998728d298cce6e8faaadc
+*** Element info: {Using=xpath, value=.//*[@id='account']/a} 
+2016-11-06 01:40:02,857 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-             XXXXXXXXXXXXXXXXXXXXXX 
+2016-11-06 01:40:02,857 INFO  [Log] X 
+2016-11-06 01:40:02,857 INFO  [Log] X 
+2016-11-06 01:40:02,857 INFO  [Log] X 
+2016-11-06 01:40:02,857 INFO  [Log] X 
+2016-11-06 01:40:22,977 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:40:22,977 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:40:22,977 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-06 01:40:22,977 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:40:22,977 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:40:23,303 INFO  [Log] Excel sheet opened 
+2016-11-06 01:40:23,303 INFO  [Log] Total number of Row used return as < 2 >. 
+2016-11-06 01:40:38,125 INFO  [Log] My Account link is found on the Home Page 
+2016-11-06 01:40:38,211 ERROR [Log] Class Utils | Method takeScreenshot | Exception occured while capturing ScreenShot : no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=54.0.2840.87)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 15 milliseconds
+Build info: version: 'unknown', revision: '1969d75', time: '2016-10-18 09:43:45 -0700'
+System info: host: 'D025KAYO', ip: '192.168.56.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_102'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\THIENK~1\AppData\Local\Temp\scoped_dir5204_14968}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.87, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 3979b2c93e13b342951c356811169a78 
+2016-11-06 01:40:38,213 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-             XXXXXXXXXXXXXXXXXXXXXX 
+2016-11-06 01:40:38,213 INFO  [Log] X 
+2016-11-06 01:40:38,213 INFO  [Log] X 
+2016-11-06 01:40:38,214 INFO  [Log] X 
+2016-11-06 01:40:38,214 INFO  [Log] X 
+2016-11-06 01:41:58,263 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:41:58,263 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:41:58,263 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-06 01:41:58,263 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:41:58,263 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:41:58,578 INFO  [Log] Excel sheet opened 
+2016-11-06 01:41:58,578 INFO  [Log] Total number of Row used return as < 2 >. 
+2016-11-06 01:42:05,680 INFO  [Log] My Account link is found on the Home Page 
+2016-11-06 01:42:07,200 INFO  [Log] Click action is perfromed on My Account link 
+2016-11-06 01:42:07,215 INFO  [Log] Username text box is found on the Login Page 
+2016-11-06 01:42:07,255 INFO  [Log] testuser_1 is entered in UserName text box 
+2016-11-06 01:42:07,271 INFO  [Log] Password text box is found on the Login page 
+2016-11-06 01:42:07,301 INFO  [Log] Test@123 is entered in Password text box 
+2016-11-06 01:42:07,312 INFO  [Log] Submit button is found on the Login page 
+2016-11-06 01:42:07,338 INFO  [Log] Click action is performed on Submit button 
+2016-11-06 01:42:27,428 ERROR [Log] Log Out link is not found on the Home Page 
+2016-11-06 01:42:27,702 ERROR [Log] no such element: Unable to locate element: {"method":"id","selector":"account_logout"}
+  (Session info: chrome=54.0.2840.87)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 20.09 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: 'unknown', revision: '1969d75', time: '2016-10-18 09:43:45 -0700'
+System info: host: 'D025KAYO', ip: '192.168.56.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_102'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\THIENK~1\AppData\Local\Temp\scoped_dir9468_2429}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.87, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: ad12bb135e991dc60ebca632f5d699c3
+*** Element info: {Using=id, value=account_logout} 
+2016-11-06 01:42:27,704 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-             XXXXXXXXXXXXXXXXXXXXXX 
+2016-11-06 01:42:27,704 INFO  [Log] X 
+2016-11-06 01:42:27,704 INFO  [Log] X 
+2016-11-06 01:42:27,704 INFO  [Log] X 
+2016-11-06 01:42:27,704 INFO  [Log] X 
+2016-11-06 01:45:49,131 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:45:49,131 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:45:49,131 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-06 01:45:49,131 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:45:49,131 INFO  [Log] **************************************************************************************** 
+2016-11-06 01:45:49,467 INFO  [Log] Excel sheet opened 
+2016-11-06 01:45:49,467 INFO  [Log] Total number of Row used return as < 2 >. 
+2016-11-06 01:45:56,545 INFO  [Log] My Account link is found on the Home Page 
+2016-11-06 01:45:59,326 INFO  [Log] Click action is perfromed on My Account link 
+2016-11-06 01:45:59,378 INFO  [Log] Username text box is found on the Login Page 
+2016-11-06 01:45:59,413 INFO  [Log] thienkhoi is entered in UserName text box 
+2016-11-06 01:45:59,425 INFO  [Log] Password text box is found on the Login page 
+2016-11-06 01:45:59,448 INFO  [Log]  is entered in Password text box 
+2016-11-06 01:45:59,459 INFO  [Log] Submit button is found on the Login page 
+2016-11-06 01:45:59,488 INFO  [Log] Click action is performed on Submit button 
+2016-11-06 01:46:19,607 INFO  [Log] Log Out link is found on the Home Page 
+2016-11-06 01:46:19,656 INFO  [Log] Product category link is found under Top Navigation 
+2016-11-06 01:46:19,755 INFO  [Log] Accessories link is found under Product Category 
+2016-11-06 01:46:22,843 INFO  [Log] Click action is performed on the selected Product Type 
+2016-11-06 01:46:22,843 INFO  [Log] Product Type Accessories is selected from the Top menu 
+2016-11-06 01:46:22,857 INFO  [Log] Add to Cart button is found for Product 2 
+2016-11-06 01:46:22,906 INFO  [Log] Product 2 is selected from the Product listing page 
+2016-11-06 01:46:24,137 INFO  [Log] Go to Cart button is found on the Cart Pop Up window 
+2016-11-06 01:46:26,622 INFO  [Log] Product Name for purchased product is found on the Check Out Page 
+2016-11-06 01:46:26,663 INFO  [Log] Product Price for purchased product is found on the Check Out Page 
+2016-11-06 01:46:26,690 INFO  [Log] Continue button is found on the Check Out Page 
+2016-11-06 01:46:26,727 INFO  [Log] Email text box on Payment Details page is found. 
+2016-11-06 01:46:26,969 ERROR [Log] invalid element state: Element is not currently interactable and may not be manipulated
+  (Session info: chrome=54.0.2840.87)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 25 milliseconds
+Build info: version: 'unknown', revision: '1969d75', time: '2016-10-18 09:43:45 -0700'
+System info: host: 'D025KAYO', ip: '192.168.56.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_102'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\THIENK~1\AppData\Local\Temp\scoped_dir3660_21862}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.87, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 064168d9be85b1e22b082fed3c9b3e1e 
+2016-11-06 01:46:26,971 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-             XXXXXXXXXXXXXXXXXXXXXX 
+2016-11-06 01:46:26,971 INFO  [Log] X 
+2016-11-06 01:46:26,971 INFO  [Log] X 
+2016-11-06 01:46:26,971 INFO  [Log] X 
+2016-11-06 01:46:26,971 INFO  [Log] X 
+2016-11-09 08:39:53,847 INFO  [Log] **************************************************************************************** 
+2016-11-09 08:39:53,847 INFO  [Log] **************************************************************************************** 
+2016-11-09 08:39:53,847 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-09 08:39:53,847 INFO  [Log] **************************************************************************************** 
+2016-11-09 08:39:53,847 INFO  [Log] **************************************************************************************** 
+2016-11-09 08:39:54,532 INFO  [Log] Excel sheet opened 
+2016-11-09 08:39:54,532 INFO  [Log] Total number of Row used return as < 2 >. 
+2016-11-09 08:40:07,019 INFO  [Log] My Account link is found on the Home Page 
+2016-11-09 08:40:07,061 INFO  [Log] Click action is perfromed on My Account link 
+2016-11-09 08:40:09,248 INFO  [Log] Username text box is found on the Login Page 
+2016-11-09 08:40:09,280 INFO  [Log] thienkhoi is entered in UserName text box 
+2016-11-09 08:40:09,293 INFO  [Log] Password text box is found on the Login page 
+2016-11-09 08:40:09,316 INFO  [Log]  is entered in Password text box 
+2016-11-09 08:40:09,328 INFO  [Log] Submit button is found on the Login page 
+2016-11-09 08:40:09,355 INFO  [Log] Click action is performed on Submit button 
+2016-11-09 08:40:27,982 INFO  [Log] Log Out link is found on the Home Page 
+2016-11-09 08:40:28,824 ERROR [Log] Class Utils | Method takeScreenshot | Exception occured while capturing ScreenShot : no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=54.0.2840.87)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 10 milliseconds
+Build info: version: 'unknown', revision: '1969d75', time: '2016-10-18 09:43:45 -0700'
+System info: host: 'D025KAYO', ip: '10.128.154.83', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_102'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\THIENK~1\AppData\Local\Temp\scoped_dir5812_13003}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.87, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 0a7264ca07d0eaff05e85b21eef91cb7 
+2016-11-09 08:40:28,826 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-             XXXXXXXXXXXXXXXXXXXXXX 
+2016-11-09 08:40:28,826 INFO  [Log] X 
+2016-11-09 08:40:28,826 INFO  [Log] X 
+2016-11-09 08:40:28,826 INFO  [Log] X 
+2016-11-09 08:40:28,826 INFO  [Log] X 
+2016-11-09 08:42:27,195 INFO  [Log] **************************************************************************************** 
+2016-11-09 08:42:27,195 INFO  [Log] **************************************************************************************** 
+2016-11-09 08:42:27,195 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-09 08:42:27,195 INFO  [Log] **************************************************************************************** 
+2016-11-09 08:42:27,195 INFO  [Log] **************************************************************************************** 
+2016-11-09 08:42:27,519 INFO  [Log] Excel sheet opened 
+2016-11-09 08:42:27,519 INFO  [Log] Total number of Row used return as < 2 >. 
+2016-11-09 08:42:35,114 INFO  [Log] My Account link is found on the Home Page 
+2016-11-09 08:42:37,472 INFO  [Log] Click action is perfromed on My Account link 
+2016-11-09 08:42:37,496 INFO  [Log] Username text box is found on the Login Page 
+2016-11-09 08:42:37,531 INFO  [Log] thienkhoi is entered in UserName text box 
+2016-11-09 08:42:37,543 INFO  [Log] Password text box is found on the Login page 
+2016-11-09 08:42:37,566 INFO  [Log]  is entered in Password text box 
+2016-11-09 08:42:37,576 INFO  [Log] Submit button is found on the Login page 
+2016-11-09 08:42:37,602 INFO  [Log] Click action is performed on Submit button 
+2016-11-09 08:42:41,081 INFO  [Log] Log Out link is found on the Home Page 
+2016-11-09 08:42:41,142 ERROR [Log] Class Utils | Method takeScreenshot | Exception occured while capturing ScreenShot : no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=54.0.2840.87)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 10 milliseconds
+Build info: version: 'unknown', revision: '1969d75', time: '2016-10-18 09:43:45 -0700'
+System info: host: 'D025KAYO', ip: '10.128.154.83', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_102'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\THIENK~1\AppData\Local\Temp\scoped_dir1812_6705}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.87, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: a9738c6054be6d7aee374d55998bf8b0 
+2016-11-09 08:42:41,144 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-             XXXXXXXXXXXXXXXXXXXXXX 
+2016-11-09 08:42:41,144 INFO  [Log] X 
+2016-11-09 08:42:41,144 INFO  [Log] X 
+2016-11-09 08:42:41,144 INFO  [Log] X 
+2016-11-09 08:42:41,144 INFO  [Log] X 
+2016-11-09 08:46:32,050 INFO  [Log] **************************************************************************************** 
+2016-11-09 08:46:32,050 INFO  [Log] **************************************************************************************** 
+2016-11-09 08:46:32,050 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-09 08:46:32,050 INFO  [Log] **************************************************************************************** 
+2016-11-09 08:46:32,050 INFO  [Log] **************************************************************************************** 
+2016-11-09 08:46:32,379 INFO  [Log] Excel sheet opened 
+2016-11-09 08:46:32,379 INFO  [Log] Total number of Row used return as < 2 >. 
+2016-11-09 08:46:42,882 INFO  [Log] My Account link is found on the Home Page 
+2016-11-09 08:46:46,715 INFO  [Log] Click action is perfromed on My Account link 
+2016-11-09 08:46:46,739 INFO  [Log] Username text box is found on the Login Page 
+2016-11-09 08:46:46,778 INFO  [Log] thienkhoi is entered in UserName text box 
+2016-11-09 08:46:46,793 INFO  [Log] Password text box is found on the Login page 
+2016-11-09 08:46:46,817 INFO  [Log]  is entered in Password text box 
+2016-11-09 08:46:46,828 INFO  [Log] Submit button is found on the Login page 
+2016-11-09 08:46:46,854 INFO  [Log] Click action is performed on Submit button 
+2016-11-09 08:47:06,881 ERROR [Log] Log Out link is not found on the Home Page 
+2016-11-09 08:47:07,165 ERROR [Log] no such element: Unable to locate element: {"method":"id","selector":"account_logout"}
+  (Session info: chrome=54.0.2840.87)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 20.02 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: 'unknown', revision: '1969d75', time: '2016-10-18 09:43:45 -0700'
+System info: host: 'D025KAYO', ip: '10.128.154.83', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_102'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\THIENK~1\AppData\Local\Temp\scoped_dir7008_24451}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.87, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 43e6d3437baef02e132b450b885c7769
+*** Element info: {Using=id, value=account_logout} 
+2016-11-09 08:47:07,168 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-             XXXXXXXXXXXXXXXXXXXXXX 
+2016-11-09 08:47:07,168 INFO  [Log] X 
+2016-11-09 08:47:07,168 INFO  [Log] X 
+2016-11-09 08:47:07,168 INFO  [Log] X 
+2016-11-09 08:47:07,168 INFO  [Log] X 
+2016-11-09 08:48:52,641 INFO  [Log] **************************************************************************************** 
+2016-11-09 08:48:52,641 INFO  [Log] **************************************************************************************** 
+2016-11-09 08:48:52,641 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-09 08:48:52,641 INFO  [Log] **************************************************************************************** 
+2016-11-09 08:48:52,641 INFO  [Log] **************************************************************************************** 
+2016-11-09 08:48:52,959 INFO  [Log] Excel sheet opened 
+2016-11-09 08:48:52,959 INFO  [Log] Total number of Row used return as < 2 >. 
+2016-11-09 08:49:01,885 INFO  [Log] My Account link is found on the Home Page 
+2016-11-09 08:49:04,121 INFO  [Log] Click action is perfromed on My Account link 
+2016-11-09 08:49:04,151 INFO  [Log] Username text box is found on the Login Page 
+2016-11-09 08:49:04,202 INFO  [Log] thienkhoi is entered in UserName text box 
+2016-11-09 08:49:04,214 INFO  [Log] Password text box is found on the Login page 
+2016-11-09 08:49:04,243 INFO  [Log] 123456 is entered in Password text box 
+2016-11-09 08:49:04,254 INFO  [Log] Submit button is found on the Login page 
+2016-11-09 08:49:04,302 INFO  [Log] Click action is performed on Submit button 
+2016-11-09 08:49:08,252 INFO  [Log] Log Out link is found on the Home Page 
+2016-11-09 08:49:08,301 INFO  [Log] Product category link is found under Top Navigation 
+2016-11-09 08:49:08,417 INFO  [Log] Accessories link is found under Product Category 
+2016-11-09 08:49:11,987 INFO  [Log] Click action is performed on the selected Product Type 
+2016-11-09 08:49:11,987 INFO  [Log] Product Type Accessories is selected from the Top menu 
+2016-11-09 08:49:12,022 INFO  [Log] Add to Cart button is found for Product 2 
+2016-11-09 08:49:12,060 INFO  [Log] Product 2 is selected from the Product listing page 
+2016-11-09 08:49:13,301 INFO  [Log] Go to Cart button is found on the Cart Pop Up window 
+2016-11-09 08:49:15,933 INFO  [Log] Product Name for purchased product is found on the Check Out Page 
+2016-11-09 08:49:15,962 INFO  [Log] Product Price for purchased product is found on the Check Out Page 
+2016-11-09 08:49:15,992 INFO  [Log] Continue button is found on the Check Out Page 
+2016-11-09 08:49:16,029 INFO  [Log] Email text box on Payment Details page is found. 
+2016-11-09 08:49:16,059 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-             XXXXXXXXXXXXXXXXXXXXXX 
+2016-11-09 08:49:16,059 INFO  [Log] X 
+2016-11-09 08:49:16,059 INFO  [Log] X 
+2016-11-09 08:49:16,059 INFO  [Log] X 
+2016-11-09 08:49:16,059 INFO  [Log] X 
+2016-11-09 08:49:33,300 INFO  [Log] **************************************************************************************** 
+2016-11-09 08:49:33,301 INFO  [Log] **************************************************************************************** 
+2016-11-09 08:49:33,301 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-09 08:49:33,301 INFO  [Log] **************************************************************************************** 
+2016-11-09 08:49:33,301 INFO  [Log] **************************************************************************************** 
+2016-11-09 08:49:33,656 INFO  [Log] Excel sheet opened 
+2016-11-09 08:49:33,656 INFO  [Log] Total number of Row used return as < 2 >. 
+2016-11-09 08:49:41,922 INFO  [Log] My Account link is found on the Home Page 
+2016-11-09 08:49:45,657 INFO  [Log] Click action is perfromed on My Account link 
+2016-11-09 08:49:45,676 INFO  [Log] Username text box is found on the Login Page 
+2016-11-09 08:49:45,710 INFO  [Log] thienkhoi is entered in UserName text box 
+2016-11-09 08:49:45,722 INFO  [Log] Password text box is found on the Login page 
+2016-11-09 08:49:45,748 INFO  [Log] 123456 is entered in Password text box 
+2016-11-09 08:49:45,761 INFO  [Log] Submit button is found on the Login page 
+2016-11-09 08:49:45,788 INFO  [Log] Click action is performed on Submit button 
+2016-11-09 08:49:50,470 INFO  [Log] Log Out link is found on the Home Page 
+2016-11-09 08:49:50,531 INFO  [Log] Product category link is found under Top Navigation 
+2016-11-09 08:49:50,653 INFO  [Log] Accessories link is found under Product Category 
+2016-11-09 08:49:57,082 INFO  [Log] Click action is performed on the selected Product Type 
+2016-11-09 08:49:57,082 INFO  [Log] Product Type Accessories is selected from the Top menu 
+2016-11-09 08:49:57,107 INFO  [Log] Add to Cart button is found for Product 2 
+2016-11-09 08:49:57,161 INFO  [Log] Product 2 is selected from the Product listing page 
+2016-11-09 08:49:58,858 INFO  [Log] Go to Cart button is found on the Cart Pop Up window 
+2016-11-09 08:50:05,157 INFO  [Log] Product Name for purchased product is found on the Check Out Page 
+2016-11-09 08:50:05,188 INFO  [Log] Product Price for purchased product is found on the Check Out Page 
+2016-11-09 08:50:05,215 INFO  [Log] Continue button is found on the Check Out Page 
+2016-11-09 08:50:05,271 INFO  [Log] Email text box on Payment Details page is found. 
+2016-11-09 08:50:05,508 ERROR [Log] invalid element state: Element is not currently interactable and may not be manipulated
+  (Session info: chrome=54.0.2840.87)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 25 milliseconds
+Build info: version: 'unknown', revision: '1969d75', time: '2016-10-18 09:43:45 -0700'
+System info: host: 'D025KAYO', ip: '10.128.154.83', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_102'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\THIENK~1\AppData\Local\Temp\scoped_dir8344_24650}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.87, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: da3c6ae8f956ea3a569b5224c885f898 
+2016-11-09 08:50:05,511 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-             XXXXXXXXXXXXXXXXXXXXXX 
+2016-11-09 08:50:05,511 INFO  [Log] X 
+2016-11-09 08:50:05,511 INFO  [Log] X 
+2016-11-09 08:50:05,511 INFO  [Log] X 
+2016-11-09 08:50:05,511 INFO  [Log] X 
+2016-11-09 08:50:46,136 INFO  [Log] **************************************************************************************** 
+2016-11-09 08:50:46,136 INFO  [Log] **************************************************************************************** 
+2016-11-09 08:50:46,136 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-09 08:50:46,136 INFO  [Log] **************************************************************************************** 
+2016-11-09 08:50:46,136 INFO  [Log] **************************************************************************************** 
+2016-11-09 08:50:46,485 INFO  [Log] Excel sheet opened 
+2016-11-09 08:50:46,485 INFO  [Log] Total number of Row used return as < 2 >. 
+2016-11-09 08:50:54,738 INFO  [Log] My Account link is found on the Home Page 
+2016-11-09 08:50:56,645 INFO  [Log] Click action is perfromed on My Account link 
+2016-11-09 08:50:56,673 INFO  [Log] Username text box is found on the Login Page 
+2016-11-09 08:50:56,716 INFO  [Log] thienkhoi is entered in UserName text box 
+2016-11-09 08:50:56,733 INFO  [Log] Password text box is found on the Login page 
+2016-11-09 08:50:56,761 INFO  [Log] 123456 is entered in Password text box 
+2016-11-09 08:50:56,773 INFO  [Log] Submit button is found on the Login page 
+2016-11-09 08:50:56,802 INFO  [Log] Click action is performed on Submit button 
+2016-11-09 08:51:00,796 INFO  [Log] Log Out link is found on the Home Page 
+2016-11-09 08:51:00,847 INFO  [Log] Product category link is found under Top Navigation 
+2016-11-09 08:51:00,946 INFO  [Log] Accessories link is found under Product Category 
+2016-11-09 08:51:04,760 INFO  [Log] Click action is performed on the selected Product Type 
+2016-11-09 08:51:04,760 INFO  [Log] Product Type Accessories is selected from the Top menu 
+2016-11-09 08:51:04,787 INFO  [Log] Add to Cart button is found for Product 2 
+2016-11-09 08:51:04,826 INFO  [Log] Product 2 is selected from the Product listing page 
+2016-11-09 08:51:05,816 INFO  [Log] Go to Cart button is found on the Cart Pop Up window 
+2016-11-09 08:51:08,680 INFO  [Log] Product Name for purchased product is found on the Check Out Page 
+2016-11-09 08:51:08,709 INFO  [Log] Product Price for purchased product is found on the Check Out Page 
+2016-11-09 08:51:08,736 INFO  [Log] Continue button is found on the Check Out Page 
+2016-11-09 08:51:08,770 INFO  [Log] Email text box on Payment Details page is found. 
+2016-11-09 08:51:09,059 ERROR [Log] invalid element state: Element is not currently interactable and may not be manipulated
+  (Session info: chrome=54.0.2840.87)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 26 milliseconds
+Build info: version: 'unknown', revision: '1969d75', time: '2016-10-18 09:43:45 -0700'
+System info: host: 'D025KAYO', ip: '10.128.154.83', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_102'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\THIENK~1\AppData\Local\Temp\scoped_dir6636_19826}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.87, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 5b63e8f9cd98d067b150db2e07a3c76c 
+2016-11-09 08:51:09,063 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-             XXXXXXXXXXXXXXXXXXXXXX 
+2016-11-09 08:51:09,063 INFO  [Log] X 
+2016-11-09 08:51:09,063 INFO  [Log] X 
+2016-11-09 08:51:09,063 INFO  [Log] X 
+2016-11-09 08:51:09,063 INFO  [Log] X 
+2016-11-09 08:51:40,875 INFO  [Log] **************************************************************************************** 
+2016-11-09 08:51:40,875 INFO  [Log] **************************************************************************************** 
+2016-11-09 08:51:40,875 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_002       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-09 08:51:40,875 INFO  [Log] **************************************************************************************** 
+2016-11-09 08:51:40,875 INFO  [Log] **************************************************************************************** 
+2016-11-09 08:51:41,203 INFO  [Log] Excel sheet opened 
+2016-11-09 08:51:41,203 INFO  [Log] Total number of Row used return as < 2 >. 
+2016-11-09 08:51:49,862 INFO  [Log] My Account link is found on the Home Page 
+2016-11-09 08:51:51,776 INFO  [Log] Click action is perfromed on My Account link 
+2016-11-09 08:51:51,794 INFO  [Log] Username text box is found on the Login Page 
+2016-11-09 08:51:51,827 INFO  [Log] thienkhoi is entered in UserName text box 
+2016-11-09 08:51:51,839 INFO  [Log] Password text box is found on the Login page 
+2016-11-09 08:51:51,867 INFO  [Log] 123456 is entered in Password text box 
+2016-11-09 08:51:51,878 INFO  [Log] Submit button is found on the Login page 
+2016-11-09 08:51:51,905 INFO  [Log] Click action is performed on Submit button 
+2016-11-09 08:51:55,328 INFO  [Log] Log Out link is found on the Home Page 
+2016-11-09 08:51:55,366 INFO  [Log] Product category link is found under Top Navigation 
+2016-11-09 08:51:55,466 INFO  [Log] iMacs link is found under Product Category 
+2016-11-09 08:51:58,076 INFO  [Log] Click action is performed on the selected Product Type 
+2016-11-09 08:51:58,076 INFO  [Log] Product Type iMacs is selected from the Top menu 
+2016-11-09 08:51:58,108 INFO  [Log] Add to Cart button is found for Product 1 
+2016-11-09 08:51:58,147 INFO  [Log] Product 1 is selected from the Product listing page 
+2016-11-09 08:51:59,969 INFO  [Log] Go to Cart button is found on the Cart Pop Up window 
+2016-11-09 08:52:22,724 INFO  [Log] Go to Cart button is not found on the Cart Pop Up window 
+2016-11-09 08:52:22,935 ERROR [Log] no such element: Unable to locate element: {"method":"xpath","selector":".//*[@id='fancy_notification_content']/a[1]"}
+  (Session info: chrome=54.0.2840.87)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 20.06 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: 'unknown', revision: '1969d75', time: '2016-10-18 09:43:45 -0700'
+System info: host: 'D025KAYO', ip: '10.128.154.83', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_102'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\THIENK~1\AppData\Local\Temp\scoped_dir6480_13013}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.87, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 74da45c3a2d662225a2c3a7eb8f8cf13
+*** Element info: {Using=xpath, value=.//*[@id='fancy_notification_content']/a[1]} 
+2016-11-09 08:52:22,938 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-             XXXXXXXXXXXXXXXXXXXXXX 
+2016-11-09 08:52:22,938 INFO  [Log] X 
+2016-11-09 08:52:22,938 INFO  [Log] X 
+2016-11-09 08:52:22,938 INFO  [Log] X 
+2016-11-09 08:52:22,938 INFO  [Log] X 
+2016-11-09 10:07:09,708 INFO  [Log] **************************************************************************************** 
+2016-11-09 10:07:09,709 INFO  [Log] **************************************************************************************** 
+2016-11-09 10:07:09,709 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-09 10:07:09,709 INFO  [Log] **************************************************************************************** 
+2016-11-09 10:07:09,709 INFO  [Log] **************************************************************************************** 
+2016-11-09 10:07:10,073 INFO  [Log] Excel sheet opened 
+2016-11-09 10:07:10,073 INFO  [Log] Total number of Row used return as < 2 >. 
+2016-11-09 10:07:17,387 INFO  [Log] My Account link is found on the Home Page 
+2016-11-09 10:07:19,300 INFO  [Log] Click action is perfromed on My Account link 
+2016-11-09 10:07:19,320 INFO  [Log] Username text box is found on the Login Page 
+2016-11-09 10:07:19,348 INFO  [Log] thienkhoi is entered in UserName text box 
+2016-11-09 10:07:19,359 INFO  [Log] Password text box is found on the Login page 
+2016-11-09 10:07:19,388 INFO  [Log] 123456 is entered in Password text box 
+2016-11-09 10:07:19,400 INFO  [Log] Submit button is found on the Login page 
+2016-11-09 10:07:19,426 INFO  [Log] Click action is performed on Submit button 
+2016-11-09 10:07:23,715 INFO  [Log] Log Out link is found on the Home Page 
+2016-11-09 10:07:23,780 INFO  [Log] Product category link is found under Top Navigation 
+2016-11-09 10:07:23,902 INFO  [Log] Accessories link is found under Product Category 
+2016-11-09 10:07:27,576 INFO  [Log] Click action is performed on the selected Product Type 
+2016-11-09 10:07:27,576 INFO  [Log] Product Type Accessories is selected from the Top menu 
+2016-11-09 10:07:27,591 INFO  [Log] Add to Cart button is found for Product 2 
+2016-11-09 10:07:27,624 INFO  [Log] Product 2 is selected from the Product listing page 
+2016-11-09 10:07:28,677 INFO  [Log] Go to Cart button is found on the Cart Pop Up window 
+2016-11-09 10:07:31,333 INFO  [Log] Product Name for purchased product is found on the Check Out Page 
+2016-11-09 10:07:31,364 INFO  [Log] Product Price for purchased product is found on the Check Out Page 
+2016-11-09 10:07:31,392 INFO  [Log] Continue button is found on the Check Out Page 
+2016-11-09 10:07:31,426 INFO  [Log] Email text box on Payment Details page is found. 
+2016-11-09 10:07:31,681 ERROR [Log] invalid element state: Element is not currently interactable and may not be manipulated
+  (Session info: chrome=54.0.2840.87)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 28 milliseconds
+Build info: version: 'unknown', revision: '1969d75', time: '2016-10-18 09:43:45 -0700'
+System info: host: 'D025KAYO', ip: '192.168.56.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_102'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\THIENK~1\AppData\Local\Temp\scoped_dir7456_9807}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.87, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 0046f73be46cb6f85efd75eb3f6d7d97 
+2016-11-09 10:07:31,684 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-             XXXXXXXXXXXXXXXXXXXXXX 
+2016-11-09 10:07:31,684 INFO  [Log] X 
+2016-11-09 10:07:31,684 INFO  [Log] X 
+2016-11-09 10:07:31,684 INFO  [Log] X 
+2016-11-09 10:07:31,684 INFO  [Log] X 
+2016-11-09 10:09:45,378 INFO  [Log] **************************************************************************************** 
+2016-11-09 10:09:45,378 INFO  [Log] **************************************************************************************** 
+2016-11-09 10:09:45,378 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-09 10:09:45,378 INFO  [Log] **************************************************************************************** 
+2016-11-09 10:09:45,378 INFO  [Log] **************************************************************************************** 
+2016-11-09 10:09:45,730 INFO  [Log] Excel sheet opened 
+2016-11-09 10:09:45,730 INFO  [Log] Total number of Row used return as < 2 >. 
+2016-11-09 10:09:52,799 INFO  [Log] My Account link is found on the Home Page 
+2016-11-09 10:09:54,927 INFO  [Log] Click action is perfromed on My Account link 
+2016-11-09 10:09:54,950 INFO  [Log] Username text box is found on the Login Page 
+2016-11-09 10:09:54,982 INFO  [Log] thienkhoi is entered in UserName text box 
+2016-11-09 10:09:54,993 INFO  [Log] Password text box is found on the Login page 
+2016-11-09 10:09:55,019 INFO  [Log] 123456 is entered in Password text box 
+2016-11-09 10:09:55,032 INFO  [Log] Submit button is found on the Login page 
+2016-11-09 10:09:55,058 INFO  [Log] Click action is performed on Submit button 
+2016-11-09 10:09:59,123 INFO  [Log] Log Out link is found on the Home Page 
+2016-11-09 10:09:59,209 INFO  [Log] Product category link is found under Top Navigation 
+2016-11-09 10:09:59,341 INFO  [Log] Accessories link is found under Product Category 
+2016-11-09 10:10:03,155 INFO  [Log] Click action is performed on the selected Product Type 
+2016-11-09 10:10:03,155 INFO  [Log] Product Type Accessories is selected from the Top menu 
+2016-11-09 10:10:03,175 INFO  [Log] Add to Cart button is found for Product 2 
+2016-11-09 10:10:03,226 INFO  [Log] Product 2 is selected from the Product listing page 
+2016-11-09 10:10:04,322 INFO  [Log] Go to Cart button is found on the Cart Pop Up window 
+2016-11-09 10:10:07,431 INFO  [Log] Product Name for purchased product is found on the Check Out Page 
+2016-11-09 10:10:07,459 INFO  [Log] Product Price for purchased product is found on the Check Out Page 
+2016-11-09 10:10:07,488 INFO  [Log] Continue button is found on the Check Out Page 
+2016-11-09 10:10:07,530 INFO  [Log] Email text box on Payment Details page is found. 
+2016-11-09 10:10:07,774 ERROR [Log] invalid element state: Element is not currently interactable and may not be manipulated
+  (Session info: chrome=54.0.2840.87)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 25 milliseconds
+Build info: version: 'unknown', revision: '1969d75', time: '2016-10-18 09:43:45 -0700'
+System info: host: 'D025KAYO', ip: '192.168.56.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_102'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\THIENK~1\AppData\Local\Temp\scoped_dir2012_22364}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.87, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 9b3d561bae30a43b389fe431adaa57e1 
+2016-11-09 10:10:07,778 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-             XXXXXXXXXXXXXXXXXXXXXX 
+2016-11-09 10:10:07,778 INFO  [Log] X 
+2016-11-09 10:10:07,778 INFO  [Log] X 
+2016-11-09 10:10:07,778 INFO  [Log] X 
+2016-11-09 10:10:07,778 INFO  [Log] X 
+2016-11-09 10:11:57,352 INFO  [Log] **************************************************************************************** 
+2016-11-09 10:11:57,352 INFO  [Log] **************************************************************************************** 
+2016-11-09 10:11:57,352 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-09 10:11:57,352 INFO  [Log] **************************************************************************************** 
+2016-11-09 10:11:57,352 INFO  [Log] **************************************************************************************** 
+2016-11-09 10:11:57,702 INFO  [Log] Excel sheet opened 
+2016-11-09 10:11:57,702 INFO  [Log] Total number of Row used return as < 2 >. 
+2016-11-09 10:12:04,542 INFO  [Log] My Account link is found on the Home Page 
+2016-11-09 10:12:06,473 INFO  [Log] Click action is perfromed on My Account link 
+2016-11-09 10:12:06,494 INFO  [Log] Username text box is found on the Login Page 
+2016-11-09 10:12:06,539 INFO  [Log] thienkhoi is entered in UserName text box 
+2016-11-09 10:12:06,551 INFO  [Log] Password text box is found on the Login page 
+2016-11-09 10:12:06,579 INFO  [Log] 123456 is entered in Password text box 
+2016-11-09 10:12:06,591 INFO  [Log] Submit button is found on the Login page 
+2016-11-09 10:12:06,619 INFO  [Log] Click action is performed on Submit button 
+2016-11-09 10:12:10,718 INFO  [Log] Log Out link is found on the Home Page 
+2016-11-09 10:12:10,800 INFO  [Log] Product category link is found under Top Navigation 
+2016-11-09 10:12:10,915 INFO  [Log] Accessories link is found under Product Category 
+2016-11-09 10:12:13,853 INFO  [Log] Click action is performed on the selected Product Type 
+2016-11-09 10:12:13,853 INFO  [Log] Product Type Accessories is selected from the Top menu 
+2016-11-09 10:12:13,868 INFO  [Log] Add to Cart button is found for Product 2 
+2016-11-09 10:12:13,902 INFO  [Log] Product 2 is selected from the Product listing page 
+2016-11-09 10:12:14,886 INFO  [Log] Go to Cart button is found on the Cart Pop Up window 
+2016-11-09 10:12:18,010 INFO  [Log] Product Name for purchased product is found on the Check Out Page 
+2016-11-09 10:12:18,043 INFO  [Log] Product Price for purchased product is found on the Check Out Page 
+2016-11-09 10:12:18,077 INFO  [Log] Continue button is found on the Check Out Page 
+2016-11-09 10:14:30,403 INFO  [Log] Email text box on Payment Details page is found. 
+2016-11-09 10:14:39,305 INFO  [Log] Email text box on Payment Details page is found. 
+2016-11-09 10:14:43,719 INFO  [Log] tooolsqa@gmail.com is entered as First Name on the Payment detail page 
+2016-11-09 10:14:48,689 INFO  [Log] First Name text box on Payment Details page is found. 
+2016-11-09 10:14:49,126 INFO  [Log] First Name text box on Payment Details page is found. 
+2016-11-09 10:14:49,534 INFO  [Log] Lakshay is entered as First Name on the Payment detail page 
+2016-11-09 10:14:50,492 INFO  [Log] Last Name text box on Payment Details page is found. 
+2016-11-09 10:14:50,981 INFO  [Log] Last Name text box on Payment Details page is found. 
+2016-11-09 10:14:51,326 INFO  [Log] Sharma is entered as Last Name on the Payment detail page 
+2016-11-09 10:14:52,115 INFO  [Log] Address text box on Payment Details page is found. 
+2016-11-09 10:14:52,568 INFO  [Log] Address text box on Payment Details page is found. 
+2016-11-09 10:14:52,999 INFO  [Log] 35, Marconi House, Walker Road is entered as Address on the Payment detail page 
+2016-11-09 10:14:53,752 INFO  [Log] City text box on Payment Details page is found. 
+2016-11-09 10:14:54,108 INFO  [Log] City text box on Payment Details page is found. 
+2016-11-09 10:14:54,385 INFO  [Log] Newcastle is entered as City on the Payment detail page 
+2016-11-09 10:14:55,093 INFO  [Log] Country dropdown on Payment Details page is found. 
+2016-11-09 10:14:55,278 INFO  [Log] United Kingdom is Selected as Country on the Payment detail page 
+2016-11-09 10:14:55,816 INFO  [Log] Phone text box on Payment Details page is found. 
+2016-11-09 10:14:56,029 INFO  [Log] Phone text box on Payment Details page is found. 
+2016-11-09 10:14:56,228 INFO  [Log] 07777777777 is entered as Phone on the Payment detail page 
+2016-11-09 10:14:56,495 INFO  [Log] Same as Billing address check box on Payment Details page is found. 
+2016-11-09 10:14:56,704 INFO  [Log] Same as Billing address check box on Payment Details page is found. 
+2016-11-09 10:14:56,938 INFO  [Log] Same as Billing address check box is selected on the Payment detail page 
+2016-11-09 10:14:57,220 INFO  [Log] Purchase button on Payment Details page is found. 
+2016-11-09 10:14:58,696 INFO  [Log] Click action is performed on Purchase button on the Payment detail page 
+2016-11-09 10:16:10,828 INFO  [Log] **************************************************************************************** 
+2016-11-09 10:16:10,829 INFO  [Log] **************************************************************************************** 
+2016-11-09 10:16:10,829 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_002       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-09 10:16:10,829 INFO  [Log] **************************************************************************************** 
+2016-11-09 10:16:10,829 INFO  [Log] **************************************************************************************** 
+2016-11-09 10:16:11,165 INFO  [Log] Excel sheet opened 
+2016-11-09 10:16:11,165 INFO  [Log] Total number of Row used return as < 2 >. 
+2016-11-09 10:16:17,977 INFO  [Log] My Account link is found on the Home Page 
+2016-11-09 10:16:19,930 INFO  [Log] Click action is perfromed on My Account link 
+2016-11-09 10:16:19,954 INFO  [Log] Username text box is found on the Login Page 
+2016-11-09 10:16:20,006 INFO  [Log] thienkhoi is entered in UserName text box 
+2016-11-09 10:16:20,019 INFO  [Log] Password text box is found on the Login page 
+2016-11-09 10:16:20,046 INFO  [Log] 123456 is entered in Password text box 
+2016-11-09 10:16:20,057 INFO  [Log] Submit button is found on the Login page 
+2016-11-09 10:16:20,085 INFO  [Log] Click action is performed on Submit button 
+2016-11-09 10:16:24,026 INFO  [Log] Log Out link is found on the Home Page 
+2016-11-09 10:16:24,069 INFO  [Log] Product category link is found under Top Navigation 
+2016-11-09 10:16:24,183 INFO  [Log] iMacs link is found under Product Category 
+2016-11-09 10:16:28,402 INFO  [Log] Click action is performed on the selected Product Type 
+2016-11-09 10:16:28,402 INFO  [Log] Product Type iMacs is selected from the Top menu 
+2016-11-09 10:16:28,426 INFO  [Log] Add to Cart button is found for Product 1 
+2016-11-09 10:16:28,475 INFO  [Log] Product 1 is selected from the Product listing page 
+2016-11-09 10:16:29,599 INFO  [Log] Go to Cart button is found on the Cart Pop Up window 
+2016-11-09 10:16:53,041 INFO  [Log] Go to Cart button is not found on the Cart Pop Up window 
+2016-11-09 10:16:53,049 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-             XXXXXXXXXXXXXXXXXXXXXX 
+2016-11-09 10:16:53,049 INFO  [Log] X 
+2016-11-09 10:16:53,049 INFO  [Log] X 
+2016-11-09 10:16:53,049 INFO  [Log] X 
+2016-11-09 10:16:53,050 INFO  [Log] X 
+2016-11-09 10:17:19,931 INFO  [Log] **************************************************************************************** 
+2016-11-09 10:17:19,931 INFO  [Log] **************************************************************************************** 
+2016-11-09 10:17:19,931 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_002       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-09 10:17:19,931 INFO  [Log] **************************************************************************************** 
+2016-11-09 10:17:19,931 INFO  [Log] **************************************************************************************** 
+2016-11-09 10:17:20,264 INFO  [Log] Excel sheet opened 
+2016-11-09 10:17:20,264 INFO  [Log] Total number of Row used return as < 2 >. 
+2016-11-09 10:17:27,081 INFO  [Log] My Account link is found on the Home Page 
+2016-11-09 10:17:29,061 INFO  [Log] Click action is perfromed on My Account link 
+2016-11-09 10:17:29,084 INFO  [Log] Username text box is found on the Login Page 
+2016-11-09 10:17:29,116 INFO  [Log] thienkhoi is entered in UserName text box 
+2016-11-09 10:17:29,128 INFO  [Log] Password text box is found on the Login page 
+2016-11-09 10:17:29,154 INFO  [Log] 123456 is entered in Password text box 
+2016-11-09 10:17:29,167 INFO  [Log] Submit button is found on the Login page 
+2016-11-09 10:17:29,194 INFO  [Log] Click action is performed on Submit button 
+2016-11-09 10:17:32,789 INFO  [Log] Log Out link is found on the Home Page 
+2016-11-09 10:17:32,841 INFO  [Log] Product category link is found under Top Navigation 
+2016-11-09 10:17:32,940 INFO  [Log] iMacs link is found under Product Category 
+2016-11-09 10:17:35,306 INFO  [Log] Click action is performed on the selected Product Type 
+2016-11-09 10:17:35,306 INFO  [Log] Product Type iMacs is selected from the Top menu 
+2016-11-09 10:17:35,339 INFO  [Log] Add to Cart button is found for Product 1 
+2016-11-09 10:17:35,407 INFO  [Log] Product 1 is selected from the Product listing page 
+2016-11-09 10:17:36,399 INFO  [Log] Go to Cart button is found on the Cart Pop Up window 
+2016-11-09 10:17:59,670 INFO  [Log] Go to Cart button is not found on the Cart Pop Up window 
+2016-11-09 10:17:59,870 ERROR [Log] no such element: Unable to locate element: {"method":"xpath","selector":".//*[@id='fancy_notification_content']/a[1]"}
+  (Session info: chrome=54.0.2840.87)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 20.05 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: 'unknown', revision: '1969d75', time: '2016-10-18 09:43:45 -0700'
+System info: host: 'D025KAYO', ip: '192.168.56.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_102'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\THIENK~1\AppData\Local\Temp\scoped_dir7688_10805}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.87, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: d296e5ac5bef896280459dd4f2f0aaf9
+*** Element info: {Using=xpath, value=.//*[@id='fancy_notification_content']/a[1]} 
+2016-11-09 10:17:59,872 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-             XXXXXXXXXXXXXXXXXXXXXX 
+2016-11-09 10:17:59,872 INFO  [Log] X 
+2016-11-09 10:17:59,872 INFO  [Log] X 
+2016-11-09 10:17:59,873 INFO  [Log] X 
+2016-11-09 10:17:59,873 INFO  [Log] X 
+2016-11-09 10:19:21,896 INFO  [Log] **************************************************************************************** 
+2016-11-09 10:19:21,896 INFO  [Log] **************************************************************************************** 
+2016-11-09 10:19:21,896 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_002       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-09 10:19:21,896 INFO  [Log] **************************************************************************************** 
+2016-11-09 10:19:21,897 INFO  [Log] **************************************************************************************** 
+2016-11-09 10:19:22,250 INFO  [Log] Excel sheet opened 
+2016-11-09 10:19:22,250 INFO  [Log] Total number of Row used return as < 2 >. 
+2016-11-09 10:19:29,230 INFO  [Log] My Account link is found on the Home Page 
+2016-11-09 10:19:31,668 INFO  [Log] Click action is perfromed on My Account link 
+2016-11-09 10:19:31,699 INFO  [Log] Username text box is found on the Login Page 
+2016-11-09 10:19:31,741 INFO  [Log] thienkhoi is entered in UserName text box 
+2016-11-09 10:19:31,756 INFO  [Log] Password text box is found on the Login page 
+2016-11-09 10:19:31,791 INFO  [Log] 123456 is entered in Password text box 
+2016-11-09 10:19:31,806 INFO  [Log] Submit button is found on the Login page 
+2016-11-09 10:19:31,841 INFO  [Log] Click action is performed on Submit button 
+2016-11-09 10:19:35,594 INFO  [Log] Log Out link is found on the Home Page 
+2016-11-09 10:19:35,659 INFO  [Log] Product category link is found under Top Navigation 
+2016-11-09 10:19:35,763 INFO  [Log] iMacs link is found under Product Category 
+2016-11-09 10:19:38,472 INFO  [Log] Click action is performed on the selected Product Type 
+2016-11-09 10:19:38,472 INFO  [Log] Product Type iMacs is selected from the Top menu 
+2016-11-09 10:19:38,502 INFO  [Log] Add to Cart button is found for Product 1 
+2016-11-09 10:19:38,538 INFO  [Log] Product 1 is selected from the Product listing page 
+2016-11-09 10:19:39,501 INFO  [Log] Go to Cart button is found on the Cart Pop Up window 
+2016-11-09 10:20:03,383 INFO  [Log] Go to Cart button is not found on the Cart Pop Up window 
+2016-11-09 10:20:03,659 ERROR [Log] no such element: Unable to locate element: {"method":"xpath","selector":".//*[@id='fancy_notification_content']/a[1]"}
+  (Session info: chrome=54.0.2840.87)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 20.08 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: 'unknown', revision: '1969d75', time: '2016-10-18 09:43:45 -0700'
+System info: host: 'D025KAYO', ip: '192.168.56.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_102'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\THIENK~1\AppData\Local\Temp\scoped_dir5216_28327}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.87, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: ab254c75dfbbdb5e845bd227b64af469
+*** Element info: {Using=xpath, value=.//*[@id='fancy_notification_content']/a[1]} 
+2016-11-09 10:20:03,662 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-             XXXXXXXXXXXXXXXXXXXXXX 
+2016-11-09 10:20:03,662 INFO  [Log] X 
+2016-11-09 10:20:03,662 INFO  [Log] X 
+2016-11-09 10:20:03,662 INFO  [Log] X 
+2016-11-09 10:20:03,662 INFO  [Log] X 
+2016-11-09 10:20:19,122 INFO  [Log] **************************************************************************************** 
+2016-11-09 10:20:19,122 INFO  [Log] **************************************************************************************** 
+2016-11-09 10:20:19,122 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_002       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-09 10:20:19,122 INFO  [Log] **************************************************************************************** 
+2016-11-09 10:20:19,122 INFO  [Log] **************************************************************************************** 
+2016-11-09 10:20:19,504 INFO  [Log] Excel sheet opened 
+2016-11-09 10:20:19,504 INFO  [Log] Total number of Row used return as < 2 >. 
+2016-11-09 10:20:26,314 INFO  [Log] My Account link is found on the Home Page 
+2016-11-09 10:20:28,151 INFO  [Log] Click action is perfromed on My Account link 
+2016-11-09 10:20:28,165 INFO  [Log] Username text box is found on the Login Page 
+2016-11-09 10:20:28,196 INFO  [Log] thienkhoi is entered in UserName text box 
+2016-11-09 10:20:28,210 INFO  [Log] Password text box is found on the Login page 
+2016-11-09 10:20:28,236 INFO  [Log] 123456 is entered in Password text box 
+2016-11-09 10:20:28,248 INFO  [Log] Submit button is found on the Login page 
+2016-11-09 10:20:28,277 INFO  [Log] Click action is performed on Submit button 
+2016-11-09 10:20:31,818 INFO  [Log] Log Out link is found on the Home Page 
+2016-11-09 10:20:31,889 INFO  [Log] Product category link is found under Top Navigation 
+2016-11-09 10:20:32,005 INFO  [Log] iMacs link is found under Product Category 
+2016-11-09 10:20:34,756 INFO  [Log] Click action is performed on the selected Product Type 
+2016-11-09 10:20:34,757 INFO  [Log] Product Type iMacs is selected from the Top menu 
+2016-11-09 10:20:34,789 INFO  [Log] Add to Cart button is found for Product 1 
+2016-11-09 10:20:34,831 INFO  [Log] Product 1 is selected from the Product listing page 
+2016-11-09 10:20:35,821 INFO  [Log] Go to Cart button is found on the Cart Pop Up window 
+2016-11-09 10:24:07,565 INFO  [Log] Go to Cart button is not found on the Cart Pop Up window 
+2016-11-10 14:01:59,650 INFO  [Log] **************************************************************************************** 
+2016-11-10 14:01:59,651 INFO  [Log] **************************************************************************************** 
+2016-11-10 14:01:59,651 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-10 14:01:59,651 INFO  [Log] **************************************************************************************** 
+2016-11-10 14:01:59,651 INFO  [Log] **************************************************************************************** 
+2016-11-10 14:02:00,489 INFO  [Log] Excel sheet opened 
+2016-11-10 14:02:00,490 INFO  [Log] Total number of Row used return as < 2 >. 
+2016-11-10 14:02:09,031 INFO  [Log] My Account link is found on the Home Page 
+2016-11-10 14:02:10,807 INFO  [Log] Click action is perfromed on My Account link 
+2016-11-10 14:02:10,843 INFO  [Log] Username text box is found on the Login Page 
+2016-11-10 14:02:10,879 INFO  [Log] thienkhoi is entered in UserName text box 
+2016-11-10 14:02:10,894 INFO  [Log] Password text box is found on the Login page 
+2016-11-10 14:02:10,928 INFO  [Log] 123456 is entered in Password text box 
+2016-11-10 14:02:10,941 INFO  [Log] Submit button is found on the Login page 
+2016-11-10 14:02:10,972 INFO  [Log] Click action is performed on Submit button 
+2016-11-10 14:02:15,944 INFO  [Log] Log Out link is found on the Home Page 
+2016-11-10 14:02:16,021 INFO  [Log] Product category link is found under Top Navigation 
+2016-11-10 14:02:16,119 INFO  [Log] Accessories link is found under Product Category 
+2016-11-10 14:02:19,284 INFO  [Log] Click action is performed on the selected Product Type 
+2016-11-10 14:02:19,284 INFO  [Log] Product Type Accessories is selected from the Top menu 
+2016-11-10 14:02:19,302 INFO  [Log] Add to Cart button is found for Product 2 
+2016-11-10 14:02:19,343 INFO  [Log] Product 2 is selected from the Product listing page 
+2016-11-10 14:02:20,387 INFO  [Log] Go to Cart button is found on the Cart Pop Up window 
+2016-11-10 14:02:24,813 INFO  [Log] Product Name for purchased product is found on the Check Out Page 
+2016-11-10 14:02:24,845 INFO  [Log] Product Price for purchased product is found on the Check Out Page 
+2016-11-10 14:02:24,877 INFO  [Log] Continue button is found on the Check Out Page 
+2016-11-10 14:02:24,926 INFO  [Log] Email text box on Payment Details page is found. 
+2016-11-10 14:02:25,279 ERROR [Log] invalid element state: Element is not currently interactable and may not be manipulated
+  (Session info: chrome=54.0.2840.87)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 27 milliseconds
+Build info: version: 'unknown', revision: '1969d75', time: '2016-10-18 09:43:45 -0700'
+System info: host: 'D025KAYO', ip: '10.128.154.28', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_102'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\THIENK~1\AppData\Local\Temp\scoped_dir4308_8829}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.87, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 5a83b7c4f0a7822519f2e464230b0aba 
+2016-11-10 14:02:25,282 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-             XXXXXXXXXXXXXXXXXXXXXX 
+2016-11-10 14:02:25,282 INFO  [Log] X 
+2016-11-10 14:02:25,282 INFO  [Log] X 
+2016-11-10 14:02:25,282 INFO  [Log] X 
+2016-11-10 14:02:25,282 INFO  [Log] X 
+2016-11-10 14:02:27,348 INFO  [Log] **************************************************************************************** 
+2016-11-10 14:02:27,348 INFO  [Log] **************************************************************************************** 
+2016-11-10 14:02:27,348 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_002       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-10 14:02:27,349 INFO  [Log] **************************************************************************************** 
+2016-11-10 14:02:27,349 INFO  [Log] **************************************************************************************** 
+2016-11-10 14:02:27,371 INFO  [Log] Excel sheet opened 
+2016-11-10 14:02:27,372 INFO  [Log] Total number of Row used return as < 2 >. 
+2016-11-10 14:02:34,124 INFO  [Log] My Account link is found on the Home Page 
+2016-11-10 14:02:36,629 INFO  [Log] Click action is perfromed on My Account link 
+2016-11-10 14:02:36,641 INFO  [Log] Username text box is found on the Login Page 
+2016-11-10 14:02:36,690 INFO  [Log] thienkhoi is entered in UserName text box 
+2016-11-10 14:02:36,702 INFO  [Log] Password text box is found on the Login page 
+2016-11-10 14:02:36,740 INFO  [Log] 123456 is entered in Password text box 
+2016-11-10 14:02:36,754 INFO  [Log] Submit button is found on the Login page 
+2016-11-10 14:02:36,786 INFO  [Log] Click action is performed on Submit button 
+2016-11-10 14:02:40,223 INFO  [Log] Log Out link is found on the Home Page 
+2016-11-10 14:02:40,261 INFO  [Log] Product category link is found under Top Navigation 
+2016-11-10 14:02:40,361 INFO  [Log] iMacs link is found under Product Category 
+2016-11-10 14:02:45,333 INFO  [Log] Click action is performed on the selected Product Type 
+2016-11-10 14:02:45,333 INFO  [Log] Product Type iMacs is selected from the Top menu 
+2016-11-10 14:02:45,366 INFO  [Log] Add to Cart button is found for Product 1 
+2016-11-10 14:02:45,400 INFO  [Log] Product 1 is selected from the Product listing page 
+2016-11-10 14:02:46,326 INFO  [Log] Go to Cart button is found on the Cart Pop Up window 
+2016-11-10 14:03:09,068 INFO  [Log] Go to Cart button is not found on the Cart Pop Up window 
+2016-11-10 14:03:09,257 ERROR [Log] no such element: Unable to locate element: {"method":"xpath","selector":".//*[@id='fancy_notification_content']/a[1]"}
+  (Session info: chrome=54.0.2840.87)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 20.07 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: 'unknown', revision: '1969d75', time: '2016-10-18 09:43:45 -0700'
+System info: host: 'D025KAYO', ip: '10.128.154.28', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_102'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\THIENK~1\AppData\Local\Temp\scoped_dir7624_942}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.87, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 6d9788c32fd1f43561836f3987de87d9
+*** Element info: {Using=xpath, value=.//*[@id='fancy_notification_content']/a[1]} 
+2016-11-10 14:03:09,258 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-             XXXXXXXXXXXXXXXXXXXXXX 
+2016-11-10 14:03:09,258 INFO  [Log] X 
+2016-11-10 14:03:09,258 INFO  [Log] X 
+2016-11-10 14:03:09,258 INFO  [Log] X 
+2016-11-10 14:03:09,258 INFO  [Log] X 
+2016-11-10 16:28:33,599 INFO  [Log] **************************************************************************************** 
+2016-11-10 16:28:33,599 INFO  [Log] **************************************************************************************** 
+2016-11-10 16:28:33,599 INFO  [Log] $$$$$$$$$$$$$$$$$$$$$                 Framework_001       $$$$$$$$$$$$$$$$$$$$$$$$$ 
+2016-11-10 16:28:33,599 INFO  [Log] **************************************************************************************** 
+2016-11-10 16:28:33,599 INFO  [Log] **************************************************************************************** 
+2016-11-10 16:28:34,446 INFO  [Log] Excel sheet opened 
+2016-11-10 16:28:34,447 INFO  [Log] Total number of Row used return as < 2 >. 
+2016-11-10 16:28:43,224 INFO  [Log] My Account link is found on the Home Page 
+2016-11-10 16:28:46,457 INFO  [Log] Click action is perfromed on My Account link 
+2016-11-10 16:28:46,483 INFO  [Log] Username text box is found on the Login Page 
+2016-11-10 16:28:46,531 INFO  [Log] thienkhoi is entered in UserName text box 
+2016-11-10 16:28:46,543 INFO  [Log] Password text box is found on the Login page 
+2016-11-10 16:28:46,570 INFO  [Log] 123456 is entered in Password text box 
+2016-11-10 16:28:46,581 INFO  [Log] Submit button is found on the Login page 
+2016-11-10 16:28:46,607 INFO  [Log] Click action is performed on Submit button 
+2016-11-10 16:28:51,943 INFO  [Log] Log Out link is found on the Home Page 
+2016-11-10 16:28:52,004 INFO  [Log] Product category link is found under Top Navigation 
+2016-11-10 16:28:52,116 INFO  [Log] Accessories link is found under Product Category 
+2016-11-10 16:28:57,314 INFO  [Log] Click action is performed on the selected Product Type 
+2016-11-10 16:28:57,315 INFO  [Log] Product Type Accessories is selected from the Top menu 
+2016-11-10 16:28:57,358 INFO  [Log] Add to Cart button is found for Product 2 
+2016-11-10 16:28:57,394 INFO  [Log] Product 2 is selected from the Product listing page 
+2016-11-10 16:28:58,857 INFO  [Log] Go to Cart button is found on the Cart Pop Up window 
+2016-11-10 16:29:02,142 INFO  [Log] Product Name for purchased product is found on the Check Out Page 
+2016-11-10 16:29:02,174 INFO  [Log] Product Price for purchased product is found on the Check Out Page 
+2016-11-10 16:29:02,201 INFO  [Log] Continue button is found on the Check Out Page 
+2016-11-10 16:29:02,241 INFO  [Log] Email text box on Payment Details page is found. 
+2016-11-10 16:29:02,589 ERROR [Log] invalid element state: Element is not currently interactable and may not be manipulated
+  (Session info: chrome=54.0.2840.87)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 22 milliseconds
+Build info: version: 'unknown', revision: '1969d75', time: '2016-10-18 09:43:45 -0700'
+System info: host: 'D025KAYO', ip: '10.128.154.28', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_102'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\THIENK~1\AppData\Local\Temp\scoped_dir13000_25629}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.87, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: a2159b72f2ff61a5cdaccb9bca9840db 
+2016-11-10 16:29:02,591 INFO  [Log] XXXXXXXXXXXXXXXXXXXXXXX             -E---N---D-             XXXXXXXXXXXXXXXXXXXXXX 
+2016-11-10 16:29:02,591 INFO  [Log] X 
+2016-11-10 16:29:02,591 INFO  [Log] X 
+2016-11-10 16:29:02,591 INFO  [Log] X 
+2016-11-10 16:29:02,591 INFO  [Log] X 

@@ -1,0 +1,35 @@
+What's new in 1.6 build 0015 (2013/12/16)
+  + Removed all jQuery GPL licensed plugins
+What's new in 1.4 build 0050 (2013/04/02)
+  + Big performance improvement when displaying the reports
+What's new in 1.4 build 0030 (2012/12/14)
+  + Compress script
+  + Fixed CSS  
+What's new in 1.4 build 0030 (2012/11/01)
+  + Fix bug and improve performance when searching
+  + Change data property name
+  + Embeded export to outlook to global overview data panel
+  + Fixed bug in the grid execution time
+  + Added Test Analysis panel to global overview data panel  
+What's new in 1.4 build 0025 (2012/09/18)
+  + Task #16164: Investigating a way to avoid writing code in order to generate the HTML report.
+  + Change browser title.
+  + Include Stack trace and Standard output into test suite panel.
+  + Include Stack trace and Standard output into test case panel.
+  + Fixed a bug #16162: Sometimes Jenkins report shows 0 test cases.
+What's new in 1.3 build 0005 (2012/09/10)
+  + Fixed bug #16162: Sometimes Jenkins report shows 0 test cases
+What's new in 1.2 build 0114 (2012/06/11)
+  + Added capture screen icon.
+  + Added font-family in outlookexport.html page.
+What's new in 1.2 build 0112 (2012/06/08)
+  + Added step value in tree.
+  + Fixed a bug in Dashboard start time.    
+  + Fixed a bug in JUnit-frames.xsl: Test cases information incorrect in case more than one test case with the same name in a test suite.
+What's new in 1.2 build 0111 (2012/06/07)
+  + Fixed style in chrome.
+  + Fixed a bug in junit-frames.xsl: Step incorect in case omitted tag [/tcdetail] in junit system-out.
+  + Changed "Jenkins Monitor" icon.
+What's new in 1.2 build 0110 (2012/06/06)
+  + Fixed style in IE (IE9, IE6).
+  + Added a new page (pages/outlookexport.html) for quick report.

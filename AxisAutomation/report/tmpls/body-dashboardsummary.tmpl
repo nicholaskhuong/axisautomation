@@ -1,0 +1,381 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+  @template   : Dasboard Summary
+  @version    : 1.6
+  @create date: 10 Dec 2013
+  @last update: 16 Dec 2013
+-->
+<script id="tmpl_bodyContent_Dashboard_Summary" type="text/x-jqote-template">
+	<![CDATA[
+	<p id="tsStaticTriger" class="trigger" title="Toggle test case statistics panel">
+		<span class="ui-icon tooltip ui-icon-carat-1-n"></span>Test Case Statistics
+	</p>
+	<div id="testCaseStatistics" class="triggerContent">
+		<div class="oItem" style="float:left; width:32.6%">
+			<h3>Number of Executed TCs</h3>
+
+			<div class="panel">
+				<table cellpadding="0" cellspacing="0" width="100%">
+					<tbody>
+						<tr>
+							<td style="width:100px;" valign="top">
+								<div class="chart" id="totalChartPanel" style="width:90px; height:90px;"></div>
+								<div class="clear"></div>
+							</td>
+							<td valign="top" width="auto">
+								<table cellpadding="0" cellspacing="0" width="98%">
+									<thead>
+										<tr>
+											<th colspan="2">Stream</th>
+											<th class="alignRight">Number</th>
+											<th class="alignRight">%</th>
+										</tr>
+									</thead>
+									<tbody>
+										<%for (pkgIdx = 0; pkgIdx < this.package.length; pkgIdx++) {%>
+											<tr class="<%if ((pkgIdx % 2) == 1) {%>odd<%} else {%>even<%}%>">
+												<td style="width: 1.1em;">
+													<span style="font-size:0.8em;padding-right:1em;background-color:<%=getColor(pkgIdx + 1)%>">&nbsp;</span>
+												</td>
+												<td>
+													<a href="<%=getIndexPageURL()%>#?id=<%=this.package[pkgIdx].id%>&query=<%=this.package[pkgIdx].id%>"
+													   title="View <%=this.package[pkgIdx].text%> summary"
+													   target="_self"
+													   class="tooltip link">
+														<%=this.package[pkgIdx].text%>
+													</a>
+												</td>
+												<td class="alignRight"><%=this.package[pkgIdx].total%></td>
+												<td class="alignRight"><span style="color:#96B400"><%=percentage(reportData.total, this.package[pkgIdx].total)%>%</span></td>
+											</tr>
+										<%}%>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="oItem" style="float:left;margin-left:1%; width:32.6%">
+			<h3>Passed</h3>
+			<div class="panel">                
+				<table cellpadding="0" cellspacing="0" width="100%">
+					<tbody>
+						<tr>
+							<td style="width:100px;" valign="top">
+								<div class="chart" id="passedChartpanel" style="width:90px; height:90px;z-index=1"></div>
+								<div class="clear"></div>
+							</td>
+							<td valign="top" width="auto">
+								<table cellpadding="0" cellspacing="0" width="98%">
+									<thead>
+										<tr>
+											<th colspan="2">Stream</th>
+											<th class="alignRight">Number</th>
+											<th class="alignRight">%</th>
+										</tr>
+									</thead>
+									<tbody>                                            
+										<%for (pkgIdx = 0; pkgIdx < this.package.length; pkgIdx++) {%>
+											<tr class="<%if ((pkgIdx % 2) == 1) {%>odd<%} else {%>even<%}%>">
+												<td style="width: 1.1em;">
+													<span style="font-size:0.8em;padding-right:1em;background-color:<%=getColor(pkgIdx + 1)%>">&nbsp;</span>
+												</td>
+												<td>
+													<a href="<%=getIndexPageURL()%>#?id=<%=this.package[pkgIdx].id%>&status=pass&query=<%=this.package[pkgIdx].id%>"
+													   title="View <%=this.package[pkgIdx].text%> summary"
+													   target="_self"
+													   class="tooltip link">
+													   <%=this.package[pkgIdx].text%>
+													</a>
+												</td>
+												<td class="alignRight"><%=this.package[pkgIdx].pass%></td>
+												<td class="alignRight"><span style="color:green"><%=percentage(reportData.pass, this.package[pkgIdx].pass)%>%</span></td>
+											</tr>
+										<%}%>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div class="oItem" style="float:left;margin-left:1%; width:32.6%">
+			<h3>Failed</h3>
+			<div class="panel">
+				<table cellpadding="0" cellspacing="0" width="100%">
+					<tbody>
+						<tr>
+							<td style="width:140px;" valign="top">
+								<div class="chart" id="failedChartpanel" style="width:90px; height:90px;"></div>
+								<div class="clear"></div>
+							</td>
+							<td valign="top" width="auto">
+								<table cellpadding="0" cellspacing="0" width="98%">
+									<thead>
+										<tr>
+											<th colspan="2">Stream</th>
+											<th class="alignRight">Number</th>
+											<th class="alignRight">%</th>
+										</tr>
+									</thead>
+									<tbody>
+										<%for (pkgIdx = 0; pkgIdx < this.package.length; pkgIdx++) {%>
+											<tr class="<%if ((pkgIdx % 2) == 1) {%>odd<%} else {%>even<%}%>">
+												<td style="width: 1.1em;">
+													<span style="font-size:0.8em;padding-right:1em;background-color:<%=getColor(pkgIdx + 1)%>">&nbsp;</span>
+												</td>
+												<td>
+													<a href="<%=getIndexPageURL()%>#?id=<%=this.package[pkgIdx].id%>&status=fail&query=<%=this.package[pkgIdx].id%>"
+													   title="View <%=this.package[pkgIdx].text%> summary"
+													   target="_self"
+													   class="tooltip link">
+													   <%=this.package[pkgIdx].text%>
+													</a>
+												</td>
+												<td class="alignRight"><%=this.package[pkgIdx].fail%></td>
+												<td class="alignRight"><span style="color:#DC3912"><%=percentage(reportData.fail, this.package[pkgIdx].fail)%>%</span></td>
+											</tr>
+										<%}%>										
+									</tbody>
+								</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div style="clear:both;font-size:0;line-height:0"></div>
+		<div class="clear"></div>
+	</div>
+	<p id="overviewTriggerPanel" class="trigger curSelected" title="Toggle time statistics panel">
+		<span class="ui-icon tooltip ui-icon-carat-1-n"></span>Time Statistics
+	</p>
+
+	<div id="overviewPanel" class="triggerContent">
+	<div class="oItem" style="float:left; width:49.5%">
+		<h3>Top 10 Fastest Test Suites</h3>
+		<div class="panel">
+			<table cellpadding="0" cellspacing="0" width="100%" style="padding:8px" class="details">
+				<thead>
+					<tr>
+						<th colspan="4">Test Suite Name</th>                            
+						<th class="alignRight">Time</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%
+						tmp = jTemplate.dashboard.getTop10FastestSuites();
+					%>
+					<%for (tceIdx = 0; tceIdx < tmp.length; tceIdx++) {%>                        
+						<tr id="<%=tmp[tceIdx].id%>" class="category <%if ((tceIdx % 2) == 1) {%>odd<%} else {%>even<%}%>">
+							<td width="16"><%=(tceIdx + 1)%></td>
+							<td class="toggleStepIcon" width="1.2em">
+								<span style="font-size:0.8em;padding-right:1.2em;background-color:rgb(<%=(tceIdx-1)*30%>,<%=((tceIdx-1)*6)+150%>,0)"></span>
+								&nbsp;
+							</td>
+							<td width="18">
+								<div class="ui-icon icon-<%if (tmp[tceIdx].status) {%>pass<%} else {%>fail<%}%>">&nbsp;</div>
+							</td>
+							<td>
+								<div>
+									<a href="#?id=<%=tmp[tceIdx].id%><%=jReport.page.body.leftPanel.getFilterParam()%>"
+									   title="View <%=tmp[tceIdx].text%> summary"
+									   target="_self"
+									   class="tooltip link">
+									   <%=tmp[tceIdx].text%>
+									</a>
+									&nbsp;&nbsp;
+								</div>
+							</td>
+							<td style="text-align:right">
+								<div style="width:85px;float:right">
+									<span class="tsSummary"><%=secondsToHms(tmp[tceIdx].time)%></span>
+								</div>
+							</td>
+						</tr>
+						<tr id="<%=tmp[tceIdx].id%>-details" style="display: none">
+							<td></td>
+							<td id="<%=tmp[tceIdx].id%>-detailsStep" colspan="4">
+							</td>
+						</tr>                        
+					<%}%>
+					<%
+						tmp = null;
+					%>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="oItem" style="float:left;margin-left:1%;width:49.5%">
+		<h3>Top 10 Slowest Test Suites</h3>
+		<div class="panel">
+			<table cellpadding="0" cellspacing="0" width="100%" style="padding:8px" class="details">
+				<thead>
+					<tr>
+						<th colspan="4">Test Suite Name</th>                            
+						<th class="alignRight">Time</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%
+						tmp = jTemplate.dashboard.getTop10SlowestSuites();
+					%>
+					<%for (tceIdx = 0; tceIdx < tmp.length; tceIdx++) {%>                        
+						<tr id="<%=tmp[tceIdx].id%>" class="category <%if ((tceIdx % 2) == 1) {%>odd<%} else {%>even<%}%>">
+							<td width="16"><%=(tceIdx + 1)%></td>
+							<td class="toggleStepIcon" width="1.2em">
+								<span style="font-size:0.8em;padding-right:1.2em;background-color:rgb(<%=(((tceIdx-1)*15) + 180)%>,<%=((tceIdx-1)*40)%>,<%=(tceIdx-1)%>)"></span>
+								&nbsp;
+							</td>
+							<td width="18">
+								<div class="ui-icon icon-<%if (tmp[tceIdx].status) {%>pass<%} else {%>fail<%}%>">&nbsp;</div>
+							</td>
+							<td>
+								<div>
+									<a href="#?id=<%=tmp[tceIdx].id%><%=jReport.page.body.leftPanel.getFilterParam()%>"
+									   title="View <%=tmp[tceIdx].text%> summary"
+									   target="_self"
+									   class="tooltip link">
+									   <%=tmp[tceIdx].text%>
+									</a>
+									&nbsp;&nbsp;
+								</div>
+							</td>                                
+							<td style="text-align:right">
+								<div style="width:85px;float:right">
+									<span class="tsSummary"><%=secondsToHms(tmp[tceIdx].time)%></span>
+								</div>
+							</td>
+						</tr>
+						<tr id="<%=tmp[tceIdx].id%>-details" style="display: none">
+							<td></td>
+							<td id="<%=tmp[tceIdx].id%>-detailsStep" colspan="4">
+							</td>
+						</tr>                        
+					<%}%>
+					<%
+						tmp = null;
+					%>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div style="clear:both; padding-bottom:5px;font-size:0;line-height:0"></div>
+	<div class="oItem" style="float:left; width:49.5%">
+		<h3>Top 10 Fastest Test Cases</h3>
+
+		<div class="panel">
+			<table cellpadding="0" cellspacing="0" width="100%" style="padding:8px" class="details">
+				<thead>
+					<tr>
+						<th colspan="4">Test Case Name</th>                            
+						<th class="alignRight">Time</th>
+					</tr>
+				</thead>
+				<tbody>                       
+					<%
+						tmp = jTemplate.dashboard.getTop10FastestTestCase();
+					%>
+					<%for (tceIdx = 0; tceIdx < tmp.length; tceIdx++) {%>                        
+						<tr id="<%=tmp[tceIdx].id%>" class="category <%if ((tceIdx % 2) == 1) {%>odd<%} else {%>even<%}%>">
+							<td width="16"><%=(tceIdx + 1)%></td>
+							<td class="toggleStepIcon" width="1.2em">
+								<span style="font-size:0.8em;padding-right:1.2em;background-color:rgb(<%=((tceIdx-1)*30)%>,<%=((tceIdx-1)*6 + 150)%>,0)"></span>
+								&nbsp;
+							</td>
+							<td width="18">
+								<div class="ui-icon icon-<%if (tmp[tceIdx].status) {%>pass<%} else {%>fail<%}%>">&nbsp;</div>
+							</td>
+							<td>
+								<div>
+									<a href="#?id=<%=tmp[tceIdx].id%><%=jReport.page.body.leftPanel.getFilterParam()%>"
+									   title="View <%=tmp[tceIdx].text%> summary"
+									   target="_self"
+									   class="tooltip link">
+									   <%=tmp[tceIdx].text%>
+									</a>
+									&nbsp;&nbsp;
+								</div>
+							</td>                                
+							<td style="text-align:right">
+								<div style="width:85px;float:right">
+									<span class="tsSummary"><%=secondsToHms(tmp[tceIdx].time)%></span>
+								</div>
+							</td>
+						</tr>
+						<tr id="<%=tmp[tceIdx].id%>-details" style="display: none">
+							<td></td>
+							<td id="<%=tmp[tceIdx].id%>-detailsStep" colspan="4">
+							</td>
+						</tr>                        
+					<%}%>
+					<%
+						tmp = null;
+					%>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="oItem" style="float:left;margin-left:1%;width:49.5%">
+		<h3>Top 10 Slowest Test Cases</h3>
+
+		<div class="panel">
+			<table cellpadding="0" cellspacing="0" width="100%" style="padding:8px" class="details">
+				<thead>
+					<tr>
+						<th colspan="4">Test Case Name</th>                            
+						<th class="alignRight">Time</th>
+					</tr>
+				</thead>
+				<tbody>                       
+					<%
+						tmp = jTemplate.dashboard.getTop10SlowestTesCase();
+					%>
+					<%for (tceIdx = 0; tceIdx < tmp.length; tceIdx++) {%>                        
+						<tr id="<%=tmp[tceIdx].id%>" class="category <%if ((tceIdx % 2) == 1) {%>odd<%} else {%>even<%}%>">
+							<td width="16"><%=(tceIdx + 1)%></td>
+							<td class="toggleStepIcon" width="1.2em">
+								<span style="font-size:0.8em;padding-right:1.2em;background-color:rgb(<%=(((tceIdx-1)*15) + 180)%>,<%=((tceIdx-1)*40)%>,<%=(tceIdx-1)%>)"></span>
+								&nbsp;
+							</td>
+							<td width="18">
+								<div class="ui-icon icon-<%if (tmp[tceIdx].status) {%>pass<%} else {%>fail<%}%>">&nbsp;</div>
+							</td>
+							<td>
+								<div>
+									<a href="#?id=<%=tmp[tceIdx].id%><%=jReport.page.body.leftPanel.getFilterParam()%>"
+									   title="View <%=tmp[tceIdx].text%> summary"
+									   target="_self"
+									   class="tooltip link">
+									   <%=tmp[tceIdx].text%>
+									</a>
+									&nbsp;&nbsp;
+								</div>
+							</td>                                
+							<td style="text-align:right">
+								<div style="width:85px;float:right">
+									<span class="tsSummary"><%=secondsToHms(tmp[tceIdx].time)%></span>
+								</div>
+							</td>
+						</tr>
+						<tr id="<%=tmp[tceIdx].id%>-details" style="display: none">
+							<td></td>
+							<td id="<%=tmp[tceIdx].id%>-detailsStep" colspan="4">
+							</td>
+						</tr>                        
+					<%}%>
+					<%
+						tmp = null;
+					%>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="clear"></div>
+	</div>
+	]]>
+</script>

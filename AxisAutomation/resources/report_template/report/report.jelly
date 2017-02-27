@@ -1,0 +1,5 @@
+﻿<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define">
+    <j:set var="ENV" value="${build.getEnvironment(listener)}"/> 
+    <!-- CONNOR JELLY-->
+</j:jelly>            
+        

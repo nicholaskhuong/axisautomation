@@ -1,0 +1,286 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-US" lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=1280"/>
+    <title>JUnit report 1.6.0 build 0016 (23 Dec 2013)</title>
+    <link href="images/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
+    <link href="styles/plugins.css" rel="stylesheet" type="text/css"/>
+    <link href="styles/jReport.css" rel="stylesheet" type="text/css"/>	
+    <script type="text/javascript" src="scripts/jquery/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="scripts/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="scripts/raphael.js"></script>    	        		
+	<script type="text/javascript" src="scripts/plugins.js"></script>		 
+	<script type="text/javascript" src="scripts/jreport.utils.js"></script>	 
+	<script type="text/javascript" src="data/reportdata.js"></script>
+    <script type="text/javascript" src="scripts/jreport.core.js"></script>
+    <script type="text/javascript">
+		try {
+			var cssNode = document.createElement('link');
+			cssNode.type = 'text/css';
+			cssNode.rel = 'stylesheet';
+			if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1){
+				cssNode.href = 'report/styles/jReportChrome.css';
+			} if (navigator.appName.toLowerCase().indexOf('internet explorer') > -1) {				 
+				cssNode.href = 'report/styles/jReportIE9.css';				
+			} else {
+				cssNode.href = 'report/styles/jReportOpera.css';
+			}
+			cssNode.media = 'screen';
+			cssNode.title = 'dynamicLoadedSheet';
+			document.getElementsByTagName("head")[0].appendChild(cssNode);
+			cssNode = null 			
+		} catch (e) {}
+    </script>
+</head>
+<body data-layout='{"type": "border", "resize": false, "hgap": 0, "vgap": 0}'>
+    <center id="loadingPanel" style="width:100%; height:100%; position:absolute">
+        <center class="triggerContent" style="text-align: left; width:300px;margin-top:20%">
+            <div class="oItem" style="width:300px;">
+                <h3 style="width:90px">JUnit Report </h3>
+                <div class="panel version">
+                    <table cellpadding="0" cellspacing="0" width="100%" style="overflow:hidden">
+                        <tbody>
+                            <tr>
+                                <td valign="top">
+									<div style="width:60px;height:58px;;margin:5px;text-align:center;background-color:#FFF">
+										<img style="margin-top:12px" src="images/ajax-loader_32.gif" width="32" title="Loading Page"/>
+									</div>
+                                </td>
+                                <td valign="top" width="100%">
+                                    <table cellpadding="0" cellspacing="0" width="98%" style="line-height:15.2px;">
+                                        <thead>
+                                            <tr>
+                                                <th class="alignLeft">Version :</th>
+                                                <th class="alignLeft">1.6.0</th>
+                                            </tr>
+                                            <tr>
+                                                <th class="alignLeft">Build :</th>
+                                                <th class="alignLeft">0016</th>
+                                            </tr>
+                                            <tr>
+                                                <th class="alignLeft">Build date :</th>
+                                                <th class="alignLeft">23 Dec 2013</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div style="clear:both"></div>
+        </center>
+        <noscript>
+            <center>
+                This page is trying to run JavaScript and your browser either does not support
+                JavaScript or you may have turned-off JavaScript.<br/>
+                If you have disabled JavaScript on your computer, please turn on JavaScript. Thank you!
+            </center>
+        </noscript>
+    </center>
+    <!--Header panel-->
+    <div id="headerPanel" class="north noborder nomarging noPadding report">
+    </div>
+    <!--Center panel-->
+    <div id="bodyContent" class="center content">
+    </div>
+    <!--West panel-->
+    <div id="bodyLeft" class="west nomarging noPadding" style="display:none">		
+        <div id="bodyLeftFilter" class="north ui-widget-header nomarging noPadding noborder">
+            <div class="ui-state-default ui-box-header nomarging noborder" style="line-height: 12px;padding-bottom: 6px;text-indent: 3px;">
+                <span class="ui-icon float-left ui-icon-folder-open"></span>
+                Monitored Tests
+				<a id="close_sidebar" onclick="jReport.page.body.leftPanel.toggle()" class="btn ui-state-default full-link ui-corner-all">
+                    <span class="ui-icon ui-icon-circle-arrow-w tooltip" title="Hide left navigation"></span>
+                </a>				
+            </div>
+            <div id="filterTree" class="padding5" style="display:block">
+                <div id="filterPanel">
+                    <table style="width:100%">
+                        <tbody>
+                            <tr>
+                                <td width="auto">
+                                    <input id="filterTxt" class="tooltip" placeholder="Search" title="Type words (case-sensitive) to search for" type="text" maxlength="100" value=""/>
+                                </td>
+                                <td style="width:22px;display:none">
+                                    <a id="filterPanelbtn" onclick="jReport.page.body.leftPanel.clearSearch()" class="btn ui-state-default full-link">
+                                        <span class="ui-icon ui-icon-close tooltip" title="Clear search"></span>
+                                    </a>
+                                </td>
+                                <td style="width:22px">
+                                    <a id="filterAdvancedbtn" class="btn ui-state-default full-link">
+                                        <span class="ui-icon ui-icon-carat-1-s tooltip" title="Toggle filter panel"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div id="filterAdvanced" style="height:154px; display:none; overflow: visible">
+                        <table style="overflow: visible">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="icon-category">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    </td>
+                                    <td colspan="4">
+                                        <b>Category</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:20px">&nbsp;</td>
+                                    <td style="width:50px">
+                                        <label for="filterAdvPackages">Stream</label>
+                                    </td>
+                                    <td colspan="3">
+                                        <select id="filterAdvPackages" title="Select stream" class="chzn-select">
+                                            <option style="color:gray">--all--</option>
+                                        </select>
+                                    </td>
+                                </tr>                               
+                                <tr>
+                                    <td style="width:20px">&nbsp;</td>
+                                    <td style="width:50px">
+                                        <label for="filterAdvSuites">Suite</label>
+                                    </td>
+                                    <td colspan="3">
+                                        <select id="filterAdvSuites" title="Select test suite" class="chzn-select">
+                                            <option style="color:gray">--all--</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="icon-status">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    </td>
+                                    <td colspan="4">
+                                        <b>Status</b>
+                                    </td>
+                                </tr>
+                                <tr class="filterAdvLast">
+                                    <td style="width:20px">&nbsp;</td>
+                                    <td style="width:50px">
+                                        <label for="filterAdvStatus">By</label>
+                                    </td>
+                                    <td colspan="3">
+                                        <select id="filterAdvStatus" title="Select status" class="chzn-select">
+                                            <option value="" style="color:gray">--all--</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" colspan="5" style="padding-top: 30px;">
+                                        <div style="min-width:150px">
+                                            <table style="float: right;width: 149px">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <a id="filterAdvClear" title="Clear filter" class="btn ui-state-default full-link ui-corner-all actbtn tooltip" style="margin-left: 3px">
+                                                                <span class="ui-icon icon-clearfilter"></span>
+                                                                Clear
+                                                            </a>
+                                                        </td>
+                                                        <td width="60">
+                                                            <a id="filterAdvSubmit" title="Submit filter" class="btn ui-state-default full-link ui-corner-all actbtn tooltip">
+                                                                <span class="ui-icon icon-filter"></span>
+                                                                Filter
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div id="bodyLeftTreePanel" class="center ui-widget-content nomarging noPadding noborder">
+            <div class="noborder">
+                <ul id="bodyLeftTree" class="ztree"></ul>				
+                <div class="clear"></div>
+            </div>
+        </div>		
+    </div>		
+	<div id="openSidebar" style="display:none" title="Slide Open Contents">
+		<div class="pinbtn" onclick="jReport.page.body.leftPanel.toggle()" title="Open &amp; Pin Contents">
+			<span class="content content-closed" style="display: block; margin-top: 3px;">
+				<span class="ui-icon ui-icon-circle-arrow-e tooltip" title="Toggle left navigation"></span>
+			</span>
+		</div>
+	</div>
+	
+	<!--TEMPLATES-->
+	<!--Header template for report-->
+	<script id="tmpl_headerPanel_Report" type="text/x-jqote-template">
+		<![CDATA[
+		<div id="headerPanelTab">
+			<div id="productLogo">
+				<div id="ventyxLogo" title="Ventyx <%=jReport.name%> <%=jReport.version%> build <%=jReport.build%>">&nbsp;</div>
+				<div class="reportversion"><%=jReport.name%> <%=jReport.version%> build <%=jReport.build%>&nbsp;
+					(<%=jReport.buildDate%>)
+				</div>
+				<div class="reportcreated">Report created: <%=formatDatetime(reportData.createddate)%> (<%=
+					humanizedTimeSpan(reportData.createddate)%>)
+				</div>                        
+			</div>
+			<div id="navtab">
+				<ul class="menu">
+					<li id="reportbtn" class="active">
+						<a>Report</a>
+					</li>
+					<%if (jReport.utils.isLocalhost()) {%>
+					<li id="jenkinsbtn">
+						<a href="#pid=1" target="_self" title="Open Jenkins page">Jenkins Monitor</a>
+					</li>
+					<%}%>
+				</ul>
+			</div>            
+		</div>
+		<div id="headerPanelContent">
+			<div class="page-title global-title">
+				<h1 id="headerPageTitle" class="ellipsis">Global Overview</h1>
+				<p id="headerPageBreacum"></p>
+			</div>
+			<div id="devMode" class="btnInactive" title="<% if (jReport.settings.showDevButton) {%> Disable developer mode <%} else{%> Enable developer mode <%}%>" style="position:absolute;right:10px; bottom:3px; display:none">
+				<a tabindex="-1" href="#" id="switchToggle" hidefocus="true"></a>
+			</div>
+			<div class="clear"></div>
+		</div>
+		]]>
+	</script>
+	<!--Header template for jenkins-->
+	<script id="tmpl_headerPanel_Jenkins" type="text/x-jqote-template">
+		<![CDATA[
+		<div id="headerPanelTab">
+			<div id="productLogo">
+				<img src="images/logo-ventyx.png" title="Ventyx JUnit report 1.6.0" style="height:22px"/>
+			</div>
+			<div id="navtab">
+				<ul class="menu">
+					<li id="reportbtn">
+						<a href="#" target="_self" title="Back to the report">Report</a>
+					</li>                    
+					<%if (jReport.utils.isLocalhost()) {%>
+					<li id="jenkinsbtn" class="active">
+						<a>Jenkins Monitor</a>
+					</li>  
+					<%}%>
+				</ul>
+			</div>
+		</div>
+		]]>
+	</script>
+	<!--END TEPLATES-->        
+
+</body>
+</html>

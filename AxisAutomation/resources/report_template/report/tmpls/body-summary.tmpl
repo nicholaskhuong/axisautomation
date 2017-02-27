@@ -1,0 +1,242 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+  @template   : Summary
+  @version    : 1.6
+  @create date: 10 Dec 2013
+  @last update: 16 Dec 2013
+-->
+<script id="tmpl_bodyContent_Summary" type="text/x-jqote-template">
+	<![CDATA[
+	<div id="summaryPanel" class="north ui-corner-bottom no-scrollbar add-padding">
+		<div class="overview">
+			<div class="summary2 filter">
+				<div class="executionInfo2">
+					<h1 style="color: White; font-weight: bold; font-size: 19px;"><b class="filtered"><%=jTemplate.summary.filterType()%>
+						&nbsp;filter summary</b>
+					</h1>
+					<h2 style="color: white; font-size: 13px; font-weight: bold;">&nbsp;<%=this.text%>&nbsp;
+						<span style="white-space:nowrap;">
+							(<%if (this.status == '1') {%>
+								PASS
+							<%} else {%>
+								FAIL
+							<%}%>)
+						</span>
+					</h2>
+					<%if (jReport.settings.devMode) {%>
+						<%if (this.isnew && (this.isnew == 1)) {%>
+							<div class="summaryIsNew" title="New <%=jTemplate.summary.filterType()%>"></div>								
+						<%}%> 
+					<%}%>
+					<div class="summaryStatus <%if (this.status == '1') {%>passIcon<%} else {%>failIcon<%}%>" title="<%=this.text%> - <%if (this.status == '1') {%>Pass<%} else {%>Fail<%}%>"></div>
+				</div>
+				<div class="chartDetails">
+					<table width="100%">
+						<tbody>
+							<tr valign="top">
+								<td colspan="3"><b>Overview</b></td>
+							</tr>
+							<tr valign="top">
+								<td>&nbsp;</td>
+								<td>Number of <%=jTemplate.summary.filterName()%> TCs&nbsp;</td>
+								<td><%=this.total%></td>                                
+							</tr>
+							<tr valign="top">
+								<td>&nbsp;</td>
+								<td><span class="passBox"></span>Pass</td>
+								<td><%=this.pass%> - <%=percentage(this.total, this.pass)%>%</td>
+							</tr>
+							<tr valign="top">
+								<td>&nbsp;</td>
+								<td><span class="failBox"></span>Fail</td>
+								<td><%=this.fail%> - <%=percentage(this.total, this.fail)%>%</td>
+							</tr>
+							<tr valign="top">
+								<td colspan="3">&nbsp;</td>
+							</tr>
+							<tr valign="top">
+								<td colspan="3"><b>Time</b></td>
+							</tr>
+							<tr valign="top">
+								<td>&nbsp;</td>
+								<td>Start At</td>
+								<td colspan="2"><%=formatDatetime(this.timestamp)%></td>
+							</tr>
+							<tr valign="top">
+								<td>&nbsp;</td>
+								<%if (jTemplate.summary.filterType() == 'Stream') {%>
+								<td><%=jTemplate.summary.filterType()%> Grid Exec Time</td>
+								<%} else {%>
+								<td><%=jTemplate.summary.filterType()%> RCs Exec Time</td>
+								<%}%>
+								<td><%=secondsToHms(this.gtime)%></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="chartPanel">
+					<div style="width:140px; height:140px" id="executionSummaryTable"></div>
+					<div class="clear"></div>
+				</div>
+				<div class="christmas_h">&nbsp;</div>
+				<div class="clear"></div>
+			</div>                
+		</div>                                              
+		<div class="ui-state-default ui-box-header">			
+			<span class="ui-icon float-left ui-icon-signal"></span>
+			<%=jTemplate.summary.filterType()%> Filter Details
+			<div class="clear"></div>
+		</div>  
+	</div>	
+	<div id="filterDetails" class="center ui-widget-content nomarging noPadding noborder" style="overflow: auto">
+		<div id="filterDetailsPanel" class="slickgrid nomarging noPadding noborder" style="min-height:200px">
+			<table>
+				<tbody>
+					<%if (this.package) {%>
+						<%for (pkgIdx = 0; pkgIdx < this.package.length; pkgIdx++) {%>   
+							<tr id="<%=this.package[pkgIdx].id%>" class="category">
+								<td id="<%=this.package[pkgIdx].id%>-toggle" class="toggleIcon" width="20">
+									<span class="ui-icon tooltip ui-icon-carat-1-n" title="Toggle Stream Details"></span>
+								</td>
+								<td width="16">
+									<div class="ui-icon icon-<%if (this.package[pkgIdx].status == '1') {%>pass<%} else {%>fail<%}%>">&nbsp;</div>
+								</td>
+								<td>
+									<div>
+										<span class="float-left"><%=(pkgIdx + 1)%>.&nbsp;</span>
+										<%if (jReport.settings.devMode) {%>
+											<%if (this.package[pkgIdx].isnew == 1) {%>
+												<span class="ico-new ui-icon float-left">&nbsp;</span>&nbsp;
+											<%}%>
+										<%}%>
+										<a href="#?id=<%=this.package[pkgIdx].id%><%=jReport.page.body.leftPanel.getFilterParam()%>" title="View Test Group <%=this.package[pkgIdx].text%> Summary" target="_self" class="tooltip link">
+											<%=this.package[pkgIdx].text%>
+										</a>
+										&nbsp;&nbsp;
+									</div>
+								</td>
+								<td style="text-align:right">
+									<span class="tsSummary">
+										<%if (jReport.page.body.leftPanel.filterAdvStatusId == 'pass') {%>
+											<span class="pass"><%=this.package[pkgIdx].pass%></span>&nbsp;<i>testcase<%if (this.package[pkgIdx].pass > 1) {%>s<%}%></i>
+										<%} else {%>
+											<%if (jReport.page.body.leftPanel.filterAdvStatusId == 'fail') {%>
+												<span class="fail"><%=this.package[pkgIdx].fail%></span>&nbsp;<i>testcase<%if (this.package[pkgIdx].fail > 1) {%>s<%}%></i>
+											<%} else {%>
+												<%=this.package[pkgIdx].total%> &nbsp;<i>testcase<%if (this.package[pkgIdx].total > 1) {%>s<%}%></i> [<span
+											class="pass"><%=this.package[pkgIdx].pass%></span>/<span class="fail"><%=this.package[pkgIdx].fail%></span>]
+											<%}%>
+										<%}%>
+									</span>
+								</td>
+								<td width="auto"></td>
+							</tr>
+							<tr id="<%=this.package[pkgIdx].id%>-details">
+								<td></td>
+								<td colspan="4">
+									<table style="padding:0;margin:0">
+										<tbody>
+											<%for (steIdx = 0; steIdx < this.package[pkgIdx].testsuite.length; steIdx++) {%>
+												<tr id="<%=this.package[pkgIdx].testsuite[steIdx].id%>" class="category">
+													<td id="<%=this.package[pkgIdx].testsuite[steIdx].id%>-toggle" class="toggleIcon" width="20">
+														<span class="ui-icon tooltip ui-icon-carat-1-s" title="Toggle test case details"></span>
+													</td>
+													<td width="16">
+														<div class="ui-icon icon-<%if (this.package[pkgIdx].testsuite[steIdx].status == '1') {%>pass<%} else {%>fail<%}%>">&nbsp;</div>
+													</td>
+													<td>
+														<div>
+															<span class="float-left"><%=(pkgIdx + 1)%>.<%=(steIdx + 1)%>.&nbsp;</span>
+															<%if (jReport.settings.devMode) {%>
+																<%if (this.package[pkgIdx].testsuite[steIdx].isnew == 1) {%>
+																	<span class="ico-new ui-icon float-left">&nbsp;</span>&nbsp;
+																<%}%>
+															<%}%>                                              
+															<a href="#?id=<%=this.package[pkgIdx].testsuite[steIdx].id%><%=jReport.page.body.leftPanel.getFilterParam()%>" title="View test suite <%=this.package[pkgIdx].testsuite[steIdx].text%> summary" target="_self" class="tooltip link">
+																<%=this.package[pkgIdx].testsuite[steIdx].text%>
+															</a>
+															&nbsp;&nbsp;
+														</div>
+													</td>
+													<td style="text-align:right">
+														<span class="tsSummary">
+															<%if (jReport.page.body.leftPanel.filterAdvStatusId == 'pass') {%>
+																<span class="pass"><%=this.package[pkgIdx].testsuite[steIdx].pass%></span>&nbsp;<i>testcase<%if (this.package[pkgIdx].testsuite[steIdx].pass > 1) {%>s<%}%></i>
+															<%} else {%>
+																<%if (jReport.page.body.leftPanel.filterAdvStatusId == 'fail') {%>
+																	<span class="fail"><%=this.package[pkgIdx].testsuite[steIdx].fail%></span>&nbsp;<i>testcase<%if (this.package[pkgIdx].testsuite[steIdx].fail > 1) {%>s<%}%></i>
+																<%} else {%>
+																	<%=this.package[pkgIdx].testsuite[steIdx].total%> &nbsp;<i>testcase<%if (this.package[pkgIdx].testsuite[steIdx].total > 1) {%>s<%}%></i> [<span class="pass"><%=this.package[pkgIdx].testsuite[steIdx].pass%></span>/<span class="fail"><%=this.package[pkgIdx].testsuite[steIdx].fail%></span>]
+																<%}%>
+															<%}%>
+														</span>
+													</td>
+													<td width="auto"></td>
+												</tr>
+												<tr id="<%=this.package[pkgIdx].testsuite[steIdx].id%>-details">
+													<td></td>
+													<td colspan="4">
+														<table style="padding:0;margin:0">
+															<tbody>
+																<%for (tceIdx = 0; tceIdx < this.package[pkgIdx].testsuite[steIdx].testcase.length; tceIdx++) {%>
+																	<%if (this.package[pkgIdx].testsuite[steIdx].testcase[tceIdx].rpt) {%>
+																	<tr id="<%=this.package[pkgIdx].testsuite[steIdx].testcase[tceIdx].id%>" class="category">
+																		<td id="<%=this.package[pkgIdx].testsuite[steIdx].testcase[tceIdx].id%>-toggle" class="toggleStepIcon" width="20">
+																			<span class="ui-icon tooltip ui-icon-carat-1-s" title="Toggle step details"></span>
+																		</td>
+																		<td width="16">
+																			<div class="ui-icon icon-<%if (this.package[pkgIdx].testsuite[steIdx].testcase[tceIdx].status == '1') {%>pass<%} else {%>fail<%}%>">&nbsp;</div>
+																		</td>
+																		<td>
+																			<div>
+																				<span class="float-left"><%=(pkgIdx + 1)%>.<%=(steIdx + 1)%>.<%=(tceIdx + 1)%>.&nbsp;</span>
+																				<%if (jReport.settings.devMode) {%>
+																					<%if (this.package[pkgIdx].testsuite[steIdx].testcase[tceIdx].isnew == 1) {%>
+																						<span class="ico-new ui-icon float-left">&nbsp;</span>&nbsp;
+																					<%}%>
+																				<%}%>
+																				<a href="#?id=<%=this.package[pkgIdx].testsuite[steIdx].testcase[tceIdx].id%><%=jReport.page.body.leftPanel.getFilterParam()%>" title="View test case <%=this.package[pkgIdx].testsuite[steIdx].testcase[tceIdx].text%> summary" target="_self" class="tooltip link">
+																					<%=this.package[pkgIdx].testsuite[steIdx].testcase[tceIdx].text%>
+																				</a>
+																				&nbsp;&nbsp;
+																			</div>
+																		</td>
+																		<td style="text-align:right">
+																			<span class="tsSummary">
+																				<%if (jReport.page.body.leftPanel.filterAdvStatusId == 'pass') {%>
+																					<span class="pass"><%=this.package[pkgIdx].testsuite[steIdx].testcase[tceIdx].pass%></span>&nbsp;<i>step<%if (this.package[pkgIdx].testsuite[steIdx].testcase[tceIdx].pass > 1) {%>s<%}%></i>
+																				<%} else {%>
+																					<%if (jReport.page.body.leftPanel.filterAdvStatusId == 'fail') {%>
+																						<span class="fail"><%=this.package[pkgIdx].testsuite[steIdx].testcase[tceIdx].fail%></span>&nbsp;<i>step<%if (this.package[pkgIdx].testsuite[steIdx].testcase[tceIdx].fail > 1) {%>s<%}%></i>
+																					<%} else {%>
+																						<%=this.package[pkgIdx].testsuite[steIdx].testcase[tceIdx].total%> &nbsp;<i>step<%if (this.package[pkgIdx].testsuite[steIdx].testcase[tceIdx].total > 1) {%>s<%}%></i> [<span class="pass"><%=this.package[pkgIdx].testsuite[steIdx].testcase[tceIdx].pass%></span>/<span class="fail"><%=this.package[pkgIdx].testsuite[steIdx].testcase[tceIdx].fail%></span>]
+																					<%}%>
+																				<%}%>
+																			</span>
+																		</td>
+																		<td width="auto"></td>
+																	</tr>
+																	<tr id="<%=this.package[pkgIdx].testsuite[steIdx].testcase[tceIdx].id%>-details" style="display: none">
+																		<td></td>
+																		<td id="<%=this.package[pkgIdx].testsuite[steIdx].testcase[tceIdx].id%>-detailsStep" colspan="4"></td>
+																	</tr>
+																	<%}%>
+																<%}%>
+															</tbody>
+														</table>
+													</td>
+												</tr>
+											<%}%>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						<%}%>
+					<%}%>
+				</tbody>
+			</table>
+	 </div>
+	<div class="clear"></div>
+	</div>
+	]]>
+</script>

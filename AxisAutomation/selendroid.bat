@@ -1,0 +1,1 @@
+java -jar Lib/selendroid-standalone-0.11.0-with-dependencies.jar
