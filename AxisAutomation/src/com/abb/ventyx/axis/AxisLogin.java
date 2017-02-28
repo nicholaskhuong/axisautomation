@@ -7,7 +7,7 @@ import com.abb.ventyx.utilities.Constants;
 
 import org.testng.annotations.Test;
 
-public class AsixLogin extends BaseTestCase {
+public class AxisLogin extends BaseTestCase {
 
   @Test
   public void Login() throws Exception {
