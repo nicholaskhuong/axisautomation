@@ -6,7 +6,7 @@
     </listeners>  
   	<test name="Create Leave Request">
 		<classes>
-				<class name="com.abb.ventyx.saas.CreateLeaveRequest" />
+				<class name="com.abb.ventyx.axis.AxisLogin" />
 		</classes>
   	</test> <!-- Test -->
 </suite> <!-- Suite -->

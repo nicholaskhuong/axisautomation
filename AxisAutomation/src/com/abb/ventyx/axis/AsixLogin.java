@@ -17,7 +17,7 @@ public class AsixLogin extends BaseTestCase {
 	    driver.findElement(By.id("gwt-uid-7")).sendKeys("1094");
 	    driver.findElement(By.id("gwt-uid-9")).clear();
 	    driver.findElement(By.id("gwt-uid-9")).sendKeys("Testuser1");
-//	    driver.findElement(By.xpath("//span[@text='v-button-caption']/select")).click();
+//	    driver.findElement(By.xpath("//span[@text='v-button-caption']")).click();
 	    WebElement loginButon = driver.findElement(By.cssSelector("div.v-horizontallayout > div.v-expand > div.v-slot > div.v-button-primary > span.v-button-wrap > span.v-button-caption"));
 	    JavascriptExecutor js = (JavascriptExecutor)driver;
 	    js.executeScript("arguments[0].click();", loginButon);
