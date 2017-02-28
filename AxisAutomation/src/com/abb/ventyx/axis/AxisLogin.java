@@ -1,5 +1,7 @@
 package com.abb.ventyx.axis;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.*;
 
 import com.abb.ventyx.utilities.BaseTestCase;
@@ -24,7 +26,7 @@ public class AxisLogin extends BaseTestCase {
 	    
 	    WebElement continueButton = driver.findElement(By.cssSelector("div.v-horizontallayout > div.v-expand > div.v-align-right > div.v-widget > span.v-button-wrap > span.v-button-caption"));
 	    js.executeScript("arguments[0].click();", continueButton);
-	    
+	    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 //	    driver.findElement(By.id("gwt-uid-22")).clear();
 //	    driver.findElement(By.id("gwt-uid-22")).sendKeys("Test 1");
   }
