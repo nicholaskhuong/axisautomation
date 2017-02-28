@@ -1,11 +1,9 @@
-package com.abb.ventyx.adapters.reports;
+package com.abb.ventyx.utilities;
 
 import java.io.File;
 import java.util.regex.Pattern;
 
 import org.testng.ITestResult;
-
-import com.abb.ventyx.utilities.Constants;
 
 
 public class TestMethodResultAdapter {

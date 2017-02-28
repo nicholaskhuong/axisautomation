@@ -15,16 +15,6 @@ import org.testng.ITestNGMethod;
 import org.testng.ITestResult;
 import org.testng.xml.XmlSuite;
 
-import com.abb.ventyx.adapters.reports.Error;
-import com.abb.ventyx.adapters.reports.Package;
-import com.abb.ventyx.adapters.reports.ReportData;
-import com.abb.ventyx.adapters.reports.TestCase;
-import com.abb.ventyx.adapters.reports.TestClassResultAdapter;
-import com.abb.ventyx.adapters.reports.TestMethodResultAdapter;
-import com.abb.ventyx.adapters.reports.TestPackageResultAdapter;
-import com.abb.ventyx.adapters.reports.TestStep;
-import com.abb.ventyx.adapters.reports.TestSuite;
-import com.abb.ventyx.adapters.reports.TestSuiteResultAdapter;
 import com.google.gson.Gson;
 
 public class Reporter implements IReporter {

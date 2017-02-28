@@ -1,4 +1,4 @@
-package com.abb.ventyx.adapters.reports;
+package com.abb.ventyx.utilities;
 
 import java.util.ArrayList;
 

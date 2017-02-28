@@ -1,8 +1,6 @@
-package com.abb.ventyx.adapters.reports;
+package com.abb.ventyx.utilities;
 
 import org.testng.ITestResult;
-
-import com.abb.ventyx.adapters.TestResultAdapter;
 
 public class TestStep {
 	private String id, text, label, value, actualvalue, action;

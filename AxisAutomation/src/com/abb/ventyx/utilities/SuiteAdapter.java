@@ -1,4 +1,4 @@
-package com.abb.ventyx.adapters;
+package com.abb.ventyx.utilities;
 
 import java.util.Collection;
 import java.util.List;
