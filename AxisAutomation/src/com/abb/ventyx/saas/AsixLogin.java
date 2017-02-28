@@ -22,18 +22,9 @@ public class AsixLogin extends BaseTestCase {
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
 
-  @Before
-  public void setUp() throws Exception {
-	  System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir") + "\\chromedriver.exe");
-	  driver = new ChromeDriver();
-    
-    baseUrl = "http://172.31.181.109:8080/";
-    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-  }
-
   @Test
   public void testSearchTC() throws Exception {
-	  driver.get(baseUrl + "/SupplierPortal/#!listSupplier");
+//	  driver.get(baseUrl + "/SupplierPortal/#!listSupplier");
 	    driver.findElement(By.id("gwt-uid-7")).clear();
 	    driver.findElement(By.id("gwt-uid-7")).sendKeys("1094");
 	    driver.findElement(By.id("gwt-uid-9")).clear();
