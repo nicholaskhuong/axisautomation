@@ -15,7 +15,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import com.abb.ventyx.axis.objects.pages.HomePage;
-import com.abb.ventyx.utilities.report.Reporter;
 import com.abb.ventyx.utilities.report.TestMethodResultAdapter;
 
 public class BaseTestCase {

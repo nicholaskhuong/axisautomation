@@ -1,4 +1,4 @@
-package com.abb.ventyx.utilities.report;
+package com.abb.ventyx.utilities;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -15,9 +15,15 @@ import org.testng.ITestNGMethod;
 import org.testng.ITestResult;
 import org.testng.xml.XmlSuite;
 
-import com.abb.ventyx.utilities.Constants;
-import com.abb.ventyx.utilities.DateTimeConverter;
-import com.abb.ventyx.utilities.Package;
+import com.abb.ventyx.utilities.report.Error;
+import com.abb.ventyx.utilities.report.ReportData;
+import com.abb.ventyx.utilities.report.TestCase;
+import com.abb.ventyx.utilities.report.TestClassResultAdapter;
+import com.abb.ventyx.utilities.report.TestMethodResultAdapter;
+import com.abb.ventyx.utilities.report.TestPackageResultAdapter;
+import com.abb.ventyx.utilities.report.TestStep;
+import com.abb.ventyx.utilities.report.TestSuite;
+import com.abb.ventyx.utilities.report.TestSuiteResultAdapter;
 import com.google.gson.Gson;
 
 public class Reporter implements IReporter {
