@@ -1,4 +1,4 @@
-package com.abb.ventyx.utilities;
+package com.abb.ventyx.utilities.report;
 
 public class Error {
 	private String desc = "";

@@ -8,6 +8,8 @@ import org.testng.IReporter;
 import org.testng.ISuite;
 import org.testng.xml.XmlSuite;
 
+import com.abb.ventyx.utilities.report.TestMethodResultAdapter;
+
 public class SaveReportFiles implements IReporter {
 	// public static int tempCount = 0;
 	public static ArrayList<TestMethodResultAdapter> allResults = new ArrayList<>();

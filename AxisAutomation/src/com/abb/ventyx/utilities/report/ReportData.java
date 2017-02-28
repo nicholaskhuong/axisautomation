@@ -1,6 +1,8 @@
-package com.abb.ventyx.utilities;
+package com.abb.ventyx.utilities.report;
 
 import java.util.ArrayList;
+
+import com.abb.ventyx.utilities.Package;
 
 public class ReportData {
 	private String mode, release, version, timestamp, createddate, builddate, host_name;

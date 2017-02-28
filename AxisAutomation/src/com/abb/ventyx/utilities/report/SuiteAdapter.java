@@ -1,4 +1,4 @@
-package com.abb.ventyx.utilities;
+package com.abb.ventyx.utilities.report;
 
 import java.util.Collection;
 import java.util.List;

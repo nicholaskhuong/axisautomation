@@ -2,6 +2,8 @@ package com.abb.ventyx.utilities;
 
 import java.util.ArrayList;
 
+import com.abb.ventyx.utilities.report.TestSuite;
+
 public class Package {
 	private String id, text, total, pass, fail, gtime, time, status, timestamp;
 	private ArrayList<TestSuite> testsuite;
