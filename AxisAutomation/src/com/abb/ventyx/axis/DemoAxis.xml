@@ -4,7 +4,7 @@
 	<listeners>
     	<listener class-name="com.abb.ventyx.utilities.Reporter"></listener>
     </listeners>  
-  	<test name="Create Leave Request">
+  	<test name="Axis Login">
 		<classes>
 				<class name="com.abb.ventyx.axis.AxisLogin" />
 		</classes>
