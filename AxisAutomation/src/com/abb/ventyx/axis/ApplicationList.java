@@ -1,11 +1,11 @@
-package com.abb.ventyx.saas;
+package com.abb.ventyx.axis;
 
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.abb.ventyx.saas.objects.pages.HomePage;
-import com.abb.ventyx.saas.objects.pages.UserApplicationPage;
+import com.abb.ventyx.axis.objects.pages.HomePage;
+import com.abb.ventyx.axis.objects.pages.UserApplicationPage;
 import com.abb.ventyx.utilities.BaseTestCase;
 
 public class ApplicationList extends BaseTestCase {

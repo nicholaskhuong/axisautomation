@@ -1,10 +1,10 @@
-package com.abb.ventyx.saas.objects.pages;
+package com.abb.ventyx.axis.objects.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.abb.ventyx.saas.objects.pagedefinitions.LoginPageDefinition;
+import com.abb.ventyx.axis.objects.pagedefinitions.LoginPageDefinition;
 import com.abb.ventyx.utilities.InputController;
 
 

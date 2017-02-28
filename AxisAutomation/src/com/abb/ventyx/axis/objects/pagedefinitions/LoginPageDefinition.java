@@ -1,4 +1,4 @@
-package com.abb.ventyx.saas.objects.pagedefinitions;
+package com.abb.ventyx.axis.objects.pagedefinitions;
 
 public class LoginPageDefinition {
 	public static final String USERNAME_TEXT_FIELD_ID = "username";

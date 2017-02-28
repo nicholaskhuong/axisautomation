@@ -1,4 +1,4 @@
-package com.abb.ventyx.saas.objects.pagedefinitions;
+package com.abb.ventyx.axis.objects.pagedefinitions;
 
 public class HomePageDefinition {
 	public static final String EMAIL_TEXTFIELD_ID = "email";

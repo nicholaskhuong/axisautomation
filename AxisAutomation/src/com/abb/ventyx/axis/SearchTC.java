@@ -1,4 +1,4 @@
-package com.abb.ventyx.saas;
+package com.abb.ventyx.axis;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,6 +14,6 @@ public class SearchTC extends BaseTestCase {
     driver.findElement(By.id("lst-ib")).clear();
     driver.findElement(By.id("lst-ib")).sendKeys("khuong dai nghia");
     driver.findElement(By.id("_fZl")).click();
-    driver.findElement(By.linkText("Khuong Dai Nghia | Sân Chơi Công Nghệ")).click();
+    driver.findElement(By.linkText("Khuong Dai Nghia | S??n Ch??i C??ng Ngh???")).click();
 	}
 }

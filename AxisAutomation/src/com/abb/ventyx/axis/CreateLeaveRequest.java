@@ -1,19 +1,9 @@
-package com.abb.ventyx.saas;
+package com.abb.ventyx.axis;
 
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import com.abb.ventyx.saas.objects.pages.HomePage;
 import com.abb.ventyx.utilities.BaseTestCase;
-import com.abb.ventyx.utilities.Constants;
-import com.abb.ventyx.utilities.DriverCreator;
 
 public class CreateLeaveRequest extends BaseTestCase {
 

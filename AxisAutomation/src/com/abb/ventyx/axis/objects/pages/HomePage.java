@@ -1,4 +1,4 @@
-package com.abb.ventyx.saas.objects.pages;
+package com.abb.ventyx.axis.objects.pages;
 
 import java.util.concurrent.TimeUnit;
 
@@ -8,7 +8,7 @@ import org.openqa.selenium.UnsupportedCommandException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.abb.ventyx.saas.objects.pagedefinitions.HomePageDefinition;
+import com.abb.ventyx.axis.objects.pagedefinitions.HomePageDefinition;
 import com.abb.ventyx.utilities.Constants;
 import com.abb.ventyx.utilities.InputController;
 public class HomePage extends BasePage{
