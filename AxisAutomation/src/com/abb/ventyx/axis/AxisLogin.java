@@ -22,7 +22,7 @@ public class AxisLogin extends BaseTestCase {
 	    driver.findElement(By.cssSelector("input[type='password']")).sendKeys("Testuser1");
 	    driver.findElement(By.xpath("//div[@id='signin']")).click();
 	    JavascriptExecutor js = (JavascriptExecutor)driver;
-	    WebElement continueButton = driver.findElement(By.cssSelector("div.v-horizontallayout > div.v-expand > div.v-align-right > div.v-widget "));
+	    WebElement continueButton = driver.findElement(By.cssSelector("div.v-horizontallayout > div.v-expand > div.v-align-right > div.v-widget > span.v-button-wrap > span.v-button-caption"));
 	    
 	    js.executeScript("arguments[0].click();", continueButton);
 	    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
