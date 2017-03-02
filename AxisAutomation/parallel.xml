@@ -1,0 +1,203 @@
+<project name="EllipseRegressionTests-parallel" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+    <property name="src.dir" value="src" />
+    <property name="test.set" value="${test.set}" />
+	<property name="newreport.dir" value="report" />
+    <property name="report.tmp" value="${report.dir}/tmp" />
+    <property name="finance.dir" value="src/com/ventyx/test/ellipse/regression/finance" />
+    <property name="maintenance.dir" value="src/com/ventyx/test/ellipse/regression/maintenance" />
+    <property name="material.dir" value="src/com/ventyx/test/ellipse/regression/material" />
+	<property environment="env"/>
+    <!-- define properties and paths for the current run -->
+    <path id="other.source.path">
+		<fileset dir="${src.dir}">
+			<include name="${other.source.expression}" />
+		</fileset>
+	</path>
+    
+    <path id="all.source.path">
+        <sort>
+            <fileset dir="${src.dir}">                
+            	<include name="**/testng_Maintenance_*.xml" />
+            	<include name="**/testng_Material_*.xml" />
+            	<!-- Temporarily disabling Finance tests until after 8.6 GA Release -->
+            	<!--<include name="**/testng_Finance_*.xml" />  --> 
+            	<include name="**/testng_Finance_*.xml" />
+            	<exclude name="**/testng_Finance_FixedAsset*.xml" />
+            </fileset>
+        </sort>
+    </path>    
+    <path id="finance.source.path">
+        <sort>
+            <fileset dir="${finance.dir}">
+                <include name="**/testng_Finance_*.xml" />                                
+            </fileset>
+        </sort>
+    </path>    
+    <path id="maintenance.source.path">
+        <sort>
+            <fileset dir="${maintenance.dir}">
+                <include name="**/testng_Maintenance_*.xml" />                
+            </fileset>
+        </sort>
+    </path>    
+    <path id="material.source.path">
+        <sort>
+            <fileset dir="${material.dir}">
+                <include name="**/testng_Material_*.xml" />                
+            </fileset>
+        </sort>
+    </path>   
+	<switch value="${test.set}">
+		<case value="finance">
+			<property name="src.dir" value="${finance.dir}" />
+			<path id="test.set.source.path">
+				<path refid="finance.source.path" />
+			</path>
+		</case>
+		<case value="maintenance">
+			<property name="src.dir" value="${maintenance.dir}" />
+			<path id="test.set.source.path">
+				<path refid="maintenance.source.path" />
+			</path>
+		</case>
+		<case value="material">
+			<property name="src.dir" value="${material.dir}" />
+			<path id="test.set.source.path">
+				<path refid="material.source.path" />
+			</path>
+		</case>
+		<case value="all">			
+			<path id="test.set.source.path">
+				<path refid="all.source.path" />
+			</path>
+		</case>
+        <case value="other">			
+			<path id="test.set.source.path">
+				<path refid="other.source.path" />
+			</path>
+		</case>
+	</switch>
+	
+    <target name="test.parallel">    
+        <!-- check test.set has a valid value -->
+        <assert message="Unrecognized value (${test.set}) for 'test.set'. Must be one of: all, other, finance, maintenance, material.">
+            <bool>
+                <or>
+                    <equals arg1="${test.set}" arg2="other" />
+                    <equals arg1="${test.set}" arg2="all" />
+                    <equals arg1="${test.set}" arg2="finance" />
+                    <equals arg1="${test.set}" arg2="maintenance" />
+                    <equals arg1="${test.set}" arg2="material" />
+                </or>
+            </bool>
+        </assert>
+        <!-- run -->        
+		<antcall target="clean" />
+        <antcall target="compile" />                        
+		<antcall target="run.parallel.test" />                
+		<antcall target="results.generate" />
+    	<antcall target="results.generateExcelResults" />
+    </target>
+	
+    <target name="run.parallel.test">
+        <var name="index" value="1"/>
+        <echo message="List of running suite:" />
+        <for param="test.source.absolute">                 
+            <path refid="test.set.source.path" />
+            <sequential>                
+                <echo message="${index}. @{test.source.absolute}" />
+                <math result="index" operand1="${index}" operation="+" operand2="1" datatype="int" />
+            </sequential>
+        </for>        
+        <foreach target="run.single.test" 
+                 maxthreads="20" 
+                 inheritall="true" 
+                 inheritrefs="true" 
+                 parallel="true" 
+                 param="test.source.absolute">
+                 
+            <path refid="test.set.source.path" />
+        </foreach>        
+    </target>
+	
+    <target name="run.single.test">
+        <!-- strip off ${src.dir} from file path -->
+        <pathconvert property="test.source.relative">
+            <fileset file="${test.source.absolute}" />
+            <map from="${basedir}/" to="" />
+        </pathconvert>
+
+        <path id="test.classpath">
+            <fileset dir="${lib.dir}" includes="*.jar" />
+        </path>
+        <taskdef resource="testngtasks" classpath="${lib.dir}/testng.jar" />
+        <!--Introduce random delay to try and start up swamping the app server too much-->
+        <math result="delay" datatype="int">
+            <op op="rint">
+                <op op="*">
+                    <num value="5" />
+                    <op op="random" />
+                </op>
+            </op>
+        </math>
+        <sleep seconds="5" />                        
+        <testng timeout="60000000"  
+                failureproperty="tests.failed"  
+                outputdir="${report.dir}"  
+                parallel="${parallel.mode}"  
+                threadCount="20"                  
+                useDefaultListeners="false" 
+                listeners="com.ventyx.report.XMLReporter">
+            <jvmarg value="-Dtest.browser=${test.browser}" />
+            <jvmarg value="-Dtest.username=${test.username}" />
+            <jvmarg value="-Dtest.password=${test.password}" />
+            <jvmarg value="-Dtest.district=${test.district}" />
+            <jvmarg value="-Dtest.position=${test.position}" />
+            <jvmarg value="-Dtest.server.url=${test.server.url}" />
+            <jvmarg value="-Dtest.selenium.port=${test.selenium.port}" />
+            <jvmarg value="-Dtest.selenium.server=${test.selenium.server}" />
+            <jvmarg value="-Dtest.timeout.factor=${test.timeout.factor}" />
+            <classpath>
+                <path refid="test.classpath" />
+                <pathelement location="${bin.dir}"/>
+            </classpath>
+            <xmlfileset dir="${basedir}" includes="${test.source.relative}" />
+        </testng>        
+    </target>
+	
+	<target name="results.generate">
+		<java classname="com.ventyx.report.xmlParser.Xml2Js" failonerror="true" fork="true">
+			<classpath>                
+				<pathelement location="${lib.dir}/ventyx-testng-core.jar"/>
+			</classpath>
+			<arg line="${report.dir}" />
+		</java>
+		
+		<xslt in="${newreport.dir}/xml/results.xml"
+			  out="${newreport.dir}/reportinfo.jelly"
+			  style="${newreport.dir}/emailstyles/reportinfo.xsl"
+			  processor="trax">						
+			<classpath>                
+				<pathelement location="${bin.dir}"/>
+			</classpath>
+		</xslt>
+	
+		<xslt in="${newreport.dir}/xml/results.xml"
+			  out="${newreport.dir}/report.jelly"
+			  style="${newreport.dir}/emailstyles/report.xsl"
+			  processor="trax">						
+			<classpath>                
+				<pathelement location="${bin.dir}"/>
+			</classpath>
+		</xslt>
+	</target>
+	
+	<target name="results.generateExcelResults">
+		<java classname="parser.XMLToExcelParser" failonerror="true" fork="true">
+			<classpath>                
+				<fileset dir="${lib.dir}" includes="*.jar" />
+			</classpath>
+			<arg line="${env.BUILD_NUMBER} ${env.JOB_NAME} ${env.WORKSPACE}/EllipseRegressionTests/report/xml/results.xml" />
+		</java>
+	</target>
+</project>

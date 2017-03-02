@@ -1,7 +1,10 @@
 package com.abb.ventyx.utilities;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.annotation.Annotation;
 import java.util.Random;
 
 import org.apache.commons.io.FileUtils;
@@ -21,6 +24,8 @@ public class BaseTestCase {
 	public WebDriver driver;
 	public HomePage homePage;
 	public String expectedResult = "";
+	private String testCaseStatus = "pass";
+	private String ALMcsvfile = "ALM.csv";
 
 	@BeforeMethod
 	public void beforeMethod() throws Exception {
@@ -58,6 +63,44 @@ public class BaseTestCase {
 		resultAdapter.setActualvalue(errorMessage);
 		resultAdapter.setValue(expectedResult);
 		Reporter.allResults.add(resultAdapter);
+		if (testResult.getStatus() == ITestResult.FAILURE)
+		{
+			testCaseStatus = "fail";
+		}
+		if (testResult.getName().equals("testHelp")) {
+			exportALMReferenceCsv(testResult.getName(), testCaseStatus);
+		}
 		driver.quit();
+	}
+	private void exportALMReferenceCsv(String tcName, String status) {
+		String almId = getALMAnnotation();
+		BufferedWriter bw = null;
+		try {
+			bw = new BufferedWriter(new FileWriter(ALMcsvfile, true));
+			String line = almId + "," + tcName + ","+ status;
+			bw.write(line);
+			bw.newLine();
+			bw.flush();
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		} finally { // always close the file
+			if (bw != null) {
+				try {
+					bw.close();
+				} catch (IOException ioe2) {
+
+				}
+			}
+		}
+	}
+	private String getALMAnnotation() {
+		String ALMid = "";
+		for (Annotation a : this.getClass().getAnnotations()) {
+			if ((a instanceof ALM)) {
+				ALM alm = (ALM) a;
+				ALMid = alm.id();
+			}
+		}
+		return ALMid;
 	}
 }
