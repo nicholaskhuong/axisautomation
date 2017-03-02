@@ -1,4 +1,4 @@
-package com.abb.ventyx.axis;
+package com.abb.ventyx.axis.dashboard;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

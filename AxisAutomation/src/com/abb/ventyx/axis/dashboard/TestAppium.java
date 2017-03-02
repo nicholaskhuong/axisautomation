@@ -1,4 +1,4 @@
-package com.abb.ventyx.axis;
+package com.abb.ventyx.axis.dashboard;
 
 import io.appium.java_client.android.AndroidDriver;
 

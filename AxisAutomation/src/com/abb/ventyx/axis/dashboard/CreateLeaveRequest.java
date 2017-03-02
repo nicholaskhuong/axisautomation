@@ -1,4 +1,4 @@
-package com.abb.ventyx.axis;
+package com.abb.ventyx.axis.dashboard;
 
 
 import java.util.concurrent.TimeUnit;

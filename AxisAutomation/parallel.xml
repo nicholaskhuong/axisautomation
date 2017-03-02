@@ -3,9 +3,9 @@
     <property name="test.set" value="${test.set}" />
 	<property name="newreport.dir" value="report" />
     <property name="report.tmp" value="${report.dir}/tmp" />
-    <property name="finance.dir" value="src/com/ventyx/test/ellipse/regression/finance" />
-    <property name="maintenance.dir" value="src/com/ventyx/test/ellipse/regression/maintenance" />
-    <property name="material.dir" value="src/com/ventyx/test/ellipse/regression/material" />
+    <property name="dashboard.dir" value="src/com/abb/ventyx/axis/dashboard/" />
+    <property name="customer.dir" value="src/com/abb/ventyx/axis/customer/" />
+    <property name="supplier" value="src/com/abb/ventyx/axis/supplier" />
 	<property environment="env"/>
     <!-- define properties and paths for the current run -->
     <path id="other.source.path">
@@ -17,53 +17,50 @@
     <path id="all.source.path">
         <sort>
             <fileset dir="${src.dir}">                
-            	<include name="**/testng_Maintenance_*.xml" />
-            	<include name="**/testng_Material_*.xml" />
-            	<!-- Temporarily disabling Finance tests until after 8.6 GA Release -->
-            	<!--<include name="**/testng_Finance_*.xml" />  --> 
-            	<include name="**/testng_Finance_*.xml" />
-            	<exclude name="**/testng_Finance_FixedAsset*.xml" />
+            	<include name="**/testng_Supplier_*.xml" />
+            	<include name="**/testng_Customer_*.xml" />
+            	<include name="**/testng_Dashboard_*.xml" />
             </fileset>
         </sort>
     </path>    
-    <path id="finance.source.path">
+    <path id="dashboard.source.path">
         <sort>
-            <fileset dir="${finance.dir}">
-                <include name="**/testng_Finance_*.xml" />                                
+            <fileset dir="${dashboard.dir}">
+                <include name="**/testng_Dashboard_*.xml" />                                
             </fileset>
         </sort>
     </path>    
-    <path id="maintenance.source.path">
+    <path id="supplier.source.path">
         <sort>
-            <fileset dir="${maintenance.dir}">
-                <include name="**/testng_Maintenance_*.xml" />                
+            <fileset dir="${supplier.dir}">
+                <include name="**/testng_Supplier_*.xml" />                
             </fileset>
         </sort>
     </path>    
-    <path id="material.source.path">
+    <path id="customer.source.path">
         <sort>
-            <fileset dir="${material.dir}">
-                <include name="**/testng_Material_*.xml" />                
+            <fileset dir="${customer.dir}">
+                <include name="**/testng_Customer_*.xml" />                
             </fileset>
         </sort>
     </path>   
 	<switch value="${test.set}">
-		<case value="finance">
-			<property name="src.dir" value="${finance.dir}" />
+		<case value="dashboard">
+			<property name="src.dir" value="${dashboard.dir}" />
 			<path id="test.set.source.path">
-				<path refid="finance.source.path" />
+				<path refid="dashboard.source.path" />
 			</path>
 		</case>
-		<case value="maintenance">
-			<property name="src.dir" value="${maintenance.dir}" />
+		<case value="supplier">
+			<property name="src.dir" value="${supplier.dir}" />
 			<path id="test.set.source.path">
-				<path refid="maintenance.source.path" />
+				<path refid="supplier.source.path" />
 			</path>
 		</case>
-		<case value="material">
-			<property name="src.dir" value="${material.dir}" />
+		<case value="customer">
+			<property name="src.dir" value="${customer.dir}" />
 			<path id="test.set.source.path">
-				<path refid="material.source.path" />
+				<path refid="customer.source.path" />
 			</path>
 		</case>
 		<case value="all">			
@@ -80,14 +77,14 @@
 	
     <target name="test.parallel">    
         <!-- check test.set has a valid value -->
-        <assert message="Unrecognized value (${test.set}) for 'test.set'. Must be one of: all, other, finance, maintenance, material.">
+        <assert message="Unrecognized value (${test.set}) for 'test.set'. Must be one of: all, other, dashboard, supplier, customer.">
             <bool>
                 <or>
                     <equals arg1="${test.set}" arg2="other" />
                     <equals arg1="${test.set}" arg2="all" />
-                    <equals arg1="${test.set}" arg2="finance" />
-                    <equals arg1="${test.set}" arg2="maintenance" />
-                    <equals arg1="${test.set}" arg2="material" />
+                    <equals arg1="${test.set}" arg2="dashboard" />
+                    <equals arg1="${test.set}" arg2="supplier" />
+                    <equals arg1="${test.set}" arg2="customer" />
                 </or>
             </bool>
         </assert>
@@ -197,7 +194,7 @@
 			<classpath>                
 				<fileset dir="${lib.dir}" includes="*.jar" />
 			</classpath>
-			<arg line="${env.BUILD_NUMBER} ${env.JOB_NAME} ${env.WORKSPACE}/EllipseRegressionTests/report/xml/results.xml" />
+			<arg line="${env.BUILD_NUMBER} ${env.JOB_NAME} ${env.WORKSPACE}/axisAutomation/AxisAutomation/report/xml/results.xml" />
 		</java>
 	</target>
 </project>

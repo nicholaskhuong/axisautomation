@@ -1,4 +1,4 @@
-package com.abb.ventyx.axis;
+package com.abb.ventyx.axis.dashboard;
 
 import java.util.concurrent.TimeUnit;
 
@@ -11,7 +11,7 @@ import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Constants;
 
 import org.testng.annotations.Test;
-@ALM(id = "1804") 
+@ALM(id = "1") 
 public class AxisLogin extends BaseTestCase {
 
   @Test
