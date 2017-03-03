@@ -29,6 +29,9 @@ public class AxisLogin extends BaseTestCase {
 	    WebElement continueButton = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#SupplierPortal-1227837064 > div > div.v-verticallayout.v-layout.v-vertical.v-widget.v-has-width.v-has-height > div > div > div > div:nth-child(3) > div > div:nth-child(3) > div > div > div > div")));
 	    
 	    js.executeScript("arguments[0].click();", continueButton);
+  }
+  @Test(dependsOnMethods = "Login")
+  public void CreateSupplier() throws Exception {
 //	    driver.get(Constants.HOME_URL + "/SupplierPortal/#!CustomerAdminDashboard");
 	    WebElement customerConfiguration = (new WebDriverWait(driver, 10))
 	  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.v-horizontallayout > span.v-menu-item-caption")));

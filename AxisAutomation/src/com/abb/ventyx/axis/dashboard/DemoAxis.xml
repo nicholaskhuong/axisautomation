@@ -6,7 +6,7 @@
     </listeners>  
   	<test name="Axis Login">
 		<classes>
-				<class name="com.abb.ventyx.axis.AxisLogin" />
+				<class name="com.abb.ventyx.axis.dashboard.AxisLogin" />
 		</classes>
   	</test> <!-- Test -->
 </suite> <!-- Suite -->

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class TestClassResultAdapter {
 	private String id = "st0ts0tc0";
 	private String testClassName = "";
+	private String almID;
 	private ArrayList<TestMethodResultAdapter> methods;
 	
 	public TestClassResultAdapter(){
@@ -39,6 +40,13 @@ public class TestClassResultAdapter {
 	public void addMethod(TestMethodResultAdapter method){
 		this.methods.add(method);
 	}
+
+	public void setALMID(String almID) {
+		this.almID = almID;
+	}
 	
+	public String getALMID() {
+		return almID;
+	}
 	
 }

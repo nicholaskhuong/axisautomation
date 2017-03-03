@@ -5,14 +5,9 @@ import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.testng.IReporter;
 import org.testng.ISuite;
-import org.testng.ISuiteResult;
-import org.testng.ITestContext;
-import org.testng.ITestNGMethod;
-import org.testng.ITestResult;
 import org.testng.xml.XmlSuite;
 
 import com.abb.ventyx.utilities.report.Error;
@@ -45,7 +40,7 @@ public class Reporter implements IReporter {
 		// System.out.println(new Gson().toJson(allResults));
 
 		// System.out.println(new Gson().toJson(allResults));
-		List<ITestResult> allTestResults;
+//		List<ITestResult> allTestResults;
 
 		createTestPackageAdapter();
 
@@ -59,22 +54,22 @@ public class Reporter implements IReporter {
 
 		generateTheFinalReport();
 
-		for (ISuite suite : suites) {
+//		for (ISuite suite : suites) {
 			// Following code gets the suite name
-			String suiteName = suite.getName();
+//			String suiteName = suite.getName();
 
 			// Suite method name
-			List<ITestNGMethod> suiteTestMethods = suite.getAllMethods();
+//			List<ITestNGMethod> suiteTestMethods = suite.getAllMethods();
 
-			for (ITestNGMethod mt : suiteTestMethods) {
-				// System.out.println(mt.getMethodName());
-			}
+//			for (ITestNGMethod mt : suiteTestMethods) {
+//				 System.out.println(mt.getMethodName());
+//			}
 
 			// Getting the results for the said suite
-			Map<String, ISuiteResult> suiteResults = suite.getResults();
-			for (ISuiteResult sr : suiteResults.values()) {
+//			Map<String, ISuiteResult> suiteResults = suite.getResults();
+//			for (ISuiteResult sr : suiteResults.values()) {
 
-				ITestContext tc = sr.getTestContext();
+//				ITestContext tc = sr.getTestContext();
 				// //System.out.println("Object = " + gson.toJson(sr));
 				// System.out.println(
 				// "Passed tests for suite '" + suiteName + "' is:" +
@@ -109,8 +104,8 @@ public class Reporter implements IReporter {
 				// System.out.println(new Gson().toJson(new TestStep(adapter)));
 				// }
 
-			}
-		}
+//			}
+//		}
 	}
 
 	private void assignTestMethodResult() {
@@ -121,8 +116,8 @@ public class Reporter implements IReporter {
 					for (TestMethodResultAdapter result : allResults) {
 						if (result.getTestSuite().equals(suite.getSuiteName())
 								&& result.getTestName().equals(classs.getTestClassName())) {
-							result.setId(classs.getId() + "sp" + methodID);
-							result.setText(result.getTestClass() + " - " + methodID);
+							result.setId(String.format("%s%s%s", classs.getId(),"sp", methodID));
+							result.setText(String.format("%s %s %s", methodID,"-", result.getTestClass()));
 							result.setAction(result.getMethodName());
 							classs.addMethod(result);
 							methodID++;
@@ -144,6 +139,7 @@ public class Reporter implements IReporter {
 						TestClassResultAdapter classs = new TestClassResultAdapter();
 						classs.setId(suite.getId() + "tc" + classID);
 						classs.setTestClassName(result.getTestName());
+						classs.setALMID(result.getALMID());
 						suite.addClass(classs);
 						classID++;
 					}
@@ -261,7 +257,7 @@ public class Reporter implements IReporter {
 				for (TestClassResultAdapter classs : suite.getClasses()) {
 					TestCase TC = new TestCase();
 					TC.setId(classs.getId());
-					TC.setText(classs.getTestClassName());
+					TC.setText(String.format("%s - %s", classs.getALMID(), classs.getTestClassName()));
 					TC.setStatus("0");
 					TC.setTimestamp("2016-03-11T02:25:40");
 					TC.setTime("68.0");

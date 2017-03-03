@@ -7,15 +7,17 @@ import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.util.Random;
 
+import net.sourceforge.htmlunit.corejs.javascript.ast.CatchClause;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.xml.DOMConfigurator;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
-import org.testng.TestNG;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeClass;
 
 import com.abb.ventyx.axis.objects.pages.HomePage;
 import com.abb.ventyx.utilities.report.TestMethodResultAdapter;
@@ -25,20 +27,22 @@ public class BaseTestCase {
 	public HomePage homePage;
 	public String expectedResult = "";
 	private String testCaseStatus = "pass";
+	private String testCaseName = "";
 	private String ALMcsvfile = "ALM.csv";
 
-	@BeforeMethod
-	public void beforeMethod() throws Exception {
+	@BeforeClass
+	public void beforeClass() throws Exception {
 		DOMConfigurator.configure("log4j.xml");
 		this.expectedResult = "";
 		DriverCreator driverCreator = new DriverCreator("chrome");
 		driver = driverCreator.getWebDriver();
 		homePage = new HomePage(driver);
 		homePage.startHomePage();
+		
 	}
 	
 	@AfterMethod
-	public void afterMethod(ITestResult testResult) throws IOException {
+	public void afterMethod(ITestResult testResult) throws Exception {
 		String screenShotPath = "";
 		String takingTime = "";
 		String errorMessage = "";
@@ -59,17 +63,23 @@ public class BaseTestCase {
 		}
 		TestMethodResultAdapter resultAdapter = new TestMethodResultAdapter(testResult,
 				"screenshots/" + testResult.getInstanceName() + "_" + testResult.getName() + "_" + takingTime + ".png",
-				testResult.getTestContext().getCurrentXmlTest().getSuite().getFileName());
+				testResult.getTestContext().getCurrentXmlTest().getSuite().getFileName(), getALMAnnotation());
 		resultAdapter.setActualvalue(errorMessage);
 		resultAdapter.setValue(expectedResult);
 		Reporter.allResults.add(resultAdapter);
-		if (testResult.getStatus() == ITestResult.FAILURE)
+		if (testResult.getStatus() == ITestResult.FAILURE && !testCaseStatus.equals("fail"))
 		{
 			testCaseStatus = "fail";
 		}
-		if (testResult.getName().equals("testHelp")) {
-			exportALMReferenceCsv(testResult.getName(), testCaseStatus);
+		if ("".equals(testCaseName))
+		{
+			testCaseName = testResult.getTestName();
 		}
+	}
+	
+	@AfterClass 
+	public void afterClass() throws IOException {
+		exportALMReferenceCsv(testCaseName, testCaseStatus);
 		driver.quit();
 	}
 	private void exportALMReferenceCsv(String tcName, String status) {

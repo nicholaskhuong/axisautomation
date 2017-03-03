@@ -20,8 +20,9 @@ public class TestMethodResultAdapter {
 	private long startTime, endTime;
 	private Object[] parameters;
 	private String hostName;
+	private String almID;
 	public TestMethodResultAdapter(String id, String text, String action, String label, String value, String actualvalue, String status,
-			String screenShot) {
+			String screenShot, String almID) {
 		this.id = id;
 		this.text = text;
 		this.action = action;
@@ -30,6 +31,7 @@ public class TestMethodResultAdapter {
 		this.actualvalue = actualvalue;
 		this.status = status;
 		this.screenshot = screenShot;
+		this.almID = almID;
 	}
 	
 	
@@ -39,12 +41,12 @@ public class TestMethodResultAdapter {
 		
 	}
 	
-	public TestMethodResultAdapter(ITestResult testResult, String screenshot){
+	public TestMethodResultAdapter(ITestResult testResult, String screenshot, String almID){
 		this.testClass = testResult.getInstanceName();
 		this.methodName = testResult.getName();
 		this.testName = testResult.getTestContext().getName();
 		this.testSuite = testResult.getTestContext().getSuite().getName();
-		this.screenshot = testResult.getStatus()==ITestResult.FAILURE ? screenshot : "";;
+		this.screenshot = testResult.getStatus()==ITestResult.FAILURE ? screenshot : "";
 		this.status = testResult.getStatus()==ITestResult.FAILURE ? "0" : testResult.getStatus() + "";
 		this.action = "";
 		this.id = this.text = this.label = this.value = this.action = this.actualvalue = "";
@@ -53,9 +55,10 @@ public class TestMethodResultAdapter {
 		this.endTime = testResult.getEndMillis();
 		this.parameters = testResult.getParameters();
 		this.hostName = testResult.getHost();
+		this.almID = almID;
 	}
 	
-	public TestMethodResultAdapter(ITestResult testResult, String screenshot, String xmlFile){
+	public TestMethodResultAdapter(ITestResult testResult, String screenshot, String xmlFile, String almID){
 		this.testClass = testResult.getInstanceName();
 		this.methodName = testResult.getName();
 		this.testName = testResult.getTestContext().getName();
@@ -72,6 +75,7 @@ public class TestMethodResultAdapter {
 		this.parameters = testResult.getParameters();
 		this.hostName = testResult.getHost();
 		this.xmlFile = xmlFile;
+		this.almID = almID;
 	}
 
 
@@ -255,7 +259,11 @@ public class TestMethodResultAdapter {
 		this.hostName = hostName;
 	}
 	
+	public void setALMID(String almID) {
+		this.almID = almID;
+	}
 	
-	
-	
+	public String getALMID() {
+		return almID;
+	}
 }
