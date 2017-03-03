@@ -117,7 +117,7 @@ public class Reporter implements IReporter {
 						if (result.getTestSuite().equals(suite.getSuiteName())
 								&& result.getTestName().equals(classs.getTestClassName())) {
 							result.setId(String.format("%s%s%s", classs.getId(),"sp", methodID));
-							result.setText(String.format("%s %s %s", methodID,"-", result.getTestClass()));
+							result.setText(String.format("%s%s%s", methodID,"-", result.getTestClass()));
 							result.setAction(result.getMethodName());
 							classs.addMethod(result);
 							methodID++;
@@ -137,7 +137,7 @@ public class Reporter implements IReporter {
 					if (result.getTestSuite().equals(suite.getSuiteName())
 							&& !isClassExists(suite, result.getTestName())) {
 						TestClassResultAdapter classs = new TestClassResultAdapter();
-						classs.setId(suite.getId() + "tc" + classID);
+						classs.setId(String.format("%s%s%s",suite.getId(),"tc",classID));
 						classs.setTestClassName(result.getTestName());
 						classs.setALMID(result.getALMID());
 						suite.addClass(classs);
@@ -157,7 +157,7 @@ public class Reporter implements IReporter {
 				if (!isSuiteExists(pack, result.getTestSuite())
 						&& result.getPackageName().equals(pack.getPackageName())) {
 					TestSuiteResultAdapter tempSuite = new TestSuiteResultAdapter();
-					tempSuite.setId(pack.getId() + "ts" + suiteID);
+					tempSuite.setId(String.format("%s%s%s",pack.getId(),"ts",suiteID));
 					tempSuite.setSuiteName(result.getTestSuite());
 					pack.addSuite(tempSuite);
 					suiteID++;
