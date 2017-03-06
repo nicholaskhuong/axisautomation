@@ -1,4 +1,4 @@
-<project name="EllipseRegressionTests-parallel" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+<project name="AxisAutomation-parallel" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
     <property name="src.dir" value="src" />
     <property name="test.set" value="${test.set}" />
 	<property name="newreport.dir" value="report" />
