@@ -12,6 +12,63 @@
     <property name="test.position" value="" />
     <property name="test.server.url" value="" />
     <property name="report.dir" value="test-output" />
+	<path id="AxisAutomation.classpath">
+	        <pathelement location="bin"/>
+	        <path refid="TestNG.libraryclasspath"/>
+	        <pathelement location="Lib/cglib-nodep-3.2.4.jar"/>
+	        <pathelement location="Lib/client-combined-3.0.1-nodeps.jar"/>
+	        <pathelement location="Lib/commons-codec-1.10.jar"/>
+	        <pathelement location="Lib/commons-exec-1.3.jar"/>
+	        <pathelement location="Lib/commons-io-2.5.jar"/>
+	        <pathelement location="Lib/commons-lang3-3.4.jar"/>
+	        <pathelement location="Lib/commons-logging-1.2.jar"/>
+	        <pathelement location="Lib/cssparser-0.9.20.jar"/>
+	        <pathelement location="Lib/dom4j.jar"/>
+	        <pathelement location="Lib/gson-2.3.1.jar"/>
+	        <pathelement location="Lib/gson-2.8.0-javadoc.jar"/>
+	        <pathelement location="Lib/gson-2.8.0-sources.jar"/>
+	        <pathelement location="Lib/gson-2.8.0.jar"/>
+	        <pathelement location="Lib/guava-19.0.jar"/>
+	        <pathelement location="Lib/guice-3.0.jar"/>
+	        <pathelement location="Lib/hamcrest-core-1.3.jar"/>
+	        <pathelement location="Lib/hamcrest-library-1.3.jar"/>
+	        <pathelement location="Lib/htmlunit-2.23.jar"/>
+	        <pathelement location="Lib/htmlunit-core-js-2.23.jar"/>
+	        <pathelement location="Lib/httpclient-4.5.2.jar"/>
+	        <pathelement location="Lib/httpcore-4.4.4.jar"/>
+	        <pathelement location="Lib/httpmime-4.5.2.jar"/>
+	        <pathelement location="Lib/jackson-all-1.8.2.jar"/>
+	        <pathelement location="Lib/jackson-core-2.8.4.jar"/>
+	        <pathelement location="Lib/java-client-3.3.0.jar"/>
+	        <pathelement location="Lib/javax.servlet-api-3.1.0.jar"/>
+	        <pathelement location="Lib/jetty-io-9.2.13.v20150730.jar"/>
+	        <pathelement location="Lib/jetty-util-9.2.13.v20150730.jar"/>
+	        <pathelement location="Lib/jna-4.1.0.jar"/>
+	        <pathelement location="Lib/jna-platform-4.1.0.jar"/>
+	        <pathelement location="Lib/junit-4.12.jar"/>
+	        <pathelement location="Lib/log4j-1.2.17.jar"/>
+	        <pathelement location="Lib/neko-htmlunit-2.23.jar"/>
+	        <pathelement location="Lib/netty-3.5.7.Final.jar"/>
+	        <pathelement location="Lib/phantomjsdriver-1.3.0.jar"/>
+	        <pathelement location="Lib/poi-3.5-ooxml-schemas-1.0.jar"/>
+	        <pathelement location="Lib/poi-3.9.jar"/>
+	        <pathelement location="Lib/poi-ooxml-3.7-20101029.jar"/>
+	        <pathelement location="Lib/poi-ooxml-3.8.jar"/>
+	        <pathelement location="Lib/sac-1.3.jar"/>
+	        <pathelement location="Lib/selenium-android-driver-2.30.0.jar"/>
+	        <pathelement location="Lib/serializer-2.7.2.jar"/>
+	        <pathelement location="Lib/websocket-api-9.2.15.v20160210.jar"/>
+	        <pathelement location="Lib/websocket-client-9.2.15.v20160210.jar"/>
+	        <pathelement location="Lib/websocket-common-9.2.15.v20160210.jar"/>
+	        <pathelement location="Lib/xalan-2.7.2.jar"/>
+	        <pathelement location="Lib/xercesImpl-2.11.0.jar"/>
+	        <pathelement location="Lib/xml-apis-1.4.01.jar"/>
+	        <pathelement location="Lib/xmlbeans-2.3.0.jar"/>
+	        <pathelement location="Lib/xmlbeans-5.3.0-rc1.jar"/>
+	        <pathelement location="Lib/selendroid-standalone-0.11.0-with-dependencies.jar"/>
+	        <pathelement location="Lib/selendroid-standalone-0.17.0-with-dependencies.jar"/>
+	        <pathelement location="Lib/testng.jar"/>
+	    </path>
     <!-- end of should be overwritten -->
     <target name="help">
         <echo message="please specify a target" />
