@@ -92,7 +92,6 @@
 		<antcall target="clean" />
         <antcall target="compile" />                        
 		<antcall target="run.parallel.test" />                
-		
     </target>
 	
     <target name="run.parallel.test">
@@ -143,7 +142,7 @@
                 parallel="${parallel.mode}"  
                 threadCount="20"                  
                 useDefaultListeners="false" 
-                >
+            	listeners="com.abb.ventyx.utilities.Reporter">
             <jvmarg value="-Dtest.browser=${test.browser}" />
             <jvmarg value="-Dtest.username=${test.username}" />
             <jvmarg value="-Dtest.password=${test.password}" />
