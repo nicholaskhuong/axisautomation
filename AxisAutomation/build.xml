@@ -99,11 +99,6 @@
         <!-- resolve dependencies 
         <ivy:settings file="${ivy.settings}" />
         <ivy:retrieve file="${ivy.xml}" pattern="${lib.dir}/[artifact].[ext]" type="jar,bundle" conf="default" />-->
-        <javac srcdir="${basedir}" destdir="${bin.dir}">
-            <classpath>
-                <fileset dir="${lib.dir}" includes="*.jar" />
-            </classpath>
-        </javac>    	
         <javac srcdir="${src.dir}" destdir="${bin.dir}">
             <classpath>
                 <fileset dir="${lib.dir}" includes="*.jar" />
