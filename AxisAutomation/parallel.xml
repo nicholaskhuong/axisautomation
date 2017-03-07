@@ -194,7 +194,7 @@
 			<classpath>                
 				<fileset dir="${lib.dir}" includes="*.jar" />
 			</classpath>
-			<arg line="${newreport.dir}/xml/results.xml" />
+			<arg line="${env.BUILD_NUMBER} ${env.JOB_NAME} ${env.WORKSPACE}/AxisAutomation/report/xml/results.xml" />
 		</java>
 	</target>
 </project>
