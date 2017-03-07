@@ -92,8 +92,7 @@
 		<antcall target="clean" />
         <antcall target="compile" />                        
 		<antcall target="run.parallel.test" />                
-		<antcall target="results.generate" />
-    	<antcall target="results.generateExcelResults" />
+		
     </target>
 	
     <target name="run.parallel.test">
