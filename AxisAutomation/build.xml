@@ -105,10 +105,10 @@
                 <pathelement path="${bin.dir}" />
             </classpath>
         </javac>
-        <!-- copy login data files (CSV) to classpath -->
+        <!-- copy login data files (CSV) to classpath
         <copy todir="${bin.dir}">
             <fileset dir="data" includes="**/*.csv" />
-        </copy>
+        </copy> -->
         <!-- copy data files (CSV) to classpath -->
         <copy todir="${bin.dir}">
             <fileset dir="${src.dir}" includes="**/*.csv" />
