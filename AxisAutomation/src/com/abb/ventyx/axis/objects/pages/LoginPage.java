@@ -21,11 +21,9 @@ public class LoginPage extends BasePage{
 		super(BasePage.driver);
 	}
 	
-	public void login(String username, String password, String district, String position){
+	public void login(String username, String password){
 		InputController.inputToTextFiled(getUsernameTextField(), username);
 		InputController.inputToTextFiled(getPasswordTextField(), password);
-		InputController.inputToTextFiled(getDistrictTextField(), district);
-		InputController.inputToTextFiled(getPositionTextField(), position);
 		getLoginButton().click();
 	}
 	
@@ -38,14 +36,6 @@ public class LoginPage extends BasePage{
 	
 	public static WebElement getPasswordTextField(){
 		return driver.findElement(By.id(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID));
-	}
-	
-	public static WebElement getDistrictTextField(){
-		return driver.findElement(By.id(LoginPageDefinition.DISTRICT_TEXT_FIELD_ID));
-	}
-	
-	public static WebElement getPositionTextField(){
-		return driver.findElement(By.id(LoginPageDefinition.POSITION_TEXT_FIELD_ID));
 	}
 	
 	public static WebElement getLoginButton(){
