@@ -163,12 +163,6 @@
     </target>
 	
 	<target name="results.generate">
-		<java classname="com.ventyx.report.xmlParser.Xml2Js" failonerror="true" fork="true">
-			<classpath>                
-				<pathelement location="${lib.dir}/ventyx-testng-core.jar"/>
-			</classpath>
-			<arg line="${report.dir}" />
-		</java>
 		
 		<xslt in="${newreport.dir}/xml/results.xml"
 			  out="${newreport.dir}/reportinfo.jelly"

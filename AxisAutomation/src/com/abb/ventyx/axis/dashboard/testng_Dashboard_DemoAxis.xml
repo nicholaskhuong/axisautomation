@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Axis Login" parallel="none">
+<suite name="Axis Login" parallel="true">
 	<listeners>
     	<listener class-name="com.abb.ventyx.utilities.Reporter"></listener>
     </listeners>  
