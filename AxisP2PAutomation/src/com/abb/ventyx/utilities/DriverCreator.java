@@ -57,7 +57,7 @@ public class DriverCreator {
 
 	private WebDriver createChromeDriver() throws MalformedURLException {
 		DesiredCapabilities capability = DesiredCapabilities.chrome();
-		capability.setBrowserName("chrome");
+		capability.setBrowserName("firefox");
 //		System.setProperty("webdriver.chrome.driver", Constants.SELENIUM_WEB_DRIVER_PATH);
 		WebDriver result = new RemoteWebDriver(new URL("http://172.19.2.250:4444/wd/hub"),capability);
 		return result;
