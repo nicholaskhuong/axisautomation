@@ -3,7 +3,7 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="AxisAutomation">
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="AxisP2PAutomation">
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="../../Selenium/eclipse-standard-kepler-SR2-win32-x86_64/eclipse"/>
     <property name="debuglevel" value="source,lines,vars"/>
@@ -12,7 +12,7 @@
     <path id="TestNG.libraryclasspath">
         <pathelement location="${ECLIPSE_HOME}/plugins/org.testng.eclipse_6.7.0.20120825_1316/lib/testng.jar"/>
     </path>
-    <path id="AxisAutomation.classpath">
+    <path id="AxisP2PAutomation.classpath">
         <pathelement location="bin"/>
         <path refid="TestNG.libraryclasspath"/>
         <pathelement location="Lib/cglib-nodep-3.2.4.jar"/>
@@ -88,7 +88,7 @@
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
             <exclude name="com/abb/ventyx/saas/TestAppium.java"/>
-            <classpath refid="AxisAutomation.classpath"/>
+            <classpath refid="AxisP2PAutomation.classpath"/>
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>

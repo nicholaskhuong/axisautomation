@@ -1,4 +1,4 @@
-<project name="AxisAutomation" basedir="." default="help" xmlns:ivy="antlib:org.apache.ivy.ant">
+<project name="AxisP2PAutomation" basedir="." default="help" xmlns:ivy="antlib:org.apache.ivy.ant">
     <taskdef resource="net/sf/antcontrib/antlib.xml" />
     <presetdef name="javac">
         <javac includeantruntime="false" />
@@ -12,7 +12,7 @@
     <property name="test.position" value="" />
     <property name="test.server.url" value="" />
     <property name="report.dir" value="test-output" />
-	<path id="AxisAutomation.classpath">
+	<path id="AxisP2PAutomation.classpath">
 	        <pathelement location="bin"/>
 	        <path refid="TestNG.libraryclasspath"/>
 	        <pathelement location="Lib/cglib-nodep-3.2.4.jar"/>

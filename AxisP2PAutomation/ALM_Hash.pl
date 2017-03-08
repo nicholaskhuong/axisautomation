@@ -25,7 +25,7 @@ sub main() {
    my %ALM_ids_previous;
    
    my $last_build = $options->{'latest_build'};
-   my $ALM_csv_current_url = "$build_url/$last_build/artifact/axisautomation/AxisAutomation/ALM.csv";
+   my $ALM_csv_current_url = "$build_url/$last_build/artifact/AxisP2PAutomation/AxisP2PAutomation/ALM.csv";
    my $ALM_csv_current = "./ALM.csv";
    my $status = getstore($ALM_csv_current_url, $ALM_csv_current);
    if ( is_success($status) )
@@ -41,7 +41,7 @@ sub main() {
    
    if ($last_build > 0) {
       my $previous_build = $last_build - 1;
-      my $ALM_csv_previous_url = "$build_url/$previous_build/artifact/axisautomation/AxisAutomation/ALM.csv";
+      my $ALM_csv_previous_url = "$build_url/$previous_build/artifact/AxisP2PAutomation/AxisP2PAutomation/ALM.csv";
       my $ALM_csv_previous = "./ALM_previous.csv";
       my $status2 = getstore($ALM_csv_previous_url, $ALM_csv_previous);
       if ( is_success($status2) )
