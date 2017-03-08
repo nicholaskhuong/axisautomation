@@ -21,7 +21,7 @@ public class DriverCreator {
 		WebDriver result = null;
 		if (Constants.MOBILE_PLATFORM == Platform.APPIUM_ANDROID) {
 			// To create an object of Desired Capabilities
-			DesiredCapabilities capabilities = new DesiredCapabilities();
+			final DesiredCapabilities capabilities = new DesiredCapabilities();
 
 			// Name of mobile web browser to automate. It should be an empty
 			// string, as we are automation an app
@@ -42,7 +42,7 @@ public class DriverCreator {
 
 			try {
 				result = new RemoteWebDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
-			} catch (MalformedURLException e) {
+			} catch (final MalformedURLException e) {
 				// TODO Auto-generated catch block
 				result = null;
 			}
@@ -55,18 +55,22 @@ public class DriverCreator {
 		return result;
 	}
 
-	private WebDriver createChromeDriver() {
-		System.setProperty("webdriver.chrome.driver", Constants.SELENIUM_WEB_DRIVER_PATH);
-		WebDriver result = new ChromeDriver();
+	private WebDriver createChromeDriver() throws MalformedURLException {
+		DesiredCapabilities capability = DesiredCapabilities.chrome();
+		capability.setBrowserName("chrome");
+//		System.setProperty("webdriver.chrome.driver", Constants.SELENIUM_WEB_DRIVER_PATH);
+		WebDriver result = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),capability);
 		return result;
 	}
 
-	private WebDriver createFirefoxDriver() {
-		WebDriver result = new FirefoxDriver();
+	private WebDriver createFirefoxDriver() throws MalformedURLException {
+		DesiredCapabilities capability = DesiredCapabilities.firefox();
+		capability.setBrowserName("firefox"); 
+		WebDriver result = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capability);
 		return result;
 	}
 
-	public WebDriver getWebDriver() {
+	public WebDriver getWebDriver() throws MalformedURLException {
 		WebDriver result = null;
 		switch (driverType) {
 		case "firefox":

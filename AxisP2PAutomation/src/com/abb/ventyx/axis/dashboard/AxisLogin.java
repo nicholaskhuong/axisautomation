@@ -1,6 +1,5 @@
 package com.abb.ventyx.axis.dashboard;
 
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;

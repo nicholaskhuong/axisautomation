@@ -5,15 +5,17 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
+import java.util.Properties;
 import java.util.Random;
-
-import net.sourceforge.htmlunit.corejs.javascript.ast.CatchClause;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.xml.DOMConfigurator;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -29,7 +31,34 @@ public class BaseTestCase {
 	private String testCaseStatus = "pass";
 	private String testCaseName = "";
 	private String ALMcsvfile = "ALM.csv";
-
+	public static final String TEST_SERVER_URL = "test.server.url";
+	public static final String TEST_BROWSER = "test.browser";
+	public static final String TEST_SELENIUM_SERVER = "test.selenium.server";
+	public static final String TEST_SELENIUM_PORT = "test.selenium.port";
+	public static final String TEST_REPORT_DIR = "test.report.directory";
+	private static Properties properties = new Properties();	
+	private TestLoginCredentials defaultCredentials;
+	private TestLoginCredentials currentCredentials;
+	
+	public BaseTestCase() {
+		try {
+			// load default properties
+			properties = PropertiesLoaderUtils.loadProperties(new ClassPathResource("test.properties", BaseTestCase.class));
+		} catch (Exception e) {
+			throw new RuntimeException("Unable to load default test.properties");
+		}
+		try {
+			// override with any local test.properties
+			PropertiesLoaderUtils.fillProperties(properties, new FileSystemResource("test.properties"));
+		} catch (Exception e) {
+			// Ignore
+		}
+		properties.putAll(System.getProperties());
+		
+		defaultCredentials = new TestLoginCredentials( getProperty("test.username"),getProperty("test.password"));
+		currentCredentials = defaultCredentials;
+		
+	}
 	@BeforeClass
 	public void beforeClass() throws Exception {
 		DOMConfigurator.configure("log4j.xml");
@@ -113,4 +142,22 @@ public class BaseTestCase {
 		}
 		return ALMid;
 	}
+	
+	public String getServerURL() {
+		return getProperty(TEST_SERVER_URL);
+	}
+
+	public String getProperty(String key) {
+		return (String) properties.get(key);
+	}
+	
+    public static Properties getProperties() {
+        return BaseTestCase.properties;
+    }
+    
+	public TestLoginCredentials getCurrentCredentials() {
+		
+		return currentCredentials;
+	}
+	
 }

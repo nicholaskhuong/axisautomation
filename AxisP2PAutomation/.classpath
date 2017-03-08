@@ -55,5 +55,9 @@
 	<classpathentry kind="lib" path="Lib/xmlbeans-5.3.0-rc1.jar"/>
 	<classpathentry kind="lib" path="Lib/selendroid-standalone-0.11.0-with-dependencies.jar"/>
 	<classpathentry kind="lib" path="Lib/selendroid-standalone-0.17.0-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="Lib/spring-core-4.2.2.jar"/>
+	<classpathentry kind="lib" path="Lib/testng-result-parser.jar"/>
+	<classpathentry kind="lib" path="Lib/testng.jar"/>
+	<classpathentry kind="lib" path="Lib/ventyx-testng-core.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
