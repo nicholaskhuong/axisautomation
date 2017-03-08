@@ -59,14 +59,14 @@ public class DriverCreator {
 		DesiredCapabilities capability = DesiredCapabilities.chrome();
 		capability.setBrowserName("chrome");
 //		System.setProperty("webdriver.chrome.driver", Constants.SELENIUM_WEB_DRIVER_PATH);
-		WebDriver result = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),capability);
+		WebDriver result = new RemoteWebDriver(new URL("http://172.19.2.250:4444/wd/hub"),capability);
 		return result;
 	}
 
 	private WebDriver createFirefoxDriver() throws MalformedURLException {
 		DesiredCapabilities capability = DesiredCapabilities.firefox();
 		capability.setBrowserName("firefox"); 
-		WebDriver result = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capability);
+		WebDriver result = new RemoteWebDriver(new URL("http://172.19.2.250:4444/wd/hub"), capability);
 		return result;
 	}
 
