@@ -15,8 +15,7 @@ public class AxisLogin extends BaseTestCase {
 
   @Test
   public void Login() throws Exception {
-//	  	WebDriver driver= super.driver;
-	  	driver.get(Constants.HOME_URL + "/SupplierPortal/#!listSupplier");
+	  	driver.navigate().to(Constants.HOME_URL + "/SupplierPortal/#!listSupplier");
 	  	WebElement userSeqNo = (new WebDriverWait(driver, 10))
 	  			.until(ExpectedConditions.presenceOfElementLocated(By.id("userSeqNo")));
 	  	userSeqNo.clear();

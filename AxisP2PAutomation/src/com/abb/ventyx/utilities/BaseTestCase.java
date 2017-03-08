@@ -70,8 +70,8 @@ public class BaseTestCase {
 		this.expectedResult = "";
 		DriverCreator driverCreator = new DriverCreator("chrome");
 		driver = driverCreator.getWebDriver();
-		homePage = new HomePage(driver);
-		homePage.startHomePage();
+//		homePage = new HomePage(driver);
+//		homePage.startHomePage();
 		newLog.debug(driver);
 	}
 	
