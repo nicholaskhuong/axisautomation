@@ -5,11 +5,14 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
+import java.util.Calendar;
 import java.util.Properties;
 import java.util.Random;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.logging.impl.Log4JLogger;
 import org.apache.log4j.xml.DOMConfigurator;
+import org.apache.poi.ss.formula.functions.Today;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -39,7 +42,7 @@ public class BaseTestCase {
 	private static Properties properties = new Properties();	
 	private TestLoginCredentials defaultCredentials;
 	private TestLoginCredentials currentCredentials;
-	
+	public Log4JLogger newLog;
 	public BaseTestCase() {
 		try {
 			// load default properties
@@ -62,12 +65,14 @@ public class BaseTestCase {
 	@BeforeClass
 	public void beforeClass() throws Exception {
 		DOMConfigurator.configure("log4j.xml");
+		newLog = new Log4JLogger("log.log");
+		DOMConfigurator.configure("log4j.xml");
 		this.expectedResult = "";
 		DriverCreator driverCreator = new DriverCreator("chrome");
 		driver = driverCreator.getWebDriver();
 		homePage = new HomePage(driver);
 		homePage.startHomePage();
-		
+		newLog.debug(driver);
 	}
 	
 	@AfterMethod
