@@ -68,7 +68,7 @@ public class BaseTestCase {
 	@BeforeClass
 	public void beforeClass() throws Exception {
 		this.expectedResult = "";
-		DriverCreator driverCreator = new DriverCreator("firefox");
+		DriverCreator driverCreator = new DriverCreator("chrome");
 		driver = driverCreator.getWebDriver();
 		homePage = new HomePage(driver);
 		homePage.startHomePage();
