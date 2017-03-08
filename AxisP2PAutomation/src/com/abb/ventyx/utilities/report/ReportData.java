@@ -24,9 +24,9 @@ public class ReportData {
 	    this.gtime = "398.109";
 	    this.status = "1";
 	    this.rcNodeList = "";
-	    this.jenkinsURL = "http://awsjenkins.techops.ventyx.abb.com:8080/job/ellipse_selenium-regression/12/";
-	    this.seleniumHubURL = "172.31.180.244";        
-	    this.automation_url = "http://ellipseonlineb0-atrel8-epsprd1-eps-prod.techops.ventyx.abb.com:8080/ria/ui.html";
+	    this.jenkinsURL = "";
+	    this.seleniumHubURL = "localhost";        
+	    this.automation_url = "";
 	    this.package_xyz = new ArrayList<>();
 	}
 	public String getMode() {

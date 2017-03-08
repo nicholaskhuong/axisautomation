@@ -76,7 +76,6 @@ public class DriverCreator {
 		case "firefox":
 			result = createFirefoxDriver();
 			break;
-
 		case "chrome":
 			result = createChromeDriver();
 			break;
