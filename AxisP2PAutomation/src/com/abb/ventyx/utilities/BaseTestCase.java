@@ -65,8 +65,7 @@ public class BaseTestCase {
 	@BeforeClass
 	public void beforeClass() throws Exception {
 		DOMConfigurator.configure("log4j.xml");
-		newLog = new Log4JLogger("log.log");
-		DOMConfigurator.configure("log4j.xml");
+		newLog = new Log4JLogger("/log.log");
 		this.expectedResult = "";
 		DriverCreator driverCreator = new DriverCreator("chrome");
 		driver = driverCreator.getWebDriver();
