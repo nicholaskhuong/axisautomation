@@ -44,18 +44,21 @@ public class BaseTestCase {
 	private TestLoginCredentials currentCredentials;
 	public Log4JLogger newLog;
 	public BaseTestCase() {
-		try {
-			// load default properties
-			properties = PropertiesLoaderUtils.loadProperties(new ClassPathResource("test.properties", BaseTestCase.class));
-		} catch (Exception e) {
-			throw new RuntimeException("Unable to load default test.properties");
-		}
-		try {
-			// override with any local test.properties
-			PropertiesLoaderUtils.fillProperties(properties, new FileSystemResource("test.properties"));
-		} catch (Exception e) {
-			// Ignore
-		}
+		DOMConfigurator.configure("log4j.xml");
+		newLog = new Log4JLogger("log.log");
+//		try {
+//			// load default properties
+//			properties = PropertiesLoaderUtils.loadProperties(new ClassPathResource("test.properties", BaseTestCase.class));
+//		} catch (Exception e) {
+//			newLog.debug(e.getMessage());
+//			throw new RuntimeException("Unable to load default test.properties");
+//		}
+//		try {
+//			// override with any local test.properties
+//			PropertiesLoaderUtils.fillProperties(properties, new FileSystemResource("test.properties"));
+//		} catch (Exception e) {
+//			newLog.debug(e.getMessage());
+//		}
 		properties.putAll(System.getProperties());
 		
 		defaultCredentials = new TestLoginCredentials( getProperty("test.username"),getProperty("test.password"));
@@ -64,8 +67,6 @@ public class BaseTestCase {
 	}
 	@BeforeClass
 	public void beforeClass() throws Exception {
-		DOMConfigurator.configure("log4j.xml");
-		newLog = new Log4JLogger("/log.log");
 		this.expectedResult = "";
 		DriverCreator driverCreator = new DriverCreator("chrome");
 		driver = driverCreator.getWebDriver();
