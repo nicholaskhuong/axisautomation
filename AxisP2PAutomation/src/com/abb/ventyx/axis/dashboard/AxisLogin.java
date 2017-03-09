@@ -20,12 +20,10 @@ public class AxisLogin extends BaseTestCase {
 	  			.until(ExpectedConditions.presenceOfElementLocated(By.id("userSeqNo")));
 	  	userSeqNo.clear();
 	  	userSeqNo.sendKeys("1094");
-	    driver.findElement(By.id("password")).click();
 	    driver.findElement(By.cssSelector("input[type='password']")).sendKeys("Testuser1");
 	    driver.findElement(By.xpath("//div[@id='signin']")).click();
 	    JavascriptExecutor js = (JavascriptExecutor)driver;
-	    WebElement continueButton = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#SupplierPortal-1227837064 > div > div.v-verticallayout.v-layout.v-vertical.v-widget.v-has-width.v-has-height > div > div > div > div:nth-child(3) > div > div:nth-child(3) > div > div > div > div")));
-	    
+	    WebElement continueButton = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id("continue")));
 	    js.executeScript("arguments[0].click();", continueButton);
   }
   @Test(dependsOnMethods = "Login")
