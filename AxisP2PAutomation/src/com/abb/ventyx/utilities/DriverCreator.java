@@ -55,18 +55,30 @@ public class DriverCreator {
 		return result;
 	}
 
-	private WebDriver createChromeDriver() throws MalformedURLException {
+	private WebDriver createChromeDriver() {
 		DesiredCapabilities capability = DesiredCapabilities.chrome();
-		capability.setBrowserName("firefox");
+		capability.setBrowserName("chrome");
 //		System.setProperty("webdriver.chrome.driver", Constants.SELENIUM_WEB_DRIVER_PATH);
-		WebDriver result = new RemoteWebDriver(new URL("http://172.19.2.250:4444/wd/hub"),capability);
+		WebDriver result = null;
+		try {
+			result = new RemoteWebDriver(new URL("http://172.19.2.250:4444/wd/hub"),capability);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return result;
 	}
 
-	private WebDriver createFirefoxDriver() throws MalformedURLException {
+	private WebDriver createFirefoxDriver() {
 		DesiredCapabilities capability = DesiredCapabilities.firefox();
 		capability.setBrowserName("firefox"); 
-		WebDriver result = new RemoteWebDriver(new URL("http://172.19.2.250:4444/wd/hub"), capability);
+		WebDriver result = null;
+		try {
+			result = new RemoteWebDriver(new URL("http://172.19.2.250:4444/wd/hub"), capability);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return result;
 	}
 
