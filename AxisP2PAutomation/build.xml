@@ -1,4 +1,5 @@
 <project name="AxisP2PAutomation" basedir="." default="help" xmlns:ivy="antlib:org.apache.ivy.ant">
+    <taskdef resource="net/sf/antcontrib/antlib.xml" />
     <presetdef name="javac">
         <javac includeantruntime="false" />
     </presetdef>
