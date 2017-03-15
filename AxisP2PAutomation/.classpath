@@ -59,5 +59,6 @@
 	<classpathentry kind="lib" path="Lib/testng-result-parser.jar"/>
 	<classpathentry kind="lib" path="Lib/testng.jar"/>
 	<classpathentry kind="lib" path="Lib/ventyx-testng-core.jar"/>
+	<classpathentry kind="lib" path="Lib/ant-contrib-1.0b3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
