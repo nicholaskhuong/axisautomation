@@ -5,9 +5,15 @@ import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.testng.IReporter;
+import org.testng.IResultMap;
 import org.testng.ISuite;
+import org.testng.ISuiteResult;
+import org.testng.ITestContext;
+import org.testng.ITestNGMethod;
+import org.testng.ITestResult;
 import org.testng.xml.XmlSuite;
 
 import com.abb.ventyx.utilities.report.Error;
@@ -16,6 +22,7 @@ import com.abb.ventyx.utilities.report.TestCase;
 import com.abb.ventyx.utilities.report.TestClassResultAdapter;
 import com.abb.ventyx.utilities.report.TestMethodResultAdapter;
 import com.abb.ventyx.utilities.report.TestPackageResultAdapter;
+import com.abb.ventyx.utilities.report.TestResultAdapter;
 import com.abb.ventyx.utilities.report.TestStep;
 import com.abb.ventyx.utilities.report.TestSuite;
 import com.abb.ventyx.utilities.report.TestSuiteResultAdapter;
@@ -27,11 +34,12 @@ public class Reporter implements IReporter {
 	public static ArrayList<TestClassResultAdapter> allClasses = new ArrayList<>();
 	public static ArrayList<TestSuiteResultAdapter> allSuites = new ArrayList<>();
 	public static ArrayList<TestPackageResultAdapter> allPackages = new ArrayList<>();
+	public static ArrayList<ITestResult> allTestResults = new ArrayList<>();
 
 	public ReportData theFinalReportData = new ReportData();
 
 	public String reportFolder = Constants.REPORT_FOLDER;
-
+	
 	@Override
 	public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites, String outputDirectory) {
 
@@ -54,58 +62,58 @@ public class Reporter implements IReporter {
 
 		generateTheFinalReport();
 
-//		for (ISuite suite : suites) {
-			// Following code gets the suite name
-//			String suiteName = suite.getName();
+		for (ISuite suite : suites) {
+//			 Following code gets the suite name
+			String suiteName = suite.getName();
 
-			// Suite method name
-//			List<ITestNGMethod> suiteTestMethods = suite.getAllMethods();
+//			 Suite method name
+			List<ITestNGMethod> suiteTestMethods = suite.getAllMethods();
 
-//			for (ITestNGMethod mt : suiteTestMethods) {
-//				 System.out.println(mt.getMethodName());
-//			}
+			for (ITestNGMethod mt : suiteTestMethods) {
+				 System.out.println(mt.getMethodName());
+			}
 
-			// Getting the results for the said suite
-//			Map<String, ISuiteResult> suiteResults = suite.getResults();
-//			for (ISuiteResult sr : suiteResults.values()) {
+//			 Getting the results for the said suite
+			Map<String, ISuiteResult> suiteResults = suite.getResults();
+			for (ISuiteResult sr : suiteResults.values()) {
 
-//				ITestContext tc = sr.getTestContext();
-				// //System.out.println("Object = " + gson.toJson(sr));
-				// System.out.println(
-				// "Passed tests for suite '" + suiteName + "' is:" +
-				// tc.getPassedTests().getAllResults().size());
-				// System.out.println(
-				// "Failed tests for suite '" + suiteName + "' is:" +
-				// tc.getFailedTests().getAllResults().size());
-				// System.out.println("Skipped tests for suite '" + suiteName +
-				// "' is:"
-				// + tc.getSkippedTests().getAllResults().size());
+				ITestContext tc = sr.getTestContext();
+				 //System.out.println("Object = " + gson.toJson(sr));
+				 System.out.println(
+				 "Passed tests for suite '" + suiteName + "' is:" +
+				 tc.getPassedTests().getAllResults().size());
+				 System.out.println(
+				 "Failed tests for suite '" + suiteName + "' is:" +
+				 tc.getFailedTests().getAllResults().size());
+				 System.out.println("Skipped tests for suite '" + suiteName +
+				 "' is:"
+				 + tc.getSkippedTests().getAllResults().size());
 
-				// Process passed results first
+//				 Process passed results first
 
-				// IResultMap passMap = tc.getPassedTests();
-				// List<ITestResult> lsPassResults = new
-				// ArrayList<>(passMap.getAllResults());
-				//
-				// IResultMap failMap = tc.getFailedTests();
-				// List<ITestResult> lsFailResults = new
-				// ArrayList<>(failMap.getAllResults());
-				//
-				// IResultMap skipMap = tc.getSkippedTests();
-				// List<ITestResult> lsSkipResults = new
-				// ArrayList<>(skipMap.getAllResults());
-				//
-				// allTestResults = new ArrayList<>(lsPassResults);
-				// allTestResults.addAll(lsFailResults);
-				// allTestResults.addAll(lsSkipResults);
-				//
-				// for (ITestResult resultk : allTestResults) {
-				// TestResultAdapter adapter = new TestResultAdapter(resultk);
-				// System.out.println(new Gson().toJson(new TestStep(adapter)));
-				// }
+				 IResultMap passMap = tc.getPassedTests();
+				 List<ITestResult> lsPassResults = new
+				 ArrayList<>(passMap.getAllResults());
+				
+				 IResultMap failMap = tc.getFailedTests();
+				 List<ITestResult> lsFailResults = new
+				 ArrayList<>(failMap.getAllResults());
+				
+				 IResultMap skipMap = tc.getSkippedTests();
+				 List<ITestResult> lsSkipResults = new
+				 ArrayList<>(skipMap.getAllResults());
+				
+				 allTestResults = new ArrayList<>(lsPassResults);
+				 allTestResults.addAll(lsFailResults);
+				 allTestResults.addAll(lsSkipResults);
+				
+				 for (ITestResult resultk : allTestResults) {
+				 TestResultAdapter adapter = new TestResultAdapter(resultk);
+				 System.out.println(new Gson().toJson(new TestStep(adapter)));
+				 }
 
-//			}
-//		}
+			}
+		}
 	}
 
 	private void assignTestMethodResult() {
