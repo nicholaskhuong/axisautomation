@@ -107,7 +107,8 @@ public class DriverCreator {
 		try {
 			result = new RemoteWebDriver(new URL(String.format("%s:%s/wd/hub", BaseTestCase.getProperties().getProperty("test.selenium.server"),BaseTestCase.getProperties().getProperty("test.selenium.port"))),capability);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			System.setProperty("webdriver.gecko.drive", Constants.SELENIUM_WEB_DRIVER_PATH_FF);
+			result = new FirefoxDriver();
 			System.out.println(e.getMessage());
 		}
 		return result;

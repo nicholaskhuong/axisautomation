@@ -7,6 +7,7 @@ public class Constants {
 	public static final Boolean CAPTURE_SCREENSHOT = true;
 	public static final int MOBILE_PLATFORM = Platform.SELENDRIOD;
 	public static final String SELENIUM_WEB_DRIVER_PATH = System.getProperty("user.dir") + "\\chromedriver.exe";
+	public static final String SELENIUM_WEB_DRIVER_PATH_FF = System.getProperty("user.dir") + "\\chromedriver.exe";
 
 	
 }
