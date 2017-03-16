@@ -41,7 +41,7 @@ public class DriverCreator {
 			// Capabilities
 
 			try {
-				result = new RemoteWebDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+				result = new RemoteWebDriver(new URL(String.format("%s:%s/wd/hub", BaseTestCase.getProperties().getProperty("test.selenium.server"),BaseTestCase.getProperties().getProperty("test.selenium.port"))), capabilities);
 			} catch (final MalformedURLException e) {
 				// TODO Auto-generated catch block
 				result = null;
@@ -93,7 +93,7 @@ public class DriverCreator {
 			result = new RemoteWebDriver(new URL(String.format("%s:%s/wd/hub", BaseTestCase.getProperties().getProperty("test.selenium.server"),BaseTestCase.getProperties().getProperty("test.selenium.port"))),capability);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		return result;
 	}
@@ -132,7 +132,7 @@ public class DriverCreator {
         capabilities.setCapability("deviceName", "iPhone 6");
         capabilities.setCapability("udid", "1806356E-AB4E-407B-91DC-26F091A0CF90");
         try {
-			result = new RemoteWebDriver(new URL("http://192.168.20.103:4724/wd/hub"), capabilities);
+			result = new RemoteWebDriver(new URL(String.format("%s:%s/wd/hub", BaseTestCase.getProperties().getProperty("test.selenium.server"),BaseTestCase.getProperties().getProperty("test.selenium.port"))), capabilities);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			result = null;
