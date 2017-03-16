@@ -6,6 +6,7 @@ import java.net.URL;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -86,6 +87,20 @@ public class DriverCreator {
 		return result;
 	}
 	
+	private WebDriver createIEDriver() {
+		DesiredCapabilities capability = DesiredCapabilities.internetExplorer();
+		capability.setBrowserName("internetexplorer"); 
+		WebDriver result = null;
+		if (BaseTestCase.getProperties().getProperty("test.selenium.grid").equalsIgnoreCase("true"))
+		{
+			result = createRemoteWebDriver(capability);
+		}
+		else
+		{
+			result = new InternetExplorerDriver();
+		}
+		return result;
+	}
 	private WebDriver createRemoteWebDriver(DesiredCapabilities capability)
 	{
 		WebDriver result = null;
@@ -110,7 +125,9 @@ public class DriverCreator {
 		case "android":
 			result = createAndroidDriver();
 			break;
-			
+		case "ie":
+			result = createIEDriver();
+			break;	
 		case "ios":
 			result = createIOSDriver();
 			break;
