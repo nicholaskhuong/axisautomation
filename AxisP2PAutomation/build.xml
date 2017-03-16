@@ -12,9 +12,8 @@
     <!-- should be overwritten -->
     <property name="test.username" value="" />
     <property name="test.password" value="" />
-    <property name="test.district" value="" />
-    <property name="test.position" value="" />
     <property name="test.server.url" value="" />
+    <property name="test.selenium.grid" value="true" />
     <property name="report.dir" value="test-output" />
 	<path id="AxisP2PAutomation.classpath">
 		<pathelement location="bin"/>
@@ -142,6 +141,7 @@
             <jvmarg value="-Dtest.selenium.port=${test.selenium.port}" />
             <jvmarg value="-Dtest.selenium.server=${test.selenium.server}" />
             <jvmarg value="-Dtest.timeout.factor=${test.timeout.factor}" />
+        	<jvmarg value="-Dtest.selenium.grid=${test.selenium.grid}" />
         	<jvmarg value="-Dtest.set=${test.set}" />
             <classpath>
                 <path refid="test.classpath" />

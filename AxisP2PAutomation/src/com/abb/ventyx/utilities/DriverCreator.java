@@ -59,26 +59,42 @@ public class DriverCreator {
 		DesiredCapabilities capability = DesiredCapabilities.chrome();
 		capability.setBrowserName("chrome");
 		System.setProperty("webdriver.chrome.driver", Constants.SELENIUM_WEB_DRIVER_PATH);
-		WebDriver result = new ChromeDriver();
-//		try {
-//			result = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),capability);
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		WebDriver result = null;
+		if (BaseTestCase.getProperties().getProperty("test.selenium.grid").equalsIgnoreCase("true"))
+		{
+			result = createRemoteWebDriver(capability);
+		}
+		else
+		{
+			result = new ChromeDriver();
+		}
 		return result;
 	}
 
 	private WebDriver createFirefoxDriver() {
 		DesiredCapabilities capability = DesiredCapabilities.firefox();
 		capability.setBrowserName("firefox"); 
-		WebDriver result = new FirefoxDriver();
-//		try {
-//			result = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capability);
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		WebDriver result = null;
+		if (BaseTestCase.getProperties().getProperty("test.selenium.grid").equalsIgnoreCase("true"))
+		{
+			result = createRemoteWebDriver(capability);
+		}
+		else
+		{
+			result = new FirefoxDriver();
+		}
+		return result;
+	}
+	
+	private WebDriver createRemoteWebDriver(DesiredCapabilities capability)
+	{
+		WebDriver result = null;
+		try {
+			result = new RemoteWebDriver(new URL(String.format("%s:%s/wd/hub", BaseTestCase.getProperties().getProperty("test.selenium.server"),BaseTestCase.getProperties().getProperty("test.selenium.port"))),capability);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return result;
 	}
 
