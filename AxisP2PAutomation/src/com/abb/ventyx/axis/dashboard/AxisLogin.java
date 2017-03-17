@@ -8,23 +8,25 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Constants;
+import com.abb.ventyx.utilities.Credentials;
 
 import org.testng.annotations.Test;
 @ALM(id = "1") 
+@Credentials(user = "1094", password = "Testuser1")
 public class AxisLogin extends BaseTestCase {
 
   @Test
   public void Login() throws Exception {
-	  	driver.navigate().to(Constants.HOME_URL + "/SupplierPortal/#!listSupplier");
-	  	WebElement userSeqNo = (new WebDriverWait(driver, 10))
-	  			.until(ExpectedConditions.presenceOfElementLocated(By.id("userSeqNo")));
-	  	userSeqNo.clear();
-	  	userSeqNo.sendKeys("1094");
-	    driver.findElement(By.cssSelector("input[type='password']")).sendKeys("Testuser1");
-	    driver.findElement(By.xpath("//div[@id='signin']")).click();
-	    JavascriptExecutor js = (JavascriptExecutor)driver;
-	    WebElement continueButton = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id("continue")));
-	    js.executeScript("arguments[0].click();", continueButton);
+	  	driver.navigate().to(Constants.HOME_URL + "SupplierPortal/#!listSupplier");
+//	  	WebElement userSeqNo = (new WebDriverWait(driver, 10))
+//	  			.until(ExpectedConditions.presenceOfElementLocated(By.id("userSeqNo")));
+//	  	userSeqNo.clear();
+//	  	userSeqNo.sendKeys("1094");
+//	    driver.findElement(By.cssSelector("input[type='password']")).sendKeys("Testuser1");
+//	    driver.findElement(By.xpath("//div[@id='signin']")).click();
+//	    JavascriptExecutor js = (JavascriptExecutor)driver;
+//	    WebElement continueButton = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id("continue")));
+//	    js.executeScript("arguments[0].click();", continueButton);
   }
   @Test(dependsOnMethods = "Login")
   public void CreateSupplier() throws Exception {

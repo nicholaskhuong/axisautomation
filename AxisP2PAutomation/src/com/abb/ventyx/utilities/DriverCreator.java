@@ -75,6 +75,7 @@ public class DriverCreator {
 	private WebDriver createFirefoxDriver() {
 		DesiredCapabilities capability = DesiredCapabilities.firefox();
 		capability.setBrowserName("firefox"); 
+		System.setProperty("webdriver.gecko.drive", Constants.SELENIUM_WEB_DRIVER_PATH_FF);
 		WebDriver result = null;
 		if (BaseTestCase.getProperties().getProperty("test.selenium.grid").equalsIgnoreCase("true"))
 		{

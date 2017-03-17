@@ -25,6 +25,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 
 import com.abb.ventyx.axis.objects.pages.HomePage;
+import com.abb.ventyx.axis.objects.pages.LoginPage;
 import com.abb.ventyx.utilities.report.TestMethodResultAdapter;
 
 public class BaseTestCase {
@@ -66,11 +67,16 @@ public class BaseTestCase {
 	}
 	@BeforeClass
 	public void beforeClass() throws Exception {
+		currentCredentials = getClassCredentials();
+		if (null == currentCredentials)
+		{
+			currentCredentials=defaultCredentials;
+		}
 		this.expectedResult = "";
 		DriverCreator driverCreator = new DriverCreator(BaseTestCase.getProperties().getProperty("test.browser"));
 		driver = driverCreator.getWebDriver();
-//		homePage = new HomePage(driver);
-//		homePage.startHomePage();
+		LoginPage login = new LoginPage(driver);
+		login.login(getServerURL()+"/SupplierPortal/#!dashboard", currentCredentials);
 	}
 	
 	@AfterMethod
@@ -162,5 +168,21 @@ public class BaseTestCase {
 		
 		return currentCredentials;
 	}
-	
+	protected TestLoginCredentials getClassCredentials() {
+		for ( Annotation a : this.getClass().getAnnotations()) {
+			if ( a instanceof Credentials ) {
+				Credentials c = (Credentials) a;
+				return new TestLoginCredentials(c.user(), c.password());
+			}
+		}
+		return null;
+	}
+
+//	protected TestLoginCredentials getMethodCredentials() {
+//		Credentials c =  method.getAnnotation(Credentials.class);
+//		if ( c != null ) {
+//			return new TestLoginCredentials(c.user(), c.password());
+//		}
+//		return null;
+//	
 }
