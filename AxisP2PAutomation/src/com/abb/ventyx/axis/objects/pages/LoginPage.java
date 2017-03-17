@@ -3,8 +3,11 @@ package com.abb.ventyx.axis.objects.pages;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.LoginPageDefinition;
 import com.abb.ventyx.utilities.Constants;
@@ -27,10 +30,11 @@ public class LoginPage extends BasePage{
 	public void login(String url,String username, String password){
 		driver.navigate().to(url);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		InputController.inputToTextFiled(getUsernameTextField(), username);
+		WebElement userNameTextField = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id(LoginPageDefinition.USERNAME_TEXT_FIELD_ID)));
+		InputController.inputToTextFiled(userNameTextField, username);
 		InputController.inputToTextFiled(getPasswordTextField(), password);
 		getLoginButton().click();
-		getContinueButton().click();
+		getContinueButtonClick();
 	}
 	
 	public void login(String url,TestLoginCredentials credential){
@@ -47,10 +51,12 @@ public class LoginPage extends BasePage{
 	}
 	
 	public static WebElement getLoginButton(){
-		return driver.findElement(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));
+		return driver.findElement(By.xpath("//div[@id='signInBtn']"));
 	}
 	
-	public static WebElement getContinueButton(){
-		return driver.findElement(By.id(LoginPageDefinition.CONTINUE_BUTTON_ID));
+	public static void getContinueButtonClick(){
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+	    WebElement continueButton = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id(LoginPageDefinition.CONTINUE_BUTTON_ID)));
+	    js.executeScript("arguments[0].click();", continueButton);
 	}
 }

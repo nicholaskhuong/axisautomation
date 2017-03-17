@@ -17,16 +17,7 @@ public class AxisLogin extends BaseTestCase {
 
   @Test
   public void Login() throws Exception {
-	  	driver.navigate().to(Constants.HOME_URL + "SupplierPortal/#!listSupplier");
-//	  	WebElement userSeqNo = (new WebDriverWait(driver, 10))
-//	  			.until(ExpectedConditions.presenceOfElementLocated(By.id("userSeqNo")));
-//	  	userSeqNo.clear();
-//	  	userSeqNo.sendKeys("1094");
-//	    driver.findElement(By.cssSelector("input[type='password']")).sendKeys("Testuser1");
-//	    driver.findElement(By.xpath("//div[@id='signin']")).click();
-//	    JavascriptExecutor js = (JavascriptExecutor)driver;
-//	    WebElement continueButton = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id("continue")));
-//	    js.executeScript("arguments[0].click();", continueButton);
+	  	driver.navigate().to(getServerURL() + "/SupplierPortal/#!CustomerAdminDashboard");
   }
   @Test(dependsOnMethods = "Login")
   public void CreateSupplier() throws Exception {
