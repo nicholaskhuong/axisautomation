@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Axis Login" parallel="none">
+<suite name="Create_Supplier" parallel="none">
   	<test name="Axis Login">
 		<classes>
-				<class name="com.abb.ventyx.axis.dashboard.AxisLogin" />
+				<class name="com.abb.ventyx.axis.dashboard.Create_Supplier" />
 		</classes>
   	</test> <!-- Test -->
 </suite> <!-- Suite -->

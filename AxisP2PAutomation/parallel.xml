@@ -141,8 +141,7 @@
                 outputdir="${report.dir}"  
                 parallel="${parallel.mode}"  
                 threadCount="20"                  
-                useDefaultListeners="false" 
-            	listeners="com.abb.ventyx.utilities.Reporter">
+                useDefaultListeners="false" >
             <jvmarg value="-Dtest.browser=${test.browser}" />
             <jvmarg value="-Dtest.username=${test.username}" />
             <jvmarg value="-Dtest.password=${test.password}" />
