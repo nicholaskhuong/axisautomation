@@ -5,7 +5,7 @@
               <listener class-name="com.abb.ventyx.utilities.Reporter"></listener>
        </listeners>  
     <suite-files>
-        <suite-file path="src/com/abb/ventyx/saas/demoSaaS.xml" />
-        <suite-file path="src/com/abb/ventyx/saas/HomePageSignIn.xml" />
+        <suite-file path="src/com/abb/ventyx/axis/customer/testng_Customer_Search.xml" />
+        <suite-file path="src/com/abb/ventyx/axis/dashboard/testng_Dashboard_DemoAxis.xml" />
     </suite-files>
 </suite>
