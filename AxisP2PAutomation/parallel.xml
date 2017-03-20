@@ -109,7 +109,8 @@
                  inheritall="true" 
                  inheritrefs="true" 
                  parallel="true" 
-                 param="test.source.absolute">
+                 param="test.source.absolute"
+        		 listeners="com.abb.ventyx.utilities.Reporter">
                  
             <path refid="test.set.source.path" />
         </foreach>        
@@ -141,7 +142,8 @@
                 outputdir="${report.dir}"  
                 parallel="${parallel.mode}"  
                 threadCount="20"                  
-                useDefaultListeners="false" >
+                useDefaultListeners="false" 
+            	>
             <jvmarg value="-Dtest.browser=${test.browser}" />
             <jvmarg value="-Dtest.username=${test.username}" />
             <jvmarg value="-Dtest.password=${test.password}" />
