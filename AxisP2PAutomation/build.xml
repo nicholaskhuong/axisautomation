@@ -140,9 +140,9 @@
             <jvmarg value="-Dtest.server.url=${test.server.url}" />
             <jvmarg value="-Dtest.selenium.port=${test.selenium.port}" />
             <jvmarg value="-Dtest.selenium.server=${test.selenium.server}" />
-            <jvmarg value="-Dtest.timeout.factor=${test.timeout.factor}" />
         	<jvmarg value="-Dtest.selenium.grid=${test.selenium.grid}" />
         	<jvmarg value="-Dtest.set=${test.set}" />
+        	<jvmarg value="-Dother.source.expression=${other.source.expression}" />
             <classpath>
                 <path refid="test.classpath" />
                 <pathelement location="${bin.dir}"/>

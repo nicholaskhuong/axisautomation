@@ -50,23 +50,23 @@ public class BaseTestCase {
 			// load default properties
 			properties = PropertiesLoaderUtils.loadProperties(new ClassPathResource("test.properties", BaseTestCase.class));
 		} catch (Exception e) {
-			newLog.debug(e.getMessage());
-			throw new RuntimeException("Unable to load default test.properties");
+			System.out.println(e.getMessage());			
 		}
 		try {
 			// override with any local test.properties
 			PropertiesLoaderUtils.fillProperties(properties, new FileSystemResource("test.properties"));
 		} catch (Exception e) {
-			newLog.debug(e.getMessage());
+			System.out.println(e.getMessage());
 		}
 		properties.putAll(System.getProperties());
-		
 		defaultCredentials = new TestLoginCredentials( getProperty("test.username"),getProperty("test.password"));
 		currentCredentials = defaultCredentials;
 		
 	}
 	@BeforeClass
 	public void beforeClass() throws Exception {
+		try {
+	
 		currentCredentials = getClassCredentials();
 		if (null == currentCredentials)
 		{
@@ -77,6 +77,9 @@ public class BaseTestCase {
 		driver = driverCreator.getWebDriver();
 		LoginPage login = new LoginPage(driver);
 		login.login(getServerURL()+"/SupplierPortal/#!dashboard", currentCredentials);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	@AfterMethod
@@ -136,7 +139,7 @@ public class BaseTestCase {
 				try {
 					bw.close();
 				} catch (IOException ioe2) {
-
+					System.out.println(ioe2.getMessage());
 				}
 			}
 		}
@@ -184,5 +187,5 @@ public class BaseTestCase {
 //			return new TestLoginCredentials(c.user(), c.password());
 //		}
 //		return null;
-//	
+//	}
 }

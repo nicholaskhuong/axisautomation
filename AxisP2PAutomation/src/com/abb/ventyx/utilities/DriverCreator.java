@@ -61,7 +61,7 @@ public class DriverCreator {
 		capability.setBrowserName("chrome");
 		System.setProperty("webdriver.chrome.driver", Constants.SELENIUM_WEB_DRIVER_PATH);
 		WebDriver result = null;
-		if (BaseTestCase.getProperties().getProperty("test.selenium.grid").equalsIgnoreCase("true"))
+		if (Boolean.valueOf(BaseTestCase.getProperties().getProperty("test.selenium.grid")))
 		{
 			result = createRemoteWebDriver(capability);
 		}
@@ -77,7 +77,7 @@ public class DriverCreator {
 		capability.setBrowserName("firefox"); 
 		System.setProperty("webdriver.gecko.drive", Constants.SELENIUM_WEB_DRIVER_PATH_FF);
 		WebDriver result = null;
-		if (BaseTestCase.getProperties().getProperty("test.selenium.grid").equalsIgnoreCase("true"))
+		if (Boolean.valueOf(BaseTestCase.getProperties().getProperty("test.selenium.grid")))
 		{
 			result = createRemoteWebDriver(capability);
 		}
@@ -92,7 +92,7 @@ public class DriverCreator {
 		DesiredCapabilities capability = DesiredCapabilities.internetExplorer();
 		capability.setBrowserName("internetexplorer"); 
 		WebDriver result = null;
-		if (BaseTestCase.getProperties().getProperty("test.selenium.grid").equalsIgnoreCase("true"))
+		if (Boolean.valueOf(BaseTestCase.getProperties().getProperty("test.selenium.grid")))
 		{
 			result = createRemoteWebDriver(capability);
 		}
