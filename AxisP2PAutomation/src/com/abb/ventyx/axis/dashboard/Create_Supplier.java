@@ -22,12 +22,14 @@ public class Create_Supplier extends BaseTestCase {
   }
   @Test(dependsOnMethods = "Login")
   public void CreateSupplier() throws Exception {
-//	    driver.get(Constants.HOME_URL + "/SupplierPortal/#!CustomerAdminDashboard");
+	  	JavascriptExecutor js = (JavascriptExecutor)driver;
 	    WebElement customerConfiguration = (new WebDriverWait(driver, 10))
-	  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.v-horizontallayout > span.v-menu-item-caption")));
+	  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#custConfigParentButton > span > span.valo-menu-item-caption > div > span.v-menu-item-caption")));
 	    customerConfiguration.click();
-	    driver.findElement(By.cssSelector("#dashboard-menu-tab-child-layout > div:nth-child(1) > div > span > span")).click();
-	    driver.findElement(By.cssSelector("#common-header-right-layout > div > div > span:nth-child(1) > span > span")).click();
+	    driver.findElement(By.cssSelector("#supplierMenu > span > span")).click();
+	    WebElement addSupplier = (new WebDriverWait(driver, 10))
+	  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#HeaderMenuBar > span:nth-child(1) > span > span")));
+	    js.executeScript("arguments[0].click();", addSupplier);
 	    driver.findElement(By.id("spTpId")).clear();
 	    driver.findElement(By.id("spTpId")).sendKeys("AT12");
 	    driver.findElement(By.id("psuName")).clear();
@@ -40,7 +42,6 @@ public class Create_Supplier extends BaseTestCase {
 	    driver.findElement(By.id("psuTaxRegnNo")).sendKeys("AUTOTax1");
 	    driver.findElement(By.id("lngSeqId")).clear();
 	    driver.findElement(By.id("lngSeqId")).sendKeys("AUTO1234");
-	    JavascriptExecutor js = (JavascriptExecutor)driver;
 	    WebElement createEditBtn = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id("createEditBtn")));
 	    js.executeScript("arguments[0].click();", createEditBtn);
 	    

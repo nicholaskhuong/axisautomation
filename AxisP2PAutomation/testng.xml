@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Axis P2P Automation" parallel="true">
-       <listeners>
-              <listener class-name="com.abb.ventyx.utilities.Reporter"></listener>
-       </listeners>  
+ 
     <suite-files>
         <suite-file path="src/com/abb/ventyx/axis/customer/testng_Customer_Search.xml" />
         <suite-file path="src/com/abb/ventyx/axis/dashboard/testng_Dashboard_CreateSuplier.xml" />
