@@ -109,8 +109,7 @@
                  inheritall="true" 
                  inheritrefs="true" 
                  parallel="true" 
-                 param="test.source.absolute"
-        		 listeners="com.abb.ventyx.utilities.Reporter">
+                 param="test.source.absolute">
                  
             <path refid="test.set.source.path" />
         </foreach>        
