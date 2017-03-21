@@ -86,19 +86,18 @@ public class BaseTestCase {
 	public void afterMethod(ITestResult testResult) throws Exception {
 		String screenShotPath = "";
 		String takingTime = "";
-		if (testResult.getStatus() == ITestResult.FAILURE || Constants.CAPTURE_SCREENSHOT) {
+		String tempPath="screenshots/%s_%s_%s.png"; 
+		if (testResult.getStatus() == ITestResult.FAILURE || Boolean.valueOf(properties.getProperty("test.developer.mode"))) {
 			System.out.println(testResult.getStatus());
 			File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-			takingTime = testResult.getEndMillis() + "" + new Random().nextInt(99999);
-			screenShotPath = Constants.REPORT_FOLDER + "screenshots/" + testResult.getInstanceName() + "_"
-					+ testResult.getName() + "_" + takingTime + ".png";
+			takingTime = String.format("%s_%s",testResult.getEndMillis(),new Random().nextInt(99999));
+			screenShotPath = Constants.REPORT_FOLDER + String.format(tempPath, testResult.getInstanceName(),testResult.getName(),takingTime);
 			FileUtils.copyFile(scrFile, new File(screenShotPath));
 			org.testng.Reporter.setCurrentTestResult(testResult);
 			org.testng.Reporter.setCurrentTestResult(null);
 			
 		}
-		TestMethodResultAdapter resultAdapter = new TestMethodResultAdapter(testResult,
-				"screenshots/" + testResult.getInstanceName() + "_" + testResult.getName() + "_" + takingTime + ".png",
+		TestMethodResultAdapter resultAdapter = new TestMethodResultAdapter(testResult,String.format(tempPath, testResult.getInstanceName(),testResult.getName(),takingTime),
 				testResult.getTestContext().getCurrentXmlTest().getSuite().getFileName(), getALMAnnotation());
 		resultAdapter.setValue(testResult.getName());
 		Reporter.allResults.add(resultAdapter);
@@ -122,7 +121,7 @@ public class BaseTestCase {
 		BufferedWriter bw = null;
 		try {
 			bw = new BufferedWriter(new FileWriter(ALMcsvfile, true));
-			String line = almId + "," + tcName + ","+ status;
+			String line = String.format("%s,%s,%s", almId,tcName,status);
 			bw.write(line);
 			bw.newLine();
 			bw.flush();
@@ -174,12 +173,4 @@ public class BaseTestCase {
 		}
 		return null;
 	}
-
-//	protected TestLoginCredentials getMethodCredentials() {
-//		Credentials c =  method.getAnnotation(Credentials.class);
-//		if ( c != null ) {
-//			return new TestLoginCredentials(c.user(), c.password());
-//		}
-//		return null;
-//	}
 }
