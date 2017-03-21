@@ -362,9 +362,6 @@ public class Reporter implements IReporter {
 		theFinalReportData.setSeleniumHubURL(System.getProperty("test.selenium.server").replace("http://", ""));
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
-		}
-		finally
-		{
 			theFinalReportData.setAutomation_url("");
 			theFinalReportData.setSeleniumHubURL("");
 		}
