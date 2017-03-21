@@ -282,7 +282,13 @@ public class Reporter implements IReporter {
 						step.setActualvalue(methodResultAdapter.getActualvalue());
 						step.setAction(methodResultAdapter.getAction());
 						step.setStatus(methodResultAdapter.getStatus());
-						step.setScreenShot(methodResultAdapter.getScreenshot());
+						if (methodResultAdapter.getScreenshot().trim().isEmpty() || "".equals(methodResultAdapter.getScreenshot().trim()))
+						{
+							step.setScreenShot("");
+						}
+						else{
+							step.setScreenShot(methodResultAdapter.getScreenshot());
+						}
 						lsSteps.add(step);
 						totalTestStuiteSteps++;
 						if (step.getStatus().equals("0")) {

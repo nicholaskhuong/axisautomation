@@ -68,7 +68,7 @@ public class TestMethodResultAdapter {
 		this.testName = testResult.getTestContext().getName();
 		this.testSuite = testResult.getTestContext().getSuite().getName();
 		//this.screenshot = testResult.getStatus()==ITestResult.FAILURE ? screenshot : "";
-		this.screenshot = screenshot.length()==0||(testResult.getStatus()==ITestResult.SUCCESS && !Constants.CAPTURE_SCREENSHOT) ? "" : screenshot; // Need to be fixed.
+		this.screenshot = screenshot.length()==0||(testResult.getStatus()==ITestResult.SUCCESS) ? "" : screenshot; // Need to be fixed.
 		
 		this.status = testResult.getStatus()==ITestResult.FAILURE ? "0" : testResult.getStatus() + "";
 		this.action = "";
