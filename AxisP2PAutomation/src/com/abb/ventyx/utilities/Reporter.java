@@ -357,7 +357,7 @@ public class Reporter implements IReporter {
 
 		theFinalReportData.setPackage_xyz(lsPackages);
 		theFinalReportData.setTime(((float) (totalReportTime / 1000)) + "");
-		theFinalReportData.setAutomation_url(Constants.HOME_URL);
+		theFinalReportData.setAutomation_url(System.getProperty("test.server.url"));
 		theFinalReportData.setTimestamp(lsPackages.get(0).getTimestamp());
 		theFinalReportData.setTotal((totalReportPass + totalReportFail) + "");
 		theFinalReportData.setPass(totalReportPass + "");
