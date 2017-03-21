@@ -56,6 +56,10 @@ public class TestMethodResultAdapter {
 		this.parameters = testResult.getParameters();
 		this.hostName = testResult.getHost();
 		this.almID = almID;
+		if (testResult.getStatus()==ITestResult.FAILURE)
+		{
+			this.actualvalue = testResult.getThrowable().getMessage();
+		}
 	}
 	
 	public TestMethodResultAdapter(ITestResult testResult, String screenshot, String xmlFile, String almID){
@@ -76,6 +80,10 @@ public class TestMethodResultAdapter {
 		this.hostName = testResult.getHost();
 		this.xmlFile = xmlFile;
 		this.almID = almID;
+		if (testResult.getStatus()==ITestResult.FAILURE)
+		{
+			this.actualvalue = testResult.getThrowable().getMessage();
+		}
 	}
 
 

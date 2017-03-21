@@ -357,9 +357,22 @@ public class Reporter implements IReporter {
 
 		theFinalReportData.setPackage_xyz(lsPackages);
 		theFinalReportData.setTime(((float) (totalReportTime / 1000)) + "");
+		try{
 		theFinalReportData.setAutomation_url(System.getProperty("test.server.url"));
 		theFinalReportData.setSeleniumHubURL(System.getProperty("test.selenium.server").replace("http://", ""));
-		theFinalReportData.setTimestamp(lsPackages.get(0).getTimestamp());
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		finally
+		{
+			theFinalReportData.setAutomation_url("");
+			theFinalReportData.setSeleniumHubURL("");
+		}
+		try{
+			theFinalReportData.setTimestamp(lsPackages.get(0).getTimestamp());
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
 		theFinalReportData.setTotal((totalReportPass + totalReportFail) + "");
 		theFinalReportData.setPass(totalReportPass + "");
 		theFinalReportData.setFail(totalReportFail + "");

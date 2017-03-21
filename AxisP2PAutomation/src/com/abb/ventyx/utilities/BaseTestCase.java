@@ -86,7 +86,6 @@ public class BaseTestCase {
 	public void afterMethod(ITestResult testResult) throws Exception {
 		String screenShotPath = "";
 		String takingTime = "";
-		String errorMessage = "";
 		if (testResult.getStatus() == ITestResult.FAILURE || Constants.CAPTURE_SCREENSHOT) {
 			System.out.println(testResult.getStatus());
 			File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
@@ -96,17 +95,12 @@ public class BaseTestCase {
 			FileUtils.copyFile(scrFile, new File(screenShotPath));
 			org.testng.Reporter.setCurrentTestResult(testResult);
 			org.testng.Reporter.setCurrentTestResult(null);
-			if(!Constants.CAPTURE_SCREENSHOT){
-				Throwable throwable = testResult.getThrowable();
-				errorMessage = throwable.getMessage();
-			}
 			
 		}
 		TestMethodResultAdapter resultAdapter = new TestMethodResultAdapter(testResult,
 				"screenshots/" + testResult.getInstanceName() + "_" + testResult.getName() + "_" + takingTime + ".png",
 				testResult.getTestContext().getCurrentXmlTest().getSuite().getFileName(), getALMAnnotation());
-		resultAdapter.setActualvalue(errorMessage);
-		resultAdapter.setValue(expectedResult);
+		resultAdapter.setValue(testResult.getName());
 		Reporter.allResults.add(resultAdapter);
 		if (testResult.getStatus() == ITestResult.FAILURE && !testCaseStatus.equals("fail"))
 		{
