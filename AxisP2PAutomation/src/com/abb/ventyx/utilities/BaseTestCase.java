@@ -88,17 +88,18 @@ public class BaseTestCase {
 		String screenShotPath = "";
 		String takingTime = "";
 		String tempPath="screenshots/%s_%s_%s.png"; 
-		if (testResult.getStatus() == ITestResult.FAILURE || Boolean.valueOf(properties.getProperty("test.developer.mode"))) {
+		System.out.println("--------------------- test.developer.mode ---------------------" +BaseTestCase.getProperties().getProperty("test.developer.mode"));
+		if (testResult.getStatus() == ITestResult.FAILURE || Boolean.valueOf(BaseTestCase.getProperties().getProperty("test.developer.mode"))) {
 			System.out.println(testResult.getStatus());
 			File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 			takingTime = String.format("%s_%s",testResult.getEndMillis(),new Random().nextInt(99999));
-			screenShotPath = Constants.REPORT_FOLDER + String.format(tempPath, testResult.getInstanceName(),testResult.getName(),takingTime);
-			FileUtils.copyFile(scrFile, new File(screenShotPath));
+			screenShotPath = String.format(tempPath, testResult.getInstanceName(),testResult.getName(),takingTime);
+			FileUtils.copyFile(scrFile, new File(Constants.REPORT_FOLDER + screenShotPath));
 			org.testng.Reporter.setCurrentTestResult(testResult);
 			org.testng.Reporter.setCurrentTestResult(null);
 			
 		}
-		TestMethodResultAdapter resultAdapter = new TestMethodResultAdapter(testResult,String.format(tempPath, testResult.getInstanceName(),testResult.getName(),takingTime),
+		TestMethodResultAdapter resultAdapter = new TestMethodResultAdapter(testResult,screenShotPath,
 				testResult.getTestContext().getCurrentXmlTest().getSuite().getFileName(), getALMAnnotation());
 		resultAdapter.setValue(testResult.getName());
 		Reporter.allResults.add(resultAdapter);
