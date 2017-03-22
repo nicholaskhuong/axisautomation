@@ -44,7 +44,7 @@ public class Serializion {
 	}
 	
 	public void saveToDisk(TestMethodResultAdapter result){
-		File resultFile = new File(System.getProperty("user.dir") + "result.ser");
+		File resultFile = new File(System.getProperty("user.dir") + "\result.ser");
 		if(!resultFile.exists()){
 			resultFromDisks.add(result);
 		}
@@ -55,7 +55,7 @@ public class Serializion {
 		
 		try {
 	         FileOutputStream fileOut =
-	         new FileOutputStream(System.getProperty("user.dir") + "result.ser");
+	         new FileOutputStream(System.getProperty("user.dir") + "\result.ser");
 	         ObjectOutputStream out = new ObjectOutputStream(fileOut);
 	         out.writeObject(resultFromDisks);
 	         out.close();

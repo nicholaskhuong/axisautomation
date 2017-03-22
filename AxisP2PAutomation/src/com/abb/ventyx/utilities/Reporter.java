@@ -44,6 +44,10 @@ public class Reporter implements IReporter {
 
 		//System.out.println("TK ALL RESULT = " + new Gson().toJson(allResults));
 //		List<ITestResult> allTestResults;
+		
+		allResults = new ArrayList<>();
+		Serializion serializer = new Serializion();
+		allResults = serializer.getAllTestResult();
 
 		createTestPackageAdapter();
 
