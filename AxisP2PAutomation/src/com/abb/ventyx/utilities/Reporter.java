@@ -51,9 +51,9 @@ public class Reporter implements IReporter {
 		createTestClassesAdapter();
 		assignTestMethodResult();
 
-		System.out.println(new Gson().toJson(allPackages));
+		//System.out.println(new Gson().toJson(allPackages));
 
-		// System.out.println(new Gson().toJson(allResults));
+		System.out.println(new Gson().toJson("TK ALL RESULT = " + allResults));
 
 		generateTheFinalReport();
 
