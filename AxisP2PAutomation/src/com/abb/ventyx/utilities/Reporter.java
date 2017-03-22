@@ -391,7 +391,6 @@ public class Reporter implements IReporter {
 
 		// System.out.println(new Gson().toJson(theFinalReportData));
 		
-		//printTempReportDataToFile(theFinalReportData);
 
 		String reportDataAsJSON = new Gson().toJson(theFinalReportData);
 		
@@ -417,23 +416,5 @@ public class Reporter implements IReporter {
 		System.out.println("Done!!!!!");
 	}
 	
-	private void printTempReportDataToFile(ReportData theReportData){
-		File tempReportFolder = new File(reportFolder + Constants.TEMP_FOLDER_REPORT_DATA);
-		// Create temp folder if it does not exist
-		if(!tempReportFolder.exists()){
-			tempReportFolder.mkdir();
-		}
-		// Write to folder
-		try {
-			PrintWriter out = new PrintWriter(new FileOutputStream(tempReportFolder.getPath() + "\\" + new Random().nextInt(10), false));
-			out.println(new Gson().toJson(theReportData));
-			out.close();
-			// saveOverViewToPDF();
-
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 }
 
