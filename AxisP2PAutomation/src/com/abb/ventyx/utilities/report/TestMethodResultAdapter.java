@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 
 import org.testng.ITestResult;
 
+import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Constants;
 
 
@@ -69,8 +70,7 @@ public class TestMethodResultAdapter implements Serializable{
 		this.testName = testResult.getTestContext().getName();
 		this.testSuite = testResult.getTestContext().getSuite().getName();
 		//this.screenshot = testResult.getStatus()==ITestResult.FAILURE ? screenshot : "";
-		this.screenshot = screenshot.length()==0||(testResult.getStatus()==ITestResult.SUCCESS) ? "" : screenshot; // Need to be fixed.
-		
+		this.screenshot = screenshot.length()==0||(testResult.getStatus()==ITestResult.SUCCESS && !Boolean.valueOf(BaseTestCase.getProperties().getProperty("test.developer.mode"))) ? "" : screenshot; // Need to be fixed.
 		this.status = testResult.getStatus()==ITestResult.FAILURE ? "0" : testResult.getStatus() + "";
 		this.action = "";
 		this.id = this.text = this.label = this.value = this.action = this.actualvalue = "";

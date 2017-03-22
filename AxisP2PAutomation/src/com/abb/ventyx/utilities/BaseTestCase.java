@@ -88,7 +88,6 @@ public class BaseTestCase {
 		String screenShotPath = "";
 		String takingTime = "";
 		String tempPath="screenshots/%s_%s_%s.png"; 
-		System.out.println("--------------------- test.developer.mode ---------------------" +BaseTestCase.getProperties().getProperty("test.developer.mode"));
 		if (testResult.getStatus() == ITestResult.FAILURE || Boolean.valueOf(BaseTestCase.getProperties().getProperty("test.developer.mode"))) {
 			System.out.println(testResult.getStatus());
 			File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
@@ -97,7 +96,6 @@ public class BaseTestCase {
 			FileUtils.copyFile(scrFile, new File(Constants.REPORT_FOLDER + screenShotPath));
 			org.testng.Reporter.setCurrentTestResult(testResult);
 			org.testng.Reporter.setCurrentTestResult(null);
-			
 		}
 		TestMethodResultAdapter resultAdapter = new TestMethodResultAdapter(testResult,screenShotPath,
 				testResult.getTestContext().getCurrentXmlTest().getSuite().getFileName(), getALMAnnotation());
