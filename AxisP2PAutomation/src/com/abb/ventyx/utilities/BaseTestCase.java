@@ -107,6 +107,14 @@ public class BaseTestCase {
 		System.out.println(new Gson().toJson(resultAdapter));				
 		System.out.println("=================END RESULT ADAPTER==================");
 		
+		// Save to disk
+		
+		Serializion serializer = new Serializion();
+		serializer.saveToDisk(resultAdapter);
+		
+		// End
+		
+		
 		if (testResult.getStatus() == ITestResult.FAILURE && !testCaseStatus.equals("fail"))
 		{
 			testCaseStatus = "fail";

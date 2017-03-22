@@ -1,6 +1,7 @@
 package com.abb.ventyx.utilities.report;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.regex.Pattern;
 
 import org.testng.ITestResult;
@@ -8,7 +9,7 @@ import org.testng.ITestResult;
 import com.abb.ventyx.utilities.Constants;
 
 
-public class TestMethodResultAdapter {
+public class TestMethodResultAdapter implements Serializable{
 	private String id, text, label, value, actualvalue, action;
 	private String status = "0";
 	private String screenshot = null;
