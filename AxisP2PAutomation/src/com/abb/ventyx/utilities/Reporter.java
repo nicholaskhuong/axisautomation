@@ -1,10 +1,12 @@
 package com.abb.ventyx.utilities;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.testng.IReporter;
 import org.testng.ISuite;
@@ -19,6 +21,7 @@ import com.abb.ventyx.utilities.report.TestPackageResultAdapter;
 import com.abb.ventyx.utilities.report.TestStep;
 import com.abb.ventyx.utilities.report.TestSuite;
 import com.abb.ventyx.utilities.report.TestSuiteResultAdapter;
+import com.google.common.io.Files;
 import com.google.gson.Gson;
 
 public class Reporter implements IReporter {
@@ -383,8 +386,12 @@ public class Reporter implements IReporter {
 		theFinalReportData.setGtime(theFinalReportData.getTime());
 
 		// System.out.println(new Gson().toJson(theFinalReportData));
+		
+		printTempReportDataToFile(theFinalReportData);
 
 		String reportDataAsJSON = new Gson().toJson(theFinalReportData);
+		
+		System.out.println("TK DEBUG DATA = " + reportDataAsJSON);
 
 		reportDataAsJSON = reportDataAsJSON.replace("package_xyz", "package");
 
@@ -404,6 +411,25 @@ public class Reporter implements IReporter {
 		}
 
 		System.out.println("Done!!!!!");
+	}
+	
+	private void printTempReportDataToFile(ReportData theReportData){
+		File tempReportFolder = new File(reportFolder + Constants.TEMP_FOLDER_REPORT_DATA);
+		// Create temp folder if it does not exist
+		if(!tempReportFolder.exists()){
+			tempReportFolder.mkdir();
+		}
+		// Write to folder
+		try {
+			PrintWriter out = new PrintWriter(new FileOutputStream(tempReportFolder.getPath() + "\\" + new Random().nextInt(10), false));
+			out.println(new Gson().toJson(theReportData));
+			out.close();
+			// saveOverViewToPDF();
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
 
