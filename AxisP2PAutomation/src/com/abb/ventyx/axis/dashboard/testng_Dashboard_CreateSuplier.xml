@@ -3,6 +3,11 @@
 <suite name="Create_Supplier" parallel="none">
   	<test name="Axis Login">
 		<classes>
+				<class name="com.abb.ventyx.axis.dashboard.AxisLogin" />
+		</classes>
+	</test>	
+	<test name="Create_Supplier">
+		<classes>
 				<class name="com.abb.ventyx.axis.dashboard.Create_Supplier" />
 		</classes>
   	</test> <!-- Test -->
