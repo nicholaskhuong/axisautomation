@@ -53,7 +53,7 @@ public class Reporter implements IReporter {
 
 		//System.out.println(new Gson().toJson(allPackages));
 
-		System.out.println(new Gson().toJson("TK ALL RESULT = " + allResults));
+		System.out.println(new Gson().toJson("TK ALL RESULT = " + new Gson().toJson(allResults)));
 
 		generateTheFinalReport();
 
