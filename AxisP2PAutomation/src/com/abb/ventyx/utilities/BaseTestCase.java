@@ -27,6 +27,7 @@ import org.testng.annotations.BeforeClass;
 import com.abb.ventyx.axis.objects.pages.HomePage;
 import com.abb.ventyx.axis.objects.pages.LoginPage;
 import com.abb.ventyx.utilities.report.TestMethodResultAdapter;
+import com.google.gson.Gson;
 
 public class BaseTestCase {
 	public WebDriver driver;
@@ -101,6 +102,11 @@ public class BaseTestCase {
 				testResult.getTestContext().getCurrentXmlTest().getSuite().getFileName(), getALMAnnotation());
 		resultAdapter.setValue(testResult.getName());
 		Reporter.allResults.add(resultAdapter);
+		
+		System.out.println("=================RESULT ADAPTER=====================");
+		System.out.println(new Gson().toJson(resultAdapter));				
+		System.out.println("=================END RESULT ADAPTER==================");
+		
 		if (testResult.getStatus() == ITestResult.FAILURE && !testCaseStatus.equals("fail"))
 		{
 			testCaseStatus = "fail";

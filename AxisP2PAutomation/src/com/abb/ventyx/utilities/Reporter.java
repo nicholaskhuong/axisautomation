@@ -42,7 +42,7 @@ public class Reporter implements IReporter {
 		// Iterating over each suite included in the test
 		// System.out.println(new Gson().toJson(allResults));
 
-		System.out.println("TK ALL RESULT = " + new Gson().toJson(allResults));
+		//System.out.println("TK ALL RESULT = " + new Gson().toJson(allResults));
 //		List<ITestResult> allTestResults;
 
 		createTestPackageAdapter();
@@ -387,11 +387,11 @@ public class Reporter implements IReporter {
 
 		// System.out.println(new Gson().toJson(theFinalReportData));
 		
-		printTempReportDataToFile(theFinalReportData);
+		//printTempReportDataToFile(theFinalReportData);
 
 		String reportDataAsJSON = new Gson().toJson(theFinalReportData);
 		
-		System.out.println("TK DEBUG DATA = " + reportDataAsJSON);
+		//System.out.println("TK DEBUG DATA = " + reportDataAsJSON);
 
 		reportDataAsJSON = reportDataAsJSON.replace("package_xyz", "package");
 
