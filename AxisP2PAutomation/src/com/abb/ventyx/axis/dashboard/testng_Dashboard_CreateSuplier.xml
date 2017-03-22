@@ -5,7 +5,8 @@
 		<classes>
 				<class name="com.abb.ventyx.axis.dashboard.AxisLogin" />
 		</classes>
-		<test name="Create_Supplier">
+	</test>	
+	<test name="Create_Supplier">
 		<classes>
 				<class name="com.abb.ventyx.axis.dashboard.Create_Supplier" />
 		</classes>
