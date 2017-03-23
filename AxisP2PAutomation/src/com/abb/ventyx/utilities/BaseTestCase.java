@@ -51,13 +51,13 @@ public class BaseTestCase {
 			// load default properties
 			properties = PropertiesLoaderUtils.loadProperties(new ClassPathResource("test.properties", BaseTestCase.class));
 		} catch (Exception e) {
-			System.out.println(e.getMessage());			
+//			System.out.println(e.getMessage());			
 		}
 		try {
 			// override with any local test.properties
 			PropertiesLoaderUtils.fillProperties(properties, new FileSystemResource("test.properties"));
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+//			System.out.println(e.getMessage());
 		}
 		properties.putAll(System.getProperties());
 		defaultCredentials = new TestLoginCredentials( getProperty("test.username"),getProperty("test.password"));

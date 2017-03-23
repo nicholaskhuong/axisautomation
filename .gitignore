@@ -1,3 +1,10 @@
 /Examples
 /WorkSpace
 /AxisP2PAutomation/report/
+/AxisP2PAutomation/ALM.csv
+AxisP2PAutomation/ALM.xml
+AxisP2PAutomation/report/data
+AxisP2PAutomation/report/screenshots
+AxisP2PAutomation/test.properties
+AxisP2PAutomation/.classpath
+AxisP2PAutomation/bin
