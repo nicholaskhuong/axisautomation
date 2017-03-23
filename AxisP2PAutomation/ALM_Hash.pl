@@ -8,7 +8,7 @@ use Getopt::Long;
 use LWP::Simple;
 
 my $ALM_xml_file = "./ALM.xml";
-my $jenkins_server = 'awsjenkins.techops.ventyx.abb.com';
+my $jenkins_server = '172.31.122.230:8180';
 my $automated_field;
 my $options;
 
@@ -19,7 +19,7 @@ sub main() {
    my $jenkins_job = $options->{'sel_reg_job'};
    $automated_field = $options->{'automated_field'};
    
-   my $build_url = "http://$jenkins_server:8080/job/$jenkins_job/";
+   my $build_url = "http://$jenkins_server:8180/jenkins/$jenkins_job/";
    
    my %ALM_ids_current;
    my %ALM_ids_previous;
