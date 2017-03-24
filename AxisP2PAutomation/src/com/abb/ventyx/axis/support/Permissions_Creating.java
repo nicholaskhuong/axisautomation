@@ -22,12 +22,13 @@ import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Constants;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.MaintainCodeSetType;
+import com.abb.ventyx.axis.objects.pagedefinitions.Permissions;
 import com.ventyx.testng.TestDataKey;
 
-public class Code_Set_Type extends BaseTestCase {
-	@TestDataKey private final String CODE_TYPE_A = "A_CODE_TYPE";
-	@TestDataKey private final String CODE_TYPE_B = "AA_CODE_TYPE";
-	@TestDataKey private final String CODE_DESC = "A_CODE_DESC";
+public class Permissions_Creating extends BaseTestCase {
+	@TestDataKey private final String PERMISSION_NAME_A = "A_NAME";
+	@TestDataKey private final String PERMISSION_NAME_B = "AA_NAME";
+
 	@Test
 	  public void login() throws Exception {
 		  	driver.get(Constants.HOME_URL + "/SupplierPortal/#!listSupplier");
@@ -45,24 +46,29 @@ public class Code_Set_Type extends BaseTestCase {
 		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION)));
 		    axisConfigParentButton.click();
 		   		    
-		    driver.findElement(By.cssSelector(AxisConfigMenu.CODE_SET_TYPE)).click();
-		    driver.findElement(By.cssSelector(MaintainCodeSetType.ADD)).click();
-		    //CODE TYPE field ID is dynamic, failed.
-		    driver.findElement(By.id(MaintainCodeSetType.CODE_TYPE_FIELD)).click();
-		    driver.findElement(By.id(MaintainCodeSetType.CODE_TYPE_FIELD)).sendKeys(CODE_TYPE_A);
-		    driver.findElement(By.id(MaintainCodeSetType.CODE_DESC_FIELD)).clear();
-		    driver.findElement(By.id(MaintainCodeSetType.CODE_DESC_FIELD)).sendKeys(CODE_DESC);
-		    driver.findElement(By.id(MaintainCodeSetType.SAVE));
-		    assertEquals(driver.findElement(By.cssSelector(MaintainCodeSetType.CODE_TYPE_i)).getText(),CODE_TYPE_A);
-		   
+		    driver.findElement(By.cssSelector(AxisConfigMenu.PERMISSIONS)).click();
+		    driver.findElement(By.cssSelector(Permissions.ADD)).click();
 		    
-		    driver.findElement(By.cssSelector(MaintainCodeSetType.ADD)).click();
-		    driver.findElement(By.id(MaintainCodeSetType.CODE_TYPE_FIELD)).click();
-		    driver.findElement(By.id(MaintainCodeSetType.CODE_TYPE_FIELD)).sendKeys(CODE_TYPE_B);
-		    driver.findElement(By.cssSelector(MaintainCodeSetType.CANCEL)).click();
-		    assertEquals(driver.findElement(By.cssSelector(MaintainCodeSetType.COMFIRMATION_WINDOW)).getText(),Messages.UNSAVED_CHANGE);
-		    driver.findElement(By.id(MaintainCodeSetType.YES));
-		    assertEquals(driver.findElement(By.cssSelector(MaintainCodeSetType.CODE_TYPE_i)).getText(),CODE_TYPE_A);
+		    driver.findElement(By.id(Permissions.PERMISSION_NAME)).click();
+		    driver.findElement(By.id(Permissions.PERMISSION_NAME)).sendKeys(PERMISSION_NAME_A);
+		    driver.findElement(By.id(Permissions.DOCUMENT_TYPE)).click();
+		    driver.findElement(By.cssSelector(Permissions.PURCHASE_ORDER_ACK)).click();
+		    driver.findElement(By.cssSelector(Permissions. AXIS_ADMIN)).click();
+		    driver.findElement(By.id(Permissions.SAVE)).click();
+		    driver.findElement(By.xpath(Permissions.PERMISSION_NAME_FILTER)).clear();
+		    driver.findElement(By.xpath(Permissions.PERMISSION_NAME_FILTER)).sendKeys(PERMISSION_NAME_A);
+		    assertEquals(driver.findElement(By.cssSelector(Permissions.PNROW1)).getText(),PERMISSION_NAME_A);
+		
+		    
+		    
+//		    
+//		    driver.findElement(By.cssSelector(MaintainCodeSetType.ADD)).click();
+//		    driver.findElement(By.id(MaintainCodeSetType.CODE_TYPE_FIELD)).click();
+//		    driver.findElement(By.id(MaintainCodeSetType.CODE_TYPE_FIELD)).sendKeys(CODE_TYPE_B);
+//		    driver.findElement(By.cssSelector(MaintainCodeSetType.CANCEL)).click();
+//		    assertEquals(driver.findElement(By.cssSelector(MaintainCodeSetType.COMFIRMATION_WINDOW)).getText(),Messages.UNSAVED_CHANGE);
+//		    driver.findElement(By.id(MaintainCodeSetType.YES));
+//		    assertEquals(driver.findElement(By.cssSelector(MaintainCodeSetType.CODE_TYPE_i)).getText(),CODE_TYPE_A);
 		    
 		   }	    
 }
