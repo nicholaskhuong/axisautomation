@@ -238,7 +238,6 @@ public class Reporter implements IReporter {
 			int totalTestSuitePass = 0;
 			int totalTestSuiteFail = 0;
 			long totalPackageTime = 0;
-			int totalTestSuite =0;
 			Package packageS = new Package();
 			packageS.setText(packageResultAdapter.getPackageName());
 			packageS.setId(packageResultAdapter.getId());
@@ -340,8 +339,6 @@ public class Reporter implements IReporter {
 				testSuite.setSteps(String.valueOf(totalTestStuiteSteps));
 				testSuite.setStatus(totalTCFail == 0 ? "1" : "0");
 				lsSuite.add(testSuite);
-
-				totalTestSuite++;
 				
 				totalPackageTime = totalPackageTime + totalTimeTestSuite;
 
