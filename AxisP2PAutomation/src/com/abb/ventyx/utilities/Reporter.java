@@ -338,10 +338,10 @@ public class Reporter implements IReporter {
 				lsSuite.add(testSuite);
 
 				if(totalTCFail==0){
-					totalTestSuitePass+=totalTCFail;
+					totalTestSuitePass++;
 				}
 				else{
-					totalTestSuiteFail+=totalTCPass;
+					totalTestSuiteFail++;
 				}
 				
 				totalPackageTime = totalPackageTime + totalTimeTestSuite;
@@ -361,10 +361,10 @@ public class Reporter implements IReporter {
 			
 			totalReportTime = totalReportTime + totalPackageTime;
 			if(totalTestSuiteFail==0){
-				totalReportPass+=totalTestSuitePass;
+				totalReportPass++;
 			}
 			else{
-				totalReportFail+=totalTestSuiteFail;
+				totalReportFail++;
 			}
 		}
 
