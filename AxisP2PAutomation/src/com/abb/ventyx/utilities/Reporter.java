@@ -238,6 +238,7 @@ public class Reporter implements IReporter {
 			int totalTestSuitePass = 0;
 			int totalTestSuiteFail = 0;
 			long totalPackageTime = 0;
+			int totalTestSuite =0;
 			Package packageS = new Package();
 			packageS.setText(packageResultAdapter.getPackageName());
 			packageS.setId(packageResultAdapter.getId());
@@ -311,38 +312,36 @@ public class Reporter implements IReporter {
 					}
 					float totalTimeAsSecond = totalTimeTestCase / 1000;
 					TC.setTeststep(lsSteps);
-					TC.setFail(totalStepFail + "");
-					TC.setPass(totalStepPass + "");
-					TC.setTotal((totalStepPass + totalStepFail) + "");
-					TC.setTime(totalTimeAsSecond + "");
+					TC.setFail(String.valueOf(totalStepFail));
+					TC.setPass(String.valueOf(totalStepPass));
+					TC.setTotal(String.valueOf((totalStepPass + totalStepFail)));
+					TC.setTime(String.valueOf(totalTimeAsSecond));
 					// Set time stamp
 					TC.setTimestamp(DateTimeConverter.milliSecToTimeStamp(classs.getMethods().get(0).getStartTime()));
-
 					if (totalStepFail == 0) {
 						totalTCPass++;
+						totalReportPass++;
+						totalTestSuitePass++;
 						TC.setStatus("1");
 					} else {
 						totalTCFail++;
+						totalReportFail++;
+						totalTestSuiteFail++;
 					}
 					lsTCs.add(TC);
 					totalTimeTestSuite = totalTimeTestSuite + totalTimeTestCase;
 				}
 				testSuite.setTestcase(lsTCs);
-				testSuite.setPass(totalTCPass + "");
-				testSuite.setFail(totalTCFail + "");
-				testSuite.setTotal((totalTCFail + totalTCPass) + "");
-				testSuite.setTime(((float) (totalTimeTestSuite / 1000)) + "");
+				testSuite.setPass(String.valueOf(totalTCPass));
+				testSuite.setFail(String.valueOf(totalTCFail));
+				testSuite.setTotal(String.valueOf((totalTCFail + totalTCPass)));
+				testSuite.setTime(String.valueOf(((float) (totalTimeTestSuite / 1000))));
 				testSuite.setTimestamp(lsTCs.get(0).getTimestamp());
-				testSuite.setSteps(totalTestStuiteSteps + "");
+				testSuite.setSteps(String.valueOf(totalTestStuiteSteps));
 				testSuite.setStatus(totalTCFail == 0 ? "1" : "0");
 				lsSuite.add(testSuite);
 
-				if(totalTCFail==0){
-					totalTestSuitePass++;
-				}
-				else{
-					totalTestSuiteFail++;
-				}
+				totalTestSuite++;
 				
 				totalPackageTime = totalPackageTime + totalTimeTestSuite;
 
@@ -350,26 +349,20 @@ public class Reporter implements IReporter {
 
 			packageS.setTestsuite(lsSuite);
 			packageS.setStatus(packageStatus ? "1" : "0");
-			packageS.setTotal((totalTestSuiteFail + totalTestSuitePass) + "");
-			packageS.setPass(totalTestSuitePass + "");
-			packageS.setFail(totalTestSuiteFail + "");
+			packageS.setTotal(String.valueOf((totalTestSuiteFail + totalTestSuitePass)));
+			packageS.setPass(String.valueOf(totalTestSuitePass));
+			packageS.setFail(String.valueOf(totalTestSuiteFail));
 			packageS.setTimestamp(lsSuite.get(0).getTimestamp());
-			packageS.setGtime(((float) (totalPackageTime / 1000)) + "");
-			packageS.setTime(((float) (totalPackageTime / 1000)) + "");
+			packageS.setGtime(String.valueOf(((float) (totalPackageTime / 1000))));
+			packageS.setTime(String.valueOf(((float) (totalPackageTime / 1000))));
 
 			lsPackages.add(packageS);
 			
 			totalReportTime = totalReportTime + totalPackageTime;
-			if(totalTestSuiteFail==0){
-				totalReportPass++;
-			}
-			else{
-				totalReportFail++;
-			}
 		}
 
 		theFinalReportData.setPackage_xyz(lsPackages);
-		theFinalReportData.setTime(((float) (totalReportTime / 1000)) + "");
+		theFinalReportData.setTime(String.valueOf(((float) (totalReportTime / 1000))));
 		try{
 		theFinalReportData.setAutomation_url(System.getProperty("test.server.url"));
 		theFinalReportData.setSeleniumHubURL(System.getProperty("test.selenium.server").replace("http://", ""));
@@ -383,9 +376,9 @@ public class Reporter implements IReporter {
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
-		theFinalReportData.setTotal((totalReportPass + totalReportFail) + "");
-		theFinalReportData.setPass(totalReportPass + "");
-		theFinalReportData.setFail(totalReportFail + "");
+		theFinalReportData.setTotal(String.valueOf((totalReportPass + totalReportFail)));
+		theFinalReportData.setPass(String.valueOf(totalReportPass));
+		theFinalReportData.setFail(String.valueOf(totalReportFail ));
 		theFinalReportData.setStatus(totalReportFail == 0 ? "1" : "0");
 		theFinalReportData.setGtime(theFinalReportData.getTime());
 
