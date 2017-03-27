@@ -6,7 +6,7 @@
      </listeners>
 	<test name="Code_Set_Type">
 		<classes>
-				<class name="ccom.abb.ventyx.axis.support.Code_Set_Type" />
+				<class name="com.abb.ventyx.axis.support.Code_Set_Type" />
 		</classes>
   	</test> <!-- Test -->
 </suite> <!-- Suite -->
