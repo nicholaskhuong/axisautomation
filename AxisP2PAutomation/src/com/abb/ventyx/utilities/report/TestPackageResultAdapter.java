@@ -2,6 +2,8 @@ package com.abb.ventyx.utilities.report;
 
 import java.util.ArrayList;
 
+import org.apache.commons.lang3.text.WordUtils;
+
 public class TestPackageResultAdapter {
 	private String id = "st0";
 	private String packageName = "";
@@ -16,7 +18,7 @@ public class TestPackageResultAdapter {
 		this.id = id;
 	}
 	public String getPackageName() {
-		return packageName;
+		return WordUtils.capitalize(packageName);
 	}
 	public void setPackageName(String packageName) {
 		this.packageName = packageName;
