@@ -6,6 +6,7 @@
     <property name="dashboard.dir" value="src/com/abb/ventyx/axis/dashboard/" />
     <property name="customer.dir" value="src/com/abb/ventyx/axis/customer/" />
     <property name="supplier" value="src/com/abb/ventyx/axis/supplier" />
+    <property name="support" value="src/com/abb/ventyx/axis/support" />
 	<property environment="env"/>
     <!-- define properties and paths for the current run -->
     <path id="other.source.path">
@@ -20,6 +21,7 @@
             	<include name="**/testng_Supplier_*.xml" />
             	<include name="**/testng_Customer_*.xml" />
             	<include name="**/testng_Dashboard_*.xml" />
+            	<include name="**/testng_Support_*.xml" />
             </fileset>
         </sort>
     </path>    
@@ -30,6 +32,13 @@
             </fileset>
         </sort>
     </path>    
+    <path id="support.source.path">
+        <sort>
+            <fileset dir="${support.dir}">
+                <include name="**/testng_Support_*.xml" />                
+            </fileset>
+        </sort>
+    </path>   
     <path id="supplier.source.path">
         <sort>
             <fileset dir="${supplier.dir}">
@@ -49,6 +58,12 @@
 			<property name="src.dir" value="${dashboard.dir}" />
 			<path id="test.set.source.path">
 				<path refid="dashboard.source.path" />
+			</path>
+		</case>
+		<case value="support">
+			<property name="src.dir" value="${support.dir}" />
+			<path id="test.set.source.path">
+				<path refid="support.source.path" />
 			</path>
 		</case>
 		<case value="supplier">
