@@ -1,7 +1,6 @@
 package com.abb.ventyx.axis.support;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -12,17 +11,18 @@ import org.testng.annotations.Test;
 
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseTestCase;
-import com.abb.ventyx.utilities.Constants;
 import com.abb.ventyx.utilities.Credentials;
+import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
 import com.abb.ventyx.axis.objects.pagedefinitions.Permissions;
 import com.ventyx.testng.TestDataKey;
 
 @ALM(id = "1") 
 @Credentials(user = "5", password = "testuser")
 public class Permissions_Creating extends BaseTestCase {
-	@TestDataKey private final String PERMISSION_NAME_A = "A_NAME";
-	@TestDataKey private final String PERMISSION_NAME_B = "AA_NAME";
-
+	@TestDataKey private final String PERMISSION_NAME_A = "AA_MAINTAIN_PERMISSION";
+	@TestDataKey private final String PERMISSION_NAME_B = "AA_MAINTAIN_PERMISSION";
+	@TestDataKey private final String DOCUMENT_TYPE_A = "POAck";
+	@TestDataKey private final String USER_TYPE_A = "A";
 	@Test
 	  public void login() throws Exception {
 		    WebElement axisConfigParentButton = (new WebDriverWait(driver, 10))
@@ -41,6 +41,8 @@ public class Permissions_Creating extends BaseTestCase {
 		    driver.findElement(By.xpath(Permissions.PERMISSION_NAME_FILTER)).clear();
 		    driver.findElement(By.xpath(Permissions.PERMISSION_NAME_FILTER)).sendKeys(PERMISSION_NAME_A);
 		    assertEquals(driver.findElement(By.cssSelector(Permissions.PNROW1)).getText(),PERMISSION_NAME_A);
+		    assertEquals(driver.findElement(By.cssSelector(Permissions.UTROW1)).getText(),USER_TYPE_A);
+		    assertEquals(driver.findElement(By.cssSelector(Permissions.DTROW1)).getText(),DOCUMENT_TYPE_A);
 		   }	    
 }
 

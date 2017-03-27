@@ -19,6 +19,8 @@ public class Permissions {
 	 	public static final String TESTING = "#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table > tbody > tr:nth-child(8) > td > span";
 	 	public static final String SAVE = "createEditBtn";
 	 	public static final String CANCEL = "cancelBtn";
+	 	public static final String DELETE_YES = "#confirmation-window > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-confirmation-window-text-and-button-layout > div > div.v-slot.v-slot-v-bottombar-button-layout.v-align-right.v-align-middle > div > div:nth-child(3) > div";
+	 	public static final String DELETE_NO = "#confirmation-window > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-confirmation-window-text-and-button-layout > div > div.v-slot.v-slot-v-bottombar-button-layout.v-align-right.v-align-middle > div > div:nth-child(1) > div";
 	 	public static final String USER_TYPE = "permissionUserType";
 	 	public static final String USER_TYPE_FILTER = "(//input[@id='filterField'])[4]";
 	 	public static final String AXIS_ADMIN = "#permissionUserType > span:nth-child(1) > label";
@@ -30,8 +32,14 @@ public class Permissions {
 	 	public static final String ROW2 = "permissionIdBtn2";
 	 	public static final String ROW3 = "permissionIdBtn3";
 	 	public static final String PNROW1 = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div > div.v-grid-tablewrapper > table > tbody > tr:nth-child(1) > td:nth-child(3)";
+	 	public static final String PNROW2 = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div > div.v-grid-tablewrapper > table > tbody > tr:nth-child(2) > td:nth-child(3)";
+	 	public static final String UTROW1 = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div > div.v-grid-tablewrapper > table > tbody > tr:nth-child(1) > td:nth-child(4)";
+	 	public static final String UTROW2 = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div > div.v-grid-tablewrapper > table > tbody > tr:nth-child(2) > td:nth-child(4)";
+	 	public static final String DTROW1 = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div > div.v-grid-tablewrapper > table > tbody > tr:nth-child(1) > td:nth-child(2)";
+	 	public static final String PIROW1 = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div > div.v-grid-tablewrapper > table > tbody > tr:nth-child(1) > td:nth-child(1)";
 	 	public static final String DELETE0 = "deleteItemBtn0";
 	 	public static final String DELETE1 = "deleteItemBtn1";
 	 	public static final String DELETE2 = "deleteItemBtn2";
+	 	public static final String DELETE45 = "deleteItemBtn45";
 	 	
 }
