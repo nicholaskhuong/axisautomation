@@ -18,38 +18,35 @@
     <path id="all.source.path">
         <sort>
             <fileset dir="${src.dir}">                
-            	<include name="**/testng_Supplier_*.xml" />
-            	<include name="**/testng_Customer_*.xml" />
-            	<include name="**/testng_Dashboard_*.xml" />
-            	<include name="**/testng_Support_*.xml" />
+            	<include name="**/testng_*.xml" />
             </fileset>
         </sort>
     </path>    
     <path id="dashboard.source.path">
         <sort>
             <fileset dir="${dashboard.dir}">
-                <include name="**/testng_Dashboard_*.xml" />                                
+                <include name="**/testng_*.xml" />                                
             </fileset>
         </sort>
     </path>    
     <path id="support.source.path">
         <sort>
             <fileset dir="${support.dir}">
-                <include name="**/testng_Support_*.xml" />                
+                <include name="**/testng_*.xml" />                
             </fileset>
         </sort>
     </path>   
     <path id="supplier.source.path">
         <sort>
             <fileset dir="${supplier.dir}">
-                <include name="**/testng_Supplier_*.xml" />                
+                <include name="**/testng_*.xml" />                
             </fileset>
         </sort>
     </path>    
     <path id="customer.source.path">
         <sort>
             <fileset dir="${customer.dir}">
-                <include name="**/testng_Customer_*.xml" />                
+                <include name="**/testng_*.xml" />                
             </fileset>
         </sort>
     </path>   
