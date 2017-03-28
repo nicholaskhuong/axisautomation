@@ -343,18 +343,20 @@ public class Reporter implements IReporter {
 				totalPackageTime = totalPackageTime + totalTimeTestSuite;
 
 			}
-
-			packageS.setTestsuite(lsSuite);
-			packageS.setStatus(packageStatus ? "1" : "0");
-			packageS.setTotal(String.valueOf((totalTestSuiteFail + totalTestSuitePass)));
-			packageS.setPass(String.valueOf(totalTestSuitePass));
-			packageS.setFail(String.valueOf(totalTestSuiteFail));
-			packageS.setTimestamp(lsSuite.get(0).getTimestamp());
-			packageS.setGtime(String.valueOf(((float) (totalPackageTime / 1000))));
-			packageS.setTime(String.valueOf(((float) (totalPackageTime / 1000))));
-
-			lsPackages.add(packageS);
-			
+			if (lsSuite.size()>0)
+			{
+				packageS.setTestsuite(lsSuite);
+				packageS.setStatus(packageStatus ? "1" : "0");
+				packageS.setTotal(String.valueOf((totalTestSuiteFail + totalTestSuitePass)));
+				packageS.setPass(String.valueOf(totalTestSuitePass));
+				packageS.setFail(String.valueOf(totalTestSuiteFail));
+				
+				packageS.setTimestamp(lsSuite.get(0).getTimestamp());
+				packageS.setGtime(String.valueOf(((float) (totalPackageTime / 1000))));
+				packageS.setTime(String.valueOf(((float) (totalPackageTime / 1000))));
+				
+				lsPackages.add(packageS);
+			}
 			totalReportTime = totalReportTime + totalPackageTime;
 		}
 
