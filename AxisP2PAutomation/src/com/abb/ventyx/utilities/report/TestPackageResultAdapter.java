@@ -18,7 +18,7 @@ public class TestPackageResultAdapter {
 		this.id = id;
 	}
 	public String getPackageName() {
-		return WordUtils.capitalize(packageName);
+		return packageName;
 	}
 	public void setPackageName(String packageName) {
 		this.packageName = packageName;
