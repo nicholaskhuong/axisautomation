@@ -16,7 +16,7 @@ import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
 import com.abb.ventyx.axis.objects.pagedefinitions.Permissions;
 import com.ventyx.testng.TestDataKey;
 
-@ALM(id = "1") 
+@ALM(id = "106") 
 @Credentials(user = "5", password = "testuser")
 public class Permissions_Creating extends BaseTestCase {
 	@TestDataKey private final String PERMISSION_NAME_A = "AA_MAINTAIN_PERMISSION";
@@ -29,10 +29,8 @@ public class Permissions_Creating extends BaseTestCase {
 		    WebElement axisConfigParentButton = (new WebDriverWait(driver, 10))
 		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION)));
 		    axisConfigParentButton.click();
-		   		    
-		    driver.findElement(By.cssSelector(AxisConfigMenu.PERMISSIONS)).click();
+		   	driver.findElement(By.cssSelector(AxisConfigMenu.PERMISSIONS)).click();
 		    driver.findElement(By.cssSelector(Permissions.ADD)).click();
-		    
 		    driver.findElement(By.id(Permissions.PERMISSION_NAME)).click();
 		    driver.findElement(By.id(Permissions.PERMISSION_NAME)).sendKeys(PERMISSION_NAME_A);
 		    driver.findElement(By.id(Permissions.DOCUMENT_TYPE)).click();

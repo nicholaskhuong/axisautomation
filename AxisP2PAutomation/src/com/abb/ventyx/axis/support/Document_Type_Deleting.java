@@ -20,7 +20,7 @@ import com.abb.ventyx.axis.objects.pagedefinitions.DocType;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.ventyx.testng.TestDataKey;
 
-@ALM(id = "1") 
+@ALM(id = "160") 
 @Credentials(user = "5", password = "testuser")
 public class Document_Type_Deleting extends BaseTestCase {
 	@TestDataKey private final String DOCTYPE_B = "ABB";

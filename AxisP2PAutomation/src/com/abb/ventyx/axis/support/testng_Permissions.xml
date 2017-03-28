@@ -3,14 +3,14 @@
 <suite name="Permissions" parallel="none">
   	<test name="Create Permission">
 		<classes>
-				<class name="com.abb.ventyx.axis.support.Permissions_creating" />
+				<class name="com.abb.ventyx.axis.support.Permissions_Creating" />
 		</classes>
 	</test>	
 	<test name="Update Permission">
 		<classes>
 				<class name="com.abb.ventyx.axis.support.Permissions_Updating" />
 		</classes>
-	<test name="Create Permission">
+	<test name="Delete Permission">
 		<classes>
 				<class name="com.abb.ventyx.axis.support.Permissions_Deleting" />
 		</classes>
