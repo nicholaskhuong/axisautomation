@@ -12,7 +12,7 @@
 		</classes>
 	<test name="Delete Doc Type">
 		<classes>
-				<class name="com.abb.ventyx.axis.support.Permissions_Deleting" />
+				<class name="com.abb.ventyx.axis.support.Document_Type_Deleting" />
 		</classes>
 	</test>	
   	</test> <!-- Test -->
