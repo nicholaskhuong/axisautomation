@@ -25,7 +25,6 @@ public class HomePage extends BasePage{
 			// TODO: handle exception
 		}
 		
-		driver.navigate().to(Constants.HOME_URL);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 	}
