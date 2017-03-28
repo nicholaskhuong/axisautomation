@@ -16,7 +16,7 @@ import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
 import com.abb.ventyx.axis.objects.pagedefinitions.Permissions;
 import com.ventyx.testng.TestDataKey;
 
-@ALM(id = "2") 
+@ALM(id = "155") 
 @Credentials(user = "5", password = "testuser")
 public class Permissions_Updating extends BaseTestCase {
 	

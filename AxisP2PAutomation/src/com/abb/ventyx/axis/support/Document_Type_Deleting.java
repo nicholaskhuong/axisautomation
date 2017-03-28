@@ -18,7 +18,6 @@ import com.abb.ventyx.utilities.Credentials;
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
 import com.abb.ventyx.axis.objects.pagedefinitions.DocType;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
-import com.abb.ventyx.axis.objects.pagedefinitions.Permissions;
 import com.ventyx.testng.TestDataKey;
 
 @ALM(id = "1") 

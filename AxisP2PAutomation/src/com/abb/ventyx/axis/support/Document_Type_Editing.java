@@ -18,7 +18,7 @@ import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
 import com.abb.ventyx.axis.objects.pagedefinitions.DocType;
 import com.ventyx.testng.TestDataKey;
 
-@ALM(id = "1") 
+@ALM(id = "159") 
 @Credentials(user = "5", password = "testuser")
 public class Document_Type_Editing extends BaseTestCase {
 	@TestDataKey private final String DOCTYPE_B = "ABB";

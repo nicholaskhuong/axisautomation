@@ -18,7 +18,7 @@ import com.abb.ventyx.axis.objects.pagedefinitions.Permissions;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 
 
-@ALM(id = "3") 
+@ALM(id = "156") 
 @Credentials(user = "5", password = "testuser")
 public class Permissions_Deleting extends BaseTestCase {
 
