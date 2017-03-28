@@ -19,6 +19,7 @@ public class Permissions {
 	 	public static final String TESTING = "#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table > tbody > tr:nth-child(8) > td > span";
 	 	public static final String SAVE = "createEditBtn";
 	 	public static final String CANCEL = "cancelBtn";
+	 	public static final String CONFIRMATION_OF_DELETION = "#confirmation-window > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-confirmation-window-text-and-button-layout > div > div:nth-child(1) > div";
 	 	public static final String DELETE_YES = "#confirmation-window > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-confirmation-window-text-and-button-layout > div > div.v-slot.v-slot-v-bottombar-button-layout.v-align-right.v-align-middle > div > div:nth-child(3) > div";
 	 	public static final String DELETE_NO = "#confirmation-window > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-confirmation-window-text-and-button-layout > div > div.v-slot.v-slot-v-bottombar-button-layout.v-align-right.v-align-middle > div > div:nth-child(1) > div";
 	 	public static final String USER_TYPE = "permissionUserType";
@@ -41,5 +42,5 @@ public class Permissions {
 	 	public static final String DELETE1 = "deleteItemBtn1";
 	 	public static final String DELETE2 = "deleteItemBtn2";
 	 	public static final String DELETE45 = "deleteItemBtn45";
-	 	
+	 		 	
 }
