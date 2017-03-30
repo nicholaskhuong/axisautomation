@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Permissions" parallel="none">
+<suite name="DocumentTypes" parallel="none">
   	<test name="Create Doc Type">
 		<classes>
 				<class name="com.abb.ventyx.axis.support.Document_Type_Creating" />

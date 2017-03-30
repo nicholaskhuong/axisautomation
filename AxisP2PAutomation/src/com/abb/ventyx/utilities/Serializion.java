@@ -60,7 +60,7 @@ public class Serializion {
 	         out.writeObject(resultFromDisks);
 	         out.close();
 	         fileOut.close();
-	         System.out.printf("Serialized data is saved");
+	         System.out.println("Serialized data is saved");
 	      }catch(IOException i) {
 	         i.printStackTrace();
 	      }
