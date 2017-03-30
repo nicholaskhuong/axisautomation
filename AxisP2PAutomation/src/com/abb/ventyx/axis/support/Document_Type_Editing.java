@@ -22,9 +22,9 @@ import com.ventyx.testng.TestDataKey;
 @Credentials(user = "5", password = "testuser")
 public class Document_Type_Editing extends BaseTestCase {
 	@TestDataKey private final String DOCTYPE_B = "ABB";
-	@TestDataKey private final String DESC_B = "AAA_MAINTAIN_DOCTYPES";
+	@TestDataKey private final String DESC_B = "AAA_MAINTAIN_DOCTYPES UPDATED";
 	@Test
-	  public void login() throws Exception {
+	  public void Update() throws Exception {
 		
 		    WebElement axisConfigParentButton = (new WebDriverWait(driver, 10))
 		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION)));

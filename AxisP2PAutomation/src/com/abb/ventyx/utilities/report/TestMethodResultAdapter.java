@@ -51,7 +51,9 @@ public class TestMethodResultAdapter implements Serializable{
 		this.screenshot = testResult.getStatus()==ITestResult.FAILURE ? screenshot : "";
 		this.status = testResult.getStatus()==ITestResult.FAILURE ? "0" : testResult.getStatus() + "";
 		this.action = "";
-		this.id = this.text = this.label = this.value = this.action = this.actualvalue = "";
+		this.id = this.text = this.label = this.action = "";
+		this.actualvalue = "";
+		this.value = "";
 		//this.action = "";
 		this.startTime = testResult.getStartMillis();
 		this.endTime = testResult.getEndMillis();
