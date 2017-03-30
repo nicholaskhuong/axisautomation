@@ -26,8 +26,10 @@ import com.ventyx.testng.TestDataKey;
 public class Document_Type_Deleting extends BaseTestCase {
 	@TestDataKey private final String DOCTYPE_B = "ABB";
 	@TestDataKey private final String DESC_B = "AAA_MAINTAIN_DOCTYPES";
+	String DOCTYPE_A ;
+	String DESC_A;
 	@Test
-	  public void Delete_Document_Type() throws Exception {
+	  public void Delete_Document_Type_From_Grid() throws Exception {
 		 
 		    WebElement axisConfigParentButton = (new WebDriverWait(driver, 10))
 		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION)));
@@ -35,15 +37,18 @@ public class Document_Type_Deleting extends BaseTestCase {
 		  
 		   //Delete first instance on grid.
 		    driver.findElement(By.cssSelector(AxisConfigMenu.DOC_TYPE)).click();
-		    final String DOCTYPE_A = driver.findElement(By.id(DocType.DTROW1)).getText();
-		    final String DESC_A = driver.findElement(By.cssSelector(DocType.DROW1)).getText();
+		    DOCTYPE_A = driver.findElement(By.id(DocType.DTROW1)).getText();
+		    DESC_A = driver.findElement(By.cssSelector(DocType.DROW1)).getText();
 		    driver.findElement(By.id(DocType.DELETE_ROW1)).click();
 		    assertThat(driver.findElement(By.cssSelector(DocType.CONFIRMATION_OF_DELETION)).getText(),containsString(Messages.Delete_Confirm));
 		    JavascriptExecutor js = (JavascriptExecutor)driver;
 		    WebElement delete_Yes = (new WebDriverWait(driver, 10))
 		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.DELETE_YES)));
 		    js.executeScript("arguments[0].click();", delete_Yes);
-		    
+		   
+	}
+	@Test(dependsOnMethods ="Delete_Document_Type_From_Grid" )
+	  public void Check_Successful_Message() throws Exception {
 		   //Indicate 1st row's value is now different from the original one as the original one already deleted.
 		    assertThat(driver.findElement(By.id(DocType.DTROW1)).getText(), is(not(DOCTYPE_A)));
 		    assertThat(driver.findElement(By.cssSelector(DocType.DROW1)).getText(), is(not(DESC_A)));
