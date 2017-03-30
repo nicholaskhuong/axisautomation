@@ -1,6 +1,7 @@
 package com.abb.ventyx.axis.support;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -26,7 +27,7 @@ public class Document_Type_Deleting extends BaseTestCase {
 	@TestDataKey private final String DOCTYPE_B = "ABB";
 	@TestDataKey private final String DESC_B = "AAA_MAINTAIN_DOCTYPES";
 	@Test
-	  public void login() throws Exception {
+	  public void Delete_Document_Type() throws Exception {
 		 
 		    WebElement axisConfigParentButton = (new WebDriverWait(driver, 10))
 		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION)));
@@ -38,8 +39,11 @@ public class Document_Type_Deleting extends BaseTestCase {
 		    final String DESC_A = driver.findElement(By.cssSelector(DocType.DROW1)).getText();
 		    driver.findElement(By.id(DocType.DELETE_ROW1)).click();
 		    assertThat(driver.findElement(By.cssSelector(DocType.CONFIRMATION_OF_DELETION)).getText(),containsString(Messages.Delete_Confirm));
-		    driver.findElement(By.cssSelector(DocType.DELETE_YES)).click();
-		  
+		    JavascriptExecutor js = (JavascriptExecutor)driver;
+		    WebElement delete_Yes = (new WebDriverWait(driver, 10))
+		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.DELETE_YES)));
+		    js.executeScript("arguments[0].click();", delete_Yes);
+		    
 		   //Indicate 1st row's value is now different from the original one as the original one already deleted.
 		    assertThat(driver.findElement(By.id(DocType.DTROW1)).getText(), is(not(DOCTYPE_A)));
 		    assertThat(driver.findElement(By.cssSelector(DocType.DROW1)).getText(), is(not(DESC_A)));

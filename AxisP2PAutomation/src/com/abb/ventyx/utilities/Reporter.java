@@ -283,7 +283,7 @@ public class Reporter implements IReporter {
 					for (TestMethodResultAdapter methodResultAdapter : classs.getMethods()) {
 						TestStep step = new TestStep();
 						step.setId(methodResultAdapter.getId());
-						step.setText(methodResultAdapter.getText());
+						step.setText(methodResultAdapter.getMethodName());
 						step.setLabel(methodResultAdapter.getLabel());
 						step.setValue(methodResultAdapter.getValue());
 						step.setActualvalue(methodResultAdapter.getActualvalue());

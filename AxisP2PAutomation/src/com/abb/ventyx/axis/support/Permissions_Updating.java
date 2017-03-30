@@ -24,7 +24,7 @@ public class Permissions_Updating extends BaseTestCase {
 	@TestDataKey private final String PERMISSION_NAME_B = "AA_MAINTAIN_PERMISSION";
 	@TestDataKey private final String DOCUMENT_TYPE_A = "POAck";
 	@TestDataKey private final String DOCUMENT_TYPE_B = "SYSTEM";
-	@TestDataKey private final String USER_TYPE_A = "INV";
+	@TestDataKey private final String USER_TYPE_A = "CSA";
 	@TestDataKey private final String USER_TYPE_B = "A";
 	
 	@Test
