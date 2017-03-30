@@ -1,5 +1,7 @@
 package com.abb.ventyx.axis.support;
 
+import org.testng.Assert;
+import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -7,7 +9,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
-import static org.junit.Assert.*;
 
 import org.testng.annotations.Test;
 
@@ -16,15 +17,14 @@ import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
 import com.abb.ventyx.axis.objects.pagedefinitions.DocType;
-import com.ventyx.testng.TestDataKey;
 
 @ALM(id = "158") 
 @Credentials(user = "5", password = "testuser")
 public class Document_Type_Creating extends BaseTestCase {
-	@TestDataKey private final String DOCTYPE_B = "ABB";
-	@TestDataKey private final String DESC_B = "AA_MAINTAIN_DOCTYPES";
+	private final String DOCTYPE_B = "ABB";
+	private final String DESC_B = "AA_MAINTAIN_DOCTYPES";
 	@Test
-	  public void login() throws Exception {
+	  public void Document_Type_Creating() throws Exception {
 		   // Create Permission 
 		    WebElement axisConfigParentButton = (new WebDriverWait(driver, 10))
 		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION)));
@@ -40,10 +40,17 @@ public class Document_Type_Creating extends BaseTestCase {
 		    driver.findElement(By.id(DocType.DESC)).click();
 		    driver.findElement(By.id(DocType.DESC)).sendKeys(DESC_A);
 		    driver.findElement(By.id(DocType.SAVE)).click();
+		    WebElement flashDialogue = (new WebDriverWait(driver, 10))
+		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.CONFIRM_DAILOGUE)));
+		    Assert.assertEquals(flashDialogue.getCssValue("display"), "block");
+		    WebElement flashMessage = (new WebDriverWait(driver, 10))
+		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.CONFIRM_MESSAGE)));
+		    Assert.assertEquals(flashMessage.getText(), "Document Types exist");
+		    System.out.print(flashMessage.getText());
 		    final String DOCTYPE_C = driver.findElement(By.id(DocType.DTROW1)).getText();
 		    final String DESC_C = driver.findElement(By.id(DocType.DROW1)).getText();
-		    assertThat(DOCTYPE_C, is(not(DOCTYPE_A)));
-		    assertThat(DESC_C, is(not(DESC_A)));
+		    Assert.assertNotEquals(DOCTYPE_C, DOCTYPE_A);
+		    Assert.assertNotEquals(DESC_C, DESC_A);
 		   			    
    }	    
 }
