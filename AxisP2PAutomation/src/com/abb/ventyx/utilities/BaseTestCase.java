@@ -78,6 +78,7 @@ public class BaseTestCase {
 		driver = driverCreator.getWebDriver();
 		LoginPage login = new LoginPage(driver);
 		login.login(getServerURL()+"/SupplierPortal/#!dashboard", currentCredentials);
+		driver.manage().window().maximize();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
