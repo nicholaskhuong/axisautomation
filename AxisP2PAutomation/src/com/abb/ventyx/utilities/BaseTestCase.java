@@ -161,7 +161,7 @@ public class BaseTestCase {
 		return getProperty(TEST_SERVER_URL);
 	}
 
-	public String getProperty(String key) {
+	public static String getProperty(String key) {
 		return (String) properties.get(key);
 	}
 	

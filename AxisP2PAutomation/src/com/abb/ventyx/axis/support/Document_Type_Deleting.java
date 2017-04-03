@@ -14,6 +14,7 @@ import static org.junit.Assert.*;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.utilities.ALM;
+import com.abb.ventyx.utilities.BaseGrid;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
@@ -37,14 +38,16 @@ public class Document_Type_Deleting extends BaseTestCase {
 		  
 		   //Delete first instance on grid.
 		    driver.findElement(By.cssSelector(AxisConfigMenu.DOC_TYPE)).click();
-		    DOCTYPE_A = driver.findElement(By.id(DocType.DTROW1)).getText();
-		    DESC_A = driver.findElement(By.cssSelector(DocType.DROW1)).getText();
+		    BaseGrid grid = new BaseGrid(driver, "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div.v-grid-tablewrapper > table");
+		    DOCTYPE_A =  grid.getGridCellByColumnName("Document Types",1);
+		    DESC_A =   grid.getGridCellByColumnName("Description",1);
+//		    DOCTYPE_A = driver.findElement(By.id(DocType.DTROW1)).getText();
+//		    DESC_A = driver.findElement(By.cssSelector(DocType.DROW1)).getText();
 		    driver.findElement(By.id(DocType.DELETE_ROW1)).click();
 		    assertThat(driver.findElement(By.cssSelector(DocType.CONFIRMATION_OF_DELETION)).getText(),containsString(Messages.Delete_Confirm));
-		    JavascriptExecutor js = (JavascriptExecutor)driver;
 		    WebElement delete_Yes = (new WebDriverWait(driver, 10))
 		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.DELETE_YES)));
-		    js.executeScript("arguments[0].click();", delete_Yes);
+		    delete_Yes.click();
 		   
 	}
 	@Test(dependsOnMethods ="Delete_Document_Type_From_Grid" )

@@ -1,0 +1,77 @@
+package com.abb.ventyx.utilities;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+public class BaseGrid {
+	WebDriver driver;
+	String tableXPath;
+	String[ ][ ] gridItem;
+	public BaseGrid(WebDriver driver, String tableXPath)
+	{
+		this.driver = driver;
+		this.tableXPath= tableXPath;
+		getGrid();
+	}
+	public String getGridCellByColumnName(String columnName, int rowNumber)
+	{
+		for(int i = 1; i<=gridItem[0].length; i++ )
+		{
+			if (gridItem[0][i].trim().equalsIgnoreCase(columnName.trim()))
+			{
+				return gridItem[rowNumber][i];
+			}
+		}
+		return "N/A";
+	}
+	private void getGrid()
+	{
+	WebElement table_element = driver.findElement(By.cssSelector(tableXPath));
+    List<WebElement> tr_collection=table_element.findElements(By.cssSelector(tableXPath + "> tbody > tr"));
+    List<WebElement> th_collection=table_element.findElements(By.cssSelector(tableXPath + "> thead > tr > th"));
+
+    gridItem = new String[tr_collection.size()+1][th_collection.size()+1];
+    System.out.println("NUMBER OF ROWS IN THIS TABLE = "+tr_collection.size());
+    System.out.println("NUMBER OF COLUMS IN THIS TABLE = "+th_collection.size());
+    int row_num,col_num;
+    row_num=1;
+//    if (Boolean.valueOf(BaseTestCase.getProperty("test.developer.mode"))== true)
+	System.out.print("       ");
+    col_num=1;
+    for(WebElement thElement : th_collection)
+    {
+    	if (null != thElement.getText())
+   	 	{
+	    	gridItem[0][col_num] = thElement.getText();
+	    	System.out.print(String.format("|%-30s",thElement.getText()));
+   	 	}
+    	col_num++;
+    }
+    System.out.println();
+    for(WebElement trElement : tr_collection)
+    {
+    	System.out.print(String.format("ROW %s: ",row_num));
+        List<WebElement> td_collection=trElement.findElements(By.xpath("td"));
+        col_num=1;
+        for(WebElement tdElement : td_collection)
+        {
+        	if (null != tdElement.getText())
+        	 {
+        		gridItem[row_num][col_num] = tdElement.getText();
+        		System.out.print(String.format("|%-30s",gridItem[row_num][col_num]));
+        	 }
+            col_num++;
+            if (col_num> th_collection.size())
+            {
+            	System.out.println();
+            }
+        }
+        row_num++;
+    } 
+	}
+
+}
