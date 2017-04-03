@@ -11,6 +11,8 @@ public class BaseGrid {
 	WebDriver driver;
 	String tableXPath;
 	String[ ][ ] gridItem;
+	int rowCount  =0;
+	int columnCount =0;
 	public BaseGrid(WebDriver driver, String tableXPath)
 	{
 		this.driver = driver;
@@ -19,7 +21,7 @@ public class BaseGrid {
 	}
 	public String getGridCellByColumnName(String columnName, int rowNumber)
 	{
-		for(int i = 1; i<=gridItem[0].length; i++ )
+		for(int i = 1; i<=columnCount; i++ )
 		{
 			if (gridItem[0][i].trim().equalsIgnoreCase(columnName.trim()))
 			{
@@ -28,13 +30,34 @@ public class BaseGrid {
 		}
 		return "N/A";
 	}
+	public int findItemByColumnName(String columnName, String value)
+	{
+		int columnNo = 0;
+		for(int i = 1; i<=columnCount; i++ )
+		{
+			if (gridItem[0][i].trim().equalsIgnoreCase(columnName.trim()))
+			{
+				columnNo = i;
+				break;
+			}
+		}
+		for(int i = 1; i<=rowCount; i++ )
+		{
+			if (gridItem[i][columnNo].trim().equals(value.trim()))
+			{
+				return i;
+			}
+		}
+		return -1;
+	}
 	private void getGrid()
 	{
 	WebElement table_element = driver.findElement(By.cssSelector(tableXPath));
     List<WebElement> tr_collection=table_element.findElements(By.cssSelector(tableXPath + "> tbody > tr"));
     List<WebElement> th_collection=table_element.findElements(By.cssSelector(tableXPath + "> thead > tr > th"));
-
-    gridItem = new String[tr_collection.size()+1][th_collection.size()+1];
+    rowCount = tr_collection.size() +1;
+    columnCount = th_collection.size() +1;
+    gridItem = new String[rowCount][columnCount];
     System.out.println("NUMBER OF ROWS IN THIS TABLE = "+tr_collection.size());
     System.out.println("NUMBER OF COLUMS IN THIS TABLE = "+th_collection.size());
     int row_num,col_num;

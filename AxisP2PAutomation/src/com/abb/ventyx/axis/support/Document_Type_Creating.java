@@ -24,10 +24,11 @@ import com.abb.ventyx.axis.objects.pagedefinitions.DocType;
 @ALM(id = "158") 
 @Credentials(user = "5", password = "testuser")
 public class Document_Type_Creating extends BaseTestCase {
-	private final String DOCTYPE_B = "ABB";
+	private final String DOCTYPE_B = "Abb";
 	private final String DESC_B = "AA_MAINTAIN_DOCTYPES";
 	String DOCTYPE_A;
 	String DESC_A;
+	BaseGrid grid;
 	@Test
 	public void Document_Type_Creating(){
 		   // Create Permission 
@@ -37,7 +38,7 @@ public class Document_Type_Creating extends BaseTestCase {
 		    //Document Types is unique.
 		    driver.findElement(By.cssSelector(AxisConfigMenu.DOC_TYPE)).click();
 		    
-		    BaseGrid grid = new BaseGrid(driver, "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div.v-grid-tablewrapper > table");
+		    grid = new BaseGrid(driver, DocType.GRID);
 		    DOCTYPE_A =  grid.getGridCellByColumnName("Document Types",1);
 		    DESC_A =   grid.getGridCellByColumnName("Description",1);
 //		    DOCTYPE_A = driver.findElement(By.id(DocType.DTROW1)).getText();
@@ -51,17 +52,15 @@ public class Document_Type_Creating extends BaseTestCase {
 	}
 	@Test(dependsOnMethods ="Document_Type_Creating")
 	public void Checking_Message(){
-		    WebElement flashDialogue = (new WebDriverWait(driver, 10))
-		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.CONFIRM_DAILOGUE)));
-		    Assert.assertEquals(flashDialogue.getCssValue("visibility"), "visible");
+//		    WebElement flashDialogue = (new WebDriverWait(driver, 10))
+//		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.CONFIRM_DAILOGUE)));
+//		    Assert.assertEquals(flashDialogue.getCssValue("visibility"), "visible");
 		    WebElement flashMessage = (new WebDriverWait(driver, 10))
-		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.CONFIRM_MESSAGE)));
-		    Assert.assertEquals(flashMessage.getText(), "Document Types exist");
+		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.SUCCESS_MESSAGE)));
+		    Assert.assertEquals(flashMessage.getText(), "Document Types created successfully");
 		    System.out.println(flashMessage.getText());
-		    final String DOCTYPE_C = driver.findElement(By.id(DocType.DTROW1)).getText();
-		    final String DESC_C = driver.findElement(By.id(DocType.DROW1)).getText();
-		    Assert.assertNotEquals(DOCTYPE_C, DOCTYPE_A);
-		    Assert.assertNotEquals(DESC_C, DESC_A);
+		    grid = new BaseGrid(driver, DocType.GRID);
+		    Assert.assertNotEquals(grid.findItemByColumnName("Document Types", "Abb"),-1,"Data not created");
 		   			    
    }	    
 }
