@@ -5,6 +5,8 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BaseGrid {
 	WebDriver driver;
@@ -51,7 +53,8 @@ public class BaseGrid {
 	}
 	private void getGrid()
 	{
-	WebElement table_element = driver.findElement(By.cssSelector(tableXPath));
+	WebElement table_element = (new WebDriverWait(driver, 20))
+	  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(tableXPath)));
     List<WebElement> tr_collection=table_element.findElements(By.cssSelector(tableXPath + "> tbody > tr"));
     List<WebElement> th_collection=table_element.findElements(By.cssSelector(tableXPath + "> thead > tr > th"));
     rowCount = tr_collection.size() +1;

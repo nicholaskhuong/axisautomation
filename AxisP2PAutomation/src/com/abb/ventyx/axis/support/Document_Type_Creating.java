@@ -29,9 +29,10 @@ public class Document_Type_Creating extends BaseTestCase {
 		    WebElement axisConfigParentButton = (new WebDriverWait(driver, 10))
 		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION)));
 		    axisConfigParentButton.click();
+		    WebElement axisDocType = (new WebDriverWait(driver, 20))
+		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.DOC_TYPE)));
+		    axisDocType.click();
 		    //Document Types is unique.
-		    driver.findElement(By.cssSelector(AxisConfigMenu.DOC_TYPE)).click();
-		    
 		    grid = new BaseGrid(driver, DocType.GRID);
 		    driver.findElement(By.cssSelector(DocType.ADD)).click();
 		    driver.findElement(By.id(DocType.DOCTYPES)).click();

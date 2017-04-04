@@ -37,8 +37,8 @@ public class Document_Type_Editing extends BaseTestCase {
 		  
 		    WebElement axisDocType = (new WebDriverWait(driver, 20))
 		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.DOC_TYPE)));
-		    // Update first instance on grid.
 		    axisDocType.click();
+		    // Update first instance on grid.
 		    grid = new BaseGrid(driver, DocType.GRID);
 		    row = grid.findItemByColumnName("Document Types", DOCTYPE_B);
 		    final String DOCTYPE_A = grid.getGridCellByColumnName("Document Types",row);
