@@ -43,19 +43,16 @@ public class Document_Type_Creating extends BaseTestCase {
 	}
 	@Test(dependsOnMethods ="Document_Type_Create")
 	public void Checking_Message(){
-//		    WebElement flashDialogue = (new WebDriverWait(driver, 10))
-//		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.CONFIRM_DAILOGUE)));
-//		    Assert.assertEquals(flashDialogue.getCssValue("visibility"), "visible");
 		    WebElement flashMessage = (new WebDriverWait(driver, 10))
 		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.SUCCESS_MESSAGE)));
+		    Assert.assertEquals(driver.findElement(By.cssSelector(DocType.POPUP_SUCCESS)).getCssValue("background-color"), "rgba(33, 190, 137, 1)");
 		    Assert.assertEquals(flashMessage.getCssValue("visibility"), "visible");
 		    Assert.assertEquals(flashMessage.getCssValue("display"), "inline-block");
-		    Assert.assertEquals(flashMessage.getCssValue("color"), "rgba(255, 255, 255, 1)");
 		    Assert.assertEquals(flashMessage.getText(), Messages.DOCUMENT_CREATE_SUCCESSFULLY);
 		    
 		    System.out.println(flashMessage.getText());
 		    grid = new BaseGrid(driver, DocType.GRID);
-		    Assert.assertNotEquals(grid.findItemByColumnName("Document Types", "Abb"),-1,"Data not created");
+		    Assert.assertNotEquals(grid.findItemByColumnName("Document Types", DOCTYPE_B),-1,"Data not created");
 		   			    
    }	    
 }

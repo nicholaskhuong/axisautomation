@@ -53,9 +53,9 @@ public class Document_Type_Deleting extends BaseTestCase {
 		    delete_Yes.click();
 		    WebElement flashMessage = (new WebDriverWait(driver, 10))
 		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.SUCCESS_MESSAGE)));
+		    Assert.assertEquals(driver.findElement(By.cssSelector(DocType.POPUP_SUCCESS)).getCssValue("background-color"), "rgba(33, 190, 137, 1)");
 		    Assert.assertEquals(flashMessage.getCssValue("visibility"), "visible");
 		    Assert.assertEquals(flashMessage.getCssValue("display"), "inline-block");
-		    Assert.assertEquals(flashMessage.getCssValue("color"), "rgba(255, 255, 255, 1)");
 		    Assert.assertEquals(flashMessage.getText(), Messages.DOCUMENT_DELETE_SUCCESSFULLY);
 	}
 	@Test(dependsOnMethods ="Delete_Document_Type_From_Grid" )
