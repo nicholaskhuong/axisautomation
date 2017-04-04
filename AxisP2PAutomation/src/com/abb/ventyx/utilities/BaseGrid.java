@@ -22,7 +22,7 @@ public class BaseGrid {
 	}
 	public String getGridCellByColumnName(String columnName, int rowNumber)
 	{
-		for(int i = 1; i<=columnCount; i++ )
+		for(int i = 1; i<columnCount; i++ )
 		{
 			if (gridItem[0][i].trim().equalsIgnoreCase(columnName.trim()))
 			{
@@ -34,7 +34,7 @@ public class BaseGrid {
 	public int findItemByColumnName(String columnName, String value)
 	{
 		int columnNo = 0;
-		for(int i = 1; i<=columnCount; i++ )
+		for(int i = 1; i<columnCount; i++ )
 		{
 			if (gridItem[0][i].trim().equalsIgnoreCase(columnName.trim()))
 			{
@@ -42,7 +42,7 @@ public class BaseGrid {
 				break;
 			}
 		}
-		for(int i = 1; i<=rowCount; i++ )
+		for(int i = 1; i<rowCount; i++ )
 		{
 			if (gridItem[i][columnNo].trim().equals(value.trim()))
 			{
@@ -53,7 +53,7 @@ public class BaseGrid {
 	}
 	private void getGrid()
 	{
-	WebElement table_element = (new WebDriverWait(driver, 20))
+	WebElement table_element = (new WebDriverWait(driver, 30))
 	  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(tableXPath)));
     List<WebElement> tr_collection=table_element.findElements(By.cssSelector(tableXPath + "> tbody > tr"));
     List<WebElement> th_collection=table_element.findElements(By.cssSelector(tableXPath + "> thead > tr > th"));

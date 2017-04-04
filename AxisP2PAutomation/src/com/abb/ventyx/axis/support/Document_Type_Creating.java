@@ -26,7 +26,7 @@ public class Document_Type_Creating extends BaseTestCase {
 	@Test
 	public void Document_Type_Create(){
 		   // Create Permission 
-		    WebElement axisConfigParentButton = (new WebDriverWait(driver, 10))
+		    WebElement axisConfigParentButton = (new WebDriverWait(driver, 20))
 		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION)));
 		    axisConfigParentButton.click();
 		    WebElement axisDocType = (new WebDriverWait(driver, 20))

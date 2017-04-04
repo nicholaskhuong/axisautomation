@@ -44,16 +44,21 @@ public class Document_Type_Deleting extends BaseTestCase {
 		   //Delete first instance on grid.
 		    grid = new BaseGrid(driver, DocType.GRID);
 		    row = grid.findItemByColumnName("Document Types", DOCTYPE_B);
+		    Assert.assertNotEquals(row, -1, "Record not found");
 		    DOCTYPE_A =  grid.getGridCellByColumnName("Document Types",row);
 		    DESC_A =   grid.getGridCellByColumnName("Description",row);
 		    driver.findElement(By.id("deleteItemBtn"+ (row-1))).click();
-		    assertThat(driver.findElement(By.cssSelector(DocType.CONFIRMATION_OF_DELETION)).getText(),containsString(Messages.Delete_Confirm));
+		    WebElement delete_Confirm = (new WebDriverWait(driver, 10))
+		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.CONFIRMATION_OF_DELETION)));
+		    assertThat(delete_Confirm.getText(),containsString(Messages.Delete_Confirm));
 		    WebElement delete_Yes = (new WebDriverWait(driver, 10))
 		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.DELETE_YES)));
 		    delete_Yes.click();
 		    WebElement flashMessage = (new WebDriverWait(driver, 10))
 		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.SUCCESS_MESSAGE)));
-		    Assert.assertEquals(driver.findElement(By.cssSelector(DocType.POPUP_SUCCESS)).getCssValue("background-color"), "rgba(33, 190, 137, 1)");
+		    WebElement popup =driver.findElement(By.cssSelector(DocType.POPUP_SUCCESS));
+		    Assert.assertEquals(popup.getCssValue("background-color"), "rgba(33, 190, 137, 1)");
+		    Assert.assertEquals(popup.getCssValue("display"), "block");
 		    Assert.assertEquals(flashMessage.getCssValue("visibility"), "visible");
 		    Assert.assertEquals(flashMessage.getCssValue("display"), "inline-block");
 		    Assert.assertEquals(flashMessage.getText(), Messages.DOCUMENT_DELETE_SUCCESSFULLY);

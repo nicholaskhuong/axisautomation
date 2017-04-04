@@ -41,6 +41,7 @@ public class Document_Type_Editing extends BaseTestCase {
 		    // Update first instance on grid.
 		    grid = new BaseGrid(driver, DocType.GRID);
 		    row = grid.findItemByColumnName("Document Types", DOCTYPE_B);
+		    Assert.assertNotEquals(row, -1, "Record not found");
 		    final String DOCTYPE_A = grid.getGridCellByColumnName("Document Types",row);
 		    final String DESC_A = grid.getGridCellByColumnName("Description",row);
 		    driver.findElement(By.id("docTypeBtn" + (row-1))).click();
