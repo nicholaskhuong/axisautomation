@@ -49,7 +49,7 @@ public class Document_Type_Deleting extends BaseTestCase {
 		    DESC_A =   grid.getGridCellByColumnName("Description",row);
 		    driver.findElement(By.id("deleteItemBtn"+ (row-1))).click();
 		    WebElement delete_Confirm = (new WebDriverWait(driver, 10))
-		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.CONFIRMATION_OF_DELETION)));
+		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.CONFIRMATION)));
 		    assertThat(delete_Confirm.getText(),containsString(Messages.Delete_Confirm));
 		    WebElement delete_Yes = (new WebDriverWait(driver, 10))
 		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.DELETE_YES)));
