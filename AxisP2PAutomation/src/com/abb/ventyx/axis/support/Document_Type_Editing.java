@@ -25,26 +25,29 @@ import com.ventyx.testng.TestDataKey;
 @Credentials(user = "5", password = "testuser")
 public class Document_Type_Editing extends BaseTestCase {
 	@TestDataKey private final String DOCTYPE_B = "Abb";
-	@TestDataKey private final String DESC_B = "AAA_MAINTAIN_DOCTYPES UPDATED SECOND TIME";
+	@TestDataKey private final String DESC_B = "UPDATED SECOND TIME";
 	BaseGrid grid;
 	int row;
 	@Test
 	  public void Update() throws Exception {
 		
-		    WebElement axisConfigParentButton = (new WebDriverWait(driver, 20))
+		    WebElement axisConfigParentButton = (new WebDriverWait(driver, 60))
 		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION)));
 		    axisConfigParentButton.click();
 		  
-		    WebElement axisDocType = (new WebDriverWait(driver, 20))
+		    WebElement axisDocType = (new WebDriverWait(driver, 60))
 		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.DOC_TYPE)));
 		    axisDocType.click();
-		    // Update first instance on grid.
+		    
+		    // Step 1 Update the record from Add New step..
 		    grid = new BaseGrid(driver, DocType.GRID);
 		    row = grid.findItemByColumnName("Document Types", DOCTYPE_B);
 		    Assert.assertNotEquals(row, -1, "Record not found");
 		    final String DOCTYPE_A = grid.getGridCellByColumnName("Document Types",row);
 		    final String DESC_A = grid.getGridCellByColumnName("Description",row);
 		    driver.findElement(By.id("docTypeBtn" + (row-1))).click();
+		    boolean status = driver.findElement(By.id(DocType.DOCTYPES)).isEnabled();
+		    Assert.assertEquals(status, false);
 		    driver.findElement(By.id(DocType.DESC)).clear();
 		    driver.findElement(By.id(DocType.DESC)).sendKeys(DESC_B);
 		    driver.findElement(By.id(DocType.SAVE)).click();
@@ -58,12 +61,12 @@ public class Document_Type_Editing extends BaseTestCase {
 		    final String DOCTYPE_C = grid.getGridCellByColumnName("Document Types",row);
 		    final String DESC_C = grid.getGridCellByColumnName("Description",row);
 		 
-		   //Compare Values before and after updating.
-		    assertEquals(DOCTYPE_C, DOCTYPE_A);
-		    assertThat(DESC_C, is(not(DESC_A)));
-		    assertEquals(DESC_C, DESC_B);
+		   //Step 2 Compare Values before and after updating.
+		    Assert.assertEquals(DOCTYPE_C, DOCTYPE_A);
+		    Assert.assertNotEquals(DESC_C, DESC_A);
+		    Assert.assertEquals(DESC_C, DESC_B);
 		   			    
-		   //Return Document type to its original value.
+		   //Step 3 Return Document type to its original value.
 		    driver.findElement(By.id("docTypeBtn" + (row-1))).click();
 		    driver.findElement(By.id(DocType.DESC)).clear();
 		    driver.findElement(By.id(DocType.DESC)).sendKeys(DESC_A);

@@ -29,7 +29,7 @@ public class Document_Type_Creating extends BaseTestCase {
 	BaseGrid grid;
 	@Test
 	public void Document_Type_Create(){
-		WebElement axisConfigParentButton = (new WebDriverWait(driver, 10))
+		WebElement axisConfigParentButton = (new WebDriverWait(driver, 60))
 	  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION)));
 	    axisConfigParentButton.click();
 	    //Step 1 Add new doc type and success message
@@ -42,7 +42,7 @@ public class Document_Type_Creating extends BaseTestCase {
 	    driver.findElement(By.id(DocType.DESC)).click();
 	    driver.findElement(By.id(DocType.DESC)).sendKeys(DESC_B);
 	    driver.findElement(By.id(DocType.SAVE)).click();
-	    WebElement flashMessage1 = (new WebDriverWait(driver, 10))
+	    WebElement flashMessage1 = (new WebDriverWait(driver, 60))
 	  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.SUCCESS_MESSAGE)));
 	    Assert.assertEquals(flashMessage1.getText(), Messages.DOCUMENT_CREATE_SUCCESSFULLY);
 	    grid = new BaseGrid(driver, DocType.GRID);
@@ -55,7 +55,7 @@ public class Document_Type_Creating extends BaseTestCase {
 	    driver.findElement(By.id(DocType.DESC)).click();
 	    driver.findElement(By.id(DocType.DESC)).sendKeys(DESC_B);
 	    driver.findElement(By.id(DocType.SAVE)).click();
-	    WebElement flashMessage2 = (new WebDriverWait(driver, 10))
+	    WebElement flashMessage2 = (new WebDriverWait(driver, 60))
 			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.DOC_TYPES_EXIST)));
 	    assertThat(flashMessage2.getText(), CoreMatchers.containsString(Messages.DOC_TYPES_EXIST));
 	    driver.findElement(By.id(DocType.CANCEL)).click();
