@@ -1,14 +1,11 @@
 package com.abb.ventyx.axis.support;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.*;
 
 import org.testng.Assert;
@@ -41,10 +38,11 @@ public class Document_Type_Deleting extends BaseTestCase {
 		    WebElement axisDocType = (new WebDriverWait(driver, 20))
 		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.DOC_TYPE)));
 		    axisDocType.click();
-		   //Delete first instance on grid.
+		    
+		   //Step 1 Delete the record from Add New Doc Type Step.
 		    grid = new BaseGrid(driver, DocType.GRID);
 		    row = grid.findItemByColumnName("Document Types", DOCTYPE_B);
-		    Assert.assertNotEquals(row, -1, "Record not found");
+		    Assert.assertNotEquals(row, -1, "Record to be deleted not found");
 		    DOCTYPE_A =  grid.getGridCellByColumnName("Document Types",row);
 		    DESC_A =   grid.getGridCellByColumnName("Description",row);
 		    driver.findElement(By.id("deleteItemBtn"+ (row-1))).click();
@@ -62,12 +60,7 @@ public class Document_Type_Deleting extends BaseTestCase {
 		    Assert.assertEquals(flashMessage.getCssValue("visibility"), "visible");
 		    Assert.assertEquals(flashMessage.getCssValue("display"), "inline-block");
 		    Assert.assertEquals(flashMessage.getText(), Messages.DOCUMENT_DELETE_SUCCESSFULLY);
-	}
-	@Test(dependsOnMethods ="Delete_Document_Type_From_Grid" )
-	  public void Check_Successful_Message() throws Exception {
-		   //Indicate 1st row's value is now different from the original one as the original one already deleted.
-			grid = new BaseGrid(driver, DocType.GRID);
-		    assertThat(grid.getGridCellByColumnName("Document Types",row), is(not(DOCTYPE_A)));
-		  
+		    Assert.assertNotEquals(row, -1, "Record not deleted yet");
+		    
    }	    
 }
