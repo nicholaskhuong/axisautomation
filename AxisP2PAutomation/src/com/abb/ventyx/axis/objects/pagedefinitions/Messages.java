@@ -9,4 +9,5 @@ public class Messages {
 	public static final String  DOC_TYPES_EXIST = "Document Types exist";
 	public static final String  ENTER_MANDATORY_FIELDS = "Please enter a value for all mandatory fields";
 	public static final String  USERGROUP_CREATE_SUCCESSFULLY = "User group successfully created";
+	
 }

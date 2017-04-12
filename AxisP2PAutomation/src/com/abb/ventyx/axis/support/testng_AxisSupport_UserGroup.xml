@@ -6,7 +6,8 @@
      </listeners>
 	<test name="Create_User_Group">
 		<classes>
-				<class name="com.abb.ventyx.axis.support.Create_User_Group" />
+				<class name="com.abb.ventyx.axis.support.User_Group_Creating" />
 		</classes>
+		
   	</test> <!-- Test -->
 </suite> <!-- Suite -->
