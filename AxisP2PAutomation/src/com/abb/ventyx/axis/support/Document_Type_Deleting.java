@@ -25,8 +25,6 @@ import com.ventyx.testng.TestDataKey;
 public class Document_Type_Deleting extends BaseTestCase {
 	@TestDataKey private final String DOCTYPE_B = "Abb";
 	@TestDataKey private final String DESC_B = "AAA_MAINTAIN_DOCTYPES";
-	String DOCTYPE_A ;
-	String DESC_A;
 	int row;
 	BaseGrid grid;
 	@Test
@@ -43,12 +41,10 @@ public class Document_Type_Deleting extends BaseTestCase {
 		    grid = new BaseGrid(driver, DocType.GRID);
 		    row = grid.findItemByColumnName("Document Types", DOCTYPE_B);
 		    Assert.assertNotEquals(row, -1, "Record to be deleted not found");
-		    DOCTYPE_A =  grid.getGridCellByColumnName("Document Types",row);
-		    DESC_A =   grid.getGridCellByColumnName("Description",row);
 		    driver.findElement(By.id("deleteItemBtn"+ (row-1))).click();
 		    WebElement delete_Confirm = (new WebDriverWait(driver, 10))
 		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.CONFIRMATION)));
-		    assertThat(delete_Confirm.getText(),containsString(Messages.Delete_Confirm));
+		    assertThat(delete_Confirm.getText(),containsString(Messages.DEL_CONFIRM));
 		    WebElement delete_Yes = (new WebDriverWait(driver, 10))
 		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.DELETE_YES)));
 		    delete_Yes.click();
