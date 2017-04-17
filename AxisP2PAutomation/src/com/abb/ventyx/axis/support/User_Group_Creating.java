@@ -2,6 +2,7 @@ package com.abb.ventyx.axis.support;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNull;
+import static org.testng.Assert.assertTrue;
 
 import java.util.List;
 
@@ -25,26 +26,28 @@ public class User_Group_Creating extends BaseTestCase{
 
 	String USER_GROUP_NAME="Manage Group";
 	JavascriptExecutor js = (JavascriptExecutor)driver;
+	
 	@Test
 	  public void create_User_Group() throws Exception {
-		  	
-		   WebElement customerConfiguration = (new WebDriverWait(driver, 20))
-				  .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisSupportUserGroup.CONFIGURATION_MENU_CSS)));
+    	   WebElement customerConfiguration = (new WebDriverWait(driver, 10))
+				  .until(ExpectedConditions.presenceOfElementLocated(By.id(AxisSupportUserGroup.CUSTOMERMAINTAINCE_MENU_ID)));
 		   customerConfiguration.click();
-		   WebElement userGroupsMenu= (new WebDriverWait(driver, 20))
-				  .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisSupportUserGroup.USERGROUP_SUBMENU_CSS)));
+		   WebElement userGroupsMenu = (new WebDriverWait(driver, 15))
+					  .until(ExpectedConditions.presenceOfElementLocated(By.id(AxisSupportUserGroup.USERGROUP_SUBMENU_ID)));
 		   userGroupsMenu.click();
-		   WebElement addUserGroup = (new WebDriverWait(driver, 20))
-				  .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisSupportUserGroup.ADD_CSS)));
-		   WebElement screenTitle=driver.findElement(By.cssSelector(AxisSupportUserGroup.SCREEN_TITLE_CSS));
-		   assertEquals(screenTitle.getText(), AxisSupportUserGroup.SCREEN_TITLE);
-		   js.executeScript("arguments[0].click();", addUserGroup);  
-		   WebElement userGroupName = (new WebDriverWait(driver, 20))
+		   WebElement screenTitle=(new WebDriverWait(driver, 10))
+					  .until(ExpectedConditions.presenceOfElementLocated(By.id(AxisSupportUserGroup.SCREEN_TITLE_ID)));
+		   WebElement addUserGroup=(new WebDriverWait(driver, 15))
+					  .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisSupportUserGroup.ADD_CSS)));
+		   Assert.assertEquals(screenTitle.getText(), "Maintain User Groups", "Title is wrong");
+		   addUserGroup.click();
+		   WebElement userGroupName = (new WebDriverWait(driver, 15))
 				  .until(ExpectedConditions.presenceOfElementLocated(By.id(AxisSupportUserGroup.USERGROUP_NAME_ID)));
-		   assertEquals(screenTitle.getText(), AxisSupportUserGroup.SCREEN_CREATE_TITLE);
-		   
-		   //input data
+		   WebElement screenUserGroups =driver.findElement(By.id(AxisSupportUserGroup.SCREEN_TITLE_ID));
+		   Assert.assertEquals(screenUserGroups.getText(), AxisSupportUserGroup.SCREEN_CREATE_TITLE);
+		   //input dataBy.id
 		   userGroupName.clear();
+		   
 		   userGroupName.sendKeys(USER_GROUP_NAME);
 		   List <WebElement> listCheckbox= driver.findElements(By.xpath("//input[@type='checkbox']"));
 		   listCheckbox.get(1).click();
@@ -61,24 +64,31 @@ public class User_Group_Creating extends BaseTestCase{
 		 Assert.assertEquals(flashMessage1.getText(), Messages.USERGROUP_CREATE_SUCCESSFULLY);	  	
 	}
 	
-	@Test(dependsOnMethods = "checkMessage")
+	@Test(dependsOnMethods = "checkSucessMessage")
 	public void checkDataExisting (){ 
-		WebElement filter=driver.findElement(By.xpath(AxisSupportUserGroup.FILTERNAME_CSS)) ; 
-		filter.click();
-		filter.clear();
-		filter.sendKeys(USER_GROUP_NAME);
-		BaseGrid grid=new BaseGrid(driver,AxisSupportUserGroup.USERGROUP_GRID_XPATH);
-		int row=grid.findItemByColumnName(AxisSupportUserGroup.COLUMN1, USER_GROUP_NAME);
-		String userGroupName=grid.getGridCellByColumnName(AxisSupportUserGroup.COLUMN1, row);
-		assertEquals(userGroupName, USER_GROUP_NAME);
-		
+		WebElement filterBtn=driver.findElement(By.cssSelector(AxisSupportUserGroup.FILTER_CSS)) ; 
+		filterBtn.click();
+		WebElement filterText = (new WebDriverWait(driver, 10))
+	  			.until(ExpectedConditions.presenceOfElementLocated(By.id(AxisSupportUserGroup.FILTERNAME_ID)));
+		filterText.clear();
+		filterText.sendKeys(USER_GROUP_NAME);
+		List<WebElement> listUserGroups= driver.findElements(By.xpath("tr"));
+		for(int i=0; i<listUserGroups.size();i++)
+		{
+			WebElement UserGroup= driver.findElement(By.xpath(AxisSupportUserGroup.USERGROUP_NAME_LINK_XPATH+String.valueOf(i)+"']"));
+			if(UserGroup.getText().equals(USER_GROUP_NAME))
+			{
+				assertTrue(UserGroup.getText().equals(USER_GROUP_NAME));
+				break;
+			}
+		}
 	}
 	
 	@Test(dependsOnMethods = "checkDataExisting")
 	public void createWithInvalidData (){ 
 		 WebElement addUserGroup = (new WebDriverWait(driver, 20))
 				 .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisSupportUserGroup.ADD_CSS)));
-		 js.executeScript("arguments[0].click();", addUserGroup);  
+		 addUserGroup.click(); 
 		 WebElement userGroupName = (new WebDriverWait(driver, 20))
 				 .until(ExpectedConditions.presenceOfElementLocated(By.id(AxisSupportUserGroup.USERGROUP_NAME_ID)));
 		 userGroupName.clear();
@@ -89,27 +99,32 @@ public class User_Group_Creating extends BaseTestCase{
 	@Test(dependsOnMethods = "createWithInvalidData")
 	public void checkInvalidMessage (){ 
 		 WebElement flashMessage1 = (new WebDriverWait(driver, 10))
-	  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.SUCCESS_MESSAGE)));
+	  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.ENTER_MANDATORY_FIELDS)));
 		 assertEquals(flashMessage1.getText(), Messages.ENTER_MANDATORY_FIELDS);	  	
 	}
 	
-	@Test(dependsOnMethods = "checkInvalidMessage")
+	/*@Test(dependsOnMethods = "checkInvalidMessage")
 	public void clickCancel () throws InterruptedException{ 
 		driver.findElement(By.id(AxisSupportUserGroup.USERGROUP_NAME_ID)).sendKeys("ABC");
 		driver.findElement(By.id(AxisSupportUserGroup.CANCEL_ID)).click();
 
 		WebElement msgDialog= (new WebDriverWait(driver, 20))
-				 .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisSupportUserGroup.CANCEL_CONTENT_CSS)));
-		assertEquals(msgDialog.getText(), Messages.UNSAVED_CHANGE);	
+				 .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.CONFIRM_MESSAGE)));
+		String s=msgDialog.getText();
+		assertTrue(msgDialog.getText().contains(Messages.UNSAVED_CHANGE));
 		driver.findElement(By.id(AxisSupportUserGroup.CANCEL_NO_ID)).click();
-		assertNull(msgDialog);
-		WebElement screenTitle=driver.findElement(By.cssSelector(AxisSupportUserGroup.SCREEN_TITLE_CSS));
+		driver.wait(10);
+		WebElement Dialog= driver.findElement(By.cssSelector(DocType.CONFIRM_MESSAGE));
+		assertNull(Dialog);
+		WebElement screenTitle=driver.findElement(By.cssSelector(AxisSupportUserGroup.SCREEN_TITLE_ID));
 		assertEquals(screenTitle.getText(), AxisSupportUserGroup.SCREEN_CREATE_TITLE);
-		driver.findElement(By.id(AxisSupportUserGroup.CANCEL_ID)).click();;
-		msgDialog.wait(20);
-		msgDialog.isDisplayed();
+		
+		driver.findElement(By.id(AxisSupportUserGroup.CANCEL_ID)).click();
+		WebElement msgDialog1= (new WebDriverWait(driver, 20))
+				 .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.CONFIRM_MESSAGE)));
+		msgDialog1.isDisplayed();
 		driver.findElement(By.id(AxisSupportUserGroup.CANCEL_YES_ID)).click();
-		assertNull(msgDialog);
+		assertNull(msgDialog1);
 		(new WebDriverWait(driver, 20))
 		 .until(ExpectedConditions.presenceOfElementLocated(By.xpath(AxisSupportUserGroup.USERGROUP_GRID_XPATH)));
 		assertEquals(screenTitle.getText(), AxisSupportUserGroup.SCREEN_TITLE);
@@ -125,7 +140,8 @@ public class User_Group_Creating extends BaseTestCase{
 		driver.findElement(By.id(AxisSupportUserGroup.CANCEL_ID)).click();
 		(new WebDriverWait(driver, 20))
 		 .until(ExpectedConditions.presenceOfElementLocated(By.xpath(AxisSupportUserGroup.USERGROUP_GRID_XPATH)));
-		WebElement screenTitle=driver.findElement(By.cssSelector(AxisSupportUserGroup.SCREEN_TITLE_CSS));
+		WebElement screenTitle=driver.findElement(By.cssSelector(AxisSupportUserGroup.SCREEN_TITLE_ID));
 		assertEquals(screenTitle.getText(), AxisSupportUserGroup.SCREEN_TITLE);
-	}
+	}*/
+	
 }
