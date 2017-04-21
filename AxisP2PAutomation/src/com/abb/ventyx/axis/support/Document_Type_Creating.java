@@ -37,8 +37,12 @@ public class Document_Type_Creating extends BaseTestCase {
 		    WebElement axisDocType = (new WebDriverWait(driver, 60))
 		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.DOC_TYPE)));
 		    axisDocType.click();
-		    driver.findElement(By.cssSelector(DocType.ADD)).click();
-		    driver.findElement(By.id(DocType.DOCTYPES)).click();
+		    WebElement addDocType = (new WebDriverWait(driver, 60))
+		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.ADD)));
+		    addDocType.click();
+		    WebElement clickDocTpe = (new WebDriverWait(driver, 60))
+		  			.until(ExpectedConditions.presenceOfElementLocated(By.id(DocType.DOCTYPES)));
+		    clickDocTpe.click();
 		    driver.findElement(By.id(DocType.DOCTYPES)).sendKeys(DOCTYPE_B);
 		    driver.findElement(By.id(DocType.DESC)).click();
 		    driver.findElement(By.id(DocType.DESC)).sendKeys(DESC_B);
@@ -46,6 +50,8 @@ public class Document_Type_Creating extends BaseTestCase {
 		    WebElement flashMessage1 = (new WebDriverWait(driver, 60))
 	 	  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.SUCCESS_MESSAGE)));
 	 	    Assert.assertEquals(flashMessage1.getText(), Messages.DOCUMENT_CREATE_SUCCESSFULLY);
+	 	   WebElement addDocType2 = (new WebDriverWait(driver, 60))
+		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.ADD)));
 	 	    grid = new BaseGrid(driver, DocType.GRID);
 	 	    Assert.assertNotEquals(grid.findItemByColumnName("Document Types", DOCTYPE_B),-1,"Data not created");
 	 	
@@ -54,10 +60,12 @@ public class Document_Type_Creating extends BaseTestCase {
 	    //Step 2 Check if Existing Doc type could be created one more time 
 	    @Test(dependsOnMethods = "createDocumentType")
 		public void createExistingDocType (){
-	    	 WebElement addDocType = (new WebDriverWait(driver, 20))
+	    	 WebElement addDocType = (new WebDriverWait(driver, 60))
 					  .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.ADD)));
 	    	addDocType.click();
-		    driver.findElement(By.id(DocType.DOCTYPES)).click();
+	    	WebElement clickDocTpe = (new WebDriverWait(driver, 60))
+		  			.until(ExpectedConditions.presenceOfElementLocated(By.id(DocType.DOCTYPES)));
+		    clickDocTpe.click();
 		    driver.findElement(By.id(DocType.DOCTYPES)).sendKeys(DOCTYPE_B);
 		    driver.findElement(By.id(DocType.DESC)).click();
 		    driver.findElement(By.id(DocType.DESC)).sendKeys(DESC_B);
@@ -65,20 +73,25 @@ public class Document_Type_Creating extends BaseTestCase {
 		    WebElement flashMessage2 = (new WebDriverWait(driver, 60))
 					.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.DOC_TYPES_EXIST)));
 			    assertThat(flashMessage2.getText(), CoreMatchers.containsString(Messages.DOC_TYPES_EXIST));
+			WebElement cancelBtn = (new WebDriverWait(driver, 60))
+			    	  .until(ExpectedConditions.presenceOfElementLocated(By.id(DocType.CANCEL)));
+		    	cancelBtn.click();
 			    
 	    }
 	    	   
 	 	//Step 3 Check error message of Input Mandatory data to mandatory fields.
 	    @Test(dependsOnMethods = "createExistingDocType")
 		public void leaveRequiredInputFieldsEmpty (){ 
-	    	WebElement cancelBtn = (new WebDriverWait(driver, 20))
-					  .until(ExpectedConditions.presenceOfElementLocated(By.id(DocType.CANCEL)));
-	    	cancelBtn.click();
-    	    driver.findElement(By.cssSelector(DocType.ADD)).click();
-		    driver.findElement(By.id(DocType.DESC)).click();
+	    	
+	    	WebElement addDocType = (new WebDriverWait(driver, 80))
+					  .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.ADD)));
+	    	addDocType.click();
+	    	WebElement clickDesc = (new WebDriverWait(driver, 80))
+					  .until(ExpectedConditions.presenceOfElementLocated(By.id(DocType.DESC)));
+	    	clickDesc.click();
 		    driver.findElement(By.id(DocType.DESC)).sendKeys(DESC_B);
 		    driver.findElement(By.id(DocType.SAVE)).click();
-		    WebElement flashMessage3 = (new WebDriverWait(driver, 10))
+		    WebElement flashMessage3 = (new WebDriverWait(driver, 60))
 		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.ENTER_MANDATORY_FIELDS)));
 		    Assert.assertEquals(flashMessage3.getText(), Messages.ENTER_MANDATORY_FIELDS);
 			    
@@ -87,13 +100,21 @@ public class Document_Type_Creating extends BaseTestCase {
 	    // Step 4 Check unsaved change message.
 	    @Test(dependsOnMethods = "leaveRequiredInputFieldsEmpty")
 	  	public void checkUnsavedChange (){ 
-	    	WebElement cancelBtn = (new WebDriverWait(driver, 20))
+	    	WebElement cancelBtn = (new WebDriverWait(driver, 60))
 					  .until(ExpectedConditions.presenceOfElementLocated(By.id(DocType.CANCEL)));
 	    	cancelBtn.click();
-	    	Assert.assertEquals(driver.findElement(By.cssSelector(DocType.CONFIRMATION)).getText(), Messages.UNSAVED_CHANGE);
+	    	WebElement message = (new WebDriverWait(driver, 60))
+					  .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.CONFIRMATION)));
+	    	 message.getText();
+	    	Assert.assertEquals(message.getText(), Messages.UNSAVED_CHANGE);
 		    driver.findElement(By.id(DialogBtns.NO)).click();
-		    cancelBtn.click();
-		    driver.findElement(By.id(DialogBtns.YES)).click();	   			    
+		    WebElement cancelBtn2 = (new WebDriverWait(driver, 60))
+					  .until(ExpectedConditions.presenceOfElementLocated(By.id(DocType.CANCEL)));
+	    	cancelBtn2.click();
+	    	WebElement yesBtn = (new WebDriverWait(driver, 60))
+					  .until(ExpectedConditions.presenceOfElementLocated(By.id(DialogBtns.YES)));
+	    	yesBtn.click();
+		   	    
 	    }	    
 }
 
