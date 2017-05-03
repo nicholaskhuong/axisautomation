@@ -1,7 +1,7 @@
 package com.abb.ventyx.axis.objects.pagedefinitions;
 
 public class FilterField {
-	public static final String ADD = "#HeaderMenuBar > span > span > span";
+	public static final String ADD = "#HeaderMenuBar > span:nth-child(2) > span > span";
  	public static final String FIROW1 = "docTypeBtn0";
  	public static final String FIROW2 = "docTypeBtn1";
  	public static final String FIROW3 = "docTypeBtn2";
@@ -19,9 +19,10 @@ public class FilterField {
  	public static final String FIELD_TYPE = "fieldTypeCB";
  	public static final String LOCATION_TYPE = "locationTypeCB";
  	public static final String TABLE_NAME = "locationTableNameCB";
- 	public static final String ADD_CACEL = "cancelBtn";
+ 	public static final String ADD_CANCEL = "cancelBtn";
  	public static final String ADD_SAVE = "createEditBtn";
  	public static final String CONFIRM_MESSAGE = "#confirmation-window > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-confirmation-window-text-and-button-layout > div > div:nth-child(1) > div";
  	public static final String NO = "noBtn";
  	public static final String YES = "okBtn";
+ 	public static final String LIST = "#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table";
 }
