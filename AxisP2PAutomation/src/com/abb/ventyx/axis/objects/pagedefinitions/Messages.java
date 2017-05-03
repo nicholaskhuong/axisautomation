@@ -19,4 +19,5 @@ public class Messages {
 	public static final String ERROR_CSS = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-error-notification.v-Notification-v-error-notification";
 	public static final String ERROR_WITHOUT_ICON_CSS = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-error-notification-no-icon.v-Notification-v-error-notification-no-icon";
 	public static final String WARNING_MESSAGE_XPATH="//*[@id='SupplierPortal-1227837064-overlays']/div[2]/div/div/h1/div/div/div[2]";
+	public static final String PERMISSION_UPADTED_SUCCESSFULLY = "Permission updated successfully";
 }
