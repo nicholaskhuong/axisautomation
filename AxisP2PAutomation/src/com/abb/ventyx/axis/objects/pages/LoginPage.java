@@ -34,7 +34,6 @@ public class LoginPage extends BasePage{
 		InputController.inputToTextFiled(getPasswordTextField(), password);
 		getLoginButton().click();
 	//	getContinueButtonClick();
-
 	}
 	
 	public void login(String url,TestLoginCredentials credential){
