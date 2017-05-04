@@ -1,21 +1,20 @@
 package com.abb.ventyx.axis.support;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNull;
 
 import java.util.List;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisSupportCustomerUserGroup;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.utilities.ALM;
+import com.abb.ventyx.utilities.BaseDropDownList;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
-
-
 
 import org.testng.annotations.Test;
 
@@ -26,46 +25,47 @@ public class User_Group_Creating extends BaseTestCase{
 	String SYSTEM_GROUP_NAME="CUST_ADMIN";
 	String CUSTOMER_NAME="Tanya Customer 11";
 	String USER_GROUP_NAME="Manager Group";
-	JavascriptExecutor js = (JavascriptExecutor)driver;
+	BaseDropDownList list;
+	int row;
 	
 	@Test
 	  public void checkScreen() throws Exception {
-    	   WebElement customerConfiguration = (new WebDriverWait(driver, 10))
-				  .until(ExpectedConditions.presenceOfElementLocated(By.id(AxisSupportCustomerUserGroup.CUSTOMERMAINTAINCE_MENU_ID)));
-		   customerConfiguration.click();
-		   WebElement userGroupsMenu = (new WebDriverWait(driver, 15))
-					  .until(ExpectedConditions.presenceOfElementLocated(By.id(AxisSupportCustomerUserGroup.USERGROUP_SUBMENU_ID)));
-		   userGroupsMenu.click();	  
-		   (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id(AxisSupportCustomerUserGroup.SYSTEM_TAB_ID)));
-		   WebElement screenTitle=(new WebDriverWait(driver, 10))
-					  .until(ExpectedConditions.presenceOfElementLocated(By.id(AxisSupportCustomerUserGroup.SCREEN_TITLE_ID)));
-		   assertEquals(screenTitle.getText(), AxisSupportCustomerUserGroup.SCREEN_TITLE, "Title is wrong");
-		   String system_row0= driver.findElement(By.id(AxisSupportCustomerUserGroup.ROW0_ID)).getText();
-		   assertEquals(system_row0, SYSTEM_GROUP_NAME);
-		   driver.findElement(By.id(AxisSupportCustomerUserGroup.USER_TAB_ID)).click();
+    	 WebElement customerConfiguration = (new WebDriverWait(driver, 10))
+				.until(ExpectedConditions.presenceOfElementLocated(By.id(AxisSupportCustomerUserGroup.CUSTOMERMAINTAINCE_MENU_ID)));
+		 customerConfiguration.click();
+		 WebElement userGroupsMenu = (new WebDriverWait(driver, 15))
+					.until(ExpectedConditions.presenceOfElementLocated(By.id(AxisSupportCustomerUserGroup.USERGROUP_SUBMENU_ID)));
+		 userGroupsMenu.click();	  
+		 (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id(AxisSupportCustomerUserGroup.SYSTEM_TAB_ID)));
+		 WebElement screenTitle=(new WebDriverWait(driver, 10))
+					.until(ExpectedConditions.presenceOfElementLocated(By.id(AxisSupportCustomerUserGroup.SCREEN_TITLE_ID)));
+		 assertEquals(screenTitle.getText(), AxisSupportCustomerUserGroup.SCREEN_TITLE, "Title is wrong");
+		 String system_row0= driver.findElement(By.id(AxisSupportCustomerUserGroup.ROW_ID+"0")).getText();
+		 assertEquals(system_row0, SYSTEM_GROUP_NAME);
+		 driver.findElement(By.id(AxisSupportCustomerUserGroup.USER_TAB_ID)).click();
 
 	  }
 	
 	@Test(dependsOnMethods = "checkScreen")
 	public void addWithoutCustomer (){ 
-		 WebElement addBtn = (new WebDriverWait(driver, 10))
+		WebElement addBtn = (new WebDriverWait(driver, 10))
 				  .until(ExpectedConditions.presenceOfElementLocated(By.xpath(AxisSupportCustomerUserGroup.ADD_XPATH)));
-		 addBtn.click();
-		 WebElement warningMessage = (new WebDriverWait(driver, 10))
+		addBtn.click();
+		WebElement warningMessage = (new WebDriverWait(driver, 10))
 	  			.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Messages.WARNING_MESSAGE_XPATH)));
-		 assertEquals(warningMessage.getText(), Messages.USERGROUP_SELECT_CUSTOMER);	  	
+		assertEquals(warningMessage.getText(), Messages.USERGROUP_SELECT_CUSTOMER);	  	
 	}
 	
 	@Test(dependsOnMethods = "addWithoutCustomer")
 	public void addWithSelectedCustomerNoUserGroupName () throws Exception {
-		WebElement customer=driver.findElement(By.className("v-filterselect-input"));
+		WebElement customer=driver.findElement(By.className(AxisSupportCustomerUserGroup.CUSTOMER_CLASS));
 		customer.sendKeys(CUSTOMER_NAME);
-		driver.wait(10);
-		Actions builder = new Actions(driver);
-		builder.sendKeys(Keys.ARROW_DOWN).build().perform();
-		builder.wait(10);
-		builder.sendKeys(Keys.ENTER).build().perform();
-	    (new WebDriverWait(driver, 15)).until(ExpectedConditions.presenceOfElementLocated(By.id(AxisSupportCustomerUserGroup.ROW0_ID)));
+		list = new BaseDropDownList (driver, AxisSupportCustomerUserGroup.LIST_CSS);
+		row = list.findItemInDropDownList(CUSTOMER_NAME);
+		WebElement rowClick = (new WebDriverWait(driver, 60))
+		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisSupportCustomerUserGroup.LIST_CSS+"> tbody > tr:nth-child("+(row-1)+") > td")));
+		rowClick.click();
+	    (new WebDriverWait(driver, 15)).until(ExpectedConditions.presenceOfElementLocated(By.id(AxisSupportCustomerUserGroup.ROW_ID+"0")));
 		WebElement addBtn= driver.findElement(By.xpath(AxisSupportCustomerUserGroup.ADD_XPATH));
 		addBtn.click();
 		(new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id(AxisSupportCustomerUserGroup.USERGROUP_NAME_ID)));
@@ -81,13 +81,60 @@ public class User_Group_Creating extends BaseTestCase{
 		
 		WebElement userGroupName = driver.findElement(By.id(AxisSupportCustomerUserGroup.USERGROUP_NAME_ID));
 		userGroupName.sendKeys(USER_GROUP_NAME);
-		List<WebElement> list= driver.findElements(By.className("v-grid-selection-checkbox"));
+		List<WebElement> list= driver.findElements(By.className(AxisSupportCustomerUserGroup.PERMISSION_CLASS));
 		list.get(0).click();
 		driver.findElement(By.id(AxisSupportCustomerUserGroup.SAVE_ID)).click();
 		WebElement sucessMessage = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(Messages.SUCCESS_MESSAGE)));
 		assertEquals(sucessMessage.getText(), Messages.USERGROUP_CREATE_SUCCESSFULLY);	
 	}
 	
+	
+	@Test(dependsOnMethods = "addWithSelectedCustomerHasUserGroupName")
+	public void clickCancelWithoutdata () throws InterruptedException{ 
+		WebElement addBtn= driver.findElement(By.xpath(AxisSupportCustomerUserGroup.ADD_XPATH));
+		addBtn.click();
+		(new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id(AxisSupportCustomerUserGroup.USERGROUP_NAME_ID)));
+		driver.findElement(By.id(AxisSupportCustomerUserGroup.CANCEL_ID)).click();
+		
+		(new WebDriverWait(driver, 20))
+		 .until(ExpectedConditions.presenceOfElementLocated(By.id(AxisSupportCustomerUserGroup.USER_CUSTOMER_ID)));
+		WebElement screenTitle=driver.findElement(By.id(AxisSupportCustomerUserGroup.SCREEN_TITLE_ID));
+		assertEquals(screenTitle.getText(), AxisSupportCustomerUserGroup.SCREEN_TITLE);
+	}
+	
+	@Test(dependsOnMethods = "clickCancelWithoutdata")
+	public void clickCancelClickNo () { 
+		
+		WebElement addBtn= driver.findElement(By.xpath(AxisSupportCustomerUserGroup.ADD_XPATH));
+		addBtn.click();
+		WebElement userGroupName =(new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id(AxisSupportCustomerUserGroup.USERGROUP_NAME_ID)));
+		userGroupName.sendKeys(USER_GROUP_NAME);
+		driver.findElement(By.id(AxisSupportCustomerUserGroup.CANCEL_ID)).click();
+		(new WebDriverWait(driver, 20))
+				 .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(Messages.CONFIRMATION)));
+		driver.findElement(By.id(Messages.YES_BTN_ID)).click();
+		(new WebDriverWait(driver, 20))
+		 .until(ExpectedConditions.presenceOfElementLocated(By.id(AxisSupportCustomerUserGroup.USER_CUSTOMER_ID)));
+		WebElement screenTitle=driver.findElement(By.id(AxisSupportCustomerUserGroup.SCREEN_TITLE_ID));
+		assertEquals(screenTitle.getText(), AxisSupportCustomerUserGroup.SCREEN_TITLE);
+	}
+	
+	@Test(dependsOnMethods = "clickCancelWithoutdata")
+	public void clickCancelClickYes () { 
+		
+		WebElement addBtn= driver.findElement(By.xpath(AxisSupportCustomerUserGroup.ADD_XPATH));
+		addBtn.click();
+		WebElement userGroupName =(new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id(AxisSupportCustomerUserGroup.USERGROUP_NAME_ID)));
+		userGroupName.sendKeys(USER_GROUP_NAME);
+		driver.findElement(By.id(AxisSupportCustomerUserGroup.CANCEL_ID)).click();
+		WebElement msgDialog= (new WebDriverWait(driver, 20))
+				 .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(Messages.CONFIRMATION)));
+		assertEquals(msgDialog.getText(), Messages.UNSAVED_CHANGE);	
+		driver.findElement(By.id(Messages.NO_BTN_ID)).click();;
+		WebElement screenTitle=driver.findElement(By.id(AxisSupportCustomerUserGroup.SCREEN_TITLE_ID));
+		assertEquals(screenTitle.getText(), AxisSupportCustomerUserGroup.SCREEN_CREATE_TITLE);	
+		
+	}
 	
 }
 
