@@ -35,7 +35,6 @@ public class Permissions_Deleting extends BaseTestCase {
 		  
 		  //Make sure this is a Confirmation of deleting process
 		    assertThat(driver.findElement(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION)).getText(),containsString(Messages.DELETE_CONFIRM));
-
 		    driver.findElement(By.cssSelector(Permissions.DELETE_YES)).click();
 		    final String PERMISION_ID_B = driver.findElement(By.id(Permissions.ROW1)).getText();
 		   
