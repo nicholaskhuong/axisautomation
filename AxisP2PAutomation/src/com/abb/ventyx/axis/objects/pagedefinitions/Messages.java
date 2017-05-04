@@ -21,4 +21,5 @@ public class Messages {
 	public static final String WARNING_MESSAGE_XPATH="//*[@id='SupplierPortal-1227837064-overlays']/div[2]/div/div/h1/div/div/div[2]";
 	public static final String PERMISSION_UPADTED_SUCCESSFULLY = "Permission updated successfully";
 	public static final String DOCUMENT_FILTER_FIELD_SUCCESSFULLY = "Document filter field successfully created";
+	
 }
