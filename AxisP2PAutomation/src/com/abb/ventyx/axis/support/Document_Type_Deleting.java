@@ -44,7 +44,8 @@ public class Document_Type_Deleting extends BaseTestCase {
 		    driver.findElement(By.id("deleteItemBtn"+ (row-1))).click();
 		    WebElement delete_Confirm = (new WebDriverWait(driver, 10))
 		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.CONFIRMATION)));
-		    assertThat(delete_Confirm.getText(),containsString(Messages.DEL_CONFIRM));
+		    assertThat(delete_Confirm.getText(),containsString(Messages.DELETE_CONFIRM));
+
 		    WebElement delete_Yes = (new WebDriverWait(driver, 10))
 		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.DELETE_YES)));
 		    delete_Yes.click();

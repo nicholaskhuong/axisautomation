@@ -34,6 +34,7 @@ public class LoginPage extends BasePage{
 		InputController.inputToTextFiled(getPasswordTextField(), password);
 		getLoginButton().click();
 	//	getContinueButtonClick();
+
 	}
 	
 	public void login(String url,TestLoginCredentials credential){
@@ -53,9 +54,9 @@ public class LoginPage extends BasePage{
 		return driver.findElement(By.xpath("//div[@id='signInBtn']"));
 	}
 	
-	public static void getContinueButtonClick(){
+	/*public static void getContinueButtonClick(){
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 	    WebElement continueButton = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.id(LoginPageDefinition.CONTINUE_BUTTON_ID)));
 	    js.executeScript("arguments[0].click();", continueButton);
-	}
+	}*/
 }

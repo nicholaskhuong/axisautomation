@@ -3,6 +3,7 @@ public class Messages {
 	
 	public static final String  UNSAVED_CHANGE = "Are you sure you want to exit without saving your changes?";
 	public static final String  DEL_CONFIRM = "Are you sure you want to delete this document type?";
+	public static final String  DELETE_CONFIRM = "Are you sure you want to delete this document type?";
 	public static final String  DOCUMENT_UPADTED_SUCCESSFULLY = "Document Types updated successfully";
 	public static final String  DOCUMENT_DELETE_SUCCESSFULLY = "Delete success";
 	public static final String  DOCUMENT_CREATE_SUCCESSFULLY = "Document Types created successfully";
@@ -21,5 +22,5 @@ public class Messages {
 	public static final String WARNING_MESSAGE_XPATH="//*[@id='SupplierPortal-1227837064-overlays']/div[2]/div/div/h1/div/div/div[2]";
 	public static final String PERMISSION_UPADTED_SUCCESSFULLY = "Permission updated successfully";
 	public static final String DOCUMENT_FILTER_FIELD_SUCCESSFULLY = "Document filter field successfully created";
-	
+
 }
