@@ -10,16 +10,18 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BaseGrid {
 	WebDriver driver;
-	String tableXPath;
+	String tableCSS;
+	String gridId;
 	String[ ][ ] gridItem;
 	int rowCount  =0;
 	int columnCount =0;
-	public BaseGrid(WebDriver driver, String tableXPath)
+	public BaseGrid(WebDriver driver, String tableCSS)
 	{
 		this.driver = driver;
-		this.tableXPath= tableXPath;
+		this.tableCSS= tableCSS;
 		getGrid();
 	}
+
 	public String getGridCellByColumnName(String columnName, int rowNumber)
 	{
 		for(int i = 1; i<columnCount; i++ )
@@ -54,9 +56,9 @@ public class BaseGrid {
 	private void getGrid()
 	{
 	WebElement table_element = (new WebDriverWait(driver, 30))
-	  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(tableXPath)));
-    List<WebElement> tr_collection=table_element.findElements(By.cssSelector(tableXPath + "> tbody > tr"));
-    List<WebElement> th_collection=table_element.findElements(By.cssSelector(tableXPath + "> thead > tr > th"));
+	  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(tableCSS)));
+    List<WebElement> tr_collection=table_element.findElements(By.cssSelector(tableCSS + "> tbody > tr"));
+    List<WebElement> th_collection=table_element.findElements(By.cssSelector(tableCSS + "> thead > tr > th"));
     rowCount = tr_collection.size() +1;
     columnCount = th_collection.size() +1;
     gridItem = new String[rowCount][columnCount];
@@ -90,5 +92,6 @@ public class BaseGrid {
         row_num++;
     } 
 	}
+	
 
 }

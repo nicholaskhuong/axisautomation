@@ -1,18 +1,20 @@
 package com.abb.ventyx.utilities;
 
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
-import java.util.Calendar;
+
 import java.util.Properties;
 import java.util.Random;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.logging.impl.Log4JLogger;
 import org.apache.log4j.xml.DOMConfigurator;
-import org.apache.poi.ss.formula.functions.Today;
+
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -20,9 +22,9 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
+
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
+
 
 import com.abb.ventyx.axis.objects.pages.HomePage;
 import com.abb.ventyx.axis.objects.pages.LoginPage;
