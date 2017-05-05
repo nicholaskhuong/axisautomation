@@ -28,4 +28,5 @@ public class Messages {
 	public static final String DOCUMENT_FILTER_FIELD_SUCCESSFULLY = "Document filter field successfully created";
 	public static final String YES_BTN_ID="okBtn";
 	public static final String NO_BTN_ID="noBtn";
+	public static final String DOCUMENT_FILTER_FIELD_SUCCESSFULLY_UPDATED = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-success-notification.v-Notification-v-success-notification";
 }

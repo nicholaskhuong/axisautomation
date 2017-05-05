@@ -25,4 +25,6 @@ public class FilterField {
  	public static final String NO = "noBtn";
  	public static final String YES = "okBtn";
  	public static final String LIST = "#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table";
+ 	public static final String GRID = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div > div.v-grid-tablewrapper > table";
+
 }
