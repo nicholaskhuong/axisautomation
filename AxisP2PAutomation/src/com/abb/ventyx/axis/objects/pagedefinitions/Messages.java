@@ -4,6 +4,7 @@ public class Messages {
 	public static final String  UNSAVED_CHANGE = "Are you sure you want to exit without saving your changes?";
 	public static final String  DEL_CONFIRM = "Are you sure you want to delete this document type?";
 	public static final String  DELETE_CONFIRM = "Are you sure you want to delete this document type?";
+	public static final String  DELETE_CONFIRM_FILTER_FIELD ="Are you sure you want to delete this Document Filter Field?";
 	public static final String  DOCUMENT_UPADTED_SUCCESSFULLY = "Document Types updated successfully";
 	public static final String  DOCUMENT_DELETE_SUCCESSFULLY = "Delete success";
 	public static final String  DOCUMENT_CREATE_SUCCESSFULLY = "Document Types created successfully";
@@ -29,4 +30,5 @@ public class Messages {
 	public static final String YES_BTN_ID="okBtn";
 	public static final String NO_BTN_ID="noBtn";
 	public static final String DOCUMENT_FILTER_FIELD_SUCCESSFULLY_UPDATED = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-success-notification.v-Notification-v-success-notification";
+    public static final String DEL_FILTER_FIELD_SUCCESS = "Document Filter Field successfully deleted";
 }
