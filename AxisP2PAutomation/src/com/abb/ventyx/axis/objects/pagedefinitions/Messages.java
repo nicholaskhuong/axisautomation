@@ -7,10 +7,13 @@ public class Messages {
 	public static final String  DOCUMENT_UPADTED_SUCCESSFULLY = "Document Types updated successfully";
 	public static final String  DOCUMENT_DELETE_SUCCESSFULLY = "Delete success";
 	public static final String  DOCUMENT_CREATE_SUCCESSFULLY = "Document Types created successfully";
+	
 	public static final String  DOC_TYPES_EXIST = "Document Types exist";
 	public static final String  ENTER_MANDATORY_FIELDS = "Please enter a value for all mandatory fields";
 	public static final String  USERGROUP_CREATE_SUCCESSFULLY = "User group successfully created";
 	public static final String  USERGROUP_UPDATE_SUCCESSFULLY = "User group successfully updated";
+	public static final String  USERGROUP_DELETE_SUCCESSFULLY = "User group successfully deleted";
+	public static final String  DELETE_USERGROUP_CONFIRM = "Are you sure want to delete the selected user group?";
 	public static final String  USERGROUP_SELECT_CUSTOMER = "Please select a customer";			
 	public static final String DELETE_YES = "#confirmation-window > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-confirmation-window-text-and-button-layout > div > div.v-slot.v-slot-v-bottombar-button-layout.v-align-right.v-align-middle > div > div:nth-child(3) > div";
 	public static final String DELETE_NO = "#confirmation-window > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-confirmation-window-text-and-button-layout > div > div.v-slot.v-slot-v-bottombar-button-layout.v-align-right.v-align-middle > div > div:nth-child(1) > div";

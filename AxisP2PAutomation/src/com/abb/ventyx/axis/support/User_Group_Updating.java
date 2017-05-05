@@ -108,10 +108,10 @@ public class User_Group_Updating extends BaseTestCase{
 	}
 	
 	
-	/*@Test(dependsOnMethods = "addWithSelectedCustomerHasUserGroupName")
+	@Test(dependsOnMethods = "updatePermission")
 	public void clickCancelWithoutdata () throws InterruptedException{ 
-		WebElement addBtn= driver.findElement(By.xpath(AxisSupportCustomerUserGroup.ADD_XPATH));
-		addBtn.click();
+		WebElement rowLink= driver.findElement(By.id(AxisSupportCustomerUserGroup.ROW_ID+"1"));
+		rowLink.click();
 		(new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id(AxisSupportCustomerUserGroup.USERGROUP_NAME_ID)));
 		driver.findElement(By.id(AxisSupportCustomerUserGroup.CANCEL_ID)).click();
 		
@@ -122,10 +122,10 @@ public class User_Group_Updating extends BaseTestCase{
 	}
 	
 	@Test(dependsOnMethods = "clickCancelWithoutdata")
-	public void clickCancelClickNo () { 
+	public void clickCancelClickYes () { 
 		
-		WebElement addBtn= driver.findElement(By.xpath(AxisSupportCustomerUserGroup.ADD_XPATH));
-		addBtn.click();
+		WebElement rowLink= driver.findElement(By.id(AxisSupportCustomerUserGroup.ROW_ID+"1"));
+		rowLink.click();
 		WebElement userGroupName =(new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id(AxisSupportCustomerUserGroup.USERGROUP_NAME_ID)));
 		userGroupName.sendKeys(USER_GROUP_NAME);
 		driver.findElement(By.id(AxisSupportCustomerUserGroup.CANCEL_ID)).click();
@@ -138,11 +138,11 @@ public class User_Group_Updating extends BaseTestCase{
 		assertEquals(screenTitle.getText(), AxisSupportCustomerUserGroup.SCREEN_TITLE);
 	}
 	
-	@Test(dependsOnMethods = "clickCancelWithoutdata")
-	public void clickCancelClickYes () { 
+	@Test(dependsOnMethods = "clickCancelClickYes")
+	public void clickCancelClickN0 () { 
 		
-		WebElement addBtn= driver.findElement(By.xpath(AxisSupportCustomerUserGroup.ADD_XPATH));
-		addBtn.click();
+		WebElement rowLink= driver.findElement(By.id(AxisSupportCustomerUserGroup.ROW_ID+"1"));
+		rowLink.click();
 		WebElement userGroupName =(new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id(AxisSupportCustomerUserGroup.USERGROUP_NAME_ID)));
 		userGroupName.sendKeys(USER_GROUP_NAME);
 		driver.findElement(By.id(AxisSupportCustomerUserGroup.CANCEL_ID)).click();
@@ -151,10 +151,10 @@ public class User_Group_Updating extends BaseTestCase{
 		assertEquals(msgDialog.getText(), Messages.UNSAVED_CHANGE);	
 		driver.findElement(By.id(Messages.NO_BTN_ID)).click();;
 		WebElement screenTitle=driver.findElement(By.id(AxisSupportCustomerUserGroup.SCREEN_TITLE_ID));
-		assertEquals(screenTitle.getText(), AxisSupportCustomerUserGroup.SCREEN_CREATE_TITLE);	
+		assertEquals(screenTitle.getText(), AxisSupportCustomerUserGroup.SCREEN_UPDATE_TITLE);	
 		
 	}
-	*/
+	
 }
 
 

@@ -103,7 +103,7 @@ public class User_Group_Creating extends BaseTestCase{
 	}
 	
 	@Test(dependsOnMethods = "clickCancelWithoutdata")
-	public void clickCancelClickNo () { 
+	public void clickCancelClickYes () { 
 		
 		WebElement addBtn= driver.findElement(By.xpath(AxisSupportCustomerUserGroup.ADD_XPATH));
 		addBtn.click();
@@ -119,8 +119,8 @@ public class User_Group_Creating extends BaseTestCase{
 		assertEquals(screenTitle.getText(), AxisSupportCustomerUserGroup.SCREEN_TITLE);
 	}
 	
-	@Test(dependsOnMethods = "clickCancelWithoutdata")
-	public void clickCancelClickYes () { 
+	@Test(dependsOnMethods = "clickCancelClickYes")
+	public void clickCancelClickNo () { 
 		
 		WebElement addBtn= driver.findElement(By.xpath(AxisSupportCustomerUserGroup.ADD_XPATH));
 		addBtn.click();
