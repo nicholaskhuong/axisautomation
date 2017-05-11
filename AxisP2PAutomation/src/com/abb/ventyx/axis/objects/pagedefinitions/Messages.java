@@ -31,8 +31,10 @@ public class Messages {
 	public static final String YES_BTN_ID="okBtn";
 	public static final String NO_BTN_ID="noBtn";
 
+
 	public static final String DOCUMENT_FILTER_FIELD_SUCCESSFULLY_UPDATED = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-success-notification.v-Notification-v-success-notification";
     public static final String DEL_FILTER_FIELD_SUCCESS = "Document Filter Field successfully deleted";
+
 
 	//Users page
 	public static final String  USER_SELECT_USERGROUP= "Please select at least one user group";	
