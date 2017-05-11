@@ -1,21 +1,16 @@
 package com.abb.ventyx.axis.support;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNull;
-
 import java.util.List;
-
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisSupportCustomerUserGroup;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseDropDownList;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
-
 import org.testng.annotations.Test;
 
 @ALM(id = "162") 
@@ -90,7 +85,7 @@ public class User_Group_Creating extends BaseTestCase{
 	
 	
 	@Test(dependsOnMethods = "addWithSelectedCustomerHasUserGroupName")
-	public void clickCancelWithoutdata () throws InterruptedException{ 
+	public void cancelWithoutdata () throws InterruptedException{ 
 		WebElement addBtn= driver.findElement(By.xpath(AxisSupportCustomerUserGroup.ADD_XPATH));
 		addBtn.click();
 		(new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id(AxisSupportCustomerUserGroup.USERGROUP_NAME_ID)));
@@ -102,8 +97,8 @@ public class User_Group_Creating extends BaseTestCase{
 		assertEquals(screenTitle.getText(), AxisSupportCustomerUserGroup.SCREEN_TITLE);
 	}
 	
-	@Test(dependsOnMethods = "clickCancelWithoutdata")
-	public void clickCancelClickYes () { 
+	@Test(dependsOnMethods = "cancelWithoutdata")
+	public void cancelClickYes () { 
 		
 		WebElement addBtn= driver.findElement(By.xpath(AxisSupportCustomerUserGroup.ADD_XPATH));
 		addBtn.click();
@@ -119,8 +114,8 @@ public class User_Group_Creating extends BaseTestCase{
 		assertEquals(screenTitle.getText(), AxisSupportCustomerUserGroup.SCREEN_TITLE);
 	}
 	
-	@Test(dependsOnMethods = "clickCancelClickYes")
-	public void clickCancelClickNo () { 
+	@Test(dependsOnMethods = "cancelClickYes")
+	public void cancelClickNo () { 
 		
 		WebElement addBtn= driver.findElement(By.xpath(AxisSupportCustomerUserGroup.ADD_XPATH));
 		addBtn.click();
@@ -130,7 +125,7 @@ public class User_Group_Creating extends BaseTestCase{
 		WebElement msgDialog= (new WebDriverWait(driver, 20))
 				 .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(Messages.CONFIRMATION)));
 		assertEquals(msgDialog.getText(), Messages.UNSAVED_CHANGE);	
-		driver.findElement(By.id(Messages.NO_BTN_ID)).click();;
+		driver.findElement(By.id(Messages.NO_BTN_ID)).click();
 		WebElement screenTitle=driver.findElement(By.id(AxisSupportCustomerUserGroup.SCREEN_TITLE_ID));
 		assertEquals(screenTitle.getText(), AxisSupportCustomerUserGroup.SCREEN_CREATE_TITLE);	
 		

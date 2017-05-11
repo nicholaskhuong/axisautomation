@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="AxisSupport_CustomerUserGroup" parallel="none">
+ 
+	<test name="Create User Group">
+		<classes>
+				<class name="com.abb.ventyx.axis.support.Users_Creating" />
+			
+		</classes>	
+  	</test>
+  	
+</suite> 
+s

@@ -3,16 +3,10 @@ package com.abb.ventyx.axis.support;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNull;
-
-import java.util.List;
-
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisSupportCustomerUserGroup;
-import com.abb.ventyx.axis.objects.pagedefinitions.DocType;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseDropDownList;
