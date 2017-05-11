@@ -4,6 +4,7 @@ import static org.junit.Assert.assertThat;
 
 import org.testng.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -48,6 +49,9 @@ public class Filter_Field_Deleting extends BaseTestCase {
 	  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.FILTER_CONFIG)));
 	    row = grid.findItemByColumnName("Field Name", FIELD_NAME);
 	    Assert.assertNotEquals(row, -1, "Record not found");
+		
+	    WebElement horizontal_scroll = driver.findElement(By.xpath("//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div[2]"));
+	    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", horizontal_scroll);
 	    driver.findElement(By.id("deleteItemBtn" + (row-1))).click();
 	}    
 	 @Test(dependsOnMethods = "clickFilterField")

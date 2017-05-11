@@ -43,5 +43,7 @@ public class Permissions {
 	 	public static final String DELETE2 = "deleteItemBtn2";
 	 	public static final String DELETE45 = "deleteItemBtn45";
 	 	public static final String POPUP_SUCCESS = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-success-notification.v-Notification-v-success-notification";
-	 		 	
+	 	public static final String FILTER_XPATH =  "//*[@id='HeaderMenuBar']/span[1]/span/span";	
+	 	public static final String FILTER_PERSSION_PERSSION_NAME_XPATH = "//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div[3]/table/thead/tr[2]/th[3]";
+	 	public static final String FILTER_PERMISSION_NAME_CSS = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div > div.v-grid-tablewrapper > table > thead > tr:nth-child(2) > th:nth-child(3)";	 	
 }
