@@ -90,7 +90,7 @@ public void catchUnsavedChange (){
 @Test(dependsOnMethods = "catchUnsavedChange")
 public void testFilterOnGrid (){
 			WebElement searchOptionFilter = (new WebDriverWait(driver, 80))
-	  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(SearchOption.FILTER)));
+	  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(SearchOption.FILTER_CSS)));
 			searchOptionFilter.click();
 			WebElement field_Type_Filter = (new WebDriverWait(driver, 80))
 	  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(SearchOption.FIELD_TYPE_FILTER)));
