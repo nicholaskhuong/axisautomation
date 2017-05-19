@@ -39,14 +39,13 @@ public class Messages {
 	public static final String YES_BTN_ID="okBtn";
 	public static final String NO_BTN_ID="noBtn";
 
-
 	public static final String DOCUMENT_FILTER_FIELD_SUCCESSFULLY_UPDATED = "Document filter field successfully updated";
-    public static final String DEL_FILTER_FIELD_SUCCESS = "Document Filter Field successfully deleted";
-
+	public static final String DEL_FILTER_FIELD_SUCCESS = "Document Filter Field successfully deleted";
 
 	//Users page
 	public static final String  USER_SELECT_USERGROUP= "Please select at least one user group";	
 	public static final String  USER_CREATE_SUCCESSFULLY = "User succesfully created";
 	public static final String  INVALID_EMAIL = "Invalid email address";
-
+	public static final String  INVALID_PWD ="Password must be 6-16 characters. Password must have at least one uppercase letter, one lowercase letter, and one number.";
+	public static final String  INVALID_CONFIRM_PWD ="Entered Password is not the same, please verify.";
 }

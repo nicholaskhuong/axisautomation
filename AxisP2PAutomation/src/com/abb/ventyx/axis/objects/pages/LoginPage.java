@@ -1,16 +1,12 @@
 package com.abb.ventyx.axis.objects.pages;
 
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.LoginPageDefinition;
-import com.abb.ventyx.utilities.Constants;
 import com.abb.ventyx.utilities.InputController;
 import com.abb.ventyx.utilities.TestLoginCredentials;
 

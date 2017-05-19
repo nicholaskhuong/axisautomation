@@ -1,18 +1,18 @@
 package com.abb.ventyx.axis.support;
 
-
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
+
 import com.abb.ventyx.utilities.BaseDropDownList;
 import com.abb.ventyx.utilities.BaseGrid;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
 import com.abb.ventyx.axis.objects.pagedefinitions.SearchOption;
+
 @Credentials(user = "mail5@abb.com", password = "testuser")
 public class Code_Set_Type extends BaseTestCase {
 	String FIELD_TYPE = "QUANTITY";

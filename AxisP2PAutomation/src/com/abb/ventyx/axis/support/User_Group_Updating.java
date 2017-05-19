@@ -2,7 +2,6 @@ package com.abb.ventyx.axis.support;
 
 import static org.testng.Assert.assertEquals;
 import java.util.List;
-
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;

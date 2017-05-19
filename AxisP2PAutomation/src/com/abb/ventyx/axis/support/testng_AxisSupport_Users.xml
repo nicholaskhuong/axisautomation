@@ -6,7 +6,7 @@
 	<test name="Create User Group">
 		<classes>
 				<class name="com.abb.ventyx.axis.support.Users_Creating" />
-			
+				<class name="com.abb.ventyx.axis.support.Users_Updating" />
 		</classes>	
   	</test>
   	

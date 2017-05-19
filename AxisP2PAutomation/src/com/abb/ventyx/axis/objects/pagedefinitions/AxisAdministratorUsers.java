@@ -19,5 +19,6 @@ public class AxisAdministratorUsers {
 	public static final String CANCEL_ID= "cancelBtn";
 	public static final String USERGROUP_CHECKBOX_CLASS= "v-grid-selection-checkbox";	
 	public static final String FILTER="filterField";
+	public static final String UPDATED_PASSWORD_CLASS="v-radiobutton.v-select-option";
 	
 }
