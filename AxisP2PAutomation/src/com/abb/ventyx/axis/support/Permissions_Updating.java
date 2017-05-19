@@ -5,8 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static org.junit.Assert.*;
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -15,9 +13,7 @@ import com.abb.ventyx.utilities.BaseGrid;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
-import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.Permissions;
-import com.abb.ventyx.axis.objects.pagedefinitions.SearchOption;
 import com.ventyx.testng.TestDataKey;
 
 @ALM(id = "155") 

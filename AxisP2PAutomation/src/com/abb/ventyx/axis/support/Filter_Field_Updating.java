@@ -43,8 +43,6 @@ public class Filter_Field_Updating extends BaseTestCase {
 	public void updateFilterField (){   
 		    // Step 1 Update the record from Add New step.
 		    grid = new BaseGrid(driver, FilterField.GRID);
-		    WebElement wait = (new WebDriverWait(driver, 80))
-		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.FILTER_CONFIG)));
 		    row = grid.findItemByColumnName("Field Name", FIELD_NAME);
 		    Assert.assertNotEquals(row, -1, "Record not found");
 		    driver.findElement(By.id("docTypeBtn" + (row-1))).click();

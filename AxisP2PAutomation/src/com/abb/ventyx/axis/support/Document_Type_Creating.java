@@ -50,8 +50,6 @@ public class Document_Type_Creating extends BaseTestCase {
 		    WebElement flashMessage1 = (new WebDriverWait(driver, 60))
 	 	  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.SUCCESS_MESSAGE)));
 	 	    Assert.assertEquals(flashMessage1.getText(), Messages.DOCUMENT_CREATE_SUCCESSFULLY);
-	 	   WebElement addDocType2 = (new WebDriverWait(driver, 60))
-		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(DocType.ADD)));
 	 	    grid = new BaseGrid(driver, DocType.GRID);
 	 	    Assert.assertNotEquals(grid.findItemByColumnName("Document Types", DOCTYPE_B),-1,"Data not created");
 	 	

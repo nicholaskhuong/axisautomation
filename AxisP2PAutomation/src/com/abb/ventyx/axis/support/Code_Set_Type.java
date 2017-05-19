@@ -1,52 +1,66 @@
 package com.abb.ventyx.axis.support;
 
-import static org.testng.AssertJUnit.assertEquals;
+
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
-
+import com.abb.ventyx.utilities.BaseDropDownList;
+import com.abb.ventyx.utilities.BaseGrid;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
-import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
-import com.abb.ventyx.axis.objects.pagedefinitions.MaintainCodeSetType;
-@Credentials(user = "5", password = "testuser")
+import com.abb.ventyx.axis.objects.pagedefinitions.SearchOption;
+@Credentials(user = "mail5@abb.com", password = "testuser")
 public class Code_Set_Type extends BaseTestCase {
-	private final String CODE_TYPE_A = "A_CODE_TYPE";
-	private final String CODE_TYPE_B = "AA_CODE_TYPE";
-	private final String CODE_DESC = "A_CODE_DESC";
-	
+	String FIELD_TYPE = "QUANTITY";
+	String FILTER_SUB_TYPE = "UNIT";
+	String OPTION = "TEST_SEARCH";
+	BaseDropDownList list;
+	int row;
+	BaseGrid grid;
 	@Test  
 	public void login() {
-			driver.navigate().to(getServerURL() + "/SupplierPortal/#!CustomerAdminDashboard");
-		    WebElement axisConfigParentButton = (new WebDriverWait(driver, 10))
-		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION)));
-		    axisConfigParentButton.click();
-		   		    
-		    driver.findElement(By.cssSelector(AxisConfigMenu.CODE_SET_TYPE)).click();
-		    driver.findElement(By.cssSelector(MaintainCodeSetType.ADD)).click();
-		    //CODE TYPE field ID is dynamic, failed.
-		    driver.findElement(By.id(MaintainCodeSetType.CODE_TYPE_FIELD)).click();
-		    driver.findElement(By.id(MaintainCodeSetType.CODE_TYPE_FIELD)).sendKeys(CODE_TYPE_A);
-		    driver.findElement(By.id(MaintainCodeSetType.CODE_DESC_FIELD)).clear();
-		    driver.findElement(By.id(MaintainCodeSetType.CODE_DESC_FIELD)).sendKeys(CODE_DESC);
-		    driver.findElement(By.id(MaintainCodeSetType.SAVE));
-		    assertEquals(driver.findElement(By.cssSelector(MaintainCodeSetType.CODE_TYPE_i)).getText(),CODE_TYPE_A);
+		
+		  // Create Filter Field
+		WebElement axisConfigParentButton = (new WebDriverWait(driver, 60))
+	  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION)));
+	    axisConfigParentButton.click();
+	    WebElement axisFilterConfig = (new WebDriverWait(driver, 60))
+	  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.FILTER_CONFIG)));
+	    axisFilterConfig.click();
+	    WebElement axisFilterField = (new WebDriverWait(driver, 60))
+	  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.SEARCH_OPTION)));
+	    axisFilterField.click();
+	  
+}			
+	@Test(dependsOnMethods = "login")
+	public void checkOnGrid (){
 		   
-		    
-		    driver.findElement(By.cssSelector(MaintainCodeSetType.ADD)).click();
-		    driver.findElement(By.id(MaintainCodeSetType.CODE_TYPE_FIELD)).click();
-		    driver.findElement(By.id(MaintainCodeSetType.CODE_TYPE_FIELD)).sendKeys(CODE_TYPE_B);
-		    driver.findElement(By.cssSelector(MaintainCodeSetType.CANCEL)).click();
-		    assertEquals(driver.findElement(By.cssSelector(MaintainCodeSetType.COMFIRMATION_WINDOW)).getText(),Messages.UNSAVED_CHANGE);
-		    driver.findElement(By.id(MaintainCodeSetType.YES));
-		    assertEquals(driver.findElement(By.cssSelector(MaintainCodeSetType.CODE_TYPE_i)).getText(),CODE_TYPE_A);
-		    
-		   }	    
+		WebElement searchOptionFilter = (new WebDriverWait(driver, 80))
+			  			.until(ExpectedConditions.presenceOfElementLocated(By.xpath(SearchOption.FILTER)));
+					searchOptionFilter.click();
+					WebElement field_Type_Filter = (new WebDriverWait(driver, 80))
+			  			.until(ExpectedConditions.presenceOfElementLocated(By.xpath(SearchOption.FIELD_TYPE_FILTER)));
+					field_Type_Filter.click();
+					WebElement field_Type_Filter1 = (new WebDriverWait(driver, 80))
+			  			.until(ExpectedConditions.presenceOfElementLocated(By.id("filterField")));
+			      	field_Type_Filter1.sendKeys(FIELD_TYPE);
+
+				   
+			}
+		@Test(dependsOnMethods = "checkOnGrid")
+		public void end (){
+			   
+//				 grid = new BaseGrid(driver, SearchOption.GRID_CSS);
+//				 row = grid.findItemByColumnName("Field Type", FIELD_TYPE);
+//				 Assert.assertNotEquals(row, -1, "Record not found"); 
+			
+					
+				    }
+			
 }
 
 
