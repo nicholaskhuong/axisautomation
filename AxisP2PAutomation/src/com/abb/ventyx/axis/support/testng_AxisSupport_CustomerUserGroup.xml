@@ -3,7 +3,7 @@
 
 <suite name="AxisSupport_CustomerUserGroup" parallel="none">
  
-	<test name="Create User Group">
+	<test name="Axis Support Customer User Group">
 		<classes>
 				<class name="com.abb.ventyx.axis.support.User_Group_Creating" />
 				<class name="com.abb.ventyx.axis.support.User_Group_Updating" />

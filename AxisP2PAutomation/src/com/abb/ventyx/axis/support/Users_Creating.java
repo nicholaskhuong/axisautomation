@@ -4,6 +4,7 @@ import static org.testng.Assert.assertEquals;
 
 import java.util.List;
 import java.util.Random;
+
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -12,7 +13,6 @@ import com.abb.ventyx.axis.objects.pagedefinitions.AxisAdministratorUsers;
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisSupportCustomerUserGroup;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.utilities.ALM;
-import com.abb.ventyx.utilities.BaseDropDownList;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
 
@@ -21,12 +21,7 @@ import org.testng.annotations.Test;
 @ALM(id = "162") 
 @Credentials(user = "mail5@abb.com", password = "testuser")
 public class Users_Creating extends BaseTestCase{
-
-	String SYSTEM_GROUP_NAME="CUST_ADMIN";
-	String CUSTOMER_NAME="Tanya Customer 11";
-	String USER_GROUP_NAME="Manager Group";
-	BaseDropDownList list;
-	int row;
+	String userID="DathyUser1";
 	
 	@Test
 	  public void checkScreen() {
@@ -72,7 +67,7 @@ public class Users_Creating extends BaseTestCase{
 		//Don't input PWD		
 		email.clear();
 		userId.clear();
-		userId.sendKeys("DathyUser1");
+		userId.sendKeys(userID);
 		passWord.clear();
 		email.sendKeys("email@dathy.com");
 		confirmPassWord.clear();
@@ -84,7 +79,7 @@ public class Users_Creating extends BaseTestCase{
 		
 		//Don't input email		
 		userId.clear();
-		userId.sendKeys("DathyUser1");
+		userId.sendKeys(userID);
 		passWord.clear();
 		passWord.sendKeys("TestUser1");
 		confirmPassWord.clear();
@@ -98,7 +93,7 @@ public class Users_Creating extends BaseTestCase{
 		//Don't input confirm password
 		
 		userId.clear();
-		userId.sendKeys("DathyUser1");
+		userId.sendKeys(userID);
 		email.clear();
 		email.sendKeys("email@dathy.com");
 		passWord.clear();
@@ -169,7 +164,7 @@ public class Users_Creating extends BaseTestCase{
 		driver.findElement(By.xpath(AxisAdministratorUsers.ADD_BTN_XPATH)).click();
 		WebElement userId = (new WebDriverWait(driver, 15))
 				.until(ExpectedConditions.presenceOfElementLocated(By.id(AxisAdministratorUsers.USER_ID)));
-		userId.sendKeys("DathyUser1");
+		userId.sendKeys(userID);
 		WebElement cancelBtn=driver.findElement(By.id(AxisAdministratorUsers.CANCEL_ID));
 		cancelBtn.click();
 		//Click Yes
@@ -189,7 +184,7 @@ public class Users_Creating extends BaseTestCase{
 		driver.findElement(By.xpath(AxisAdministratorUsers.ADD_BTN_XPATH)).click();
 		WebElement userId = (new WebDriverWait(driver, 15))
 				.until(ExpectedConditions.presenceOfElementLocated(By.id(AxisAdministratorUsers.USER_ID)));
-		userId.sendKeys("DathyUser1");
+		userId.sendKeys(userID);
 		WebElement cancelBtn=driver.findElement(By.id(AxisAdministratorUsers.CANCEL_ID));
 		cancelBtn.click();
 		

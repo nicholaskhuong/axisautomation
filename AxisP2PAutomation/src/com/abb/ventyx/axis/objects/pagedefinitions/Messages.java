@@ -45,7 +45,10 @@ public class Messages {
 	//Users page
 	public static final String  USER_SELECT_USERGROUP= "Please select at least one user group";	
 	public static final String  USER_CREATE_SUCCESSFULLY = "User succesfully created";
+	public static final String  USER_UPDATE_SUCCESSFULLY = "User succesfully updated";
 	public static final String  INVALID_EMAIL = "Invalid email address";
-	public static final String  INVALID_PWD ="Password must be 6-16 characters. Password must have at least one uppercase letter, one lowercase letter, and one number.";
+	public static final String  INVALID_PWD ="Password must have at least one uppercase letter, one lowercase letter, and one number.";
 	public static final String  INVALID_CONFIRM_PWD ="Entered Password is not the same, please verify.";
+	public static final String  DELETE_USER_CONFIRM = "Are you sure want to delete this user?";
+	public static final String  USER_DELETE_SUCCESSFULLY = "User succesfully deleted";
 }
