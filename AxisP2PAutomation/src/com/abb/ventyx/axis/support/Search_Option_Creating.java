@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
+
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseDropDownList;
 import com.abb.ventyx.utilities.BaseGrid;
@@ -40,7 +41,7 @@ public class Search_Option_Creating extends BaseTestCase {
 		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.SEARCH_OPTION)));
 		    axisFilterField.click();
 		    WebElement searchOptionAdd = (new WebDriverWait(driver, 60))
-		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(SearchOption.ADD)));
+		  			.until(ExpectedConditions.presenceOfElementLocated(By.xpath(SearchOption.ADD_xpath)));
 		    searchOptionAdd.click();
 	
 	}  
@@ -74,84 +75,7 @@ public class Search_Option_Creating extends BaseTestCase {
 	 	  //  Assert.assertEquals(flashMessage.getText(), Messages.DOC_TYPE_SEARCH_OPT_SUCCESSFULLY);
 		   
 			}
- 
-	@Test(dependsOnMethods = "catchSucessMessage")
-    public void duplicateSearchOption1 (){
-		 WebElement axisFilterConfig1 = (new WebDriverWait(driver, 80))
-		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.FILTER_FIELD)));
-		    axisFilterConfig1.click();
-		    WebElement axisFilterField = (new WebDriverWait(driver, 80))
-		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.SEARCH_OPTION)));
-		    axisFilterField.click();
-		     WebElement searchOptionAdd = (new WebDriverWait(driver, 80))
-		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(SearchOption.ADD)));
-		    searchOptionAdd.click();
-		    WebElement fieldType = (new WebDriverWait(driver, 80))
-		  			.until(ExpectedConditions.presenceOfElementLocated(By.id(SearchOption.FIELD_TYPE_ADD)));
-		    fieldType.click();
-		    fieldType.sendKeys(FIELD_TYPE);
-		    WebElement fieldSubType = (new WebDriverWait(driver, 80))
-		  			.until(ExpectedConditions.presenceOfElementLocated(By.id(SearchOption.FILTER_SUB_TYPE_ADD)));
-		    fieldSubType.click();
-		    fieldSubType.sendKeys(FILTER_SUB_TYPE);
-			}
-     @Test(dependsOnMethods = "duplicateSearchOption1")
-	 public void duplicateSearchOption2 (){
-		    WebElement option = (new WebDriverWait(driver, 80))
-		  			.until(ExpectedConditions.presenceOfElementLocated(By.id(SearchOption.OPTION_ADD)));
-		    option.click();
-		    option.sendKeys(OPTION);
-		    WebElement save = (new WebDriverWait(driver, 80))
-		  			.until(ExpectedConditions.presenceOfElementLocated(By.id(SearchOption.SAVE_ADD)));
-		    save.click();
-	}
-     
-	@Test(dependsOnMethods = "duplicateSearchOption2")
-    public void catchErrorMessage (){
-		    
-		    WebElement flashMessage = (new WebDriverWait(driver, 80))
-	 	  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(Messages.DUPLICATE_FIELD_TYPE_CSS)));
-		    Assert.assertEquals(flashMessage.getText(), Messages.DUPLICATE_FIELD_TYPE);
-		    Assert.assertEquals(flashMessage.getCssValue("visibility"), "visible");
-		    Assert.assertEquals(flashMessage.getCssValue("display"), "block");
-	}
-	@Test(dependsOnMethods = "catchErrorMessage")
-    public void testUnsavedChange (){
-		    
-		    WebElement cancel = (new WebDriverWait(driver, 80))
-		  			.until(ExpectedConditions.presenceOfElementLocated(By.id(SearchOption.CANCEL_ADD)));
-		    cancel.click();
-		    WebElement unsavedChange = (new WebDriverWait(driver, 80))
-					  .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(Messages.UNSAVED_CHANGE_CSS)));
-		    unsavedChange.getText();
-	    	Assert.assertEquals(unsavedChange.getText(), Messages.UNSAVED_CHANGE);
-	    	WebElement yesBtn = (new WebDriverWait(driver, 60))
-					  .until(ExpectedConditions.presenceOfElementLocated(By.id(DialogBtns.YES)));
-	    	yesBtn.click();
-	}
-	@Test(dependsOnMethods = "testUnsavedChange")
-    public void testFilterOnGrid (){
-   	 WebElement searchOptionFilter = (new WebDriverWait(driver, 80))
-	  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(SearchOption.FILTER_CSS)));
-	 searchOptionFilter.click();
-	 WebElement field_Type_Filter = (new WebDriverWait(driver, 80))
-	  			.until(ExpectedConditions.presenceOfElementLocated(By.xpath(SearchOption.FIELD_TYPE_FILTER)));
-	 field_Type_Filter.click();
-	 WebElement field_Type_Filter1 = (new WebDriverWait(driver, 80))
-	  			.until(ExpectedConditions.presenceOfElementLocated(By.id("filterField")));
-	 field_Type_Filter1.sendKeys(FIELD_TYPE);
-
-		   
-	}
-	@Test(dependsOnMethods = "testFilterOnGrid")
-    public void checkOnGrid (){
-	   
-		 grid = new BaseGrid(driver, SearchOption.GRID_CSS);
-		 row = grid.findItemByColumnName("Field Type", FIELD_TYPE);
-		 Assert.assertNotEquals(row, -1, "Record not found"); 
-			
-		    }
-	
+ 	
 }
 
 

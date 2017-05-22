@@ -39,6 +39,7 @@ public class Search_Option_Creating_part3 extends BaseTestCase {
 
 @Test(dependsOnMethods = "createSearchOption")
 public void testFilterOnGrid (){
+	 (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.xpath(SearchOption.FILTER)));
 			WebElement searchOptionFilter = (new WebDriverWait(driver, 80))
 	  			.until(ExpectedConditions.presenceOfElementLocated(By.xpath(SearchOption.FILTER)));
 			searchOptionFilter.click();
