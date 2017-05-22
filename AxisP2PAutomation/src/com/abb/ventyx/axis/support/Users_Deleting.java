@@ -15,7 +15,7 @@ import com.abb.ventyx.utilities.Credentials;
 
 import org.testng.annotations.Test;
 
-@ALM(id = "162") 
+@ALM(id = "205") 
 @Credentials(user = "mail5@abb.com", password = "testuser")
 public class Users_Deleting extends BaseTestCase{
 

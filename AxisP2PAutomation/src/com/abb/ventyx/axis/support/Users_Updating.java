@@ -13,7 +13,7 @@ import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
 import org.testng.annotations.Test;
 
-@ALM(id = "162") 
+@ALM(id = "204") 
 @Credentials(user = "mail5@abb.com", password = "testuser")
 public class Users_Updating extends BaseTestCase{
 
