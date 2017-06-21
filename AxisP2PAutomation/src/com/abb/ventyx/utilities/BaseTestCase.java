@@ -2,19 +2,31 @@ package com.abb.ventyx.utilities;
 
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+
 import java.io.BufferedWriter;
+
+import au.com.bytecode.opencsv.CSVReader;
+
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.annotation.Annotation;
-
+import java.util.HashMap;
 import java.util.Properties;
 import java.util.Random;
+import java.util.Vector;
+
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.logging.impl.Log4JLogger;
 import org.apache.log4j.xml.DOMConfigurator;
-
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -22,21 +34,22 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.testng.ITestResult;
-
 import org.testng.annotations.AfterMethod;
-
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Factory;
+import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pages.HomePage;
 import com.abb.ventyx.axis.objects.pages.LoginPage;
 import com.abb.ventyx.utilities.report.TestMethodResultAdapter;
-import com.google.gson.Gson;
 
-public class BaseTestCase {
+public class BaseTestCase{
+	
 	public WebDriver driver;
 	public HomePage homePage;
 	public String expectedResult = "";
 	private String testCaseStatus = "pass";
-	private String testCaseName = "";
+	private static String testCaseName = "";
 	private String ALMcsvfile = "ALM.csv";
 	public static final String TEST_SERVER_URL = "test.server.url";
 	public static final String TEST_BROWSER = "test.browser";
@@ -47,6 +60,13 @@ public class BaseTestCase {
 	private TestLoginCredentials defaultCredentials;
 	private TestLoginCredentials currentCredentials;
 	public Log4JLogger newLog;
+	private String testDataFileName = "";
+	private static int startRow = 1;
+	private static int endRow = 1;
+	private static int currentRow = 1;
+	protected HashMap<String, String> data = new HashMap<String, String>();
+	
+	
 	public BaseTestCase() {
 		DOMConfigurator.configure("log4j.xml");
 		try {
@@ -64,10 +84,11 @@ public class BaseTestCase {
 		properties.putAll(System.getProperties());
 		defaultCredentials = new TestLoginCredentials( getProperty("test.username"),getProperty("test.password"));
 		currentCredentials = defaultCredentials;
-		
+		getTestDataDriven();
 	}
 	@BeforeClass
 	public void beforeClass() throws Exception {
+		
 		try {
 	
 		currentCredentials = getClassCredentials();
@@ -183,5 +204,114 @@ public class BaseTestCase {
 			}
 		}
 		return null;
+	}
+	
+	protected void getTestDataDriven() {
+		for ( Annotation a : this.getClass().getAnnotations()) {
+			if ( a instanceof TestData ) {
+				TestData t = (TestData) a;
+				testDataFileName = t.fileName();
+				startRow = t.startRow();
+				endRow = t.endRow();
+			}
+		}
+	}
+	
+	/**
+	 * This data provider reads all lines from the CSV associated with the current test. Current test will be whatever has extended AbstractGuicedTestNGTest.
+	 * Returns null if not found CSV file.
+	 * @throws IOException 
+	 */
+	@DataProvider(name = "CSVDataProvider")
+	public Object[][] CSVDataProvider() throws IOException {
+		String[] keys = null;
+		Vector<String[]> values = new Vector<String[]>();
+		String[] line; // current line
+
+		/* Get CSV file from the class path */
+		String expectedCSVFileName = Constants.TESTDATA_FOLDER + testDataFileName;
+		InputStream cSVStream = null;
+		try {
+			cSVStream = new FileInputStream(expectedCSVFileName);
+		} catch (Exception e) {
+			System.out.println("File name: "+expectedCSVFileName);
+			e.printStackTrace();
+			return null;
+		}
+		if (startRow > endRow){
+			System.out.println("Start Row cant be greater than End Row  name: "+startRow +" > " + endRow);
+			cSVStream.close();
+			return null;
+		}
+		/* Some test cases do not require the test data -> don't have CSV file */
+		if (cSVStream != null) {
+			InputStreamReader cSVStreamReader = new InputStreamReader(cSVStream);
+			try {
+				CSVReader csvReader = new CSVReader(cSVStreamReader);
+				// we only care about the first lines
+				keys = csvReader.readNext();
+				int row =1;
+				while ((line = csvReader.readNext()) != null) {
+						// number of values should be consistent
+					if	(row>=startRow && row<=endRow)
+					{
+						if (line.length == keys.length) {
+							values.add(line);
+						} else {
+							return null;
+						}
+					}
+						row++;
+					}
+				} catch (IOException ioe) {
+					ioe.printStackTrace();
+				}
+		}
+		if ( null == keys || (null == values || values.isEmpty())) {
+			return null;
+		}
+		return new Object[][] {
+				{ keys, values }
+		};
+	}
+	
+	@DataProvider(name="empLogin")
+	public Object[][] loginData() {
+		Object[][] arrayObject = getExcelData( Constants.TESTDATA_FOLDER + testDataFileName,"Data");//Constants.TESTDATA_FOLDER + testDataFileName;
+		return arrayObject;
+	}
+	/**
+	 * @param File Name
+	 * @param Sheet Name
+	 * @return
+	 */
+	public String[][] getExcelData(String fileName, String sheetName) {
+		String[][] arrayExcelData = null;
+		try {
+			FileInputStream fs = new FileInputStream(fileName);
+			Workbook wb = Workbook.getWorkbook(fs);
+			Sheet sh = wb.getSheet(sheetName);
+
+			int totalNoOfCols = sh.getColumns();
+			int totalNoOfRows = sh.getRows();
+			
+			arrayExcelData = new String[totalNoOfRows-1][totalNoOfCols];
+			
+			for (int i= 1 ; i < totalNoOfRows; i++) {
+
+				for (int j=0; j < totalNoOfCols; j++) {
+					arrayExcelData[i-1][j] = sh.getCell(j, i).getContents();
+				}
+
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+			e.printStackTrace();
+		} catch (BiffException e) {
+			e.printStackTrace();
+		}
+		return arrayExcelData;
 	}
 }

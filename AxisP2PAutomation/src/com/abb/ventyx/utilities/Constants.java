@@ -8,5 +8,6 @@ public class Constants {
 	public static final String SELENIUM_WEB_DRIVER_PATH = System.getProperty("user.dir") + "\\chromedriver.exe";
 	public static final String SELENIUM_WEB_DRIVER_PATH_FF = System.getProperty("user.dir") + "\\geckodriver.exe";
 	public static final String TEMP_FOLDER_REPORT_DATA = "temp_report";
+	public static final String TESTDATA_FOLDER = System.getProperty("user.dir") + "\\TestData\\";
 	
 }

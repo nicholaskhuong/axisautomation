@@ -34,7 +34,7 @@ public class Reporter implements IReporter {
 	public ReportData theFinalReportData = new ReportData();
 
 	public String reportFolder = Constants.REPORT_FOLDER;
-
+	
 	@Override
 	public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites, String outputDirectory) {
 

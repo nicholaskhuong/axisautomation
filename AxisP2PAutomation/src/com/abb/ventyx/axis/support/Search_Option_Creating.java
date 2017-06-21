@@ -41,7 +41,7 @@ public class Search_Option_Creating extends BaseTestCase {
 		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.SEARCH_OPTION)));
 		    axisFilterField.click();
 		    WebElement searchOptionAdd = (new WebDriverWait(driver, 60))
-		  			.until(ExpectedConditions.presenceOfElementLocated(By.xpath(SearchOption.ADD_xpath)));
+		  			.until(ExpectedConditions.presenceOfElementLocated(By.xpath(SearchOption.ADD)));
 		    searchOptionAdd.click();
 	
 	}  
