@@ -275,7 +275,7 @@ public class BaseTestCase{
 		};
 	}
 	
-	@DataProvider(name="empLogin")
+	@DataProvider(name="ExcelDataProvider")
 	public Object[][] loginData() {
 		Object[][] arrayObject = getExcelData( Constants.TESTDATA_FOLDER + testDataFileName,"Data");//Constants.TESTDATA_FOLDER + testDataFileName;
 		return arrayObject;
@@ -287,6 +287,7 @@ public class BaseTestCase{
 	 */
 	public String[][] getExcelData(String fileName, String sheetName) {
 		String[][] arrayExcelData = null;
+		Boolean fixedRow = false;
 		try {
 			FileInputStream fs = new FileInputStream(fileName);
 			Workbook wb = Workbook.getWorkbook(fs);
@@ -294,15 +295,40 @@ public class BaseTestCase{
 
 			int totalNoOfCols = sh.getColumns();
 			int totalNoOfRows = sh.getRows();
-			
-			arrayExcelData = new String[totalNoOfRows-1][totalNoOfCols];
+			if (startRow > endRow){
+				System.out.println("Start Row cant be greater than End Row : "+startRow +" > " + endRow);
+				return null;
+			}
+			if (endRow > totalNoOfRows -1){
+				System.out.println("End Row cant be greater than totalRow : "+endRow +" > " + (totalNoOfRows -1 ));
+				return null;
+			}
+			if (startRow == 0 && endRow == 0){
+				arrayExcelData = new String[totalNoOfRows-1][totalNoOfCols];
+			}else
+			{
+				if (startRow < 1)
+				{
+					startRow =1;
+				}
+				arrayExcelData = new String[endRow-startRow+1][totalNoOfCols];
+				fixedRow = true;
+			}
 			
 			for (int i= 1 ; i < totalNoOfRows; i++) {
-
-				for (int j=0; j < totalNoOfCols; j++) {
-					arrayExcelData[i-1][j] = sh.getCell(j, i).getContents();
+				if (fixedRow){
+					if	(i>=startRow && i<=endRow)
+					{
+						for (int j=0; j < totalNoOfCols; j++) {
+							arrayExcelData[i-startRow][j] = sh.getCell(j, i).getContents();
+						}
+					}
+				}else
+				{
+					for (int j=0; j < totalNoOfCols; j++) {
+						arrayExcelData[i-1][j] = sh.getCell(j, i).getContents();
+					}
 				}
-
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
