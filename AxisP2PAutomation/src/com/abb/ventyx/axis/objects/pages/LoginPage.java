@@ -25,7 +25,7 @@ public class LoginPage extends BasePage{
 	
 	public void login(String url,String username, String password){
 		driver.navigate().to(url);
-		WebElement userNameTextField = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.id(LoginPageDefinition.USERNAME_TEXT_FIELD_ID)));
+		WebElement userNameTextField = (new WebDriverWait(driver, 30)).until(ExpectedConditions.presenceOfElementLocated(By.id(LoginPageDefinition.USERNAME_TEXT_FIELD_ID)));
 		InputController.inputToTextFiled(userNameTextField, username);
 		InputController.inputToTextFiled(getPasswordTextField(), password);
 		getLoginButton().click();
