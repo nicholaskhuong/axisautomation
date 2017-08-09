@@ -16,30 +16,54 @@ import com.abb.ventyx.utilities.Credentials;
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
 import com.abb.ventyx.axis.objects.pagedefinitions.Permissions;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
+import com.ventyx.testng.TestDataKey;
 
 
 @ALM(id = "156") 
-@Credentials(user = "5", password = "testuser")
+@Credentials(user = "mail5@abb.com", password = "testuser")
 public class Permissions_Deleting extends BaseTestCase {
+	@TestDataKey private final String PERMISSION_NAME_A = "AA_MAINTAIN_PERMISSION";
 
 	@Test
-	  public void login() throws Exception {
+	public void login() throws Exception {
+
+		// Delete Permission on the 2nd row.
+		// Click System Configuration menu
+		WebElement axisConfigParentButton = (new WebDriverWait(driver, 60))
+				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION)));
+		axisConfigParentButton.click();
+
+		// Click Permissions sub menu
+		WebElement axisPermissionsMenu = (new WebDriverWait(driver, 10))
+				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.PERMISSIONS)));
+		axisPermissionsMenu.click();
+
+		// Filter
+		WebElement filterButton = (new WebDriverWait(driver, 30))
+				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#HeaderMenuBar > span:nth-child(1)")));
+		filterButton.click();
 		
-		  // Delete Permission on the 2nd row.
-			WebElement axisConfigParentButton = (new WebDriverWait(driver, 10))
-		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION)));
-		    axisConfigParentButton.click();
-		    driver.findElement(By.cssSelector(AxisConfigMenu.PERMISSIONS)).click();
-		    final String PERMISION_ID_A = driver.findElement(By.id(Permissions.ROW1)).getText();
-		    driver.findElement(By.id(Permissions.DELETE1)).click();
-		  
-		  //Make sure this is a Confirmation of deleting process
-		    assertThat(driver.findElement(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION)).getText(),containsString(Messages.DELETE_CONFIRM));
-		    driver.findElement(By.cssSelector(Permissions.DELETE_YES)).click();
-		    final String PERMISION_ID_B = driver.findElement(By.id(Permissions.ROW1)).getText();
-		   
-	      //Indicate 1st row's value is now different from the original one.
-		    assertThat(PERMISION_ID_B, is(not(PERMISION_ID_A)));	
-		  	    
-  }
+		// Enter permission name into filter field.
+		WebElement filterPermissionName = (new WebDriverWait(driver, 30))
+				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Permissions.PERMISSION_NAME_FILTER)));
+		filterPermissionName.sendKeys(PERMISSION_NAME_A);
+		Thread.sleep(2000);
+		
+		//final String PERMISION_ID_A = driver.findElement(By.id(Permissions.ROW1)).getText();
+		WebElement trashBinIcon = (new WebDriverWait(driver, 30))
+				.until(ExpectedConditions.presenceOfElementLocated(By.id(Permissions.DELETE45)));
+		trashBinIcon.click();
+		Thread.sleep(1000);
+
+		//Make sure this is a Confirmation of deleting process
+		assertThat(driver.findElement(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION)).getText(),containsString(Messages.DELETE_CONFIRM));
+		
+		//final String PERMISION_ID_B = driver.findElement(By.id(Permissions.ROW1)).getText();
+		WebElement yesButton = (new WebDriverWait(driver, 30))
+				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(Permissions.DELETE_YES)));
+		yesButton.click();
+		//Indicate 1st row's value is now different from the original one.
+		//assertThat(PERMISION_ID_B, is(not(PERMISSION_NAME_A)));	
+		// Add assert to check result later
+	}
 }

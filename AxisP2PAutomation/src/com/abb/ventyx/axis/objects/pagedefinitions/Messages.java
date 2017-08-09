@@ -4,7 +4,7 @@ public class Messages {
 	public static final String  UNSAVED_CHANGE = "Are you sure you want to exit without saving your changes?";
 	public static final String  UNSAVED_CHANGE_CSS = "#confirmation-window > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-confirmation-window-text-and-button-layout > div > div:nth-child(1) > div";
 	public static final String  DEL_CONFIRM = "Are you sure you want to delete this document type?";
-	public static final String  DELETE_CONFIRM = "Are you sure you want to delete this document type?";
+	public static final String  DELETE_CONFIRM = "Are you sure you want to delete this permission?";
 	public static final String  DELETE_CONFIRM_FILTER_FIELD ="Are you sure you want to delete this Document Filter Field?";
 	public static final String  DELETE_CONFIRM_SEARCH_OPTION ="Are you sure you want to delete this Document Filter Type Search Option?";
 	public static final String  DOCUMENT_UPADTED_SUCCESSFULLY = "Document Types updated successfully";

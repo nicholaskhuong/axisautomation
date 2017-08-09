@@ -24,9 +24,8 @@ public class Permissions_Creating extends BaseTestCase {
 	@TestDataKey private final String PERMISSION_NAME_B = "AA_MAINTAIN_PERMISSION";
 	@TestDataKey private final String DOCUMENT_TYPE_A = "PurchaseOrderAcknowledgement";
 	@TestDataKey private final String USER_TYPE_A = "A";
+
 	@Test
-
-
 	public void login() throws Exception {
 		// Create Permission 
 
@@ -61,14 +60,15 @@ public class Permissions_Creating extends BaseTestCase {
 		WebElement adminUserType = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(Permissions.AXIS_ADMIN)));
 		adminUserType.click();
-
+		// click Save button on Add Permission screen
 		WebElement saveButton = (new WebDriverWait(driver, 30))
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#permissioncreatewindow > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-mainform-verticallayout > div > div.v-slot.v-slot-v-bottombar-button-layout > div > div > div > div > div:nth-child(3)")));
 		saveButton.click();
 		Thread.sleep(2000);
-		WebElement clearButton = (new WebDriverWait(driver, 10))
+		// Filter
+		WebElement filterButton = (new WebDriverWait(driver, 20))
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#HeaderMenuBar > span:nth-child(1)")));
-		clearButton.click();
+		filterButton.click();
 		
 		WebElement filterPermissionName = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Permissions.PERMISSION_NAME_FILTER)));
