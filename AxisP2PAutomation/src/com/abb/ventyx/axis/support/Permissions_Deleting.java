@@ -25,11 +25,11 @@ public class Permissions_Deleting extends BaseTestCase {
 	@TestDataKey private final String PERMISSION_NAME_A = "AA_MAINTAIN_PERMISSION";
 
 	@Test
-	public void login() throws Exception {
+	public void deletePermisison() throws Exception {
 
 		// Delete Permission on the 2nd row.
 		// Click System Configuration menu
-		WebElement axisConfigParentButton = (new WebDriverWait(driver, 60))
+		WebElement axisConfigParentButton = (new WebDriverWait(driver, 120))
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION)));
 		axisConfigParentButton.click();
 

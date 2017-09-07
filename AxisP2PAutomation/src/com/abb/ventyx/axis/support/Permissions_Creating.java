@@ -20,17 +20,17 @@ import com.ventyx.testng.TestDataKey;
 @ALM(id = "106") 
 @Credentials(user = "mail5@abb.com", password = "testuser")
 public class Permissions_Creating extends BaseTestCase {
-	@TestDataKey private final String PERMISSION_NAME_A = "AA_MAINTAIN_PERMISSION";
+	@TestDataKey private final String PERMISSION_NAME_A = "BB_MAINTAIN_PERMISSION";
 	@TestDataKey private final String PERMISSION_NAME_B = "AA_MAINTAIN_PERMISSION";
 	@TestDataKey private final String DOCUMENT_TYPE_A = "PurchaseOrderAcknowledgement";
 	@TestDataKey private final String USER_TYPE_A = "A";
 
 	@Test
-	public void login() throws Exception {
+	public void createPermission() throws Exception {
 		// Create Permission 
 
 		// Click System Configuration menu
-		WebElement axisConfigParentButton = (new WebDriverWait(driver, 60))
+		WebElement axisConfigParentButton = (new WebDriverWait(driver, 120))
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION)));
 		axisConfigParentButton.click();
 
