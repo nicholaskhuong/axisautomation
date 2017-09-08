@@ -1,7 +1,6 @@
 package com.abb.ventyx.axis.support;
 
 import static org.testng.Assert.assertEquals;
-import junit.framework.Assert;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -9,12 +8,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
+import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
+import com.abb.ventyx.axis.objects.pagedefinitions.Permissions;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
-import com.abb.ventyx.utilities.TableFunction;
-import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
-import com.abb.ventyx.axis.objects.pagedefinitions.Permissions;
+import com.abb.ventyx.utilities.PermissionsAction;
 import com.ventyx.testng.TestDataKey;
 
 @ALM(id = "106") 
@@ -26,25 +25,23 @@ public class Permissions_Creating extends BaseTestCase {
 
 	@Test
 	public void createPermission() throws Exception {
-		TableFunction a = new TableFunction(driver);
+		PermissionsAction p = new PermissionsAction(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 20);
 		// Click System Configuration menu
 		WebElement axisConfigParentButton = (new WebDriverWait(driver, 120))
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION)));
 		axisConfigParentButton.click();
 
 		// Click Permissions sub menu
-		WebElement axisPermissionsMenu = (new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.PERMISSIONS)));
-		axisPermissionsMenu.click();
+		p.clickPermissionsSubMenu();
 
 		// Check there is any permission AA_MAINTAIN_PERMISSION existing
-		a.filterPermission(PERMISSION_NAME_A);
-		int numberOfRowsBeforeAdding = a.countRow(Permissions.tableBody);
+		p.filterPermission(PERMISSION_NAME_A);
+		int numberOfRowsBeforeAdding = p.countRow(Permissions.tableBody);
+		System.out.print(numberOfRowsBeforeAdding + "numberOfRowsBeforeAdding");
 		
 		// Click Add permission button
-		WebElement addPermissionButton = (new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(Permissions.ADD)));
-		addPermissionButton.click();
+		p.clickAddButton();
 
 		//  Enter Permission Name
 		WebElement permissionName = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id(Permissions.PERMISSION_NAME)));
@@ -64,24 +61,29 @@ public class Permissions_Creating extends BaseTestCase {
 		adminUserType.click();
 		
 		// click Save button on Add Permission screen
-		WebElement saveButton = (new WebDriverWait(driver, 30))
-				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#permissioncreatewindow > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-mainform-verticallayout > div > div.v-slot.v-slot-v-bottombar-button-layout > div > div > div > div > div:nth-child(3)")));
-		saveButton.click();
-		
+		p.clickSaveButtonOnAddPermisisonPopUp();
 		// Filter
-		a.filterPermission(PERMISSION_NAME_A);
-		int numberOfRowsAfterAdding = a.countRow(Permissions.tableBody);
+		Thread.sleep(2000);
+		p.enterValueTofilterPermission(PERMISSION_NAME_A);
+		Thread.sleep(2000);
+		int numberOfRowsAfterAdding = p.countRow(Permissions.tableBody);
 		
 		assertEquals(numberOfRowsBeforeAdding+1, numberOfRowsAfterAdding);
-		WebDriverWait wait = new WebDriverWait(driver, 10);		
+		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(Permissions.PNROW1)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(Permissions.UTROW1)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(Permissions.DTROW1)));
 		
-		assertEquals(driver.findElement(By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr["+numberOfRowsAfterAdding+"]//td[2]")),DOCUMENT_TYPE_A);
-		assertEquals(driver.findElement(By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr["+numberOfRowsAfterAdding+"]//td[3]")),PERMISSION_NAME_A);
-		assertEquals(driver.findElement(By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr["+numberOfRowsAfterAdding+"]//td[4]")),USER_TYPE_A);
+		assertEquals(driver.findElement(By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr["+numberOfRowsAfterAdding+"]//td[2]")).getText(),DOCUMENT_TYPE_A);
+		assertEquals(driver.findElement(By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr["+numberOfRowsAfterAdding+"]//td[3]")).getText(),PERMISSION_NAME_A);
+		assertEquals(driver.findElement(By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr["+numberOfRowsAfterAdding+"]//td[4]")).getText(),USER_TYPE_A);
 	
+		Thread.sleep(2000);
+		p.clickAddButton();
+		p.clickSaveButtonOnAddPermisisonPopUp();
+		Thread.sleep(2000);
+		//assertEquals(driver.findElement(By.cssSelector(Permissions.EMPTYPERMISSIONNAME)).getText(), Messages.EMPTYPERMISSIONNAME);
+		
 	}	    
 }
 
