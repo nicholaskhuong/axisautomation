@@ -5,7 +5,6 @@ public class TestLoginCredentials {
 	private String username;
 	private String password;
 
-	
 	public TestLoginCredentials(String username, String password) {
 		super();
 		this.username = username;
@@ -53,14 +52,17 @@ public class TestLoginCredentials {
 		return true;
 	}
 
-//	public TestLoginCredentials merge(TestLoginCredentials overrides) {
-//		
-//		return new TestLoginCredentials(
-//				isNotBlank(overrides.getUsername()) ? overrides.getUsername() : getUsername(),
-//				isNotBlank(overrides.getPassword()) ? overrides.getPassword() : getPassword(),
-//				isNotBlank(overrides.getDistrict()) ? overrides.getDistrict() : getDistrict(),
-//				isNotBlank(overrides.getPosition()) ? overrides.getPosition() : getPosition());
-//	}
+	// public TestLoginCredentials merge(TestLoginCredentials overrides) {
+	//
+	// return new TestLoginCredentials(
+	// isNotBlank(overrides.getUsername()) ? overrides.getUsername() :
+	// getUsername(),
+	// isNotBlank(overrides.getPassword()) ? overrides.getPassword() :
+	// getPassword(),
+	// isNotBlank(overrides.getDistrict()) ? overrides.getDistrict() :
+	// getDistrict(),
+	// isNotBlank(overrides.getPosition()) ? overrides.getPosition() :
+	// getPosition());
+	// }
 
-	
 }

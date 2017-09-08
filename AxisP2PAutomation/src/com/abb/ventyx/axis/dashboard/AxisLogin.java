@@ -1,7 +1,5 @@
 package com.abb.ventyx.axis.dashboard;
 
-
-
 import com.abb.ventyx.axis.objects.pages.LoginPage;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseTestCase;

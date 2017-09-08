@@ -5,9 +5,22 @@
         <listener class-name="com.abb.ventyx.utilities.Reporter"></listener>
 	</listeners>
 	
-  	<test name="Login">
+  	<test name="Supplier ">
 		<classes>
-				<class name="com.abb.ventyx.axis.dashboard.AxisLogin" />
+				<class name="com.abb.ventyx.axis.supplier.SupplierUserGroup_Creating" />
+				<class name="com.abb.ventyx.axis.support.Permissions_Creating" />
+				<class name="com.abb.ventyx.axis.support.Permissions_Updating" />
+				<class name="com.abb.ventyx.axis.support.Permissions_Deleting" />
+				<class name="com.abb.ventyx.axis.support.Document_Type_Creating" />
+				<class name="com.abb.ventyx.axis.support.Document_Type_Editing" />
+				<class name="com.abb.ventyx.axis.support.Document_Type_Deleting" />
+				<class name="com.abb.ventyx.axis.support.Permissions_Creating" />
+				<class name="com.abb.ventyx.axis.support.Permissions_Updating" />
+				<class name="com.abb.ventyx.axis.support.Permissions_Deleting" />
+				<class name="com.abb.ventyx.axis.support.Code_Set_Type" />
+				<class name="com.abb.ventyx.axis.support.Users_Creating" />
+				<class name="com.abb.ventyx.axis.support.Users_Updating" />
+				<class name="com.abb.ventyx.axis.support.Users_Deleting" />
 		</classes>
 	</test>	
 	 <!-- Test -->

@@ -12,86 +12,76 @@ public class BaseGrid {
 	WebDriver driver;
 	String tableCSS;
 	String gridId;
-	String[ ][ ] gridItem;
-	int rowCount  =0;
-	int columnCount =0;
-	public BaseGrid(WebDriver driver, String tableCSS)
-	{
+	String[][] gridItem;
+	int rowCount = 0;
+	int columnCount = 0;
+
+	public BaseGrid(WebDriver driver, String tableCSS) {
 		this.driver = driver;
-		this.tableCSS= tableCSS;
+		this.tableCSS = tableCSS;
 		getGrid();
 	}
 
-	public String getGridCellByColumnName(String columnName, int rowNumber)
-	{
-		for(int i = 1; i<columnCount; i++ )
-		{
-			if (gridItem[0][i].trim().equalsIgnoreCase(columnName.trim()))
-			{
+	public String getGridCellByColumnName(String columnName, int rowNumber) {
+		for (int i = 1; i < columnCount; i++) {
+			if (gridItem[0][i].trim().equalsIgnoreCase(columnName.trim())) {
 				return gridItem[rowNumber][i];
 			}
 		}
 		return "N/A";
 	}
-	public int findItemByColumnName(String columnName, String value)
-	{
+
+	public int findItemByColumnName(String columnName, String value) {
 		int columnNo = 0;
-		for(int i = 1; i<columnCount; i++ )
-		{
-			if (gridItem[0][i].trim().equalsIgnoreCase(columnName.trim()))
-			{
+		for (int i = 1; i < columnCount; i++) {
+			if (gridItem[0][i].trim().equalsIgnoreCase(columnName.trim())) {
 				columnNo = i;
 				break;
 			}
 		}
-		for(int i = 1; i<rowCount; i++ )
-		{
-			if (gridItem[i][columnNo].trim().equals(value.trim()))
-			{
+		for (int i = 1; i < rowCount; i++) {
+			if (gridItem[i][columnNo].trim().equals(value.trim())) {
 				return i;
 			}
 		}
 		return -1;
 	}
-	private void getGrid()
-	{
-	WebElement table_element = (new WebDriverWait(driver, 30))
-	  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(tableCSS)));
-    List<WebElement> tr_collection=table_element.findElements(By.cssSelector(tableCSS + "> tbody > tr"));
-    List<WebElement> th_collection=table_element.findElements(By.cssSelector(tableCSS + "> thead > tr > th"));
-    rowCount = tr_collection.size() +1;
-    columnCount = th_collection.size() +1;
-    gridItem = new String[rowCount][columnCount];
-    int row_num,col_num;
-    row_num=1;
-    col_num=1;
-    for(WebElement thElement : th_collection)
-    {
-    	if (null != thElement.getText())
-   	 	{
-	    	gridItem[0][col_num] = thElement.getText();
-   	 	}
-    	col_num++;
-    }
-    for(WebElement trElement : tr_collection)
-    {
-        List<WebElement> td_collection=trElement.findElements(By.xpath("td"));
-        col_num=1;
-        for(WebElement tdElement : td_collection)
-        {
-        	if (null != tdElement.getText())
-        	 {
-        		gridItem[row_num][col_num] = tdElement.getText();
-        	 }
-            col_num++;
-            if (col_num> th_collection.size())
-            {
-            	System.out.println();
-            }
-        }
-        row_num++;
-    } 
+
+	private void getGrid() {
+		WebElement table_element = (new WebDriverWait(driver, 30))
+				.until(ExpectedConditions.presenceOfElementLocated(By
+						.cssSelector(tableCSS)));
+		List<WebElement> tr_collection = table_element.findElements(By
+				.cssSelector(tableCSS + "> tbody > tr"));
+		List<WebElement> th_collection = table_element.findElements(By
+				.cssSelector(tableCSS + "> thead > tr > th"));
+		rowCount = tr_collection.size() + 1;
+		columnCount = th_collection.size() + 1;
+		gridItem = new String[rowCount][columnCount];
+		int row_num, col_num;
+		row_num = 1;
+		col_num = 1;
+		for (WebElement thElement : th_collection) {
+			if (null != thElement.getText()) {
+				gridItem[0][col_num] = thElement.getText();
+			}
+			col_num++;
+		}
+		for (WebElement trElement : tr_collection) {
+			List<WebElement> td_collection = trElement.findElements(By
+					.xpath("td"));
+			col_num = 1;
+			for (WebElement tdElement : td_collection) {
+				if (null != tdElement.getText()) {
+					gridItem[row_num][col_num] = tdElement.getText();
+				}
+				col_num++;
+				if (col_num > th_collection.size()) {
+					System.out.println();
+				}
+			}
+			row_num++;
+		}
 	}
-	
 
 }

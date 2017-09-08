@@ -16,6 +16,5 @@ public class SupplierMenu {
 	public static final String DOCUMENTATION_ID = "docTabParentButton";
 	public static final String USER_GUIDE_ID = "userGuideMenuItemButton";
 	public static final String ABOUT_ID = "aboutButton";
-	public static final String SCREEN_TITLE_ID = "common-header-left-layout";
 
 }
