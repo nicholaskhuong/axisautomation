@@ -43,15 +43,17 @@ public class TableFunction {
 		return sumRow;
 	}
 
-	public void filterPermission(String filterValue){
+	public void filterPermission(String filterValue) {
 		// Click Filter Icon
 		WebElement filterButton = (new WebDriverWait(driver, 20))
-				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#HeaderMenuBar > span:nth-child(1)")));
+				.until(ExpectedConditions.presenceOfElementLocated(By
+						.cssSelector("#HeaderMenuBar > span:nth-child(1)")));
 		filterButton.click();
-		
+
 		// Enter filter value
 		WebElement filterPermissionName = (new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Permissions.PERMISSION_NAME_FILTER)));
+				.until(ExpectedConditions.presenceOfElementLocated(By
+						.xpath(Permissions.PERMISSION_NAME_FILTER)));
 		filterPermissionName.sendKeys(filterValue);
 		try {
 			Thread.sleep(2000);
@@ -60,4 +62,5 @@ public class TableFunction {
 			e.printStackTrace();
 		}
 	}
+
 }
