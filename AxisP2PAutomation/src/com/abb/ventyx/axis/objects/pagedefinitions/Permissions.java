@@ -2,6 +2,7 @@ package com.abb.ventyx.axis.objects.pagedefinitions;
 
 public class Permissions {
 		public static final String GRID = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div > div.v-grid-tablewrapper > table > tbody";
+		public static final String tableBody = "//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']";
 		public static final String GRID_PERMISSIONIDCELL = "//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr[1]//td[1]//div[@class='cr-component-cell']//div[@tabindex=0]";
 		public static final String GRID_DOCTYPECELL = "//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr[1]//td[2]";
 		public static final String GRID_PERMISSIONNAMECELL = "//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr[1]//td[3]";
