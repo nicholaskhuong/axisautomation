@@ -62,23 +62,18 @@ public class ScreenAction {
 		listCheckbox.get(n).click();
 	}
 
-/*	public int findRowByString(String tableCSS, String value, int columnindex) {
-		int row = 0;
-		WebElement baseTable = driver.findElement(By.cssSelector(tableCSS));
-		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
-		int sumRow = tableRows.size();
-		for (int i = 1; i < sumRow; i++) {
-			WebElement columnValue = driver.findElement(By.cssSelector(tableCSS
-					+ "> table > tbody > tr:nth-child(" + i
-					+ ") > td:nth-child(" + columnindex + ")"));
-			if (columnValue.getText().equals(value)) {
-				row = i;
-				break;
-			}
+	public void clickCheckBoxNInTable(String tableCSS, int n) {
+		WebElement table = driver.findElement(By.cssSelector(tableCSS));
+		List<WebElement> listCheckbox = table.findElements(By
+				.className("v-grid-selection-checkbox"));
+		listCheckbox.get(n).click();
+	}
 
-		}
-		return row;
-	}*/
+	public void clickExpandButton(int n) {
+		List<WebElement> listExpand = driver.findElements(By
+				.className(ScreenObject.EXPAND_CLASS));
+		listExpand.get(n).click();
+	}
 
 	public void checkAddSuccess(String msg) {
 
@@ -152,9 +147,4 @@ public class ScreenAction {
 		assertTitleScreen(titleScreen);
 	}
 
-	/*
-	 * public void inputFilterField(By filer, String value) {
-	 * clickBtn(By.cssSelector(Messages.)); driver.findElement(filter).click();
-	 * }
-	 */
 }

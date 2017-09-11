@@ -18,6 +18,9 @@ import com.abb.ventyx.utilities.TableFunction;
 public class SupplierUserGroup_Creating extends BaseTestCase {
 	String USER_GROUP_NAME = "POGroup";
 	ScreenAction action;
+	TableFunction table;
+	String PERMISSION = "PurchaseOrder";
+	int row;
 
 	@Test
 	public void openScreen() throws InterruptedException {
@@ -37,9 +40,9 @@ public class SupplierUserGroup_Creating extends BaseTestCase {
 		action.inputTextField(UserGroup.USERGROUP_NAME_ID, USER_GROUP_NAME);
 
 		// Click PO permission
-		TableFunction table = new TableFunction(driver);
-		int row = table.findRowByString(UserGroup.PERMISSION_TABLE_CSS,
-				"PurchaseOrder", 3);
+		table = new TableFunction(driver);
+		row = table.findRowByString(UserGroup.PERMISSION_TABLE_CSS, PERMISSION,
+				3);
 		action.clickCheckBoxN(row);
 		action.clickBtn(By.id(ScreenObject.SAVE_ID));
 		action.checkAddSuccess(Messages.USERGROUP_CREATE_SUCCESSFULLY);
@@ -47,6 +50,16 @@ public class SupplierUserGroup_Creating extends BaseTestCase {
 	}
 
 	@Test(dependsOnMethods = "addUserGroup")
+	public void checkAddSuccessfully() {
+
+		table.inputFilter(USER_GROUP_NAME);
+		row = table.findRowByString(UserGroup.SUPPLIER_GROUP_TABLE_CSS,
+				USER_GROUP_NAME, 1);
+		table.assertFiler(UserGroup.ROW_ID, USER_GROUP_NAME, row - 1);
+
+	}
+
+	@Test(dependsOnMethods = "checkAddSuccessfully")
 	public void addValidation() throws InterruptedException {
 		action.checkValidationTextField(UserGroup.USERGROUP_NAME_ID,
 				USER_GROUP_NAME);

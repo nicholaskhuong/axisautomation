@@ -5,7 +5,8 @@
  
 	<test name="Supplier User Group">
 		<classes>
-				<class name="com.abb.ventyx.axis.supplier.SupplierUserGroup_Creating" />		
+				<class name="com.abb.ventyx.axis.supplier.SupplierUserGroup_Creating" />
+				<class name="com.abb.ventyx.axis.supplier.SupplierUserGroup_Updating" />		
 		</classes>	
   	</test>
   	
