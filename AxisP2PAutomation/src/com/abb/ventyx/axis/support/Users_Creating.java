@@ -5,64 +5,83 @@ import static org.testng.Assert.assertEquals;
 import java.util.List;
 import java.util.Random;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
+
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisAdministratorUsers;
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisSupportCustomerUserGroup;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
+import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObject;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
-import org.testng.annotations.Test;
 
-@ALM(id = "203") 
+@ALM(id = "203")
 @Credentials(user = "mail5@abb.com", password = "testuser")
-public class Users_Creating extends BaseTestCase{
-	String userID="DathyUser1";
-	
+public class Users_Creating extends BaseTestCase {
+	String userID = "DathyUser1";
+
 	@Test
-	  public void checkScreen() {
-    	 WebElement axisAdminMenu = (new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.presenceOfElementLocated(By.id(AxisAdministratorUsers.AXIS_ADMINISTRATION_MENU_ID)));
-    	 axisAdminMenu.click();
-		 WebElement usersMenu = (new WebDriverWait(driver, 15))
-					.until(ExpectedConditions.presenceOfElementLocated(By.id(AxisAdministratorUsers.USERS_SUBMENU_ID)));
-		 usersMenu.click();	  
-		 (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id(AxisAdministratorUsers.ROW_ID+"0")));
-		 WebElement screenTitle=(new WebDriverWait(driver, 10))
-					.until(ExpectedConditions.presenceOfElementLocated(By.id(AxisAdministratorUsers.SCREEN_TITLE_ID)));
-		 assertEquals(screenTitle.getText(), AxisAdministratorUsers.SCREEN_TITLE, "Title is wrong");
-	  }
-	
+	public void checkScreen() {
+		WebElement axisAdminMenu = (new WebDriverWait(driver, 10))
+				.until(ExpectedConditions.presenceOfElementLocated(By
+						.id(AxisAdministratorUsers.AXIS_ADMINISTRATION_MENU_ID)));
+		axisAdminMenu.click();
+		WebElement usersMenu = (new WebDriverWait(driver, 15))
+				.until(ExpectedConditions.presenceOfElementLocated(By
+						.id(AxisAdministratorUsers.USERS_SUBMENU_ID)));
+		usersMenu.click();
+		(new WebDriverWait(driver, 10)).until(ExpectedConditions
+				.presenceOfElementLocated(By.id(AxisAdministratorUsers.ROW_ID
+						+ "0")));
+		WebElement screenTitle = (new WebDriverWait(driver, 10))
+				.until(ExpectedConditions.presenceOfElementLocated(By
+						.id(AxisAdministratorUsers.SCREEN_TITLE_ID)));
+		assertEquals(screenTitle.getText(),
+				AxisAdministratorUsers.SCREEN_TITLE, "Title is wrong");
+	}
+
 	@Test(dependsOnMethods = "checkScreen")
-	public void addWithoutData (){ 
-		driver.findElement(By.xpath(AxisAdministratorUsers.ADD_BTN_XPATH)).click();
+	public void addWithoutData() {
+		driver.findElement(By.xpath(AxisAdministratorUsers.ADD_BTN_XPATH))
+				.click();
 		WebElement saveBtn = (new WebDriverWait(driver, 15))
-				.until(ExpectedConditions.presenceOfElementLocated(By.id(AxisAdministratorUsers.SAVE_ID)));
-		WebElement screenTitle=driver.findElement(By.id(AxisAdministratorUsers.SCREEN_TITLE_ID));
-		assertEquals(screenTitle.getText(), AxisAdministratorUsers.SCREEN_CREATE_TITLE, "Title is wrong");
+				.until(ExpectedConditions.presenceOfElementLocated(By
+						.id(AxisAdministratorUsers.SAVE_ID)));
+		WebElement screenTitle = driver.findElement(By
+				.id(AxisAdministratorUsers.SCREEN_TITLE_ID));
+		assertEquals(screenTitle.getText(),
+				AxisAdministratorUsers.SCREEN_CREATE_TITLE, "Title is wrong");
 		saveBtn.click();
-		//Don't input all field
+		// Don't input all field
 		WebElement warningMessage = (new WebDriverWait(driver, 10))
-	  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(Messages.ERROR_WITHOUT_ICON_CSS)));
+				.until(ExpectedConditions.presenceOfElementLocated(By
+						.cssSelector(ScreenObject.ERROR_WITHOUT_ICON_CSS)));
 		assertEquals(warningMessage.getText(), Messages.ENTER_MANDATORY_FIELDS);
-		
-		//Don't input User
-		WebElement userId=driver.findElement(By.id(AxisAdministratorUsers.USER_ID));
-		userId.clear();	
-		WebElement email=driver.findElement(By.id(AxisAdministratorUsers.EMAIL_ID));
+
+		// Don't input User
+		WebElement userId = driver.findElement(By
+				.id(AxisAdministratorUsers.USER_ID));
+		userId.clear();
+		WebElement email = driver.findElement(By
+				.id(AxisAdministratorUsers.EMAIL_ID));
 		email.sendKeys("email@dathy.com");
-		WebElement passWord=driver.findElement(By.id(AxisAdministratorUsers.PASSWORD_ID));
+		WebElement passWord = driver.findElement(By
+				.id(AxisAdministratorUsers.PASSWORD_ID));
 		passWord.sendKeys("TestUser1");
-		WebElement confirmPassWord=driver.findElement(By.id(AxisAdministratorUsers.CONFIRM_PASSWORD_ID));
+		WebElement confirmPassWord = driver.findElement(By
+				.id(AxisAdministratorUsers.CONFIRM_PASSWORD_ID));
 		confirmPassWord.sendKeys("TestUser1");
 		saveBtn.click();
 		WebElement warningMessage1 = (new WebDriverWait(driver, 10))
-	  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(Messages.ERROR_WITHOUT_ICON_CSS)));
+				.until(ExpectedConditions.presenceOfElementLocated(By
+						.cssSelector(ScreenObject.ERROR_WITHOUT_ICON_CSS)));
 		assertEquals(warningMessage1.getText(), Messages.ENTER_MANDATORY_FIELDS);
-		
-		//Don't input PWD		
+
+		// Don't input PWD
 		email.clear();
 		userId.clear();
 		userId.sendKeys(userID);
@@ -72,10 +91,11 @@ public class Users_Creating extends BaseTestCase{
 		confirmPassWord.sendKeys("TestUser1");
 		saveBtn.click();
 		WebElement warningMessage2 = (new WebDriverWait(driver, 10))
-	  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(Messages.ERROR_WITHOUT_ICON_CSS)));
+				.until(ExpectedConditions.presenceOfElementLocated(By
+						.cssSelector(ScreenObject.ERROR_WITHOUT_ICON_CSS)));
 		assertEquals(warningMessage2.getText(), Messages.ENTER_MANDATORY_FIELDS);
-		
-		//Don't input email		
+
+		// Don't input email
 		userId.clear();
 		userId.sendKeys(userID);
 		passWord.clear();
@@ -85,11 +105,12 @@ public class Users_Creating extends BaseTestCase{
 		email.clear();
 		saveBtn.click();
 		WebElement warningMessage3 = (new WebDriverWait(driver, 10))
-			  	.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(Messages.ERROR_WITHOUT_ICON_CSS)));
-		assertEquals(warningMessage3.getText(), Messages.ENTER_MANDATORY_FIELDS);	
-		
-		//Don't input confirm password
-		
+				.until(ExpectedConditions.presenceOfElementLocated(By
+						.cssSelector(ScreenObject.ERROR_WITHOUT_ICON_CSS)));
+		assertEquals(warningMessage3.getText(), Messages.ENTER_MANDATORY_FIELDS);
+
+		// Don't input confirm password
+
 		userId.clear();
 		userId.sendKeys(userID);
 		email.clear();
@@ -99,101 +120,129 @@ public class Users_Creating extends BaseTestCase{
 		confirmPassWord.clear();
 		saveBtn.click();
 		WebElement warningMessage4 = (new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(Messages.ERROR_WITHOUT_ICON_CSS)));
-		assertEquals(warningMessage4.getText(), Messages.ENTER_MANDATORY_FIELDS);	
-				
+				.until(ExpectedConditions.presenceOfElementLocated(By
+						.cssSelector(ScreenObject.ERROR_WITHOUT_ICON_CSS)));
+		assertEquals(warningMessage4.getText(), Messages.ENTER_MANDATORY_FIELDS);
+
 	}
 
-	//Click Cancel do it again
+	// Click Cancel do it again
 	@Test(dependsOnMethods = "addWithoutData")
-	public void cancelWithoutData (){ 
-		
-		WebElement userId=driver.findElement(By.id(AxisAdministratorUsers.USER_ID));
-		userId.clear();	
-		WebElement email=driver.findElement(By.id(AxisAdministratorUsers.EMAIL_ID));
+	public void cancelWithoutData() {
+
+		WebElement userId = driver.findElement(By
+				.id(AxisAdministratorUsers.USER_ID));
+		userId.clear();
+		WebElement email = driver.findElement(By
+				.id(AxisAdministratorUsers.EMAIL_ID));
 		email.clear();
-		WebElement passWord=driver.findElement(By.id(AxisAdministratorUsers.PASSWORD_ID));
+		WebElement passWord = driver.findElement(By
+				.id(AxisAdministratorUsers.PASSWORD_ID));
 		passWord.clear();
-		WebElement confirmPassWord=driver.findElement(By.id(AxisAdministratorUsers.CONFIRM_PASSWORD_ID));
+		WebElement confirmPassWord = driver.findElement(By
+				.id(AxisAdministratorUsers.CONFIRM_PASSWORD_ID));
 		confirmPassWord.clear();
-		WebElement cancelBtn=driver.findElement(By.id(AxisAdministratorUsers.CANCEL_ID));
+		WebElement cancelBtn = driver.findElement(By
+				.id(AxisAdministratorUsers.CANCEL_ID));
 		cancelBtn.click();
-		(new WebDriverWait(driver, 20))
-		 .until(ExpectedConditions.presenceOfElementLocated(By.id(AxisAdministratorUsers.ROW_ID+"0")));
-		WebElement screenTitle=driver.findElement(By.id(AxisAdministratorUsers.SCREEN_TITLE_ID));
+		(new WebDriverWait(driver, 20)).until(ExpectedConditions
+				.presenceOfElementLocated(By.id(AxisAdministratorUsers.ROW_ID
+						+ "0")));
+		WebElement screenTitle = driver.findElement(By
+				.id(AxisAdministratorUsers.SCREEN_TITLE_ID));
 		assertEquals(screenTitle.getText(), AxisAdministratorUsers.SCREEN_TITLE);
 	}
-	
+
 	@Test(dependsOnMethods = "cancelWithoutData")
-	public void addWithoutUserGroup (){ 
-		
-		driver.findElement(By.xpath(AxisAdministratorUsers.ADD_BTN_XPATH)).click();
+	public void addWithoutUserGroup() {
+
+		driver.findElement(By.xpath(AxisAdministratorUsers.ADD_BTN_XPATH))
+				.click();
 		WebElement saveBtn = (new WebDriverWait(driver, 15))
-				.until(ExpectedConditions.presenceOfElementLocated(By.id(AxisAdministratorUsers.SAVE_ID)));
-		
-		//Don't select User Group
-		int n=new Random().nextInt(1000);
-	
-		WebElement userId=driver.findElement(By.id(AxisAdministratorUsers.USER_ID));
-		userId.sendKeys("DathyUser"+n);
-		WebElement email=driver.findElement(By.id(AxisAdministratorUsers.EMAIL_ID));
-		email.sendKeys("email"+n+ "@dathy.com");
-		WebElement passWord=driver.findElement(By.id(AxisAdministratorUsers.PASSWORD_ID));
+				.until(ExpectedConditions.presenceOfElementLocated(By
+						.id(AxisAdministratorUsers.SAVE_ID)));
+
+		// Don't select User Group
+		int n = new Random().nextInt(1000);
+
+		WebElement userId = driver.findElement(By
+				.id(AxisAdministratorUsers.USER_ID));
+		userId.sendKeys("DathyUser" + n);
+		WebElement email = driver.findElement(By
+				.id(AxisAdministratorUsers.EMAIL_ID));
+		email.sendKeys("email" + n + "@dathy.com");
+		WebElement passWord = driver.findElement(By
+				.id(AxisAdministratorUsers.PASSWORD_ID));
 		passWord.sendKeys("TestUser1");
-		WebElement confirmPassWord=driver.findElement(By.id(AxisAdministratorUsers.CONFIRM_PASSWORD_ID));
-		confirmPassWord.sendKeys("TestUser1");		
+		WebElement confirmPassWord = driver.findElement(By
+				.id(AxisAdministratorUsers.CONFIRM_PASSWORD_ID));
+		confirmPassWord.sendKeys("TestUser1");
 		saveBtn.click();
 		WebElement warningMessage5 = (new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(Messages.ERROR_WITHOUT_ICON_CSS)));
-		assertEquals(warningMessage5.getText(), Messages.USER_SELECT_USERGROUP);	
+				.until(ExpectedConditions.presenceOfElementLocated(By
+						.cssSelector(ScreenObject.ERROR_WITHOUT_ICON_CSS)));
+		assertEquals(warningMessage5.getText(), Messages.USER_SELECT_USERGROUP);
 	}
-	
+
 	@Test(dependsOnMethods = "addWithoutUserGroup")
-	public void addWithValidData () throws InterruptedException{ 
-		List<WebElement> list= driver.findElements(By.className(AxisAdministratorUsers.USERGROUP_CHECKBOX_CLASS));
+	public void addWithValidData() throws InterruptedException {
+		List<WebElement> list = driver.findElements(By
+				.className(AxisAdministratorUsers.USERGROUP_CHECKBOX_CLASS));
 		list.get(1).click();
 		driver.findElement(By.id(AxisSupportCustomerUserGroup.SAVE_ID)).click();
-		WebElement sucessMessage = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(Messages.SUCCESS_MESSAGE)));
-		assertEquals(sucessMessage.getText(), Messages.USER_CREATE_SUCCESSFULLY);	
+		WebElement sucessMessage = (new WebDriverWait(driver, 10))
+				.until(ExpectedConditions.presenceOfElementLocated(By
+						.cssSelector(ScreenObject.SUCCESS_MESSAGE)));
+		assertEquals(sucessMessage.getText(), Messages.USER_CREATE_SUCCESSFULLY);
 	}
-		
+
 	@Test(dependsOnMethods = "addWithValidData")
-	public void cancelWithYes () throws InterruptedException{ 
-		driver.findElement(By.xpath(AxisAdministratorUsers.ADD_BTN_XPATH)).click();
+	public void cancelWithYes() throws InterruptedException {
+		driver.findElement(By.xpath(AxisAdministratorUsers.ADD_BTN_XPATH))
+				.click();
 		WebElement userId = (new WebDriverWait(driver, 15))
-				.until(ExpectedConditions.presenceOfElementLocated(By.id(AxisAdministratorUsers.USER_ID)));
+				.until(ExpectedConditions.presenceOfElementLocated(By
+						.id(AxisAdministratorUsers.USER_ID)));
 		userId.sendKeys(userID);
-		WebElement cancelBtn=driver.findElement(By.id(AxisAdministratorUsers.CANCEL_ID));
+		WebElement cancelBtn = driver.findElement(By
+				.id(AxisAdministratorUsers.CANCEL_ID));
 		cancelBtn.click();
-		//Click Yes
-		(new WebDriverWait(driver, 20))
-		 	.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(Messages.CONFIRMATION)));
-		driver.findElement(By.id(Messages.YES_BTN_ID)).click();
-		(new WebDriverWait(driver, 20))
-		 .until(ExpectedConditions.presenceOfElementLocated(By.id(AxisAdministratorUsers.ROW_ID+"0")));
-		WebElement screenTitle=driver.findElement(By.id(AxisAdministratorUsers.SCREEN_TITLE_ID));
+		// Click Yes
+		(new WebDriverWait(driver, 20)).until(ExpectedConditions
+				.presenceOfElementLocated(By
+						.cssSelector(ScreenObject.CONFIRMATION)));
+		driver.findElement(By.id(ScreenObject.YES_BTN_ID)).click();
+		(new WebDriverWait(driver, 20)).until(ExpectedConditions
+				.presenceOfElementLocated(By.id(AxisAdministratorUsers.ROW_ID
+						+ "0")));
+		WebElement screenTitle = driver.findElement(By
+				.id(AxisAdministratorUsers.SCREEN_TITLE_ID));
 		assertEquals(screenTitle.getText(), AxisAdministratorUsers.SCREEN_TITLE);
-				
+
 	}
-	
+
 	@Test(dependsOnMethods = "cancelWithYes")
-	public void cancelClickNo () { 
-		
-		driver.findElement(By.xpath(AxisAdministratorUsers.ADD_BTN_XPATH)).click();
+	public void cancelClickNo() {
+
+		driver.findElement(By.xpath(AxisAdministratorUsers.ADD_BTN_XPATH))
+				.click();
 		WebElement userId = (new WebDriverWait(driver, 15))
-				.until(ExpectedConditions.presenceOfElementLocated(By.id(AxisAdministratorUsers.USER_ID)));
+				.until(ExpectedConditions.presenceOfElementLocated(By
+						.id(AxisAdministratorUsers.USER_ID)));
 		userId.sendKeys(userID);
-		WebElement cancelBtn=driver.findElement(By.id(AxisAdministratorUsers.CANCEL_ID));
+		WebElement cancelBtn = driver.findElement(By
+				.id(AxisAdministratorUsers.CANCEL_ID));
 		cancelBtn.click();
-		
-		WebElement msgDialog= (new WebDriverWait(driver, 20))
-				 .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(Messages.CONFIRMATION)));
-		assertEquals(msgDialog.getText(), Messages.UNSAVED_CHANGE);	
-		driver.findElement(By.id(Messages.NO_BTN_ID)).click();
-		WebElement screenTitle=driver.findElement(By.id(AxisAdministratorUsers.SCREEN_TITLE_ID));
-		assertEquals(screenTitle.getText(), AxisAdministratorUsers.SCREEN_CREATE_TITLE);			
+
+		WebElement msgDialog = (new WebDriverWait(driver, 20))
+				.until(ExpectedConditions.presenceOfElementLocated(By
+						.cssSelector(ScreenObject.CONFIRMATION)));
+		assertEquals(msgDialog.getText(), Messages.UNSAVED_CHANGE);
+		driver.findElement(By.id(ScreenObject.NO_BTN_ID)).click();
+		WebElement screenTitle = driver.findElement(By
+				.id(AxisAdministratorUsers.SCREEN_TITLE_ID));
+		assertEquals(screenTitle.getText(),
+				AxisAdministratorUsers.SCREEN_CREATE_TITLE);
 	}
-	
+
 }
-
-
