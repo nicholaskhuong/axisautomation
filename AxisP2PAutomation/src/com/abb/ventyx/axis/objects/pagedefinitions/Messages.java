@@ -42,4 +42,10 @@ public class Messages {
 	public static final String INVALID_CONFIRM_PWD = "Entered Password is not the same, please verify.";
 	public static final String DELETE_USER_CONFIRM = "Are you sure want to delete this user?";
 	public static final String USER_DELETE_SUCCESSFULLY = "User succesfully deleted";
+	
+	// Permissions
+	public static final String EMPTYPERMISSIONNAME = "Please enter permission name";
+	public static final String EMPTYUSERTYPE = "Please select the User Type";
+	public static final String PERMISSION_CREATED_SUCCESSFULLY = "Permission successfully created";
+	public static final String PERMISSION_CREATED_SUCCESSFULLY_CSS = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-success-notification.v-Notification-v-success-notification > div > div > h1 > div > div > div.v-slot.v-align-center.v-align-middle.v-notification-inline-caption";
 }

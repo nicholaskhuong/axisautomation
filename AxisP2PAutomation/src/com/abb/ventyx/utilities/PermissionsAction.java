@@ -62,11 +62,23 @@ public class PermissionsAction {
 		addPermissionButton.click();
 		Thread.sleep(1000);
 	}
-
+	public void enterPermissionName(String permissionName) throws InterruptedException{
+		WebElement permissionNameElm = (new WebDriverWait(driver, 10))
+				.until(ExpectedConditions.presenceOfElementLocated(By.id(Permissions.PERMISSION_NAME)));
+		permissionNameElm.sendKeys(permissionName);
+		Thread.sleep(1000);
+	}
 	public void clickSaveButtonOnAddPermisisonPopUp() throws InterruptedException{
 		// Click Save button on Add Permission Window Pop Up
 		WebElement saveButton = (new WebDriverWait(driver, 30))
-				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#permissioncreatewindow > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-mainform-verticallayout > div > div.v-slot.v-slot-v-bottombar-button-layout > div > div > div > div > div:nth-child(3)")));
+				.until(ExpectedConditions.presenceOfElementLocated(By.id(Permissions.SAVE)));
+		saveButton.click();
+		Thread.sleep(1000);
+	}
+	
+	public void clickCancelButtonOnAddPermisisonPopUp() throws InterruptedException{
+		WebElement saveButton = (new WebDriverWait(driver, 30))
+				.until(ExpectedConditions.presenceOfElementLocated(By.id(Permissions.CANCEL)));
 		saveButton.click();
 		Thread.sleep(1000);
 	}
