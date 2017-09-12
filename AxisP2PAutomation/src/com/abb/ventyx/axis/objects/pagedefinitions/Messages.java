@@ -11,12 +11,12 @@ public class Messages {
 	public static final String DOCUMENT_DELETE_SUCCESSFULLY = "Delete success";
 	public static final String DOCUMENT_CREATE_SUCCESSFULLY_UPDATED = "Document filter type search option successfully updated";
 	public static final String DOCUMENT_CREATE_SUCCESSFULLY_UPDATED_CSS = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-success-notification.v-Notification-v-success-notification";
-	public static final String DOCUMENT_CREATE_SUCCESSFULLY = "Document Types created successfully";
+	public static final String DOCUMENT_CREATE_SUCCESSFULLY = "The Document Type successfully created";
 	public static final String SEARCH_OPTION_SUCCESSFULLY = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-success-notification.v-Notification-v-success-notification";
 	public static final String DOC_TYPE_SEARCH_OPT_SUCCESSFULLY = "Document filter type search option successfully created";
 	public static final String DUPLICATE_FIELD_TYPE_CSS = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-error-notification-no-icon.v-Notification-v-error-notification-no-icon";
 	public static final String DUPLICATE_FIELD_TYPE = "Duplicate Field Type and Option, please use different values";
-	public static final String DOC_TYPES_EXIST = "Document Types exist";
+	public static final String DOC_TYPES_EXIST = "This Document Type already exists";
 	public static final String ENTER_MANDATORY_FIELDS = "One or more fields are in error. Please correct.";;
 
 	// User group page
