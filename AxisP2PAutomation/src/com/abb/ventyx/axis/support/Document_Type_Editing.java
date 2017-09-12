@@ -47,23 +47,20 @@ public class Document_Type_Editing extends BaseTestCase {
 		boolean status = driver.findElement(By.id(DocType.DOCTYPES))
 				.isEnabled();
 		Assert.assertEquals(status, false);
+		Thread.sleep(200);
 		WebElement desc = driver.findElement(By.id(DocType.DESC));
 		desc.clear();
 		desc.sendKeys(DESC_B);
+		Thread.sleep(500);
 		WebElement save = driver.findElement(By.id(DocType.SAVE));
 		save.click();
 		Thread.sleep(1000);
 		WebElement flashMessage = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(DocType.SUCCESS_MESSAGE)));
-		Assert.assertEquals(
-				driver.findElement(By.cssSelector(DocType.POPUP_SUCCESS))
-						.getCssValue("background-color"),
-				"rgba(33, 190, 137, 1)");
-		Assert.assertEquals(flashMessage.getCssValue("visibility"), "visible");
-		Assert.assertEquals(flashMessage.getCssValue("display"), "inline-block");
 		Assert.assertEquals(flashMessage.getText(),
-				Messages.DOCUMENT_UPADTED_SUCCESSFULLY);
+				Messages.DOCUMENT_UPDATED_SUCCESSFULLY);
+		
 		grid = new BaseGrid(driver, DocType.GRID);
 		final String DOCTYPE_C = grid.getGridCellByColumnName("Document Types",
 				row);
@@ -83,15 +80,15 @@ public class Document_Type_Editing extends BaseTestCase {
 		WebElement flashMessage2 = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(DocType.SUCCESS_MESSAGE)));
-		Assert.assertEquals(
+		/*Assert.assertEquals(
 				driver.findElement(By.cssSelector(DocType.POPUP_SUCCESS))
 						.getCssValue("background-color"),
 				"rgba(33, 190, 137, 1)");
 		Assert.assertEquals(flashMessage2.getCssValue("visibility"), "visible");
 		Assert.assertEquals(flashMessage2.getCssValue("display"),
-				"inline-block");
+				"inline-block");*/
 		Assert.assertEquals(flashMessage2.getText(),
-				Messages.DOCUMENT_UPADTED_SUCCESSFULLY);
+				Messages.DOCUMENT_UPDATED_SUCCESSFULLY);
 
 	}
 }
