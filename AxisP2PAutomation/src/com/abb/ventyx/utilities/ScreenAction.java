@@ -5,6 +5,7 @@ import static org.testng.Assert.assertEquals;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -159,6 +160,16 @@ public class ScreenAction {
 		driver.findElement(By.id(ScreenObjects.CANCEL_ID)).click();
 		waitObjVisible(obj);
 		assertTitleScreen(titleScreen);
+	}
+	
+	public boolean isElementPresent(By by){
+		 try{
+	            driver.findElement(by);
+	            return true;
+	        }
+	        catch(NoSuchElementException e){
+	            return false;
+	        }
 	}
 
 }

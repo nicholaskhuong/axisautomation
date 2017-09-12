@@ -1,13 +1,11 @@
 package com.abb.ventyx.axis.support;
 
 import static org.testng.Assert.assertEquals;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
-
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.Permissions;
@@ -16,6 +14,7 @@ import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
 import com.abb.ventyx.utilities.PermissionsAction;
+import com.abb.ventyx.utilities.ScreenAction;
 import com.ventyx.testng.TestDataKey;
 
 @ALM(id = "106")
@@ -35,15 +34,11 @@ public class Permissions_Creating extends BaseTestCase {
 	@Test
 	public void createPermission() throws Exception {
 		PermissionsAction permissionsAction = new PermissionsAction(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		ScreenAction action = new ScreenAction(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 
-		// Click System Configuration menu
-		WebElement axisConfigParentButton = (new WebDriverWait(driver, 120))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION)));
-		axisConfigParentButton.click();
-
-		// Click Permissions sub menu
+		// Step 1
+		permissionsAction.clickSystemConfigurationMenu();
 		permissionsAction.clickPermissionsSubMenu();
 
 		// Check there is any permission AA_MAINTAIN_PERMISSION existing
@@ -51,39 +46,19 @@ public class Permissions_Creating extends BaseTestCase {
 		int numberOfRowsBeforeAdding = permissionsAction.countRow(Permissions.TABLEBODY);
 		System.out.print(numberOfRowsBeforeAdding + "numberOfRowsBeforeAdding");
 
-		// Click Add permission button
+		// Step 2
 		permissionsAction.clickAddButton();
-
-		// Enter Permission Name
 		permissionsAction.enterPermissionName(PERMISSION_NAME_A);
-
-		// Click Document Type field
-		WebElement permissionDocType = (new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.id(Permissions.DOCUMENT_TYPE)));
-		permissionDocType.click();
-
-		// Select PO Ack document type
-		WebElement POAckType = (new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(Permissions.PURCHASE_ORDER_ACK)));
-		POAckType.click();
-
-		WebElement adminUserType = (new WebDriverWait(driver, 20))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(Permissions.AXIS_ADMIN)));
-		adminUserType.click();
-
+		permissionsAction.selectDocumentType(Permissions.PURCHASE_ORDER_ACK);
+		permissionsAction.selectUserType(Permissions.AXIS_ADMIN);
+		
 		// Step 3, 4
-		// click Save button on Add Permission screen
 		permissionsAction.clickSaveButtonOnAddPermisisonPopUp();
-		Thread.sleep(1000);
 		assertEquals(
 				driver.findElement(
 						By.cssSelector(Messages.PERMISSION_CREATED_SUCCESSFULLY_CSS))
 						.getText(), Messages.PERMISSION_CREATED_SUCCESSFULLY);
 		// Filter
-		Thread.sleep(2000);
 		permissionsAction.enterValueTofilterPermission(PERMISSION_NAME_A);
 		Thread.sleep(2000);
 		int numberOfRowsAfterAdding = permissionsAction.countRow(Permissions.TABLEBODY);
@@ -160,6 +135,11 @@ public class Permissions_Creating extends BaseTestCase {
 		// Step 11
 		permissionsAction.clickAddButton();
 		permissionsAction.clickCancelButtonOnAddPermisisonPopUp();
+		
+		assertEquals(action.isElementPresent(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION)), false);
+		assertEquals(action.isElementPresent(By.cssSelector(Permissions.ADDPERMISSIONHEADER)), false);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By
+				.cssSelector(Permissions.PERMISSIONHEADER)));
 		assertEquals(
 				driver.findElement(By.cssSelector(Permissions.PERMISSIONHEADER))
 						.getText(), MAINTAINPERMISSIONHEADER);
