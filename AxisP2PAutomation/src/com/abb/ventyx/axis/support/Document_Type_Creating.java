@@ -2,7 +2,6 @@ package com.abb.ventyx.axis.support;
 
 import static org.junit.Assert.assertThat;
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 import org.hamcrest.CoreMatchers;
 import org.openqa.selenium.By;
@@ -16,7 +15,6 @@ import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
 import com.abb.ventyx.axis.objects.pagedefinitions.DialogBtns;
 import com.abb.ventyx.axis.objects.pagedefinitions.DocType;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
-import com.abb.ventyx.axis.objects.pagedefinitions.Permissions;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseGrid;
 import com.abb.ventyx.utilities.BaseTestCase;
