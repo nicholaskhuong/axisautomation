@@ -14,6 +14,7 @@ import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseGrid;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
+import com.abb.ventyx.utilities.TableFunction;
 import com.ventyx.testng.TestDataKey;
 
 @ALM(id = "159")
@@ -30,22 +31,19 @@ public class Document_Type_Editing extends BaseTestCase {
 
 	@Test
 	public void Update() throws Exception {
-
-		WebElement axisConfigParentButton = (new WebDriverWait(driver, 60))
+		TableFunction tablefunction = new TableFunction(driver);
+		WebElement axisConfigParentButton = (new WebDriverWait(driver, 120))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION)));
 		axisConfigParentButton.click();
 
-		WebElement axisDocType = (new WebDriverWait(driver, 60))
+		WebElement axisDocType = (new WebDriverWait(driver, 30))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(AxisConfigMenu.DOC_TYPE)));
 		axisDocType.click();
-
-		// Step 1 Update the record from Add New step.
-		grid = new BaseGrid(driver, DocType.GRID);
-		row = grid.findItemByColumnName("Document Types", DOCTYPE_B);
-		Assert.assertNotEquals(row, -1, "Record not found");
-		driver.findElement(By.id("docTypeBtn" + (row - 1))).click();
+		Thread.sleep(1000);
+		tablefunction.clickDocType(DocType.GRID, DOCTYPE_B);
+		Thread.sleep(1000);
 		boolean status = driver.findElement(By.id(DocType.DOCTYPES))
 				.isEnabled();
 		Assert.assertEquals(status, false);
@@ -54,6 +52,7 @@ public class Document_Type_Editing extends BaseTestCase {
 		desc.sendKeys(DESC_B);
 		WebElement save = driver.findElement(By.id(DocType.SAVE));
 		save.click();
+		Thread.sleep(1000);
 		WebElement flashMessage = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(DocType.SUCCESS_MESSAGE)));
@@ -80,6 +79,7 @@ public class Document_Type_Editing extends BaseTestCase {
 		desc2.clear();
 		desc2.sendKeys(DESC_A);
 		driver.findElement(By.id(DocType.SAVE)).click();
+		Thread.sleep(1000);
 		WebElement flashMessage2 = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(DocType.SUCCESS_MESSAGE)));

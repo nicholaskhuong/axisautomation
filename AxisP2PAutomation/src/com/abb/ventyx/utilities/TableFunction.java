@@ -39,7 +39,22 @@ public class TableFunction {
 		return row;
 
 	}
-
+	
+	public void clickDocType(String tableCSS, String value) {
+		//int row = 0;
+		WebElement baseTable = driver.findElement(By.cssSelector(tableCSS));
+		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
+		int sumRow = tableRows.size();
+		for (int i = 0; i < sumRow; i++) {
+			String DocTypevalue = driver.findElement(By.id("docTypeBtn"+i)).getText();
+			if(DocTypevalue.equals(value)){
+				driver.findElement(By.id("docTypeBtn"+i)).click();
+				//row=i;
+				break;
+			}
+		}
+		
+	}
 	public int countRow(String tableCSS) {
 		WebElement baseTable = driver.findElement(By.xpath(tableCSS));
 		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
