@@ -27,7 +27,7 @@ public class Messages {
 	public static final String DELETE_USERGROUP_CONFIRM = "Are you sure want to delete the selected user group?";
 	public static final String USERGROUP_SELECT_CUSTOMER = "Please select a customer";
 
-	public static final String PERMISSION_UPADTED_SUCCESSFULLY = "Permission successfully updated";
+	
 	public static final String DOCUMENT_FILTER_FIELD_SUCCESSFULLY = "Document filter field successfully created";
 
 	public static final String DOCUMENT_FILTER_FIELD_SUCCESSFULLY_UPDATED = "Document filter field successfully updated";
@@ -48,4 +48,6 @@ public class Messages {
 	public static final String EMPTYUSERTYPE = "Please select the User Type";
 	public static final String PERMISSION_CREATED_SUCCESSFULLY = "Permission successfully created";
 	public static final String PERMISSION_CREATED_SUCCESSFULLY_CSS = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-success-notification.v-Notification-v-success-notification > div > div > h1 > div > div > div.v-slot.v-align-center.v-align-middle.v-notification-inline-caption";
+	public static final String PERMISSION_UPADTED_SUCCESSFULLY = "Permission successfully updated";
+	public static final String PERMISSION_DELETED_SUCCESSFULLY = "Permission successfully deleted";
 }

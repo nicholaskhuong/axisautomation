@@ -18,16 +18,11 @@ import com.ventyx.testng.TestDataKey;
 @ALM(id = "106")
 @Credentials(user = "mail5@abb.com", password = "testuser")
 public class Permissions_Creating extends BaseTestCase {
-	@TestDataKey
-	private final String PERMISSION_NAME_A = "AA_MAINTAIN_PERMISSION";
-	@TestDataKey
-	private final String DOCUMENT_TYPE_A = "PurchaseOrderAcknowledgement";
-	@TestDataKey
-	private final String USER_TYPE_A = "A";
-	@TestDataKey
-	private final String ADDPERMISSIONHEADER = "Add Permission";
-	@TestDataKey
-	private final String MAINTAINPERMISSIONHEADER = "Maintain Permissions";
+	@TestDataKey private final String PERMISSION_NAME_A = "MAINTAIN_PERMISSION_AA";
+	@TestDataKey private final String DOCUMENT_TYPE_A = "PurchaseOrder";
+	@TestDataKey private final String USER_TYPE_A = "CSA";
+	@TestDataKey private final String ADDPERMISSIONHEADER = "Add Permission";
+	@TestDataKey private final String MAINTAINPERMISSIONHEADER = "Maintain Permissions";
 
 	@Test
 	public void createPermission() throws Exception {
@@ -47,8 +42,10 @@ public class Permissions_Creating extends BaseTestCase {
 		// Step 2
 		permissionsAction.clickAddButton();
 		permissionsAction.enterPermissionName(PERMISSION_NAME_A);
-		permissionsAction.selectDocumentType(Permissions.PURCHASE_ORDER_ACK);
+		permissionsAction.selectDocumentType(Permissions.PURCHASE_ORDERS);
 		permissionsAction.selectUserType(Permissions.AXIS_ADMIN);
+		permissionsAction.selectUserType(Permissions.CUSTOMER);
+		permissionsAction.selectUserType(Permissions.SUPPLIER);
 		
 		// Step 3, 4
 		permissionsAction.clickSaveButtonOnAddPermisisonPopUp();
@@ -119,7 +116,7 @@ public class Permissions_Creating extends BaseTestCase {
 		Thread.sleep(1000);
 		assertEquals(
 				driver.findElement(
-						By.cssSelector(Permissions.ADDPERMISSIONHEADER))
+						By.cssSelector(Permissions.PERMISSIONWINDOWHEADER))
 						.getText(), ADDPERMISSIONHEADER);
 
 		// Step 10
@@ -135,7 +132,7 @@ public class Permissions_Creating extends BaseTestCase {
 		permissionsAction.clickCancelButtonOnAddPermisisonPopUp();
 		
 		assertEquals(action.isElementPresent(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION)), false);
-		assertEquals(action.isElementPresent(By.cssSelector(Permissions.ADDPERMISSIONHEADER)), false);
+		assertEquals(action.isElementPresent(By.cssSelector(Permissions.PERMISSIONWINDOWHEADER)), false);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By
 				.cssSelector(Permissions.PERMISSIONHEADER)));
 		assertEquals(

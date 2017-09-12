@@ -1,69 +1,57 @@
 package com.abb.ventyx.axis.support;
 
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.junit.Assert.assertThat;
+import static org.testng.Assert.assertEquals;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
-
 import org.testng.annotations.Test;
 
+import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
+import com.abb.ventyx.axis.objects.pagedefinitions.Permissions;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
-import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
-import com.abb.ventyx.axis.objects.pagedefinitions.Permissions;
-import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
+import com.abb.ventyx.utilities.PermissionsAction;
 import com.ventyx.testng.TestDataKey;
 
 
 @ALM(id = "156") 
 @Credentials(user = "mail5@abb.com", password = "testuser")
 public class Permissions_Deleting extends BaseTestCase {
-	@TestDataKey private final String PERMISSION_NAME_A = "AA_MAINTAIN_PERMISSION";
+	@TestDataKey private final String PERMISSION_NAME_A = "MAINTAIN_PERMISSION_AA";
 
 	@Test
 	public void deletePermisison() throws Exception {
 
-		// Delete Permission on the 2nd row.
-		// Click System Configuration menu
-		WebElement axisConfigParentButton = (new WebDriverWait(driver, 120))
-				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION)));
-		axisConfigParentButton.click();
+		// Step 1
+		PermissionsAction permissionsAction = new PermissionsAction(driver);
+		permissionsAction.clickSystemConfigurationMenu();
+		permissionsAction.clickPermissionsSubMenu();
 
-		// Click Permissions sub menu
-		WebElement axisPermissionsMenu = (new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.PERMISSIONS)));
-		axisPermissionsMenu.click();
-
-		// Filter
-		WebElement filterButton = (new WebDriverWait(driver, 30))
-				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#HeaderMenuBar > span:nth-child(1)")));
-		filterButton.click();
-		
-		// Enter permission name into filter field.
-		WebElement filterPermissionName = (new WebDriverWait(driver, 30))
-				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Permissions.PERMISSION_NAME_FILTER)));
-		filterPermissionName.sendKeys(PERMISSION_NAME_A);
-		Thread.sleep(2000);
-		
+		permissionsAction.filterPermission(PERMISSION_NAME_A);
+		Thread.sleep(1000);
+			
 		//final String PERMISION_ID_A = driver.findElement(By.id(Permissions.ROW1)).getText();
-		WebElement trashBinIcon = (new WebDriverWait(driver, 30))
-				.until(ExpectedConditions.presenceOfElementLocated(By.id(Permissions.DELETE45)));
+		int numberOfRowsBeforeDelete = permissionsAction.countRow(Permissions.TABLEBODY);
+		WebElement trashBinIcon = driver.findElement(
+				By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr["
+						+ numberOfRowsBeforeDelete + "]//td[5]"));
+		
 		trashBinIcon.click();
 		Thread.sleep(1000);
 
 		//Make sure this is a Confirmation of deleting process
 		assertThat(driver.findElement(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION)).getText(),containsString(Messages.DELETE_CONFIRM));
 		
-		//final String PERMISION_ID_B = driver.findElement(By.id(Permissions.ROW1)).getText();
 		WebElement yesButton = (new WebDriverWait(driver, 30))
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(Permissions.DELETE_YES)));
 		yesButton.click();
-		//Indicate 1st row's value is now different from the original one.
-		//assertThat(PERMISION_ID_B, is(not(PERMISSION_NAME_A)));	
-		// Add assert to check result later
+	
+		Thread.sleep(2000);
+		assertEquals(driver.findElement(By.cssSelector(Messages.PERMISSION_CREATED_SUCCESSFULLY_CSS)).getText(), Messages.PERMISSION_DELETED_SUCCESSFULLY);	
 	}
 }
