@@ -62,7 +62,7 @@ public class SupplierUserGroup_Creating extends BaseTestCase {
 	@Test(dependsOnMethods = "checkAddSuccessfully")
 	public void addValidation() throws InterruptedException {
 		action.checkValidationTextField(UserGroup.USERGROUP_NAME_ID,
-				USER_GROUP_NAME);
+				USER_GROUP_NAME, By.cssSelector(ScreenObjects.ADD_BTN_CSS));
 	}
 
 	@Test(dependsOnMethods = "addValidation")

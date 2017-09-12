@@ -23,6 +23,7 @@ public class TableFunction {
 
 	public int findRowByString(String tableCSS, String value, int columnindex) {
 		int row = 0;
+		String a;
 		WebElement baseTable = driver.findElement(By.cssSelector(tableCSS));
 		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
 		int sumRow = tableRows.size();
@@ -30,6 +31,7 @@ public class TableFunction {
 			WebElement columnValue = driver.findElement(By.cssSelector(tableCSS
 					+ "> table > tbody > tr:nth-child(" + i
 					+ ") > td:nth-child(" + columnindex + ")"));
+			a = columnValue.getText();
 			if (columnValue.getText().equals(value)) {
 				row = i;
 				break;
@@ -56,7 +58,7 @@ public class TableFunction {
 		
 	}
 	public int countRow(String tableCSS) {
-		WebElement baseTable = driver.findElement(By.xpath(tableCSS));
+		WebElement baseTable = driver.findElement(By.cssSelector(tableCSS));
 		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
 		int sumRow = tableRows.size();
 		return sumRow;

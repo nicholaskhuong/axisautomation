@@ -37,7 +37,6 @@ public class SupplierUserGroup_Updating extends BaseTestCase {
 	@Test(dependsOnMethods = "openScreen")
 	public void selectRowUpdating() {
 		table = new TableFunction(driver);
-		table.inputFilter(USER_GROUP_NAME);
 		row = table.findRowByString(UserGroup.SUPPLIER_GROUP_TABLE_CSS,
 				USER_GROUP_NAME, 1);
 		table.assertFiler(UserGroup.ROW_ID, USER_GROUP_NAME, row - 1);
@@ -59,7 +58,7 @@ public class SupplierUserGroup_Updating extends BaseTestCase {
 		int newRow = row + rowChild + 1;
 		action.clickCheckBoxN(newRow);
 		boolean select = false;
-		// select = action.checkObjSelected(newRow, By.cssSelector(selector));
+		select = action.checkObjSelected(newRow);
 		assertEquals(select, false);
 		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
 		action.checkAddSuccess(Messages.USERGROUP_UPDATE_SUCCESSFULLY);
@@ -68,8 +67,9 @@ public class SupplierUserGroup_Updating extends BaseTestCase {
 
 	@Test(dependsOnMethods = "selectRowUpdating")
 	public void addValidation() throws InterruptedException {
+
 		action.checkValidationTextField(UserGroup.USERGROUP_NAME_ID,
-				USER_GROUP_NAME);
+				"Administrator", By.id(UserGroup.ROW_ID + row));
 	}
 
 	@Test(dependsOnMethods = "addValidation")
@@ -84,17 +84,17 @@ public class SupplierUserGroup_Updating extends BaseTestCase {
 	@Test(dependsOnMethods = "cancelClickYes")
 	public void cancelClickNo() {
 
-		action.clickBtn(By.cssSelector(UserGroup.ADD_BTN_CSS));
+		action.clickBtn(By.id(UserGroup.ROW_ID + row));
 		action.waitObjVisible(By.id(UserGroup.USERGROUP_NAME_ID));
-		action.inputTextField(UserGroup.USERGROUP_NAME_ID, USER_GROUP_NAME);
-		action.cancelClickNo(UserGroup.TITLE_CREATE);
+		action.inputTextField(UserGroup.USERGROUP_NAME_ID, "ABC");
+		action.cancelClickNo(UserGroup.TITLE_MODIFY);
 
 	}
 
 	@Test(dependsOnMethods = "cancelClickNo")
 	public void cancelWithoutdata() throws InterruptedException {
 
-		action.inputTextField(UserGroup.USERGROUP_NAME_ID, "");
+		action.inputTextField(UserGroup.USERGROUP_NAME_ID, USER_GROUP_NAME);
 		action.cancelWithoutdata(By.cssSelector(UserGroup.ADD_BTN_CSS),
 				UserGroup.TITLE);
 	}

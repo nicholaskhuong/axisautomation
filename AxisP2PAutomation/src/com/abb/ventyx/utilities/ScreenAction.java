@@ -14,7 +14,6 @@ import org.testng.Assert;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
-import com.abb.ventyx.axis.objects.pagedefinitions.UserGroup;
 
 public class ScreenAction {
 	WebDriver driver;
@@ -24,7 +23,7 @@ public class ScreenAction {
 	}
 
 	public void waitObjInvisible(By obj) {
-		(new WebDriverWait(driver, 60)).until(ExpectedConditions
+		(new WebDriverWait(driver, 90)).until(ExpectedConditions
 				.invisibilityOfElementLocated(obj));
 	}
 
@@ -71,9 +70,12 @@ public class ScreenAction {
 		}
 	}
 
-	public boolean checkObjSelected(int start, By obj) {
-		WebElement object = driver.findElement(obj);
-		return object.isSelected();
+	public boolean checkObjSelected(int start) {
+		boolean isSelected = false;
+		List<WebElement> listCheckbox = driver.findElements(By
+				.xpath("//input[@type='checkbox']"));
+		isSelected = listCheckbox.get(start).isSelected();
+		return isSelected;
 
 	}
 
@@ -105,14 +107,15 @@ public class ScreenAction {
 		Assert.assertEquals(error.getText(), msg);
 	}
 
-	public void checkValidationTextField(String obj, String value)
+	public void checkValidationTextField(String obj, String value, By objClick)
 			throws InterruptedException {
 
 		waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
-		clickBtn(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
-		waitObjVisible(By.id(UserGroup.USERGROUP_NAME_ID));
+		clickBtn(objClick);
+		waitObjVisible(By.id(obj));
 
 		// Don't input data in text Field
+		inputTextField(obj, "");
 		clickBtn(By.id(ScreenObjects.SAVE_ID));
 		assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
 				Messages.ENTER_MANDATORY_FIELDS);
