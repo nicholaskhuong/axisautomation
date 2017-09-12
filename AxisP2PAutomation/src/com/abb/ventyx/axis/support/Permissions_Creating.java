@@ -34,7 +34,7 @@ public class Permissions_Creating extends BaseTestCase {
 
 	@Test
 	public void createPermission() throws Exception {
-		PermissionsAction p = new PermissionsAction(driver);
+		PermissionsAction permissionsAction = new PermissionsAction(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 20);
 
 		// Click System Configuration menu
@@ -44,18 +44,18 @@ public class Permissions_Creating extends BaseTestCase {
 		axisConfigParentButton.click();
 
 		// Click Permissions sub menu
-		p.clickPermissionsSubMenu();
+		permissionsAction.clickPermissionsSubMenu();
 
 		// Check there is any permission AA_MAINTAIN_PERMISSION existing
-		p.filterPermission(PERMISSION_NAME_A);
-		int numberOfRowsBeforeAdding = p.countRow(Permissions.TABLEBODY);
+		permissionsAction.filterPermission(PERMISSION_NAME_A);
+		int numberOfRowsBeforeAdding = permissionsAction.countRow(Permissions.TABLEBODY);
 		System.out.print(numberOfRowsBeforeAdding + "numberOfRowsBeforeAdding");
 
 		// Click Add permission button
-		p.clickAddButton();
+		permissionsAction.clickAddButton();
 
 		// Enter Permission Name
-		p.enterPermissionName(PERMISSION_NAME_A);
+		permissionsAction.enterPermissionName(PERMISSION_NAME_A);
 
 		// Click Document Type field
 		WebElement permissionDocType = (new WebDriverWait(driver, 10))
@@ -76,7 +76,7 @@ public class Permissions_Creating extends BaseTestCase {
 
 		// Step 3, 4
 		// click Save button on Add Permission screen
-		p.clickSaveButtonOnAddPermisisonPopUp();
+		permissionsAction.clickSaveButtonOnAddPermisisonPopUp();
 		Thread.sleep(1000);
 		assertEquals(
 				driver.findElement(
@@ -84,9 +84,9 @@ public class Permissions_Creating extends BaseTestCase {
 						.getText(), Messages.PERMISSION_CREATED_SUCCESSFULLY);
 		// Filter
 		Thread.sleep(2000);
-		p.enterValueTofilterPermission(PERMISSION_NAME_A);
+		permissionsAction.enterValueTofilterPermission(PERMISSION_NAME_A);
 		Thread.sleep(2000);
-		int numberOfRowsAfterAdding = p.countRow(Permissions.TABLEBODY);
+		int numberOfRowsAfterAdding = permissionsAction.countRow(Permissions.TABLEBODY);
 
 		assertEquals(numberOfRowsBeforeAdding + 1, numberOfRowsAfterAdding);
 
@@ -115,10 +115,10 @@ public class Permissions_Creating extends BaseTestCase {
 		Thread.sleep(1000);
 
 		// Step 5
-		p.clickAddButton();
+		permissionsAction.clickAddButton();
 
 		// Step 6
-		p.clickSaveButtonOnAddPermisisonPopUp();
+		permissionsAction.clickSaveButtonOnAddPermisisonPopUp();
 		Thread.sleep(1000);
 		assertEquals(
 				driver.findElement(
@@ -126,8 +126,8 @@ public class Permissions_Creating extends BaseTestCase {
 						.getText(), Messages.EMPTYPERMISSIONNAME);
 
 		// Step 7
-		p.enterPermissionName("ECHO 1");
-		p.clickSaveButtonOnAddPermisisonPopUp();
+		permissionsAction.enterPermissionName("ECHO 1");
+		permissionsAction.clickSaveButtonOnAddPermisisonPopUp();
 		assertEquals(
 				driver.findElement(
 						By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS))
@@ -135,7 +135,7 @@ public class Permissions_Creating extends BaseTestCase {
 		Thread.sleep(2000);
 
 		// Step 8
-		p.clickCancelButtonOnAddPermisisonPopUp();
+		permissionsAction.clickCancelButtonOnAddPermisisonPopUp();
 		assertEquals(
 				driver.findElement(
 						By.cssSelector(Permissions.CONFIRMATION_OF_DELETION))
@@ -150,7 +150,7 @@ public class Permissions_Creating extends BaseTestCase {
 						.getText(), ADDPERMISSIONHEADER);
 
 		// Step 10
-		p.clickCancelButtonOnAddPermisisonPopUp();
+		permissionsAction.clickCancelButtonOnAddPermisisonPopUp();
 		driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
 		Thread.sleep(1000);
 		assertEquals(
@@ -158,8 +158,8 @@ public class Permissions_Creating extends BaseTestCase {
 						.getText(), MAINTAINPERMISSIONHEADER);
 
 		// Step 11
-		p.clickAddButton();
-		p.clickCancelButtonOnAddPermisisonPopUp();
+		permissionsAction.clickAddButton();
+		permissionsAction.clickCancelButtonOnAddPermisisonPopUp();
 		assertEquals(
 				driver.findElement(By.cssSelector(Permissions.PERMISSIONHEADER))
 						.getText(), MAINTAINPERMISSIONHEADER);
