@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisSupportCustomerUserGroup;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
-import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObject;
+import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseDropDownList;
 import com.abb.ventyx.utilities.BaseGrid;
@@ -86,12 +86,12 @@ public class User_Group_Deleting extends BaseTestCase {
 		// Click No on dialog
 		WebElement deleteConfirm = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(ScreenObject.CONFIRMATION)));
+						.cssSelector(ScreenObjects.CONFIRMATION)));
 		assertThat(deleteConfirm.getText(),
 				containsString(Messages.DELETE_USERGROUP_CONFIRM));
 		WebElement deleteNoBtn = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(ScreenObject.DELETE_NO)));
+						.cssSelector(ScreenObjects.DELETE_NO)));
 		deleteNoBtn.click();
 
 		WebElement rowDelete = (new WebDriverWait(driver, 10))
@@ -113,14 +113,14 @@ public class User_Group_Deleting extends BaseTestCase {
 						+ (rowSelected - 1))).click();
 		(new WebDriverWait(driver, 10)).until(ExpectedConditions
 				.presenceOfElementLocated(By
-						.cssSelector(ScreenObject.CONFIRMATION)));
+						.cssSelector(ScreenObjects.CONFIRMATION)));
 		WebElement deleteYesBtn = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(ScreenObject.DELETE_YES)));
+						.cssSelector(ScreenObjects.DELETE_YES)));
 		deleteYesBtn.click();
 		WebElement flashMessage = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(ScreenObject.SUCCESS_MESSAGE)));
+						.cssSelector(ScreenObjects.SUCCESS_MESSAGE)));
 		assertEquals(flashMessage.getText(),
 				Messages.USERGROUP_DELETE_SUCCESSFULLY);
 	}

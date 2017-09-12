@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisAdministratorUsers;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
-import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObject;
+import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
@@ -60,12 +60,12 @@ public class Users_Deleting extends BaseTestCase {
 		// Click No on dialog
 		WebElement deleteConfirm = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(ScreenObject.CONFIRMATION)));
+						.cssSelector(ScreenObjects.CONFIRMATION)));
 		assertThat(deleteConfirm.getText(),
 				containsString(Messages.DELETE_USER_CONFIRM));
 		WebElement deleteNoBtn = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(ScreenObject.DELETE_NO)));
+						.cssSelector(ScreenObjects.DELETE_NO)));
 		deleteNoBtn.click();
 		Thread.sleep(2000);
 		assertEquals(
@@ -84,14 +84,14 @@ public class Users_Deleting extends BaseTestCase {
 				.click();
 		(new WebDriverWait(driver, 10)).until(ExpectedConditions
 				.presenceOfElementLocated(By
-						.cssSelector(ScreenObject.CONFIRMATION)));
+						.cssSelector(ScreenObjects.CONFIRMATION)));
 		WebElement deleteYesBtn = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(ScreenObject.DELETE_YES)));
+						.cssSelector(ScreenObjects.DELETE_YES)));
 		deleteYesBtn.click();
 		WebElement flashMessage = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(ScreenObject.SUCCESS_MESSAGE)));
+						.cssSelector(ScreenObjects.SUCCESS_MESSAGE)));
 		assertEquals(flashMessage.getText(), Messages.USER_DELETE_SUCCESSFULLY);
 		assertNotEquals(
 				driver.findElement(By.id(AxisAdministratorUsers.ROW_ID + "3"))

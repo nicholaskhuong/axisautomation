@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
-import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObject;
+import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 import com.abb.ventyx.axis.objects.pagedefinitions.UserGroup;
 
 public class ScreenAction {
@@ -41,7 +41,7 @@ public class ScreenAction {
 
 	public void assertTitleScreen(String titleScreen) {
 		WebElement screenTitle = driver.findElement(By
-				.id(ScreenObject.SCREEN_TITLE_ID));
+				.id(ScreenObjects.SCREEN_TITLE_ID));
 		assertEquals(screenTitle.getText(), titleScreen, "Title is wrong");
 	}
 
@@ -62,6 +62,20 @@ public class ScreenAction {
 		listCheckbox.get(n).click();
 	}
 
+	public void checkObjSelected(int start, int end) {
+		List<WebElement> listCheckbox = driver.findElements(By
+				.xpath("//input[@type='checkbox']"));
+		for (int i = start; i < end; i++) {
+			listCheckbox.get(i).isSelected();
+		}
+	}
+
+	public boolean checkObjSelected(int start, By obj) {
+		WebElement object = driver.findElement(obj);
+		return object.isSelected();
+
+	}
+
 	public void clickCheckBoxNInTable(String tableCSS, int n) {
 		WebElement table = driver.findElement(By.cssSelector(tableCSS));
 		List<WebElement> listCheckbox = table.findElements(By
@@ -71,7 +85,7 @@ public class ScreenAction {
 
 	public void clickExpandButton(int n) {
 		List<WebElement> listExpand = driver.findElements(By
-				.className(ScreenObject.EXPAND_CLASS));
+				.className(ScreenObjects.EXPAND_CLASS));
 		listExpand.get(n).click();
 	}
 
@@ -79,7 +93,7 @@ public class ScreenAction {
 
 		WebElement flashMessage1 = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(ScreenObject.SUCCESS_MESSAGE)));
+						.cssSelector(ScreenObjects.SUCCESS_MESSAGE)));
 		Assert.assertEquals(flashMessage1.getText(), msg);
 	}
 
@@ -93,48 +107,48 @@ public class ScreenAction {
 	public void checkValidationTextField(String obj, String value)
 			throws InterruptedException {
 
-		waitObjInvisible(By.cssSelector(ScreenObject.SUCCESS_MESSAGE));
-		clickBtn(By.cssSelector(ScreenObject.ADD_BTN_CSS));
+		waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
+		clickBtn(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
 		waitObjVisible(By.id(UserGroup.USERGROUP_NAME_ID));
 
 		// Don't input data in text Field
-		clickBtn(By.id(ScreenObject.SAVE_ID));
-		assertMessgeError(ScreenObject.ERROR_WITHOUT_ICON_CSS,
+		clickBtn(By.id(ScreenObjects.SAVE_ID));
+		assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
 				Messages.ENTER_MANDATORY_FIELDS);
-		waitObjInvisible(By.cssSelector(ScreenObject.ERROR_WITHOUT_ICON_CSS));
+		waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 
 		// Text Field is only space
 		inputTextField(obj, "  ");
-		clickBtn(By.id(ScreenObject.SAVE_ID));
-		assertMessgeError(ScreenObject.ERROR_WITHOUT_ICON_CSS,
+		clickBtn(By.id(ScreenObjects.SAVE_ID));
+		assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
 				Messages.ENTER_MANDATORY_FIELDS);
-		waitObjInvisible(By.cssSelector(ScreenObject.ERROR_WITHOUT_ICON_CSS));
+		waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 
 		// Text Field contain existing data
 		inputTextField(obj, value);
-		clickBtn(By.id(ScreenObject.SAVE_ID));
-		assertMessgeError(ScreenObject.ERROR_CSS, Messages.USERGROUP_EXISTING);
+		clickBtn(By.id(ScreenObjects.SAVE_ID));
+		assertMessgeError(ScreenObjects.ERROR_CSS, Messages.USERGROUP_EXISTING);
 	}
 
 	public void cancelClickYes(By obj, String titleScreen) {
 
-		driver.findElement(By.id(ScreenObject.CANCEL_ID)).click();
+		driver.findElement(By.id(ScreenObjects.CANCEL_ID)).click();
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions
 				.presenceOfElementLocated(By
-						.cssSelector(ScreenObject.CONFIRMATION)));
-		driver.findElement(By.id(ScreenObject.YES_BTN_ID)).click();
+						.cssSelector(ScreenObjects.CONFIRMATION)));
+		driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
 		waitObjVisible(obj);
 		assertTitleScreen(titleScreen);
 	}
 
 	public void cancelClickNo(String titleScreen) {
 
-		driver.findElement(By.id(ScreenObject.CANCEL_ID)).click();
+		driver.findElement(By.id(ScreenObjects.CANCEL_ID)).click();
 		WebElement msgDialog = (new WebDriverWait(driver, 20))
 				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(ScreenObject.CONFIRMATION)));
+						.cssSelector(ScreenObjects.CONFIRMATION)));
 		assertEquals(msgDialog.getText(), Messages.UNSAVED_CHANGE);
-		driver.findElement(By.id(ScreenObject.NO_BTN_ID)).click();
+		driver.findElement(By.id(ScreenObjects.NO_BTN_ID)).click();
 		assertTitleScreen(titleScreen);
 
 	}
@@ -142,7 +156,7 @@ public class ScreenAction {
 	public void cancelWithoutdata(By obj, String titleScreen)
 			throws InterruptedException {
 
-		driver.findElement(By.id(ScreenObject.CANCEL_ID)).click();
+		driver.findElement(By.id(ScreenObjects.CANCEL_ID)).click();
 		waitObjVisible(obj);
 		assertTitleScreen(titleScreen);
 	}

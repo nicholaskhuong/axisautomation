@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
-import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObject;
+import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 import com.abb.ventyx.axis.objects.pagedefinitions.SupplierMenu;
 import com.abb.ventyx.axis.objects.pagedefinitions.UserGroup;
 import com.abb.ventyx.utilities.ALM;
@@ -44,7 +44,7 @@ public class SupplierUserGroup_Creating extends BaseTestCase {
 		row = table.findRowByString(UserGroup.PERMISSION_TABLE_CSS, PERMISSION,
 				3);
 		action.clickCheckBoxN(row);
-		action.clickBtn(By.id(ScreenObject.SAVE_ID));
+		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
 		action.checkAddSuccess(Messages.USERGROUP_CREATE_SUCCESSFULLY);
 
 	}
@@ -68,7 +68,7 @@ public class SupplierUserGroup_Creating extends BaseTestCase {
 	@Test(dependsOnMethods = "addValidation")
 	public void cancelClickYes() {
 
-		action.waitObjInvisible(By.cssSelector(ScreenObject.ERROR_CSS));
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
 		action.inputTextField(UserGroup.USERGROUP_NAME_ID, "ABC");
 		action.cancelClickYes(By.cssSelector(UserGroup.ADD_BTN_CSS),
 				UserGroup.TITLE);

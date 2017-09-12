@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisSupportCustomerUserGroup;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
-import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObject;
+import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseDropDownList;
 import com.abb.ventyx.utilities.BaseTestCase;
@@ -62,7 +62,7 @@ public class User_Group_Creating extends BaseTestCase {
 		addBtn.click();
 		WebElement warningMessage = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
-						.xpath(ScreenObject.WARNING_MESSAGE_XPATH)));
+						.xpath(ScreenObjects.WARNING_MESSAGE_XPATH)));
 		assertEquals(warningMessage.getText(),
 				Messages.USERGROUP_SELECT_CUSTOMER);
 	}
@@ -98,7 +98,7 @@ public class User_Group_Creating extends BaseTestCase {
 		driver.findElement(By.id(AxisSupportCustomerUserGroup.SAVE_ID)).click();
 		WebElement errorMessage = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(ScreenObject.ERROR_WITHOUT_ICON_CSS)));
+						.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)));
 		assertEquals(errorMessage.getText(), Messages.ENTER_MANDATORY_FIELDS);
 	}
 
@@ -114,7 +114,7 @@ public class User_Group_Creating extends BaseTestCase {
 		driver.findElement(By.id(AxisSupportCustomerUserGroup.SAVE_ID)).click();
 		WebElement sucessMessage = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(ScreenObject.SUCCESS_MESSAGE)));
+						.cssSelector(ScreenObjects.SUCCESS_MESSAGE)));
 		assertEquals(sucessMessage.getText(),
 				Messages.USERGROUP_CREATE_SUCCESSFULLY);
 	}
@@ -153,8 +153,8 @@ public class User_Group_Creating extends BaseTestCase {
 				.click();
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions
 				.presenceOfElementLocated(By
-						.cssSelector(ScreenObject.CONFIRMATION)));
-		driver.findElement(By.id(ScreenObject.YES_BTN_ID)).click();
+						.cssSelector(ScreenObjects.CONFIRMATION)));
+		driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions
 				.presenceOfElementLocated(By
 						.id(AxisSupportCustomerUserGroup.USER_CUSTOMER_ID)));
@@ -178,9 +178,9 @@ public class User_Group_Creating extends BaseTestCase {
 				.click();
 		WebElement msgDialog = (new WebDriverWait(driver, 20))
 				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(ScreenObject.CONFIRMATION)));
+						.cssSelector(ScreenObjects.CONFIRMATION)));
 		assertEquals(msgDialog.getText(), Messages.UNSAVED_CHANGE);
-		driver.findElement(By.id(ScreenObject.NO_BTN_ID)).click();
+		driver.findElement(By.id(ScreenObjects.NO_BTN_ID)).click();
 		WebElement screenTitle = driver.findElement(By
 				.id(AxisSupportCustomerUserGroup.SCREEN_TITLE_ID));
 		assertEquals(screenTitle.getText(),

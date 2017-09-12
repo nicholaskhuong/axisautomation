@@ -1,10 +1,12 @@
 package com.abb.ventyx.axis.supplier;
 
+import static org.testng.Assert.assertEquals;
+
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
-import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObject;
+import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 import com.abb.ventyx.axis.objects.pagedefinitions.SupplierMenu;
 import com.abb.ventyx.axis.objects.pagedefinitions.UserGroup;
 import com.abb.ventyx.utilities.ALM;
@@ -49,12 +51,17 @@ public class SupplierUserGroup_Updating extends BaseTestCase {
 		String permissionChildCSS = UserGroup.PERMISSION_CHILD_ID + row
 				+ UserGroup.PERMISSION_CHILD_TABLE_CSS;
 		action.waitObjVisible(By.cssSelector(permissionChildCSS));
-		// Uncheck a permission child
+		// Un check a permission child
 		int rowChild = table.findRowByString(permissionChildCSS,
 				PERMISSION_CHILD, 2);
-		action.clickCheckBoxN(row + rowChild + 1);
-
-		action.clickBtn(By.id(ScreenObject.SAVE_ID));
+		int end = table.countRow(permissionChildCSS);
+		action.checkObjSelected(row, end);
+		int newRow = row + rowChild + 1;
+		action.clickCheckBoxN(newRow);
+		boolean select = false;
+		// select = action.checkObjSelected(newRow, By.cssSelector(selector));
+		assertEquals(select, false);
+		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
 		action.checkAddSuccess(Messages.USERGROUP_UPDATE_SUCCESSFULLY);
 
 	}
@@ -68,7 +75,7 @@ public class SupplierUserGroup_Updating extends BaseTestCase {
 	@Test(dependsOnMethods = "addValidation")
 	public void cancelClickYes() {
 
-		action.waitObjInvisible(By.cssSelector(ScreenObject.ERROR_CSS));
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
 		action.inputTextField(UserGroup.USERGROUP_NAME_ID, "ABC");
 		action.cancelClickYes(By.cssSelector(UserGroup.ADD_BTN_CSS),
 				UserGroup.TITLE);
@@ -91,4 +98,5 @@ public class SupplierUserGroup_Updating extends BaseTestCase {
 		action.cancelWithoutdata(By.cssSelector(UserGroup.ADD_BTN_CSS),
 				UserGroup.TITLE);
 	}
+
 }

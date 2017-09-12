@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
 import com.abb.ventyx.axis.objects.pagedefinitions.DialogBtns;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
-import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObject;
+import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 import com.abb.ventyx.axis.objects.pagedefinitions.SearchOption;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseDropDownList;
@@ -97,7 +97,7 @@ public class Search_Option_Creating_part2 extends BaseTestCase {
 		cancel.click();
 		WebElement unsavedChange = (new WebDriverWait(driver, 80))
 				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(ScreenObject.UNSAVED_CHANGE_CSS)));
+						.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)));
 		unsavedChange.getText();
 		Assert.assertEquals(unsavedChange.getText(), Messages.UNSAVED_CHANGE);
 		WebElement yesBtn = (new WebDriverWait(driver, 60))

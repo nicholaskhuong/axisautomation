@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisAdministratorUsers;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
-import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObject;
+import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
@@ -64,7 +64,7 @@ public class Users_Updating extends BaseTestCase {
 		saveId.click();
 		WebElement warningMessage = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(ScreenObject.ERROR_WITHOUT_ICON_CSS)));
+						.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)));
 		assertEquals(warningMessage.getText(), Messages.INVALID_EMAIL);
 		Thread.sleep(2000);
 
@@ -86,7 +86,7 @@ public class Users_Updating extends BaseTestCase {
 		saveId.click();
 		WebElement warningMessage1 = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(ScreenObject.ERROR_WITHOUT_ICON_CSS)));
+						.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)));
 		assertEquals(warningMessage1.getText(), Messages.INVALID_PWD);
 
 		// Input Invalid confirm pwd
@@ -100,7 +100,7 @@ public class Users_Updating extends BaseTestCase {
 		saveId.click();
 		WebElement warningMessage2 = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(ScreenObject.ERROR_WITHOUT_ICON_CSS)));
+						.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)));
 		assertEquals(warningMessage2.getText(), Messages.INVALID_CONFIRM_PWD);
 
 	}
@@ -118,7 +118,7 @@ public class Users_Updating extends BaseTestCase {
 		saveId.click();
 		WebElement warningMessage2 = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(ScreenObject.SUCCESS_MESSAGE)));
+						.cssSelector(ScreenObjects.SUCCESS_MESSAGE)));
 		assertEquals(warningMessage2.getText(),
 				Messages.USER_UPDATE_SUCCESSFULLY);
 
@@ -161,8 +161,8 @@ public class Users_Updating extends BaseTestCase {
 		// Click Yes
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions
 				.presenceOfElementLocated(By
-						.cssSelector(ScreenObject.CONFIRMATION)));
-		driver.findElement(By.id(ScreenObject.YES_BTN_ID)).click();
+						.cssSelector(ScreenObjects.CONFIRMATION)));
+		driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions
 				.presenceOfElementLocated(By.id(AxisAdministratorUsers.ROW_ID
 						+ "0")));
@@ -188,9 +188,9 @@ public class Users_Updating extends BaseTestCase {
 
 		WebElement msgDialog = (new WebDriverWait(driver, 20))
 				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(ScreenObject.CONFIRMATION)));
+						.cssSelector(ScreenObjects.CONFIRMATION)));
 		assertEquals(msgDialog.getText(), Messages.UNSAVED_CHANGE);
-		driver.findElement(By.id(ScreenObject.NO_BTN_ID)).click();
+		driver.findElement(By.id(ScreenObjects.NO_BTN_ID)).click();
 		WebElement screenTitle = driver.findElement(By
 				.id(AxisAdministratorUsers.SCREEN_TITLE_ID));
 		assertEquals(screenTitle.getText(),

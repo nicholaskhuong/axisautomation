@@ -15,7 +15,7 @@ import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
 import com.abb.ventyx.axis.objects.pagedefinitions.DocType;
 import com.abb.ventyx.axis.objects.pagedefinitions.FilterField;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
-import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObject;
+import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseDropDownList;
 import com.abb.ventyx.utilities.BaseGrid;
@@ -74,11 +74,11 @@ public class Filter_Field_Deleting extends BaseTestCase {
 				containsString(Messages.DELETE_CONFIRM_FILTER_FIELD));
 		WebElement delete_Yes = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
-						.id(ScreenObject.YES_BTN_ID)));
+						.id(ScreenObjects.YES_BTN_ID)));
 		delete_Yes.click();
 		WebElement flashMessage = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(ScreenObject.SUCCESS_MESSAGE)));
+						.cssSelector(ScreenObjects.SUCCESS_MESSAGE)));
 		WebElement popup = driver.findElement(By
 				.cssSelector(DocType.POPUP_SUCCESS));
 		Assert.assertEquals(popup.getCssValue("background-color"),
