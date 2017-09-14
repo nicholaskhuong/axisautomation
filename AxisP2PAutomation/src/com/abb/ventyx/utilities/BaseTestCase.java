@@ -151,7 +151,7 @@ public class BaseTestCase {
 		}
 	}
 
-	@AfterClass
+	@AfterClass(alwaysRun=true)
 	public void afterClass() throws IOException {
 		exportALMReferenceCsv(testCaseName, testCaseStatus);
 		driver.quit();
