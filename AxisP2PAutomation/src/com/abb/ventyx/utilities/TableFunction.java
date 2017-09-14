@@ -1,6 +1,7 @@
 package com.abb.ventyx.utilities;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotEquals;
 
 import java.util.List;
 
@@ -12,7 +13,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.Permissions;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
-import com.abb.ventyx.axis.objects.pagedefinitions.UserGroup;
 
 public class TableFunction {
 	WebDriver driver;
@@ -23,7 +23,7 @@ public class TableFunction {
 
 	public int findRowByString(String tableCSS, String value, int columnindex) {
 		int row = 0;
-		String a;
+
 		WebElement baseTable = driver.findElement(By.cssSelector(tableCSS));
 		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
 		int sumRow = tableRows.size();
@@ -31,7 +31,6 @@ public class TableFunction {
 			WebElement columnValue = driver.findElement(By.cssSelector(tableCSS
 					+ "> table > tbody > tr:nth-child(" + i
 					+ ") > td:nth-child(" + columnindex + ")"));
-			a = columnValue.getText();
 			if (columnValue.getText().equals(value)) {
 				row = i;
 				break;
@@ -41,22 +40,24 @@ public class TableFunction {
 		return row;
 
 	}
-	
+
 	public void clickDocType(String tableCSS, String value) {
-		//int row = 0;
+		// int row = 0;
 		WebElement baseTable = driver.findElement(By.cssSelector(tableCSS));
 		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
 		int sumRow = tableRows.size();
 		for (int i = 0; i < sumRow; i++) {
-			String DocTypevalue = driver.findElement(By.id("docTypeBtn"+i)).getText();
-			if(DocTypevalue.equals(value)){
-				driver.findElement(By.id("docTypeBtn"+i)).click();
-				//row=i;
+			String DocTypevalue = driver.findElement(By.id("docTypeBtn" + i))
+					.getText();
+			if (DocTypevalue.equals(value)) {
+				driver.findElement(By.id("docTypeBtn" + i)).click();
+				// row=i;
 				break;
 			}
 		}
-		
+
 	}
+
 	public int countRow(String tableCSS) {
 		WebElement baseTable = driver.findElement(By.cssSelector(tableCSS));
 		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
@@ -95,9 +96,15 @@ public class TableFunction {
 
 	}
 
-	public void assertFiler(String obj, String value, int row) {
-		WebElement rowFilter = driver
-				.findElement(By.id(UserGroup.ROW_ID + row));
+	public void assertRowEqual(String obj, String value, int row) {
+		WebElement rowFilter = driver.findElement(By.id(obj + row));
 		assertEquals(rowFilter.getText(), value, "Title is wrong");
+	}
+
+	public void assertRowNotEqual(String obj, String value, int row) {
+		WebElement rowFilter = driver.findElement(By.id(obj + row));
+		if (rowFilter != null) {
+			assertNotEquals(rowFilter.getText(), value, "Title is wrong");
+		}
 	}
 }

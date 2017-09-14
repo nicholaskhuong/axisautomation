@@ -24,10 +24,9 @@ public class Messages {
 	public static final String USERGROUP_UPDATE_SUCCESSFULLY = "User group successfully updated";
 	public static final String USERGROUP_DELETE_SUCCESSFULLY = "User group successfully deleted";
 	public static final String USERGROUP_EXISTING = "User group name exist";
-	public static final String DELETE_USERGROUP_CONFIRM = "Are you sure want to delete the selected user group?";
+	public static final String DELETE_USERGROUP_CONFIRM = "Are you sure you want to delete the selected user group?";
 	public static final String USERGROUP_SELECT_CUSTOMER = "Please select a customer";
 
-	
 	public static final String DOCUMENT_FILTER_FIELD_SUCCESSFULLY = "Document filter field successfully created";
 
 	public static final String DOCUMENT_FILTER_FIELD_SUCCESSFULLY_UPDATED = "Document filter field successfully updated";
@@ -42,7 +41,7 @@ public class Messages {
 	public static final String INVALID_CONFIRM_PWD = "Entered Password is not the same, please verify.";
 	public static final String DELETE_USER_CONFIRM = "Are you sure want to delete this user?";
 	public static final String USER_DELETE_SUCCESSFULLY = "User succesfully deleted";
-	
+
 	// Permissions
 	public static final String EMPTYPERMISSIONNAME = "Please enter permission name";
 	public static final String EMPTYUSERTYPE = "Please select the User Type";

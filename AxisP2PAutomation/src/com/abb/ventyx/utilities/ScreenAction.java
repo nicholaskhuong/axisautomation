@@ -1,5 +1,7 @@
 package com.abb.ventyx.utilities;
 
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.junit.Assert.assertThat;
 import static org.testng.Assert.assertEquals;
 
 import java.util.List;
@@ -11,6 +13,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
@@ -164,15 +167,47 @@ public class ScreenAction {
 		waitObjVisible(obj);
 		assertTitleScreen(titleScreen);
 	}
-	
-	public boolean isElementPresent(By by){
-		 try{
-	            driver.findElement(by);
-	            return true;
-	        }
-	        catch(NoSuchElementException e){
-	            return false;
-	        }
+
+	public boolean isElementPresent(By by) {
+		try {
+			driver.findElement(by);
+			return true;
+		} catch (NoSuchElementException e) {
+			return false;
+		}
+	}
+
+	@Test(dependsOnMethods = "checkScreen")
+	public void deleteClickNo(String msgConfirm) throws Exception {
+
+		// Click No on dialog
+		WebElement deleteConfirm = (new WebDriverWait(driver, 10))
+				.until(ExpectedConditions.presenceOfElementLocated(By
+						.cssSelector(ScreenObjects.CONFIRMATION)));
+		assertThat(deleteConfirm.getText(), containsString(msgConfirm));
+		WebElement deleteNoBtn = (new WebDriverWait(driver, 10))
+				.until(ExpectedConditions.presenceOfElementLocated(By
+						.cssSelector(ScreenObjects.DELETE_NO)));
+		deleteNoBtn.click();
+		Thread.sleep(2000);
+
+	}
+
+	@Test(dependsOnMethods = "deleteUserGroupClickNo")
+	public void deleteClickYes(String msgDelete) throws Exception {
+
+		(new WebDriverWait(driver, 10)).until(ExpectedConditions
+				.presenceOfElementLocated(By
+						.cssSelector(ScreenObjects.CONFIRMATION)));
+		WebElement deleteYesBtn = (new WebDriverWait(driver, 10))
+				.until(ExpectedConditions.presenceOfElementLocated(By
+						.cssSelector(ScreenObjects.DELETE_YES)));
+		deleteYesBtn.click();
+		WebElement flashMessage = (new WebDriverWait(driver, 10))
+				.until(ExpectedConditions.presenceOfElementLocated(By
+						.cssSelector(ScreenObjects.SUCCESS_MESSAGE)));
+		assertEquals(flashMessage.getText(), msgDelete);
+
 	}
 
 }

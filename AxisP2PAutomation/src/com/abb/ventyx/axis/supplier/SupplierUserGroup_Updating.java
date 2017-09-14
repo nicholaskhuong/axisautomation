@@ -39,8 +39,9 @@ public class SupplierUserGroup_Updating extends BaseTestCase {
 		table = new TableFunction(driver);
 		row = table.findRowByString(UserGroup.SUPPLIER_GROUP_TABLE_CSS,
 				USER_GROUP_NAME, 1);
-		table.assertFiler(UserGroup.ROW_ID, USER_GROUP_NAME, row - 1);
+		table.assertRowEqual(UserGroup.ROW_ID, USER_GROUP_NAME, row - 1);
 		row = row - 1;
+
 		action.clickBtn(By.id(UserGroup.ROW_ID + row));
 		action.waitObjVisible(By.id(UserGroup.USERGROUP_NAME_ID));
 		action.assertTitleScreen(UserGroup.TITLE_MODIFY);

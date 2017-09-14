@@ -55,7 +55,7 @@ public class SupplierUserGroup_Creating extends BaseTestCase {
 		table.inputFilter(USER_GROUP_NAME);
 		row = table.findRowByString(UserGroup.SUPPLIER_GROUP_TABLE_CSS,
 				USER_GROUP_NAME, 1);
-		table.assertFiler(UserGroup.ROW_ID, USER_GROUP_NAME, row - 1);
+		table.assertRowEqual(UserGroup.ROW_ID, USER_GROUP_NAME, row - 1);
 
 	}
 

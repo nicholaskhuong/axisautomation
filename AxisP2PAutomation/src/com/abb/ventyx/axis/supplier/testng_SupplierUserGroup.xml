@@ -7,7 +7,7 @@
 		<classes>
 				<class name="com.abb.ventyx.axis.supplier.SupplierUserGroup_Creating" />
 				<class name="com.abb.ventyx.axis.supplier.SupplierUserGroup_Updating" />	
-					
+				<class name="com.abb.ventyx.axis.supplier.SupplierUserGroup_Deleting" />					
 		</classes>	
   	</test>
   	
