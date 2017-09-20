@@ -35,14 +35,12 @@ import org.testng.annotations.DataProvider;
 
 import au.com.bytecode.opencsv.CSVReader;
 
-import com.abb.ventyx.axis.objects.pages.HomePage;
 import com.abb.ventyx.axis.objects.pages.LoginPage;
 import com.abb.ventyx.utilities.report.TestMethodResultAdapter;
 
 public class BaseTestCase {
 
 	public WebDriver driver;
-	public HomePage homePage;
 	public String expectedResult = "";
 	private String testCaseStatus = "pass";
 	private static String testCaseName = "";
