@@ -51,6 +51,8 @@ public class Permissions_Creating extends BaseTestCase {
 		
 		// Step 3, 4
 		permissionsAction.clickSaveButtonOnAddPermisisonPopUp();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By
+				.cssSelector(Messages.PERMISSION_CREATED_SUCCESSFULLY_CSS)));
 		assertEquals(
 				driver.findElement(
 						By.cssSelector(Messages.PERMISSION_CREATED_SUCCESSFULLY_CSS))
