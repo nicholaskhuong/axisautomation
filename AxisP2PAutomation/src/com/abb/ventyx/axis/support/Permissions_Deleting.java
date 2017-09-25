@@ -32,7 +32,7 @@ public class Permissions_Deleting extends BaseTestCase {
 		permissionsAction.clickSystemConfigurationMenu();
 		permissionsAction.clickPermissionsSubMenu();
 
-		permissionsAction.filterPermission(PERMISSION_NAME_A);
+		permissionsAction.filterPermissionbyPermissionName(PERMISSION_NAME_A);
 		Thread.sleep(1000);
 			
 		//final String PERMISION_ID_A = driver.findElement(By.id(Permissions.ROW1)).getText();

@@ -32,8 +32,16 @@ public class PermissionsAction {
 						.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION)));
 		axisConfigParentButton.click();
 	}
+	public void filterPermissionbyDocumentType(String filterValue) throws InterruptedException{
+		// Enter filter value
+		WebElement filterPermissionName = (new WebDriverWait(driver, 10))
+				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Permissions.DOC_TYPE_FILTER)));
+		filterPermissionName.sendKeys(filterValue);
+		Thread.sleep(2000);
 
-	public void filterPermission(String filterValue) throws InterruptedException{
+	}
+
+	public void filterPermissionbyPermissionName(String filterValue) throws InterruptedException{
 		// Click Filter Icon
 		WebElement filterButton = (new WebDriverWait(driver, 20))
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#HeaderMenuBar > span:nth-child(1)")));
@@ -46,7 +54,7 @@ public class PermissionsAction {
 		Thread.sleep(2000);
 
 	}
-
+	
 	public void enterValueTofilterPermission(String filterValue) throws InterruptedException{	
 		// Enter filter value
 		WebElement filterPermissionName = (new WebDriverWait(driver, 30))
@@ -76,12 +84,12 @@ public class PermissionsAction {
 		Thread.sleep(1000);
 	}
 	
-	public void selectDocumentType(String documentTypeCSS){
+	public void selectDocumentType(String documentTypeCSS) throws InterruptedException{
 		WebElement permissionDocType = (new WebDriverWait(driver, 20))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.id(Permissions.DOCUMENT_TYPE)));
 		permissionDocType.click();
-		
+		Thread.sleep(1000);
 		WebElement POAckType = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(documentTypeCSS)));
@@ -96,10 +104,11 @@ public class PermissionsAction {
 	}
 	public void clickSaveButtonOnAddPermisisonPopUp() throws InterruptedException{
 		// Click Save button on Add Permission Window Pop Up
+		Thread.sleep(500);
 		WebElement saveButton = (new WebDriverWait(driver, 30))
 				.until(ExpectedConditions.presenceOfElementLocated(By.id(Permissions.SAVE)));
 		saveButton.click();
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 		
 	}
 
@@ -110,4 +119,29 @@ public class PermissionsAction {
 		Thread.sleep(1000);
 	}
 
+	
+	public void selectDocTypebyText(String docType) throws InterruptedException{
+		WebElement permissionDocType = (new WebDriverWait(driver, 20))
+				.until(ExpectedConditions.presenceOfElementLocated(By
+						.id(Permissions.DOCUMENT_TYPE)));
+		permissionDocType.click();
+		Thread.sleep(1000);
+		WebElement baseTable = driver.findElement(By.cssSelector("#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table"));
+		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
+		int sumRow = tableRows.size();
+		
+		System.out.print(sumRow +" test");
+		
+		for(int i=1;i<sumRow;i++){
+			WebElement POAckType = (new WebDriverWait(driver, 10))
+					.until(ExpectedConditions.presenceOfElementLocated(By
+							.cssSelector("#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table > tbody > tr:nth-child("+i+") > td > span")));
+			if(POAckType.getText().equals(docType)){
+				POAckType.click();
+				break;
+			}
+				
+		}
+	
+	}
 }

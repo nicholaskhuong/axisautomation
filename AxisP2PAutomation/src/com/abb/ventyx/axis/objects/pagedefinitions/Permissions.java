@@ -14,6 +14,7 @@ public class Permissions {
 	 	public static final String PERMISSION_NAME_COLUMN = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div > div.v-grid-tablewrapper > table > thead > tr:nth-child(1) > th:nth-child(3) > div.v-grid-column-header-content.v-grid-column-default-header-content";
 	 	public static final String PERMISSION_NAME = "permissionName";
 	 	public static final String PERMISSION_NAME_FILTER = "(//input[@id='filterField'])[3]";
+	 	public static final String DOC_TYPE_FILTER = "(//input[@id='filterField'])[2]";
 	 	public static final String SYSTEM = "#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table > tbody > tr:nth-child(1) > td > span";
 	 	public static final String ADVANCED_SHIPPING_NOTICES = "#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table > tbody > tr:nth-child(2) > td > span";
 	 	public static final String INVOICING = "#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table > tbody > tr:nth-child(3) > td > span";

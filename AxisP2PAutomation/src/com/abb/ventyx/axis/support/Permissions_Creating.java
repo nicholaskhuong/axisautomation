@@ -19,7 +19,7 @@ import com.ventyx.testng.TestDataKey;
 @Credentials(user = "mail5@abb.com", password = "testuser")
 public class Permissions_Creating extends BaseTestCase {
 	@TestDataKey private final String PERMISSION_NAME_A = "MAINTAIN_PERMISSION_AA";
-	@TestDataKey private final String DOCUMENT_TYPE_A = "PurchaseOrder";
+	@TestDataKey private final String PurchaseorderType = "PurchaseOrder";
 	@TestDataKey private final String USER_TYPE_A = "CSA";
 	@TestDataKey private final String ADDPERMISSIONHEADER = "Add Permission";
 	@TestDataKey private final String MAINTAINPERMISSIONHEADER = "Maintain Permissions";
@@ -35,14 +35,16 @@ public class Permissions_Creating extends BaseTestCase {
 		permissionsAction.clickPermissionsSubMenu();
 
 		// Check there is any permission AA_MAINTAIN_PERMISSION existing
-		permissionsAction.filterPermission(PERMISSION_NAME_A);
+		permissionsAction.filterPermissionbyPermissionName(PERMISSION_NAME_A);
+		permissionsAction.filterPermissionbyDocumentType("PurchaseOrder");
 		int numberOfRowsBeforeAdding = permissionsAction.countRow(Permissions.TABLEBODY);
 		System.out.print(numberOfRowsBeforeAdding + "numberOfRowsBeforeAdding");
 
 		// Step 2
 		permissionsAction.clickAddButton();
 		permissionsAction.enterPermissionName(PERMISSION_NAME_A);
-		permissionsAction.selectDocumentType(Permissions.PURCHASE_ORDERS);
+		permissionsAction.selectDocTypebyText("Purchase Orders");
+		Thread.sleep(200);
 		permissionsAction.selectUserType(Permissions.AXIS_ADMIN);
 		permissionsAction.selectUserType(Permissions.CUSTOMER);
 		permissionsAction.selectUserType(Permissions.SUPPLIER);
@@ -55,6 +57,7 @@ public class Permissions_Creating extends BaseTestCase {
 						.getText(), Messages.PERMISSION_CREATED_SUCCESSFULLY);
 		// Filter
 		permissionsAction.enterValueTofilterPermission(PERMISSION_NAME_A);
+		permissionsAction.filterPermissionbyDocumentType("PurchaseOrder");
 		Thread.sleep(2000);
 		int numberOfRowsAfterAdding = permissionsAction.countRow(Permissions.TABLEBODY);
 
@@ -71,7 +74,7 @@ public class Permissions_Creating extends BaseTestCase {
 				driver.findElement(
 						By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr["
 								+ numberOfRowsAfterAdding + "]//td[2]"))
-						.getText(), DOCUMENT_TYPE_A);
+						.getText(), PurchaseorderType);
 		assertEquals(
 				driver.findElement(
 						By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr["

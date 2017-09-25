@@ -37,7 +37,7 @@ public class Permissions_Updating extends BaseTestCase {
 		permissionsAction.clickSystemConfigurationMenu();
 		permissionsAction.clickPermissionsSubMenu();
 
-		permissionsAction.filterPermission(PERMISSION_NAME_A);
+		permissionsAction.filterPermissionbyPermissionName(PERMISSION_NAME_A);
 		Thread.sleep(1000);
 
 		// Get Document Type value
