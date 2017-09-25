@@ -24,7 +24,7 @@ import com.ventyx.testng.TestDataKey;
 public class Permissions_Updating extends BaseTestCase {
 	@TestDataKey private final String PERMISSION_NAME_A = "MAINTAIN_PERMISSION_AA";
 	@TestDataKey private final String PERMISSION_NAME_B = "MAINTAIN_PERMISSION_BB";
-	@TestDataKey private final String DOCUMENT_TYPE_A = "PurchaseOrderAcknowledgement";
+	@TestDataKey private final String DOCUMENT_TYPE_A = "PurchaseOrder";
 	@TestDataKey private final String USER_TYPE_A = "CSA";
 
 	@Test
@@ -38,6 +38,7 @@ public class Permissions_Updating extends BaseTestCase {
 		permissionsAction.clickPermissionsSubMenu();
 
 		permissionsAction.filterPermissionbyPermissionName(PERMISSION_NAME_A);
+		permissionsAction.filterPermissionbyDocumentType("PurchaseOrder");
 		Thread.sleep(1000);
 
 		// Get Document Type value
@@ -53,20 +54,24 @@ public class Permissions_Updating extends BaseTestCase {
 				.cssSelector(Permissions.PERMISSIONWINDOWHEADER)));
 		Thread.sleep(1000);
 		assertEquals(driver.findElement(By.cssSelector(Permissions.PERMISSIONWINDOWHEADER)).getText(), "Edit Permission");
+		
 		/*assertEquals(driver.findElement(By.id(Permissions.PERMISSION_NAME)).getText(), PERMISSION_NAME_A);
-		assertEquals(driver.findElement(By.id(Permissions.DOCUMENT_TYPE)).getText(), "Purchase Orders");
-		assertTrue(driver.findElement(By.cssSelector(Permissions.AXIS_ADMIN)).isSelected());
+		assertEquals(driver.findElement(By.id(Permissions.DOCUMENT_TYPE)).getText(), "Purchase Orders");*/
+		
+		/*assertTrue(driver.findElement(By.cssSelector(Permissions.AXIS_ADMIN)).isSelected());
 		assertTrue(driver.findElement(By.cssSelector(Permissions.CUSTOMER)).isSelected());
 		assertTrue(driver.findElement(By.cssSelector(Permissions.SUPPLIER)).isSelected());*/
 		
 		// Step 2 update
-		permissionsAction.selectDocumentType(Permissions.PURCHASE_ORDER_ACK);
+		permissionsAction.selectDocTypebyText("Purchase Order Acknowledgement");
+		//Unselect Customer and Supplier
 		permissionsAction.selectUserType(Permissions.CUSTOMER);
 		permissionsAction.selectUserType(Permissions.SUPPLIER);
 		permissionsAction.clickSaveButtonOnAddPermisisonPopUp();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		assertEquals(driver.findElement(By.cssSelector(Messages.PERMISSION_CREATED_SUCCESSFULLY_CSS)).getText(), Messages.PERMISSION_UPADTED_SUCCESSFULLY);	
 		permissionsAction.enterValueTofilterPermission(PERMISSION_NAME_A);
+		permissionsAction.filterPermissionbyDocumentType("PurchaseOrder");
 		assertEquals(driver.findElement(By.cssSelector(Permissions.PNROW1)).getText(),PERMISSION_NAME_A);
 		assertEquals(driver.findElement(By.cssSelector(Permissions.UTROW1)).getText(),"A");
 		assertEquals(driver.findElement(By.cssSelector(Permissions.DTROW1)).getText(),"PurchaseOrderAcknowledgement");
@@ -91,7 +96,7 @@ public class Permissions_Updating extends BaseTestCase {
 		assertEquals(
 				driver.findElement(
 						By.cssSelector(Permissions.PERMISSIONWINDOWHEADER))
-						.getText(), "Edit Permissions");
+						.getText(), "Edit Permission");
 		
 		permissionsAction.clickCancelButtonOnAddPermisisonPopUp();
 		driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
