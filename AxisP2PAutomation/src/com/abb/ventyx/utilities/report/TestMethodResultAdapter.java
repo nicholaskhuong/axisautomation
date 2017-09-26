@@ -77,7 +77,7 @@ public class TestMethodResultAdapter implements Serializable {
 		this.status = testResult.getStatus() == ITestResult.FAILURE ? "0" : testResult.getStatus() + "";
 		this.action = "";
 		this.label = this.id = this.text = this.value = this.action = this.actualvalue = "";
-		if  (!testResult.getMethod().getDescription().isEmpty())
+		if  (null != testResult.getMethod().getDescription())
 		{
 				this.label = testResult.getMethod().getDescription();
 		}
