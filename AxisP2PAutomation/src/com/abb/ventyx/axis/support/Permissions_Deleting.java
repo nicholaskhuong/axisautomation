@@ -33,11 +33,12 @@ public class Permissions_Deleting extends BaseTestCase {
 		permissionsAction.clickPermissionsSubMenu();
 
 		permissionsAction.filterPermissionbyPermissionName(PERMISSION_NAME_A);
-		Thread.sleep(1000);
+		permissionsAction.filterPermissionbyDocumentType("PurchaseOrder");
+		Thread.sleep(2000);
 			
 		//final String PERMISION_ID_A = driver.findElement(By.id(Permissions.ROW1)).getText();
 		int numberOfRowsBeforeDelete = permissionsAction.countRow(Permissions.TABLEBODY);
-		WebElement trashBinIcon = driver.findElement(
+		WebElement trashBinIcon = driver.findElement( 
 				By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr["
 						+ numberOfRowsBeforeDelete + "]//td[5]"));
 		
