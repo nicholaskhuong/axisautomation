@@ -5,10 +5,11 @@ import java.util.ArrayList;
 public class TestClassResultAdapter {
 	private String id = "st0ts0tc0";
 	private String testClassName = "";
+	private String testOriginnalClassName = "";
 	private String almID;
 	private ArrayList<TestMethodResultAdapter> methods;
-	
-	public TestClassResultAdapter(){
+
+	public TestClassResultAdapter() {
 		this.methods = new ArrayList<>();
 	}
 
@@ -18,6 +19,14 @@ public class TestClassResultAdapter {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getTestOriginnalClassName() {
+		return testOriginnalClassName;
+	}
+
+	public void setTestOriginnalClassName(String testOriginnalClassName) {
+		this.testOriginnalClassName = testOriginnalClassName;
 	}
 
 	public String getTestClassName() {
@@ -35,18 +44,17 @@ public class TestClassResultAdapter {
 	public void setMethods(ArrayList<TestMethodResultAdapter> methods) {
 		this.methods = methods;
 	}
-	
-	
-	public void addMethod(TestMethodResultAdapter method){
+
+	public void addMethod(TestMethodResultAdapter method) {
 		this.methods.add(method);
 	}
 
 	public void setALMID(String almID) {
 		this.almID = almID;
 	}
-	
+
 	public String getALMID() {
 		return almID;
 	}
-	
+
 }
