@@ -50,7 +50,7 @@ public class Document_Type_Deleting extends BaseTestCase {
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(DocType.CONFIRMATION)));
 		assertThat(delete_Confirm.getText(),
-				containsString(Messages.DELETE_CONFIRM));
+				containsString(Messages.DEL_CONFIRM));
 		WebElement delete_Yes = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(DocType.DELETE_YES)));

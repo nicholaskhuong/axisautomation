@@ -22,4 +22,5 @@ public class DocType {
 	public static final String POPUP_SUCCESS = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-success-notification.v-Notification-v-success-notification";
 	public static final String DOC_TYPES_EXIST = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-error-notification.v-Notification-v-error-notification > div > div > h1 > div > div > div.v-slot.v-align-center.v-align-middle.v-notification-inline-caption";
 	public static final String ENTER_MANDATORY_FIELDS = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-error-notification-no-icon.v-Notification-v-error-notification-no-icon";
+	public static final String DOCUMENTTYPE_HEADER = "#common-header-left-layout > div > div";
 }

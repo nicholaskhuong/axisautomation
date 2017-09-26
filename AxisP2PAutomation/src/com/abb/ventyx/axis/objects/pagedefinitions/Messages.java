@@ -7,7 +7,7 @@ public class Messages {
 	public static final String DELETE_CONFIRM = "Are you sure you want to delete this permission?";
 	public static final String DELETE_CONFIRM_FILTER_FIELD = "Are you sure you want to delete this Document Filter Field?";
 	public static final String DELETE_CONFIRM_SEARCH_OPTION = "Are you sure you want to delete this Document Filter Type Search Option?";
-	public static final String DOCUMENT_DELETE_SUCCESSFULLY = "Delete success";
+	public static final String DOCUMENT_DELETE_SUCCESSFULLY = "The Document Type successfully deleted";
 	public static final String DOCUMENT_CREATE_SUCCESSFULLY_UPDATED = "Document filter type search option successfully updated";
 	public static final String DOCUMENT_CREATE_SUCCESSFULLY_UPDATED_CSS = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-success-notification.v-Notification-v-success-notification";
 	public static final String DOCUMENT_CREATE_SUCCESSFULLY = "The Document Type successfully created";

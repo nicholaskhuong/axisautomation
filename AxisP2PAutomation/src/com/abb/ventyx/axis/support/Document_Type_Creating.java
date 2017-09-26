@@ -30,7 +30,7 @@ public class Document_Type_Creating extends BaseTestCase {
 
 	// Step 1 Add new doc type and success message
 	@Test
-	public void createDocumentType() {
+	public void createDocumentType() throws InterruptedException {
 		WebElement axisConfigParentButton = (new WebDriverWait(driver, 120))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION)));
@@ -40,23 +40,30 @@ public class Document_Type_Creating extends BaseTestCase {
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(AxisConfigMenu.DOC_TYPE)));
 		axisDocType.click();
+		
 		WebElement addDocType = (new WebDriverWait(driver, 30))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(DocType.ADD)));
 		addDocType.click();
+		
 		WebElement clickDocTpe = (new WebDriverWait(driver, 30))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.id(DocType.DOCTYPES)));
 		clickDocTpe.click();
+		
 		driver.findElement(By.id(DocType.DOCTYPES)).sendKeys(DOCTYPE_B);
 		driver.findElement(By.id(DocType.DESC)).click();
 		driver.findElement(By.id(DocType.DESC)).sendKeys(DESC_B);
 		driver.findElement(By.id(DocType.SAVE)).click();
+		
+		Thread.sleep(5000);
 		WebElement flashMessage1 = (new WebDriverWait(driver, 30))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(DocType.SUCCESS_MESSAGE)));
+		
 		Assert.assertEquals(flashMessage1.getText(),
 				Messages.DOCUMENT_CREATE_SUCCESSFULLY);
+		
 		grid = new BaseGrid(driver, DocType.GRID);
 		Assert.assertNotEquals(
 				grid.findItemByColumnName("Document Types", DOCTYPE_B), -1,
