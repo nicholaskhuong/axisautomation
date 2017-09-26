@@ -23,6 +23,9 @@ public class CustomerUser_Creating extends BaseTestCase{
 	@TestDataKey private final String USEREMAILADDRESS ="cuser1@abb.com";
 	@TestDataKey private final String PASSWORD ="Testuser2";
 	@TestDataKey private final String CONFIRMPASSWORD ="Testuser2";
+	@TestDataKey private final String INVALIDEMAIL = "<HTML>";
+	@TestDataKey private final String INVALIDPASSWORD = "12345";
+	//@TestDataKey private final String INVALIDPASSWORD = "Testuser2";
 	// Step 1 Open Users sub menu
 	@Test
 	public void selectUsersSubMenu() throws InterruptedException{
@@ -40,13 +43,9 @@ public class CustomerUser_Creating extends BaseTestCase{
 		Thread.sleep(2000);
 		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER)).getText(), "Maintain Customer Users");
 	}
-	
+
 	// Step 2 check error message in case inputting lack of mandatory field.
-	// Click Add
-	// Input lack of mandatory field
-	// click save
-	// assertion
-	
+
 	@Test(dependsOnMethods="selectUsersSubMenu")
 	public void addNewUserWithoutMandatoryField() throws InterruptedException{
 		WebDriverWait wait = new WebDriverWait(driver, 60);
@@ -61,15 +60,52 @@ public class CustomerUser_Creating extends BaseTestCase{
 		driver.findElement(By.cssSelector(CustomerUsers.PASSWORD_TEXTBOX)).sendKeys(PASSWORD);
 		Thread.sleep(100);
 		//driver.findElement(By.cssSelector(CustomerUsers.CONFIRMPASSWORD_TEXTBOX)).sendKeys(CONFIRMPASSWORD);
-		
+
 		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.ERROR)));
 		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.ERROR)).getText(), Messages.ENTER_MANDATORY_FIELDS);
-	}
-	
-	// Step 3 	
-	/*@Test(dependsOnMethods="selectUsersSubMenu")
-	public void filter1(){
+		// There is a defect here, user group is not being displayed in this page. So can scripts more.
 		
-	}*/
+		// Focus on this field to make the error message be invisibility
+		driver.findElement(By.cssSelector(CustomerUsers.CONFIRMPASSWORD_TEXTBOX)).click();
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(CustomerUsers.ERROR)));
+	}
+
+	// Step 3 Input mandatory field, don't select user group
+	@Test(dependsOnMethods="addNewUserWithoutMandatoryField")
+	public void addNewUserWithoutUserGroup() throws InterruptedException{
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		driver.findElement(By.cssSelector(CustomerUsers.CONFIRMPASSWORD_TEXTBOX)).sendKeys(CONFIRMPASSWORD);
+		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();
+		Thread.sleep(1500);
+		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.ERROR)).getText(), Messages.USER_SELECT_USERGROUP);
+	}
+
+	// Step 4 Input invalid e-mail
+	@Test(dependsOnMethods="addNewUserWithoutUserGroup")
+	public void addNewUserWithInvalidEmail(){
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		driver.findElement(By.cssSelector(CustomerUsers.USEREMAILADDRESS_TEXTBOX)).clear();
+		driver.findElement(By.cssSelector(CustomerUsers.USEREMAILADDRESS_TEXTBOX)).sendKeys(INVALIDEMAIL);
+		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.ERROR)));
+		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.ERROR)).getText(), Messages.USER_SELECT_USERGROUP);
+	}
+
+	// Step 5 Input invalid password
+	@Test(dependsOnMethods="addNewUserWithInvalidEmail")
+	public void addNewUserWithInvalidPassword(){
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		driver.findElement(By.cssSelector(CustomerUsers.PASSWORD_TEXTBOX)).clear();
+		driver.findElement(By.cssSelector(CustomerUsers.PASSWORD_TEXTBOX)).sendKeys(INVALIDPASSWORD);
+		driver.findElement(By.cssSelector(CustomerUsers.CONFIRMPASSWORD_TEXTBOX)).clear();
+		driver.findElement(By.cssSelector(CustomerUsers.CONFIRMPASSWORD_TEXTBOX)).sendKeys(INVALIDPASSWORD);
+		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.ERROR)));
+		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.ERROR)).getText(), Messages.USER_SELECT_USERGROUP);
+	}
+
+
+
+
 }

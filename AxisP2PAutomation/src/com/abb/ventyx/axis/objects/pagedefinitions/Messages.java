@@ -52,5 +52,4 @@ public class Messages {
 	
 	// Users under Customer Maintenance menu in Customer view
 	
-	
 }
