@@ -57,6 +57,20 @@ public class TableFunction {
 		}
 
 	}
+	// Select User Group in the grid in Create User page (Customer account)
+	public void selectUserGroup(String xPath, String expectedValue) {
+		WebElement baseTable = driver.findElement(By.xpath(xPath));
+		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
+		int sumRow = tableRows.size();
+		for (int i = 1; i <= sumRow; i++) {
+			String foundValue = driver.findElement(By.xpath(xPath+"//tr["+i+"]//td[2]")).getText();
+			if (foundValue.equals(expectedValue)) {
+				driver.findElement(By.xpath(xPath+"//tr["+i+"]//td[1]")).click();
+				break;
+			}
+		}
+
+	}
 
 	public int countRow(String tableCSS) {
 		WebElement baseTable = driver.findElement(By.cssSelector(tableCSS));
