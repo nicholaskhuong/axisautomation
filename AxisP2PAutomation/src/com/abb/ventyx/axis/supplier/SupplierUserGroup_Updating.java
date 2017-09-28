@@ -68,9 +68,11 @@ public class SupplierUserGroup_Updating extends BaseTestCase {
 
 	@Test(dependsOnMethods = "selectRowUpdating")
 	public void addValidation() throws InterruptedException {
-
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
+		action.clickBtn(By.id(UserGroup.ROW_ID + row));
+		action.waitObjVisible(By.id(UserGroup.USERGROUP_NAME_ID));
 		action.checkValidationTextField(UserGroup.USERGROUP_NAME_ID,
-				"Administrator", By.id(UserGroup.ROW_ID + row));
+				"Administrator", Messages.USERGROUP_EXISTING);
 	}
 
 	@Test(dependsOnMethods = "addValidation")
@@ -98,6 +100,7 @@ public class SupplierUserGroup_Updating extends BaseTestCase {
 		action.inputTextField(UserGroup.USERGROUP_NAME_ID, USER_GROUP_NAME);
 		action.cancelWithoutdata(By.cssSelector(UserGroup.ADD_BTN_CSS),
 				UserGroup.TITLE);
+
 	}
 
 }

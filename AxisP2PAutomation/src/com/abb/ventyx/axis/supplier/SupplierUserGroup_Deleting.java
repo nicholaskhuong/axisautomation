@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
-import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 import com.abb.ventyx.axis.objects.pagedefinitions.SupplierMenu;
 import com.abb.ventyx.axis.objects.pagedefinitions.UserGroup;
 import com.abb.ventyx.utilities.ALM;
@@ -57,8 +56,6 @@ public class SupplierUserGroup_Deleting extends BaseTestCase {
 		// Click Yes on dialog
 		action.clickBtn(By.id(UserGroup.DELETE_BTN_ID + row));
 		action.deleteClickYes(Messages.USERGROUP_DELETE_SUCCESSFULLY);
-		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
-		table.assertRowNotEqual(UserGroup.ROW_ID, USER_GROUP_NAME, row);
 	}
 
 }

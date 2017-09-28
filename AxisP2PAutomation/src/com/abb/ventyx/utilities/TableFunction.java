@@ -1,7 +1,6 @@
 package com.abb.ventyx.utilities;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotEquals;
 
 import java.util.List;
 
@@ -110,15 +109,34 @@ public class TableFunction {
 
 	}
 
+	public void inputFilter(String value, String filterString) {
+
+		WebElement filterButton = driver.findElement(By
+				.cssSelector(ScreenObjects.FILTER_BTN_CSS));
+		filterButton.click();
+		WebElement filterColumn = (new WebDriverWait(driver, 20))
+				.until(ExpectedConditions.presenceOfElementLocated(By
+						.xpath(filterString)));
+		filterColumn.clear();
+		filterColumn.sendKeys(value);
+
+	}
+
 	public void assertRowEqual(String obj, String value, int row) {
 		WebElement rowFilter = driver.findElement(By.id(obj + row));
 		assertEquals(rowFilter.getText(), value, "Title is wrong");
 	}
 
-	public void assertRowNotEqual(String obj, String value, int row) {
-		WebElement rowFilter = driver.findElement(By.id(obj + row));
-		if (rowFilter != null) {
-			assertNotEquals(rowFilter.getText(), value, "Title is wrong");
-		}
+	public void assertRowEqual(By obj, String value) {
+		WebElement rowFilter = driver.findElement(obj);
+		assertEquals(rowFilter.getText(), value, "Title is wrong");
+	}
+
+	public void assertValueRow(int column, int row, String value) {
+		WebElement cell = driver
+				.findElement(By
+						.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr["
+								+ row + "]//td[" + column + "]"));
+		assertEquals(cell.getText(), value);
 	}
 }

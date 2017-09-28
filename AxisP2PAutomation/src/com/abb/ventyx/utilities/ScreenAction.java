@@ -26,7 +26,7 @@ public class ScreenAction {
 	}
 
 	public void waitObjInvisible(By obj) {
-		(new WebDriverWait(driver, 90)).until(ExpectedConditions
+		(new WebDriverWait(driver, 120)).until(ExpectedConditions
 				.invisibilityOfElementLocated(obj));
 	}
 
@@ -110,12 +110,8 @@ public class ScreenAction {
 		Assert.assertEquals(error.getText(), msg);
 	}
 
-	public void checkValidationTextField(String obj, String value, By objClick)
+	public void checkValidationTextField(String obj, String value, String msg)
 			throws InterruptedException {
-
-		waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
-		clickBtn(objClick);
-		waitObjVisible(By.id(obj));
 
 		// Don't input data in text Field
 		inputTextField(obj, "");
@@ -134,7 +130,26 @@ public class ScreenAction {
 		// Text Field contain existing data
 		inputTextField(obj, value);
 		clickBtn(By.id(ScreenObjects.SAVE_ID));
-		assertMessgeError(ScreenObjects.ERROR_CSS, Messages.USERGROUP_EXISTING);
+		assertMessgeError(ScreenObjects.ERROR_CSS, msg);
+	}
+
+	public void checkValidationTextField(String obj)
+			throws InterruptedException {
+
+		// Don't input data in text Field
+		inputTextField(obj, "");
+		clickBtn(By.id(ScreenObjects.SAVE_ID));
+		assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
+				Messages.ENTER_MANDATORY_FIELDS);
+		waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
+
+		// Text Field is only space
+		inputTextField(obj, "  ");
+		clickBtn(By.id(ScreenObjects.SAVE_ID));
+		assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
+				Messages.ENTER_MANDATORY_FIELDS);
+		waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
+
 	}
 
 	public void cancelClickYes(By obj, String titleScreen) {

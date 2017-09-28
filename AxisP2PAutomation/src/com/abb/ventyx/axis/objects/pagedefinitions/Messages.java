@@ -17,7 +17,7 @@ public class Messages {
 	public static final String DUPLICATE_FIELD_TYPE_CSS = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-error-notification-no-icon.v-Notification-v-error-notification-no-icon";
 	public static final String DUPLICATE_FIELD_TYPE = "Duplicate Field Type and Option, please use different values";
 	public static final String DOC_TYPES_EXIST = "This Document Type already exists";
-	public static final String ENTER_MANDATORY_FIELDS = "One or more fields are in error. Please correct.";;
+	public static final String ENTER_MANDATORY_FIELDS = "One or more fields are in error. Please correct.";
 
 	// User group page
 	public static final String USERGROUP_CREATE_SUCCESSFULLY = "User group successfully created";
@@ -38,10 +38,14 @@ public class Messages {
 	public static final String USER_UPDATE_SUCCESSFULLY = "User successfully updated";
 	public static final String INVALID_EMAIL = "Invalid email address";
 	public static final String INVALID_PWD = "Password must be 6-16 characters. Password must have at least one uppercase letter, one lowercase letter, and one number. This is not a valid password string";
+
 	public static final String UNMATCHED_CONFIRM_PWD = "Entered Password is not the same, please verify.";
+
+	public static final String INVALID_CONFIRM_PWD = "Entered Password is not the same, please verify.";
+
 	public static final String DELETE_USER_CONFIRM = "Are you sure want to delete this user?";
 	public static final String USER_DELETE_SUCCESSFULLY = "User succesfully deleted";
-
+	public static final String USERS_EXISTING = "User ID existst";
 	// Permissions
 	public static final String EMPTYPERMISSIONNAME = "Please enter permission name";
 	public static final String EMPTYUSERTYPE = "Please select the User Type";
@@ -49,7 +53,7 @@ public class Messages {
 	public static final String PERMISSION_CREATED_SUCCESSFULLY_CSS = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-success-notification.v-Notification-v-success-notification > div > div > h1 > div > div > div.v-slot.v-align-center.v-align-middle.v-notification-inline-caption";
 	public static final String PERMISSION_UPADTED_SUCCESSFULLY = "Permission successfully updated";
 	public static final String PERMISSION_DELETED_SUCCESSFULLY = "Permission successfully deleted";
-	
+
 	// Users under Customer Maintenance menu in Customer view
-	
+
 }

@@ -2553,7 +2553,7 @@ var jTemplate = {
 			var returnItem = {
 				id : '&nbsp;',
 				statusbar : '&nbsp;',
-				text : '<b><i>Stream Total:</i></b>',
+				text : '<b><i>Result Total:</i></b>',
 				steps : 0,
 				pots : 0,
 				total : 0,

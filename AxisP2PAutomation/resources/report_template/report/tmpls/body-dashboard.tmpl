@@ -11,22 +11,18 @@
 		<div class="overview">
 			<div class="summary">
 				<div class="executionInfo">
-					<h1 style="color: White; font-weight: bold; font-size: 19px;">Enclave Web Testing Framework Demo</h1>
+					<h1 style="color: White; font-weight: bold; font-size: 19px;">Axis Regression Testing</h1>
 
 					<h2 style="color: white; font-size: 13px; font-weight: bold;">&nbsp;<%=this.release%></h2>
 					<table>
 						<tbody>
 							<tr valign="top">
 								<td><b>Version: </b>&nbsp;</td>
-								<td><%=(this.version || 'Unknown')%></td>
+								<td><%=(this.version || '3')%></td>
 							</tr>
 							<tr valign="top">
 								<td><b>Build Date: </b>&nbsp;</td>
 								<td><%=jTemplate.dashboard.getBuildDate(this.builddate)%></td>
-							</tr>
-							<tr valign="top" title="RC node list">
-								<td><b>RC Nodes: </b>&nbsp;</td>
-								<td><%=jTemplate.dashboard.fixRCNode(this.rcNodeList)%></td>
 							</tr>
 							<tr valign="top">
 								<td><b>Selenium Hub URL: </b>&nbsp;</td>
@@ -37,7 +33,7 @@
 							<tr valign="top">
 								<td><b>Automation URL: </b>&nbsp;</td>
 								<td>
-									<a class="tooltip" title="Open Ellipse page in new window" target="<%if (this.automation_url !='Unknown') {%>_blank<%} else {%>_self<%}%>" href="<%if (this.automation_url !='Unknown') {%><%=this.automation_url%><%} else {%>#<%}%>">
+									<a class="tooltip" title="Open page in new window" target="<%if (this.automation_url !='Unknown') {%>_blank<%} else {%>_self<%}%>" href="<%if (this.automation_url !='Unknown') {%><%=this.automation_url%><%} else {%>#<%}%>">
 										<%=(this.automation_url || 'Unknown')%>
 									</a>
 								</td>
