@@ -1,6 +1,6 @@
 ﻿/**
- * @author cuong.tran
- * @email cuong.tran@enclave.vn, cuongtranquoc@gmail.com
+ * @author nghia.khuong
+ * @email nghia.khuong@enclave.vn, khuongdainghia@gmail.com
  * @function jReport core
  * @version 1.6
  * @create date: 24 Apr 2012
@@ -2616,7 +2616,7 @@ var jTemplate = {
 			for (var i = 0; i < this.data.package.length; i++) {
 				if ((packageId == '') || (this.data.package[i].id == packageId)) {
 					for (var j = 0; j < this.data.package[i].testsuite.length; j++) {
-						total += Number(this.data.package[i].testsuite[j].total)
+						total += Number(this.data.package[i].testsuite[j].steps)
 					}
 					if (packageId != '') {
 						break
