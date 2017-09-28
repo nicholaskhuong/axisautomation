@@ -233,6 +233,6 @@ public class CustomerUser_Creating extends BaseTestCase{
 		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER)).getText(), "Maintain Customer Users");
 	}
 
-	// Step 13 Check cancel button on unsaved changes Dialog
+	// Step 14 
 
 }
