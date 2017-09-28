@@ -1,6 +1,6 @@
          
 Dear all,
-Here is a summary of  automation execution on 2012-11-21T10:25:58+07:00 
+Here is a summary of  automation execution on 2017-11-21T10:25:58+07:00 
 
 *Environment	
   Release       : 
@@ -8,9 +8,9 @@ Here is a summary of  automation execution on 2012-11-21T10:25:58+07:00
   Build Date    : 
   Build URL     : 
   Automation URL: 
-  JReport URL   : artifact/EllipseAutomation/report/index.html 
+  JReport URL   : artifact/AxisAutomation/report/index.html 
 
-*Ellipse8.3 Testing Summary 
+*Axis Testing Summary 
   +------+-------------------------+------------------------+--------+--------+
   | No.  | Stream                  | Number of executed TCs | Passed | Failed |
   +------+-------------------------+------------------------+--------+--------+

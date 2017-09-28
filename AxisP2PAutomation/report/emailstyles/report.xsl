@@ -412,8 +412,7 @@
 	<!--
     @Template: func.SubstringBefore
     @Description: 
-    @Author: TRAN Q. Cuong (Connor)
-    -->
+    @Author: Axis Team -->
     <xsl:template name="func.SubstringBefore">
         <xsl:param name="param_Input" />
         <xsl:param name="param_Token" />        
@@ -440,8 +439,7 @@
 	<!--    
     @Template: func.string.FixLength
     @Description: 
-    @Author: TRAN Q. Cuong (Connor)
-    -->
+    @Author: Axis Team    -->
     <xsl:template name="func.string.FixLength">
         <xsl:param name="text" />
         <xsl:param name="length" />
