@@ -101,7 +101,7 @@ public class Users_Updating extends BaseTestCase {
 		WebElement warningMessage2 = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)));
-		assertEquals(warningMessage2.getText(), Messages.INVALID_CONFIRM_PWD);
+		assertEquals(warningMessage2.getText(), Messages.UNMATCHED_CONFIRM_PWD);
 
 	}
 
