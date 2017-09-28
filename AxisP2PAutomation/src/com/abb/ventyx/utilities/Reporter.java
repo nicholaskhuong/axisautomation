@@ -376,7 +376,7 @@ public class Reporter implements IReporter {
 				lsSuite.add(testSuite);
 
 				totalPackageTime = totalPackageTime + totalTimeTestSuite;
-				totalStepPackage = totalReportStep + totalStepPackage;
+				totalStepPackage = totalStepPackage + totalTestStuiteSteps;
 
 			}
 

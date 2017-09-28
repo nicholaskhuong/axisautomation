@@ -1,6 +1,6 @@
 /**
- * @author cuong.tran
- * @email cuong.tran@enclave.vn, cuongtranquoc@gmail.com
+ * @author nghia.khuong
+ * @email nghia.khuong@enclave.vn, khuongdainghia@gmail.com
  * @function jReport needed libraries
  * @version 1.6
  * @create date: 06 Apr 2012
