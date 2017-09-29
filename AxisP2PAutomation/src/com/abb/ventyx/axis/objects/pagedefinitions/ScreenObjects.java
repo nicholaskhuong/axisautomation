@@ -17,6 +17,7 @@ public class ScreenObjects {
 	public static final String SUCCESS_MESSAGE = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-success-notification.v-Notification-v-success-notification > div > div > h1 > div > div > div.v-slot.v-align-center.v-align-middle.v-notification-inline-caption";
 	public static final String POPUP_SUCCESS = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-success-notification.v-Notification-v-success-notification";
 	public static final String ERROR_CSS = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-error-notification.v-Notification-v-error-notification > div > div > h1 > div > div > div.v-slot.v-align-center.v-align-middle.v-notification-inline-caption";
+	public static final String ERROR_ICON_CSS = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-error-notification.v-Notification-v-error-notification";
 	public static final String ERROR_WITHOUT_ICON_CSS = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-error-notification-no-icon.v-Notification-v-error-notification-no-icon";
 	public static final String WARNING_MESSAGE_XPATH = "//*[@id='SupplierPortal-1227837064-overlays']/div[2]/div/div/h1/div/div/div[2]";
 	public static final String UNSAVED_CHANGE_CSS = "#confirmation-window > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-confirmation-window-text-and-button-layout > div > div:nth-child(1) > div";

@@ -110,14 +110,15 @@ public class ScreenAction {
 		Assert.assertEquals(error.getText(), msg);
 	}
 
-	public void checkValidationTextField(String obj, String value, String msg)
-			throws InterruptedException {
+	public void checkValidationTextField(String obj, String value, String msg,
+			String msgCSS) throws InterruptedException {
 
 		// Don't input data in text Field
 		inputTextField(obj, "");
 		clickBtn(By.id(ScreenObjects.SAVE_ID));
 		assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
 				Messages.ENTER_MANDATORY_FIELDS);
+		clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
 		waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 
 		// Text Field is only space
@@ -125,12 +126,11 @@ public class ScreenAction {
 		clickBtn(By.id(ScreenObjects.SAVE_ID));
 		assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
 				Messages.ENTER_MANDATORY_FIELDS);
-		waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 
 		// Text Field contain existing data
 		inputTextField(obj, value);
 		clickBtn(By.id(ScreenObjects.SAVE_ID));
-		assertMessgeError(ScreenObjects.ERROR_CSS, msg);
+		assertMessgeError(msgCSS, msg);
 	}
 
 	public void checkValidationTextField(String obj)
@@ -141,6 +141,7 @@ public class ScreenAction {
 		clickBtn(By.id(ScreenObjects.SAVE_ID));
 		assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
 				Messages.ENTER_MANDATORY_FIELDS);
+		clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
 		waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 
 		// Text Field is only space
@@ -148,6 +149,7 @@ public class ScreenAction {
 		clickBtn(By.id(ScreenObjects.SAVE_ID));
 		assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
 				Messages.ENTER_MANDATORY_FIELDS);
+		clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
 		waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 
 	}

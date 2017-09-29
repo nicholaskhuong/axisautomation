@@ -58,10 +58,12 @@ public class SupplierUser_Creating extends BaseTestCase {
 
 	@Test(dependsOnMethods = "addUsers")
 	public void checkAddSuccessfully() throws InterruptedException {
+		action.clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 		sumRowAfter = table.countRow(Users.SUPPLIER_USERS_TABLE_CSS);
 		assertEquals(sumRowAfter, sumRowBefore + 1);
 		table.assertValueRow(2, sumRowBefore, USER_ID);
+		table.assertValueRow(5, sumRowBefore, "Created");
 
 	}
 
@@ -97,6 +99,7 @@ public class SupplierUser_Creating extends BaseTestCase {
 		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
 				Messages.ENTER_MANDATORY_FIELDS);
+		action.clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
 		action.waitObjInvisible(By
 				.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		// input other data
@@ -106,11 +109,14 @@ public class SupplierUser_Creating extends BaseTestCase {
 		action.clickCheckBoxN(1);
 		// don't input UserID
 		action.checkValidationTextField(Users.USER_ID, USER_ID,
-				Messages.USERS_EXISTING);
-		action.clickCheckBoxN(1);
-		// don't select User group
-		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
-				Messages.USER_SELECT_USERGROUP);
+				Messages.USERS_EXISTING, ScreenObjects.ERROR_CSS);
+		/*
+		 * action.inputTextField(Users.USER_ID, "BOSS_1");
+		 * action.inputTextField(Users.EMAIL_ID, EMAIL);
+		 * action.clickCheckBoxN(2); // don't select User group
+		 * action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
+		 * Messages.USER_SELECT_USERGROUP);
+		 */
 	}
 
 	@Test(dependsOnMethods = "addValidationUserID")
@@ -119,24 +125,48 @@ public class SupplierUser_Creating extends BaseTestCase {
 		action.inputTextField(Users.USER_ID, "BOSS_1");
 		action.inputTextField(Users.PASSWORD_ID, PASSWORD);
 		action.inputTextField(Users.CONFIMRPASSWORD_ID, PASSWORD);
-		action.clickCheckBoxN(1);
 		// don't input UserID
 		action.checkValidationTextField(Users.EMAIL_ID);
+		action.inputTextField(Users.EMAIL_ID, "mail232@abb.com");
+		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
+		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.SAME_EMAIL);
+		action.clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_ICON_CSS));
+		action.inputTextField(Users.EMAIL_ID, "Boss");
+		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
+				Messages.INVALID_EMAIL);
 
 	}
 
 	@Test(dependsOnMethods = "addValidationEmail")
 	public void addValidationPassword() throws InterruptedException {
+		action.clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
+		action.waitObjInvisible(By
+				.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		// input other data
 		action.inputTextField(Users.USER_ID, "BOSS_1");
 		action.inputTextField(Users.EMAIL_ID, EMAIL);
-		action.inputTextField(Users.CONFIMRPASSWORD_ID, PASSWORD);
+
 		// don't input UserID
-		action.checkValidationTextField(Users.PASSWORD_ID);
+		action.inputTextField(Users.PASSWORD_ID, "");
+		action.inputTextField(Users.CONFIMRPASSWORD_ID, PASSWORD);
+		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
+				Messages.ENTER_MANDATORY_FIELDS);
+		action.clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
+		action.waitObjInvisible(By
+				.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.inputTextField(Users.PASSWORD_ID, CONFIRMPASSWORD);
+		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
 				Messages.INVALID_CONFIRM_PWD);
+		action.clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
+		action.waitObjInvisible(By
+				.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.inputTextField(Users.PASSWORD_ID, "ABC");
+		action.inputTextField(Users.CONFIMRPASSWORD_ID, PASSWORD);
+		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
 				Messages.INVALID_PWD);
 	}
@@ -144,12 +174,32 @@ public class SupplierUser_Creating extends BaseTestCase {
 	@Test(dependsOnMethods = "addValidationPassword")
 	public void addValidationConfirmPassword() throws InterruptedException {
 		// input other data
+		action.clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
+		action.waitObjInvisible(By
+				.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.inputTextField(Users.USER_ID, "BOSS_1");
 		action.inputTextField(Users.EMAIL_ID, EMAIL);
 		action.inputTextField(Users.PASSWORD_ID, PASSWORD);
 		// action.clickCheckBoxN(1);
 		// don't input UserID
 		action.checkValidationTextField(Users.CONFIMRPASSWORD_ID);
+	}
+
+	@Test(dependsOnMethods = "addValidationConfirmPassword")
+	public void unselectUserGroup() throws InterruptedException {
+
+		action.clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
+		action.waitObjInvisible(By
+				.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
+
+		action.inputTextField(Users.USER_ID, "BOSS_1");
+		action.inputTextField(Users.EMAIL_ID, "boss1@abb.com");
+		action.inputTextField(Users.PASSWORD_ID, PASSWORD);
+		action.inputTextField(Users.CONFIMRPASSWORD_ID, PASSWORD);
+		action.clickCheckBoxN(1);
+		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
+				Messages.USER_SELECT_USERGROUP);
 
 	}
 }

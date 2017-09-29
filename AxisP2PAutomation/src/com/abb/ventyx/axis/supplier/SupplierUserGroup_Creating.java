@@ -65,7 +65,8 @@ public class SupplierUserGroup_Creating extends BaseTestCase {
 		action.clickBtn(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
 		action.waitObjVisible(By.id(UserGroup.USERGROUP_NAME_ID));
 		action.checkValidationTextField(UserGroup.USERGROUP_NAME_ID,
-				USER_GROUP_NAME, Messages.USERGROUP_EXISTING);
+				USER_GROUP_NAME, Messages.USERGROUP_EXISTING,
+				ScreenObjects.ERROR_CSS);
 	}
 
 	@Test(dependsOnMethods = "addValidation")

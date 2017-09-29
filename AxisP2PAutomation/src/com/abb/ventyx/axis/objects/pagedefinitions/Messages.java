@@ -37,6 +37,7 @@ public class Messages {
 	public static final String USER_CREATE_SUCCESSFULLY = "User successfully created";
 	public static final String USER_UPDATE_SUCCESSFULLY = "User successfully updated";
 	public static final String INVALID_EMAIL = "Invalid email address";
+	public static final String SAME_EMAIL = "Unable to use email address, please contact your Support admin";
 	public static final String INVALID_PWD = "Password must be 6-16 characters. Password must have at least one uppercase letter, one lowercase letter, and one number. This is not a valid password string";
 
 	public static final String UNMATCHED_CONFIRM_PWD = "Entered Password is not the same, please verify.";
@@ -45,7 +46,7 @@ public class Messages {
 
 	public static final String DELETE_USER_CONFIRM = "Are you sure want to delete this user?";
 	public static final String USER_DELETE_SUCCESSFULLY = "User succesfully deleted";
-	public static final String USERS_EXISTING = "User ID existst";
+	public static final String USERS_EXISTING = "User ID exists";
 	// Permissions
 	public static final String EMPTYPERMISSIONNAME = "Please enter permission name";
 	public static final String EMPTYUSERTYPE = "Please select the User Type";

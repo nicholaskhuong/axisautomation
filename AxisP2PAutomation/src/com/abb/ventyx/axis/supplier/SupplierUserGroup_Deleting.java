@@ -1,5 +1,7 @@
 package com.abb.ventyx.axis.supplier;
 
+import static org.testng.Assert.assertEquals;
+
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
@@ -52,10 +54,12 @@ public class SupplierUserGroup_Deleting extends BaseTestCase {
 
 	@Test(dependsOnMethods = "deleteUserGroupClickNo")
 	public void deleteUserGroupClickYes() throws Exception {
-
+		int sumRowBefore = table.countRow(UserGroup.SUPPLIER_GROUP_TABLE_CSS);
 		// Click Yes on dialog
 		action.clickBtn(By.id(UserGroup.DELETE_BTN_ID + row));
 		action.deleteClickYes(Messages.USERGROUP_DELETE_SUCCESSFULLY);
+		int sumRowAfter = table.countRow(UserGroup.SUPPLIER_GROUP_TABLE_CSS);
+		assertEquals(sumRowAfter, sumRowBefore - 1);
 	}
 
 }

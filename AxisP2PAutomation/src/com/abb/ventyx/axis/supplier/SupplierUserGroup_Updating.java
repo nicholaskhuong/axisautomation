@@ -72,7 +72,8 @@ public class SupplierUserGroup_Updating extends BaseTestCase {
 		action.clickBtn(By.id(UserGroup.ROW_ID + row));
 		action.waitObjVisible(By.id(UserGroup.USERGROUP_NAME_ID));
 		action.checkValidationTextField(UserGroup.USERGROUP_NAME_ID,
-				"Administrator", Messages.USERGROUP_EXISTING);
+				"Administrator", Messages.USERGROUP_EXISTING,
+				ScreenObjects.ERROR_CSS);
 	}
 
 	@Test(dependsOnMethods = "addValidation")
