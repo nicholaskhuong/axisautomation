@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Supplier_UserGroup" parallel="none">
+ 
+	<test name="Supplier Users">
+		<classes>
+				<class name="com.abb.ventyx.axis.supplier.SupplierUser_Creating" />
+				<class name="com.abb.ventyx.axis.supplier.SupplierUser_Updating" />	
+				<class name="com.abb.ventyx.axis.supplier.SupplierUser_Deleting" />					
+		</classes>	
+  	</test>
+  	
+</suite> 
