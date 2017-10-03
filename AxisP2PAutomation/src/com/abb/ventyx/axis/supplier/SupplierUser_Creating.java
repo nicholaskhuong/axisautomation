@@ -15,7 +15,7 @@ import com.abb.ventyx.utilities.Credentials;
 import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
 
-@ALM(id = "601")
+@ALM(id = "634")
 @Credentials(user = "mail232@abb.com", password = "Testuser1")
 public class SupplierUser_Creating extends BaseTestCase {
 	String USER_ID = "BOSS";
@@ -34,7 +34,7 @@ public class SupplierUser_Creating extends BaseTestCase {
 		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.USERS_ID));
-		action.waitObjVisible(By.cssSelector(Users.ADD_BTN_CSS));
+		action.waitObjVisible(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
 		action.assertTitleScreen(Users.TITLE);
 	}
 
@@ -42,7 +42,7 @@ public class SupplierUser_Creating extends BaseTestCase {
 	public void addUsers() {
 		table = new TableFunction(driver);
 		sumRowBefore = table.countRow(Users.SUPPLIER_USERS_TABLE_CSS);
-		action.clickBtn(By.cssSelector(Users.ADD_BTN_CSS));
+		action.clickBtn(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
 		action.waitObjVisible(By.id(Users.USER_ID));
 		action.assertTitleScreen(Users.TITLE_CREATE);
 		action.inputTextField(Users.USER_ID, USER_ID);
@@ -53,7 +53,6 @@ public class SupplierUser_Creating extends BaseTestCase {
 		action.clickCheckBoxN(1);
 		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
 		action.checkAddSuccess(Messages.USER_CREATE_SUCCESSFULLY);
-
 	}
 
 	@Test(dependsOnMethods = "addUsers")
@@ -64,37 +63,36 @@ public class SupplierUser_Creating extends BaseTestCase {
 		assertEquals(sumRowAfter, sumRowBefore + 1);
 		table.assertValueRow(2, sumRowBefore, USER_ID);
 		table.assertValueRow(5, sumRowBefore, "Created");
-
 	}
 
 	@Test(dependsOnMethods = "checkAddSuccessfully")
 	public void cancelClickYes() {
-		action.clickBtn(By.cssSelector(Users.ADD_BTN_CSS));
+		action.clickBtn(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
 		action.waitObjVisible(By.id(Users.USER_ID));
 		action.inputTextField(Users.USER_ID, "ABC");
-		action.cancelClickYes(By.cssSelector(Users.ADD_BTN_CSS), Users.TITLE);
+		action.cancelClickYes(By.cssSelector(ScreenObjects.ADD_BTN_CSS),
+				Users.TITLE);
 	}
 
 	@Test(dependsOnMethods = "cancelClickYes")
 	public void cancelClickNo() {
-
-		action.clickBtn(By.cssSelector(Users.ADD_BTN_CSS));
+		action.clickBtn(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
 		action.waitObjVisible(By.id(Users.USER_ID));
 		action.inputTextField(Users.USER_ID, USER_ID);
 		action.cancelClickNo(Users.TITLE_CREATE);
-
 	}
 
 	@Test(dependsOnMethods = "cancelClickNo")
 	public void cancelWithoutdata() throws InterruptedException {
 
 		action.inputTextField(Users.USER_ID, "");
-		action.cancelWithoutdata(By.cssSelector(Users.ADD_BTN_CSS), Users.TITLE);
+		action.cancelWithoutdata(By.cssSelector(ScreenObjects.ADD_BTN_CSS),
+				Users.TITLE);
 	}
 
 	@Test(dependsOnMethods = "cancelWithoutdata")
 	public void addValidationUserID() throws InterruptedException {
-		action.clickBtn(By.cssSelector(Users.ADD_BTN_CSS));
+		action.clickBtn(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
 		action.waitObjVisible(By.id(Users.USER_ID));
 		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
@@ -110,13 +108,6 @@ public class SupplierUser_Creating extends BaseTestCase {
 		// don't input UserID
 		action.checkValidationTextField(Users.USER_ID, USER_ID,
 				Messages.USERS_EXISTING, ScreenObjects.ERROR_CSS);
-		/*
-		 * action.inputTextField(Users.USER_ID, "BOSS_1");
-		 * action.inputTextField(Users.EMAIL_ID, EMAIL);
-		 * action.clickCheckBoxN(2); // don't select User group
-		 * action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
-		 * Messages.USER_SELECT_USERGROUP);
-		 */
 	}
 
 	@Test(dependsOnMethods = "addValidationUserID")
@@ -136,7 +127,6 @@ public class SupplierUser_Creating extends BaseTestCase {
 		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
 				Messages.INVALID_EMAIL);
-
 	}
 
 	@Test(dependsOnMethods = "addValidationEmail")
@@ -180,7 +170,6 @@ public class SupplierUser_Creating extends BaseTestCase {
 		action.inputTextField(Users.USER_ID, "BOSS_1");
 		action.inputTextField(Users.EMAIL_ID, EMAIL);
 		action.inputTextField(Users.PASSWORD_ID, PASSWORD);
-		// action.clickCheckBoxN(1);
 		// don't input UserID
 		action.checkValidationTextField(Users.CONFIMRPASSWORD_ID);
 	}
@@ -200,6 +189,5 @@ public class SupplierUser_Creating extends BaseTestCase {
 		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
 				Messages.USER_SELECT_USERGROUP);
-
 	}
 }

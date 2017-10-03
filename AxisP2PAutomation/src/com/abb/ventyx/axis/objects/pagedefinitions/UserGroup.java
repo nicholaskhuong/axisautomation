@@ -15,5 +15,5 @@ public class UserGroup {
 	public static final String EXPAND_ID = "showPermBtn-";
 	public static final String PERMISSION_CHILD_ID = "#permGrid-";
 	public static final String PERMISSION_CHILD_TABLE_CSS = " > div.v-grid-tablewrapper";
-	public static final String DELETE_BTN_ID = "deleteItemBtn";
+
 }

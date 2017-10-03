@@ -22,4 +22,6 @@ public class ScreenObjects {
 	public static final String WARNING_MESSAGE_XPATH = "//*[@id='SupplierPortal-1227837064-overlays']/div[2]/div/div/h1/div/div/div[2]";
 	public static final String UNSAVED_CHANGE_CSS = "#confirmation-window > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-confirmation-window-text-and-button-layout > div > div:nth-child(1) > div";
 	public static final String EXPAND_CLASS = "v-icon material-icons";
+	public static final String DELETE_BTN_ID = "deleteItemBtn";
+	public static final String HORIZONTAL_SCROLLBAR_CLASS = "v-grid-horizontal-scrollbar-deco";
 }

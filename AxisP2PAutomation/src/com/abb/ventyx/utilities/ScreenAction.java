@@ -10,6 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -225,6 +226,15 @@ public class ScreenAction {
 						.cssSelector(ScreenObjects.SUCCESS_MESSAGE)));
 		assertEquals(flashMessage.getText(), msgDelete);
 
+	}
+
+	public void clickHorizontalScrollBar() {
+		WebElement horizontal_scroll = driver.findElement(By
+				.className(ScreenObjects.HORIZONTAL_SCROLLBAR_CLASS));
+		int width = horizontal_scroll.getSize().getWidth();
+		Actions move = new Actions(driver);
+		move.dragAndDropBy(horizontal_scroll, ((width * 25) / 100), 0).build()
+				.perform();
 	}
 
 }

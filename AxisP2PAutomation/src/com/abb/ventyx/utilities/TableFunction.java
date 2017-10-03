@@ -56,15 +56,18 @@ public class TableFunction {
 		}
 
 	}
+
 	// Select User Group in the grid in Create User page (Customer account)
 	public void selectUserGroup(String xPath, String expectedValue) {
 		WebElement baseTable = driver.findElement(By.xpath(xPath));
 		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
 		int sumRow = tableRows.size();
 		for (int i = 1; i <= sumRow; i++) {
-			String foundValue = driver.findElement(By.xpath(xPath+"//tr["+i+"]//td[2]")).getText();
+			String foundValue = driver.findElement(
+					By.xpath(xPath + "//tr[" + i + "]//td[2]")).getText();
 			if (foundValue.equals(expectedValue)) {
-				driver.findElement(By.xpath(xPath+"//tr["+i+"]//td[1]")).click();
+				driver.findElement(By.xpath(xPath + "//tr[" + i + "]//td[1]"))
+						.click();
 				break;
 			}
 		}
@@ -138,5 +141,30 @@ public class TableFunction {
 						.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr["
 								+ row + "]//td[" + column + "]"));
 		assertEquals(cell.getText(), value);
+	}
+
+	public String getValueAllRowchecked(int column, int row) {
+		String allValue = "";
+		for (int i = 1; i <= row; i++) {
+			WebElement cell = driver
+					.findElement(By
+							.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr["
+									+ i + "]//td[" + column + "]"));
+			if (i == row) {
+				allValue = allValue + cell.getText();
+			} else {
+				allValue = allValue + cell.getText() + ", ";
+			}
+		}
+		return allValue;
+	}
+
+	public String getValueRow(int column, int row) {
+		WebElement cell = driver
+				.findElement(By
+						.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr["
+								+ row + "]//td[" + column + "]"));
+
+		return cell.getText();
 	}
 }
