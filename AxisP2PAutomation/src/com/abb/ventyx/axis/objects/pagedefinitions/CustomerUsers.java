@@ -14,5 +14,7 @@ public class CustomerUsers {
 	public static final String ERROR ="#SupplierPortal-1227837064-overlays > div.v-Notification.v-error-notification-no-icon.v-Notification-v-error-notification-no-icon";
 	public static final String SUCCESS = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-success-notification.v-Notification-v-success-notification > div > div > h1 > div > div > div.v-slot.v-align-center.v-align-middle.v-notification-inline-caption";
 	public static final String USERGROUP_GRID = "//div[@id='content-component']//div//div[2]//div//div[3]//div//div[3]//div//div[3]//div//div//div//div//div[3]//table//tbody";
+	public static final String NOUPDATEPASSWORD_RADIOBUTTON ="#updatePasswordOptionGroup > span:nth-child(1)";
+	public static final String YESUPDATEPASSWORD_RADIOBUTTON ="#updatePasswordOptionGroup > span:nth-child(2)";
 	
 }

@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.abb.ventyx.axis.objects.pagedefinitions.CustomerMenu;
 import com.abb.ventyx.axis.objects.pagedefinitions.Permissions;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 
@@ -22,7 +23,6 @@ public class TableFunction {
 
 	public int findRowByString(String tableCSS, String value, int columnindex) {
 		int row = 0;
-
 		WebElement baseTable = driver.findElement(By.cssSelector(tableCSS));
 		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
 		int sumRow = tableRows.size();
@@ -40,6 +40,28 @@ public class TableFunction {
 
 	}
 
+	public int findRowByString1( int columnindex, String value) throws InterruptedException{
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']")));
+		Thread.sleep(3000);
+		int row = 0;
+		WebElement baseTable = driver.findElement(By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']"));
+		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
+		int sumRow = tableRows.size();
+		for (int i = 1; i < sumRow; i++) {
+			WebElement columnValue = driver
+					.findElement(By
+							.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr["
+									+ i + "]//td[" + columnindex + "]"));
+			if (columnValue.getText().equals(value)) {
+				row = i;
+				break;
+			}
+
+		}
+		return row;
+	}
+	
 	public void clickDocType(String tableCSS, String value) {
 		// int row = 0;
 		WebElement baseTable = driver.findElement(By.cssSelector(tableCSS));
@@ -67,11 +89,26 @@ public class TableFunction {
 					By.xpath(xPath + "//tr[" + i + "]//td[2]")).getText();
 			if (foundValue.equals(expectedValue)) {
 				driver.findElement(By.xpath(xPath + "//tr[" + i + "]//td[1]"))
-						.click();
+				.click();
 				break;
 			}
 		}
 
+	}
+	// Click User Number in Maintain Customer User (Customer account)
+	public void clickUserNumber(String value) {
+		// int row = 0;
+		WebElement baseTable = driver.findElement(By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']"));
+		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
+		int sumRow = tableRows.size();
+		for (int i = 1; i <= sumRow; i++) {
+			String foundValue = driver.findElement(By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr["+i+"]//td[3]")).getText();
+			if (foundValue.equals(value)) {
+				i= i-1;
+				driver.findElement(By.id("usrSequenceIdStrBtn" + i)).click();
+				break;
+			}
+		}
 	}
 
 	public int countRow(String tableCSS) {
