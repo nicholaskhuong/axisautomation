@@ -6,7 +6,7 @@
 	<test name="Customer User">
 		<classes>
 				<class name="com.abb.ventyx.axis.customer.CustomerUser_Creating" />
-								
+				<class name="com.abb.ventyx.axis.customer.CustomerUser_Updating" />				
 		</classes>	
   	</test>
   	
