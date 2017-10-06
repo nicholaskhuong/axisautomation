@@ -22,7 +22,7 @@ import com.ventyx.testng.TestDataKey;
 @ALM(id = "612")
 @Credentials(user = "cadmin1@abb.com", password = "Testuser1")
 public class CustomerUser_Updating extends BaseTestCase {
-	ScreenAction action = new ScreenAction(driver);
+	ScreenAction action;
 	TableFunction table;
 	WebDriverWait wait;
 	@TestDataKey private final String CUSTOMERUSEREMAIL = "cuser1@abb.com";
@@ -32,6 +32,7 @@ public class CustomerUser_Updating extends BaseTestCase {
 	@TestDataKey private final String CONFIRMPASSWORD ="Testuser3";
 	@TestDataKey private final String NEWPASSWORD ="Testuser4";
 	@TestDataKey private final String NEWUSERID ="Automator 1 Upda";
+	@TestDataKey private final String USERID ="Automator 1";
 	public static int i;
 	// Step 1 Select Users Sub Menu
 	@Test
@@ -108,7 +109,7 @@ public class CustomerUser_Updating extends BaseTestCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)).getText(),Messages.UNMATCHED_CONFIRM_PWD);
 	}
-	
+
 	// Step 6 Update with valid data
 	@Test(dependsOnMethods="updateWithUnmachtedPassword")
 	public void updateWithValidData() throws InterruptedException{
@@ -128,6 +129,50 @@ public class CustomerUser_Updating extends BaseTestCase {
 		assertEquals(table.getValueRow(2,i), NEWUSERID);
 		assertEquals(table.getValueRow(4,i), "All Permissions");
 	}
+	// Step 7 Check Cancel button without input
+	@Test(dependsOnMethods="updateWithValidData")
+	public void checkCancelButtonWithoutInput() throws InterruptedException{
+		table = new TableFunction(driver);
+		action = new ScreenAction(driver);
+		table.clickUserNumber(CUSTOMERUSEREMAIL);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.CANCEL_BUTTON)));
+		driver.findElement(By.cssSelector(CustomerUsers.CANCEL_BUTTON)).click();
+		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)), false);
+		Thread.sleep(200);
+		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER)).getText(), "Maintain Customer Users");
+	}
 	
-	
+	// Step 8 Check No button on Unsaved Changes dialog 
+	@Test(dependsOnMethods="checkCancelButtonWithoutInput")
+	public void checkNoButtonOnUnsavedChangesDialog() throws InterruptedException{
+		table = new TableFunction(driver);
+		action = new ScreenAction(driver);
+		table.clickUserNumber(CUSTOMERUSEREMAIL);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.USERID_TEXTBOX)));
+		driver.findElement(By.cssSelector(CustomerUsers.USERID_TEXTBOX)).clear();
+		Thread.sleep(200);
+		driver.findElement(By.cssSelector(CustomerUsers.USEREMAILADDRESS_TEXTBOX)).sendKeys(USERID);
+		driver.findElement(By.cssSelector(CustomerUsers.CANCEL_BUTTON)).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
+		driver.findElement(By.id(ScreenObjects.NO_BTN_ID)).click();
+		Thread.sleep(200);
+		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)), true);
+		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER)).getText(), "Modify User");
+	}
+
+	// Step 9 Check Cancel button on Unsaved Changes dialog
+	@Test(dependsOnMethods="checkNoButtonOnUnsavedChangesDialog")
+	public void checkYesButtonOnUnsavedChangesDialog() throws InterruptedException{
+		driver.findElement(By.cssSelector(CustomerUsers.CANCEL_BUTTON)).click();
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
+		driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)));
+		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)), false);
+		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER)).getText(), "Maintain Customer Users");
+
+	}
+
 }

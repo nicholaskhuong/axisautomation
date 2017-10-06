@@ -17,4 +17,5 @@ public class CustomerUsers {
 	public static final String NOUPDATEPASSWORD_RADIOBUTTON ="#updatePasswordOptionGroup > span:nth-child(1)";
 	public static final String YESUPDATEPASSWORD_RADIOBUTTON ="#updatePasswordOptionGroup > span:nth-child(2)";
 	
+	
 }
