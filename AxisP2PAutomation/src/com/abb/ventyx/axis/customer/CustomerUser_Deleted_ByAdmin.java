@@ -22,7 +22,7 @@ import com.ventyx.testng.TestDataKey;
 
 @ALM(id = "631")
 @Credentials(user = "cadmin1@abb.com", password = "Testuser1")
-public class CustomerUser_Deleting extends BaseTestCase {
+public class CustomerUser_Deleted_ByAdmin extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
 	WebDriverWait wait;

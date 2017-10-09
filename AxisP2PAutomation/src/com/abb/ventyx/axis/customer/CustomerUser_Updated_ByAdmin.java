@@ -21,7 +21,7 @@ import com.ventyx.testng.TestDataKey;
 
 @ALM(id = "612")
 @Credentials(user = "cadmin1@abb.com", password = "Testuser1")
-public class CustomerUser_Updating extends BaseTestCase {
+public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
 	WebDriverWait wait;

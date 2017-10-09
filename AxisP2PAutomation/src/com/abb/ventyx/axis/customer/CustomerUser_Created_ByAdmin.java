@@ -21,7 +21,7 @@ import com.ventyx.testng.TestDataKey;
 
 @ALM(id = "602")
 @Credentials(user = "cadmin1@abb.com", password = "Testuser1")
-public class CustomerUser_Creating extends BaseTestCase{
+public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 	@TestDataKey private final String USERID ="Automator 1";
 	@TestDataKey private final String USEREMAILADDRESS ="cuser1@abb.com";
 	@TestDataKey private final String PASSWORD ="Testuser2";
