@@ -23,4 +23,6 @@ public class ScreenObjects {
 	public static final String EXPAND_CLASS = "v-icon material-icons";
 	public static final String DELETE_BTN_ID = "deleteItemBtn";
 	public static final String HORIZONTAL_SCROLLBAR_CLASS = "v-grid-horizontal-scrollbar-deco";
+	public static final String NEWPASSWORD_ID ="newPassword";
+	public static final String CONFIRMPASSWORD_ID ="confirmPassword";
 }

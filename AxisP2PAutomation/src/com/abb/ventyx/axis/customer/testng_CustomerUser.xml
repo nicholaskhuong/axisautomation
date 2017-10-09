@@ -5,8 +5,10 @@
  
 	<test name="Customer User">
 		<classes>
-				<class name="com.abb.ventyx.axis.customer.CustomerUser_Creating" />
-				<class name="com.abb.ventyx.axis.customer.CustomerUser_Updating" />				
+				<class name="com.abb.ventyx.axis.customer.CustomerUser_Created_ByAdmin" />
+				<class name="com.abb.ventyx.axis.customer.CustomerUser_Updated_ByAdmin" />
+				<class name="com.abb.ventyx.axis.customer.CustomerUser_Deleted_ByAdmin" />	
+				<class name="com.abb.ventyx.axis.customer.CustomerUser_CUD_ByUser" />				
 		</classes>	
   	</test>
   	

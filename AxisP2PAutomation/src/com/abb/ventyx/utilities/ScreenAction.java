@@ -55,6 +55,8 @@ public class ScreenAction {
 	}
 
 	public void inputTextField(String obj, String value) {
+		(new WebDriverWait(driver, 20)).until(ExpectedConditions
+				.presenceOfElementLocated(By.id(obj)));
 		WebElement txtField = driver.findElement(By.id(obj));
 		txtField.clear();
 		txtField.sendKeys(value);
