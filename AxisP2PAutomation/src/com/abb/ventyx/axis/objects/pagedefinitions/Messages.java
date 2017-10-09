@@ -36,6 +36,8 @@ public class Messages {
 	public static final String USER_SELECT_USERGROUP = "Please select at least one user group";
 	public static final String USER_CREATE_SUCCESSFULLY = "User successfully created";
 	public static final String USER_UPDATE_SUCCESSFULLY = "User successfully updated";
+	public static final String USER_DELETE_SUCCESSFULLY = "User successfully deleted";
+	public static final String DELETE_USER_CONFIRM = "Are you sure you want to delete this user?";
 	public static final String INVALID_EMAIL = "Invalid email address";
 	public static final String SAME_EMAIL = "Unable to use email address, please contact your Support admin";
 	public static final String UPDATE_SAME_EMAIL = "Unable to change email address, please contact your Support admin";
@@ -45,9 +47,9 @@ public class Messages {
 	public static final String UNMATCHED_CONFIRM_PWD = "Entered Password is not the same, please verify.";
 
 	public static final String INVALID_CONFIRM_PWD = "Entered Password is not the same, please verify.";
+	public static final String USERNOTFOUND = "Unable to login. Please check your email address and password.";
 
-	public static final String DELETE_USER_CONFIRM = "Are you sure you want to delete this user?";
-	public static final String USER_DELETE_SUCCESSFULLY = "User successfully deleted";
+	
 	public static final String USERS_EXISTING = "User ID exists";
 	// Permissions
 	public static final String EMPTYPERMISSIONNAME = "Please enter permission name";

@@ -16,6 +16,10 @@ public class CustomerUsers {
 	public static final String USERGROUP_GRID = "//div[@id='content-component']//div//div[2]//div//div[3]//div//div[3]//div//div[3]//div//div//div//div//div[3]//table//tbody";
 	public static final String NOUPDATEPASSWORD_RADIOBUTTON ="#updatePasswordOptionGroup > span:nth-child(1)";
 	public static final String YESUPDATEPASSWORD_RADIOBUTTON ="#updatePasswordOptionGroup > span:nth-child(2)";
+	public static final String DELETE_ICON_ADMIN = "deleteItemBtn0";
+	public static final String DELETE_ICON_USER = "deleteItemBtn1";
+	public static final String PROFILE_PANEL = "profileBtn";
+	public static final String SINGOUT_BUTTON = "signOutBtn";
 	
 	
 }

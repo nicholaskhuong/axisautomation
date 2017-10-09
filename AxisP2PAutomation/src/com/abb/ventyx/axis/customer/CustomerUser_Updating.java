@@ -60,6 +60,7 @@ public class CustomerUser_Updating extends BaseTestCase {
 		Thread.sleep(1000);
 		assertEquals(table.getValueRow(2,i), "Automator 1");
 		assertEquals(table.getValueRow(4,i), "All Permissions");
+		assertEquals(table.getValueRow(5,i), "Active");
 		table.clickUserNumber(CUSTOMERUSEREMAIL);
 	}
 

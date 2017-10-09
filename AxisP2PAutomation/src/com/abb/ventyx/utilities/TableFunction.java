@@ -43,23 +43,45 @@ public class TableFunction {
 	public int findRowByString1( int columnindex, String value) throws InterruptedException{
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']")));
-		Thread.sleep(3000);
 		int row = 0;
 		WebElement baseTable = driver.findElement(By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']"));
 		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
 		int sumRow = tableRows.size();
-		for (int i = 1; i < sumRow; i++) {
+		for (int i = 1; i <= sumRow; i++) {
 			WebElement columnValue = driver
 					.findElement(By
 							.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr["
 									+ i + "]//td[" + columnindex + "]"));
+			System.out.print("Value "+columnValue.getText());
 			if (columnValue.getText().equals(value)) {
+				System.out.print("Value1 "+columnValue.getText());
 				row = i;
 				break;
 			}
 
 		}
 		return row;
+	}
+	
+	public boolean isValueExisting( int columnindex, String value) throws InterruptedException{
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']")));
+		//int row = 0;
+		WebElement baseTable = driver.findElement(By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']"));
+		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
+		int sumRow = tableRows.size();
+		for (int i = 1; i <= sumRow; i++) {
+			WebElement columnValue = driver
+					.findElement(By
+							.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr["
+									+ i + "]//td[" + columnindex + "]"));
+			if (columnValue.getText().equals(value)) {
+		
+				return true;
+			}
+
+		}
+		return false;
 	}
 	
 	public void clickDocType(String tableCSS, String value) {
