@@ -3,10 +3,18 @@
 
 <suite name="AxisSupport_CustomerUserGroup" parallel="none">
  
-	<test name="Axis Support Customer User Group">
+	<test name="Axis Support Customer User Group Creating">
 		<classes>
 				<class name="com.abb.ventyx.axis.support.User_Group_Creating" />
+		</classes>	
+  	</test>
+  	<test name="Axis Support Customer User Group Updating">
+		<classes>
 				<class name="com.abb.ventyx.axis.support.User_Group_Updating" />
+		</classes>	
+  	</test>
+  	<test name="Axis Support Customer User Group Deleting">
+		<classes>
 				<class name="com.abb.ventyx.axis.support.User_Group_Deleting" />
 		</classes>	
   	</test>
