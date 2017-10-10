@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-
-<suite name="Customer_UserGroup" parallel="none">
- 
-	<test name="Customer User">
+<suite name="Customer_User" parallel="none">
+  	<test name="Customer User Created by Admin">
 		<classes>
 				<class name="com.abb.ventyx.axis.customer.CustomerUser_Created_ByAdmin" />
+		</classes>
+	</test>	
+	<test name="Customer User Updated by Admin">
+		<classes>
 				<class name="com.abb.ventyx.axis.customer.CustomerUser_Updated_ByAdmin" />
-				<class name="com.abb.ventyx.axis.customer.CustomerUser_Deleted_ByAdmin" />	
-				<class name="com.abb.ventyx.axis.customer.CustomerUser_CUD_ByUser" />				
-		</classes>	
-  	</test>
-  	
+		</classes>
+	</test>	
+	<test name="Customer User Deleted by Admin">
+		<classes>
+				<class name="com.abb.ventyx.axis.customer.CustomerUser_Deleted_ByAdmin" />
+		</classes>
+	</test>	
+	<test name="Customer User CUD by User">
+		<classes>
+				<class name="com.abb.ventyx.axis.customer.CustomerUser_CUD_ByUser" />
+		</classes>
+	</test>	
 </suite> 

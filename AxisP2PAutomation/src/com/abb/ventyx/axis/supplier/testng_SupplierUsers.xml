@@ -3,10 +3,18 @@
 
 <suite name="Supplier_UserGroup" parallel="none">
  
-	<test name="Supplier Users">
+	<test name="Supplier Users Creating">
 		<classes>
-				<class name="com.abb.ventyx.axis.supplier.SupplierUser_Creating" />
-				<class name="com.abb.ventyx.axis.supplier.SupplierUser_Updating" />	
+				<class name="com.abb.ventyx.axis.supplier.SupplierUser_Creating" />			
+		</classes>	
+  	</test>
+  	<test name="Supplier Users Updating">
+		<classes>
+				<class name="com.abb.ventyx.axis.supplier.SupplierUser_Updating" />					
+		</classes>	
+  	</test>
+  	<test name="Supplier Users Deleting">
+		<classes>
 				<class name="com.abb.ventyx.axis.supplier.SupplierUser_Deleting" />					
 		</classes>	
   	</test>
