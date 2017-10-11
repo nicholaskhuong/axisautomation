@@ -96,7 +96,7 @@ public class CustomerUser_Deleted_ByAdmin extends BaseTestCase {
 		table = new TableFunction(driver);
 		action = new ScreenAction(driver);
 		action.clickBtn(By.id(CustomerUsers.PROFILE_PANEL));
-		action.waitObjVisibleAndClick(By.id(CustomerUsers.SINGOUT_BUTTON));
+		action.waitObjVisibleAndClick(By.id(CustomerUsers.SIGNOUT_BUTTON));
 		action.waitObjVisible(By.id(LoginPageDefinition.USERNAME_TEXT_FIELD_ID));
 		action.inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, CUSTOMERUSEREMAIL);
 		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, PASSWORD);

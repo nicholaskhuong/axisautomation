@@ -18,6 +18,7 @@ import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
+import com.abb.ventyx.axis.objects.pagedefinitions.Users;
 
 public class ScreenAction {
 	WebDriver driver;
@@ -62,6 +63,17 @@ public class ScreenAction {
 		txtField.sendKeys(value);
 	}
 
+	public void assertFieldReadOnly(By by) {
+		WebElement field = driver.findElement(by);
+		String readonly = field.getAttribute("readonly");
+		Assert.assertNotNull(readonly);
+	}
+	
+	public String getAttribute(By by) {
+		(new WebDriverWait(driver, 20)).until(ExpectedConditions
+				.presenceOfElementLocated(by));
+		return driver.findElement(by).getAttribute("value");
+	}
 	public void clickCheckBoxN(int n) {
 		List<WebElement> listCheckbox = driver.findElements(By
 				.xpath("//input[@type='checkbox']"));
