@@ -60,5 +60,9 @@ public class Messages {
 	public static final String PERMISSION_DELETED_SUCCESSFULLY = "Permission successfully deleted";
 
 	// Users under Customer Maintenance menu in Customer view
+	public static final String ADDRESS_CONTACT_SUCCESSFULLY_UPDATED = "Address & Details successfully updated";
+	public static final String INVALIED_EMAIL_MESSAGE ="Please enter valid email addresses with comma separator";
+	public static final String NO_SPECIAL_CHARACTER_ALLOWED ="No special character allowed";
+	public static final String NO_INPUT_DATA= "One or more fields are in error. Please correct.";
 
 }

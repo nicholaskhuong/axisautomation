@@ -27,4 +27,9 @@ public class ScreenObjects {
 	public static final String CONFIRMPASSWORD_ID ="confirmPassword";
 	public static final String SIGNOUT_BUTTON = "signOutBtn";
 	public static final String PROFILE_PANEL = "profileBtn";
+	public static final String INVALIED_EMAIL= "#SupplierPortal-1227837064-overlays > div.v-Notification.v-error-notification-no-icon.v-Notification-v-error-notification-no-icon";
+    public static final String SPECIAL_CHARACTER = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-error-notification-no-icon.v-Notification-v-error-notification-no-icon";
+    public static final String EMPTY_DATE= "#SupplierPortal-1227837064-overlays > div.v-Notification.v-error-notification-no-icon.v-Notification-v-error-notification-no-icon";
+	
+	
 }
