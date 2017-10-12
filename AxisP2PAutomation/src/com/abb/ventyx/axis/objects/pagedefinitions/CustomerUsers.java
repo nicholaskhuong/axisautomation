@@ -22,8 +22,8 @@ public class CustomerUsers {
 	public static final String YESUPDATEPASSWORD_RADIOBUTTON ="#updatePasswordOptionGroup > span:nth-child(2)";
 	public static final String DELETE_ICON_ADMIN = "deleteItemBtn0";
 	public static final String DELETE_ICON_USER = "deleteItemBtn1";
-	public static final String PROFILE_PANEL = "profileBtn";
-	public static final String SIGNOUT_BUTTON = "signOutBtn";
+
+	
 	public static final String SAVE_BUTTON_ID = "saveBtn";
 	public static final String ADMINUSERNUMBER_ID = "usrSequenceIdStrBtn0";
 	public static final String USERNUMBER_MODIFYSCREEN_ID = "userSequenceNo";

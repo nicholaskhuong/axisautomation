@@ -95,8 +95,8 @@ public class CustomerUser_Deleted_ByAdmin extends BaseTestCase {
 	public void loginAsTheDeletedUser() throws InterruptedException{
 		table = new TableFunction(driver);
 		action = new ScreenAction(driver);
-		action.clickBtn(By.id(CustomerUsers.PROFILE_PANEL));
-		action.waitObjVisibleAndClick(By.id(CustomerUsers.SIGNOUT_BUTTON));
+		action.clickBtn(By.id(ScreenObjects.PROFILE_PANEL));
+		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
 		action.waitObjVisible(By.id(LoginPageDefinition.USERNAME_TEXT_FIELD_ID));
 		action.inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, CUSTOMERUSEREMAIL);
 		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, PASSWORD);

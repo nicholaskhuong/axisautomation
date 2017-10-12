@@ -84,8 +84,8 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		table = new TableFunction(driver);
 		action = new ScreenAction(driver);
 		wait = new WebDriverWait(driver, 60);
-		action.waitObjVisibleAndClick(By.id(CustomerUsers.PROFILE_PANEL));
-		action.waitObjVisibleAndClick(By.id(CustomerUsers.SIGNOUT_BUTTON));
+		action.waitObjVisibleAndClick(By.id(ScreenObjects.PROFILE_PANEL));
+		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
 		action.inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, CUSTOMERUSEREMAIL);		
 		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, PASSWORD);
 		action.clickBtn(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));
@@ -115,8 +115,8 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		table = new TableFunction(driver);
 		action = new ScreenAction(driver);
 		wait = new WebDriverWait(driver, 60);
-		action.waitObjVisibleAndClick(By.id(CustomerUsers.PROFILE_PANEL));
-		action.waitObjVisibleAndClick(By.id(CustomerUsers.SIGNOUT_BUTTON));
+		action.waitObjVisibleAndClick(By.id(ScreenObjects.PROFILE_PANEL));
+		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
 		action.inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, "cuserdefault@abb.com");		
 		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, "Testuser1");
 		action.clickBtn(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));	
@@ -159,8 +159,8 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		assertEquals(table.getValueRow(4, 1), "CUST_ADMIN");
 		assertEquals(table.getValueRow(5, 1), ACTIVESTATUS);
 		
-		action.waitObjVisibleAndClick(By.id(CustomerUsers.PROFILE_PANEL));
-		action.waitObjVisibleAndClick(By.id(CustomerUsers.SIGNOUT_BUTTON));
+		action.waitObjVisibleAndClick(By.id(ScreenObjects.PROFILE_PANEL));
+		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
 		action.inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, NEWUSEREMAIL_ADMIN);		
 		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, NEWPASSWORD_ADMIN);
 		action.clickBtn(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));
