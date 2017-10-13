@@ -200,6 +200,37 @@ public class ScreenAction {
 		assertTitleScreen(titleScreen);
 	}
 
+	public void cancelByMenuClickYes(By obj, String titleScreen, By newObj) {
+
+		driver.findElement(obj).click();
+		(new WebDriverWait(driver, 20)).until(ExpectedConditions
+				.presenceOfElementLocated(By
+						.cssSelector(ScreenObjects.CONFIRMATION)));
+		driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
+		waitObjVisible(newObj);
+		assertTitleScreen(titleScreen);
+	}
+
+	public void cancelByMenuClickNo(By obj, String titleScreen) {
+
+		driver.findElement(obj).click();
+		WebElement msgDialog = (new WebDriverWait(driver, 20))
+				.until(ExpectedConditions.presenceOfElementLocated(By
+						.cssSelector(ScreenObjects.CONFIRMATION)));
+		assertEquals(msgDialog.getText(), Messages.UNSAVED_CHANGE);
+		driver.findElement(By.id(ScreenObjects.NO_BTN_ID)).click();
+		assertTitleScreen(titleScreen);
+
+	}
+
+	public void cancelByMenuWithoutdata(By obj, String titleScreen, By newObj)
+			throws InterruptedException {
+
+		driver.findElement(obj).click();
+		waitObjVisible(newObj);
+		assertTitleScreen(titleScreen);
+	}
+
 	public boolean isElementPresent(By by) {
 		try {
 			driver.findElement(by);
@@ -251,4 +282,13 @@ public class ScreenAction {
 				.perform();
 	}
 
+	public String getTextField(String obj) {
+		try {
+			WebElement textField = driver.findElement(By.id(obj));
+			return textField.getText();
+		} catch (NoSuchElementException e) {
+			return "";
+		}
+
+	}
 }

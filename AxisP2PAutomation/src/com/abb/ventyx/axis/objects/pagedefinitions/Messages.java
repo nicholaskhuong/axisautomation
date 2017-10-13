@@ -42,14 +42,13 @@ public class Messages {
 	public static final String SAME_EMAIL = "Unable to use email address, please contact your Support admin";
 	public static final String UPDATE_SAME_EMAIL = "Unable to change email address, please contact your Support admin";
 	public static final String INVALID_PWD = "Password must be 6-16 characters. Password must have at least one uppercase letter, one lowercase letter, and one number. This is not a valid password string";
-	public static final String INVALID_PWD1 ="Password must have at least one uppercase letter, one lowercase letter, and one number. This is not a valid password string";
+	public static final String INVALID_PWD1 = "Password must have at least one uppercase letter, one lowercase letter, and one number. This is not a valid password string";
 
 	public static final String UNMATCHED_CONFIRM_PWD = "Entered Password is not the same, please verify.";
 
 	public static final String INVALID_CONFIRM_PWD = "Entered Password is not the same, please verify.";
 	public static final String USERNOTFOUND = "Unable to login. Please check your email address and password.";
 
-	
 	public static final String USERS_EXISTING = "User ID exists";
 	// Permissions
 	public static final String EMPTYPERMISSIONNAME = "Please enter permission name";
@@ -64,5 +63,11 @@ public class Messages {
 	public static final String INVALIED_EMAIL_MESSAGE ="Please enter valid email addresses with comma separator";
 	public static final String NO_SPECIAL_CHARACTER_ALLOWED ="No special character allowed";
 	public static final String NO_INPUT_DATA= "One or more fields are in error. Please correct.";
+
+	// Address And contact
+	public static final String ADDRESSCONTACTUPDATE_SUCCESSFULLY = "Address & Details successfully updated";
+
+	// Business Code Sets
+	public static final String TAXCODEADD_SUCCESSFULLY = "Code Set successfully added";
 
 }
