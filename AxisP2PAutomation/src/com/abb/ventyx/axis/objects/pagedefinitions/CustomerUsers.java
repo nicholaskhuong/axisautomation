@@ -27,6 +27,7 @@ public class CustomerUsers {
 	public static final String SAVE_BUTTON_ID = "saveBtn";
 	public static final String ADMINUSERNUMBER_ID = "usrSequenceIdStrBtn0";
 	public static final String USERNUMBER_MODIFYSCREEN_ID = "userSequenceNo";
+	public static final String STATUSLIST = "#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table > tbody";
 	
 	
 }

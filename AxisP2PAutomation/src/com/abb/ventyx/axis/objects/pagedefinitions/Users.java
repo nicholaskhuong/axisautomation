@@ -12,6 +12,7 @@ public class Users {
 	public static final String STATUS_ID = "userStatusCB";
 	public static final String UPDATEPASSWORD_NO_CSS = "#updatePasswordOptionGroup > span:nth-child(1)";
 	public static final String UPDATEPASSWORD_YES_CSS = "#updatePasswordOptionGroup > span:nth-child(2)";
+	public static final String STATUSCOMBOBOX_ID = "VAADIN_COMBOBOX_OPTIONLIST";
 
 	// public static final String ROWUSERS_ID =
 	// "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div > div.v-grid-tablewrapper > table > tbody > tr > td:nth-child(2)";

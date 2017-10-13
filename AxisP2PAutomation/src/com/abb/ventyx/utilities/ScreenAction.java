@@ -3,6 +3,7 @@ package com.abb.ventyx.utilities;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 
 import java.util.List;
 
@@ -12,10 +13,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.abb.ventyx.axis.objects.pagedefinitions.CustomerUsers;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 import com.abb.ventyx.axis.objects.pagedefinitions.Users;
@@ -66,9 +69,14 @@ public class ScreenAction {
 	public void assertFieldReadOnly(By by) {
 		WebElement field = driver.findElement(by);
 		String readonly = field.getAttribute("readonly");
-		Assert.assertNotNull(readonly);
+		assertNotNull(readonly);
 	}
-	
+
+	public void assertTextEqual(By by, String text) {
+		WebElement screenTitle = driver.findElement(by);
+		assertEquals(screenTitle.getText(), text, "Title is wrong");
+	}
+
 	public String getAttribute(By by) {
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions
 				.presenceOfElementLocated(by));
@@ -88,13 +96,12 @@ public class ScreenAction {
 		}
 	}
 
-	public boolean checkObjSelected(int start) {
+	public boolean checkObjSelected(int index) {
 		boolean isSelected = false;
 		List<WebElement> listCheckbox = driver.findElements(By
 				.xpath("//input[@type='checkbox']"));
-		isSelected = listCheckbox.get(start).isSelected();
+		isSelected = listCheckbox.get(index).isSelected();
 		return isSelected;
-
 	}
 
 	public void clickCheckBoxNInTable(String tableCSS, int n) {
@@ -102,6 +109,20 @@ public class ScreenAction {
 		List<WebElement> listCheckbox = table.findElements(By
 				.className("v-grid-selection-checkbox"));
 		listCheckbox.get(n).click();
+	}
+
+	public void clickYesUpdatePasswordRadio(){
+		WebElement radioButton = (new WebDriverWait(driver, 15))
+				.until(ExpectedConditions.presenceOfElementLocated(By
+						.cssSelector(CustomerUsers.YESUPDATEPASSWORD_RADIOBUTTON)));
+		radioButton.findElement(By.tagName("label")).click();
+	}
+
+	public void clickNoUpdatePasswordRadio(){
+		WebElement radioButton = (new WebDriverWait(driver, 15))
+				.until(ExpectedConditions.presenceOfElementLocated(By
+						.cssSelector(CustomerUsers.NOUPDATEPASSWORD_RADIOBUTTON)));
+		radioButton.findElement(By.tagName("label")).click();
 	}
 
 	public void clickExpandButton(int n) {
@@ -118,6 +139,29 @@ public class ScreenAction {
 		Assert.assertEquals(flashMessage1.getText(), msg);
 	}
 
+	public void selectComboValue(By by, String value){
+		final Select selectBox = new Select(driver.findElement(by));
+		selectBox.selectByValue(value);
+	}
+		
+	public void selectStatus(String tableCSS, String value) {
+		WebElement baseTable = driver.findElement(By.cssSelector(tableCSS));
+		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
+		int sumRow = tableRows.size();
+		for (int i = 1; i <= sumRow; i++) {
+			WebElement columnValue = driver
+					.findElement(By
+							.xpath("//div[@id='VAADIN_COMBOBOX_OPTIONLIST']//div//div[2]//table//tbody//tr["
+									+ i + "]//td//span"));
+			System.out.println("Status "+columnValue.getText());
+			if (columnValue.getText().equals(value)) {
+				columnValue.click();
+				break;
+			}
+		}
+
+	}
+	
 	public void assertMessgeError(String msgCSS, String msg) {
 		WebElement error = (new WebDriverWait(driver, 20))
 				.until(ExpectedConditions.presenceOfElementLocated(By
@@ -279,7 +323,7 @@ public class ScreenAction {
 		int width = horizontal_scroll.getSize().getWidth();
 		Actions move = new Actions(driver);
 		move.dragAndDropBy(horizontal_scroll, ((width * 25) / 100), 0).build()
-				.perform();
+		.perform();
 	}
 
 	public String getTextField(String obj) {
