@@ -74,7 +74,6 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		action.inputTextField(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID, CONFIRMPASSWORD);
 		table.selectUserGroup(CustomerUsers.USERGROUP_GRID, USERGROUPNAME);
 		action.clickBtn(By.id(CustomerUsers.SAVE_BUTTON_ID));
-		System.out.print("Test Test");
 		action.assertMessgeError(CustomerUsers.SUCCESS, Messages.USER_CREATE_SUCCESSFULLY);
 		i = table.findRowByString1(3, CUSTOMERUSEREMAIL);
 		assertEquals(table.getValueRow(2, i),USERID);
