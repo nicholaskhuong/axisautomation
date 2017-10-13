@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Supplier_Admin" parallel="none">
+ 
+	<test name="Supplier Admin Create">
+		<classes>
+				<class name="com.abb.ventyx.axis.supplier.Supplier_Admin_AddNewAddress" />			
+		</classes>	
+  	</test>
+  	<test name="Supplier Admin Update">
+		<classes>
+				<class name="com.abb.ventyx.axis.supplier.Supplier_Admin_UpdateNewAddress" />					
+		</classes>	
+  	</test>
+  	
+</suite> 

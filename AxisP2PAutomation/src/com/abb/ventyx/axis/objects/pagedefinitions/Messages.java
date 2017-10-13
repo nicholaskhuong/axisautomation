@@ -63,6 +63,8 @@ public class Messages {
 	public static final String INVALIED_EMAIL_MESSAGE ="Please enter valid email addresses with comma separator";
 	public static final String NO_SPECIAL_CHARACTER_ALLOWED ="No special character allowed";
 	public static final String NO_INPUT_DATA= "One or more fields are in error. Please correct.";
+	public static final String SUPPLIER_UPDATED_SUCCESSFULLY = "Supplier successfully updated";
+	public static final String ADDRESS_SUCCESSFULLY_UPDATED= "Address successfully updated";
 
 	// Address And contact
 	public static final String ADDRESSCONTACTUPDATE_SUCCESSFULLY = "Address & Details successfully updated";
