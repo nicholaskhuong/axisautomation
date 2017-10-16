@@ -9,6 +9,7 @@ public class ScreenObjects {
 	public static final String CANCEL_ID = "cancelBtn";
 	public static final String SCREEN_TITLE_ID = "common-header-left-layout";
 	public static final String FILTER_FIELD_ID = "filterField";
+	public static final String CREATE_BTN_ID = "createBtn";
 	public static final String FILTER2_XPATH = "(//input[@id='filterField'])[2]";
 	public static final String DELETE_YES = "#confirmation-window > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-confirmation-window-text-and-button-layout > div > div.v-slot.v-slot-v-bottombar-button-layout.v-align-right.v-align-middle > div > div:nth-child(3) > div";
 	public static final String DELETE_NO = "#confirmation-window > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-confirmation-window-text-and-button-layout > div > div.v-slot.v-slot-v-bottombar-button-layout.v-align-right.v-align-middle > div > div:nth-child(1) > div";

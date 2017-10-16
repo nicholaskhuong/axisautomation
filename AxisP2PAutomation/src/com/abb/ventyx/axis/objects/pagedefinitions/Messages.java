@@ -71,5 +71,10 @@ public class Messages {
 
 	// Business Code Sets
 	public static final String TAXCODEADD_SUCCESSFULLY = "Code Set successfully added";
-
+	
+	// Supplier List in Customer View
+	public static final String DUPLICATEDEMAIL = "Email Address already exists";
+	public static final String DUPLICATECOMPANYREGISTRATIONNO = "Company Registration Number already exists";
+	public static final String DUPLICATEDTAXREGISTRATIONNO = "Tax Registration Number already exists";
+	public static final String SUPPLIER_CREATED_SUCCESSFULLY = "Supplier successfully created";
 }

@@ -226,4 +226,12 @@ public class TableFunction {
 
 		return cell.getText();
 	}
+	
+	public String getValueTableHeader(int column) {
+		WebElement header = driver
+				.findElement(By
+						.xpath("//div[@class='v-grid-tablewrapper']//table//thead[@class='v-grid-header']//tr//th[" + column + "]//div[1]"));
+
+		return header.getText();
+	}
 }

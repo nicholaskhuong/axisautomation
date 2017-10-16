@@ -7,7 +7,7 @@ public class CustomerMenu {
 	public static final String SUPPLIER_LIST= "#supplierMenu > span > span";
 	public static final String ADDRESS_CONTACT_MENU= "#maintainContactButton > span > span";
 
-	
+	public static final String SUPPLIERLIST_SUBMENU = "#supplierMenu > span > span";
 	
 	
 }
