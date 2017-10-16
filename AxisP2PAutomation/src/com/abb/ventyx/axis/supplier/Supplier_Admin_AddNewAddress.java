@@ -20,7 +20,7 @@ import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
 
 @ALM(id = "604")
-@Credentials(user = "donna300@abb.com", password = "Testuser2")
+@Credentials(user = "donna900@abb.com", password = "Testuser2")
 public class Supplier_Admin_AddNewAddress extends BaseTestCase {
 
 	String Supplier_Email = "duc800@abb.com";

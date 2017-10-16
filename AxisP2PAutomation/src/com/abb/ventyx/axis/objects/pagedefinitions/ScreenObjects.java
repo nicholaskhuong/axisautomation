@@ -31,6 +31,6 @@ public class ScreenObjects {
     public static final String LOGIN_BUTTON="signInBtn";
     public static final String USER_LOGIN= "userEmail";
     public static final String PASSWORD_LOGIN= "password";
-    
+    public static final String UNSAVED_CHANGE_CSS_1=  "#confirmation-window > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-confirmation-window-text-and-button-layout";
 	
 }
