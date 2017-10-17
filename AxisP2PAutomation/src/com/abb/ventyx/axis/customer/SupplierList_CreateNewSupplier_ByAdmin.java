@@ -282,6 +282,21 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.assertTextEqual(By.id(AddressContact.TAX_REGISTRATION_NO), TAXREGIRATIONNO);
 		action.assertTextEqual(By.id(AddressContact.SUPPLIER_EMAIL), SUPPLIEREMAIL);
 	}
+	
+	@Test(dependsOnMethods="checkAddressAndContact")
+	public void checkStatusAndRemoteIcon() throws InterruptedException{
+		action = new ScreenAction(driver);
+		action.signOut();
+		Thread.sleep(1000);
+		action.signIn("cadmin1@abb.com", "Testuser1");
+		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
+		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.SUPPLIERLIST_SUBMENU));
+		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
+		
+		assertEquals(table.getValueRow(4, i), "Active");
+		assertEquals(action.isFieldDisable(By.id("accessSupplierBtn"+j)),false);
+	
+	}
 
 
 }

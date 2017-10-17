@@ -74,13 +74,12 @@ public class ScreenAction {
 		String readonly = field.getAttribute("readonly");
 		assertNotNull(readonly);
 	}
-	public boolean assertFieldDisable(By by) {
+	public boolean isFieldDisable(By by) {
 		WebElement field = driver.findElement(by);
 		String disabled = field.getAttribute("aria-disabled");
-		if(disabled.equals("true")) 
-            return true;
-        else
-            return false;
+		if(disabled!=null && disabled.equals("true"))
+			return true;
+		return false;
 	}
 
 	public void assertTextEqual(By by, String text) {
