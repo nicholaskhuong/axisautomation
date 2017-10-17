@@ -19,6 +19,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.CustomerUsers;
+import com.abb.ventyx.axis.objects.pagedefinitions.LoginPageDefinition;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 import com.abb.ventyx.axis.objects.pagedefinitions.Users;
@@ -36,7 +37,7 @@ public class ScreenAction {
 	}
 
 	public void waitObjVisible(By obj) {
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions
+		(new WebDriverWait(driver, 30)).until(ExpectedConditions
 				.presenceOfElementLocated(obj));
 	}
 
@@ -48,8 +49,10 @@ public class ScreenAction {
 	}
 
 	public void assertTitleScreen(String titleScreen) {
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.SCREEN_TITLE_ID)));
 		WebElement screenTitle = driver.findElement(By
-				.id(ScreenObjects.SCREEN_TITLE_ID));
+				.cssSelector(ScreenObjects.SCREEN_TITLE_ID));
 		assertEquals(screenTitle.getText(), titleScreen, "Title is wrong");
 	}
 
@@ -70,6 +73,14 @@ public class ScreenAction {
 		WebElement field = driver.findElement(by);
 		String readonly = field.getAttribute("readonly");
 		assertNotNull(readonly);
+	}
+	public boolean assertFieldDisable(By by) {
+		WebElement field = driver.findElement(by);
+		String disabled = field.getAttribute("aria-disabled");
+		if(disabled.equals("true")) 
+            return true;
+        else
+            return false;
 	}
 
 	public void assertTextEqual(By by, String text) {
@@ -334,5 +345,20 @@ public class ScreenAction {
 			return "";
 		}
 
+	}
+	
+	public void signOut(){
+		clickBtn(By.id(ScreenObjects.PROFILE_PANEL));
+		waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
+	}
+	public void signIn(String emailAddress, String password){
+		waitObjVisible(By.id(LoginPageDefinition.USERNAME_TEXT_FIELD_ID));
+		inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, emailAddress);
+		inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, password);
+		clickBtn(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));
+	}
+	public String getPassword(String passwordMessage){
+		return passwordMessage.substring(31);
+		
 	}
 }

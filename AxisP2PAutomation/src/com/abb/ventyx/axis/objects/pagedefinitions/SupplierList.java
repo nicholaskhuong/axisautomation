@@ -9,4 +9,5 @@ public class SupplierList {
 	public static final String SUPPLIERPROFILE_ID = "gwt-uid-156";
 
 	public static final String SAVEBTN_ID = "createEditBtn";
+	public static final String SUPPLIERNAME_SEARCHFIELD_ID = "psuNameTxt";
 }

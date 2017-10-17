@@ -78,7 +78,7 @@ public class CustomerUser_Deleted_ByAdmin extends BaseTestCase {
 	}
 
 	// Step 4 Click Trash Bin and choose Yes
-	@Test(dependsOnMethods = "clickTrashBinIconOfUser")
+	@Test(dependsOnMethods = "clickNoButton")
 	public void clickYesButton() throws InterruptedException{
 		table = new TableFunction(driver);
 		action = new ScreenAction(driver);
@@ -91,7 +91,7 @@ public class CustomerUser_Deleted_ByAdmin extends BaseTestCase {
 	}
 
 	// Step 5 check that can't login as the deleted user
-	@Test(dependsOnMethods = "clickTrashBinIconOfUser")
+	@Test(dependsOnMethods = "clickYesButton")
 	public void loginAsTheDeletedUser() throws InterruptedException{
 		table = new TableFunction(driver);
 		action = new ScreenAction(driver);
