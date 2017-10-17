@@ -174,7 +174,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		assertEquals(table.getValueRow(6, i),SUPPLIEREMAIL);
 		assertEquals(table.getValueRow(7, i),PROFILE);
 		j=i-1;
-		action.assertFieldDisable(By.id("accessSupplierBtn"+j));
+		action.isFieldDisable(By.id("accessSupplierBtn"+j));
 	}
 
 	// Step 6,7 can't auto
