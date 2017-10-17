@@ -183,7 +183,9 @@ public class Supplier_Admin_AddNewAddress extends BaseTestCase {
 		action.clickBtn(By.id(ScreenObjects.SIGNOUT_BUTTON));
 		// Login with Customer admin
 		action.waitObjInvisible(By.id(ScreenObjects.LOGIN_BUTTON));
+		Thread.sleep(900);
 		action.inputTextField(ScreenObjects.USER_LOGIN, User_Login);
+		
 		action.inputTextField(ScreenObjects.PASSWORD_LOGIN, Password_Login);
 		action.clickBtn(By.id(ScreenObjects.LOGIN_BUTTON));
 		// Click on Customer Maintenance ,Supplier list

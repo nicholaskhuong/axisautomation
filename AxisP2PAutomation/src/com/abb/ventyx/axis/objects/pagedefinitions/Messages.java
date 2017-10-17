@@ -77,4 +77,5 @@ public class Messages {
 	public static final String DUPLICATECOMPANYREGISTRATIONNO = "Company Registration Number already exists";
 	public static final String DUPLICATEDTAXREGISTRATIONNO = "Tax Registration Number already exists";
 	public static final String SUPPLIER_CREATED_SUCCESSFULLY = "Supplier successfully created";
+	public static final String UNDELETE_MESSAGE = "Are you sure you want to delete the selected address?";
 }
