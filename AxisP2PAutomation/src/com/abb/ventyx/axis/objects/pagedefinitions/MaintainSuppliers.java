@@ -23,4 +23,5 @@ public class MaintainSuppliers {
 	public static final String COUNTRY = "#SupplierPortal-1227837064-overlays > div.v-window.v-widget";
 	public static final String DELETE_ICON = "#menuBar > span:nth-child(2)";
 	public static final String YES_BTN = "#confirmation-window > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-confirmation-window-text-and-button-layout > div > div.v-slot.v-slot-v-bottombar-button-layout.v-align-right.v-align-middle > div > div:nth-child(3)";
+	public static final String CANT_DELETE = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-warning-notification.v-Notification-v-warning-notification > div > div > h1";
 }                                                                                          

@@ -4,19 +4,13 @@ import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
-import com.abb.ventyx.axis.objects.pagedefinitions.AddressContact;
-import com.abb.ventyx.axis.objects.pagedefinitions.CustomerMenu;
-import com.abb.ventyx.axis.objects.pagedefinitions.CustomerUsers;
 import com.abb.ventyx.axis.objects.pagedefinitions.MaintainSuppliers;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 import com.abb.ventyx.axis.objects.pagedefinitions.SupplierMenu;
-import com.abb.ventyx.axis.objects.pagedefinitions.Users;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;

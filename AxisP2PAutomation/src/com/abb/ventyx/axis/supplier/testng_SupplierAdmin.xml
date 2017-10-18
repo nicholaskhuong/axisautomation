@@ -13,5 +13,10 @@
 				<class name="com.abb.ventyx.axis.supplier.Supplier_Admin_UpdateNewAddress" />					
 		</classes>	
   	</test>
+  	<test name="Supplier Admin Delete">
+		<classes>
+				<class name="com.abb.ventyx.axis.supplier.Supplier_Admin_DeleteAddress" />					
+		</classes>	
+  	</test>
   	
 </suite> 
