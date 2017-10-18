@@ -138,7 +138,7 @@ public class Supplier_Admin_AddNewAddress extends BaseTestCase {
 		Thread.sleep(300);
 		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
 		action.assertMessgeError(ScreenObjects.EMPTY_DATE,
-				Messages.NO_INPUT_DATA);
+				Messages.ENTER_MANDATORY_FIELDS);
 	}
 	// Step 7
 	@Test(dependsOnMethods = "checkSpecialCharacter")
