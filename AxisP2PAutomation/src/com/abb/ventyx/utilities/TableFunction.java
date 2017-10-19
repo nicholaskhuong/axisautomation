@@ -40,7 +40,7 @@ public class TableFunction {
 
 	}
 
-	public int findRowByString1( int columnindex, String value) throws InterruptedException{
+	public int findRowByString1( int columnindex, String value){
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']")));
 		int row = 0;
@@ -52,7 +52,7 @@ public class TableFunction {
 					.findElement(By
 							.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr["
 									+ i + "]//td[" + columnindex + "]"));
-			System.out.print("Value "+columnValue.getText());
+			System.out.println("Value "+columnValue.getText());
 			if (columnValue.getText().equals(value)) {
 				System.out.print("Value1 "+columnValue.getText());
 				row = i;
@@ -62,7 +62,7 @@ public class TableFunction {
 		}
 		return row;
 	}
-	
+
 	public boolean isValueExisting( int columnindex, String value) throws InterruptedException{
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']")));
@@ -76,14 +76,14 @@ public class TableFunction {
 							.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr["
 									+ i + "]//td[" + columnindex + "]"));
 			if (columnValue.getText().equals(value)) {
-		
+
 				return true;
 			}
 
 		}
 		return false;
 	}
-	
+
 	public void clickDocType(String tableCSS, String value) {
 		// int row = 0;
 		WebElement baseTable = driver.findElement(By.cssSelector(tableCSS));
@@ -128,6 +128,21 @@ public class TableFunction {
 			if (foundValue.equals(value)) {
 				i= i-1;
 				driver.findElement(By.id("usrSequenceIdStrBtn" + i)).click();
+				break;
+			}
+		}
+	}
+	// Click User Number in Maintain Customer User (Customer account)
+	public void clickSupplierIDInSupplierListGrid(String value) {
+		// int row = 0;
+		WebElement baseTable = driver.findElement(By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']"));
+		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
+		int sumRow = tableRows.size();
+		for (int i = 1; i <= sumRow; i++) {
+			String foundValue = driver.findElement(By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr["+i+"]//td[3]")).getText();
+			if (foundValue.equals(value)) {
+				i= i-1;
+				driver.findElement(By.id("spIdBtn" + i)).click();
 				break;
 			}
 		}
@@ -226,7 +241,7 @@ public class TableFunction {
 
 		return cell.getText();
 	}
-	
+
 	public String getValueTableHeader(int column) {
 		WebElement header = driver
 				.findElement(By

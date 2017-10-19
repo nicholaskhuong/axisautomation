@@ -6,4 +6,9 @@
 				<class name="com.abb.ventyx.axis.customer.SupplierList_CreateNewSupplier_ByAdmin" />
 		</classes>
 	</test>	
+	<test name="Update Supplier">
+		<classes>
+				<class name="com.abb.ventyx.axis.customer.SupplierList_UpdateNewSupplier_ByAdmin" />
+		</classes>
+	</test>	
 </suite> 

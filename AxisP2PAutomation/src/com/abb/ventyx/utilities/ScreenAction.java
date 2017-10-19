@@ -80,6 +80,11 @@ public class ScreenAction {
 			return true;
 		return false;
 	}
+	public void assertTextBoxDisable(By by) {
+		WebElement field = driver.findElement(by);
+		String disabled = field.getAttribute("disabled");
+		assertNotNull(disabled);
+	}
 
 	public void assertTextEqual(By by, String text) {
 		WebElement screenTitle = driver.findElement(by);
