@@ -22,7 +22,6 @@ import com.abb.ventyx.axis.objects.pagedefinitions.CustomerUsers;
 import com.abb.ventyx.axis.objects.pagedefinitions.LoginPageDefinition;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
-import com.abb.ventyx.axis.objects.pagedefinitions.Users;
 
 public class ScreenAction {
 	WebDriver driver;

@@ -18,6 +18,8 @@ import com.abb.ventyx.utilities.BaseDropDownList;
 import com.abb.ventyx.utilities.BaseGrid;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
+import com.abb.ventyx.utilities.ScreenAction;
+import com.abb.ventyx.utilities.TableFunction;
 
 @ALM(id = "163")
 @Credentials(user = "mail5@abb.com", password = "testuser")
@@ -30,17 +32,15 @@ public class User_Group_Updating extends BaseTestCase {
 	BaseDropDownList list;
 	BaseGrid userGroupList;
 	int row;
+	ScreenAction action;
+	TableFunction table;
 
 	@Test
 	public void selectuserTab() throws Exception {
-		WebElement customerConfiguration = (new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.id(AxisSupportCustomerUserGroup.CUSTOMERMAINTAINCE_MENU_ID)));
-		customerConfiguration.click();
-		WebElement userGroupsMenu = (new WebDriverWait(driver, 15))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.id(AxisSupportCustomerUserGroup.USERGROUP_SUBMENU_ID)));
-		userGroupsMenu.click();
+		table = new TableFunction(driver);
+		action = new ScreenAction(driver);
+		action.waitObjVisibleAndClick(By.cssSelector(AxisSupportCustomerUserGroup.CUSTOMERMAINTAINCE_MENU_CSS));
+		action.waitObjVisibleAndClick(By.cssSelector(AxisSupportCustomerUserGroup.USERGROUP_SUBMENU_CSS));
 		(new WebDriverWait(driver, 10)).until(ExpectedConditions
 				.presenceOfElementLocated(By
 						.id(AxisSupportCustomerUserGroup.SYSTEM_TAB_ID)));

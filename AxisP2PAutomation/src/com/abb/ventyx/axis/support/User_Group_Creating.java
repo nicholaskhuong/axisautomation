@@ -17,6 +17,8 @@ import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseDropDownList;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
+import com.abb.ventyx.utilities.ScreenAction;
+import com.abb.ventyx.utilities.TableFunction;
 
 @ALM(id = "162")
 @Credentials(user = "mail5@abb.com", password = "testuser")
@@ -27,20 +29,18 @@ public class User_Group_Creating extends BaseTestCase {
 	String USER_GROUP_NAME = "Manager Group";
 	BaseDropDownList list;
 	int row;
+	ScreenAction action;
+	TableFunction table;
 
 	@Test
 	public void checkScreen() throws Exception {
-		WebElement customerConfiguration = (new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.id(AxisSupportCustomerUserGroup.CUSTOMERMAINTAINCE_MENU_ID)));
-		customerConfiguration.click();
-		WebElement userGroupsMenu = (new WebDriverWait(driver, 15))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.id(AxisSupportCustomerUserGroup.USERGROUP_SUBMENU_ID)));
-		userGroupsMenu.click();
-		(new WebDriverWait(driver, 10)).until(ExpectedConditions
-				.presenceOfElementLocated(By
-						.id(AxisSupportCustomerUserGroup.SYSTEM_TAB_ID)));
+		table = new TableFunction(driver);
+		action = new ScreenAction(driver);
+		action.waitObjVisibleAndClick(By.cssSelector(AxisSupportCustomerUserGroup.CUSTOMERMAINTAINCE_MENU_CSS));
+		action.waitObjVisibleAndClick(By.cssSelector(AxisSupportCustomerUserGroup.USERGROUP_SUBMENU_CSS));
+		
+		action.waitObjVisible(By.id(AxisSupportCustomerUserGroup.SYSTEM_TAB_ID));
+	
 		WebElement screenTitle = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.id(AxisSupportCustomerUserGroup.SCREEN_TITLE_ID)));
@@ -56,7 +56,7 @@ public class User_Group_Creating extends BaseTestCase {
 
 	@Test(dependsOnMethods = "checkScreen")
 	public void addWithoutCustomer() {
-		WebElement addBtn = (new WebDriverWait(driver, 10))
+		WebElement addBtn = (new WebDriverWait(driver, 20))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.xpath(AxisSupportCustomerUserGroup.ADD_XPATH)));
 		addBtn.click();
