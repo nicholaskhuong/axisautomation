@@ -22,37 +22,41 @@ import com.ventyx.testng.TestDataKey;
 @ALM(id = "156") 
 @Credentials(user = "mail5@abb.com", password = "testuser")
 public class Permissions_Deleting extends BaseTestCase {
-	@TestDataKey private final String PERMISSION_NAME_A = "MAINTAIN_PERMISSION_AA";
+	@TestDataKey private final String PERMISSION_NAME_A = "AUTOMATION_PERMISSION_AA";
 
 	@Test
-	public void deletePermisison() throws Exception {
-
+	public void openMaintainPermissionScreen() throws Exception {
 		// Step 1
 		PermissionsAction permissionsAction = new PermissionsAction(driver);
 		permissionsAction.clickSystemConfigurationMenu();
 		permissionsAction.clickPermissionsSubMenu();
-
+	}
+	
+	@Test(dependsOnMethods="openMaintainPermissionScreen")
+	public void deletePermisison() throws InterruptedException{
+		PermissionsAction permissionsAction = new PermissionsAction(driver);
 		permissionsAction.filterPermissionbyPermissionName(PERMISSION_NAME_A);
 		permissionsAction.filterPermissionbyDocumentType("PurchaseOrder");
 		Thread.sleep(2000);
-			
+
 		//final String PERMISION_ID_A = driver.findElement(By.id(Permissions.ROW1)).getText();
 		int numberOfRowsBeforeDelete = permissionsAction.countRow(Permissions.TABLEBODY);
 		WebElement trashBinIcon = driver.findElement( 
 				By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr["
 						+ numberOfRowsBeforeDelete + "]//td[5]"));
-		
+
 		trashBinIcon.click();
 		Thread.sleep(1000);
 
 		//Make sure this is a Confirmation of deleting process
 		assertThat(driver.findElement(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION)).getText(),containsString(Messages.DELETE_CONFIRM));
-		
+
 		WebElement yesButton = (new WebDriverWait(driver, 30))
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(Permissions.DELETE_YES)));
 		yesButton.click();
-	
+
 		Thread.sleep(2000);
 		assertEquals(driver.findElement(By.cssSelector(Messages.PERMISSION_CREATED_SUCCESSFULLY_CSS)).getText(), Messages.PERMISSION_DELETED_SUCCESSFULLY);	
+
 	}
 }

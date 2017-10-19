@@ -22,17 +22,17 @@ import com.ventyx.testng.TestDataKey;
 @ALM(id = "155") 
 @Credentials(user = "mail5@abb.com", password = "testuser")
 public class Permissions_Updating extends BaseTestCase {
-	@TestDataKey private final String PERMISSION_NAME_A = "MAINTAIN_PERMISSION_AA";
-	@TestDataKey private final String PERMISSION_NAME_B = "MAINTAIN_PERMISSION_BB";
+	@TestDataKey private final String PERMISSION_NAME_A = "AUTOMATION_PERMISSION_AA";
+	@TestDataKey private final String PERMISSION_NAME_B = "AUTOMATION_PERMISSION_BB";
 	@TestDataKey private final String DOCUMENT_TYPE_A = "PurchaseOrder";
 	@TestDataKey private final String USER_TYPE_A = "CSA";
 
+	// Step 1
 	@Test
-	public void updatePermission() throws Exception {
+	public void openMaintainPermissionScreen() throws Exception {
 		// Update Permission 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		ScreenAction action = new ScreenAction(driver);
-		// Step 1
+
 		PermissionsAction permissionsAction = new PermissionsAction(driver);
 		permissionsAction.clickSystemConfigurationMenu();
 		permissionsAction.clickPermissionsSubMenu();
@@ -54,14 +54,20 @@ public class Permissions_Updating extends BaseTestCase {
 				.cssSelector(Permissions.PERMISSIONWINDOWHEADER)));
 		Thread.sleep(1000);
 		assertEquals(driver.findElement(By.cssSelector(Permissions.PERMISSIONWINDOWHEADER)).getText(), "Edit Permission");
-		
+
 		/*assertEquals(driver.findElement(By.id(Permissions.PERMISSION_NAME)).getText(), PERMISSION_NAME_A);
 		assertEquals(driver.findElement(By.id(Permissions.DOCUMENT_TYPE)).getText(), "Purchase Orders");*/
-		
+
 		/*assertTrue(driver.findElement(By.cssSelector(Permissions.AXIS_ADMIN)).isSelected());
 		assertTrue(driver.findElement(By.cssSelector(Permissions.CUSTOMER)).isSelected());
 		assertTrue(driver.findElement(By.cssSelector(Permissions.SUPPLIER)).isSelected());*/
-		
+	}
+	// Step 2
+	@Test(dependsOnMethods="openMaintainPermissionScreen")
+	public void updatePermissionWithValidValue() throws InterruptedException{
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+
+		PermissionsAction permissionsAction = new PermissionsAction(driver);
 		// Step 2 update
 		permissionsAction.selectDocTypebyText("Purchase Order Acknowledgement");
 		//Unselect Customer and Supplier
@@ -75,8 +81,14 @@ public class Permissions_Updating extends BaseTestCase {
 		assertEquals(driver.findElement(By.cssSelector(Permissions.PNROW1)).getText(),PERMISSION_NAME_A);
 		assertEquals(driver.findElement(By.cssSelector(Permissions.UTROW1)).getText(),"A");
 		assertEquals(driver.findElement(By.cssSelector(Permissions.DTROW1)).getText(),"PurchaseOrderAcknowledgement");
-		
-		
+
+	}
+	// Step 3
+	@Test(dependsOnMethods="updatePermissionWithValidValue")
+	public void checkUnsavedChangesDialog() throws InterruptedException{
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		ScreenAction action = new ScreenAction(driver);
+		PermissionsAction permissionsAction = new PermissionsAction(driver);
 		// Step 3 Click 1st instance ID
 		WebElement gridCell1 = (new WebDriverWait(driver, 20))
 				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Permissions.GRID_PERMISSIONIDCELL)));
@@ -89,7 +101,7 @@ public class Permissions_Updating extends BaseTestCase {
 				driver.findElement(
 						By.cssSelector(Permissions.CONFIRMATION_OF_DELETION))
 						.getText(), Messages.UNSAVED_CHANGE);
-		
+
 		// Step 4 Click No
 		driver.findElement(By.id(ScreenObjects.NO_BTN_ID)).click();
 		Thread.sleep(1000);
@@ -97,18 +109,18 @@ public class Permissions_Updating extends BaseTestCase {
 				driver.findElement(
 						By.cssSelector(Permissions.PERMISSIONWINDOWHEADER))
 						.getText(), "Edit Permission");
-		
+
 		permissionsAction.clickCancelButtonOnAddPermisisonPopUp();
 		driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
 		Thread.sleep(1000);
-		
+
 		assertEquals(action.isElementPresent(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION)), false);
 		assertEquals(action.isElementPresent(By.cssSelector(Permissions.PERMISSIONWINDOWHEADER)), false);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By
 				.cssSelector(Permissions.PERMISSIONHEADER)));
-	
+
 	}
-	
+
 }
 
 

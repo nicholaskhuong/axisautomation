@@ -1,10 +1,12 @@
 package com.abb.ventyx.axis.support;
 
 import static org.testng.Assert.assertEquals;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
+
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.Permissions;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
@@ -18,19 +20,19 @@ import com.ventyx.testng.TestDataKey;
 @ALM(id = "106")
 @Credentials(user = "mail5@abb.com", password = "testuser")
 public class Permissions_Creating extends BaseTestCase {
-	@TestDataKey private final String PERMISSION_NAME_A = "MAINTAIN_PERMISSION_AA";
+	public static int numberOfRowsBeforeAdding;
+	public static int numberOfRowsAfterAdding;
+	@TestDataKey private final String PERMISSION_NAME_A = "AUTOMATION_PERMISSION_AA";
 	@TestDataKey private final String PurchaseorderType = "PurchaseOrder";
 	@TestDataKey private final String USER_TYPE_A = "CSA";
 	@TestDataKey private final String ADDPERMISSIONHEADER = "Add Permission";
 	@TestDataKey private final String MAINTAINPERMISSIONHEADER = "Maintain Permissions";
 
+	// Step 1
 	@Test
-	public void createPermission() throws Exception {
+	public void openMaintainPermissionScreen() throws InterruptedException{
 		PermissionsAction permissionsAction = new PermissionsAction(driver);
-		ScreenAction action = new ScreenAction(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
 
-		// Step 1
 		permissionsAction.clickSystemConfigurationMenu();
 		permissionsAction.clickPermissionsSubMenu();
 
@@ -39,8 +41,12 @@ public class Permissions_Creating extends BaseTestCase {
 		permissionsAction.filterPermissionbyDocumentType("PurchaseOrder");
 		int numberOfRowsBeforeAdding = permissionsAction.countRow(Permissions.TABLEBODY);
 		System.out.print(numberOfRowsBeforeAdding + "numberOfRowsBeforeAdding");
-
-		// Step 2
+	}
+	// Step 2, 3, 4
+	@Test(dependsOnMethods="openMaintainPermissionScreen")
+	public void createPermissionwithValidValue() throws InterruptedException{
+		PermissionsAction permissionsAction = new PermissionsAction(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		permissionsAction.clickAddButton();
 		permissionsAction.enterPermissionName(PERMISSION_NAME_A);
 		permissionsAction.selectDocTypebyText("Purchase Orders");
@@ -48,8 +54,7 @@ public class Permissions_Creating extends BaseTestCase {
 		permissionsAction.selectUserType(Permissions.AXIS_ADMIN);
 		permissionsAction.selectUserType(Permissions.CUSTOMER);
 		permissionsAction.selectUserType(Permissions.SUPPLIER);
-		
-		// Step 3, 4
+
 		permissionsAction.clickSaveButtonOnAddPermisisonPopUp();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By
 				.cssSelector(Messages.PERMISSION_CREATED_SUCCESSFULLY_CSS)));
@@ -61,7 +66,7 @@ public class Permissions_Creating extends BaseTestCase {
 		permissionsAction.enterValueTofilterPermission(PERMISSION_NAME_A);
 		permissionsAction.filterPermissionbyDocumentType("PurchaseOrder");
 		Thread.sleep(2000);
-		int numberOfRowsAfterAdding = permissionsAction.countRow(Permissions.TABLEBODY);
+		numberOfRowsAfterAdding = permissionsAction.countRow(Permissions.TABLEBODY);
 
 		assertEquals(numberOfRowsBeforeAdding + 1, numberOfRowsAfterAdding);
 
@@ -76,20 +81,23 @@ public class Permissions_Creating extends BaseTestCase {
 				driver.findElement(
 						By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr["
 								+ numberOfRowsAfterAdding + "]//td[2]"))
-						.getText(), PurchaseorderType);
+								.getText(), PurchaseorderType);
 		assertEquals(
 				driver.findElement(
 						By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr["
 								+ numberOfRowsAfterAdding + "]//td[3]"))
-						.getText(), PERMISSION_NAME_A);
+								.getText(), PERMISSION_NAME_A);
 		assertEquals(
 				driver.findElement(
 						By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr["
 								+ numberOfRowsAfterAdding + "]//td[4]"))
-						.getText(), USER_TYPE_A);
+								.getText(), USER_TYPE_A);
 		Thread.sleep(1000);
-
-		// Step 5
+	}
+	// Step 5, 6, 7
+	@Test(dependsOnMethods="createPermissionwithValidValue")
+	public void addPermissonWithoutMandatoryField() throws InterruptedException{
+		PermissionsAction permissionsAction = new PermissionsAction(driver);
 		permissionsAction.clickAddButton();
 
 		// Step 6
@@ -108,8 +116,14 @@ public class Permissions_Creating extends BaseTestCase {
 						By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS))
 						.getText(), Messages.EMPTYUSERTYPE);
 		Thread.sleep(2000);
-
+	}
+	// Step 8, 9, 10
+	@Test(dependsOnMethods="addPermissonWithoutMandatoryField")
+	public void checkUnsavedChangesDialog() throws InterruptedException{
 		// Step 8
+		PermissionsAction permissionsAction = new PermissionsAction(driver);
+		ScreenAction action = new ScreenAction(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		permissionsAction.clickCancelButtonOnAddPermisisonPopUp();
 		assertEquals(
 				driver.findElement(
@@ -130,19 +144,18 @@ public class Permissions_Creating extends BaseTestCase {
 		Thread.sleep(1000);
 		assertEquals(
 				driver.findElement(By.cssSelector(Permissions.PERMISSIONHEADER))
-						.getText(), MAINTAINPERMISSIONHEADER);
+				.getText(), MAINTAINPERMISSIONHEADER);
 
 		// Step 11
 		permissionsAction.clickAddButton();
 		permissionsAction.clickCancelButtonOnAddPermisisonPopUp();
-		
+
 		assertEquals(action.isElementPresent(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION)), false);
 		assertEquals(action.isElementPresent(By.cssSelector(Permissions.PERMISSIONWINDOWHEADER)), false);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By
 				.cssSelector(Permissions.PERMISSIONHEADER)));
 		assertEquals(
 				driver.findElement(By.cssSelector(Permissions.PERMISSIONHEADER))
-						.getText(), MAINTAINPERMISSIONHEADER);
-
+				.getText(), MAINTAINPERMISSIONHEADER);
 	}
 }
