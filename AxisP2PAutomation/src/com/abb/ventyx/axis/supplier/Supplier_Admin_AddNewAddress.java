@@ -206,7 +206,7 @@ public class Supplier_Admin_AddNewAddress extends BaseTestCase {
 	}*/
 
 	// Step 8
-	@Test(dependsOnMethods = "saveSuccessfully")
+	/*@Test(dependsOnMethods = "saveSuccessfully")
 	public void updateAddress() throws InterruptedException {
 		// Click on Address&Contact menu
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.ADDRESS_CONTACT_MENU));
@@ -228,5 +228,5 @@ public class Supplier_Admin_AddNewAddress extends BaseTestCase {
 		// Click x icon at the top right of popup
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 		//action.clickBtn(By.id(ScreenObjects.CANCEL_ID));
-	}
+	}*/
 }
