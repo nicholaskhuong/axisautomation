@@ -172,7 +172,7 @@ public class Supplier_Admin_AddNewAddress extends BaseTestCase {
 
 	}
 
-	// Step 8
+	/*// Step 8
 	@Test(dependsOnMethods = "saveSuccessfully")
 	public void checkSupplierList() throws InterruptedException {
 		// Logout and login with Customer admin
@@ -203,10 +203,10 @@ public class Supplier_Admin_AddNewAddress extends BaseTestCase {
 		Thread.sleep(300);
 		action.clickBtn(By.id(MaintainSuppliers.SAVE_EDIT));
 		action.checkAddSuccess(Messages.SUPPLIER_UPDATED_SUCCESSFULLY);
-	}
+	}*/
 
 	// Step 8
-	@Test(dependsOnMethods = "checkSupplierList")
+	@Test(dependsOnMethods = "saveSuccessfully")
 	public void updateAddress() throws InterruptedException {
 		// Click on Address&Contact menu
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.ADDRESS_CONTACT_MENU));
