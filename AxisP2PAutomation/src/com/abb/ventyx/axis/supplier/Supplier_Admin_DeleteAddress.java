@@ -71,9 +71,9 @@ public class Supplier_Admin_DeleteAddress extends BaseTestCase {
 		WebElement elemement= driver.findElement(By.id("addrId"+j));
 		elemement.click();
 		action.clickCheckBoxN(2);
-		action.clickBtn(By.cssSelector(MaintainSuppliers.DELETE_ICON));
-		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
-		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNDELETE_MESSAGE);
+		//action.clickBtn(By.cssSelector(MaintainSuppliers.DELETE_ICON));
+		//action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
+		//assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNDELETE_MESSAGE);
 		//driver.findElement(By.cssSelector(Maintain]=[Suppliers.YES_BTN)).click();
 		
 	}
