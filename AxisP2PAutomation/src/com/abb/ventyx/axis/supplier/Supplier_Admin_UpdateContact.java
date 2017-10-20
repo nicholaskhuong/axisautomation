@@ -49,7 +49,8 @@ public class Supplier_Admin_UpdateContact extends BaseTestCase {
 		// click on Contact tab
 		action.clickBtn(By.cssSelector(MaintainSuppliers.CONTACT_TAB));
 		// Click on a row in summary
-		action.waitObjVisible(By.id(MaintainSuppliers.SELECT_ROW));
+		//Thread.sleep(900);
+		action.waitObjVisible(By.id(MaintainSuppliers.SUPPLIER_NAME));
 		Thread.sleep(900);
 		action.clickBtn(By.id(MaintainSuppliers.SELECT_ROW));
 		action.waitObjVisible(By.cssSelector(MaintainSuppliers.TITLE_POPUP));
@@ -62,6 +63,7 @@ public class Supplier_Admin_UpdateContact extends BaseTestCase {
 		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.ERROR)).getText(), Messages.ENTER_MANDATORY_FIELDS);
 		// Step 4
 		// Fill all data in the Update Contact popup
+		Thread.sleep(900);
 		action.waitObjInvisible(By.cssSelector(CustomerUsers.ERROR));
 		action.waitObjVisible(By.id(MaintainSuppliers.CONTACT_ID_FILED));
 		action.inputTextField(MaintainSuppliers.CONTACT_ID_FILED, contact_Id);

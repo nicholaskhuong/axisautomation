@@ -3,19 +3,24 @@
 
 <suite name="Supplier_Admin" parallel="none">
  
-	<test name="Supplier Admin Create">
+	<test name="Supplier Admin Create Address">
 		<classes>
 				<class name="com.abb.ventyx.axis.supplier.Supplier_Admin_AddNewAddress" />			
 		</classes>	
   	</test>
-  	<test name="Supplier Admin Update">
+  	<test name="Supplier Admin Update Address">
 		<classes>
 				<class name="com.abb.ventyx.axis.supplier.Supplier_Admin_UpdateNewAddress" />					
 		</classes>	
   	</test>
-  	<test name="Supplier Admin Delete">
+  	<test name="Supplier Admin Delete Address">
 		<classes>
 				<class name="com.abb.ventyx.axis.supplier.Supplier_Admin_DeleteAddress" />					
+		</classes>	
+  	</test>
+  	<test name="Supplier Admin Create Contact">
+		<classes>
+				<class name="com.abb.ventyx.axis.supplier.Supplier_Admin_AddContact" />					
 		</classes>	
   	</test>
   	

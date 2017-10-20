@@ -99,7 +99,7 @@ public class Supplier_Admin_AddNewAddress extends BaseTestCase {
 	// Step 5,6
 	@Test(dependsOnMethods = "updateMulSupplierEmail")
 	public void checkSpecialCharacter() throws InterruptedException {
-		action = new ScreenAction(driver);
+		/*action = new ScreenAction(driver);
 		// update the COMPANY_REGISTRATION_NO 
 		WebElement comapny_registration_no = driver.findElement(By.id(AddressContact.COMPANY_REGISTRATION_NO));
 		comapny_registration_no.clear();
@@ -109,6 +109,7 @@ public class Supplier_Admin_AddNewAddress extends BaseTestCase {
 		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
 				Messages.NO_SPECIAL_CHARACTER_ALLOWED);
+		//action.waitObjInvisible(obj);
 
 		WebElement tax_registration_no =  driver.findElement(By.id(AddressContact.TAX_REGISTRATION_NO));
 		tax_registration_no.clear();
@@ -118,7 +119,9 @@ public class Supplier_Admin_AddNewAddress extends BaseTestCase {
 		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
 				Messages.NO_SPECIAL_CHARACTER_ALLOWED);	
-		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));*/
+		WebElement comapny_registration_no = driver.findElement(By.id(AddressContact.COMPANY_REGISTRATION_NO));
+		WebElement tax_registration_no =  driver.findElement(By.id(AddressContact.TAX_REGISTRATION_NO));
 		WebElement supplier_name= driver.findElement(By.id(AddressContact.COMPANY_NAME));
 		supplier_name.clear();
 		Thread.sleep(300);
@@ -179,6 +182,7 @@ public class Supplier_Admin_AddNewAddress extends BaseTestCase {
 		action.waitObjVisible(By.id(ScreenObjects.SIGNOUT_BUTTON));
 		action.clickBtn(By.id(ScreenObjects.SIGNOUT_BUTTON));
 		// Login with Customer admin
+		
 		action.waitObjInvisible(By.id(ScreenObjects.LOGIN_BUTTON));
 		Thread.sleep(900);
 		action.inputTextField(ScreenObjects.USER_LOGIN, User_Login);
@@ -223,6 +227,6 @@ public class Supplier_Admin_AddNewAddress extends BaseTestCase {
 		action.checkAddSuccess(Messages.ADDRESS_SUCCESSFULLY_UPDATED);
 		// Click x icon at the top right of popup
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
-		action.clickBtn(By.id(ScreenObjects.CANCEL_ID));
+		//action.clickBtn(By.id(ScreenObjects.CANCEL_ID));
 	}
 }
