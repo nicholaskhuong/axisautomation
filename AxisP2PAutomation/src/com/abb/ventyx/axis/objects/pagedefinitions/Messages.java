@@ -18,6 +18,7 @@ public class Messages {
 	public static final String DUPLICATE_FIELD_TYPE = "Duplicate Field Type and Option, please use different values";
 	public static final String DOC_TYPES_EXIST = "This Document Type already exists";
 	public static final String ENTER_MANDATORY_FIELDS = "One or more fields are in error. Please correct.";
+	public static final String EMPTY_PERMISSION = "Please select permissions for user group";
 
 	// User group page
 	public static final String USERGROUP_CREATE_SUCCESSFULLY = "User group successfully created";
