@@ -46,7 +46,7 @@ public class Supplier_Admin_AddContact extends BaseTestCase {
 	public void addNewContact() throws InterruptedException {
 		// step 2
 		// click on Contact tab
-		action.clickBtn(By.id(MaintainSuppliers.CONTACT_TAB));
+		action.clickBtn(By.cssSelector(MaintainSuppliers.CONTACT_TAB));
 		// Delete Supplier Name
 		action.inputTextField(MaintainSuppliers.SUPPLIER_NAME, "");
 		// try to save

@@ -60,7 +60,7 @@ public class Supplier_Admin_DeleteAddress extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(MaintainSuppliers.EDIT_SUPPLIER_POPUP));
 		assertEquals(driver.findElement(By.cssSelector(MaintainSuppliers.EDIT_SUPPLIER_POPUP)).getText(),expected);
 	}
-	@Test(dependsOnMethods = "deleteOneorMoreYES")
+	/*@Test(dependsOnMethods = "deleteOneorMoreYES")
 	public void deleteDefaultType() throws InterruptedException {
 		//Step 5
 		action.waitObjVisible(By.id("addrId1"));
@@ -71,14 +71,12 @@ public class Supplier_Admin_DeleteAddress extends BaseTestCase {
 		WebElement elemement= driver.findElement(By.id("addrId"+j));
 		elemement.click();
 		action.clickCheckBoxN(2);
-		action.clickBtn(By.cssSelector(MaintainSuppliers.DELETE_ICON));
-		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
-		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNDELETE_MESSAGE);
-		driver.findElement(By.cssSelector(MaintainSuppliers.YES_BTN)).click();
-		action.waitObjVisible(By.cssSelector(MaintainSuppliers.EDIT_SUPPLIER_POPUP));
-		//assertEquals(driver.findElement(By.cssSelector(MaintainSuppliers.CANT_DELETE)).getText(),message_cant_delete);
+		//action.clickBtn(By.cssSelector(MaintainSuppliers.DELETE_ICON));
+		//action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
+		//assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNDELETE_MESSAGE);
+		//driver.findElement(By.cssSelector(Maintain]=[Suppliers.YES_BTN)).click();
 		
-	}
+	}*/
 
 	
 }

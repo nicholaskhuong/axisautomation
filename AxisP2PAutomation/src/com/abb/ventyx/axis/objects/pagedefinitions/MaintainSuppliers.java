@@ -24,7 +24,7 @@ public class MaintainSuppliers {
 	public static final String DELETE_ICON = "#menuBar > span:nth-child(2)";
 	public static final String YES_BTN = "#confirmation-window > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-confirmation-window-text-and-button-layout > div > div.v-slot.v-slot-v-bottombar-button-layout.v-align-right.v-align-middle > div > div:nth-child(3)";
 	public static final String CANT_DELETE = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-warning-notification.v-Notification-v-warning-notification > div > div > h1";
-	public static final String CONTACT_TAB = "gwt-uid-99";
+	public static final String CONTACT_TAB = "#contactTab > div";
 	public static final String ADD_NEW_CONTACT_POPUP = "common-header-left-layout";
 	public static final String CONTACT_ID_FILED = "contactIdField";
 	public static final String CONTACT_NAME_FILED = "contactNameField";
@@ -34,5 +34,6 @@ public class MaintainSuppliers {
 	public static final String CONTACT_EXTENSION_FILED = "contactExtnoField";
 	public static final String CONTACT_FAX_FILED = "contactFaxField";
 	public static final String CONTACT_MOBILE_FILED = "contactMobileField";
+	public static final String SELECT_ROW = "contactBtn0";
 	
 }                                                                                          
