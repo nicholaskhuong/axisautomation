@@ -152,7 +152,7 @@ public class BaseTestCase {
 	@AfterClass(alwaysRun=true)
 	public void afterClass() throws IOException {
 		exportALMReferenceCsv(testCaseName, testCaseStatus);
-		//driver.quit();
+		driver.quit();
 	}
 
 	private void exportALMReferenceCsv(String tcName, String status) {
