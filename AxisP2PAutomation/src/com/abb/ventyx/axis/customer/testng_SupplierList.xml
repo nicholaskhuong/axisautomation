@@ -8,7 +8,7 @@
 	</test>	
 	<test name="Update Supplier">
 		<classes>
-				<class name="com.abb.ventyx.axis.customer.SupplierList_UpdateNewSupplier_ByAdmin" />
+				<class name="com.abb.ventyx.axis.customer.SupplierList_UpdateSupplier_ByAdmin" />
 		</classes>
 	</test>	
 </suite> 
