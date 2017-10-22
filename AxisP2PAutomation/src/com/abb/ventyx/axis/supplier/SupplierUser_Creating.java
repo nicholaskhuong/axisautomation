@@ -30,7 +30,7 @@ public class SupplierUser_Creating extends BaseTestCase {
 	int sumRowAfter;
 
 	@Test
-	public void openScreen() throws InterruptedException {
+	public void openScreen() {
 		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.USERS_ID));
@@ -56,8 +56,8 @@ public class SupplierUser_Creating extends BaseTestCase {
 	}
 
 	@Test(dependsOnMethods = "addUsers")
-	public void checkAddSuccessfully() throws InterruptedException {
-		action.clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
+	public void checkAddSuccessfully() {
+		action.clickBtn(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS));
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 		sumRowAfter = table.countRow(Users.SUPPLIER_USERS_TABLE_CSS);
 		assertEquals(sumRowAfter, sumRowBefore + 1);
@@ -91,7 +91,7 @@ public class SupplierUser_Creating extends BaseTestCase {
 	}
 
 	@Test(dependsOnMethods = "cancelWithoutdata")
-	public void addValidationUserID() throws InterruptedException {
+	public void addValidationUserID() {
 		action.clickBtn(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
 		action.waitObjVisible(By.id(Users.USER_ID));
 		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
@@ -117,7 +117,26 @@ public class SupplierUser_Creating extends BaseTestCase {
 		action.inputTextField(Users.PASSWORD_ID, PASSWORD);
 		action.inputTextField(Users.CONFIMRPASSWORD_ID, PASSWORD);
 		// don't input UserID
-		action.checkValidationTextField(Users.EMAIL_ID);
+		//action.checkValidationTextField(Users.EMAIL_ID);
+		action.inputTextField(Users.EMAIL_ID, "");
+		Thread.sleep(2000);
+		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
+				Messages.ENTER_MANDATORY_FIELDS);
+		action.clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
+		driver.findElement(By.id(Users.EMAIL_ID)).click();
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
+
+		// Text Field is only space
+		action.inputTextField(Users.EMAIL_ID, "  ");
+		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
+				Messages.ENTER_MANDATORY_FIELDS);
+		action.clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
+		driver.findElement(By.id(Users.EMAIL_ID)).click();
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
+		
+		
 		action.inputTextField(Users.EMAIL_ID, "mail232@abb.com");
 		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.SAME_EMAIL);
@@ -130,8 +149,8 @@ public class SupplierUser_Creating extends BaseTestCase {
 	}
 
 	@Test(dependsOnMethods = "addValidationEmail")
-	public void addValidationPassword() throws InterruptedException {
-		action.clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
+	public void addValidationPassword() {
+		action.clickBtn(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS));
 		action.waitObjInvisible(By
 				.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		// input other data
@@ -162,9 +181,9 @@ public class SupplierUser_Creating extends BaseTestCase {
 	}
 
 	@Test(dependsOnMethods = "addValidationPassword")
-	public void addValidationConfirmPassword() throws InterruptedException {
+	public void addValidationConfirmPassword() {
 		// input other data
-		action.clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
+		action.clickBtn(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS));
 		action.waitObjInvisible(By
 				.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.inputTextField(Users.USER_ID, "BOSS_1");
@@ -175,9 +194,9 @@ public class SupplierUser_Creating extends BaseTestCase {
 	}
 
 	@Test(dependsOnMethods = "addValidationConfirmPassword")
-	public void unselectUserGroup() throws InterruptedException {
+	public void unselectUserGroup() {
 
-		action.clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
+		action.clickBtn(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS));
 		action.waitObjInvisible(By
 				.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 

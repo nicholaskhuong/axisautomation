@@ -7,7 +7,8 @@ public class ScreenObjects {
 	public static final String NO_BTN_ID = "noBtn";
 	public static final String SAVE_ID = "saveBtn";
 	public static final String CANCEL_ID = "cancelBtn";
-	public static final String SCREEN_TITLE_ID = "#common-header-left-layout > div > div";
+	public static final String SCREEN_TITLE_ID = "common-header-left-layout";
+	public static final String SCREEN_TITLE_CSS = "#common-header-left-layout > div > div";
 	public static final String FILTER_FIELD_ID = "filterField";
 	public static final String CREATE_BTN_ID = "createBtn";
 	public static final String FILTER2_XPATH = "(//input[@id='filterField'])[2]";

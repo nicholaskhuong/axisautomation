@@ -31,7 +31,7 @@ public class ScreenAction {
 	}
 
 	public void waitObjInvisible(By obj) {
-		(new WebDriverWait(driver, 120)).until(ExpectedConditions
+		(new WebDriverWait(driver, 30)).until(ExpectedConditions
 				.invisibilityOfElementLocated(obj));
 	}
 
@@ -49,9 +49,9 @@ public class ScreenAction {
 
 	public void assertTitleScreen(String titleScreen) {
 		WebDriverWait wait = new WebDriverWait(driver, 20);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.SCREEN_TITLE_ID)));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)));
 		WebElement screenTitle = driver.findElement(By
-				.cssSelector(ScreenObjects.SCREEN_TITLE_ID));
+				.cssSelector(ScreenObjects.SCREEN_TITLE_CSS));
 		assertEquals(screenTitle.getText(), titleScreen, "Title is wrong");
 	}
 
@@ -147,7 +147,7 @@ public class ScreenAction {
 
 	public void checkAddSuccess(String msg) {
 
-		WebElement flashMessage1 = (new WebDriverWait(driver, 10))
+		WebElement flashMessage1 = (new WebDriverWait(driver, 20))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(ScreenObjects.SUCCESS_MESSAGE)));
 		Assert.assertEquals(flashMessage1.getText(), msg);
@@ -184,7 +184,7 @@ public class ScreenAction {
 	}
 
 	public void checkValidationTextField(String obj, String value, String msg,
-			String msgCSS) throws InterruptedException {
+			String msgCSS) {
 
 		// Don't input data in text Field
 		inputTextField(obj, "");
@@ -206,8 +206,7 @@ public class ScreenAction {
 		assertMessgeError(msgCSS, msg);
 	}
 
-	public void checkValidationTextField(String obj)
-			throws InterruptedException {
+	public void checkValidationTextField(String obj) {
 
 		// Don't input data in text Field
 		inputTextField(obj, "");
