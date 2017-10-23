@@ -14,4 +14,7 @@ public class SupplierList {
 	
 	public static final String PROFILE_CSS = "#psuProfile > div";
 	public static final String COMBOBOX_CSS = "#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table > tbody";
+	public static final String ACTIVATE_CSS = "#HeaderMenuBar > span:nth-child(3)";
+	public static final String DEACTIVATE_CSS = "#HeaderMenuBar > span:nth-child(4)";
+	
 }

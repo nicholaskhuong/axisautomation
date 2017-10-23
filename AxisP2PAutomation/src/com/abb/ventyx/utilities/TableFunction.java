@@ -154,6 +154,10 @@ public class TableFunction {
 		int sumRow = tableRows.size();
 		return sumRow;
 	}
+	public void selectRow(int rowIndex) {
+		WebElement row = driver.findElement(By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr["+rowIndex+"]"));
+		row.click();	
+	}
 
 	public void filterPermission(String filterValue) {
 		// Click Filter Icon

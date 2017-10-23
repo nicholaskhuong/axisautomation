@@ -351,6 +351,7 @@ public class ScreenAction {
 	}
 	
 	public void signOut(){
+		waitObjVisible(By.id(ScreenObjects.PROFILE_PANEL));
 		clickBtn(By.id(ScreenObjects.PROFILE_PANEL));
 		waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
 	}

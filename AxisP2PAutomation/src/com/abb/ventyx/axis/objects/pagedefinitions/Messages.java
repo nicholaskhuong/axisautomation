@@ -80,4 +80,11 @@ public class Messages {
 	public static final String UNDELETE_MESSAGE = "Are you sure you want to delete the selected address?";
 	
 	public static final String INVALID_EMAIL_2 = "Please enter a valid email address";
+	public static final String ACTIVATE_DEACTIVE_WITHOUTSUPPLIER = "Please select at least one supplier";
+	public static final String DEACTIVATE_SUPPLIER = "Are you sure you want to deactivate selected supplier?";
+	public static final String ACTIVATE_SUPPLIER = "Are you sure you want to activate selected supplier?";
+	public static final String DEACTIVATE_SUPPLIER_SUCCESSFULLY = "Supplier successfully deactivated";
+	public static final String ACTIVATE_SUPPLIER_SUCCESSFULLY = "Supplier successfully activated";
+	public static final String SUPPLIER_ALREADY_ACTIVE = "Supplier is already active";
+	public static final String SUPPLIER_INACTIVE = "Supplier inactive";
 }
