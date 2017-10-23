@@ -61,8 +61,8 @@ public class ScreenAction {
 	}
 
 	public void inputTextField(String obj, String value) {
-		//(new WebDriverWait(driver, 20)).until(ExpectedConditions
-		//		.presenceOfElementLocated(By.id(obj)));
+		(new WebDriverWait(driver, 20)).until(ExpectedConditions
+				.presenceOfElementLocated(By.id(obj)));
 		WebElement txtField = driver.findElement(By.id(obj));
 		txtField.clear();
 		txtField.sendKeys(value);
@@ -159,6 +159,7 @@ public class ScreenAction {
 	}
 		
 	public void selectStatus(String tableCSS, String value) {
+		waitObjVisible(By.cssSelector(tableCSS));
 		WebElement baseTable = driver.findElement(By.cssSelector(tableCSS));
 		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
 		int sumRow = tableRows.size();

@@ -32,10 +32,10 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	public static int i;
 	public static int j;
 
-	@TestDataKey private final String SUPPLIERNAME = "Yamaha9";
-	@TestDataKey private final String SUPPLIEREMAIL = "yamaha9@abb.com";
-	@TestDataKey private final String COMPANYREGIRATIONNO = "COMYAMAHA9";
-	@TestDataKey private final String TAXREGIRATIONNO = "TAXYAMAHA9";
+	@TestDataKey private final String SUPPLIERNAME = "Yamaha10";
+	@TestDataKey private final String SUPPLIEREMAIL = "yamaha10@abb.com";
+	@TestDataKey private final String COMPANYREGIRATIONNO = "COMYAMAHA10";
+	@TestDataKey private final String TAXREGIRATIONNO = "TAXYAMAHA10";
 	@TestDataKey private final String PENDINGSTATUS = "Pending";
 	@TestDataKey private final String PROFILE = "All Document Types";
 	@TestDataKey private final String INVALIDEMAIL = "<HTML>";

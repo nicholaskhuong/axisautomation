@@ -26,10 +26,10 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 	public static int i;
 	public static int j;
 
-	@TestDataKey private final String SUPPLIERNAME = "Yamaha9";
-	@TestDataKey private final String SUPPLIEREMAIL = "yamaha9@abb.com";
-	@TestDataKey private final String COMPANYREGIRATIONNO = "COMYAMAHA9";
-	@TestDataKey private final String TAXREGIRATIONNO = "TAXYAMAHA9";
+	@TestDataKey private final String SUPPLIERNAME = "Yamaha10";
+	@TestDataKey private final String SUPPLIEREMAIL = "yamaha10@abb.com";
+	@TestDataKey private final String COMPANYREGIRATIONNO = "COMYAMAHA10";
+	@TestDataKey private final String TAXREGIRATIONNO = "TAXYAMAHA10";
 	@TestDataKey private final String PENDINGSTATUS = "Pending";
 	@TestDataKey private final String ACTIVESTATUS = "Active";
 	@TestDataKey private final String PROFILE = "All Document Types";
@@ -43,7 +43,7 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 	@TestDataKey private final String DUPLICATEDSUPPLIEREMAIL = "perla@enclave.vn";
 	@TestDataKey private final String AXISSUPPORTEMAIL = "mail5@abb.com";
 	@TestDataKey private final String AXISSUPPORTPWD = "testuser";
-	
+
 	@TestDataKey private final String NEWSUPPLIERNAME = "Yamaha9UPDATED";
 	@TestDataKey private final String PROFILEUPDATED = "ASNOFF";
 
@@ -74,7 +74,7 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 		j=i-1;
 		System.out.println("Print J: "+ i);
 		assertEquals(action.isFieldDisable(By.id("accessSupplierBtn"+j)),false);
-		
+
 		table.clickSupplierIDInSupplierListGrid(TAXREGIRATIONNO);
 		action.waitObjVisible(By.id(SupplierList.SUPPLIERNAME_ID));
 		action.assertTextBoxDisable(By.id(SupplierList.COMPANYREGISTRATIONNO_ID));
@@ -90,16 +90,62 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 
 	// Step 3 
 	@Test(dependsOnMethods="updateSupplierWithBlankMandatoryField")
-	public void updateSupplierWithValidValue(){
+	public void updateSupplierWithValidValue() throws InterruptedException{
 		action = new ScreenAction(driver);
 
 		action.inputTextField(SupplierList.SUPPLIERNAME_ID, NEWSUPPLIERNAME);
 		action.clickBtn(By.cssSelector(SupplierList.PROFILE_CSS));
-		action.selectStatus(SupplierList.COMBOBOX, PROFILEUPDATED);
+		Thread.sleep(1000);
+		action.selectStatus(SupplierList.COMBOBOX_CSS, PROFILEUPDATED);
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
-		
-		
+		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
+		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.SUPPLIER_UPDATED_SUCCESSFULLY);
+		System.out.println("2 print i: "+i);
+		Thread.sleep(1000);
+		assertEquals(table.getValueRow(5, i), NEWSUPPLIERNAME);
+		assertEquals(table.getValueRow(7, i), PROFILEUPDATED);
 	}
 
+	// Step 4
+	@Test(dependsOnMethods="updateSupplierWithValidValue")
+	public void checkCancelWithoutInput() throws InterruptedException{
+		action = new ScreenAction(driver);
+		table.clickSupplierIDInSupplierListGrid(TAXREGIRATIONNO);
+		action.waitObjVisible(By.id(SupplierList.SUPPLIERNAME_ID));
+		action.waitObjVisibleAndClick(By.id(ScreenObjects.CANCEL_ID));
+		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)),false);
+		Thread.sleep(1000);
+		action.assertTitleScreen("Maintain Suppliers");
+	}
+
+	// Step 5,6 Check No button on Unsaved Changes dialog 
+	@Test(dependsOnMethods="checkCancelWithoutInput")
+	public void checkNoButtonOnUnsavedChangesDialog() throws InterruptedException{
+		action = new ScreenAction(driver);	
+		table.clickSupplierIDInSupplierListGrid(TAXREGIRATIONNO);
+		action.inputTextField(SupplierList.SUPPLIERNAME_ID, "test");
+		action.clickBtn(By.id(ScreenObjects.CANCEL_ID));
+		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
+		action.assertTextEqual(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS), Messages.UNSAVED_CHANGE);
+		action.waitObjVisibleAndClick(By.id(ScreenObjects.NO_BTN_ID));
+		Thread.sleep(500);
+		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)), false);
+		assertEquals(action.isElementPresent(By.id(SupplierList.SUPPLIERNAME_ID)),true);
+	}
+
+	// Step 7,8 Check Cancel button on Unsaved Changes dialog
+	@Test(dependsOnMethods="checkNoButtonOnUnsavedChangesDialog")
+	public void checkYesButtonOnUnsavedChangesDialog() throws InterruptedException {
+		action = new ScreenAction(driver);
+		action.waitObjVisibleAndClick(By.id(ScreenObjects.CANCEL_ID));
+		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
+		action.assertTextEqual(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS), Messages.UNSAVED_CHANGE);
+		driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
+		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)), false);
+		assertEquals(action.isElementPresent(By.id(SupplierList.SUPPLIERNAME_ID)), false);
+		Thread.sleep(1000);
+		action.assertTitleScreen("Maintain Suppliers");
+	}
 
 }

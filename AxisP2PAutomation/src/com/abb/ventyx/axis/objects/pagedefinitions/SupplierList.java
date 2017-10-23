@@ -13,5 +13,5 @@ public class SupplierList {
 	public static final String SUPPLIERADMINUSERID_ID = "gwt-uid-41";
 	
 	public static final String PROFILE_CSS = "#psuProfile > div";
-	public static final String COMBOBOX = "#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table > tbody";
+	public static final String COMBOBOX_CSS = "#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table > tbody";
 }
