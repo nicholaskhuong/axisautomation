@@ -33,6 +33,8 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 	@TestDataKey private final String NEWPASSWORD ="Testuser4";
 	@TestDataKey private final String NEWUSERID ="Automator 1 Upda";
 	@TestDataKey private final String USERID ="Automator 1";
+	@TestDataKey private final String ACTIONSTATUS ="Active";
+	@TestDataKey private final String CREATEDSTATUS ="Created";
 	public static int i;
 	// Step 1 Select Users Sub Menu
 	@Test
@@ -58,9 +60,9 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 		table = new TableFunction(driver);
 		i = table.findRowByString1(3,CUSTOMERUSEREMAIL);
 		Thread.sleep(1000);
-		assertEquals(table.getValueRow(2,i), "Automator 1");
+		assertEquals(table.getValueRow(2,i), USERID);
 		assertEquals(table.getValueRow(4,i), "All Permissions");
-		assertEquals(table.getValueRow(5,i), "Active");
+		assertEquals(table.getValueRow(5,i), CREATEDSTATUS);
 		table.clickUserNumber(CUSTOMERUSEREMAIL);
 	}
 
@@ -100,11 +102,11 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 	public void updateWithUnmachtedPassword() throws InterruptedException{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(CustomerUsers.PASSWORD_TEXTBOX)));	
 		driver.findElement(By.cssSelector(CustomerUsers.PASSWORD_TEXTBOX)).clear();
-		Thread.sleep(200);
+		Thread.sleep(500);
 		driver.findElement(By.cssSelector(CustomerUsers.PASSWORD_TEXTBOX)).sendKeys(PASSWORD);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)));
 		driver.findElement(By.cssSelector(CustomerUsers.CONFIRMPASSWORD_TEXTBOX)).clear();
-		Thread.sleep(200);
+		Thread.sleep(500);
 		driver.findElement(By.cssSelector(CustomerUsers.CONFIRMPASSWORD_TEXTBOX)).sendKeys(CONFIRMPASSWORD);
 		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)));
@@ -139,7 +141,7 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.CANCEL_BUTTON)));
 		driver.findElement(By.cssSelector(CustomerUsers.CANCEL_BUTTON)).click();
 		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)), false);
-		Thread.sleep(200);
+		Thread.sleep(1000);
 		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER)).getText(), "Maintain Customer Users");
 	}
 	
