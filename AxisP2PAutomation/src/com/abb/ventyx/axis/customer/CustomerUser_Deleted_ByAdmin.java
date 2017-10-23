@@ -27,14 +27,14 @@ public class CustomerUser_Deleted_ByAdmin extends BaseTestCase {
 	TableFunction table;
 	WebDriverWait wait;
 	public static int i;
-	@TestDataKey private final String CUSTOMERUSEREMAIL = "cuser2@abb.com";
+	@TestDataKey private final String CUSTOMERUSEREMAIL = "cuser1@abb.com";
 	@TestDataKey private final String PASSWORD ="Testuser1";
 
 	// Step 1 Select Users Sub Menu
 	@Test
 	public void selectUsersSubMenu() throws InterruptedException{
 		WebDriverWait wait = new WebDriverWait(driver, 60);
-		WebElement customerMaintenanceMenu = (new WebDriverWait(driver, 120))
+		WebElement customerMaintenanceMenu = (new WebDriverWait(driver, 60))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU)));
 		customerMaintenanceMenu.click();
@@ -57,7 +57,8 @@ public class CustomerUser_Deleted_ByAdmin extends BaseTestCase {
 	public void clickTrashBinIconOfUser() throws InterruptedException{
 		table = new TableFunction(driver);
 		action = new ScreenAction(driver);
-		i = table.findRowByString1(3,CUSTOMERUSEREMAIL)-1;
+		int h = table.findRowByString1(3,CUSTOMERUSEREMAIL);
+		i = h-1;
 		System.out.print(i+"Test test ");
 		action.clickBtn(By.id("deleteItemBtn"+i));
 
