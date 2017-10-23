@@ -17,7 +17,6 @@ import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
 import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
-import com.ventyx.testng.TestDataKey;
 
 @ALM(id = "612")
 @Credentials(user = "cadmin1@abb.com", password = "Testuser1")
