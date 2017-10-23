@@ -22,11 +22,10 @@ import com.ventyx.testng.TestDataKey;
 @ALM(id = "155") 
 @Credentials(user = "mail5@abb.com", password = "testuser")
 public class Permissions_Updating extends BaseTestCase {
-	@TestDataKey private final String PERMISSION_NAME_A = "AUTOMATION_PERMISSION_AA";
-	@TestDataKey private final String PERMISSION_NAME_B = "AUTOMATION_PERMISSION_BB";
-	@TestDataKey private final String DOCUMENT_TYPE_A = "PurchaseOrder";
-	@TestDataKey private final String USER_TYPE_A = "CSA";
-
+	String PERMISSION_NAME_A = "AUTOMATION_PERMISSION_AA";
+	String PERMISSION_NAME_B = "AUTOMATION_PERMISSION_BB";
+	String DOCUMENT_TYPE_A = "PurchaseOrder";
+	String USER_TYPE_A = "CSA";
 	// Step 1
 	@Test
 	public void openMaintainPermissionScreen() throws Exception {
