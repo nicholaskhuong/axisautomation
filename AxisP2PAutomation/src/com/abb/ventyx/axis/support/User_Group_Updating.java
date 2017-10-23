@@ -57,6 +57,7 @@ public class User_Group_Updating extends BaseTestCase {
 
 	}
 
+	// Step 2
 	@Test(dependsOnMethods = "selectuserTab")
 	public void selectRowForUpdate() throws Exception {
 		WebElement customer = driver.findElement(By
@@ -83,6 +84,7 @@ public class User_Group_Updating extends BaseTestCase {
 				.click();
 	}
 
+	// Step 3
 	@Test(dependsOnMethods = "selectRowForUpdate")
 	public void updateWithNewName() {
 
