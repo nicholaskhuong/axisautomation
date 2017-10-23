@@ -3,14 +3,17 @@ package com.abb.ventyx.axis.customer;
 import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
+import com.abb.ventyx.axis.objects.pagedefinitions.AddressContact;
 import com.abb.ventyx.axis.objects.pagedefinitions.CustomerMenu;
 import com.abb.ventyx.axis.objects.pagedefinitions.CustomerUsers;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 import com.abb.ventyx.axis.objects.pagedefinitions.SupplierList;
+import com.abb.ventyx.axis.objects.pagedefinitions.SupplierMenu;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
@@ -133,7 +136,7 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 		assertEquals(action.isElementPresent(By.id(SupplierList.SUPPLIERNAME_ID)),true);
 	}
 
-	// Step 7,8 Check Cancel button on Unsaved Changes dialog
+	// Step 7,8 Check Yes button on Unsaved Changes dialog
 	@Test(dependsOnMethods="checkNoButtonOnUnsavedChangesDialog")
 	public void checkYesButtonOnUnsavedChangesDialog() throws InterruptedException {
 		action = new ScreenAction(driver);
@@ -148,4 +151,35 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 		action.assertTitleScreen("Maintain Suppliers");
 	}
 
+	@Test(dependsOnMethods="checkYesButtonOnUnsavedChangesDialog")
+	public void accessSupplierFromCustomerAndCheckASNOff() throws InterruptedException{
+		action = new ScreenAction(driver);
+		action.clickBtn(By.id("accessSupplierBtn"+j));
+		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));
+		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADDRESS_CONTACT_ID));
+		wait = new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By
+				.id(AddressContact.COMPANY_NAME)));
+		//action.assertTextEqual(By.id(AddressContact.COMPANY_NAME), NEWSUPPLIERNAME);
+		System.out.println(driver.findElement(By.id(AddressContact.COMPANY_NAME)).getAttribute("value")+" Supplier Name");
+		assertEquals(driver.findElement(By.id(AddressContact.COMPANY_NAME)).getAttribute("value"), NEWSUPPLIERNAME);
+	
+	}
+	
+	@Test(dependsOnMethods="accessSupplierFromCustomerAndCheckASNOff")
+	public void loginAsTheUpdatedSupplierAndCheckASNOff() throws InterruptedException {
+		action = new ScreenAction(driver);
+		action.signOut();
+		Thread.sleep(1000);
+		action.signOut();
+		action.signIn(SUPPLIEREMAIL, NEWPASSWORD);
+		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));
+		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADDRESS_CONTACT_ID));
+		assertEquals(action.isElementPresent(By.id("menuItemAsn")),false);
+		wait = new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By
+				.id(AddressContact.COMPANY_NAME)));
+		//action.assertTextEqual(By.id(AddressContact.COMPANY_NAME), NEWSUPPLIERNAME);
+		assertEquals(driver.findElement(By.id(AddressContact.COMPANY_NAME)).getAttribute("value"), NEWSUPPLIERNAME);
+	}
 }
