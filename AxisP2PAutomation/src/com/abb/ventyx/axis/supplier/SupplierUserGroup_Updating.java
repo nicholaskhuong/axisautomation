@@ -79,7 +79,7 @@ public class SupplierUserGroup_Updating extends BaseTestCase {
 	@Test(dependsOnMethods = "addValidation")
 	public void cancelClickYes() {
 
-		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
+		//action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
 		action.inputTextField(UserGroup.USERGROUP_NAME_ID, "ABC");
 		action.cancelClickYes(By.cssSelector(UserGroup.ADD_BTN_CSS),
 				UserGroup.TITLE);
