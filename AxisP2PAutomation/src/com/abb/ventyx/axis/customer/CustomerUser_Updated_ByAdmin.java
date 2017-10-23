@@ -25,17 +25,17 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
 	WebDriverWait wait;
-	@TestDataKey private final String CUSTOMERUSEREMAIL = "cuser1@abb.com";
-	@TestDataKey private final String INVALIDCUSTOMERUSEREMAIL = "cuser1abb.com";
-	@TestDataKey private final String INVALIDPASSWORD = "<html>";
-	@TestDataKey private final String PASSWORD ="Testuser2";
-	@TestDataKey private final String CONFIRMPASSWORD ="Testuser3";
-	@TestDataKey private final String NEWPASSWORD ="Testuser4";
-	@TestDataKey private final String NEWUSERID ="Automator 1 Upda";
-	@TestDataKey private final String USERID ="Automator 1";
-	@TestDataKey private final String ACTIONSTATUS ="Active";
-	@TestDataKey private final String CREATEDSTATUS ="Created";
-	public static int i;
+	String CUSTOMERUSEREMAIL = "cuser1@abb.com";
+	String INVALIDCUSTOMERUSEREMAIL = "cuser1abb.com";
+	String INVALIDPASSWORD = "<html>";
+	String PASSWORD ="Testuser2";
+	String CONFIRMPASSWORD ="Testuser3";
+	String NEWPASSWORD ="Testuser4";
+	String NEWUSERID ="Automator 1 Upda";
+	String USERID ="Automator 1";
+	String ACTIONSTATUS ="Active";
+	String CREATEDSTATUS ="Created";
+	int i;
 	// Step 1 Select Users Sub Menu
 	@Test
 	public void selectUsersSubMenu() throws InterruptedException{

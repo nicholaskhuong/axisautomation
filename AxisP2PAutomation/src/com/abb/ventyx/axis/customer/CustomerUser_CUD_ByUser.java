@@ -27,25 +27,25 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
 	WebDriverWait wait;
-	public static int i;
-	@TestDataKey private final String USERID = "createdbyuser 01";
-	@TestDataKey private final String CUSTOMERUSEREMAIL = "cusercreatedbyuser@abb.com";
-	@TestDataKey private final String PASSWORD = "Testuser2";
-	@TestDataKey private final String CONFIRMPASSWORD = "Testuser2";
-	@TestDataKey private final String USERGROUPNAME = "All Permissions";
-	@TestDataKey private final String CREATEDSTATUS = "Created";
-	@TestDataKey private final String ACTIVESTATUS = "Active";
-	@TestDataKey private final String NEWPASSWORD = "Testuser1";
-	@TestDataKey private final String USEREMAIL_ADMIN = "cadmin1@abb.com";
-	@TestDataKey private final String NEWPASSWORD_ADMIN = "Testuser2";
-	@TestDataKey private final String NEWUSEREMAIL_ADMIN = "cadmin1updated@abb.com";
+	int i;
+	String USERID = "createdbyuser 01";
+	String CUSTOMERUSEREMAIL = "cusercreatedbyuser@abb.com";
+	String PASSWORD = "Testuser2";
+	String CONFIRMPASSWORD = "Testuser2";
+	String USERGROUPNAME = "All Permissions";
+	String CREATEDSTATUS = "Created";
+	String ACTIVESTATUS = "Active";
+	String NEWPASSWORD = "Testuser1";
+	String USEREMAIL_ADMIN = "cadmin1@abb.com";
+	String NEWPASSWORD_ADMIN = "Testuser2";
+	String NEWUSEREMAIL_ADMIN = "cadmin1updated@abb.com";
 
 	// New info for customer user to use for updating
-	@TestDataKey private final String USERID2 = "CU Updated";
-	@TestDataKey private final String USEREMAIL2 = "CUUPDATED@abb.com";
-	@TestDataKey private final String USEREMAILLOWERCASE = "cuupdated@abb.com";
-	@TestDataKey private final String USERGGROUP2 = "test";
-	@TestDataKey private final String NEWPASSWORD2 = "Testuser3";
+	String USERID2 = "CU Updated";
+	String USEREMAIL2 = "CUUPDATED@abb.com";
+	String USEREMAILLOWERCASE = "cuupdated@abb.com";
+	String USERGGROUP2 = "test";
+	String NEWPASSWORD2 = "Testuser3";
 
 	@Test
 	public void selectUsersSubMenu() throws InterruptedException{

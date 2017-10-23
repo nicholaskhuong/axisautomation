@@ -29,25 +29,25 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
 	WebDriverWait wait;
-	public static int i;
-	public static int j;
+	int i;
+	int j;
 
-	@TestDataKey private final String SUPPLIERNAME = "Yamaha10";
-	@TestDataKey private final String SUPPLIEREMAIL = "yamaha10@abb.com";
-	@TestDataKey private final String COMPANYREGIRATIONNO = "COMYAMAHA10";
-	@TestDataKey private final String TAXREGIRATIONNO = "TAXYAMAHA10";
-	@TestDataKey private final String PENDINGSTATUS = "Pending";
-	@TestDataKey private final String PROFILE = "All Document Types";
-	@TestDataKey private final String INVALIDEMAIL = "<HTML>";
-	@TestDataKey private final String PASSWORDORIGINALLY = "Testuser2";
-	@TestDataKey private final String NEWPASSWORD = "Testuser1";
+	String SUPPLIERNAME = "Yamaha10";
+	String SUPPLIEREMAIL = "yamaha10@abb.com";
+	String COMPANYREGIRATIONNO = "COMYAMAHA10";
+	String TAXREGIRATIONNO = "TAXYAMAHA10";
+	String PENDINGSTATUS = "Pending";
+	String PROFILE = "All Document Types";
+	String INVALIDEMAIL = "<HTML>";
+	String PASSWORDORIGINALLY = "Testuser2";
+	String NEWPASSWORD = "Testuser1";
 
-	@TestDataKey private final String DUPLICATEDNAME = "ENCLAVE";
-	@TestDataKey private final String DUPLICATEDCOMPANYREGISTRATIONNO = "ENCLAVE";
-	@TestDataKey private final String DUPLICATEDTAXREGISTRATIONNO = "ENCLAVE";
-	@TestDataKey private final String DUPLICATEDSUPPLIEREMAIL = "perla@enclave.vn";
-	@TestDataKey private final String AXISSUPPORTEMAIL = "mail5@abb.com";
-	@TestDataKey private final String AXISSUPPORTPWD = "testuser";
+	String DUPLICATEDNAME = "ENCLAVE";
+	String DUPLICATEDCOMPANYREGISTRATIONNO = "ENCLAVE";
+	String DUPLICATEDTAXREGISTRATIONNO = "ENCLAVE";
+	String DUPLICATEDSUPPLIEREMAIL = "perla@enclave.vn";
+	String AXISSUPPORTEMAIL = "mail5@abb.com";
+	String AXISSUPPORTPWD = "testuser";
 
 	// Step 1
 	@Test
