@@ -6,7 +6,7 @@ public class AxisAdministratorUsers {
 	public static final String SCREEN_TITLE_ID= "common-header-left-layout";
 	public static final String SCREEN_TITLE="Maintain Axis Support Users";
 	public static final String SCREEN_CREATE_TITLE="Create User";
-	public static final String SCREEN_UPDATE_TITLE="Modify User";
+	public static final String SCREEN_UPDATE_TITLE="Modify Axis Administrator User";
 	public static final String FILTER_BTN_XPATH="//*[@id='HeaderMenuBar']/span[1]";
 	public static final String ADD_BTN_XPATH="//*[@id='HeaderMenuBar']/span[2]";
 	public static final String ROW_ID= "usrSequenceIdStrBtn";
