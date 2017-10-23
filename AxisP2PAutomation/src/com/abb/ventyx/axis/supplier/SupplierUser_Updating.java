@@ -197,8 +197,9 @@ public class SupplierUser_Updating extends BaseTestCase {
 
 	@Test(dependsOnMethods = "unselectUserGroup")
 	public void addValidationUserID() throws InterruptedException {
-		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
+	
 		action.clickCheckBoxN(1);
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		// Now, this is an issue
 		action.checkValidationTextField(Users.USER_ID, USERID_EXISTING, Messages.USERS_EXISTING,
 				ScreenObjects.ERROR_CSS);
