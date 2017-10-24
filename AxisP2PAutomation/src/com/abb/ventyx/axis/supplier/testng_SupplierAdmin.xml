@@ -23,4 +23,9 @@
 				<class name="com.abb.ventyx.axis.supplier.Supplier_Admin_AddContact" />					
 		</classes>	
   	</test>
+  	<test name="Supplier Admin Add Update Contact">
+		<classes>
+				<class name="com.abb.ventyx.axis.supplier.Supplier_Admin_UpdateContact" />					
+		</classes>	
+  	</test>
 </suite> 
