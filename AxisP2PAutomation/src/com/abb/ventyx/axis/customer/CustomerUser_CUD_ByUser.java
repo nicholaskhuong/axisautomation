@@ -29,6 +29,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	int i;
 	String USERID = "createdbyuser 01";
 	String CUSTOMERUSEREMAIL = "cusercreatedbyuser@abb.com";
+	String CUSTOMERUSEREMAIL01 = "cusercreatedbyuser01@abb.com";
 	String PASSWORD = "Testuser2";
 	String CONFIRMPASSWORD = "Testuser2";
 	String USERGROUPNAME = "All Permissions";
@@ -65,18 +66,18 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		table = new TableFunction(driver);
 		action = new ScreenAction(driver);
 		wait = new WebDriverWait(driver, 60);
-		assertEquals(table.isValueExisting(3, CUSTOMERUSEREMAIL), false, "User exists! Can't create a new user with the same email");
+		assertEquals(table.isValueExisting(3, CUSTOMERUSEREMAIL01), false, "User exists! Can't create a new user with the same email");
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerUsers.ADD_BUTTON));
 		action.inputTextField(CustomerUsers.USERID_TEXTBOX_ID, USERID);
-		action.inputTextField(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID, CUSTOMERUSEREMAIL);
+		action.inputTextField(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID, CUSTOMERUSEREMAIL01);
 		action.inputTextField(CustomerUsers.PASSWORD_TEXTBOX_ID, PASSWORD);
 		action.inputTextField(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID, CONFIRMPASSWORD);
 		table.selectUserGroup(CustomerUsers.USERGROUP_GRID, USERGROUPNAME);
 		action.clickBtn(By.id(CustomerUsers.SAVE_BUTTON_ID));
 		action.assertMessgeError(CustomerUsers.SUCCESS, Messages.USER_CREATE_SUCCESSFULLY);
-		i = table.findRowByString1(3, CUSTOMERUSEREMAIL);
+		i = table.findRowByString1(3, CUSTOMERUSEREMAIL01);
 		assertEquals(table.getValueRow(2, i), USERID);
-		assertEquals(table.getValueRow(3, i), CUSTOMERUSEREMAIL);
+		assertEquals(table.getValueRow(3, i), CUSTOMERUSEREMAIL01);
 		assertEquals(table.getValueRow(4, i), USERGROUPNAME);
 		assertEquals(table.getValueRow(5, i), CREATEDSTATUS);
 	}
@@ -88,7 +89,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		wait = new WebDriverWait(driver, 60);
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.PROFILE_PANEL));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
-		action.inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, CUSTOMERUSEREMAIL);
+		action.inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, CUSTOMERUSEREMAIL01);
 		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, PASSWORD);
 		action.clickBtn(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));
 

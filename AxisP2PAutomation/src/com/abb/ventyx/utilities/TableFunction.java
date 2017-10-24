@@ -121,7 +121,9 @@ public class TableFunction {
 					By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr[" + i + "]//td[3]")).getText();
 			if (foundValue.equals(value)) {
 				i = i - 1;
-				driver.findElement(By.id("usrSequenceIdStrBtn" + i)).click();
+				WebElement usrSequenceIdStrBtn = driver.findElement(By.id("usrSequenceIdStrBtn" + i));
+				((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", usrSequenceIdStrBtn);
+				usrSequenceIdStrBtn.click();
 				break;
 			}
 		}
