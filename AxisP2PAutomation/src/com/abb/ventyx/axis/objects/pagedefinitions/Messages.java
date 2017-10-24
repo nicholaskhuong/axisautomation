@@ -78,7 +78,8 @@ public class Messages {
 	public static final String DUPLICATECOMPANYREGISTRATIONNO = "Company Registration Number already exists";
 	public static final String DUPLICATEDTAXREGISTRATIONNO = "Tax Registration Number already exists";
 	public static final String SUPPLIER_CREATED_SUCCESSFULLY = "Supplier successfully created";
-	public static final String UNDELETE_MESSAGE = "Are you sure you want to delete the selected address?";
+	public static final String DELETE_ADDRESS_MESSAGE = "Are you sure you want to delete the selected address?";
+	public static final String DELETE_CONTACT_MESSAGE = "Are you sure you want to delete the selected contact?";
 
 	public static final String INVALID_EMAIL_2 = "Please enter a valid email address";
 	public static final String ACTIVATE_DEACTIVE_WITHOUTSUPPLIER = "Please select at least one supplier";
@@ -92,4 +93,7 @@ public class Messages {
 
 	// User Preferences
 	public static final String USERPREFERENCES_UPDATED_SUCCESSFULLY = "Profile successfully updated";
+	public static final String DELIVERY_CODE_LESS_15CHARACTER = "Delivery Code must be exactly 15 characters";
+	public static final String DELIVERY_CODE_EQUAL_15CHARACTER = "Code Set successfully added";
+
 }

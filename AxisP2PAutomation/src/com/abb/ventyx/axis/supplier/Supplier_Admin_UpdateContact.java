@@ -109,7 +109,7 @@ public class Supplier_Admin_UpdateContact extends BaseTestCase {
 		// Verify the message
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(),
-				Messages.UNDELETE_MESSAGE);
+				Messages.DELETE_ADDRESS_MESSAGE);
 
 	}
 

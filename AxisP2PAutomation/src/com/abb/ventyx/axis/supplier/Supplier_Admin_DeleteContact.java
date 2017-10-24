@@ -15,15 +15,13 @@ import com.abb.ventyx.utilities.Credentials;
 import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
 
-@ALM(id = "627")
-@Credentials(user = "donna201@abb.com", password = "Testuser1")
-public class Supplier_Admin_DeleteAddress extends BaseTestCase {
+@ALM(id = "648")
+@Credentials(user = "donna202@abb.com", password = "Testuser1")
+public class Supplier_Admin_DeleteContact extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
 	String expected = "Maintain Address & Contact";
-	String message_cant_delete = "The default address cannot be deleted";
-	public int i;
-	public int j;
+	int milliseconds = 800;
 
 	@Test
 	public void openScreen() throws InterruptedException {
@@ -35,50 +33,36 @@ public class Supplier_Admin_DeleteAddress extends BaseTestCase {
 	}
 
 	@Test(dependsOnMethods = "openScreen")
-	public void deleteOneorMoreNO() throws InterruptedException {
-		// Step 2,3
+	public void deleteContact() throws InterruptedException {
+		// step 2,3
+		action.clickBtn(By.cssSelector(MaintainSuppliers.CONTACT_TAB));
+		action.pause(milliseconds);
 		action.clickCheckBoxN(1);
 		action.clickCheckBoxN(2);
+		action.pause(milliseconds);
 		action.clickBtn(By.cssSelector(MaintainSuppliers.DELETE_ICON));
+
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(),
-				Messages.DELETE_ADDRESS_MESSAGE);
+				Messages.DELETE_CONTACT_MESSAGE);
+		action.pause(milliseconds);
 		driver.findElement(By.id(ScreenObjects.NO_BTN_ID)).click();
 		action.waitObjVisible(By.cssSelector(MaintainSuppliers.EDIT_SUPPLIER_POPUP));
 		assertEquals(driver.findElement(By.cssSelector(MaintainSuppliers.EDIT_SUPPLIER_POPUP)).getText(), expected);
-	}
-
-	@Test(dependsOnMethods = "deleteOneorMoreNO")
-	public void deleteOneorMoreYES() throws InterruptedException {
-		// Step 4
-		action.waitObjVisible(By.id(MaintainSuppliers.SUPPLIER_NAME));
+		// step 4
+		action.pause(milliseconds);
 		action.clickCheckBoxN(1);
 		action.clickCheckBoxN(2);
 		action.clickCheckBoxN(1);
 		action.clickCheckBoxN(2);
 		action.clickBtn(By.cssSelector(MaintainSuppliers.DELETE_ICON));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
+		action.pause(milliseconds);
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(),
-				Messages.DELETE_ADDRESS_MESSAGE);
+				Messages.DELETE_CONTACT_MESSAGE);
 		driver.findElement(By.cssSelector(MaintainSuppliers.YES_BTN)).click();
 		action.waitObjVisible(By.cssSelector(MaintainSuppliers.EDIT_SUPPLIER_POPUP));
 		assertEquals(driver.findElement(By.cssSelector(MaintainSuppliers.EDIT_SUPPLIER_POPUP)).getText(), expected);
 	}
-	/*
-	 * @Test(dependsOnMethods = "deleteOneorMoreYES") public void
-	 * deleteDefaultType() throws InterruptedException { //Step 5
-	 * action.waitObjVisible(By.id("addrId1")); //Click a record with Address type =
-	 * Default Address table = new TableFunction(driver); i =
-	 * table.findRowByString1(2, "Default Address"); j=i-1; WebElement elemement=
-	 * driver.findElement(By.id("addrId"+j)); elemement.click();
-	 * action.clickCheckBoxN(2);
-	 * //action.clickBtn(By.cssSelector(MaintainSuppliers.DELETE_ICON));
-	 * //action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
-	 * //assertEquals(driver.findElement(By.cssSelector(ScreenObjects.
-	 * UNSAVED_CHANGE_CSS)).getText(), Messages.UNDELETE_MESSAGE);
-	 * //driver.findElement(By.cssSelector(Maintain]=[Suppliers.YES_BTN)).click();
-	 * 
-	 * }
-	 */
 
 }
