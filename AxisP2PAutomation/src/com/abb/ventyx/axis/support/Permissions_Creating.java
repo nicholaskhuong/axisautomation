@@ -29,7 +29,7 @@ public class Permissions_Creating extends BaseTestCase {
 
 	// Step 1
 	@Test
-	public void openMaintainPermissionScreen() throws InterruptedException{
+	public void openMaintainPermissionScreen() throws InterruptedException {
 		PermissionsAction permissionsAction = new PermissionsAction(driver);
 
 		permissionsAction.clickSystemConfigurationMenu();
@@ -41,9 +41,10 @@ public class Permissions_Creating extends BaseTestCase {
 		numberOfRowsBeforeAdding = permissionsAction.countRow(Permissions.TABLEBODY);
 		System.out.print(numberOfRowsBeforeAdding + "numberOfRowsBeforeAdding");
 	}
+
 	// Step 2, 3, 4
-	@Test(dependsOnMethods="openMaintainPermissionScreen")
-	public void createPermissionwithValidValue() throws InterruptedException{
+	@Test(dependsOnMethods = "openMaintainPermissionScreen")
+	public void createPermissionwithValidValue() throws InterruptedException {
 		PermissionsAction permissionsAction = new PermissionsAction(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		permissionsAction.clickAddButton();
@@ -55,12 +56,9 @@ public class Permissions_Creating extends BaseTestCase {
 		permissionsAction.selectUserType(Permissions.SUPPLIER);
 
 		permissionsAction.clickSaveButtonOnAddPermisisonPopUp();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By
-				.cssSelector(Messages.PERMISSION_CREATED_SUCCESSFULLY_CSS)));
-		assertEquals(
-				driver.findElement(
-						By.cssSelector(Messages.PERMISSION_CREATED_SUCCESSFULLY_CSS))
-						.getText(), Messages.PERMISSION_CREATED_SUCCESSFULLY);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(Messages.PERMISSION_CREATED_SUCCESSFULLY_CSS)));
+		assertEquals(driver.findElement(By.cssSelector(Messages.PERMISSION_CREATED_SUCCESSFULLY_CSS)).getText(),
+				Messages.PERMISSION_CREATED_SUCCESSFULLY);
 		// Filter
 		permissionsAction.enterValueTofilterPermission(PERMISSION_NAME_A);
 		permissionsAction.filterPermissionbyDocumentType("PurchaseOrder");
@@ -69,81 +67,63 @@ public class Permissions_Creating extends BaseTestCase {
 
 		assertEquals(numberOfRowsBeforeAdding + 1, numberOfRowsAfterAdding);
 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By
-				.cssSelector(Permissions.PNROW1)));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By
-				.cssSelector(Permissions.UTROW1)));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By
-				.cssSelector(Permissions.DTROW1)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(Permissions.PNROW1)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(Permissions.UTROW1)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(Permissions.DTROW1)));
 
 		assertEquals(
 				driver.findElement(
-						By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr["
-								+ numberOfRowsAfterAdding + "]//td[2]"))
-								.getText(), PurchaseorderType);
+						By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr[" + numberOfRowsAfterAdding
+								+ "]//td[2]")).getText(), PurchaseorderType);
 		assertEquals(
 				driver.findElement(
-						By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr["
-								+ numberOfRowsAfterAdding + "]//td[3]"))
-								.getText(), PERMISSION_NAME_A);
+						By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr[" + numberOfRowsAfterAdding
+								+ "]//td[3]")).getText(), PERMISSION_NAME_A);
 		assertEquals(
 				driver.findElement(
-						By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr["
-								+ numberOfRowsAfterAdding + "]//td[4]"))
-								.getText(), USER_TYPE_A);
+						By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr[" + numberOfRowsAfterAdding
+								+ "]//td[4]")).getText(), USER_TYPE_A);
 		Thread.sleep(1000);
 	}
+
 	// Step 5, 6, 7
-	@Test(dependsOnMethods="createPermissionwithValidValue")
-	public void addPermissonWithoutMandatoryField() throws InterruptedException{
+	@Test(dependsOnMethods = "createPermissionwithValidValue")
+	public void addPermissonWithoutMandatoryField() throws InterruptedException {
 		PermissionsAction permissionsAction = new PermissionsAction(driver);
 		permissionsAction.clickAddButton();
 
 		// Step 6
 		permissionsAction.clickSaveButtonOnAddPermisisonPopUp();
 		Thread.sleep(1000);
-		assertEquals(
-				driver.findElement(
-						By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS))
-						.getText(), Messages.EMPTYPERMISSIONNAME);
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)).getText(), Messages.EMPTYPERMISSIONNAME);
 
 		// Step 7
 		permissionsAction.enterPermissionName("ECHO 1");
 		permissionsAction.clickSaveButtonOnAddPermisisonPopUp();
-		assertEquals(
-				driver.findElement(
-						By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS))
-						.getText(), Messages.EMPTYUSERTYPE);
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)).getText(), Messages.EMPTYUSERTYPE);
 		Thread.sleep(2000);
 	}
+
 	// Step 8, 9, 10
-	@Test(dependsOnMethods="addPermissonWithoutMandatoryField")
-	public void checkUnsavedChangesDialog() throws InterruptedException{
+	@Test(dependsOnMethods = "addPermissonWithoutMandatoryField")
+	public void checkUnsavedChangesDialog() throws InterruptedException {
 		// Step 8
 		PermissionsAction permissionsAction = new PermissionsAction(driver);
 		ScreenAction action = new ScreenAction(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		permissionsAction.clickCancelButtonOnAddPermisisonPopUp();
-		assertEquals(
-				driver.findElement(
-						By.cssSelector(Permissions.CONFIRMATION_OF_DELETION))
-						.getText(), Messages.UNSAVED_CHANGE);
+		assertEquals(driver.findElement(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION)).getText(), Messages.UNSAVED_CHANGE);
 
 		// Step 9
 		driver.findElement(By.id(ScreenObjects.NO_BTN_ID)).click();
 		Thread.sleep(1000);
-		assertEquals(
-				driver.findElement(
-						By.cssSelector(Permissions.PERMISSIONWINDOWHEADER))
-						.getText(), ADDPERMISSIONHEADER);
+		assertEquals(driver.findElement(By.cssSelector(Permissions.PERMISSIONWINDOWHEADER)).getText(), ADDPERMISSIONHEADER);
 
 		// Step 10
 		permissionsAction.clickCancelButtonOnAddPermisisonPopUp();
 		driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
 		Thread.sleep(1000);
-		assertEquals(
-				driver.findElement(By.cssSelector(Permissions.PERMISSIONHEADER))
-				.getText(), MAINTAINPERMISSIONHEADER);
+		assertEquals(driver.findElement(By.cssSelector(Permissions.PERMISSIONHEADER)).getText(), MAINTAINPERMISSIONHEADER);
 
 		// Step 11
 		permissionsAction.clickAddButton();
@@ -151,10 +131,7 @@ public class Permissions_Creating extends BaseTestCase {
 
 		assertEquals(action.isElementPresent(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION)), false);
 		assertEquals(action.isElementPresent(By.cssSelector(Permissions.PERMISSIONWINDOWHEADER)), false);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By
-				.cssSelector(Permissions.PERMISSIONHEADER)));
-		assertEquals(
-				driver.findElement(By.cssSelector(Permissions.PERMISSIONHEADER))
-				.getText(), MAINTAINPERMISSIONHEADER);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(Permissions.PERMISSIONHEADER)));
+		assertEquals(driver.findElement(By.cssSelector(Permissions.PERMISSIONHEADER)).getText(), MAINTAINPERMISSIONHEADER);
 	}
 }

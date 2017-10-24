@@ -44,6 +44,7 @@ public class Messages {
 	public static final String UPDATE_SAME_EMAIL = "Unable to change email address, please contact your Support admin";
 	public static final String INVALID_PWD = "Password must be 6-16 characters. Password must have at least one uppercase letter, one lowercase letter, and one number. This is not a valid password string";
 	public static final String INVALID_PWD1 = "Password must have at least one uppercase letter, one lowercase letter, and one number. This is not a valid password string";
+	public static final String INVALID_PWD2 = "Password must have at least one uppercase letter, one lowercase letter, and one number.";
 
 	public static final String UNMATCHED_CONFIRM_PWD = "Entered Password is not the same, please verify.";
 
@@ -61,24 +62,24 @@ public class Messages {
 
 	// Users under Customer Maintenance menu in Customer view
 	public static final String ADDRESS_CONTACT_SUCCESSFULLY_UPDATED = "Address & Details successfully updated";
-	public static final String INVALIED_EMAIL_MESSAGE ="Please enter valid email addresses with comma separator";
-	public static final String NO_SPECIAL_CHARACTER_ALLOWED ="No special character allowed";
+	public static final String INVALIED_EMAIL_MESSAGE = "Please enter valid email addresses with comma separator";
+	public static final String NO_SPECIAL_CHARACTER_ALLOWED = "No special character allowed";
 	public static final String SUPPLIER_UPDATED_SUCCESSFULLY = "Supplier successfully updated";
-	public static final String ADDRESS_SUCCESSFULLY_UPDATED= "Address successfully updated";
+	public static final String ADDRESS_SUCCESSFULLY_UPDATED = "Address successfully updated";
 
 	// Address And contact
 	public static final String ADDRESSCONTACTUPDATE_SUCCESSFULLY = "Address & Details successfully updated";
 
 	// Business Code Sets
 	public static final String TAXCODEADD_SUCCESSFULLY = "Code Set successfully added";
-	
+
 	// Supplier List in Customer View
 	public static final String DUPLICATEDEMAIL = "Email Address already exists";
 	public static final String DUPLICATECOMPANYREGISTRATIONNO = "Company Registration Number already exists";
 	public static final String DUPLICATEDTAXREGISTRATIONNO = "Tax Registration Number already exists";
 	public static final String SUPPLIER_CREATED_SUCCESSFULLY = "Supplier successfully created";
 	public static final String UNDELETE_MESSAGE = "Are you sure you want to delete the selected address?";
-	
+
 	public static final String INVALID_EMAIL_2 = "Please enter a valid email address";
 	public static final String ACTIVATE_DEACTIVE_WITHOUTSUPPLIER = "Please select at least one supplier";
 	public static final String DEACTIVATE_SUPPLIER = "Are you sure you want to deactivate selected supplier?";

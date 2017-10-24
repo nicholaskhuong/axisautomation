@@ -87,7 +87,7 @@ public class Users_Updating extends BaseTestCase {
 		WebElement warningMessage1 = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)));
-		assertEquals(warningMessage1.getText(), Messages.INVALID_PWD);
+		assertEquals(warningMessage1.getText(), Messages.INVALID_PWD2);
 
 		// Input Invalid confirm pwd
 		pwd.clear();

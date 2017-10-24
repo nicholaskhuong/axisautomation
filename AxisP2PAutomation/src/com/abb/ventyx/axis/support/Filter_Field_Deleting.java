@@ -38,17 +38,14 @@ public class Filter_Field_Deleting extends BaseTestCase {
 
 	@Test
 	public void clickFilterField() {
-		WebElement axisConfigParentButton = (new WebDriverWait(driver, 60))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION)));
+		WebElement axisConfigParentButton = (new WebDriverWait(driver, 60)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION)));
 		axisConfigParentButton.click();
-		WebElement axisFilterConfig = (new WebDriverWait(driver, 60))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(AxisConfigMenu.FILTER_CONFIG)));
+		WebElement axisFilterConfig = (new WebDriverWait(driver, 60)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(AxisConfigMenu.FILTER_CONFIG)));
 		axisFilterConfig.click();
-		WebElement axisFilterField = (new WebDriverWait(driver, 60))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(AxisConfigMenu.FILTER_FIELD)));
+		WebElement axisFilterField = (new WebDriverWait(driver, 60)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(AxisConfigMenu.FILTER_FIELD)));
 		axisFilterField.click();
 
 		// Step 1 Update the record from Add New step.
@@ -56,38 +53,28 @@ public class Filter_Field_Deleting extends BaseTestCase {
 		row = grid.findItemByColumnName("Field Name", FIELD_NAME);
 		Assert.assertNotEquals(row, -1, "Record not found");
 
-		WebElement horizontal_scroll = driver
-				.findElement(By
-						.xpath("//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div[2]"));
-		((JavascriptExecutor) driver).executeScript(
-				"arguments[0].scrollIntoView(true);", horizontal_scroll);
+		WebElement horizontal_scroll = driver.findElement(By
+				.xpath("//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div[2]"));
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", horizontal_scroll);
 		driver.findElement(By.id("deleteItemBtn" + (row - 1))).click();
 	}
 
 	@Test(dependsOnMethods = "clickFilterField")
 	public void catchSuccessMessage() {
 
-		WebElement delete_Confirm = (new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(DocType.CONFIRMATION)));
-		assertThat(delete_Confirm.getText(),
-				containsString(Messages.DELETE_CONFIRM_FILTER_FIELD));
-		WebElement delete_Yes = (new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.id(ScreenObjects.YES_BTN_ID)));
+		WebElement delete_Confirm = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(DocType.CONFIRMATION)));
+		assertThat(delete_Confirm.getText(), containsString(Messages.DELETE_CONFIRM_FILTER_FIELD));
+		WebElement delete_Yes = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id(ScreenObjects.YES_BTN_ID)));
 		delete_Yes.click();
-		WebElement flashMessage = (new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(ScreenObjects.SUCCESS_MESSAGE)));
-		WebElement popup = driver.findElement(By
-				.cssSelector(DocType.POPUP_SUCCESS));
-		Assert.assertEquals(popup.getCssValue("background-color"),
-				"rgba(33, 190, 137, 1)");
+		WebElement flashMessage = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(ScreenObjects.SUCCESS_MESSAGE)));
+		WebElement popup = driver.findElement(By.cssSelector(DocType.POPUP_SUCCESS));
+		Assert.assertEquals(popup.getCssValue("background-color"), "rgba(33, 190, 137, 1)");
 		Assert.assertEquals(popup.getCssValue("display"), "block");
 		Assert.assertEquals(flashMessage.getCssValue("visibility"), "visible");
 		Assert.assertEquals(flashMessage.getCssValue("display"), "inline-block");
-		Assert.assertEquals(flashMessage.getText(),
-				Messages.DEL_FILTER_FIELD_SUCCESS);
+		Assert.assertEquals(flashMessage.getText(), Messages.DEL_FILTER_FIELD_SUCCESS);
 		Assert.assertNotEquals(row, -1, "Record not deleted yet");
 	}
 
