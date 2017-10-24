@@ -16,14 +16,14 @@ import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
 import com.abb.ventyx.utilities.PermissionsAction;
-import com.ventyx.testng.TestDataKey;
+import com.abb.ventyx.utilities.ScreenAction;
 
 
 @ALM(id = "156") 
 @Credentials(user = "mail5@abb.com", password = "testuser")
 public class Permissions_Deleting extends BaseTestCase {
-	@TestDataKey private final String PERMISSION_NAME_A = "AUTOMATION_PERMISSION_AA";
-
+	String PERMISSION_NAME_A = "AUTOMATION_PERMISSION_AA";
+	ScreenAction action;
 	@Test
 	public void openMaintainPermissionScreen() throws Exception {
 		// Step 1
@@ -34,6 +34,7 @@ public class Permissions_Deleting extends BaseTestCase {
 	
 	@Test(dependsOnMethods="openMaintainPermissionScreen")
 	public void deletePermisison() throws InterruptedException{
+		action = new ScreenAction(driver);
 		PermissionsAction permissionsAction = new PermissionsAction(driver);
 		permissionsAction.filterPermissionbyPermissionName(PERMISSION_NAME_A);
 		permissionsAction.filterPermissionbyDocumentType("PurchaseOrder");
@@ -46,8 +47,7 @@ public class Permissions_Deleting extends BaseTestCase {
 						+ numberOfRowsBeforeDelete + "]//td[5]"));
 
 		trashBinIcon.click();
-		Thread.sleep(1000);
-
+		action.waitObjVisible(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION));
 		//Make sure this is a Confirmation of deleting process
 		assertThat(driver.findElement(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION)).getText(),containsString(Messages.DELETE_CONFIRM));
 
@@ -55,7 +55,7 @@ public class Permissions_Deleting extends BaseTestCase {
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(Permissions.DELETE_YES)));
 		yesButton.click();
 
-		Thread.sleep(2000);
+		action.waitObjVisible(By.cssSelector(Messages.PERMISSION_CREATED_SUCCESSFULLY_CSS));
 		assertEquals(driver.findElement(By.cssSelector(Messages.PERMISSION_CREATED_SUCCESSFULLY_CSS)).getText(), Messages.PERMISSION_DELETED_SUCCESSFULLY);	
 
 	}

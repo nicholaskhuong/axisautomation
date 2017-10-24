@@ -18,7 +18,6 @@ import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
 import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
-import com.ventyx.testng.TestDataKey;
 
 @ALM(id = "631")
 @Credentials(user = "cadmin1@abb.com", password = "Testuser1")
@@ -26,9 +25,9 @@ public class CustomerUser_Deleted_ByAdmin extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
 	WebDriverWait wait;
-	public static int i;
-	@TestDataKey private final String CUSTOMERUSEREMAIL = "cuser1@abb.com";
-	@TestDataKey private final String PASSWORD ="Testuser1";
+	int i;
+	String CUSTOMERUSEREMAIL = "cuser1@abb.com";
+	String PASSWORD ="Testuser1";
 
 	// Step 1 Select Users Sub Menu
 	@Test

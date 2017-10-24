@@ -15,18 +15,17 @@ import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
 import com.abb.ventyx.utilities.PermissionsAction;
 import com.abb.ventyx.utilities.ScreenAction;
-import com.ventyx.testng.TestDataKey;
 
 @ALM(id = "106")
 @Credentials(user = "mail5@abb.com", password = "testuser")
 public class Permissions_Creating extends BaseTestCase {
-	public static int numberOfRowsBeforeAdding;
+	int numberOfRowsBeforeAdding;
 	public static int numberOfRowsAfterAdding;
-	@TestDataKey private final String PERMISSION_NAME_A = "AUTOMATION_PERMISSION_AA";
-	@TestDataKey private final String PurchaseorderType = "PurchaseOrder";
-	@TestDataKey private final String USER_TYPE_A = "CSA";
-	@TestDataKey private final String ADDPERMISSIONHEADER = "Add Permission";
-	@TestDataKey private final String MAINTAINPERMISSIONHEADER = "Maintain Permissions";
+	String PERMISSION_NAME_A = "AUTOMATION_PERMISSION_AA";
+	String PurchaseorderType = "PurchaseOrder";
+	String USER_TYPE_A = "CSA";
+	String ADDPERMISSIONHEADER = "Add Permission";
+	String MAINTAINPERMISSIONHEADER = "Maintain Permissions";
 
 	// Step 1
 	@Test
@@ -39,7 +38,7 @@ public class Permissions_Creating extends BaseTestCase {
 		// Check there is any permission AA_MAINTAIN_PERMISSION existing
 		permissionsAction.filterPermissionbyPermissionName(PERMISSION_NAME_A);
 		permissionsAction.filterPermissionbyDocumentType("PurchaseOrder");
-		int numberOfRowsBeforeAdding = permissionsAction.countRow(Permissions.TABLEBODY);
+		numberOfRowsBeforeAdding = permissionsAction.countRow(Permissions.TABLEBODY);
 		System.out.print(numberOfRowsBeforeAdding + "numberOfRowsBeforeAdding");
 	}
 	// Step 2, 3, 4

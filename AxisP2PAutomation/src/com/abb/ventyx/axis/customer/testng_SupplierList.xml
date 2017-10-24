@@ -11,9 +11,14 @@
 				<class name="com.abb.ventyx.axis.customer.SupplierList_UpdateSupplier_ByAdmin" />
 		</classes>
 	</test>	
-	<test name="Active Supplier">
+	<test name="Deactivate Supplier">
 		<classes>
-				<class name="com.abb.ventyx.axis.customer.SupplierList_ActiveSupplier" />
+				<class name="com.abb.ventyx.axis.customer.SupplierList_DeactivateSupplier" />
+		</classes>
+	</test>	
+	<test name="Activate Supplier">
+		<classes>
+				<class name="com.abb.ventyx.axis.customer.SupplierList_ActivateSupplier" />
 		</classes>
 	</test>	
 </suite> 

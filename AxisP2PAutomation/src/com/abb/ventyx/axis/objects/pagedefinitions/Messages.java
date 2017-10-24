@@ -86,5 +86,6 @@ public class Messages {
 	public static final String DEACTIVATE_SUPPLIER_SUCCESSFULLY = "Supplier successfully deactivated";
 	public static final String ACTIVATE_SUPPLIER_SUCCESSFULLY = "Supplier successfully activated";
 	public static final String SUPPLIER_ALREADY_ACTIVE = "Supplier is already active";
+	public static final String SUPPLIER_ALREADY_INACTIVE = "Supplier is already inactive";
 	public static final String SUPPLIER_INACTIVE = "Supplier inactive";
 }

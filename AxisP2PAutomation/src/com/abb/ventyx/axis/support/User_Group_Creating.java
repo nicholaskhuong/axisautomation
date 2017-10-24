@@ -83,7 +83,7 @@ public class User_Group_Creating extends BaseTestCase {
 								+ "> tbody > tr:nth-child(" + (row - 1)
 								+ ") > td")));
 		rowClick.click();
-		(new WebDriverWait(driver, 15)).until(ExpectedConditions
+		(new WebDriverWait(driver, 15)).until(Exgit pectedConditions
 				.presenceOfElementLocated(By
 						.id(AxisSupportCustomerUserGroup.ROW_ID + "0")));*/
 		action.selectStatus(ScreenObjects.DROPDOWNLIST_CSS, CUSTOMER_NAME);

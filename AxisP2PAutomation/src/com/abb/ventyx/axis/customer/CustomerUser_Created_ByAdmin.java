@@ -17,18 +17,17 @@ import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
 import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
-import com.ventyx.testng.TestDataKey;
 
 @ALM(id = "602")
 @Credentials(user = "cadmin1@abb.com", password = "Testuser1")
 public class CustomerUser_Created_ByAdmin extends BaseTestCase{
-	@TestDataKey private final String USERID ="Automator 1";
-	@TestDataKey private final String USEREMAILADDRESS ="cuser1@abb.com";
-	@TestDataKey private final String PASSWORD ="Testuser2";
-	@TestDataKey private final String CONFIRMPASSWORD ="Testuser3";
-	@TestDataKey private final String INVALIDEMAIL = "<HTML>";
-	@TestDataKey private final String INVALIDPASSWORD = "12345";
-	@TestDataKey private final String USERGROUPNAME1 = "All Permissions";
+	String USERID ="Automator 1";
+	String USEREMAILADDRESS ="cuser1@abb.com";
+	String PASSWORD ="Testuser2";
+	String CONFIRMPASSWORD ="Testuser3";
+	String INVALIDEMAIL = "<HTML>";
+	String INVALIDPASSWORD = "12345";
+	String USERGROUPNAME1 = "All Permissions";
 
 	// Step 1 Open Users sub menu
 	@Test
