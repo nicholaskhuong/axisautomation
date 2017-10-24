@@ -6,6 +6,7 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -65,6 +66,7 @@ public class ScreenAction {
 				.presenceOfElementLocated(By.id(obj)));
 		WebElement txtField = driver.findElement(By.id(obj));
 		txtField.clear();
+		pause(500);
 		txtField.sendKeys(value);
 	}
 
@@ -358,11 +360,20 @@ public class ScreenAction {
 	public void signIn(String emailAddress, String password){
 		waitObjVisible(By.id(LoginPageDefinition.USERNAME_TEXT_FIELD_ID));
 		inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, emailAddress);
+		pause(300);
 		inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, password);
 		clickBtn(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));
 	}
 	public String getPassword(String passwordMessage){
 		return passwordMessage.substring(31);
 		
+	}
+	
+	public void pause(int milliseconds){
+	    try {
+	        TimeUnit.MILLISECONDS.sleep(milliseconds);
+	    } catch (InterruptedException e) {
+	        e.printStackTrace();
+	    }
 	}
 }
