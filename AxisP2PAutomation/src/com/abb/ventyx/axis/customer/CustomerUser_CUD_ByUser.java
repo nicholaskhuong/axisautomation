@@ -64,7 +64,6 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	@Test(dependsOnMethods = "selectUsersSubMenu")
 	public void createNewUser() throws InterruptedException {
 		table = new TableFunction(driver);
-		action = new ScreenAction(driver);
 		wait = new WebDriverWait(driver, 60);
 		assertEquals(table.isValueExisting(3, CUSTOMERUSEREMAIL), false, "User exists! Can't create a new user with the same email");
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerUsers.ADD_BUTTON));
@@ -75,6 +74,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		action.inputTextField(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID, CONFIRMPASSWORD);
 		table.selectUserGroup(CustomerUsers.USERGROUP_GRID, USERGROUPNAME);
 		action.clickBtn(By.id(CustomerUsers.SAVE_BUTTON_ID));
+		action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 		action.assertMessgeError(CustomerUsers.SUCCESS, Messages.USER_CREATE_SUCCESSFULLY);
 		i = table.findRowByString1(3, CUSTOMERUSEREMAIL);
 		assertEquals(table.getValueRow(2, i), USERID);
@@ -90,7 +90,6 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	@Test(dependsOnMethods = "createNewUser")
 	public void loginAsNewUser() throws InterruptedException {
 		table = new TableFunction(driver);
-		action = new ScreenAction(driver);
 		wait = new WebDriverWait(driver, 60);
 		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
@@ -128,8 +127,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	// Step 2 Customer user update other user
 	@Test(dependsOnMethods = "loginAsNewUser")
 	public void logOutAndLoginToTheDefaultUser() throws InterruptedException {
-		table = new TableFunction(driver);
-		action = new ScreenAction(driver);
+
 		wait = new WebDriverWait(driver, 60);
 		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
@@ -182,9 +180,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		action.inputTextField(CustomerUsers.PASSWORD_TEXTBOX_ID, NEWPASSWORD2);
 		action.inputTextField(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID, NEWPASSWORD2);
 		action.waitObjVisibleAndClick(By.id(CustomerUsers.SAVE_BUTTON_ID));
-
-		action.assertMessgeError(CustomerUsers.SUCCESS, Messages.USER_UPDATE_SUCCESSFULLY);
-
+		action.waitObjVisible(By.cssSelector(CustomerUsers.SUCCESS));
 		action.assertMessgeError(CustomerUsers.SUCCESS, Messages.USER_UPDATE_SUCCESSFULLY);
 
 		assertEquals(table.getValueRow(2, i), USERID2);
