@@ -229,14 +229,14 @@ public class TableFunction {
 	public String getValueRow(int column, int row) {
 		WebElement cell = driver.findElement(By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr[" + row + "]//td["
 				+ column + "]"));
-
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", cell);
 		return cell.getText();
 	}
 
 	public String getValueTableHeader(int column) {
 		WebElement header = driver.findElement(By.xpath("//div[@class='v-grid-tablewrapper']//table//thead[@class='v-grid-header']//tr//th[" + column
 				+ "]//div[1]"));
-
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", header);
 		return header.getText();
 	}
 }
