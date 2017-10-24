@@ -2,6 +2,8 @@ package com.abb.ventyx.axis.supplier;
 
 import static org.testng.Assert.assertEquals;
 
+import java.util.Random;
+
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
@@ -41,6 +43,17 @@ public class Supplier_Admin_UpdateContact extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADDRESS_CONTACT_ID));
 		action.waitObjVisible(By.id(MaintainSuppliers.SUPPLIER_NAME));
+		Random rand = new Random();
+		long drand = (long)(rand.nextDouble()*10000000000L);
+		contact_Id = "ID" + drand;
+		contact_name = "Name" + drand;
+		valid_Email =drand + "@enclave.vn";
+		phone_filed = String.valueOf(drand);
+		drand = (long) (rand.nextDouble() * 10000000000L);
+		fax_number =String.valueOf(drand);
+		drand = (long) (rand.nextDouble() * 10000000000L);
+		mobile_number = String.valueOf(drand);
+		
 	}
 
 	@Test(dependsOnMethods = "openScreen")
