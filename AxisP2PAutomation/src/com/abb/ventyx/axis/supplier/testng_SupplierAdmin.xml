@@ -18,4 +18,9 @@
 				<class name="com.abb.ventyx.axis.supplier.Supplier_Admin_DeleteAddress" />					
 		</classes>	
   	</test>
+  	<test name="Supplier Admin Add New Contact">
+		<classes>
+				<class name="com.abb.ventyx.axis.supplier.Supplier_Admin_AddContact" />					
+		</classes>	
+  	</test>
 </suite> 

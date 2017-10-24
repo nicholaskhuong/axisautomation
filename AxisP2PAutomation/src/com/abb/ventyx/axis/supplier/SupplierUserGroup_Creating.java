@@ -2,6 +2,7 @@ package com.abb.ventyx.axis.supplier;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
@@ -21,7 +22,7 @@ public class SupplierUserGroup_Creating extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
 	String PERMISSION = "PurchaseOrder";
-	public static int row;
+	public static int row, rowOfUserGroupBeforeAdding;
 
 	@Test
 	public void openScreen() throws InterruptedException {
@@ -35,6 +36,9 @@ public class SupplierUserGroup_Creating extends BaseTestCase {
 	@Test(dependsOnMethods = "openScreen")
 	public void addUserGroup() {
 
+		table.inputFilter(USER_GROUP_NAME);
+		rowOfUserGroupBeforeAdding = table.findRowByString(UserGroup.SUPPLIER_GROUP_TABLE_CSS, USER_GROUP_NAME, 1);
+
 		action.clickBtn(By.cssSelector(UserGroup.ADD_BTN_CSS));
 		action.waitObjVisible(By.id(UserGroup.USERGROUP_NAME_ID));
 		action.assertTitleScreen(UserGroup.TITLE_CREATE);
@@ -42,8 +46,7 @@ public class SupplierUserGroup_Creating extends BaseTestCase {
 
 		// Click PO permission
 		table = new TableFunction(driver);
-		row = table.findRowByString(UserGroup.PERMISSION_TABLE_CSS, PERMISSION,
-				3);
+		row = table.findRowByString(UserGroup.PERMISSION_TABLE_CSS, PERMISSION, 3);
 		action.clickCheckBoxN(row);
 		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
 		action.checkAddSuccess(Messages.USERGROUP_CREATE_SUCCESSFULLY);
@@ -52,27 +55,25 @@ public class SupplierUserGroup_Creating extends BaseTestCase {
 
 	@Test(dependsOnMethods = "addUserGroup")
 	public void checkAddSuccessfully() {
-
 		table.inputFilter(USER_GROUP_NAME);
-		row = table.findRowByString(UserGroup.SUPPLIER_GROUP_TABLE_CSS,
-				USER_GROUP_NAME, 1);
-		table.assertRowEqual(UserGroup.ROW_ID, USER_GROUP_NAME, row - 1);
-		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
+		row = table.findRowByString(UserGroup.SUPPLIER_GROUP_TABLE_CSS, USER_GROUP_NAME, 1);
+		Assert.assertEquals(rowOfUserGroupBeforeAdding, row - 1);
 
 	}
 
 	@Test(dependsOnMethods = "checkAddSuccessfully")
 	public void addValidation() throws InterruptedException {
-		
+
 		action.clickBtn(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
 		action.waitObjVisible(By.id(UserGroup.USERGROUP_NAME_ID));
-		/*action.checkValidationTextField(UserGroup.USERGROUP_NAME_ID,
-				USER_GROUP_NAME, Messages.USERGROUP_EXISTING,
-				ScreenObjects.ERROR_CSS);*/
+		/*
+		 * action.checkValidationTextField(UserGroup.USERGROUP_NAME_ID,
+		 * USER_GROUP_NAME, Messages.USERGROUP_EXISTING,
+		 * ScreenObjects.ERROR_CSS);
+		 */
 		action.inputTextField(UserGroup.USERGROUP_NAME_ID, "");
 		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
-		action.assertMessgeError(ScreenObjects.WARNING_MESSAGE_CSS,
-				Messages.EMPTY_PERMISSION);
+		action.assertMessgeError(ScreenObjects.WARNING_MESSAGE_CSS, Messages.EMPTY_PERMISSION);
 		action.clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.WARNING_MESSAGE_CSS));
 
@@ -80,12 +81,11 @@ public class SupplierUserGroup_Creating extends BaseTestCase {
 		action.inputTextField(UserGroup.USERGROUP_NAME_ID, "  ");
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.WARNING_MESSAGE_CSS));
 		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
-		action.assertMessgeError(ScreenObjects.WARNING_MESSAGE_CSS,
-				Messages.EMPTY_PERMISSION);
+		action.assertMessgeError(ScreenObjects.WARNING_MESSAGE_CSS, Messages.EMPTY_PERMISSION);
 
 		// Text Field contain existing data
-		//Thread.sleep(1000);
-		//action.inputTextField(UserGroup.USERGROUP_NAME_ID, USER_GROUP_NAME);
+		// Thread.sleep(1000);
+		// action.inputTextField(UserGroup.USERGROUP_NAME_ID, USER_GROUP_NAME);
 		WebElement txtField = driver.findElement(By.id(UserGroup.USERGROUP_NAME_ID));
 		txtField.clear();
 		Thread.sleep(1000);
@@ -99,8 +99,7 @@ public class SupplierUserGroup_Creating extends BaseTestCase {
 	@Test(dependsOnMethods = "addValidation")
 	public void cancelClickYes() {
 		action.inputTextField(UserGroup.USERGROUP_NAME_ID, "ABC");
-		action.cancelClickYes(By.cssSelector(UserGroup.ADD_BTN_CSS),
-				UserGroup.TITLE);
+		action.cancelClickYes(By.cssSelector(UserGroup.ADD_BTN_CSS), UserGroup.TITLE);
 	}
 
 	@Test(dependsOnMethods = "cancelClickYes")
@@ -117,7 +116,6 @@ public class SupplierUserGroup_Creating extends BaseTestCase {
 	public void cancelWithoutdata() throws InterruptedException {
 
 		action.inputTextField(UserGroup.USERGROUP_NAME_ID, "");
-		action.cancelWithoutdata(By.cssSelector(UserGroup.ADD_BTN_CSS),
-				UserGroup.TITLE);
+		action.cancelWithoutdata(By.cssSelector(UserGroup.ADD_BTN_CSS), UserGroup.TITLE);
 	}
 }

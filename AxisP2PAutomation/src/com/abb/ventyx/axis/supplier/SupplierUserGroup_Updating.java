@@ -3,6 +3,8 @@ package com.abb.ventyx.axis.supplier;
 import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
@@ -37,23 +39,24 @@ public class SupplierUserGroup_Updating extends BaseTestCase {
 	@Test(dependsOnMethods = "openScreen")
 	public void selectRowUpdating() {
 		table = new TableFunction(driver);
-		row = table.findRowByString(UserGroup.SUPPLIER_GROUP_TABLE_CSS,
-				USER_GROUP_NAME, 1);
+		row = table.findRowByString(UserGroup.SUPPLIER_GROUP_TABLE_CSS, USER_GROUP_NAME, 1);
 		table.assertRowEqual(UserGroup.ROW_ID, USER_GROUP_NAME, row - 1);
 		row = row - 1;
 
 		action.clickBtn(By.id(UserGroup.ROW_ID + row));
+	}
+
+	@Test(dependsOnMethods = "selectRowUpdating")
+	public void selectRowUpdatingDetail() {
 		action.waitObjVisible(By.id(UserGroup.USERGROUP_NAME_ID));
 		action.assertTitleScreen(UserGroup.TITLE_MODIFY);
 		// click expand row
 		action.clickBtn(By.id(UserGroup.EXPAND_ID + row));
 
-		String permissionChildCSS = UserGroup.PERMISSION_CHILD_ID + row
-				+ UserGroup.PERMISSION_CHILD_TABLE_CSS;
+		String permissionChildCSS = UserGroup.PERMISSION_CHILD_ID + row + UserGroup.PERMISSION_CHILD_TABLE_CSS;
 		action.waitObjVisible(By.cssSelector(permissionChildCSS));
 		// Un check a permission child
-		int rowChild = table.findRowByString(permissionChildCSS,
-				PERMISSION_CHILD, 2);
+		int rowChild = table.findRowByString(permissionChildCSS, PERMISSION_CHILD, 2);
 		int end = table.countRow(permissionChildCSS);
 		action.checkObjSelected(row, end);
 		int newRow = row + rowChild + 1;
@@ -61,28 +64,28 @@ public class SupplierUserGroup_Updating extends BaseTestCase {
 		boolean select = false;
 		select = action.checkObjSelected(newRow);
 		assertEquals(select, false);
-		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
-		action.checkAddSuccess(Messages.USERGROUP_UPDATE_SUCCESSFULLY);
-
 	}
 
-	@Test(dependsOnMethods = "selectRowUpdating")
+	@Test(dependsOnMethods = "selectRowUpdatingDetail")
+	public void selectRowUpdatingClickSave() {
+		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
+		action.checkAddSuccess(Messages.USERGROUP_UPDATE_SUCCESSFULLY);
+	}
+
+	@Test(dependsOnMethods = "selectRowUpdatingClickSave")
 	public void addValidation() throws InterruptedException {
-		//action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
+		(new WebDriverWait(driver, 20)).until((ExpectedConditions.elementToBeClickable(By.id(UserGroup.ROW_ID + row))));
 		action.clickBtn(By.id(UserGroup.ROW_ID + row));
 		action.waitObjVisible(By.id(UserGroup.USERGROUP_NAME_ID));
-		action.checkValidationTextField(UserGroup.USERGROUP_NAME_ID,
-				"Administrator", Messages.USERGROUP_EXISTING,
-				ScreenObjects.ERROR_CSS);
+		action.checkValidationTextField(UserGroup.USERGROUP_NAME_ID, "Administrator", Messages.USERGROUP_EXISTING, ScreenObjects.ERROR_CSS);
 	}
 
 	@Test(dependsOnMethods = "addValidation")
 	public void cancelClickYes() {
 
-		//action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
+		// action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
 		action.inputTextField(UserGroup.USERGROUP_NAME_ID, "ABC");
-		action.cancelClickYes(By.cssSelector(UserGroup.ADD_BTN_CSS),
-				UserGroup.TITLE);
+		action.cancelClickYes(By.cssSelector(UserGroup.ADD_BTN_CSS), UserGroup.TITLE);
 	}
 
 	@Test(dependsOnMethods = "cancelClickYes")
@@ -99,8 +102,7 @@ public class SupplierUserGroup_Updating extends BaseTestCase {
 	public void cancelWithoutdata() throws InterruptedException {
 
 		action.inputTextField(UserGroup.USERGROUP_NAME_ID, USER_GROUP_NAME);
-		action.cancelWithoutdata(By.cssSelector(UserGroup.ADD_BTN_CSS),
-				UserGroup.TITLE);
+		action.cancelWithoutdata(By.cssSelector(UserGroup.ADD_BTN_CSS), UserGroup.TITLE);
 
 	}
 

@@ -30,6 +30,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	int i;
 	String USERID = "createdbyuser 01";
 	String CUSTOMERUSEREMAIL = "cusercreatedbyuser@abb.com";
+	String CUSTOMERUSEREMAIL01 = "cusercreatedbyuser01@abb.com";
 	String PASSWORD = "Testuser2";
 	String CONFIRMPASSWORD = "Testuser2";
 	String USERGROUPNAME = "All Permissions";
@@ -68,11 +69,14 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		table = new TableFunction(driver);
 		action = new ScreenAction(driver);
 		wait = new WebDriverWait(driver, 60);
-		assertEquals(table.isValueExisting(3, CUSTOMERUSEREMAIL), false);
+		assertEquals(table.isValueExisting(3, CUSTOMERUSEREMAIL01), false,
+				"User exists! Can't create a new user with the same email");
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerUsers.ADD_BUTTON));
 		action.inputTextField(CustomerUsers.USERID_TEXTBOX_ID, USERID);
 		action.inputTextField(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID,
 				CUSTOMERUSEREMAIL);
+		action.inputTextField(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID,
+				CUSTOMERUSEREMAIL01);
 		action.inputTextField(CustomerUsers.PASSWORD_TEXTBOX_ID, PASSWORD);
 		action.inputTextField(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID,
 				CONFIRMPASSWORD);
@@ -83,6 +87,11 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		i = table.findRowByString1(3, CUSTOMERUSEREMAIL);
 		assertEquals(table.getValueRow(2, i), USERID);
 		assertEquals(table.getValueRow(3, i), CUSTOMERUSEREMAIL);
+		action.assertMessgeError(CustomerUsers.SUCCESS,
+				Messages.USER_CREATE_SUCCESSFULLY);
+		i = table.findRowByString1(3, CUSTOMERUSEREMAIL01);
+		assertEquals(table.getValueRow(2, i), USERID);
+		assertEquals(table.getValueRow(3, i), CUSTOMERUSEREMAIL01);
 		assertEquals(table.getValueRow(4, i), USERGROUPNAME);
 		assertEquals(table.getValueRow(5, i), CREATEDSTATUS);
 	}
@@ -103,6 +112,16 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		action.waitObjVisible(By.id(ScreenObjects.NEWPASSWORD_ID));
 		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID,
 				PASSWORD);
+		action.inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID,
+				CUSTOMERUSEREMAIL01);
+		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID,
+				PASSWORD);
+		action.clickBtn(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));
+
+		action.waitObjVisible(By.id(ScreenObjects.NEWPASSWORD_ID));
+		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID,
+				PASSWORD);
+
 		action.inputTextField(ScreenObjects.NEWPASSWORD_ID, NEWPASSWORD);
 		action.inputTextField(ScreenObjects.CONFIRMPASSWORD_ID, NEWPASSWORD);
 		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
@@ -132,6 +151,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		wait = new WebDriverWait(driver, 60);
 		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
+
 		action.inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID,
 				"cuserdefault@abb.com");
 		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID,
@@ -143,6 +163,19 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 				.cssSelector(CustomerMenu.USERS_SUBMENU));
 		wait.until(ExpectedConditions.presenceOfElementLocated(By
 				.cssSelector(CustomerUsers.ADD_BUTTON)));
+
+		action.inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID,
+				"cuserdefault@abb.com");
+		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID,
+				"Testuser1");
+		action.clickBtn(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));
+		action.waitObjVisibleAndClick(By
+				.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
+		action.waitObjVisibleAndClick(By
+				.cssSelector(CustomerMenu.USERS_SUBMENU));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(CustomerUsers.ADD_BUTTON)));
+
 	}
 
 	// User update other user's info
@@ -166,6 +199,11 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		assertEquals(action.getAttribute(By.id(Users.EMAIL_ID)),
 				CUSTOMERUSEREMAIL);
 		action.checkObjSelected(0);
+
+		driver.findElement(
+				By.cssSelector(CustomerUsers.YESUPDATEPASSWORD_RADIOBUTTON))
+				.findElement(By.tagName("label")).isSelected();
+
 		driver.findElement(
 				By.cssSelector(CustomerUsers.YESUPDATEPASSWORD_RADIOBUTTON))
 				.findElement(By.tagName("label")).isSelected();
@@ -178,8 +216,13 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		action.inputTextField(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID,
 				NEWPASSWORD2);
 		action.waitObjVisibleAndClick(By.id(CustomerUsers.SAVE_BUTTON_ID));
+
 		action.assertMessgeError(CustomerUsers.SUCCESS,
 				Messages.USER_UPDATE_SUCCESSFULLY);
+
+		action.assertMessgeError(CustomerUsers.SUCCESS,
+				Messages.USER_UPDATE_SUCCESSFULLY);
+
 		assertEquals(table.getValueRow(2, i), USERID2);
 		assertEquals(table.getValueRow(3, i), USEREMAILLOWERCASE);
 		assertEquals(table.getValueRow(4, i), USERGROUPNAME);
@@ -216,10 +259,17 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		// Login as the new updated user.
 		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
+
 		action.inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID,
 				USEREMAILLOWERCASE);
 		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID,
 				NEWPASSWORD2);
+
+		action.inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID,
+				USEREMAILLOWERCASE);
+		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID,
+				NEWPASSWORD2);
+
 		action.clickBtn(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));
 		action.waitObjVisible(By
 				.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER));
@@ -249,12 +299,34 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		assertEquals(driver.findElement(By.id(CustomerUsers.DELETE_ICON_ADMIN))
 				.getAttribute("aria-disabled"), "true");
 
+		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
+		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
+		action.inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID,
+				"cuserdefault@abb.com");
+		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID,
+				"Testuser1");
+		action.clickBtn(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));
+		action.waitObjVisibleAndClick(By
+				.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
+		action.waitObjVisibleAndClick(By
+				.cssSelector(CustomerMenu.USERS_SUBMENU));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(CustomerUsers.ADD_BUTTON)));
+
+		assertEquals(driver.findElement(By.id(CustomerUsers.DELETE_ICON_ADMIN))
+				.getAttribute("aria-disabled"), "true");
+
 	}
 
 	@Test(dependsOnMethods = "logOutAndLogIn")
 	public void deleteCustomerAdmin() throws InterruptedException {
+
 		assertEquals(driver.findElement(By.id(CustomerUsers.DELETE_ICON_ADMIN))
 				.getAttribute("aria-disabled"), "true");
+
+		assertEquals(driver.findElement(By.id(CustomerUsers.DELETE_ICON_ADMIN))
+				.getAttribute("aria-disabled"), "true");
+
 	}
 
 	// Click Trash Bin icon of the user to test
@@ -265,9 +337,15 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		int j = i - 1;
 		action.clickBtn(By.id("deleteItemBtn" + j));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
+
 		assertEquals(
 				driver.findElement(By.cssSelector(ScreenObjects.CONFIRMATION))
 						.getText(), Messages.DELETE_USER_CONFIRM);
+
+		assertEquals(
+				driver.findElement(By.cssSelector(ScreenObjects.CONFIRMATION))
+						.getText(), Messages.DELETE_USER_CONFIRM);
+
 	}
 
 	@Test(dependsOnMethods = "clickTrashBinIconOfUser")
@@ -290,10 +368,17 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.YES_BTN_ID));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
+
 		assertEquals(
 				driver.findElement(
 						By.cssSelector(ScreenObjects.SUCCESS_MESSAGE))
 						.getText(), Messages.USER_DELETE_SUCCESSFULLY);
+
+		assertEquals(
+				driver.findElement(
+						By.cssSelector(ScreenObjects.SUCCESS_MESSAGE))
+						.getText(), Messages.USER_DELETE_SUCCESSFULLY);
+
 		assertEquals(table.isValueExisting(3, USEREMAILLOWERCASE), false);
 	}
 
@@ -335,6 +420,17 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 				.cssSelector(CustomerMenu.USERS_SUBMENU));
 		wait.until(ExpectedConditions.presenceOfElementLocated(By
 				.cssSelector(CustomerUsers.ADD_BUTTON)));
+		action.inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID,
+				"cuserdefault@abb.com");
+		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID,
+				"Testuser1");
+		action.clickBtn(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));
+		action.waitObjVisibleAndClick(By
+				.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
+		action.waitObjVisibleAndClick(By
+				.cssSelector(CustomerMenu.USERS_SUBMENU));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(CustomerUsers.ADD_BUTTON)));
 
 		assertEquals(table.getValueRow(2, 1), "Administrator");
 		assertEquals(table.getValueRow(3, 1), USEREMAIL_ADMIN);
@@ -345,6 +441,33 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 
 		action.assertFieldReadOnly(By.id(Users.USERNUMBER_ID));
 		action.assertFieldReadOnly(By.id(Users.USER_ID));
+
+		System.out.print(action.getAttribute(By.id(Users.USER_ID))
+				+ "Admin User Id Value");
+		assertEquals(action.getAttribute(By.id(Users.USER_ID)), "Administrator");
+		System.out.print(action.getAttribute(By.id(Users.EMAIL_ID))
+				+ "Admin Email Value");
+		assertEquals(action.getAttribute(By.id(Users.EMAIL_ID)),
+				"cadmin1@abb.com");
+		assertEquals(action.isElementPresent(By
+				.cssSelector(CustomerUsers.USERGROUP_GRID)), false);
+
+		action.inputTextField(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID,
+				NEWUSEREMAIL_ADMIN);
+
+		driver.findElement(
+				By.cssSelector(CustomerUsers.YESUPDATEPASSWORD_RADIOBUTTON))
+				.findElement(By.tagName("label")).click();
+
+		action.inputTextField(CustomerUsers.PASSWORD_TEXTBOX_ID,
+				NEWPASSWORD_ADMIN);
+		action.inputTextField(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID,
+				NEWPASSWORD_ADMIN);
+		action.waitObjVisibleAndClick(By.id(CustomerUsers.SAVE_BUTTON_ID));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(CustomerUsers.SUCCESS)));
+		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.SUCCESS))
+				.getText(), Messages.USER_UPDATE_SUCCESSFULLY);
 		System.out.print(action.getAttribute(By.id(Users.USER_ID))
 				+ "Admin User Id Value");
 		assertEquals(action.getAttribute(By.id(Users.USER_ID)), "Administrator");
@@ -379,6 +502,10 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		action.assertTitleScreen("Maintain Customer Users");
 		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
+		action.inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID,
+				NEWUSEREMAIL_ADMIN);
+		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID,
+				NEWPASSWORD_ADMIN);
 		action.inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID,
 				NEWUSEREMAIL_ADMIN);
 		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID,

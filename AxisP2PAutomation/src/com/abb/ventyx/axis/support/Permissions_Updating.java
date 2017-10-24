@@ -1,7 +1,6 @@
 package com.abb.ventyx.axis.support;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -17,19 +16,19 @@ import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
 import com.abb.ventyx.utilities.PermissionsAction;
 import com.abb.ventyx.utilities.ScreenAction;
-import com.ventyx.testng.TestDataKey;
 
-@ALM(id = "155") 
+@ALM(id = "155")
 @Credentials(user = "mail5@abb.com", password = "testuser")
 public class Permissions_Updating extends BaseTestCase {
 	String PERMISSION_NAME_A = "AUTOMATION_PERMISSION_AA";
 	String PERMISSION_NAME_B = "AUTOMATION_PERMISSION_BB";
 	String DOCUMENT_TYPE_A = "PurchaseOrder";
 	String USER_TYPE_A = "CSA";
+
 	// Step 1
 	@Test
 	public void openMaintainPermissionScreen() throws Exception {
-		// Update Permission 
+		// Update Permission
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 
 		PermissionsAction permissionsAction = new PermissionsAction(driver);
@@ -41,73 +40,77 @@ public class Permissions_Updating extends BaseTestCase {
 		Thread.sleep(1000);
 
 		// Get Document Type value
-		assertEquals(driver.findElement(By.cssSelector(Permissions.PNROW1)).getText(),PERMISSION_NAME_A);
-		assertEquals(driver.findElement(By.cssSelector(Permissions.UTROW1)).getText(),"CSA");
-		assertEquals(driver.findElement(By.cssSelector(Permissions.DTROW1)).getText(),"PurchaseOrder");
+		assertEquals(driver.findElement(By.cssSelector(Permissions.PNROW1)).getText(), PERMISSION_NAME_A);
+		assertEquals(driver.findElement(By.cssSelector(Permissions.UTROW1)).getText(), "CSA");
+		assertEquals(driver.findElement(By.cssSelector(Permissions.DTROW1)).getText(), "PurchaseOrder");
 
 		// Click on Permission ID
-		WebElement gridCell = (new WebDriverWait(driver, 20))
-				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Permissions.GRID_PERMISSIONIDCELL)));
+		WebElement gridCell = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By
+				.xpath(Permissions.GRID_PERMISSIONIDCELL)));
 		gridCell.click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By
-				.cssSelector(Permissions.PERMISSIONWINDOWHEADER)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(Permissions.PERMISSIONWINDOWHEADER)));
 		Thread.sleep(1000);
 		assertEquals(driver.findElement(By.cssSelector(Permissions.PERMISSIONWINDOWHEADER)).getText(), "Edit Permission");
 
-		/*assertEquals(driver.findElement(By.id(Permissions.PERMISSION_NAME)).getText(), PERMISSION_NAME_A);
-		assertEquals(driver.findElement(By.id(Permissions.DOCUMENT_TYPE)).getText(), "Purchase Orders");*/
+		/*
+		 * assertEquals(driver.findElement(By.id(Permissions.PERMISSION_NAME)).
+		 * getText(), PERMISSION_NAME_A);
+		 * assertEquals(driver.findElement(By.id(Permissions
+		 * .DOCUMENT_TYPE)).getText(), "Purchase Orders");
+		 */
 
-		/*assertTrue(driver.findElement(By.cssSelector(Permissions.AXIS_ADMIN)).isSelected());
-		assertTrue(driver.findElement(By.cssSelector(Permissions.CUSTOMER)).isSelected());
-		assertTrue(driver.findElement(By.cssSelector(Permissions.SUPPLIER)).isSelected());*/
+		/*
+		 * assertTrue(driver.findElement(By.cssSelector(Permissions.AXIS_ADMIN)).
+		 * isSelected());
+		 * assertTrue(driver.findElement(By.cssSelector(Permissions
+		 * .CUSTOMER)).isSelected());
+		 * assertTrue(driver.findElement(By.cssSelector
+		 * (Permissions.SUPPLIER)).isSelected());
+		 */
 	}
+
 	// Step 2
-	@Test(dependsOnMethods="openMaintainPermissionScreen")
-	public void updatePermissionWithValidValue() throws InterruptedException{
+	@Test(dependsOnMethods = "openMaintainPermissionScreen")
+	public void updatePermissionWithValidValue() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 
 		PermissionsAction permissionsAction = new PermissionsAction(driver);
 		// Step 2 update
-		permissionsAction.selectDocTypebyText("Purchase Order Acknowledgement");
-		//Unselect Customer and Supplier
+		permissionsAction.selectDocTypebyText("Invoicing");
+		// Unselect Customer and Supplier
 		permissionsAction.selectUserType(Permissions.CUSTOMER);
 		permissionsAction.selectUserType(Permissions.SUPPLIER);
 		permissionsAction.clickSaveButtonOnAddPermisisonPopUp();
-		Thread.sleep(2000);
-		assertEquals(driver.findElement(By.cssSelector(Messages.PERMISSION_CREATED_SUCCESSFULLY_CSS)).getText(), Messages.PERMISSION_UPADTED_SUCCESSFULLY);	
+		Thread.sleep(200);
+		assertEquals(driver.findElement(By.cssSelector(Messages.PERMISSION_CREATED_SUCCESSFULLY_CSS)).getText(),
+				Messages.PERMISSION_UPADTED_SUCCESSFULLY);
 		permissionsAction.enterValueTofilterPermission(PERMISSION_NAME_A);
 		permissionsAction.filterPermissionbyDocumentType("PurchaseOrder");
-		assertEquals(driver.findElement(By.cssSelector(Permissions.PNROW1)).getText(),PERMISSION_NAME_A);
-		assertEquals(driver.findElement(By.cssSelector(Permissions.UTROW1)).getText(),"A");
-		assertEquals(driver.findElement(By.cssSelector(Permissions.DTROW1)).getText(),"PurchaseOrderAcknowledgement");
+		assertEquals(driver.findElement(By.cssSelector(Permissions.PNROW1)).getText(), PERMISSION_NAME_A);
+		assertEquals(driver.findElement(By.cssSelector(Permissions.UTROW1)).getText(), "A");
+		assertEquals(driver.findElement(By.cssSelector(Permissions.DTROW1)).getText(), "Invoicing");
 
 	}
+
 	// Step 3
-	@Test(dependsOnMethods="updatePermissionWithValidValue")
-	public void checkUnsavedChangesDialog() throws InterruptedException{
+	@Test(dependsOnMethods = "updatePermissionWithValidValue")
+	public void checkUnsavedChangesDialog() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		ScreenAction action = new ScreenAction(driver);
 		PermissionsAction permissionsAction = new PermissionsAction(driver);
 		// Step 3 Click 1st instance ID
-		WebElement gridCell1 = (new WebDriverWait(driver, 20))
-				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Permissions.GRID_PERMISSIONIDCELL)));
+		WebElement gridCell1 = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By
+				.xpath(Permissions.GRID_PERMISSIONIDCELL)));
 		gridCell1.click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By
-				.cssSelector(Permissions.PERMISSIONWINDOWHEADER)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(Permissions.PERMISSIONWINDOWHEADER)));
 		permissionsAction.enterPermissionName("ECHO2");
 		permissionsAction.clickCancelButtonOnAddPermisisonPopUp();
-		assertEquals(
-				driver.findElement(
-						By.cssSelector(Permissions.CONFIRMATION_OF_DELETION))
-						.getText(), Messages.UNSAVED_CHANGE);
+		assertEquals(driver.findElement(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION)).getText(), Messages.UNSAVED_CHANGE);
 
 		// Step 4 Click No
 		driver.findElement(By.id(ScreenObjects.NO_BTN_ID)).click();
 		Thread.sleep(1000);
-		assertEquals(
-				driver.findElement(
-						By.cssSelector(Permissions.PERMISSIONWINDOWHEADER))
-						.getText(), "Edit Permission");
+		assertEquals(driver.findElement(By.cssSelector(Permissions.PERMISSIONWINDOWHEADER)).getText(), "Edit Permission");
 
 		permissionsAction.clickCancelButtonOnAddPermisisonPopUp();
 		driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
@@ -115,12 +118,8 @@ public class Permissions_Updating extends BaseTestCase {
 
 		assertEquals(action.isElementPresent(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION)), false);
 		assertEquals(action.isElementPresent(By.cssSelector(Permissions.PERMISSIONWINDOWHEADER)), false);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By
-				.cssSelector(Permissions.PERMISSIONHEADER)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(Permissions.PERMISSIONHEADER)));
 
 	}
 
 }
-
-
-
