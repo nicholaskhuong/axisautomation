@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="AxisSupport_Profiles" parallel="none">
+ 
+	<test name="Customer Maintenance Profile Create">
+		<classes>
+				<class name="com.abb.ventyx.axis.support.Profile_Create" />
+		</classes>	
+  	</test>
+  	
+</suite> 

@@ -16,5 +16,13 @@ public class AxisConfigMenu {
 		public static final String CODE_SET_TYPE = "#dashboard-menu-tab-child-layout > div:nth-child(9) > div > span > span";
 		public static final String FILTER_FIELD = "#maintainDocFilterField > span > span";
 		//-----
-	
+		public static final String CUSTOMER_MAINTENANCE = "#custMaintParentButton > span > span.valo-menu-item-caption > div > span.v-menu-item-caption";
+		public static final String CUSTOMER_LIST = "#deactivateCust > span > span";
+		public static final String PROFILES = "#maintainCustomerProfileButton > span > span";
+		public static final String BUSINESS_CODE_SETS = "#maintainCodeSetButton > span > span";
+		public static final String USERS = "#maintainCustomerUsergroupButton > span > span";
+		public static final String PDF_FORMAT_PARAMETERS = "#maintainPdfFormatParams > span > span";
+		public static final String FOP_RESOURCE_PROFILES = "#maintainFOPResource > span > span";
+		public static final String CUSTOMISE_LITERALS = "#maintainTranslatedText > span > span";
+		public static final String AUDIT_LOG = "#auditLogButton > span > span";
 }

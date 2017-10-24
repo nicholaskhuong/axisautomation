@@ -96,4 +96,11 @@ public class Messages {
 	public static final String DELIVERY_CODE_LESS_15CHARACTER = "Delivery Code must be exactly 15 characters";
 	public static final String DELIVERY_CODE_EQUAL_15CHARACTER = "Code Set successfully added";
 
+	// Profiles
+	public static final String ERROR_MESSAGE ="Please select at least one business document beside System";
+	public static final String MESSAGE_SUCCESSFULLY ="Customer Defined Profile successfully created";
+	public static final String MESSAGE_MISSING_ALL_FIELD ="Please enter Profile Name";
+	public static final String MESSAGE_MISSING_CUSTOMER_NAME ="Please select a Customer Name";
+	public static final String MESSAGE_MISSING_PROFILE_FIELD ="Please enter Profile Name";
+	public static final String MESSAGE_DUPLICATED_PROFILE_NAME ="Profile Name already exists";
 }
