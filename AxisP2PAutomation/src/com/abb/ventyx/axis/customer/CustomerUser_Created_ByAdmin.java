@@ -28,7 +28,8 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 	String INVALIDEMAIL = "<HTML>";
 	String INVALIDPASSWORD = "12345";
 	String USERGROUPNAME1 = "All Permissions";
-
+	TableFunction table;
+	ScreenAction action;
 	// Step 1 Open Users sub menu
 	@Test
 	public void selectUsersSubMenu() throws InterruptedException{
@@ -51,7 +52,8 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 	@Test(dependsOnMethods="selectUsersSubMenu")
 	public void addNewUserWithoutMandatoryField() throws InterruptedException{
 		WebDriverWait wait = new WebDriverWait(driver, 60);
-		TableFunction action = new TableFunction(driver);
+		table = new TableFunction(driver);
+		action = new ScreenAction(driver);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.ADD_BUTTON)));
 		driver.findElement(By.cssSelector(CustomerUsers.ADD_BUTTON)).click();
 		Thread.sleep(1500);
@@ -64,7 +66,7 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 		Thread.sleep(100);
 		driver.findElement(By.cssSelector(CustomerUsers.CONFIRMPASSWORD_TEXTBOX)).sendKeys(PASSWORD);
 		Thread.sleep(100);
-		action.selectUserGroup(CustomerUsers.USERGROUP_GRID, USERGROUPNAME1);
+		table.selectUserGroup(CustomerUsers.USERGROUP_GRID, USERGROUPNAME1);
 		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();	
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.ERROR)));
 		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.ERROR)).getText(), Messages.ENTER_MANDATORY_FIELDS);		
@@ -184,8 +186,8 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 		driver.findElement(By.cssSelector(CustomerUsers.CONFIRMPASSWORD_TEXTBOX)).clear();
 		driver.findElement(By.cssSelector(CustomerUsers.CONFIRMPASSWORD_TEXTBOX)).sendKeys(PASSWORD);
 
-		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();
-		Thread.sleep(500);
+		action.waitObjVisibleAndClick(By.cssSelector(CustomerUsers.SAVE_BUTTON));
+		action.pause(1000);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.SUCCESS)));
 		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.SUCCESS)).getText(), Messages.USER_CREATE_SUCCESSFULLY);
 		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER)).getText(), "Maintain Customer Users");
@@ -213,13 +215,13 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER)).getText(), "Create User");
 		
 		driver.findElement(By.cssSelector(CustomerUsers.USEREMAILADDRESS_TEXTBOX)).sendKeys(USEREMAILADDRESS);
-		Thread.sleep(100);
+		action.pause(100);
 		
 		driver.findElement(By.cssSelector(CustomerUsers.CANCEL_BUTTON)).click();
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
 		driver.findElement(By.id(ScreenObjects.NO_BTN_ID)).click();
-		Thread.sleep(1000);
+		action.pause(1000);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.USEREMAILADDRESS_TEXTBOX)));
 		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER)).getText(), "Create User");
 		assertEquals(action.isElementPresent(By.cssSelector(CustomerUsers.USEREMAILADDRESS_TEXTBOX)), true);

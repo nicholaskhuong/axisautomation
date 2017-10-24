@@ -147,20 +147,18 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 	// Step 8 Check No button on Unsaved Changes dialog 
 	@Test(dependsOnMethods="checkCancelButtonWithoutInput")
 	public void checkNoButtonOnUnsavedChangesDialog() throws InterruptedException{
-		table = new TableFunction(driver);
-		action = new ScreenAction(driver);
 		table.clickUserNumber(CUSTOMERUSEREMAIL);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.USERID_TEXTBOX)));
 		driver.findElement(By.cssSelector(CustomerUsers.USERID_TEXTBOX)).clear();
-		Thread.sleep(200);
+		action.pause(200);
 		driver.findElement(By.cssSelector(CustomerUsers.USEREMAILADDRESS_TEXTBOX)).sendKeys(USERID);
 		driver.findElement(By.cssSelector(CustomerUsers.CANCEL_BUTTON)).click();
-		Thread.sleep(2000);
+		action.pause(2000);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
 		driver.findElement(By.id(ScreenObjects.NO_BTN_ID)).click();
 		Thread.sleep(200);
-		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)), true);
+		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)), false);
 		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER)).getText(), "Modify User");
 	}
 
