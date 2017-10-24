@@ -23,6 +23,7 @@ import com.abb.ventyx.axis.objects.pagedefinitions.CustomerUsers;
 import com.abb.ventyx.axis.objects.pagedefinitions.LoginPageDefinition;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
+import com.abb.ventyx.axis.objects.pagedefinitions.UserPreferences;
 
 public class ScreenAction {
 	WebDriver driver;
@@ -50,7 +51,8 @@ public class ScreenAction {
 
 	public void assertTitleScreen(String titleScreen) {
 		WebDriverWait wait = new WebDriverWait(driver, 20);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)));
 		WebElement screenTitle = driver.findElement(By
 				.cssSelector(ScreenObjects.SCREEN_TITLE_CSS));
 		assertEquals(screenTitle.getText(), titleScreen, "Title is wrong");
@@ -75,13 +77,15 @@ public class ScreenAction {
 		String readonly = field.getAttribute("readonly");
 		assertNotNull(readonly);
 	}
+
 	public boolean isFieldDisable(By by) {
 		WebElement field = driver.findElement(by);
 		String disabled = field.getAttribute("aria-disabled");
-		if(disabled!=null && disabled.equals("true"))
+		if (disabled != null && disabled.equals("true"))
 			return true;
 		return false;
 	}
+
 	public void assertTextBoxDisable(By by) {
 		WebElement field = driver.findElement(by);
 		String disabled = field.getAttribute("disabled");
@@ -98,6 +102,7 @@ public class ScreenAction {
 				.presenceOfElementLocated(by));
 		return driver.findElement(by).getAttribute("value");
 	}
+
 	public void clickCheckBoxN(int n) {
 		List<WebElement> listCheckbox = driver.findElements(By
 				.xpath("//input[@type='checkbox']"));
@@ -127,14 +132,14 @@ public class ScreenAction {
 		listCheckbox.get(n).click();
 	}
 
-	public void clickYesUpdatePasswordRadio(){
+	public void clickYesUpdatePasswordRadio() {
 		WebElement radioButton = (new WebDriverWait(driver, 15))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(CustomerUsers.YESUPDATEPASSWORD_RADIOBUTTON)));
 		radioButton.findElement(By.tagName("label")).click();
 	}
 
-	public void clickNoUpdatePasswordRadio(){
+	public void clickNoUpdatePasswordRadio() {
 		WebElement radioButton = (new WebDriverWait(driver, 15))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(CustomerUsers.NOUPDATEPASSWORD_RADIOBUTTON)));
@@ -155,11 +160,11 @@ public class ScreenAction {
 		Assert.assertEquals(flashMessage1.getText(), msg);
 	}
 
-	public void selectComboValue(By by, String value){
+	public void selectComboValue(By by, String value) {
 		final Select selectBox = new Select(driver.findElement(by));
 		selectBox.selectByValue(value);
 	}
-		
+
 	public void selectStatus(String tableCSS, String value) {
 		waitObjVisible(By.cssSelector(tableCSS));
 		WebElement baseTable = driver.findElement(By.cssSelector(tableCSS));
@@ -170,7 +175,7 @@ public class ScreenAction {
 					.findElement(By
 							.xpath("//div[@id='VAADIN_COMBOBOX_OPTIONLIST']//div//div[2]//table//tbody//tr["
 									+ i + "]//td//span"));
-			System.out.println("Status "+columnValue.getText());
+			System.out.println("Status " + columnValue.getText());
 			if (columnValue.getText().equals(value)) {
 				columnValue.click();
 				break;
@@ -178,7 +183,7 @@ public class ScreenAction {
 		}
 
 	}
-	
+
 	public void assertMessgeError(String msgCSS, String msg) {
 		WebElement error = (new WebDriverWait(driver, 20))
 				.until(ExpectedConditions.presenceOfElementLocated(By
@@ -339,7 +344,7 @@ public class ScreenAction {
 		int width = horizontal_scroll.getSize().getWidth();
 		Actions move = new Actions(driver);
 		move.dragAndDropBy(horizontal_scroll, ((width * 25) / 100), 0).build()
-		.perform();
+				.perform();
 	}
 
 	public String getTextField(String obj) {
@@ -351,29 +356,31 @@ public class ScreenAction {
 		}
 
 	}
-	
-	public void signOut(){
-		waitObjVisible(By.id(ScreenObjects.PROFILE_PANEL));
-		clickBtn(By.id(ScreenObjects.PROFILE_PANEL));
+
+	public void signOut() {
+		waitObjVisible(By.id(UserPreferences.PROFILE_PANEL));
+		clickBtn(By.id(UserPreferences.PROFILE_PANEL));
 		waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
 	}
-	public void signIn(String emailAddress, String password){
+
+	public void signIn(String emailAddress, String password) {
 		waitObjVisible(By.id(LoginPageDefinition.USERNAME_TEXT_FIELD_ID));
 		inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, emailAddress);
 		pause(300);
 		inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, password);
 		clickBtn(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));
 	}
-	public String getPassword(String passwordMessage){
+
+	public String getPassword(String passwordMessage) {
 		return passwordMessage.substring(31);
-		
+
 	}
-	
-	public void pause(int milliseconds){
-	    try {
-	        TimeUnit.MILLISECONDS.sleep(milliseconds);
-	    } catch (InterruptedException e) {
-	        e.printStackTrace();
-	    }
+
+	public void pause(int milliseconds) {
+		try {
+			TimeUnit.MILLISECONDS.sleep(milliseconds);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 }

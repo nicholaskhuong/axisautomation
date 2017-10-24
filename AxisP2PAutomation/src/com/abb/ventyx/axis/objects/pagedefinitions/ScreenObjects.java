@@ -26,18 +26,19 @@ public class ScreenObjects {
 	public static final String EXPAND_CLASS = "v-icon material-icons";
 	public static final String DELETE_BTN_ID = "deleteItemBtn";
 	public static final String HORIZONTAL_SCROLLBAR_CLASS = "v-grid-horizontal-scrollbar-deco";
-	public static final String NEWPASSWORD_ID ="newPassword";
-	public static final String CONFIRMPASSWORD_ID ="confirmPassword";
-	public static final String SIGNOUT_BUTTON = "signOutBtn";
-	public static final String PROFILE_PANEL = "profileBtn";
-    public static final String EMPTY_DATE= "#SupplierPortal-1227837064-overlays > div.v-Notification.v-error-notification-no-icon.v-Notification-v-error-notification-no-icon";
-    public static final String LOGIN_BUTTON="signInBtn";
-    public static final String USER_LOGIN= "userEmail";
-    public static final String PASSWORD_LOGIN= "password";
-    public static final String RESET_BUTTON = "resetBtn";
-    public static final String EMAILCHECKBOX_RESETUSERPASSWORDSCREEN_ID = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div.v-slot.v-slot-v-vertical-layout-with-border > div > div:nth-child(3) > div > div.v-slot.v-align-right.v-align-bottom";
-    public static final String ACCEPT_BUTTON_CSS = "#SupplierPortal-1227837064 > div > div.v-verticallayout.v-layout.v-vertical.v-widget.v-has-width.v-has-height > div > div > div > div > div:nth-child(2) > div > div.v-panel-content.v-scrollable > div > div > div:nth-child(3) > div > div > div:nth-child(3) > div";
-    public static final String DROPDOWNLIST_CSS = "#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table > tbody";
+	public static final String NEWPASSWORD_ID = "newPassword";
+	public static final String USERID_ID = "userID";
 
-	
+	public static final String CONFIRMPASSWORD_ID = "confirmPassword";
+	public static final String SIGNOUT_BUTTON = "signOutBtn";
+
+	public static final String EMPTY_DATE = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-error-notification-no-icon.v-Notification-v-error-notification-no-icon";
+	public static final String LOGIN_BUTTON = "signInBtn";
+	public static final String USER_LOGIN = "userEmail";
+	public static final String PASSWORD_LOGIN = "password";
+	public static final String RESET_BUTTON = "resetBtn";
+	public static final String EMAILCHECKBOX_RESETUSERPASSWORDSCREEN_ID = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div.v-slot.v-slot-v-vertical-layout-with-border > div > div:nth-child(3) > div > div.v-slot.v-align-right.v-align-bottom";
+	public static final String ACCEPT_BUTTON_CSS = "#SupplierPortal-1227837064 > div > div.v-verticallayout.v-layout.v-vertical.v-widget.v-has-width.v-has-height > div > div > div > div > div:nth-child(2) > div > div.v-panel-content.v-scrollable > div > div > div:nth-child(3) > div > div > div:nth-child(3) > div";
+	public static final String DROPDOWNLIST_CSS = "#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table > tbody";
+
 }
