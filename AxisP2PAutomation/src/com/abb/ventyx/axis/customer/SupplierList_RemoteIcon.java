@@ -79,6 +79,7 @@ public class SupplierList_RemoteIcon extends BaseTestCase {
 				Messages.USERPREFERENCES_UPDATED_SUCCESSFULLY);
 		assertEquals(table.getValueRow(7, i), profile);
 		action.waitObjVisibleAndClick(By.id("accessSupplierBtn" + j));
+		action.waitObjVisible(By.id(SupplierMenu.PURCHASE_ORDERS_ID));
 		action.assertTitleScreen("Supplier Dashboard");
 		assertEquals(
 				action.isElementPresent(By.id(SupplierMenu.PURCHASE_ORDERS_ID)),
@@ -164,8 +165,7 @@ public class SupplierList_RemoteIcon extends BaseTestCase {
 		action.assertTitleScreen("Customer Dashboard");
 		action.signOut();
 		action.signIn(customerUser, password1);
-		action.waitObjVisibleAndClick(By
-				.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
+		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
 		action.waitObjVisibleAndClick(By
 				.cssSelector(CustomerMenu.SUPPLIERLIST_SUBMENU));
 		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
