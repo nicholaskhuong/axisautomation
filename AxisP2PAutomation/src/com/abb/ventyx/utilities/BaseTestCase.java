@@ -21,6 +21,7 @@ import jxl.read.biff.BiffException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.logging.impl.Log4JLogger;
 import org.apache.log4j.xml.DOMConfigurator;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -99,7 +100,8 @@ public class BaseTestCase {
 			driver = driverCreator.getWebDriver();
 			LoginPage login = new LoginPage(driver);
 			login.login(getServerURL() + "/SupplierPortal/", currentCredentials);
-			driver.manage().window().maximize();
+			driver.manage().window().setSize(new Dimension(1600, 900));
+			;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -152,7 +154,7 @@ public class BaseTestCase {
 	@AfterClass(alwaysRun=true)
 	public void afterClass() throws IOException {
 		exportALMReferenceCsv(testCaseName, testCaseStatus);
-		//driver.quit();
+		driver.quit();
 	}
 
 	private void exportALMReferenceCsv(String tcName, String status) {

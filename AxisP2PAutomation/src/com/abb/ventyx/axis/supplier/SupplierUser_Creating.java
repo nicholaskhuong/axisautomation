@@ -70,8 +70,7 @@ public class SupplierUser_Creating extends BaseTestCase {
 		action.clickBtn(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
 		action.waitObjVisible(By.id(Users.USER_ID));
 		action.inputTextField(Users.USER_ID, "ABC");
-		action.cancelClickYes(By.cssSelector(ScreenObjects.ADD_BTN_CSS),
-				Users.TITLE);
+		action.cancelClickYes(By.cssSelector(ScreenObjects.ADD_BTN_CSS), Users.TITLE);
 	}
 
 	@Test(dependsOnMethods = "cancelClickYes")
@@ -86,8 +85,7 @@ public class SupplierUser_Creating extends BaseTestCase {
 	public void cancelWithoutdata() throws InterruptedException {
 
 		action.inputTextField(Users.USER_ID, "");
-		action.cancelWithoutdata(By.cssSelector(ScreenObjects.ADD_BTN_CSS),
-				Users.TITLE);
+		action.cancelWithoutdata(By.cssSelector(ScreenObjects.ADD_BTN_CSS), Users.TITLE);
 	}
 
 	@Test(dependsOnMethods = "cancelWithoutdata")
@@ -95,19 +93,16 @@ public class SupplierUser_Creating extends BaseTestCase {
 		action.clickBtn(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
 		action.waitObjVisible(By.id(Users.USER_ID));
 		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
-		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
-				Messages.ENTER_MANDATORY_FIELDS);
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		action.clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
-		action.waitObjInvisible(By
-				.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		// input other data
 		action.inputTextField(Users.PASSWORD_ID, PASSWORD);
 		action.inputTextField(Users.CONFIMRPASSWORD_ID, PASSWORD);
 		action.inputTextField(Users.EMAIL_ID, EMAIL);
 		action.clickCheckBoxN(1);
 		// don't input UserID
-		action.checkValidationTextField(Users.USER_ID, USER_ID,
-				Messages.USERS_EXISTING, ScreenObjects.ERROR_CSS);
+		action.checkValidationTextField(Users.USER_ID, USER_ID, Messages.USERS_EXISTING, ScreenObjects.ERROR_CSS);
 	}
 
 	@Test(dependsOnMethods = "addValidationUserID")
@@ -117,12 +112,11 @@ public class SupplierUser_Creating extends BaseTestCase {
 		action.inputTextField(Users.PASSWORD_ID, PASSWORD);
 		action.inputTextField(Users.CONFIMRPASSWORD_ID, PASSWORD);
 		// don't input UserID
-		//action.checkValidationTextField(Users.EMAIL_ID);
+		// action.checkValidationTextField(Users.EMAIL_ID);
 		action.inputTextField(Users.EMAIL_ID, "");
 		Thread.sleep(2000);
 		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
-		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
-				Messages.ENTER_MANDATORY_FIELDS);
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		action.clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
 		driver.findElement(By.id(Users.EMAIL_ID)).click();
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
@@ -130,13 +124,11 @@ public class SupplierUser_Creating extends BaseTestCase {
 		// Text Field is only space
 		action.inputTextField(Users.EMAIL_ID, "  ");
 		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
-		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
-				Messages.ENTER_MANDATORY_FIELDS);
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		action.clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
 		driver.findElement(By.id(Users.EMAIL_ID)).click();
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
-		
-		
+
 		action.inputTextField(Users.EMAIL_ID, "mail232@abb.com");
 		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.SAME_EMAIL);
@@ -144,15 +136,13 @@ public class SupplierUser_Creating extends BaseTestCase {
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_ICON_CSS));
 		action.inputTextField(Users.EMAIL_ID, "Boss");
 		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
-		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
-				Messages.INVALID_EMAIL);
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INVALID_EMAIL);
 	}
 
 	@Test(dependsOnMethods = "addValidationEmail")
 	public void addValidationPassword() {
 		action.clickBtn(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS));
-		action.waitObjInvisible(By
-				.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		// input other data
 		action.inputTextField(Users.USER_ID, "BOSS_1");
 		action.inputTextField(Users.EMAIL_ID, EMAIL);
@@ -161,31 +151,25 @@ public class SupplierUser_Creating extends BaseTestCase {
 		action.inputTextField(Users.PASSWORD_ID, "");
 		action.inputTextField(Users.CONFIMRPASSWORD_ID, PASSWORD);
 		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
-		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
-				Messages.ENTER_MANDATORY_FIELDS);
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		action.clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
-		action.waitObjInvisible(By
-				.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.inputTextField(Users.PASSWORD_ID, CONFIRMPASSWORD);
 		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
-		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
-				Messages.INVALID_CONFIRM_PWD);
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INVALID_CONFIRM_PWD);
 		action.clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
-		action.waitObjInvisible(By
-				.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.inputTextField(Users.PASSWORD_ID, "ABC");
 		action.inputTextField(Users.CONFIMRPASSWORD_ID, PASSWORD);
 		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
-		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
-				Messages.INVALID_PWD);
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INVALID_PWD);
 	}
 
 	@Test(dependsOnMethods = "addValidationPassword")
 	public void addValidationConfirmPassword() {
 		// input other data
 		action.clickBtn(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS));
-		action.waitObjInvisible(By
-				.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.inputTextField(Users.USER_ID, "BOSS_1");
 		action.inputTextField(Users.EMAIL_ID, EMAIL);
 		action.inputTextField(Users.PASSWORD_ID, PASSWORD);
@@ -197,8 +181,7 @@ public class SupplierUser_Creating extends BaseTestCase {
 	public void unselectUserGroup() {
 
 		action.clickBtn(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS));
-		action.waitObjInvisible(By
-				.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 
 		action.inputTextField(Users.USER_ID, "BOSS_1");
 		action.inputTextField(Users.EMAIL_ID, "boss1@abb.com");
@@ -206,7 +189,6 @@ public class SupplierUser_Creating extends BaseTestCase {
 		action.inputTextField(Users.CONFIMRPASSWORD_ID, PASSWORD);
 		action.clickCheckBoxN(1);
 		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
-		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
-				Messages.USER_SELECT_USERGROUP);
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.USER_SELECT_USERGROUP);
 	}
 }

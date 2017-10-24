@@ -15,6 +15,7 @@ import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
 import com.abb.ventyx.axis.objects.pagedefinitions.DialogBtns;
 import com.abb.ventyx.axis.objects.pagedefinitions.DocType;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
+import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseGrid;
 import com.abb.ventyx.utilities.BaseTestCase;
@@ -27,10 +28,11 @@ public class Document_Type_Creating extends BaseTestCase {
 	private final String DOCTYPE_B = "Abb";
 	private final String DESC_B = "AA_MAINTAIN_DOCTYPES";
 	BaseGrid grid;
-
+	ScreenAction action;
 	// Step 1 Add new doc type and success message
 	@Test
 	public void createDocumentType() throws InterruptedException {
+		action = new ScreenAction(driver);
 		WebElement axisConfigParentButton = (new WebDriverWait(driver, 120))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION)));
@@ -56,14 +58,10 @@ public class Document_Type_Creating extends BaseTestCase {
 		driver.findElement(By.id(DocType.DESC)).sendKeys(DESC_B);
 		driver.findElement(By.id(DocType.SAVE)).click();
 		
-		Thread.sleep(5000);
-		WebElement flashMessage1 = (new WebDriverWait(driver, 30))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(DocType.SUCCESS_MESSAGE)));
+		action.pause(3000);
+		action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 		
-		Assert.assertEquals(flashMessage1.getText(),
-				Messages.DOCUMENT_CREATE_SUCCESSFULLY);
-		
+		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.DOCUMENT_CREATE_SUCCESSFULLY);
 		grid = new BaseGrid(driver, DocType.GRID);
 		Assert.assertNotEquals(
 				grid.findItemByColumnName("Document Types", DOCTYPE_B), -1,
@@ -106,20 +104,20 @@ public class Document_Type_Creating extends BaseTestCase {
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(DocType.ADD)));
 		addDocType.click();
-		Thread.sleep(300);
+		action.pause(300);
 		WebElement clickDesc = (new WebDriverWait(driver, 30))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.id(DocType.DESC)));
 		clickDesc.click();
 		driver.findElement(By.id(DocType.DESC)).sendKeys(DESC_B);
 		driver.findElement(By.id(DocType.SAVE)).click();
-		Thread.sleep(300);
+		action.pause(300);
 		WebElement flashMessage3 = (new WebDriverWait(driver, 30))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(DocType.ENTER_MANDATORY_FIELDS)));
 		Assert.assertEquals(flashMessage3.getText(),
 				Messages.ENTER_MANDATORY_FIELDS);
-		Thread.sleep(1000);
+		action.pause(1000);
 
 	}
 
@@ -131,25 +129,25 @@ public class Document_Type_Creating extends BaseTestCase {
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.id(DocType.CANCEL)));
 		cancelBtn.click();
-		Thread.sleep(500);
+		action.pause(500);
 		WebElement message = (new WebDriverWait(driver, 60))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(DocType.CONFIRMATION)));
 		message.getText();
 		Assert.assertEquals(message.getText(), Messages.UNSAVED_CHANGE);
-		Thread.sleep(500);
+		action.pause(500);
 		driver.findElement(By.id(DialogBtns.NO)).click();
-		Thread.sleep(1000);
+		action.pause(1000);
 		WebElement cancelBtn2 = (new WebDriverWait(driver, 60))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.id(DocType.CANCEL)));
 		cancelBtn2.click();
-		Thread.sleep(500);
+		action.pause(500);
 		WebElement yesBtn = (new WebDriverWait(driver, 60))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.id(DialogBtns.YES)));
 		yesBtn.click();
-		Thread.sleep(500);
+		action.pause(500);
 		assertEquals(action.isElementPresent(By.id(DocType.DOCTYPES)), false);
 
 	}

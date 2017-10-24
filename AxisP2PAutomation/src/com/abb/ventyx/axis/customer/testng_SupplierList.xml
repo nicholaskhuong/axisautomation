@@ -21,4 +21,9 @@
 				<class name="com.abb.ventyx.axis.customer.SupplierList_ActivateSupplier" />
 		</classes>
 	</test>	
+	<test name="Access Supplier by Remote Icon">
+		<classes>
+				<class name="com.abb.ventyx.axis.customer.SupplierList_RemoteIcon" />
+		</classes>
+	</test>	
 </suite> 

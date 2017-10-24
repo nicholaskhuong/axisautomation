@@ -3,7 +3,6 @@ package com.abb.ventyx.axis.supplier;
 import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
@@ -29,7 +28,9 @@ public class Supplier_Admin_UpdateNewAddress extends BaseTestCase {
 	String zip_Code = "123456789";
 	String address_Type = "Invoice";
 	String country = "ARGENTINAsd";
+	int milliseconds = 800;
 	WebDriverWait wait;
+
 	@Test
 	public void openScreen() throws InterruptedException {
 		action = new ScreenAction(driver);
@@ -38,16 +39,17 @@ public class Supplier_Admin_UpdateNewAddress extends BaseTestCase {
 		action.waitObjVisible(By.id(MaintainSuppliers.SUPPLIER_NAME));
 		action.clickBtn(By.cssSelector(MaintainSuppliers.ADDICON));
 	}
+
 	@Test(dependsOnMethods = "openScreen")
 	public void addNewAddress() throws InterruptedException {
 		action.waitObjVisible(By.id(MaintainSuppliers.ADDRESS_POPUP));
 		commonMethod();
 		action.clickBtn(By.cssSelector(MaintainSuppliers.OK_BUTTON));
-		Thread.sleep(200);
-		// try to Saving 
-		//action.waitObjVisible(By.id(ScreenObjects.YES_BTN_ID));
-		//action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
-		//action.checkAddSuccess(Messages.ADDRESS_CONTACT_SUCCESSFULLY_UPDATED);
+		action.pause(milliseconds);
+		// try to Saving
+		// action.waitObjVisible(By.id(ScreenObjects.YES_BTN_ID));
+		// action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
+		// action.checkAddSuccess(Messages.ADDRESS_CONTACT_SUCCESSFULLY_UPDATED);
 
 	}
 
@@ -57,17 +59,17 @@ public class Supplier_Admin_UpdateNewAddress extends BaseTestCase {
 		action.clickBtn(By.cssSelector(MaintainSuppliers.ADDICON));
 		action.waitObjVisible(By.id(MaintainSuppliers.ADDRESS_POPUP));
 		action.clickBtn(By.cssSelector(MaintainSuppliers.OK_BUTTON));
-		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
-				Messages.ENTER_MANDATORY_FIELDS);
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		action.waitObjVisible(By.id(MaintainSuppliers.ADDRESS_POPUP));
 		commonMethod();
 		// Do not save. Try click on Cancel button
 		action.clickBtn(By.cssSelector(MaintainSuppliers.CANCEL_BUTTON));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
-		//wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)));
-		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
+		// wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(),
+				Messages.UNSAVED_CHANGE);
 		driver.findElement(By.id(ScreenObjects.NO_BTN_ID)).click();
-		//action.clickBtn(By.cssSelector(MaintainSuppliers.CANCEL_BUTTON));
+		// action.clickBtn(By.cssSelector(MaintainSuppliers.CANCEL_BUTTON));
 
 	}
 
@@ -78,28 +80,12 @@ public class Supplier_Admin_UpdateNewAddress extends BaseTestCase {
 	}
 
 	public void commonMethod() throws InterruptedException {
-		WebElement address_popup= driver.findElement(By.id(MaintainSuppliers.ADDRESS_POPUP));
-		address_popup.clear();
-		address_popup.sendKeys(address_Popup);
-		Thread.sleep(400);
-		WebElement address_more= driver.findElement(By.id(MaintainSuppliers.ADDRESS_POPUP_2));
-		address_more.clear();
-		address_more.sendKeys(address_Popup_2);
-		Thread.sleep(400);
-		WebElement city_popup= driver.findElement(By.id(MaintainSuppliers.CITY_POPUP));
-		city_popup.clear();
-		city_popup.sendKeys(city_Popup);
-		Thread.sleep(400);
-		WebElement state_popup = driver.findElement(By.id(MaintainSuppliers.STATE_POPUP));
-		state_popup.clear();
-		state_popup.sendKeys(state_Popup);
-		Thread.sleep(400);
-		WebElement zip_code= driver.findElement(By.id(MaintainSuppliers.ZIPCODE));
-		zip_code.clear();
-		zip_code.sendKeys(zip_Code);
-		Thread.sleep(400);
-		
-	}
+		action.inputTextField(MaintainSuppliers.ADDRESS_POPUP, address_Popup);
+		action.inputTextField(MaintainSuppliers.ADDRESS_POPUP_2, address_Popup_2);
+		action.inputTextField(MaintainSuppliers.CITY_POPUP, city_Popup);
+		action.inputTextField(MaintainSuppliers.STATE_POPUP, state_Popup);
+		action.inputTextField(MaintainSuppliers.ZIPCODE, zip_Code);
 
+	}
 
 }

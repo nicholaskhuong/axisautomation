@@ -39,13 +39,7 @@ public class SupplierUser_Deleting extends BaseTestCase {
 		row = table.findRowByString(Users.SUPPLIER_USERS_TABLE_CSS, USER_ID, 2);
 		table.assertValueRow(2, row, USER_ID);
 		row = row - 1;
-		if (action.isElementPresent(By
-				.className(ScreenObjects.HORIZONTAL_SCROLLBAR_CLASS)) == true) {
-			action.clickHorizontalScrollBar();
-			action.waitObjVisible(By.id(ScreenObjects.DELETE_BTN_ID + row));
-		}
 		action.clickBtn(By.id(ScreenObjects.DELETE_BTN_ID + row));
-
 	}
 
 	@Test(dependsOnMethods = "selectRowDeleting")

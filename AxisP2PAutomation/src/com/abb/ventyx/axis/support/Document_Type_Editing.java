@@ -10,7 +10,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
-import com.abb.ventyx.axis.objects.pagedefinitions.CustomerUsers;
 import com.abb.ventyx.axis.objects.pagedefinitions.DialogBtns;
 import com.abb.ventyx.axis.objects.pagedefinitions.DocType;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
@@ -31,22 +30,20 @@ public class Document_Type_Editing extends BaseTestCase {
 	@TestDataKey
 	private final String DESC_A = "AA_MAINTAIN_DOCTYPES";
 	BaseGrid grid;
-	int row =1;
+	int row = 1;
 
 	// Step 1 click 1st document Abb
 	@Test
-	public void clickDocumentType() throws InterruptedException{
+	public void clickDocumentType() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		TableFunction tablefunction = new TableFunction(driver);
 
-		WebElement axisConfigParentButton = (new WebDriverWait(driver, 60))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION)));
+		WebElement axisConfigParentButton = (new WebDriverWait(driver, 60)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION)));
 		axisConfigParentButton.click();
 
-		WebElement axisDocType = (new WebDriverWait(driver, 30))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(AxisConfigMenu.DOC_TYPE)));
+		WebElement axisDocType = (new WebDriverWait(driver, 30)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(AxisConfigMenu.DOC_TYPE)));
 		axisDocType.click();
 		Thread.sleep(1000);
 
@@ -55,7 +52,7 @@ public class Document_Type_Editing extends BaseTestCase {
 	}
 
 	// Step 2 Update description of document type
-	@Test(dependsOnMethods="clickDocumentType")
+	@Test(dependsOnMethods = "clickDocumentType")
 	public void updateDescription() throws Exception {
 		Assert.assertEquals(driver.findElement(By.id(DocType.DOCTYPES)).isEnabled(), false);
 		Thread.sleep(200);
@@ -66,16 +63,13 @@ public class Document_Type_Editing extends BaseTestCase {
 		Thread.sleep(400);
 		WebElement save = driver.findElement(By.id(DocType.SAVE));
 		save.click();
-		Thread.sleep(2000);		
-		WebElement flashMessage = (new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(DocType.SUCCESS_MESSAGE)));
-		Assert.assertEquals(flashMessage.getText(),
-				Messages.DOCUMENT_UPDATED_SUCCESSFULLY);
+		Thread.sleep(2000);
+		WebElement flashMessage = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(DocType.SUCCESS_MESSAGE)));
+		Assert.assertEquals(flashMessage.getText(), Messages.DOCUMENT_UPDATED_SUCCESSFULLY);
 
 		grid = new BaseGrid(driver, DocType.GRID);
-		final String DOCTYPE_C = grid.getGridCellByColumnName("Document Types",
-				row);
+		final String DOCTYPE_C = grid.getGridCellByColumnName("Document Types", row);
 		final String DESC_C = grid.getGridCellByColumnName("Description", row);
 
 		Assert.assertEquals(DOCTYPE_C, DOCTYPE_B);
@@ -83,18 +77,20 @@ public class Document_Type_Editing extends BaseTestCase {
 	}
 
 	// Step 3,4,5,6 Click 1st document Abb
-	@Test(dependsOnMethods="updateDescription")
+	@Test(dependsOnMethods = "updateDescription")
 	public void clickDocumentType1() throws Exception {
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		// Step 3 Return Document type to its original value.
-		//driver.findElement(By.id("docTypeBtn" + (row - 1))).click();
+		// driver.findElement(By.id("docTypeBtn" + (row - 1))).click();
 		TableFunction tablefunction = new TableFunction(driver);
 		tablefunction.clickDocType(DocType.GRID, DOCTYPE_B);
-		/*wait.until(ExpectedConditions.visibilityOfElementLocated(By
-				.cssSelector(DocType.DOCUMENTTYPE_HEADER)));
-		Thread.sleep(2000);
-		assertEquals(driver.findElement(By.cssSelector(DocType.DOCUMENTTYPE_HEADER)).getText(), "Edit Document Types");
-		 */		
+		/*
+		 * wait.until(ExpectedConditions.visibilityOfElementLocated(By
+		 * .cssSelector(DocType.DOCUMENTTYPE_HEADER))); Thread.sleep(2000);
+		 * assertEquals
+		 * (driver.findElement(By.cssSelector(DocType.DOCUMENTTYPE_HEADER
+		 * )).getText(), "Edit Document Types");
+		 */
 		Thread.sleep(3000);
 		WebElement desc2 = driver.findElement(By.id(DocType.DESC));
 		desc2.clear();
@@ -105,22 +101,22 @@ public class Document_Type_Editing extends BaseTestCase {
 		assertEquals(driver.findElement(By.cssSelector(DocType.CONFIRMATION)).getText(), Messages.UNSAVED_CHANGE);
 		driver.findElement(By.id(DialogBtns.NO)).click();
 		Thread.sleep(500);
-		//assertEquals(driver.findElement(By.cssSelector(DocType.DOCUMENTTYPE_HEADER)).getText(), "Edit Document Types");
-		driver.findElement(By.id(DialogBtns.YES)).click();
+		// assertEquals(driver.findElement(By.cssSelector(DocType.DOCUMENTTYPE_HEADER)).getText(),
+		// "Edit Document Types");
+		driver.findElement(By.id(DocType.SAVE)).click();
 		Thread.sleep(500);
 		assertEquals(driver.findElement(By.cssSelector(DocType.DOCUMENTTYPE_HEADER)).getText(), "Maintain Document Types");
-		/*WebElement flashMessage2 = (new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(DocType.SUCCESS_MESSAGE)));
-		Assert.assertEquals(
-				driver.findElement(By.cssSelector(DocType.POPUP_SUCCESS))
-						.getCssValue("background-color"),
-				"rgba(33, 190, 137, 1)");
-		Assert.assertEquals(flashMessage2.getCssValue("visibility"), "visible");
-		Assert.assertEquals(flashMessage2.getCssValue("display"),
-				"inline-block");
-		Assert.assertEquals(flashMessage2.getText(),
-				Messages.DOCUMENT_UPDATED_SUCCESSFULLY);*/
+		/*
+		 * WebElement flashMessage2 = (new WebDriverWait(driver, 10))
+		 * .until(ExpectedConditions.presenceOfElementLocated(By
+		 * .cssSelector(DocType.SUCCESS_MESSAGE))); Assert.assertEquals(
+		 * driver.findElement(By.cssSelector(DocType.POPUP_SUCCESS))
+		 * .getCssValue("background-color"), "rgba(33, 190, 137, 1)");
+		 * Assert.assertEquals(flashMessage2.getCssValue("visibility"),
+		 * "visible"); Assert.assertEquals(flashMessage2.getCssValue("display"),
+		 * "inline-block"); Assert.assertEquals(flashMessage2.getText(),
+		 * Messages.DOCUMENT_UPDATED_SUCCESSFULLY);
+		 */
 
 	}
 }
