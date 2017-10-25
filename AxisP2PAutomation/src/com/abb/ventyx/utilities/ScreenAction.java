@@ -81,7 +81,7 @@ public class ScreenAction {
 			pause(50);
 			txtField.sendKeys(s);
 		}
-		if (txtField.getAttribute("value").trim() != value) {
+		if (!((txtField.getText().trim() == value) || (txtField.getAttribute("value").trim() == value))) {
 			txtField.clear();
 			txtField.sendKeys(value);
 		}
@@ -95,7 +95,7 @@ public class ScreenAction {
 			pause(timeout);
 			txtField.sendKeys(s);
 		}
-		if (txtField.getAttribute("value").trim() != value) {
+		if (!((txtField.getText().trim() == value) || (txtField.getAttribute("value").trim() == value))) {
 			txtField.clear();
 			txtField.sendKeys(value);
 		}
@@ -121,13 +121,13 @@ public class ScreenAction {
 		assertNotNull(disabled);
 	}
 
-	public void assertTextEqual(By by, String text) {
+	public void assertTextEqual(By by, String exptectedValue) {
 		WebElement screenTitle = driver.findElement(by);
-		if ("" == screenTitle.getText().trim()) {
-			assertEquals(screenTitle.getAttribute("value"), text, "Value is wrong");
+		if (screenTitle.getText().trim().isEmpty()) {
+			assertEquals(screenTitle.getAttribute("value"), exptectedValue, "Value is wrong");
 		}
  else {
-			assertEquals(screenTitle.getText(), text, "Value is wrong");
+			assertEquals(screenTitle.getText(), exptectedValue, "Value is wrong");
 
 		}
 	}
