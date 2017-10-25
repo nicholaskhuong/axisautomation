@@ -7,7 +7,6 @@ import java.util.Random;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-import com.abb.ventyx.axis.objects.pagedefinitions.CustomerUsers;
 import com.abb.ventyx.axis.objects.pagedefinitions.MaintainSuppliers;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
@@ -68,17 +67,16 @@ public class Supplier_Admin_UpdateContact extends BaseTestCase {
 		action.clickBtn(By.id(MaintainSuppliers.SELECT_ROW));
 		action.waitObjVisible(By.cssSelector(MaintainSuppliers.TITLE_POPUP));
 		assertEquals(driver.findElement(By.cssSelector(MaintainSuppliers.TITLE_POPUP)).getText(), title_header);
+		
 		// Step 3
 		// Input lack data mandatory in the form, clear data of Contact ID
 		driver.findElement(By.id(MaintainSuppliers.CONTACT_ID_FILED)).clear();
 		action.clickBtn(By.cssSelector(MaintainSuppliers.OK_BUTTON));
-		action.waitObjVisible(By.cssSelector(CustomerUsers.ERROR));
-		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.ERROR)).getText(),
-				Messages.ENTER_MANDATORY_FIELDS);
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		// Step 4
 		// Fill all data in the Update Contact popup
 		action.pause(milliseconds);
-		action.waitObjInvisible(By.cssSelector(CustomerUsers.ERROR));
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.waitObjVisible(By.id(MaintainSuppliers.CONTACT_ID_FILED));
 		action.inputTextField(MaintainSuppliers.CONTACT_ID_FILED, contact_Id);
 		action.inputTextField(MaintainSuppliers.CONTACT_NAME_FILED, contact_name);

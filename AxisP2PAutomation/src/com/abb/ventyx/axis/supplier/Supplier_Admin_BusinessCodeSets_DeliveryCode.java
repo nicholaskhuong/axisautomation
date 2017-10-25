@@ -6,8 +6,8 @@ import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.BusinessCodeSets;
-import com.abb.ventyx.axis.objects.pagedefinitions.CustomerUsers;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
+import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 import com.abb.ventyx.axis.objects.pagedefinitions.SupplierMenu;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseTestCase;
@@ -45,12 +45,10 @@ public class Supplier_Admin_BusinessCodeSets_DeliveryCode extends BaseTestCase {
 		action.pause(milliseconds);
 		// step 4
 		action.clickBtn(By.cssSelector(BusinessCodeSets.SAVE_BUTTON));
-		action.waitObjVisible(By.cssSelector(CustomerUsers.ERROR));
-		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.ERROR)).getText(),
-				Messages.ENTER_MANDATORY_FIELDS);
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		// step 5
 		action.pause(milliseconds);
-		action.waitObjInvisible(By.cssSelector(CustomerUsers.ERROR));
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.inputTextField(BusinessCodeSets.TAXTYPE_ID, deliveryCodeLessThan15);
 		action.clickBtn(By.cssSelector(BusinessCodeSets.SAVE_BUTTON));
 		action.waitObjVisible(By.cssSelector(BusinessCodeSets.ERROR_DELIVERYCODE));

@@ -1,11 +1,8 @@
 package com.abb.ventyx.axis.supplier;
 
-import static org.testng.Assert.assertEquals;
-
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-import com.abb.ventyx.axis.objects.pagedefinitions.CustomerUsers;
 import com.abb.ventyx.axis.objects.pagedefinitions.MaintainSuppliers;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
@@ -55,9 +52,7 @@ public class Supplier_Admin_AddContact extends BaseTestCase {
 		action.pause(milliseconds);
 		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
 		// Verify message display
-		action.waitObjVisible(By.cssSelector(CustomerUsers.ERROR));
-		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.ERROR)).getText(),
-				Messages.ENTER_MANDATORY_FIELDS);
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		// Step 3
 		// Input Supplier again
 		action.inputTextField(MaintainSuppliers.SUPPLIER_NAME, supplierName);
@@ -72,9 +67,7 @@ public class Supplier_Admin_AddContact extends BaseTestCase {
 		// action.waitObjVisible(By.id(MaintainSuppliers.CONTACT_ID_FILED));
 		action.inputTextField(MaintainSuppliers.CONTACT_ID_FILED, contact_Id);
 		action.clickBtn(By.cssSelector(MaintainSuppliers.OK_BUTTON));
-		action.waitObjVisible(By.cssSelector(CustomerUsers.ERROR));
-		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.ERROR)).getText(),
-				Messages.ENTER_MANDATORY_FIELDS);
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		// action.waitObjInvisible(By.cssSelector(CustomerUsers.ERROR));
 		// Input Name
 		action.inputTextField(MaintainSuppliers.CONTACT_NAME_FILED, contact_name);
@@ -84,7 +77,7 @@ public class Supplier_Admin_AddContact extends BaseTestCase {
 		action.clickBtn(By.cssSelector(MaintainSuppliers.OK_BUTTON));
 		// Verify that message display
 		// wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.ERROR)));
-		action.waitObjVisible(By.cssSelector(CustomerUsers.ERROR));
+		action.waitObjVisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		// assertEquals(driver.findElement(By.cssSelector(CustomerUsers.ERROR)).getText(),
 		// Messages.INVALID_EMAIL_2);
 	}
