@@ -28,7 +28,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	TableFunction table;
 	WebDriverWait wait;
 	int i;
-	String USERID = "createdbyuser_nick";
+	String USERID = "createdby_nick";
 	String CUSTOMERUSEREMAIL = "nickcusercreatedbyuser@abb.com";
 	String PASSWORD = "Testuser2";
 	String CONFIRMPASSWORD = "Testuser2";
