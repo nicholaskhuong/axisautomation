@@ -2,8 +2,6 @@ package com.abb.ventyx.axis.supplier;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AddressContact;
@@ -139,15 +137,13 @@ public class Supplier_Admin_AddNewAddress extends BaseTestCase {
 		action.inputTextField(MaintainSuppliers.SUPPLIER_NAME_INPOPUP, Supplier_Name_Inpopup);
 		action.inputTextField(MaintainSuppliers.SUPPLIER_NAME_INPOPUP, Supplier_Name_Inpopup);
 		action.clickBtn(By.id(MaintainSuppliers.SAVE_EDIT));
-		//action.checkAddSuccess(Messages.SUPPLIER_UPDATED_SUCCESSFULLY);
+		action.checkAddSuccess(Messages.SUPPLIER_UPDATED_SUCCESSFULLY);
 	}
 
 	// Step 8
 	@Test(dependsOnMethods = "checkSupplierList")
 	public void updateAddress() throws InterruptedException {
 		// Click on Address&Contact menu
-		//action.waitObjVisible(By.cssSelector(CustomerMenu.ADDRESS_CONTACT_MENU));
-		action.waitObjVisible(By.cssSelector(MaintainSuppliers.SUPPLIER_NAME));
 		action.clickBtn(By.cssSelector(CustomerMenu.ADDRESS_CONTACT_MENU));
 		action.waitObjVisible(By.id("addrId0"));
 		//Click a record with Address type = Default Address

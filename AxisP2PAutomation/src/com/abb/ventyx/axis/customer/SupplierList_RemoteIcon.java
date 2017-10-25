@@ -81,32 +81,24 @@ public class SupplierList_RemoteIcon extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.id("accessSupplierBtn" + j));
 		action.waitObjVisible(By.id(SupplierMenu.PURCHASE_ORDERS_ID));
 		action.assertTitleScreen("Supplier Dashboard");
-		assertEquals(
-				action.isElementPresent(By.id(SupplierMenu.PURCHASE_ORDERS_ID)),
-				true);
-		assertEquals(action.isElementPresent(By
-				.id(SupplierMenu.SHIPPING_NOTICES_ID)), true);
-		assertEquals(action.isElementPresent(By.id(SupplierMenu.INVOICES_ID)),
-				true);
-		assertEquals(
-				action.isElementPresent(By.id(SupplierMenu.ADMINISTRATION_ID)),
-				true);
+		assertEquals(action.isElementPresent(By.id(SupplierMenu.PURCHASE_ORDERS_ID)), true);
+		assertEquals(action.isElementPresent(By.id(SupplierMenu.SHIPPING_NOTICES_ID)), true);
+		assertEquals(action.isElementPresent(By.id(SupplierMenu.INVOICES_ID)), true);
+		assertEquals(action.isElementPresent(By.id(SupplierMenu.ADMINISTRATION_ID)), true);
 
 	}
 
 	// Step 4
 	@Test(dependsOnMethods = "changeCustomerProfileAndClickRemoteIcon")
-	public void openProfilePanel() {
-		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
-		action.waitObjVisible(By.id(ScreenObjects.SIGNOUT_BUTTON));
+	public void signOut() {
+		action.signOut();
 	}
 
 	// Step 5
 	@Test(dependsOnMethods = "openProfilePanel")
-	public void signOutAtSupplierView() {
-		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
-		action.waitObjVisible(By
-				.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
+	public void signInAgain() {
+		action.signIn("cadmin1@abb.com", "Testuser1");
+		action.waitObjVisible(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
 		action.assertTitleScreen("Customer Dashboard");
 	}
 
@@ -121,16 +113,10 @@ public class SupplierList_RemoteIcon extends BaseTestCase {
 
 		action.waitObjVisibleAndClick(By.id("accessSupplierBtn" + j));
 		action.assertTitleScreen("Supplier Dashboard");
-		assertEquals(
-				action.isElementPresent(By.id(SupplierMenu.PURCHASE_ORDERS_ID)),
-				true);
-		assertEquals(action.isElementPresent(By
-				.id(SupplierMenu.SHIPPING_NOTICES_ID)), true);
-		assertEquals(action.isElementPresent(By.id(SupplierMenu.INVOICES_ID)),
-				true);
-		assertEquals(
-				action.isElementPresent(By.id(SupplierMenu.ADMINISTRATION_ID)),
-				true);
+		assertEquals(action.isElementPresent(By.id(SupplierMenu.PURCHASE_ORDERS_ID)), true);
+		assertEquals(action.isElementPresent(By.id(SupplierMenu.SHIPPING_NOTICES_ID)), true);
+		assertEquals(action.isElementPresent(By.id(SupplierMenu.INVOICES_ID)), true);
+		assertEquals(action.isElementPresent(By.id(SupplierMenu.ADMINISTRATION_ID)), true);
 	}
 
 	// Step 7, 8, 9 will script after done creating, modifying, deleting PO Ack,

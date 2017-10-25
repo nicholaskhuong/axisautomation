@@ -68,8 +68,7 @@ public class Profile_Create extends BaseTestCase {
 		if(action.isElementPresent(By.id(Profiles.SAVE_BTN))==true){
 			action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
 		}
-		action.waitObjVisible(By.cssSelector("ScreenObjects.SUCCESS_MESSAGE"));
-		action.checkAddSuccess(Messages.MESSAGE_SUCCESSFULLY);
+		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.MESSAGE_SUCCESSFULLY);
 	}
 	
 	@Test(dependsOnMethods = "slelectAuthorisedDocumentTypes", alwaysRun = true)
@@ -89,8 +88,7 @@ public class Profile_Create extends BaseTestCase {
 	public void inputMissingAllFields() {
 		action.inputTextField(Profiles.PROFILE_NAME_ID, "");
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
-		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
-				Messages.MESSAGE_MISSING_ALL_FIELD);
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.MESSAGE_MISSING_ALL_FIELD);
 		}
 	
 	@Test(dependsOnMethods = "inputMissingAllFields", alwaysRun = true)
@@ -98,8 +96,7 @@ public class Profile_Create extends BaseTestCase {
 		action.inputTextField(Profiles.PROFILE_NAME_ID, "Per3");
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
 		action.pause(waitTime);
-		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
-				Messages.MESSAGE_MISSING_CUSTOMER_NAME);
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.MESSAGE_MISSING_CUSTOMER_NAME);
 		}
 	
 	@Test(dependsOnMethods = "inputMissingCustomerName", alwaysRun = true)

@@ -72,7 +72,7 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 		assertEquals(table.getValueRow(4, i), ACTIVESTATUS);
 		assertEquals(table.getValueRow(5, i), NEWSUPPLIERNAME);
 		assertEquals(table.getValueRow(6, i), SUPPLIEREMAIL);
-		assertEquals(table.getValueRow(7, i), PROFILE);
+		assertEquals(table.getValueRow(7, i), PROFILEUPDATED);
 		j=i-1;
 		System.out.println("Print J: "+ i);
 		assertEquals(action.isFieldDisable(By.id("accessSupplierBtn"+j)),false);
