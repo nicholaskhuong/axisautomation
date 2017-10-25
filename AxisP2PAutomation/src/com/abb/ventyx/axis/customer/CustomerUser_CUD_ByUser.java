@@ -207,13 +207,17 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	}
 
 	@Test(dependsOnMethods = "updateUserInfo", alwaysRun = true)
-	public void logOutAndLogIn() throws InterruptedException {
+	public void logOut() throws InterruptedException {
 		table = new TableFunction(driver);
 		action = new ScreenAction(driver);
 		wait = new WebDriverWait(driver, 60);
 
 		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
+	}
+
+	@Test(dependsOnMethods = "logOut", alwaysRun = true)
+	public void logIn() throws InterruptedException {
 		action.inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, "cuserdefault@abb.com");
 		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, "Testuser1");
 		action.clickBtn(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));
@@ -224,7 +228,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		assertEquals(driver.findElement(By.id(CustomerUsers.DELETE_ICON_ADMIN)).getAttribute("aria-disabled"), "true");
 	}
 
-	@Test(dependsOnMethods = "logOutAndLogIn")
+	@Test(dependsOnMethods = "logIn")
 	public void deleteCustomerAdmin() throws InterruptedException {
 
 		assertEquals(driver.findElement(By.id(CustomerUsers.DELETE_ICON_ADMIN)).getAttribute("aria-disabled"), "true");

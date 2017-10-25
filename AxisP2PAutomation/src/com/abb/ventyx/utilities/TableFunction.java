@@ -16,7 +16,7 @@ import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 
 public class TableFunction {
 	WebDriver driver;
-
+	int timeout = 60;
 	public TableFunction(WebDriver driver) {
 		this.driver = driver;
 	}
@@ -40,7 +40,7 @@ public class TableFunction {
 	}
 
 	public int findRowByString1(int columnindex, String value) {
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(driver, timeout);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']")));
 		int row = 0;
 		WebElement baseTable = driver.findElement(By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']"));

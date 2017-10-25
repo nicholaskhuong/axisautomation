@@ -28,18 +28,18 @@ import com.abb.ventyx.axis.objects.pagedefinitions.UserPreferences;
 
 public class ScreenAction {
 	WebDriver driver;
-	int timeout = 60;
+	int timeout = 30;
 	public ScreenAction(WebDriver driver) {
 		this.driver = driver;
 	}
 
 	public void waitObjInvisible(By obj) {
-		(new WebDriverWait(driver, 30)).until(ExpectedConditions
+		(new WebDriverWait(driver, timeout)).until(ExpectedConditions
 				.invisibilityOfElementLocated(obj));
 	}
 
 	public void waitObjVisible(By obj) {
-		(new WebDriverWait(driver, 30)).until(ExpectedConditions
+		(new WebDriverWait(driver, timeout)).until(ExpectedConditions
 				.presenceOfElementLocated(obj));
 	}
 
@@ -56,7 +56,7 @@ public class ScreenAction {
 	}
 
 	public void assertTitleScreen(String titleScreen) {
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, timeout);
 
 		wait.until(ExpectedConditions.presenceOfElementLocated(By
 				.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)));
@@ -68,19 +68,14 @@ public class ScreenAction {
 
 	public void clickBtn(By obj) {
 		WebElement btn = driver.findElement(obj);
-		((JavascriptExecutor) driver).executeScript(
-				"arguments[0].scrollIntoView(true);", btn);
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", btn);
 		btn.click();
 	}
 
 	public void inputTextField(String obj, String value) {
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions
-				.presenceOfElementLocated(By.id(obj)));
-		WebElement txtField = driver.findElement(By.id(obj));
+		WebElement txtField = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By.id(obj)));
 		txtField.clear();
-		pause(100);
 		txtField.sendKeys(value);
-		pause(100);
 	}
 
 	public void assertFieldReadOnly(By by) {
@@ -109,20 +104,17 @@ public class ScreenAction {
 	}
 
 	public String getAttribute(By by) {
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions
-				.presenceOfElementLocated(by));
+		(new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(by));
 		return driver.findElement(by).getAttribute("value");
 	}
 
 	public void clickCheckBoxN(int n) {
-		List<WebElement> listCheckbox = driver.findElements(By
-				.xpath("//input[@type='checkbox']"));
+		List<WebElement> listCheckbox = driver.findElements(By.xpath("//input[@type='checkbox']"));
 		listCheckbox.get(n).click();
 	}
 
 	public void checkObjSelected(int start, int end) {
-		List<WebElement> listCheckbox = driver.findElements(By
-				.xpath("//input[@type='checkbox']"));
+		List<WebElement> listCheckbox = driver.findElements(By.xpath("//input[@type='checkbox']"));
 		for (int i = start; i < end; i++) {
 			listCheckbox.get(i).isSelected();
 		}
@@ -130,31 +122,26 @@ public class ScreenAction {
 
 	public boolean checkObjSelected(int index) {
 		boolean isSelected = false;
-		List<WebElement> listCheckbox = driver.findElements(By
-				.xpath("//input[@type='checkbox']"));
+		List<WebElement> listCheckbox = driver.findElements(By.xpath("//input[@type='checkbox']"));
 		isSelected = listCheckbox.get(index).isSelected();
 		return isSelected;
 	}
 
 	public void clickCheckBoxNInTable(String tableCSS, int n) {
 		WebElement table = driver.findElement(By.cssSelector(tableCSS));
-		List<WebElement> listCheckbox = table.findElements(By
-				.className("v-grid-selection-checkbox"));
+		List<WebElement> listCheckbox = table.findElements(By.className("v-grid-selection-checkbox"));
 		listCheckbox.get(n).click();
 	}
 
 	public void clickYesUpdatePasswordRadio() {
-		WebElement radioButton = (new WebDriverWait(driver, 15))
-				.until(ExpectedConditions.presenceOfElementLocated(By
+		WebElement radioButton = (new WebDriverWait(driver, 15)).until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(CustomerUsers.YESUPDATEPASSWORD_RADIOBUTTON)));
-
 		radioButton.findElement(By.tagName("label")).click();
 	}
 
 	public void clickNoUpdatePasswordRadio() {
 
-		WebElement radioButton = (new WebDriverWait(driver, 15))
-				.until(ExpectedConditions.presenceOfElementLocated(By
+		WebElement radioButton = (new WebDriverWait(driver, 15)).until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(CustomerUsers.NOUPDATEPASSWORD_RADIOBUTTON)));
 
 		radioButton.findElement(By.tagName("label")).click();
@@ -168,7 +155,7 @@ public class ScreenAction {
 
 	public void checkAddSuccess(String msg) {
 
-		WebElement flashMessage1 = (new WebDriverWait(driver, 20))
+		WebElement flashMessage1 = (new WebDriverWait(driver, timeout))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(ScreenObjects.SUCCESS_MESSAGE)));
 		Assert.assertEquals(flashMessage1.getText(), msg);
@@ -201,7 +188,7 @@ public class ScreenAction {
 	}
 
 	public void assertMessgeError(String msgCSS, String msg) {
-		WebElement error = (new WebDriverWait(driver, 20))
+		WebElement error = (new WebDriverWait(driver, timeout))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(msgCSS)));
 		Assert.assertEquals(error.getText(), msg);
@@ -253,7 +240,7 @@ public class ScreenAction {
 	public void cancelClickYes(By obj, String titleScreen) {
 
 		driver.findElement(By.id(ScreenObjects.CANCEL_ID)).click();
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions
+		(new WebDriverWait(driver, timeout)).until(ExpectedConditions
 				.presenceOfElementLocated(By
 						.cssSelector(ScreenObjects.CONFIRMATION)));
 		driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
@@ -264,7 +251,7 @@ public class ScreenAction {
 	public void cancelClickNo(String titleScreen) {
 
 		driver.findElement(By.id(ScreenObjects.CANCEL_ID)).click();
-		WebElement msgDialog = (new WebDriverWait(driver, 20))
+		WebElement msgDialog = (new WebDriverWait(driver, timeout))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(ScreenObjects.CONFIRMATION)));
 		assertEquals(msgDialog.getText(), Messages.UNSAVED_CHANGE);
@@ -284,7 +271,7 @@ public class ScreenAction {
 	public void cancelByMenuClickYes(By obj, String titleScreen, By newObj) {
 
 		driver.findElement(obj).click();
-		(new WebDriverWait(driver, 20)).until(ExpectedConditions
+		(new WebDriverWait(driver, timeout)).until(ExpectedConditions
 				.presenceOfElementLocated(By
 						.cssSelector(ScreenObjects.CONFIRMATION)));
 		driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
@@ -295,7 +282,7 @@ public class ScreenAction {
 	public void cancelByMenuClickNo(By obj, String titleScreen) {
 
 		driver.findElement(obj).click();
-		WebElement msgDialog = (new WebDriverWait(driver, 20))
+		WebElement msgDialog = (new WebDriverWait(driver, timeout))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(ScreenObjects.CONFIRMATION)));
 		assertEquals(msgDialog.getText(), Messages.UNSAVED_CHANGE);
@@ -325,13 +312,11 @@ public class ScreenAction {
 	public void deleteClickNo(String msgConfirm) throws Exception {
 
 		// Click No on dialog
-		WebElement deleteConfirm = (new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(ScreenObjects.CONFIRMATION)));
+		WebElement deleteConfirm = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(ScreenObjects.CONFIRMATION)));
 		assertThat(deleteConfirm.getText(), containsString(msgConfirm));
-		WebElement deleteNoBtn = (new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(ScreenObjects.DELETE_NO)));
+		WebElement deleteNoBtn = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(ScreenObjects.DELETE_NO)));
 		deleteNoBtn.click();
 		Thread.sleep(2000);
 
@@ -340,16 +325,12 @@ public class ScreenAction {
 	@Test(dependsOnMethods = "deleteUserGroupClickNo")
 	public void deleteClickYes(String msgDelete) throws Exception {
 
-		(new WebDriverWait(driver, 10)).until(ExpectedConditions
-				.presenceOfElementLocated(By
-						.cssSelector(ScreenObjects.CONFIRMATION)));
-		WebElement deleteYesBtn = (new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(ScreenObjects.DELETE_YES)));
+		(new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.CONFIRMATION)));
+		WebElement deleteYesBtn = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(ScreenObjects.DELETE_YES)));
 		deleteYesBtn.click();
-		WebElement flashMessage = (new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(ScreenObjects.SUCCESS_MESSAGE)));
+		WebElement flashMessage = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(ScreenObjects.SUCCESS_MESSAGE)));
 		assertEquals(flashMessage.getText(), msgDelete);
 
 	}
@@ -384,7 +365,7 @@ public class ScreenAction {
 	public void signIn(String emailAddress, String password) {
 		waitObjVisible(By.id(LoginPageDefinition.USERNAME_TEXT_FIELD_ID));
 		inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, emailAddress);
-		pause(300);
+		pause(timeout);
 		inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, password);
 		clickBtn(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));
 	}
