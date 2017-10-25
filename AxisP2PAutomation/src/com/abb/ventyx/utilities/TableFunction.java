@@ -111,7 +111,7 @@ public class TableFunction {
 	}
 
 	// Click User Number in Maintain Customer User (Customer account)
-	public void clickUserNumber(String value) {
+	public void clickUserNo(String value) {
 		// int row = 0;
 		WebElement baseTable = driver.findElement(By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']"));
 		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
@@ -127,6 +127,13 @@ public class TableFunction {
 				break;
 			}
 		}
+	}
+
+	// Click User Number in Maintain Customer User (Customer account)
+	public void clickUserNo(int row) {
+		WebElement usrSequenceIdStrBtn = driver.findElement(By.id("usrSequenceIdStrBtn" + (row - 1)));
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", usrSequenceIdStrBtn);
+		usrSequenceIdStrBtn.click();
 	}
 
 	// Click User Number in Maintain Customer User (Customer account)

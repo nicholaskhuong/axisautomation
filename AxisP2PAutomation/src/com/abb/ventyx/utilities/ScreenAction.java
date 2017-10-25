@@ -71,11 +71,26 @@ public class ScreenAction {
 		btn.click();
 	}
 
-	public void inputTextField(String obj, String value) {
+	public void inputEmailField(String obj, String value) {
 		WebElement txtField = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By.id(obj)));
 		txtField.clear();
 		pause(500);
-		txtField.sendKeys(value);
+		for (int i = 0; i < value.length(); i++) {
+			char c = value.charAt(i);
+			String s = new StringBuilder().append(c).toString();
+			pause(100);
+			txtField.sendKeys(s);
+		}
+	}
+	public void inputTextField(String obj, String value) {
+		WebElement txtField = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By.id(obj)));
+		txtField.clear();
+		for (int i = 0; i < value.length(); i++) {
+			char c = value.charAt(i);
+			String s = new StringBuilder().append(c).toString();
+			pause(timeout);
+			txtField.sendKeys(s);
+		}
 	}
 
 	public void assertFieldReadOnly(By by) {
