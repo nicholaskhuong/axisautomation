@@ -2,6 +2,7 @@ package com.abb.ventyx.axis.customer;
 
 import static org.testng.Assert.assertEquals;
 
+import java.util.List;
 import java.util.Random;
 
 import org.openqa.selenium.By;
@@ -182,8 +183,11 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		assertEquals(table.getValueRow(5, i), SUPPLIERNAME);
 		assertEquals(table.getValueRow(6, i), SUPPLIEREMAIL);
 		assertEquals(table.getValueRow(7, i), PROFILE);
-		j = i - 1;
-		action.isFieldDisable(By.id("accessSupplierBtn" + j));
+		WebElement accessColumn = driver.findElement(By
+				.xpath("//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div[3]/table/tbody/tr/td[8]"));
+		List<WebElement> allEle = accessColumn.findElements(By.cssSelector("[id^='accessSupplierBtn']"));
+		Assert.assertTrue(allEle.size() > 0, "No element found!");
+		action.isFieldDisable(By.id(allEle.get(0).getAttribute("id")));
 	}
 
 	// Step 6,7 can't auto
@@ -279,7 +283,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 
 	}
 
-	@Test(dependsOnMethods = "getPasswordForTheNewSupplier", alwaysRun = true)
+	@Test(dependsOnMethods = "acceptTradingRelationshipRequest", alwaysRun = true)
 	public void checkAddressAndContact() throws InterruptedException{
 
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));
