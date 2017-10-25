@@ -318,6 +318,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	// class
 	@Test(dependsOnMethods = "loginAsTheDeletedUser")
 	public void updateAdminInfo() throws InterruptedException {
+		action.signIn("cuserdefault@abb.com", "Testuser1");
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.USERS_SUBMENU));
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.ADD_BUTTON)));

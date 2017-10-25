@@ -70,7 +70,7 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 		assertEquals(table.getValueRow(2, i), COMPANYREGIRATIONNO);
 		assertEquals(table.getValueRow(3, i), TAXREGIRATIONNO);
 		assertEquals(table.getValueRow(4, i), ACTIVESTATUS);
-		assertEquals(table.getValueRow(5, i), SUPPLIERNAME);
+		assertEquals(table.getValueRow(5, i), NEWSUPPLIERNAME);
 		assertEquals(table.getValueRow(6, i), SUPPLIEREMAIL);
 		assertEquals(table.getValueRow(7, i), PROFILE);
 		j=i-1;

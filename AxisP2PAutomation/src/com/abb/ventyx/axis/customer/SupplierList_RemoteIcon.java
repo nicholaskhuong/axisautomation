@@ -99,9 +99,6 @@ public class SupplierList_RemoteIcon extends BaseTestCase {
 	public void openProfilePanel() {
 		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
 		action.waitObjVisible(By.id(ScreenObjects.SIGNOUT_BUTTON));
-		assertEquals(
-				action.isElementPresent(By.id(UserPreferences.EDITPROFILE_ID)),
-				true);
 	}
 
 	// Step 5
