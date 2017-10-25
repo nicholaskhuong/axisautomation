@@ -2,6 +2,7 @@ package com.abb.ventyx.axis.support;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
@@ -40,7 +41,7 @@ public class Profile_Create extends BaseTestCase {
 	@Test(dependsOnMethods = "clickAddButton", alwaysRun = true)
 	public void inputProfileNameandCustomerName() {
 		action.pause(waitTime);
-		action.inputTextField(Profiles.PROFILE_NAME_ID, "Per4");
+		action.inputTextField(Profiles.PROFILE_NAME_ID, "abc");
 		WebElement customer = driver.findElement(By.className(Profiles.CUSTOMER_CLASS));
 		customer.sendKeys("Customer Perla");
 		list = new BaseDropDownList(driver,Profiles.LIST_CSS);
@@ -59,7 +60,13 @@ public class Profile_Create extends BaseTestCase {
 		action.pause(waitTime);
 		action.clickCheckBoxN(2);
 		action.pause(waitTime);
-		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
+		WebElement menu = driver.findElement(By.id(Profiles.SAVE_BTN));
+		Actions build = new Actions(driver);
+		build.moveToElement(menu).build().perform(); 
+		WebElement m2m= driver.findElement(By.id(Profiles.SAVE_BTN));
+		m2m.click();
+		//action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
+		action.waitObjVisible(By.cssSelector("ScreenObjects.SUCCESS_MESSAGE"));
 		action.checkAddSuccess(Messages.MESSAGE_SUCCESSFULLY);
 	}
 	
@@ -112,7 +119,7 @@ public class Profile_Create extends BaseTestCase {
 	@Test(dependsOnMethods = "inputMissingProfileName", alwaysRun = true)
 	public void inputDuplicationProfileName() {
 		action.pause(waitTime);
-		action.inputTextField(Profiles.PROFILE_NAME_ID, "Per4");
+		action.inputTextField(Profiles.PROFILE_NAME_ID, "abc");
 		action.clickCheckBoxN(2);
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
 		action.pause(waitTime);
