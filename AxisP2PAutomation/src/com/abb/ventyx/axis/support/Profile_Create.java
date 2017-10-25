@@ -41,7 +41,7 @@ public class Profile_Create extends BaseTestCase {
 	@Test(dependsOnMethods = "clickAddButton", alwaysRun = true)
 	public void inputProfileNameandCustomerName() {
 		action.pause(waitTime);
-		action.inputTextField(Profiles.PROFILE_NAME_ID, "abc");
+		action.inputTextField(Profiles.PROFILE_NAME_ID, "Perl5");
 		WebElement customer = driver.findElement(By.className(Profiles.CUSTOMER_CLASS));
 		customer.sendKeys("Customer Perla");
 		list = new BaseDropDownList(driver,Profiles.LIST_CSS);
@@ -119,7 +119,7 @@ public class Profile_Create extends BaseTestCase {
 	@Test(dependsOnMethods = "inputMissingProfileName", alwaysRun = true)
 	public void inputDuplicationProfileName() {
 		action.pause(waitTime);
-		action.inputTextField(Profiles.PROFILE_NAME_ID, "abc");
+		action.inputTextField(Profiles.PROFILE_NAME_ID, "Perl5");
 		action.clickCheckBoxN(2);
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
 		action.pause(waitTime);
