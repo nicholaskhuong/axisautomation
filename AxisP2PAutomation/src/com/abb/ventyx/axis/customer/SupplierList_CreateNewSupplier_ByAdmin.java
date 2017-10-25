@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AddressContact;
@@ -285,15 +286,15 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADDRESS_CONTACT_ID));
 
-		wait.until(ExpectedConditions.presenceOfElementLocated(By
+		WebElement companyName = wait.until(ExpectedConditions.presenceOfElementLocated(By
 				.id(AddressContact.COMPANY_NAME)));
-		action.assertTextEqual(By.id(AddressContact.COMPANY_NAME), SUPPLIERNAME);
+		Assert.assertEquals(companyName.getAttribute("value"), SUPPLIERNAME);
 		action.assertTextEqual(By.id(AddressContact.COMPANY_REGISTRATION_NO), COMPANYREGIRATIONNO);
 		action.assertTextEqual(By.id(AddressContact.TAX_REGISTRATION_NO), TAXREGIRATIONNO);
 		action.assertTextEqual(By.id(AddressContact.SUPPLIER_EMAIL), SUPPLIEREMAIL);
 	}
 	
-	@Test(dependsOnMethods="checkAddressAndContact")
+	@Test(dependsOnMethods = "checkAddressAndContact", alwaysRun = true)
 	public void checkStatusAndRemoteIcon() throws InterruptedException{
 
 		action.signOut();

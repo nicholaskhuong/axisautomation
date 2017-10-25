@@ -123,7 +123,13 @@ public class ScreenAction {
 
 	public void assertTextEqual(By by, String text) {
 		WebElement screenTitle = driver.findElement(by);
-		assertEquals(screenTitle.getText(), text, "Title is wrong");
+		if ("" == screenTitle.getText().trim()) {
+			assertEquals(screenTitle.getAttribute("value"), text, "Value is wrong");
+		}
+ else {
+			assertEquals(screenTitle.getText(), text, "Value is wrong");
+
+		}
 	}
 
 	public String getAttribute(By by) {
