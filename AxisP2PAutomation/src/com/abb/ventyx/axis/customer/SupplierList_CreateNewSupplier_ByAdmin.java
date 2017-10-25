@@ -147,7 +147,6 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.DUPLICATECOMPANYREGISTRATIONNO);
 		// Duplicated Tax Registration Number
-		Thread.sleep(1000);
 		// action.inputTextField(SupplierList.TAXREGRISTRATIONNO_ID,
 		// DUPLICATEDTAXREGISTRATIONNO);
 		/*
@@ -174,9 +173,9 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID, COMPANYREGIRATIONNO);
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.SUPPLIER_CREATED_SUCCESSFULLY);
-
+		table.filter(SupplierList.SUPPLIER_EMAIL_FILTER_XPATH, SUPPLIEREMAIL);
 		i = table.findRowByString1(6, SUPPLIEREMAIL);
-		System.out.print("print i: " + i);
+		Assert.assertTrue(i>0,"Supplier doesn't exist");
 		assertEquals(table.getValueRow(2, i), COMPANYREGIRATIONNO);
 		assertEquals(table.getValueRow(3, i), TAXREGIRATIONNO);
 		assertEquals(table.getValueRow(4, i), PENDINGSTATUS);

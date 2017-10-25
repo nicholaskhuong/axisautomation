@@ -184,6 +184,24 @@ public class TableFunction {
 		}
 	}
 
+	public void filter(String columnXpath, String filterValue) {
+		// Click Filter Icon
+		WebElement filterButton = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(ScreenObjects.FILTER_BTN_CSS)));
+		filterButton.click();
+
+		// Enter filter value
+		WebElement filterPermissionName = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By
+.xpath(columnXpath)));
+		filterPermissionName.sendKeys(filterValue);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	public void inputFilter(String value) {
 
 		WebElement filterButton = driver.findElement(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
