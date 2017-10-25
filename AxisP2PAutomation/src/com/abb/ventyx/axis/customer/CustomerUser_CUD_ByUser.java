@@ -51,6 +51,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	public void selectUsersSubMenu() throws InterruptedException {
 		wait = new WebDriverWait(driver, 60);
 		action = new ScreenAction(driver);
+		table = new TableFunction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.USERS_SUBMENU));
 		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
@@ -63,8 +64,6 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	// Step 1 Customer user creates another user
 	@Test(dependsOnMethods = "selectUsersSubMenu")
 	public void createNewUser() throws InterruptedException {
-		table = new TableFunction(driver);
-		wait = new WebDriverWait(driver, 60);
 		assertEquals(table.isValueExisting(3, CUSTOMERUSEREMAIL), false, "User exists! Can't create a new user with the same email");
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerUsers.ADD_BUTTON));
 		action.inputTextField(CustomerUsers.USERID_TEXTBOX_ID, USERID);
@@ -84,8 +83,6 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 
 	@Test(dependsOnMethods = "createNewUser", alwaysRun = true)
 	public void loginAsNewUser() throws InterruptedException {
-		table = new TableFunction(driver);
-		wait = new WebDriverWait(driver, 60);
 		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
 
@@ -117,8 +114,6 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	// Step 2 Customer user update other user
 	@Test(dependsOnMethods = "loginAsNewUser", alwaysRun = true)
 	public void logOutAndLoginToTheDefaultUser() throws InterruptedException {
-
-		wait = new WebDriverWait(driver, 60);
 		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
 
@@ -134,9 +129,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 
 	@Test(dependsOnMethods = "logOutAndLoginToTheDefaultUser")
 	public void updateUserInfo() throws InterruptedException {
-		table = new TableFunction(driver);
-		action = new ScreenAction(driver);
-		// wait = new WebDriverWait(driver, 60);
+		//
 		System.out.print("Print index " + i);
 		assertEquals(table.getValueRow(2, i), USERID);
 		assertEquals(table.getValueRow(3, i), CUSTOMERUSEREMAIL);
@@ -208,9 +201,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 
 	@Test(dependsOnMethods = "updateUserInfo", alwaysRun = true)
 	public void logOut() throws InterruptedException {
-		table = new TableFunction(driver);
-		action = new ScreenAction(driver);
-		wait = new WebDriverWait(driver, 60);
+
 
 		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
@@ -218,6 +209,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 
 	@Test(dependsOnMethods = "logOut", alwaysRun = true)
 	public void logIn() throws InterruptedException {
+
 		action.inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, "cuserdefault@abb.com");
 		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, "Testuser1");
 		action.clickBtn(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));
@@ -238,8 +230,8 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	// Click Trash Bin icon of the user to test
 	@Test(dependsOnMethods = "deleteCustomerAdmin", alwaysRun = true)
 	public void clickTrashBinIconOfUser() throws InterruptedException {
-		table = new TableFunction(driver);
-		action = new ScreenAction(driver);
+
+
 		i = table.findRowByString1(3, CUSTOMERUSEREMAIL);
 		action.clickBtn(By.id("deleteItemBtn" + (i - 1)));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
@@ -250,8 +242,8 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 
 	@Test(dependsOnMethods = "clickTrashBinIconOfUser")
 	public void clickNoButton() throws InterruptedException {
-		table = new TableFunction(driver);
-		action = new ScreenAction(driver);
+
+
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.NO_BTN_ID));
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.CONFIRMATION));
 		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.CONFIRMATION)), false);
@@ -260,8 +252,8 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	// Step 4 Click Trash Bin and choose Yes
 	@Test(dependsOnMethods = "clickTrashBinIconOfUser")
 	public void clickYesButton() throws InterruptedException {
-		table = new TableFunction(driver);
-		action = new ScreenAction(driver);
+
+
 		i = table.findRowByString1(3, CUSTOMERUSEREMAIL);
 		action.clickBtn(By.id("deleteItemBtn" + (i - 1)));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
@@ -275,8 +267,8 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 
 	@Test(dependsOnMethods = "clickTrashBinIconOfUser")
 	public void loginAsTheDeletedUser() throws InterruptedException {
-		table = new TableFunction(driver);
-		action = new ScreenAction(driver);
+
+
 		action.clickBtn(By.id(UserPreferences.PROFILE_PANEL));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
 		action.waitObjVisible(By.id(LoginPageDefinition.USERNAME_TEXT_FIELD_ID));
@@ -292,10 +284,6 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	// class
 	@Test(dependsOnMethods = "loginAsTheDeletedUser")
 	public void updateAdminInfo() throws InterruptedException {
-		table = new TableFunction(driver);
-		action = new ScreenAction(driver);
-		wait = new WebDriverWait(driver, 60);
-
 		action.inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, "cuserdefault@abb.com");
 		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, "Testuser1");
 		action.clickBtn(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));

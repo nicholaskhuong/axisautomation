@@ -18,7 +18,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.CustomerUsers;
 import com.abb.ventyx.axis.objects.pagedefinitions.LoginPageDefinition;
@@ -75,6 +74,7 @@ public class ScreenAction {
 	public void inputTextField(String obj, String value) {
 		WebElement txtField = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By.id(obj)));
 		txtField.clear();
+		pause(500);
 		txtField.sendKeys(value);
 	}
 
@@ -173,10 +173,8 @@ public class ScreenAction {
 		int sumRow = tableRows.size();
 		for (int i = 1; i <= sumRow; i++) {
 
-			WebElement columnValue = driver
-					.findElement(By
-							.xpath("//div[@id='VAADIN_COMBOBOX_OPTIONLIST']//div//div[2]//table//tbody//tr["
-									+ i + "]//td//span"));
+			WebElement columnValue = driver.findElement(By.xpath("//div[@id='VAADIN_COMBOBOX_OPTIONLIST']//div//div[2]//table//tbody//tr[" + i
+					+ "]//td//span"));
 
 			System.out.println("Status " + columnValue.getText());
 			if (columnValue.getText().equals(value)) {
@@ -308,7 +306,6 @@ public class ScreenAction {
 		}
 	}
 
-	@Test(dependsOnMethods = "checkScreen")
 	public void deleteClickNo(String msgConfirm) throws Exception {
 
 		// Click No on dialog
@@ -322,7 +319,6 @@ public class ScreenAction {
 
 	}
 
-	@Test(dependsOnMethods = "deleteUserGroupClickNo")
 	public void deleteClickYes(String msgDelete) throws Exception {
 
 		(new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.CONFIRMATION)));
