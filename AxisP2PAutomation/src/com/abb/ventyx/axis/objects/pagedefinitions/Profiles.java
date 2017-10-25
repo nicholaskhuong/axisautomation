@@ -14,4 +14,10 @@ public class Profiles {
 	public static final String SAVE_BTN = "saveBtn";
 	public static final String CANCEL_BTN = "cancelBtn";
 	public static final String DOCUMENT_TYPE = "documentType";
+	
+	public static final String EDIT_BUTTON_INDEX = "editItemBtn";
+	public static final String CUSTOMER_NAME_FILTER = "#filterField";
+	public static final String CUSTOMER_NAME = "customerCB";
+	public static final String MAINTAIN_CUSTOMER_TABLE_CSS = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div > div.v-grid-tablewrapper";
+	
 }

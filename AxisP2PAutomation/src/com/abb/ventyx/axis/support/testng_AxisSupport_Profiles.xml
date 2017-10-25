@@ -9,4 +9,10 @@
 		</classes>	
   	</test>
   	
+  		<test name="Customer Maintenance Profile Update">
+		<classes>
+				<class name="com.abb.ventyx.axis.support.Profile_Update_Customer_Defined" />
+		</classes>	
+  	</test>
+  	
 </suite> 

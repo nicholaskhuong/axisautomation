@@ -103,4 +103,5 @@ public class Messages {
 	public static final String MESSAGE_MISSING_CUSTOMER_NAME ="Please select a Customer Name";
 	public static final String MESSAGE_MISSING_PROFILE_FIELD ="Please enter Profile Name";
 	public static final String MESSAGE_DUPLICATED_PROFILE_NAME ="Profile Name already exists";
+	public static final String MESSAGE_EDIT_PROFILE_NAME_SUCCESSFULLY = "Customer Defined Profile successfully updated";
 }

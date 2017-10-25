@@ -25,4 +25,7 @@ public class AxisConfigMenu {
 		public static final String FOP_RESOURCE_PROFILES = "#maintainFOPResource > span > span";
 		public static final String CUSTOMISE_LITERALS = "#maintainTranslatedText > span > span";
 		public static final String AUDIT_LOG = "#auditLogButton > span > span";
+		public static final String CUSTOMER_MAINTENANCE_WITH_CUSTOMER = "#custConfigParentButton > span > span.valo-menu-item-caption > div > span.v-menu-item-caption";
+		public static final String PROFILE_CUSTOMER = "#maintainCustomerProfileButton > span > span";
+
 }
