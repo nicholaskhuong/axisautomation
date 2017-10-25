@@ -68,44 +68,44 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 		Thread.sleep(100);
 		table.selectUserGroup(CustomerUsers.USERGROUP_GRID, USERGROUPNAME1);
 		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();	
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.ERROR)));
-		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.ERROR)).getText(), Messages.ENTER_MANDATORY_FIELDS);		
+
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		// Focus on this field to make the error message be invisibility
 		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).click();
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(CustomerUsers.ERROR)));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)));
 
 		// Case 2: User Email Address ID is empty
 		driver.findElement(By.id(CustomerUsers.USERID_TEXTBOX_ID)).sendKeys(USERID);
 		Thread.sleep(100);
 		driver.findElement(By.id(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID)).clear();
 		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();	
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.ERROR)));
-		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.ERROR)).getText(), Messages.ENTER_MANDATORY_FIELDS);		
+
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		// Focus on this field to make the error message be invisibility
 		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).click();
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(CustomerUsers.ERROR)));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)));
 
 		// Case 3: Password is empty
 		driver.findElement(By.id(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID)).sendKeys(USEREMAILADDRESS);
 		Thread.sleep(100);
 		driver.findElement(By.id(CustomerUsers.PASSWORD_TEXTBOX_ID)).clear();
 		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.ERROR)));
-		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.ERROR)).getText(), Messages.ENTER_MANDATORY_FIELDS);		
+
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		// Focus on this field to make the error message be invisibility
 		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).click();
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(CustomerUsers.ERROR)));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)));
 
 		// Case 4: Confirm Password is empty
 		driver.findElement(By.id(CustomerUsers.PASSWORD_TEXTBOX_ID)).sendKeys(PASSWORD);
 		Thread.sleep(100);
 		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).clear();
 		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.ERROR)));
-		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.ERROR)).getText(), Messages.ENTER_MANDATORY_FIELDS);		
+
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		// Focus on this field to make the error message be invisibility
 		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).click();
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(CustomerUsers.ERROR)));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)));
 
 	}
 
@@ -118,10 +118,10 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 		action.selectUserGroup(CustomerUsers.USERGROUP_GRID, USERGROUPNAME1);
 		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();
 		Thread.sleep(500);
-		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.ERROR)).getText(), Messages.USER_SELECT_USERGROUP);
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)).getText(), Messages.USER_SELECT_USERGROUP);
 		// Focus on this field to make the error message be invisibility
 		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).click();
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(CustomerUsers.ERROR)));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)));
 	}
 
 	// Step 4 Input invalid e-mail
@@ -136,11 +136,11 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 		driver.findElement(By.id(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID)).sendKeys(INVALIDEMAIL);
 
 		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.ERROR)));
-		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.ERROR)).getText(), Messages.INVALID_EMAIL);
+
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)).getText(), Messages.INVALID_EMAIL);
 		// Focus on this field to make the error message be invisibility
 		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).click();
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(CustomerUsers.ERROR)));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)));
 	}
 
 	// Step 5 Input invalid password
@@ -154,11 +154,11 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 		driver.findElement(By.id(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID)).clear();
 		driver.findElement(By.id(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID)).sendKeys(USEREMAILADDRESS);
 		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.ERROR)));
-		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.ERROR)).getText(), Messages.INVALID_PWD);
+
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)).getText(), Messages.INVALID_PWD);
 		// Focus on this field to make the error message be invisibility
 		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).click();
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(CustomerUsers.ERROR)));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)));
 	}
 
 	// Step 6 Password and confirm password does not match
@@ -172,11 +172,11 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).sendKeys(CONFIRMPASSWORD);
 
 		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.ERROR)));
-		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.ERROR)).getText(), Messages.UNMATCHED_CONFIRM_PWD);
+
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		// Focus on this field to make the error message be invisibility
 		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).click();
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(CustomerUsers.ERROR)));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)));
 	}
 
 	// Step 7 Create a new customer user successfully
