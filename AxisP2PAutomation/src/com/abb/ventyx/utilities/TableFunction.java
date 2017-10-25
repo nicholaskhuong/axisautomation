@@ -171,7 +171,7 @@ public class TableFunction {
 		WebElement filterButton = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By
 				.cssSelector(ScreenObjects.FILTER_BTN_CSS)));
 		filterButton.click();
-
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", filterButton);
 		// Enter filter value
 		WebElement filterPermissionName = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By
 				.xpath(Permissions.PERMISSION_NAME_FILTER)));
@@ -188,6 +188,7 @@ public class TableFunction {
 		// Click Filter Icon
 		WebElement filterButton = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By
 				.cssSelector(ScreenObjects.FILTER_BTN_CSS)));
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", filterButton);
 		filterButton.click();
 
 		// Enter filter value
