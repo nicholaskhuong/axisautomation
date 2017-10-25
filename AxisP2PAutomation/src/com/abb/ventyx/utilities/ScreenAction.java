@@ -28,7 +28,7 @@ import com.abb.ventyx.axis.objects.pagedefinitions.UserPreferences;
 
 public class ScreenAction {
 	WebDriver driver;
-
+	int timeout = 60;
 	public ScreenAction(WebDriver driver) {
 		this.driver = driver;
 	}
@@ -44,7 +44,12 @@ public class ScreenAction {
 	}
 
 	public void waitObjVisibleAndClick(By obj) {
-		WebElement element = (new WebDriverWait(driver, 20))
+
+		waitObjVisibleAndClick(obj, timeout);
+	}
+
+	public void waitObjVisibleAndClick(By obj, int timeout) {
+		WebElement element = (new WebDriverWait(driver, timeout))
 				.until(ExpectedConditions.presenceOfElementLocated(obj));
 		element.click();
 
@@ -73,8 +78,9 @@ public class ScreenAction {
 				.presenceOfElementLocated(By.id(obj)));
 		WebElement txtField = driver.findElement(By.id(obj));
 		txtField.clear();
-		pause(500);
+		pause(100);
 		txtField.sendKeys(value);
+		pause(100);
 	}
 
 	public void assertFieldReadOnly(By by) {

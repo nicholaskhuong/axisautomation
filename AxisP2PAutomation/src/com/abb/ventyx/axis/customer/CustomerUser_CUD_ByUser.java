@@ -82,15 +82,13 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		assertEquals(table.getValueRow(5, i), CREATEDSTATUS);
 	}
 
-	@Test(dependsOnMethods = "createNewUser")
+	@Test(dependsOnMethods = "createNewUser", alwaysRun = true)
 	public void loginAsNewUser() throws InterruptedException {
 		table = new TableFunction(driver);
 		wait = new WebDriverWait(driver, 60);
 		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
 
-		action.waitObjVisible(By.id(ScreenObjects.NEWPASSWORD_ID));
-		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, PASSWORD);
 		action.inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, CUSTOMERUSEREMAIL);
 		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, PASSWORD);
 		action.clickBtn(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));
@@ -104,6 +102,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER)));
 		action.assertTitleScreen("Customer Dashboard");
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
+		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.USERS_SUBMENU));
 		// The system wrong here
 		// assertEquals(driver.findElement(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER)).getText(),
 		// "Maintain Customer Users");
@@ -116,7 +115,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	}
 
 	// Step 2 Customer user update other user
-	@Test(dependsOnMethods = "loginAsNewUser")
+	@Test(dependsOnMethods = "loginAsNewUser", alwaysRun = true)
 	public void logOutAndLoginToTheDefaultUser() throws InterruptedException {
 
 		wait = new WebDriverWait(driver, 60);
@@ -207,7 +206,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		action.assertTitleScreen("Customer Dashboard");
 	}
 
-	@Test(dependsOnMethods = "updateUserInfo")
+	@Test(dependsOnMethods = "updateUserInfo", alwaysRun = true)
 	public void logOutAndLogIn() throws InterruptedException {
 		table = new TableFunction(driver);
 		action = new ScreenAction(driver);
@@ -237,8 +236,8 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	public void clickTrashBinIconOfUser() throws InterruptedException {
 		table = new TableFunction(driver);
 		action = new ScreenAction(driver);
-		int j = i - 1;
-		action.clickBtn(By.id("deleteItemBtn" + j));
+		i = table.findRowByString1(3, CUSTOMERUSEREMAIL);
+		action.clickBtn(By.id("deleteItemBtn" + (i - 1)));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
 
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.CONFIRMATION)).getText(), Messages.DELETE_USER_CONFIRM);
@@ -259,8 +258,8 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	public void clickYesButton() throws InterruptedException {
 		table = new TableFunction(driver);
 		action = new ScreenAction(driver);
-		int j = i - 1;
-		action.clickBtn(By.id("deleteItemBtn" + j));
+		i = table.findRowByString1(3, CUSTOMERUSEREMAIL);
+		action.clickBtn(By.id("deleteItemBtn" + (i - 1)));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.YES_BTN_ID));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
