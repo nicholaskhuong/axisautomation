@@ -24,12 +24,12 @@ public class Permissions_Updating extends BaseTestCase {
 	String PERMISSION_NAME_B = "AUTOMATION_PERMISSION_BB";
 	String DOCUMENT_TYPE_A = "PurchaseOrder";
 	String USER_TYPE_A = "CSA";
-
+	WebDriverWait wait;
 	// Step 1
 	@Test
 	public void openMaintainPermissionScreen() throws Exception {
 		// Update Permission
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, 30);
 
 		PermissionsAction permissionsAction = new PermissionsAction(driver);
 		permissionsAction.clickSystemConfigurationMenu();
@@ -72,7 +72,7 @@ public class Permissions_Updating extends BaseTestCase {
 	// Step 2
 	@Test(dependsOnMethods = "openMaintainPermissionScreen")
 	public void updatePermissionWithValidValue() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+
 
 		PermissionsAction permissionsAction = new PermissionsAction(driver);
 		// Step 2 update
@@ -85,17 +85,17 @@ public class Permissions_Updating extends BaseTestCase {
 		assertEquals(driver.findElement(By.cssSelector(Messages.PERMISSION_CREATED_SUCCESSFULLY_CSS)).getText(),
 				Messages.PERMISSION_UPADTED_SUCCESSFULLY);
 		permissionsAction.enterValueTofilterPermission(PERMISSION_NAME_A);
-		permissionsAction.filterPermissionbyDocumentType("PurchaseOrder");
+		permissionsAction.filterPermissionbyDocumentType(DOCUMENT_TYPE_A);
 		assertEquals(driver.findElement(By.cssSelector(Permissions.PNROW1)).getText(), PERMISSION_NAME_A);
-		assertEquals(driver.findElement(By.cssSelector(Permissions.UTROW1)).getText(), "A");
-		assertEquals(driver.findElement(By.cssSelector(Permissions.DTROW1)).getText(), "Invoicing");
+		assertEquals(driver.findElement(By.cssSelector(Permissions.UTROW1)).getText(), USER_TYPE_A);
+		assertEquals(driver.findElement(By.cssSelector(Permissions.DTROW1)).getText(), DOCUMENT_TYPE_A);
 
 	}
 
 	// Step 3
 	@Test(dependsOnMethods = "updatePermissionWithValidValue")
 	public void checkUnsavedChangesDialog() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+
 		ScreenAction action = new ScreenAction(driver);
 		PermissionsAction permissionsAction = new PermissionsAction(driver);
 		// Step 3 Click 1st instance ID
