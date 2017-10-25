@@ -315,23 +315,15 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	// class
 	@Test(dependsOnMethods = "loginAsTheDeletedUser")
 	public void updateAdminInfo() throws InterruptedException {
-		action.inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, "cuserdefault@abb.com");
-		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, "Testuser1");
-		action.clickBtn(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.USERS_SUBMENU));
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.ADD_BUTTON)));
 
-		action.waitObjVisibleAndClick(By.id(CustomerUsers.ADMINUSERNUMBER_ID));
+		table.clickUserNo(table.findRowByString1(1, "4161"));
 		action.waitObjVisible(By.id(CustomerUsers.SAVE_BUTTON_ID));
 
-		action.assertFieldReadOnly(By.id(Users.USERNUMBER_ID));
-		action.assertFieldReadOnly(By.id(Users.USER_ID));
+		action.assertFieldReadOnly(By.id(CustomerUsers.USERNUMBER_MODIFYSCREEN_ID));
 
-		System.out.print(action.getAttribute(By.id(Users.USER_ID)) + "Admin User Id Value");
-		assertEquals(action.getAttribute(By.id(Users.USER_ID)), "Administrator");
-		System.out.print(action.getAttribute(By.id(Users.EMAIL_ID)) + "Admin Email Value");
-		assertEquals(action.getAttribute(By.id(Users.EMAIL_ID)), "cadmin1@abb.com");
 		assertEquals(action.isElementPresent(By.cssSelector(CustomerUsers.USERGROUP_GRID)), false);
 
 		action.inputTextField(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID, NEWUSEREMAIL_ADMIN);
