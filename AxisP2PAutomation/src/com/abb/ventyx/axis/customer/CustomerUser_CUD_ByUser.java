@@ -314,46 +314,19 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.ERROR_CSS)).getText(), Messages.USERNOTFOUND);
 	}
 
-	// // User can't update customer user as we got the error message: id value
-	// // forbidden for non admin user type, so I put this method at the end of
-	// the
-	// // class
-	// @Test(dependsOnMethods = "loginAsTheDeletedUser")
-	// public void updateAdminInfo() throws InterruptedException {
-	// action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
-	// action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.USERS_SUBMENU));
-	// wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.ADD_BUTTON)));
-	//
-	// table.clickUserNo(table.findRowByString1(1, "4161"));
-	// action.waitObjVisible(By.id(CustomerUsers.SAVE_BUTTON_ID));
-	//
-	// action.assertFieldReadOnly(By.id(CustomerUsers.USERNUMBER_MODIFYSCREEN_ID));
-	//
-	// assertEquals(action.isElementPresent(By.cssSelector(CustomerUsers.USERGROUP_GRID)),
-	// false);
-	//
-	// action.inputTextField(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID,
-	// NEWUSEREMAIL_ADMIN);
-	//
-	// driver.findElement(By.cssSelector(CustomerUsers.YESUPDATEPASSWORD_RADIOBUTTON)).findElement(By.tagName("label")).click();
-	//
-	// action.inputTextField(CustomerUsers.PASSWORD_TEXTBOX_ID,
-	// NEWPASSWORD_ADMIN);
-	// action.inputTextField(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID,
-	// NEWPASSWORD_ADMIN);
-	// action.waitObjVisibleAndClick(By.id(CustomerUsers.SAVE_BUTTON_ID));
-	// wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.SUCCESS)));
-	// assertEquals(driver.findElement(By.cssSelector(CustomerUsers.SUCCESS)).getText(),
-	// Messages.USER_UPDATE_SUCCESSFULLY);
-	//
-	// action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
-	// action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
-	// action.inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID,
-	// NEWUSEREMAIL_ADMIN);
-	// action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID,
-	// NEWPASSWORD_ADMIN);
-	// action.clickBtn(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));
-	// action.waitObjVisible(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER));
-	// action.assertTitleScreen("Customer Dashboard");
-	// }
+	// User can't update customer user as we got the error message: id value
+	// forbidden for non admin user type, so I put this method at the end of the
+	// class
+	@Test(dependsOnMethods = "loginAsTheDeletedUser")
+	public void updateAdminInfo() throws InterruptedException {
+		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
+		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.USERS_SUBMENU));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.ADD_BUTTON)));
+		table.clickUserNo(table.findRowByString1(1, "4073"));
+		action.waitObjVisible(By.id(CustomerUsers.SAVE_BUTTON_ID));
+
+		action.assertFieldReadOnly(By.id(CustomerUsers.USERNUMBER_MODIFYSCREEN_ID));
+		action.isFieldDisable(By.id(CustomerUsers.SAVE_BUTTON_ID));
+		assertEquals(action.isElementPresent(By.cssSelector(CustomerUsers.USERGROUP_GRID)), false);
+	}
 }
