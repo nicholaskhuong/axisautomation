@@ -173,7 +173,7 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 
 		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();
 
-		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.UNMATCHED_CONFIRM_PWD);
 		// Focus on this field to make the error message be invisibility
 		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).click();
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)));
@@ -188,8 +188,7 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerUsers.SAVE_BUTTON));
 		action.pause(1000);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.SUCCESS)));
-		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.SUCCESS)).getText(), Messages.USER_CREATE_SUCCESSFULLY);
+		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_CREATE_SUCCESSFULLY);
 		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER)).getText(), "Maintain Customer Users");
 	}
 

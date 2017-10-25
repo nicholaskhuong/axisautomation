@@ -126,8 +126,8 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 		Thread.sleep(200);
 		driver.findElement(By.id(CustomerUsers.USERID_TEXTBOX_ID)).sendKeys(NEWUSERID);
 		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.SUCCESS)));
-		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.SUCCESS)).getText(), Messages.USER_UPDATE_SUCCESSFULLY);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)).getText(), Messages.USER_UPDATE_SUCCESSFULLY);
 		assertEquals(table.getValueRow(2,i), NEWUSERID);
 		assertEquals(table.getValueRow(4,i), "All Permissions");
 	}

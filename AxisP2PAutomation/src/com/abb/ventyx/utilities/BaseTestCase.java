@@ -101,7 +101,6 @@ public class BaseTestCase {
 			LoginPage login = new LoginPage(driver);
 			login.login(getServerURL() + "/SupplierPortal/", currentCredentials);
 			driver.manage().window().setSize(new Dimension(1600, 900));
-			;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

@@ -91,7 +91,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		table.selectUserGroup(CustomerUsers.USERGROUP_GRID, USERGROUPNAME);
 		action.clickBtn(By.id(CustomerUsers.SAVE_BUTTON_ID));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
-		action.assertMessgeError(CustomerUsers.SUCCESS, Messages.USER_CREATE_SUCCESSFULLY);
+		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_CREATE_SUCCESSFULLY);
 		i = table.findRowByString1(3, CUSTOMERUSEREMAIL);
 		assertEquals(table.getValueRow(2, i), USERID);
 		assertEquals(table.getValueRow(3, i), CUSTOMERUSEREMAIL);
@@ -174,8 +174,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		action.inputTextField(CustomerUsers.PASSWORD_TEXTBOX_ID, NEWPASSWORD2);
 		action.inputTextField(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID, NEWPASSWORD2);
 		action.waitObjVisibleAndClick(By.id(CustomerUsers.SAVE_BUTTON_ID));
-		action.waitObjVisible(By.cssSelector(CustomerUsers.SUCCESS));
-		action.assertMessgeError(CustomerUsers.SUCCESS, Messages.USER_UPDATE_SUCCESSFULLY);
+		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_UPDATE_SUCCESSFULLY);
 
 		assertEquals(table.getValueRow(2, i), USERID2);
 		assertEquals(table.getValueRow(3, i), USEREMAILLOWERCASE);
@@ -192,7 +191,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 
 		action.selectStatus(CustomerUsers.STATUSLIST, "Inactive");
 		action.waitObjVisibleAndClick(By.id(CustomerUsers.SAVE_BUTTON_ID));
-		action.assertMessgeError(CustomerUsers.SUCCESS, Messages.USER_UPDATE_SUCCESSFULLY);
+		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_UPDATE_SUCCESSFULLY);
 		assertEquals(table.getValueRow(5, i), "Inactive");
 
 		// Update user group to "NoInvoice" and Active
@@ -205,7 +204,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		table.selectUserGroup(CustomerUsers.USERGROUP_GRID, "NoInvoice");
 		table.selectUserGroup(CustomerUsers.USERGROUP_GRID, "All Permissions");
 		action.waitObjVisibleAndClick(By.id(CustomerUsers.SAVE_BUTTON_ID));
-		action.assertMessgeError(CustomerUsers.SUCCESS, Messages.USER_UPDATE_SUCCESSFULLY);
+		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_UPDATE_SUCCESSFULLY);
 		assertEquals(table.getValueRow(4, i), "NoInvoice");
 		assertEquals(table.getValueRow(5, i), "Active");
 
