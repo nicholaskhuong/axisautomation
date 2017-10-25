@@ -74,12 +74,16 @@ public class ScreenAction {
 	public void inputEmailField(String obj, String value) {
 		WebElement txtField = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By.id(obj)));
 		txtField.clear();
-		pause(500);
+		pause(1000);
 		for (int i = 0; i < value.length(); i++) {
 			char c = value.charAt(i);
 			String s = new StringBuilder().append(c).toString();
-			pause(100);
+			pause(50);
 			txtField.sendKeys(s);
+		}
+		if (txtField.getAttribute("value").trim() != value) {
+			txtField.clear();
+			txtField.sendKeys(value);
 		}
 	}
 	public void inputTextField(String obj, String value) {
@@ -90,6 +94,10 @@ public class ScreenAction {
 			String s = new StringBuilder().append(c).toString();
 			pause(timeout);
 			txtField.sendKeys(s);
+		}
+		if (txtField.getAttribute("value").trim() != value) {
+			txtField.clear();
+			txtField.sendKeys(value);
 		}
 	}
 

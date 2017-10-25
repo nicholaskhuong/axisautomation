@@ -181,9 +181,10 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		assertEquals(table.getValueRow(3, i), USEREMAILLOWERCASE);
 		assertEquals(table.getValueRow(4, i), USERGROUPNAME);
 		assertEquals(table.getValueRow(5, i), ACTIVESTATUS);
+		assertEquals(table.getValueRow(1, i), userNo);
 
 		// Update status to Inactive
-		table.clickUserNo(USEREMAILLOWERCASE);
+		table.clickUserNo(i);
 		action.waitObjVisible(By.id(CustomerUsers.SAVE_BUTTON_ID));
 		Thread.sleep(500);
 		action.clickBtn(By.id(Users.STATUS_ID));
@@ -223,7 +224,6 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	@Test(dependsOnMethods = "updateUserInfo", alwaysRun = true)
 	public void logOut() throws InterruptedException {
 
-
 		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
 	}
@@ -252,8 +252,13 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	@Test(dependsOnMethods = "deleteCustomerAdmin", alwaysRun = true)
 	public void clickTrashBinIconOfUser() throws InterruptedException {
 
-
 		i = table.findRowByString1(3, CUSTOMERUSEREMAIL);
+		if (i <= 0) {
+			i = table.findRowByString1(1, userNo);
+		}
+		if (i <= 0) {
+			i = table.findRowByString1(3, USEREMAILLOWERCASE);
+		}
 		Assert.assertTrue("User doesn't exist", i > 0);
 		action.clickBtn(By.id("deleteItemBtn" + (i - 1)));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
@@ -265,7 +270,6 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	@Test(dependsOnMethods = "clickTrashBinIconOfUser")
 	public void clickNoButton() throws InterruptedException {
 
-
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.NO_BTN_ID));
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.CONFIRMATION));
 		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.CONFIRMATION)), false);
@@ -275,8 +279,13 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	@Test(dependsOnMethods = "clickTrashBinIconOfUser")
 	public void clickYesButton() throws InterruptedException {
 
-
 		i = table.findRowByString1(3, CUSTOMERUSEREMAIL);
+		if (i <= 0) {
+			i = table.findRowByString1(1, userNo);
+		}
+		if (i <= 0) {
+			i = table.findRowByString1(3, USEREMAILLOWERCASE);
+		}
 		Assert.assertTrue("User doesn't exist", i > 0);
 		action.clickBtn(By.id("deleteItemBtn" + (i - 1)));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
@@ -290,7 +299,6 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 
 	@Test(dependsOnMethods = "clickTrashBinIconOfUser")
 	public void loginAsTheDeletedUser() throws InterruptedException {
-
 
 		action.clickBtn(By.id(UserPreferences.PROFILE_PANEL));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
@@ -314,10 +322,6 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.USERS_SUBMENU));
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.ADD_BUTTON)));
 
-		assertEquals(table.getValueRow(2, 1), "Administrator");
-		assertEquals(table.getValueRow(3, 1), USEREMAIL_ADMIN);
-		assertEquals(table.getValueRow(4, 1), "CUST_ADMIN");
-		assertEquals(table.getValueRow(5, 1), ACTIVESTATUS);
 		action.waitObjVisibleAndClick(By.id(CustomerUsers.ADMINUSERNUMBER_ID));
 		action.waitObjVisible(By.id(CustomerUsers.SAVE_BUTTON_ID));
 
@@ -340,11 +344,6 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.SUCCESS)));
 		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.SUCCESS)).getText(), Messages.USER_UPDATE_SUCCESSFULLY);
 
-		assertEquals(table.getValueRow(2, 1), "Administrator");
-		assertEquals(table.getValueRow(3, 1), USEREMAIL_ADMIN);
-		assertEquals(table.getValueRow(4, 1), "CUST_ADMIN");
-		assertEquals(table.getValueRow(5, 1), ACTIVESTATUS);
-		action.assertTitleScreen("Maintain Customer Users");
 		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
 		action.inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, NEWUSEREMAIL_ADMIN);

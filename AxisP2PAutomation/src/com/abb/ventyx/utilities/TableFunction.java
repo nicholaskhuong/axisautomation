@@ -111,7 +111,7 @@ public class TableFunction {
 	}
 
 	// Click User Number in Maintain Customer User (Customer account)
-	public void clickUserNo(String value) {
+	public void clickUserNumber(String value) {
 		// int row = 0;
 		WebElement baseTable = driver.findElement(By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']"));
 		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
