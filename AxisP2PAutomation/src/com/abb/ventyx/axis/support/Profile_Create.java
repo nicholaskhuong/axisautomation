@@ -41,7 +41,7 @@ public class Profile_Create extends BaseTestCase {
 	@Test(dependsOnMethods = "clickAddButton", alwaysRun = true)
 	public void inputProfileNameandCustomerName() {
 		action.pause(waitTime);
-		action.inputTextField(Profiles.PROFILE_NAME_ID, "Perl5");
+		action.inputTextField(Profiles.PROFILE_NAME_ID, "Perl6");
 		WebElement customer = driver.findElement(By.className(Profiles.CUSTOMER_CLASS));
 		customer.sendKeys("Customer Perla");
 		list = new BaseDropDownList(driver,Profiles.LIST_CSS);
@@ -65,7 +65,9 @@ public class Profile_Create extends BaseTestCase {
 		build.moveToElement(menu).build().perform(); 
 		WebElement m2m= driver.findElement(By.id(Profiles.SAVE_BTN));
 		m2m.click();
-		//action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
+		if(action.isElementPresent(By.id(Profiles.SAVE_BTN))==true){
+			action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
+		}
 		action.waitObjVisible(By.cssSelector("ScreenObjects.SUCCESS_MESSAGE"));
 		action.checkAddSuccess(Messages.MESSAGE_SUCCESSFULLY);
 	}
@@ -119,7 +121,7 @@ public class Profile_Create extends BaseTestCase {
 	@Test(dependsOnMethods = "inputMissingProfileName", alwaysRun = true)
 	public void inputDuplicationProfileName() {
 		action.pause(waitTime);
-		action.inputTextField(Profiles.PROFILE_NAME_ID, "Perl5");
+		action.inputTextField(Profiles.PROFILE_NAME_ID, "Perl6");
 		action.clickCheckBoxN(2);
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
 		action.pause(waitTime);
