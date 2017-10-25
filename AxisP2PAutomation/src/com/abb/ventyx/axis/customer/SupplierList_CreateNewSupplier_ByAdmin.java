@@ -124,6 +124,8 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 
 		// Duplicated email
 		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, DUPLICATEDSUPPLIEREMAIL);
+		WebElement txtField = driver.findElement(By.id(SupplierList.COMPANYREGISTRATIONNO_ID));
+		txtField.clear();
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.DUPLICATEDEMAIL);
 
@@ -131,7 +133,6 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		// Duplicated Comp. Registration Number
 		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, SUPPLIEREMAIL);
 
-		WebElement txtField = driver.findElement(By.id(SupplierList.COMPANYREGISTRATIONNO_ID));
 		txtField.clear();
 		Thread.sleep(1000);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
