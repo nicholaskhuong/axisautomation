@@ -2,6 +2,8 @@ package com.abb.ventyx.axis.customer;
 
 import static org.testng.Assert.assertEquals;
 
+import java.util.Random;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -28,8 +30,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
 	WebDriverWait wait;
-	int i;
-	int j;
+	int i, j;
 
 	String SUPPLIERNAME = "Yamaha10";
 	String SUPPLIEREMAIL = "yamaha10@abb.com";
@@ -51,8 +52,16 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	// Step 1
 	@Test
 	public void openSupplierListScreen(){
-		table = new TableFunction(driver);
 		action = new ScreenAction(driver);
+		table = new TableFunction(driver);
+		wait = new WebDriverWait(driver, 20);
+		Random rand = new Random();
+		long drand = (long) (rand.nextDouble() * 10000000000L);
+		SUPPLIERNAME = String.format("Name %s",drand);
+		SUPPLIEREMAIL = String.format("%s@abb.com", drand);
+		COMPANYREGIRATIONNO = String.format("NO%s", drand);
+		TAXREGIRATIONNO = String.format("Tax%s", drand);
+
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.SUPPLIERLIST_SUBMENU));
 		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
@@ -66,10 +75,8 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	}
 
 	// Step 2
-	@Test(dependsOnMethods="openSupplierListScreen")
-	public void createSupplierWithBlankMandatoryField(){
-		table = new TableFunction(driver);
-		action = new ScreenAction(driver);
+	@Test(dependsOnMethods = "openSupplierListScreen")
+	public void createSupplierWithBlankMandatoryField() {
 
 		action.clickBtn(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.CREATE_BTN_ID));
@@ -104,10 +111,9 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 	}
 
-	// Step 3 
-	@Test(dependsOnMethods="createSupplierWithBlankMandatoryField")
-	public void createSupplierWithInvalidEmail(){
-		action = new ScreenAction(driver);
+	// Step 3
+	@Test(dependsOnMethods = "createSupplierWithBlankMandatoryField")
+	public void createSupplierWithInvalidEmail() {
 
 		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, INVALIDEMAIL);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
@@ -118,85 +124,88 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	}
 
 	// Step 4
-	@Test(dependsOnMethods="createSupplierWithInvalidEmail")
-	public void createSupplierWithDuplicatedValue() throws InterruptedException{
-		action = new ScreenAction(driver);
+	@Test(dependsOnMethods = "createSupplierWithInvalidEmail")
+	public void createSupplierWithDuplicatedValue() throws InterruptedException {
 
 		// Duplicated email
 		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, DUPLICATEDSUPPLIEREMAIL);
-		WebElement txtField = driver.findElement(By.id(SupplierList.COMPANYREGISTRATIONNO_ID));
-		txtField.clear();
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.DUPLICATEDEMAIL);
 
-
 		// Duplicated Comp. Registration Number
 		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, SUPPLIEREMAIL);
-
+		WebElement txtField = driver.findElement(By.id(SupplierList.COMPANYREGISTRATIONNO_ID));
 		txtField.clear();
 		Thread.sleep(1000);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
 		txtField.sendKeys(DUPLICATEDCOMPANYREGISTRATIONNO);
-		//action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID, DUPLICATEDCOMPANYREGISTRATIONNO);
-		//Thread.sleep(2000);
+		// action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID,
+		// DUPLICATEDCOMPANYREGISTRATIONNO);
+		// Thread.sleep(2000);
 
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.DUPLICATECOMPANYREGISTRATIONNO);
 		// Duplicated Tax Registration Number
 		Thread.sleep(1000);
-		//action.inputTextField(SupplierList.TAXREGRISTRATIONNO_ID, DUPLICATEDTAXREGISTRATIONNO);
-		/*action.inputTextField(SupplierList.TAXREGRISTRATIONNO_ID, DUPLICATEDTAXREGISTRATIONNO);
-		
-		WebElement txtField1 = driver.findElement(By.id(SupplierList.TAXREGRISTRATIONNO_ID));
-		txtField1.clear();
-		txtField1.sendKeys(DUPLICATEDTAXREGISTRATIONNO);
-		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
-		action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID, COMPANYREGIRATIONNO);
-
-		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
-		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.DUPLICATEDTAXREGISTRATIONNO);*/
+		// action.inputTextField(SupplierList.TAXREGRISTRATIONNO_ID,
+		// DUPLICATEDTAXREGISTRATIONNO);
+		/*
+		 * action.inputTextField(SupplierList.TAXREGRISTRATIONNO_ID,
+		 * DUPLICATEDTAXREGISTRATIONNO);
+		 * 
+		 * WebElement txtField1 =
+		 * driver.findElement(By.id(SupplierList.TAXREGRISTRATIONNO_ID));
+		 * txtField1.clear(); txtField1.sendKeys(DUPLICATEDTAXREGISTRATIONNO);
+		 * action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
+		 * action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID,
+		 * COMPANYREGIRATIONNO);
+		 * 
+		 * action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
+		 * action.assertMessgeError(ScreenObjects.ERROR_CSS,
+		 * Messages.DUPLICATEDTAXREGISTRATIONNO);
+		 */
 	}
 
 	// Step 5
-	@Test(dependsOnMethods="createSupplierWithInvalidEmail")
-	public void createSupplierWithValidValue() throws InterruptedException{
-		action = new ScreenAction(driver);
+	@Test(dependsOnMethods = "createSupplierWithInvalidEmail")
+	public void createSupplierWithValidValue() throws InterruptedException {
+
 		action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID, COMPANYREGIRATIONNO);
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.SUPPLIER_CREATED_SUCCESSFULLY);
 
 		i = table.findRowByString1(6, SUPPLIEREMAIL);
-		System.out.print("print i: "+i);
-		assertEquals(table.getValueRow(2, i),COMPANYREGIRATIONNO);
-		assertEquals(table.getValueRow(3, i),TAXREGIRATIONNO);
+		System.out.print("print i: " + i);
+		assertEquals(table.getValueRow(2, i), COMPANYREGIRATIONNO);
+		assertEquals(table.getValueRow(3, i), TAXREGIRATIONNO);
 		assertEquals(table.getValueRow(4, i), PENDINGSTATUS);
-		assertEquals(table.getValueRow(5, i),SUPPLIERNAME);
-		assertEquals(table.getValueRow(6, i),SUPPLIEREMAIL);
-		assertEquals(table.getValueRow(7, i),PROFILE);
-		j=i-1;
-		action.isFieldDisable(By.id("accessSupplierBtn"+j));
+		assertEquals(table.getValueRow(5, i), SUPPLIERNAME);
+		assertEquals(table.getValueRow(6, i), SUPPLIEREMAIL);
+		assertEquals(table.getValueRow(7, i), PROFILE);
+		j = i - 1;
+		action.isFieldDisable(By.id("accessSupplierBtn" + j));
 	}
 
 	// Step 6,7 can't auto
-	// Step 8 
-	@Test(dependsOnMethods="createSupplierWithValidValue")
-	public void checkCancelButtonWithoutInput() throws InterruptedException{
-		action = new ScreenAction(driver);
+	// Step 8
+	@Test(dependsOnMethods = "createSupplierWithValidValue")
+	public void checkCancelButtonWithoutInput() throws InterruptedException {
+
 		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.CREATE_BTN_ID));
 		action.waitObjVisible(By.id(SupplierList.SUPPLIERNAME_ID));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.CANCEL_ID));
-		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)),false);
-		assertEquals(action.isElementPresent(By.id(SupplierList.SUPPLIERNAME_SEARCHFIELD_ID)),true);
-		//action.assertTitleScreen("Check Suppliers");
+		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)), false);
+		assertEquals(action.isElementPresent(By.id(SupplierList.SUPPLIERNAME_SEARCHFIELD_ID)), true);
+		// action.assertTitleScreen("Check Suppliers");
 	}
 
-	// Step 9,10 Check No button on Unsaved Changes dialog 
-	@Test(dependsOnMethods="checkCancelButtonWithoutInput")
-	public void checkNoButtonOnUnsavedChangesDialog() throws InterruptedException{
-		action = new ScreenAction(driver);	
-		action.waitObjVisibleAndClick(By.id(ScreenObjects.CREATE_BTN_ID));	
-		action.waitObjVisible(By.id(SupplierList.SUPPLIERNAME_ID));	
+	// Step 9,10 Check No button on Unsaved Changes dialog
+	@Test(dependsOnMethods = "checkCancelButtonWithoutInput")
+	public void checkNoButtonOnUnsavedChangesDialog() throws InterruptedException {
+
+		action.waitObjVisibleAndClick(By.id(ScreenObjects.CREATE_BTN_ID));
+		action.waitObjVisible(By.id(SupplierList.SUPPLIERNAME_ID));
 		action.inputTextField(SupplierList.SUPPLIERNAME_ID, "test");
 		action.clickBtn(By.id(ScreenObjects.CANCEL_ID));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
@@ -204,36 +213,36 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.NO_BTN_ID));
 		Thread.sleep(1000);
 		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)), false);
-		//action.assertTitleScreen("Create New Supplier");
+		// action.assertTitleScreen("Create New Supplier");
 	}
 
 	// Step 11,12 Check Cancel button on Unsaved Changes dialog
-	@Test(dependsOnMethods="checkNoButtonOnUnsavedChangesDialog")
+	@Test(dependsOnMethods = "checkNoButtonOnUnsavedChangesDialog")
 	public void checkYesButtonOnUnsavedChangesDialog() {
-		action = new ScreenAction(driver);
+
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.CANCEL_ID));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
 		action.assertTextEqual(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS), Messages.UNSAVED_CHANGE);
 		driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
 		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)), false);
-		//action.assertTitleScreen("Check Suppliers");
-		assertEquals(action.isElementPresent(By.id(SupplierList.SUPPLIERNAME_SEARCHFIELD_ID)),true);
+		// action.assertTitleScreen("Check Suppliers");
+		assertEquals(action.isElementPresent(By.id(SupplierList.SUPPLIERNAME_SEARCHFIELD_ID)), true);
 	}
 
 	// Step 14
-	@Test(dependsOnMethods="checkYesButtonOnUnsavedChangesDialog")
+	@Test(dependsOnMethods = "checkYesButtonOnUnsavedChangesDialog")
 	public void loginAsTheCreatedSupplier() {
-		action = new ScreenAction(driver);
+
 		action.signOut();
 		action.signIn(SUPPLIEREMAIL, PASSWORDORIGINALLY);
 		action.waitObjVisible(By.cssSelector(ScreenObjects.ERROR_CSS));
 		action.assertTextEqual(By.cssSelector(ScreenObjects.ERROR_CSS), Messages.USERNOTFOUND);
 	}
 	// Step 15
-	@Test(dependsOnMethods="loginAsTheCreatedSupplier")
+	@Test(dependsOnMethods = "loginAsTheCreatedSupplier")
 	public void getPasswordForTheNewSupplier() throws InterruptedException{
-		action = new ScreenAction(driver);
+
 		action.signIn(AXISSUPPORTEMAIL, AXISSUPPORTPWD);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.AXIS_ADMIN));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.RESET_USER_PASSWORD));
@@ -262,19 +271,20 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	// Step 16
 	@Test(dependsOnMethods="getPasswordForTheNewSupplier")
 	public void acceptTradingRelationshipRequest() throws InterruptedException{
-		action = new ScreenAction(driver);
-		wait = new WebDriverWait(driver, 20);
+
+
 		wait.until(ExpectedConditions.presenceOfElementLocated(By
 				.cssSelector(ScreenObjects.ACCEPT_BUTTON_CSS)));
 		action.clickBtn(By.cssSelector(ScreenObjects.ACCEPT_BUTTON_CSS));
 
 	}
-	@Test(dependsOnMethods="acceptTradingRelationshipRequest")
+
+	@Test(dependsOnMethods = "getPasswordForTheNewSupplier", alwaysRun = true)
 	public void checkAddressAndContact() throws InterruptedException{
-		action = new ScreenAction(driver);
+
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADDRESS_CONTACT_ID));
-		wait = new WebDriverWait(driver, 20);
+
 		wait.until(ExpectedConditions.presenceOfElementLocated(By
 				.id(AddressContact.COMPANY_NAME)));
 		action.assertTextEqual(By.id(AddressContact.COMPANY_NAME), SUPPLIERNAME);
@@ -285,7 +295,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	
 	@Test(dependsOnMethods="checkAddressAndContact")
 	public void checkStatusAndRemoteIcon() throws InterruptedException{
-		action = new ScreenAction(driver);
+
 		action.signOut();
 		Thread.sleep(1000);
 		action.signIn("cadmin1@abb.com", "Testuser1");

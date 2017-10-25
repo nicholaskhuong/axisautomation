@@ -327,6 +327,5 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 
 		action.assertFieldReadOnly(By.id(CustomerUsers.USERNUMBER_MODIFYSCREEN_ID));
 		action.isFieldDisable(By.id(CustomerUsers.SAVE_BUTTON_ID));
-		assertEquals(action.isElementPresent(By.cssSelector(CustomerUsers.USERGROUP_GRID)), false);
 	}
 }

@@ -379,13 +379,14 @@ public class ScreenAction {
 		waitObjVisible(By.id(UserPreferences.PROFILE_PANEL));
 		clickBtn(By.id(UserPreferences.PROFILE_PANEL));
 		waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
+		waitObjVisible(By.id(LoginPageDefinition.USERNAME_TEXT_FIELD_ID));
 	}
 
 	public void signIn(String emailAddress, String password) {
 		waitObjVisible(By.id(LoginPageDefinition.USERNAME_TEXT_FIELD_ID));
-		inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, emailAddress);
+		inputEmailField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, emailAddress);
 		pause(timeout);
-		inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, password);
+		inputEmailField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, password);
 		clickBtn(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));
 	}
 

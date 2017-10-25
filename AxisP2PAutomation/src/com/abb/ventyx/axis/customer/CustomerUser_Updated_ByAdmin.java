@@ -69,10 +69,10 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 	@Test(dependsOnMethods="openModifyUserScreen")
 	public void updateWithInvalidEmail() throws InterruptedException{
 		wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(CustomerUsers.USEREMAILADDRESS_TEXTBOX)));
-		driver.findElement(By.cssSelector(CustomerUsers.USEREMAILADDRESS_TEXTBOX)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID)));
+		driver.findElement(By.id(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID)).clear();
 		Thread.sleep(500);
-		driver.findElement(By.cssSelector(CustomerUsers.USEREMAILADDRESS_TEXTBOX)).sendKeys(INVALIDCUSTOMERUSEREMAIL);
+		driver.findElement(By.id(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID)).sendKeys(INVALIDCUSTOMERUSEREMAIL);
 		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)).getText(), "Invalid email address");
@@ -82,16 +82,16 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 	@Test(dependsOnMethods="updateWithInvalidEmail")
 	public void updateWithInvalidPassword() throws InterruptedException{
 
-		driver.findElement(By.cssSelector(CustomerUsers.USEREMAILADDRESS_TEXTBOX)).clear();
+		driver.findElement(By.id(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID)).clear();
 		Thread.sleep(500);
-		driver.findElement(By.cssSelector(CustomerUsers.USEREMAILADDRESS_TEXTBOX)).sendKeys(CUSTOMERUSEREMAIL);
+		driver.findElement(By.id(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID)).sendKeys(CUSTOMERUSEREMAIL);
 		Thread.sleep(500);
 		driver.findElement(By.cssSelector(CustomerUsers.YESUPDATEPASSWORD_RADIOBUTTON)).findElement(By.tagName("label")).click();
 		Thread.sleep(500);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(CustomerUsers.PASSWORD_TEXTBOX)));	
-		driver.findElement(By.cssSelector(CustomerUsers.PASSWORD_TEXTBOX)).sendKeys(INVALIDPASSWORD);
-		driver.findElement(By.cssSelector(CustomerUsers.CONFIRMPASSWORD_TEXTBOX)).sendKeys(INVALIDPASSWORD);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(CustomerUsers.PASSWORD_TEXTBOX_ID)));
+		driver.findElement(By.id(CustomerUsers.PASSWORD_TEXTBOX_ID)).sendKeys(INVALIDPASSWORD);
+		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).sendKeys(INVALIDPASSWORD);
 		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)).getText(),Messages.INVALID_PWD1);
@@ -99,14 +99,14 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 	// Step 5 Update with different confirm password and password
 	@Test(dependsOnMethods="updateWithInvalidPassword")
 	public void updateWithUnmachtedPassword() throws InterruptedException{
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(CustomerUsers.PASSWORD_TEXTBOX)));	
-		driver.findElement(By.cssSelector(CustomerUsers.PASSWORD_TEXTBOX)).clear();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(CustomerUsers.PASSWORD_TEXTBOX_ID)));
+		driver.findElement(By.id(CustomerUsers.PASSWORD_TEXTBOX_ID)).clear();
 		Thread.sleep(500);
-		driver.findElement(By.cssSelector(CustomerUsers.PASSWORD_TEXTBOX)).sendKeys(PASSWORD);
+		driver.findElement(By.id(CustomerUsers.PASSWORD_TEXTBOX_ID)).sendKeys(PASSWORD);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)));
-		driver.findElement(By.cssSelector(CustomerUsers.CONFIRMPASSWORD_TEXTBOX)).clear();
+		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).clear();
 		Thread.sleep(500);
-		driver.findElement(By.cssSelector(CustomerUsers.CONFIRMPASSWORD_TEXTBOX)).sendKeys(CONFIRMPASSWORD);
+		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).sendKeys(CONFIRMPASSWORD);
 		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)).getText(),Messages.UNMATCHED_CONFIRM_PWD);
@@ -115,16 +115,16 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 	// Step 6 Update with valid data
 	@Test(dependsOnMethods="updateWithUnmachtedPassword")
 	public void updateWithValidData() throws InterruptedException{
-		driver.findElement(By.cssSelector(CustomerUsers.PASSWORD_TEXTBOX)).clear();
+		driver.findElement(By.id(CustomerUsers.PASSWORD_TEXTBOX_ID)).clear();
 		Thread.sleep(200);
-		driver.findElement(By.cssSelector(CustomerUsers.PASSWORD_TEXTBOX)).sendKeys(NEWPASSWORD);
+		driver.findElement(By.id(CustomerUsers.PASSWORD_TEXTBOX_ID)).sendKeys(NEWPASSWORD);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)));
-		driver.findElement(By.cssSelector(CustomerUsers.CONFIRMPASSWORD_TEXTBOX)).clear();
+		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).clear();
 		Thread.sleep(200);
-		driver.findElement(By.cssSelector(CustomerUsers.CONFIRMPASSWORD_TEXTBOX)).sendKeys(NEWPASSWORD);
-		driver.findElement(By.cssSelector(CustomerUsers.USERID_TEXTBOX)).clear();
+		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).sendKeys(NEWPASSWORD);
+		driver.findElement(By.id(CustomerUsers.USERID_TEXTBOX_ID)).clear();
 		Thread.sleep(200);
-		driver.findElement(By.cssSelector(CustomerUsers.USERID_TEXTBOX)).sendKeys(NEWUSERID);
+		driver.findElement(By.id(CustomerUsers.USERID_TEXTBOX_ID)).sendKeys(NEWUSERID);
 		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.SUCCESS)));
 		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.SUCCESS)).getText(), Messages.USER_UPDATE_SUCCESSFULLY);
@@ -148,10 +148,10 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 	@Test(dependsOnMethods="checkCancelButtonWithoutInput")
 	public void checkNoButtonOnUnsavedChangesDialog() throws InterruptedException{
 		table.clickUserNumber(CUSTOMERUSEREMAIL);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.USERID_TEXTBOX)));
-		driver.findElement(By.cssSelector(CustomerUsers.USERID_TEXTBOX)).clear();
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.id(CustomerUsers.USERID_TEXTBOX_ID)));
+		driver.findElement(By.id(CustomerUsers.USERID_TEXTBOX_ID)).clear();
 		action.pause(200);
-		driver.findElement(By.cssSelector(CustomerUsers.USEREMAILADDRESS_TEXTBOX)).sendKeys(USERID);
+		driver.findElement(By.id(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID)).sendKeys(USERID);
 		driver.findElement(By.cssSelector(CustomerUsers.CANCEL_BUTTON)).click();
 		action.pause(2000);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)));
