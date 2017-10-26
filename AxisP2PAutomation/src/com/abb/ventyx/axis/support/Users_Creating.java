@@ -23,6 +23,7 @@ import com.abb.ventyx.utilities.Credentials;
 @Credentials(user = "mail5@abb.com", password = "testuser")
 public class Users_Creating extends BaseTestCase {
 	public static String userID = "DathyUser6296";
+	public static String email = "email970@dathy.com";
 
 	@Test
 	public void checkScreen() {
@@ -164,7 +165,8 @@ public class Users_Creating extends BaseTestCase {
 
 		// Don't select User Group
 		int n = new Random().nextInt(1000);
-		userID = "DathyUser" + n;
+		userID = String.format("DathyUser%s" + n);
+		email = String.format("email%s@dathy.com",n);
 		WebElement userId = driver.findElement(By
 				.id(AxisAdministratorUsers.USER_ID));
 		userId.sendKeys(userID);

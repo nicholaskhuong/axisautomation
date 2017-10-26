@@ -26,7 +26,6 @@ public class Users_Deleting extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
 	int row;
-	String email = "email@dathy.com";
 	String suserID;
 	@Test
 	public void checkScreen() {
@@ -43,7 +42,7 @@ public class Users_Deleting extends BaseTestCase {
 	public void deleteUserGroupClickNo() throws Exception {
 		row = table.findRowByString(ScreenObjects.TABLE_BODY_USER_XPATH, 2, Users_Creating.userID, true);
 		Assert.assertTrue("User not found!", row > 0);
-		table.assertValueRow(ScreenObjects.TABLE_BODY_USER_XPATH, 3, row, email);
+		table.assertValueRow(ScreenObjects.TABLE_BODY_USER_XPATH, 3, row, Users_Creating.email);
 		driver.findElement(By.id(AxisAdministratorUsers.DELETE_ID + row))
 				.click();
 		suserID = table.getIDValue(ScreenObjects.TABLE_BODY_USER_XPATH, 1, row);
@@ -64,7 +63,7 @@ public class Users_Deleting extends BaseTestCase {
 	public void deleteUserGroupClickYes() throws Exception {
 		row = table.findRowByString(ScreenObjects.TABLE_BODY_USER_XPATH, 2, Users_Creating.userID, true);
 		Assert.assertTrue("User not found!", row > 0);
-		table.assertValueRow(ScreenObjects.TABLE_BODY_USER_XPATH, 3, row, email);
+		table.assertValueRow(ScreenObjects.TABLE_BODY_USER_XPATH, 3, row, Users_Creating.email);
 		// Click Yes on dialog
 		driver.findElement(By.id(AxisAdministratorUsers.DELETE_ID + row)).click();
 		(new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.CONFIRMATION)));
