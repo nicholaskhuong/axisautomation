@@ -33,6 +33,7 @@ public class ScreenAction {
 	}
 
 	public void waitObjInvisible(By obj) {
+		pause(5000);
 		(new WebDriverWait(driver, timeout)).until(ExpectedConditions
 				.invisibilityOfElementLocated(obj));
 	}

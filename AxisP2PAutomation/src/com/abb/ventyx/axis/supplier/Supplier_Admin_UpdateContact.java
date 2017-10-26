@@ -75,7 +75,7 @@ public class Supplier_Admin_UpdateContact extends BaseTestCase {
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		// Step 4
 		// Fill all data in the Update Contact popup
-		action.pause(milliseconds);
+		// action.pause(5000);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.waitObjVisible(By.id(MaintainSuppliers.CONTACT_ID_FILED));
 		action.inputTextField(MaintainSuppliers.CONTACT_ID_FILED, contact_Id);
@@ -113,14 +113,12 @@ public class Supplier_Admin_UpdateContact extends BaseTestCase {
 		action.clickBtn(By.id(MaintainSuppliers.SELECT_ROW));
 		action.waitObjVisible(By.cssSelector(MaintainSuppliers.TITLE_POPUP));
 		// Change any data
-		action.inputTextField(MaintainSuppliers.CONTACT_NAME_FILED, contact_name);
-		action.inputTextField(MaintainSuppliers.CONTACT_MOBILE_FILED, mobile_number);
+		action.inputTextField(MaintainSuppliers.CONTACT_NAME_FILED, contact_name + "New");
+		action.inputTextField(MaintainSuppliers.CONTACT_MOBILE_FILED, mobile_number + "1");
 		// Click on cancel
 		action.clickBtn(By.id(ScreenObjects.CANCEL_ID));
 		// Verify the message
-		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
-		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(),
-				Messages.DELETE_ADDRESS_MESSAGE);
+		action.assertMessgeError(ScreenObjects.UNSAVED_CHANGE_CSS, Messages.UNSAVED_CHANGE);
 
 	}
 
