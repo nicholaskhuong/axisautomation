@@ -30,6 +30,7 @@ public class Profile_Update_Customer_Defined extends BaseTestCase {
 	String profileName = "POProfile1";
 	String profileNameEdited = "POProfile2";
 	int i,j;
+	WebElement index;
 	String User_Login = "mail222@abb.com";
 	String User_Password = "Testuser2";
 	String Admin_Login = "mail5@abb.com";
@@ -42,11 +43,12 @@ public class Profile_Update_Customer_Defined extends BaseTestCase {
 		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PROFILES));
+		action.pause(waitTime);
 	}
 	//Step2
 	@Test(dependsOnMethods = "openMaintainCustomerDefinedProfilesScreen", alwaysRun = true)
 	public void clickFiterButtonOnMaintainCustomerScreen() {
-		action.pause(6000);
+		action.pause(7000);
 		WebElement filterButton = driver.findElement(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 		filterButton.click();
 		ScreenAction action = new ScreenAction(driver);
@@ -58,14 +60,12 @@ public class Profile_Update_Customer_Defined extends BaseTestCase {
 	public void clickPencilIconOnMaintainCustomerScreen(){
 		action.pause(waitTime);
 		table = new TableFunction(driver);
-		action.pause(waitTime);
 		i = table.findRowByString(2, profileName);
-		//j=i-1;
-		j = 58;
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
-		WebElement elemement= driver.findElement(By.id(Profiles.EDIT_BUTTON_INDEX + j));
-		elemement.click();	
+		index = table.getCellObject(5, 2);
+		action.pause(waitTime);
+		index.click();	
 	}
 
 	@Test(dependsOnMethods = "clickPencilIconOnMaintainCustomerScreen", alwaysRun = true)
@@ -79,8 +79,8 @@ public class Profile_Update_Customer_Defined extends BaseTestCase {
 	
 	@Test(dependsOnMethods = "checkStatusProfileAndCustomerName", alwaysRun = true)
 	public void editProfileNameonModifyProfileSreen(){
-		action.pause(waitTime);
 		action.inputTextField(Profiles.PROFILE_NAME_ID, profileNameEdited);
+		action.pause(waitTime);
 		action.clickCheckBoxN(2);
 	}
 	
@@ -163,11 +163,10 @@ public class Profile_Update_Customer_Defined extends BaseTestCase {
 		action.pause(waitTime);
 		table = new TableFunction(driver);
 		i = table.findRowByString(2, profileName);
-		j=58;
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
-		WebElement elemement= driver.findElement(By.id(Profiles.EDIT_BUTTON_INDEX + j));
-		elemement.click();
+		index = table.getCellObject(5, 2);
+		index.click();
 	}
 	
 	@Test(dependsOnMethods = "clickEditIconAgainOnMaintainCustomerScreen", alwaysRun = true)
@@ -177,7 +176,6 @@ public class Profile_Update_Customer_Defined extends BaseTestCase {
 		action.pause(waitTime);
 		List<WebElement> checkBoxIndex0 = driver.findElements(By.xpath("//*[@id='configurationGrid-AdvanceShippingNotice']/div[3]/table/tbody/tr[1]/td[1]"));
 		checkBoxIndex0.get(0).click();
-		action.pause(waitTime);
 	}
 	
 	@Test(dependsOnMethods = "editAuthorisedDocumentTypes", alwaysRun = true)
