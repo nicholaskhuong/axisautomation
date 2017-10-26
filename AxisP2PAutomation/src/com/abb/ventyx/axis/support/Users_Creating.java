@@ -18,15 +18,18 @@ import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
+import com.abb.ventyx.utilities.ScreenAction;
 
 @ALM(id = "203")
 @Credentials(user = "mail5@abb.com", password = "testuser")
 public class Users_Creating extends BaseTestCase {
 	public static String userID = "DathyUser6296";
 	public static String email = "email970@dathy.com";
+	ScreenAction action;
 
 	@Test
 	public void checkScreen() {
+		action = new ScreenAction(driver);
 		WebElement axisAdminMenu = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.id(AxisAdministratorUsers.AXIS_ADMINISTRATION_MENU_ID)));
@@ -58,10 +61,7 @@ public class Users_Creating extends BaseTestCase {
 				AxisAdministratorUsers.SCREEN_CREATE_TITLE, "Title is wrong");
 		saveBtn.click();
 		// Don't input all field
-		WebElement warningMessage = (new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)));
-		assertEquals(warningMessage.getText(), Messages.ENTER_MANDATORY_FIELDS);
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 
 		// Don't input User
 		WebElement userId = driver.findElement(By
@@ -91,11 +91,7 @@ public class Users_Creating extends BaseTestCase {
 		confirmPassWord.clear();
 		confirmPassWord.sendKeys("TestUser1");
 		saveBtn.click();
-		WebElement warningMessage2 = (new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)));
-		assertEquals(warningMessage2.getText(), Messages.ENTER_MANDATORY_FIELDS);
-
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		// Don't input email
 		userId.clear();
 		userId.sendKeys(userID);
@@ -105,10 +101,7 @@ public class Users_Creating extends BaseTestCase {
 		confirmPassWord.sendKeys("TestUser1");
 		email.clear();
 		saveBtn.click();
-		WebElement warningMessage3 = (new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)));
-		assertEquals(warningMessage3.getText(), Messages.ENTER_MANDATORY_FIELDS);
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 
 		// Don't input confirm password
 
