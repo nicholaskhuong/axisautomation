@@ -4,6 +4,7 @@ public class AxisAdministratorUsers {
 	public static final String AXIS_ADMINISTRATION_MENU_ID= "axisAdminParentButton";
 	public static final String USERS_SUBMENU_ID= "maintainAdminUsersButton";
 	public static final String SCREEN_TITLE_ID= "common-header-left-layout";
+	public static final String SCREEN_TITLE_CSS = "#common-header-left-layout > div > div";
 	public static final String SCREEN_TITLE="Maintain Axis Support Users";
 	public static final String SCREEN_CREATE_TITLE="Create User";
 	public static final String SCREEN_UPDATE_TITLE="Modify Axis Administrator User";

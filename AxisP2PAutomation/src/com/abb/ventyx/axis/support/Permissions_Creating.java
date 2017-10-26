@@ -49,7 +49,7 @@ public class Permissions_Creating extends BaseTestCase {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		permissionsAction.clickAddButton();
 		permissionsAction.enterPermissionName(PERMISSION_NAME_A);
-		permissionsAction.selectDocTypebyText("PurchaseOrder");
+		permissionsAction.selectDocTypebyText("Purchase Orders");
 		Thread.sleep(200);
 		permissionsAction.selectUserType(Permissions.AXIS_ADMIN);
 		permissionsAction.selectUserType(Permissions.CUSTOMER);

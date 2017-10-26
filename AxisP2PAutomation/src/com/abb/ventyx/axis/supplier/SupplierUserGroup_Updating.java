@@ -39,7 +39,7 @@ public class SupplierUserGroup_Updating extends BaseTestCase {
 	@Test(dependsOnMethods = "openScreen")
 	public void selectRowUpdating() {
 		table = new TableFunction(driver);
-		row = table.findRowByString(UserGroup.SUPPLIER_GROUP_TABLE_CSS, USER_GROUP_NAME, 1);
+		row = table.findRowByString(UserGroup.SUPPLIER_GROUP_TABLE_CSS, 1, USER_GROUP_NAME);
 		table.assertRowEqual(UserGroup.ROW_ID, USER_GROUP_NAME, row - 1);
 		row = row - 1;
 
@@ -56,7 +56,7 @@ public class SupplierUserGroup_Updating extends BaseTestCase {
 		String permissionChildCSS = UserGroup.PERMISSION_CHILD_ID + row + UserGroup.PERMISSION_CHILD_TABLE_CSS;
 		action.waitObjVisible(By.cssSelector(permissionChildCSS));
 		// Un check a permission child
-		int rowChild = table.findRowByString(permissionChildCSS, PERMISSION_CHILD, 2);
+		int rowChild = table.findRowByString(permissionChildCSS, 2, PERMISSION_CHILD);
 		int end = table.countRow(permissionChildCSS);
 		action.checkObjSelected(row, end);
 		int newRow = row + rowChild + 1;

@@ -36,7 +36,7 @@ public class SupplierUser_Deleting extends BaseTestCase {
 	@Test(dependsOnMethods = "openScreen")
 	public void selectRowDeleting() {
 		table = new TableFunction(driver);
-		row = table.findRowByString(Users.SUPPLIER_USERS_TABLE_CSS, USER_ID, 2);
+		row = table.findRowByString(Users.SUPPLIER_USERS_TABLE_CSS, 2, USER_ID);
 		table.assertValueRow(2, row, USER_ID);
 		row = row - 1;
 		action.clickBtn(By.id(ScreenObjects.DELETE_BTN_ID + row));

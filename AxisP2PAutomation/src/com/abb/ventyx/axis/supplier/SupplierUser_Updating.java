@@ -45,7 +45,7 @@ public class SupplierUser_Updating extends BaseTestCase {
 	@Test(dependsOnMethods = "openScreen")
 	public void selectUser() {
 		table = new TableFunction(driver);
-		row = table.findRowByString(Users.SUPPLIER_USERS_TABLE_CSS, USER_ID, 2);
+		row = table.findRowByString(Users.SUPPLIER_USERS_TABLE_CSS, 2, USER_ID);
 		table.assertValueRow(2, row, USER_ID);
 		row = row - 1;
 		USER_NO = driver.findElement(By.id(Users.USERNUMBER_LINKID + row)).getText();

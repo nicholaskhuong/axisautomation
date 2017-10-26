@@ -111,7 +111,7 @@ public class ScreenAction {
 	public boolean isFieldDisable(By by) {
 		WebElement field = driver.findElement(by);
 		String disabled = field.getAttribute("aria-disabled");
-		if (disabled != null && disabled.equals("true"))
+		if (null != disabled && disabled.equals("true"))
 			return true;
 		return false;
 	}

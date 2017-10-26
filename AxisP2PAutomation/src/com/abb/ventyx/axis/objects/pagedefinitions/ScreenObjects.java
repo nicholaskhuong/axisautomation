@@ -40,6 +40,7 @@ public class ScreenObjects {
 	public static final String EMAILCHECKBOX_RESETUSERPASSWORDSCREEN_ID = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div.v-slot.v-slot-v-vertical-layout-with-border > div > div:nth-child(3) > div > div.v-slot.v-align-right.v-align-bottom";
 	public static final String ACCEPT_BUTTON_CSS = "#SupplierPortal-1227837064 > div > div.v-verticallayout.v-layout.v-vertical.v-widget.v-has-width.v-has-height > div > div > div > div > div:nth-child(2) > div > div.v-panel-content.v-scrollable > div > div > div:nth-child(3) > div > div > div:nth-child(3) > div";
 	public static final String DROPDOWNLIST_CSS = "#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table > tbody";
-	public static final String TABLE_BODY = "//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']";
-
+	public static final String TABLE_BODY_XPATH = "//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']";
+	public static final String TABLE_BODY_USER_XPATH = "//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div[3]/table/tbody";
+	public static final String TABLE_HEAD_XPATH = "//div[@class='v-grid-tablewrapper']//table//thead[@class='v-grid-header']";
 }
