@@ -27,8 +27,8 @@ public class Profile_Update_Customer_Defined extends BaseTestCase {
 	TableFunction table1;
 	int row;
 	int waitTime = 3000;
-	String profileName = "POProfile1";
-	String profileNameEdited = "POProfile2";
+	String profileName = "POProfile2";
+	String profileNameEdited = "POProfile3";
 	int i,j;
 	WebElement index;
 	String User_Login = "mail222@abb.com";
@@ -60,10 +60,10 @@ public class Profile_Update_Customer_Defined extends BaseTestCase {
 	public void clickPencilIconOnMaintainCustomerScreen(){
 		action.pause(waitTime);
 		table = new TableFunction(driver);
-		i = table.findRowByString(2, profileName);
+		i = table.findRowByString(3, profileName);
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
-		index = table.getCellObject(5, 2);
+		index = table.getCellObject(5, 3);
 		action.pause(waitTime);
 		index.click();	
 	}
@@ -115,21 +115,16 @@ public class Profile_Update_Customer_Defined extends BaseTestCase {
 	@Test(dependsOnMethods = "openMaintainCustomerScreenWithAccountCustomer", alwaysRun = true)
 	public void clickEditIconOnMaintainCustomerScreen(){
 		table = new TableFunction(driver);
-		i = table.findRowByString(2, "Purchase Orders");
-		j=i-1;
+		i = table.findRowByString(3, "Advance Shipping Notice, Purchase Orders");
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
-		WebElement elemement= driver.findElement(By.id(Profiles.EDIT_BUTTON_INDEX + j));
-		elemement.click();
-	}
-	
-	@Test(dependsOnMethods = "clickEditIconOnMaintainCustomerScreen", alwaysRun = true)
-	public void clickCancelButtonOnModifyProfile(){
+		index = table.getCellObject(4, 3);
+		index.click();
+		action.pause(waitTime);
 		action.clickBtn(By.id(Profiles.CANCEL_BTN));
 	}
-	
 	//Step 5
-	@Test(dependsOnMethods = "clickCancelButtonOnModifyProfile", alwaysRun = true)
+	@Test(dependsOnMethods = "clickEditIconOnMaintainCustomerScreen", alwaysRun = true)
 	public void logoutfromAccountCustomer(){
 			action.signOut();
 		}
@@ -162,10 +157,10 @@ public class Profile_Update_Customer_Defined extends BaseTestCase {
 	public void clickEditIconAgainOnMaintainCustomerScreen(){
 		action.pause(waitTime);
 		table = new TableFunction(driver);
-		i = table.findRowByString(2, profileName);
+		i = table.findRowByString(3, profileName);
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
-		index = table.getCellObject(5, 2);
+		index = table.getCellObject(5, 3);
 		index.click();
 	}
 	
