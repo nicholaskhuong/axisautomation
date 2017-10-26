@@ -41,14 +41,13 @@ public class TableFunction {
 
 	public int findRowByString(int columnindex, String value) {
 		WebDriverWait wait = new WebDriverWait(driver, timeout);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']")));
+
 		int row = 0;
-		WebElement baseTable = driver.findElement(By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']"));
+		WebElement baseTable = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ScreenObjects.TABLE_BODY)));
 		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
 		int sumRow = tableRows.size();
 		for (int i = 1; i <= sumRow; i++) {
-			WebElement columnValue = driver.findElement(By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr[" + i
-					+ "]//td[" + columnindex + "]"));
+			WebElement columnValue = driver.findElement(By.xpath(String.format("%s//tr[%s]//td[%s]", ScreenObjects.TABLE_BODY, i, columnindex)));
 			System.out.println("Value " + columnValue.getText());
 			if (columnValue.getText().equals(value)) {
 				System.out.print("Value1 " + columnValue.getText());
@@ -254,9 +253,23 @@ public class TableFunction {
 		return allValue;
 	}
 
+	public WebElement getCellObject(int column, int row) {
+		WebElement cell = driver.findElement(By.xpath(String.format("%s//tr[%s]//td[%s]", ScreenObjects.TABLE_BODY, row, column)));
+		return cell;
+	}
+
+	public String getIDValue(int row) {
+		return getIDValue(1, row);
+	}
+	public String getIDValue(int column, int row) {
+		return getValueRow(String.format("%s//tr[%s]//td[%s]/div/div/span/span", ScreenObjects.TABLE_BODY, row, column), column, row);
+	}
 	public String getValueRow(int column, int row) {
-		WebElement cell = driver.findElement(By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr[" + row + "]//td["
-				+ column + "]"));
+		return getValueRow(String.format("%s//tr[%s]//td[%s]", ScreenObjects.TABLE_BODY, row, column), column, row);
+	}
+
+	private String getValueRow(String cellXpath, int column, int row) {
+		WebElement cell = driver.findElement(By.xpath(cellXpath));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", cell);
 		return cell.getText();
 	}
