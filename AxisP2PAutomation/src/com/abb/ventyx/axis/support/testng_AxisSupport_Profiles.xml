@@ -3,15 +3,21 @@
 
 <suite name="AxisSupport_Profiles" parallel="none">
  
-	<test name="Customer Maintenance Profile Create">
+	<test name="Create Profile">
 		<classes>
 				<class name="com.abb.ventyx.axis.support.Profile_Create" />
 		</classes>	
   	</test>
   	
-  		<test name="Customer Maintenance Profile Update">
+  	<test name="Update Customer Defined Profile">
 		<classes>
 				<class name="com.abb.ventyx.axis.support.Profile_Update_Customer_Defined" />
+		</classes>	
+  	</test>
+  	
+  	 <test name="Delete Customer Defined Profile">
+		<classes>
+				<class name="com.abb.ventyx.axis.support.Profile_Delete_Customer_Defined" />
 		</classes>	
   	</test>
   	

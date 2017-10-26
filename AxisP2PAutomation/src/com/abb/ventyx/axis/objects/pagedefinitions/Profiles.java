@@ -14,10 +14,14 @@ public class Profiles {
 	public static final String SAVE_BTN = "saveBtn";
 	public static final String CANCEL_BTN = "cancelBtn";
 	public static final String DOCUMENT_TYPE = "documentType";
-	
+	public static final String TRASH_BIN = "deleteItemBtn";
 	public static final String EDIT_BUTTON_INDEX = "editItemBtn";
 	public static final String CUSTOMER_NAME_FILTER = "#filterField";
 	public static final String CUSTOMER_NAME = "customerCB";
 	public static final String MAINTAIN_CUSTOMER_TABLE_CSS = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div > div.v-grid-tablewrapper";
 	
+ 	public static final String DELETE_YES = "#confirmation-window > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-confirmation-window-text-and-button-layout > div > div.v-slot.v-slot-v-bottombar-button-layout.v-align-right.v-align-middle > div > div:nth-child(3)";
+ 	public static final String DELETE_NO  = "#confirmation-window > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-confirmation-window-text-and-button-layout > div > div.v-slot.v-slot-v-bottombar-button-layout.v-align-right.v-align-middle > div > div:nth-child(1)";
+ 	public static final String CANCEL_NO  = "#confirmation-window > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-confirmation-window-text-and-button-layout > div > div.v-slot.v-slot-v-bottombar-button-layout.v-align-right.v-align-middle > div > div:nth-child(1)";
+
 }
