@@ -7,6 +7,8 @@ import java.util.Random;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.MaintainSuppliers;
@@ -65,8 +67,9 @@ public class Supplier_Admin_UpdateContact extends BaseTestCase {
 		// Click on a row in summary
 		// Thread.sleep(900);
 		action.waitObjVisible(By.id(MaintainSuppliers.SUPPLIER_NAME));
-		action.pause(milliseconds);
-		action.clickBtn(By.id(MaintainSuppliers.SELECT_ROW));
+		WebElement btn = (new WebDriverWait(driver, 30)).until(ExpectedConditions
+.presenceOfElementLocated(By.id(MaintainSuppliers.SELECT_ROW)));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
 		action.waitObjVisible(By.cssSelector(MaintainSuppliers.TITLE_POPUP));
 		assertEquals(driver.findElement(By.cssSelector(MaintainSuppliers.TITLE_POPUP)).getText(), title_header);
 		
@@ -77,7 +80,7 @@ public class Supplier_Admin_UpdateContact extends BaseTestCase {
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		// Step 4
 		// Fill all data in the Update Contact popup
-		// action.pause(5000);
+		((JavascriptExecutor) driver).executeScript("window.focus();");
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.waitObjVisible(By.id(MaintainSuppliers.CONTACT_ID_FILED));
 		action.inputTextField(MaintainSuppliers.CONTACT_ID_FILED, contact_Id);
