@@ -89,7 +89,7 @@ public class TestMethodResultAdapter implements Serializable {
 		this.almID = almID;
 		if (testResult.getStatus() == ITestResult.FAILURE) {
 			this.actualvalue = testResult.getThrowable().getMessage();
-			this.actualvalue = String.format("%s<br/>%s", this.actualvalue, testResult.getThrowable().getStackTrace());
+			this.actualvalue = String.format("%s<br/><br/><br/><br/>%s", this.actualvalue, testResult.getThrowable().getStackTrace());
 		}
 	}
 
