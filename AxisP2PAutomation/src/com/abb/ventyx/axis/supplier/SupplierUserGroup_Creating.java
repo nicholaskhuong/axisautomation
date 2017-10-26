@@ -21,7 +21,7 @@ public class SupplierUserGroup_Creating extends BaseTestCase {
 	String USER_GROUP_NAME = "POGroup";
 	ScreenAction action;
 	TableFunction table;
-	String PERMISSION = "PurchaseOrder";
+	String PERMISSION = "Purchase Orders";
 	public static int row, rowOfUserGroupBeforeAdding;
 
 	@Test
@@ -38,6 +38,7 @@ public class SupplierUserGroup_Creating extends BaseTestCase {
 	public void addUserGroup() {
 		table.inputFilter(USER_GROUP_NAME);
 		rowOfUserGroupBeforeAdding = table.findRowByString(UserGroup.SUPPLIER_GROUP_TABLE_CSS, USER_GROUP_NAME, 1);
+
 		action.clickBtn(By.cssSelector(UserGroup.ADD_BTN_CSS));
 		action.waitObjVisible(By.id(UserGroup.USERGROUP_NAME_ID));
 		action.assertTitleScreen(UserGroup.TITLE_CREATE);
@@ -55,7 +56,11 @@ public class SupplierUserGroup_Creating extends BaseTestCase {
 	public void checkAddSuccessfully() {
 		table.inputFilter(USER_GROUP_NAME);
 		row = table.findRowByString(UserGroup.SUPPLIER_GROUP_TABLE_CSS, USER_GROUP_NAME, 1);
-		Assert.assertEquals(rowOfUserGroupBeforeAdding, row - 1);
+		if (rowOfUserGroupBeforeAdding > 0) {
+			Assert.assertEquals(rowOfUserGroupBeforeAdding, row - 1);
+		} else {
+
+		}
 
 	}
 

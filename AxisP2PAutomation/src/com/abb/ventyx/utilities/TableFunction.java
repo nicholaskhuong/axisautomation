@@ -22,20 +22,24 @@ public class TableFunction {
 	}
 
 	public int findRowByString(String tableCSS, String value, int columnindex) {
-		int row = 0;
+		int row = -1;
 		WebElement baseTable = driver.findElement(By.cssSelector(tableCSS));
 		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
-		int sumRow = tableRows.size();
-		for (int i = 1; i < sumRow; i++) {
-			WebElement columnValue = driver.findElement(By.cssSelector(tableCSS + "> table > tbody > tr:nth-child(" + i + ") > td:nth-child("
-					+ columnindex + ")"));
-			if (columnValue.getText().equals(value)) {
-				row = i;
-				break;
+		int sumRow = tableRows.size() - 1;
+		if (sumRow > 0) {
+			for (int i = 1; i < sumRow; i++) {
+				WebElement columnValue = driver.findElement(By.cssSelector(String.format("%s> table > tbody > tr:nth-child(%s) > td:nth-child(%s)",
+						tableCSS, i, columnindex)));
+				if (columnValue.getText().equals(value)) {
+					row = i;
+					break;
+				}
+
 			}
 
 		}
 		return row;
+
 
 	}
 

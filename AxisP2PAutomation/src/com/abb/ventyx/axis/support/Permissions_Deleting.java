@@ -38,7 +38,7 @@ public class Permissions_Deleting extends BaseTestCase {
 		action = new ScreenAction(driver);
 		PermissionsAction permissionsAction = new PermissionsAction(driver);
 		permissionsAction.filterPermissionbyPermissionName(PERMISSION_NAME_A);
-		permissionsAction.filterPermissionbyDocumentType("PurchaseOrder");
+		permissionsAction.filterPermissionbyDocumentType("Purchase Orders");
 		Thread.sleep(2000);
 
 		// final String PERMISION_ID_A =

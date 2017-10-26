@@ -23,7 +23,7 @@ public class SupplierUserGroup_Updating extends BaseTestCase {
 	String USER_GROUP_NAME = "POGroup";
 	ScreenAction action;
 	TableFunction table;
-	String PERMISSION = "PurchaseOrder";
+	String PERMISSION = "Purchase Orders";
 	String PERMISSION_CHILD = "Export Purchase Order";
 	int row;
 

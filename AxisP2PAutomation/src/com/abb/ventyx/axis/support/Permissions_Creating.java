@@ -22,7 +22,7 @@ public class Permissions_Creating extends BaseTestCase {
 	int numberOfRowsBeforeAdding;
 	public static int numberOfRowsAfterAdding;
 	String PERMISSION_NAME_A = "AUTOMATION_PERMISSION_AA";
-	String PurchaseorderType = "PurchaseOrder";
+	String PurchaseorderType = "Purchase Orders";
 	String USER_TYPE_A = "CSA";
 	String ADDPERMISSIONHEADER = "Add Permission";
 	String MAINTAINPERMISSIONHEADER = "Maintain Permissions";
@@ -37,7 +37,7 @@ public class Permissions_Creating extends BaseTestCase {
 
 		// Check there is any permission AA_MAINTAIN_PERMISSION existing
 		permissionsAction.filterPermissionbyPermissionName(PERMISSION_NAME_A);
-		permissionsAction.filterPermissionbyDocumentType("PurchaseOrder");
+		permissionsAction.filterPermissionbyDocumentType("Purchase Orders");
 		numberOfRowsBeforeAdding = permissionsAction.countRow(Permissions.TABLEBODY);
 		System.out.print(numberOfRowsBeforeAdding + "numberOfRowsBeforeAdding");
 	}
@@ -61,7 +61,7 @@ public class Permissions_Creating extends BaseTestCase {
 				Messages.PERMISSION_CREATED_SUCCESSFULLY);
 		// Filter
 		permissionsAction.enterValueTofilterPermission(PERMISSION_NAME_A);
-		permissionsAction.filterPermissionbyDocumentType("PurchaseOrder");
+		permissionsAction.filterPermissionbyDocumentType("Purchase Orders");
 		Thread.sleep(2000);
 		numberOfRowsAfterAdding = permissionsAction.countRow(Permissions.TABLEBODY);
 
