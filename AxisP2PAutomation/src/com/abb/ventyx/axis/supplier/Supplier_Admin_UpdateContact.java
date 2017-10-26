@@ -80,7 +80,6 @@ public class Supplier_Admin_UpdateContact extends BaseTestCase {
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		// Step 4
 		// Fill all data in the Update Contact popup
-		((JavascriptExecutor) driver).executeScript("window.focus();");
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.waitObjVisible(By.id(MaintainSuppliers.CONTACT_ID_FILED));
 		action.inputTextField(MaintainSuppliers.CONTACT_ID_FILED, contact_Id);

@@ -76,10 +76,11 @@ public class Permissions_Updating extends BaseTestCase {
 
 		PermissionsAction permissionsAction = new PermissionsAction(driver);
 		// Step 2 update
-		permissionsAction.selectDocTypebyText(USER_TYPE_A);
+		permissionsAction.selectDocTypebyText(DOCUMENT_TYPE_A);
 		// Unselect Customer and Supplier
-		permissionsAction.selectUserType(Permissions.CUSTOMER);
-		permissionsAction.selectUserType(Permissions.SUPPLIER);
+		permissionsAction.selectUserType(Permissions.CUSTOMER_CHECKBOX);
+
+		permissionsAction.selectUserType(Permissions.SUPPLIER_CHECKBOX);
 		permissionsAction.clickSaveButtonOnAddPermisisonPopUp();
 		Thread.sleep(200);
 		assertEquals(driver.findElement(By.cssSelector(Messages.PERMISSION_CREATED_SUCCESSFULLY_CSS)).getText(),

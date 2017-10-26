@@ -32,7 +32,9 @@ public class Permissions {
 	 	public static final String USER_TYPE_FILTER = "(//input[@id='filterField'])[4]";
 	 	public static final String AXIS_ADMIN = "#permissionUserType > span:nth-child(1) > label";
 	 	public static final String CUSTOMER = "#permissionUserType > span:nth-child(2) > label";
+	public static final String CUSTOMER_CHECKBOX = "#permissionUserType > span:nth-child(2) > input[type='checkbox']";
 	 	public static final String SUPPLIER = "#permissionUserType > span:nth-child(3) > label";
+	public static final String SUPPLIER_CHECKBOX = "#permissionUserType > span:nth-child(3) > input[type='checkbox']";
 	 	public static final String FILTER = "filterField";
 	 	public static final String ROW0 = "permissionIdBtn0";
 	 	public static final String ROW1 = "permissionIdBtn1";
