@@ -116,7 +116,7 @@ public class Supplier_Admin_UpdateContact extends BaseTestCase {
 		// step 6
 		// Click a row, change any data and click on cancel
 		action.waitObjVisible(By.id(MaintainSuppliers.SELECT_ROW));
-		action.clickBtn(By.id(MaintainSuppliers.SELECT_ROW));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
 		action.waitObjVisible(By.cssSelector(MaintainSuppliers.TITLE_POPUP));
 		// Change any data
 		action.inputTextField(MaintainSuppliers.CONTACT_NAME_FILED, contact_name + "New");

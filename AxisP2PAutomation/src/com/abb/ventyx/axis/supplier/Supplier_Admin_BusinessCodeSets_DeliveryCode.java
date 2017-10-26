@@ -3,6 +3,7 @@ package com.abb.ventyx.axis.supplier;
 import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.BusinessCodeSets;
@@ -47,7 +48,7 @@ public class Supplier_Admin_BusinessCodeSets_DeliveryCode extends BaseTestCase {
 		action.clickBtn(By.cssSelector(BusinessCodeSets.SAVE_BUTTON));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		// step 5
-		action.pause(milliseconds);
+		((JavascriptExecutor) driver).executeScript("window.focus();");
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.inputTextField(BusinessCodeSets.TAXTYPE_ID, deliveryCodeLessThan15);
 		action.clickBtn(By.cssSelector(BusinessCodeSets.SAVE_BUTTON));
