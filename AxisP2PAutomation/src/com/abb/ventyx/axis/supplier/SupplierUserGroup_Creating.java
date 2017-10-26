@@ -27,6 +27,7 @@ public class SupplierUserGroup_Creating extends BaseTestCase {
 	@Test
 	public void openScreen() throws InterruptedException {
 		action = new ScreenAction(driver);
+		table = new TableFunction(driver);
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.USER_GROUPS_ID));
 		action.waitObjVisible(By.cssSelector(UserGroup.ADD_BTN_CSS));
@@ -35,17 +36,14 @@ public class SupplierUserGroup_Creating extends BaseTestCase {
 
 	@Test(dependsOnMethods = "openScreen")
 	public void addUserGroup() {
-
 		table.inputFilter(USER_GROUP_NAME);
 		rowOfUserGroupBeforeAdding = table.findRowByString(UserGroup.SUPPLIER_GROUP_TABLE_CSS, USER_GROUP_NAME, 1);
-
 		action.clickBtn(By.cssSelector(UserGroup.ADD_BTN_CSS));
 		action.waitObjVisible(By.id(UserGroup.USERGROUP_NAME_ID));
 		action.assertTitleScreen(UserGroup.TITLE_CREATE);
 		action.inputTextField(UserGroup.USERGROUP_NAME_ID, USER_GROUP_NAME);
 
 		// Click PO permission
-		table = new TableFunction(driver);
 		row = table.findRowByString(UserGroup.PERMISSION_TABLE_CSS, PERMISSION, 3);
 		action.clickCheckBoxN(row);
 		action.clickBtn(By.id(ScreenObjects.SAVE_ID));

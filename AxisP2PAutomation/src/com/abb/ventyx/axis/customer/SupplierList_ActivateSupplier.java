@@ -48,7 +48,7 @@ public class SupplierList_ActivateSupplier extends BaseTestCase {
 				driver.findElement(
 						By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER))
 						.getText(), "Maintain Suppliers");
-		i = table.findRowByString1(6, supplierEmail);
+		i = table.findRowByString(6, supplierEmail);
 		assertEquals(table.getValueRow(4, i), inactiveStatus);
 		j = i - 1;
 		assertEquals(action.isFieldDisable(By.id("accessSupplierBtn" + j)),

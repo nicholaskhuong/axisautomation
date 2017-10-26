@@ -59,7 +59,7 @@ public class Profile_Update_Customer_Defined extends BaseTestCase {
 		action.pause(waitTime);
 		table = new TableFunction(driver);
 		action.pause(waitTime);
-		i = table.findRowByString1(2, profileName);
+		i = table.findRowByString(2, profileName);
 		//j=i-1;
 		j = 58;
 		action.clickHorizontalScrollBar();
@@ -115,7 +115,7 @@ public class Profile_Update_Customer_Defined extends BaseTestCase {
 	@Test(dependsOnMethods = "openMaintainCustomerScreenWithAccountCustomer", alwaysRun = true)
 	public void clickEditIconOnMaintainCustomerScreen(){
 		table = new TableFunction(driver);
-		i = table.findRowByString1(2, "Purchase Orders");
+		i = table.findRowByString(2, "Purchase Orders");
 		j=i-1;
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
@@ -162,7 +162,7 @@ public class Profile_Update_Customer_Defined extends BaseTestCase {
 	public void clickEditIconAgainOnMaintainCustomerScreen(){
 		action.pause(waitTime);
 		table = new TableFunction(driver);
-		i = table.findRowByString1(2, profileName);
+		i = table.findRowByString(2, profileName);
 		j=58;
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);

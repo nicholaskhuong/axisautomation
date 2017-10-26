@@ -57,7 +57,7 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 	@Test(dependsOnMethods="selectUsersSubMenu")
 	public void openModifyUserScreen() throws InterruptedException{
 		table = new TableFunction(driver);
-		i = table.findRowByString1(3,CUSTOMERUSEREMAIL);
+		i = table.findRowByString(3,CUSTOMERUSEREMAIL);
 		Thread.sleep(1000);
 		assertEquals(table.getValueRow(2,i), USERID);
 		assertEquals(table.getValueRow(4,i), "All Permissions");

@@ -175,7 +175,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.SUPPLIER_CREATED_SUCCESSFULLY);
 		table.filter(SupplierList.SUPPLIER_EMAIL_FILTER_XPATH, SUPPLIEREMAIL);
-		i = table.findRowByString1(6, SUPPLIEREMAIL);
+		i = table.findRowByString(6, SUPPLIEREMAIL);
 		Assert.assertTrue(i>0,"Supplier doesn't exist");
 		assertEquals(table.getValueRow(2, i), COMPANYREGIRATIONNO);
 		assertEquals(table.getValueRow(3, i), TAXREGIRATIONNO);

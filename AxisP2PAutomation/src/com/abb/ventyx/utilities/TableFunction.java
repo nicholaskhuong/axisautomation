@@ -39,7 +39,7 @@ public class TableFunction {
 
 	}
 
-	public int findRowByString1(int columnindex, String value) {
+	public int findRowByString(int columnindex, String value) {
 		WebDriverWait wait = new WebDriverWait(driver, timeout);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']")));
 		int row = 0;

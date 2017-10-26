@@ -63,7 +63,7 @@ public class CustomerUser_Deleted_ByAdmin extends BaseTestCase {
 	public void clickTrashBinIconOfUser() throws InterruptedException {
 		table = new TableFunction(driver);
 		action = new ScreenAction(driver);
-		int h = table.findRowByString1(3, CUSTOMERUSEREMAIL);
+		int h = table.findRowByString(3, CUSTOMERUSEREMAIL);
 		i = h - 1;
 		System.out.print(i + "Test test ");
 		action.clickBtn(By.id("deleteItemBtn" + i));

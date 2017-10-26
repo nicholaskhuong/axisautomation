@@ -50,7 +50,7 @@ public class SupplierList_RemoteIcon extends BaseTestCase {
 				.cssSelector(CustomerMenu.SUPPLIERLIST_SUBMENU));
 		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
 		action.assertTitleScreen("Maintain Suppliers");
-		i = table.findRowByString1(6, supplierEmail);
+		i = table.findRowByString(6, supplierEmail);
 		assertEquals(table.getValueRow(4, i), activeStatus);
 		j = i - 1;
 		assertEquals(action.isFieldDisable(By.id("accessSupplierBtn" + j)),

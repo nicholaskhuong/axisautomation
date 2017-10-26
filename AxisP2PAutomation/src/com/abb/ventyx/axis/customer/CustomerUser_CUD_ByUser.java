@@ -66,7 +66,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	// Step 1 Customer user creates another user
 	@Test(dependsOnMethods = "selectUsersSubMenu")
 	public void createNewUser() throws InterruptedException {
-		i = table.findRowByString1(3, CUSTOMERUSEREMAIL);
+		i = table.findRowByString(3, CUSTOMERUSEREMAIL);
 		if (i > 0) {
 			action.clickBtn(By.id("deleteItemBtn" + (i - 1)));
 			action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
@@ -74,7 +74,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 			action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 			assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)).getText(), Messages.USER_DELETE_SUCCESSFULLY);
 		}
-		i = table.findRowByString1(3, USEREMAILLOWERCASE);
+		i = table.findRowByString(3, USEREMAILLOWERCASE);
 		if (i > 0) {
 			action.clickBtn(By.id("deleteItemBtn" + (i - 1)));
 			action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
@@ -92,7 +92,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		action.clickBtn(By.id(CustomerUsers.SAVE_BUTTON_ID));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_CREATE_SUCCESSFULLY);
-		i = table.findRowByString1(3, CUSTOMERUSEREMAIL);
+		i = table.findRowByString(3, CUSTOMERUSEREMAIL);
 		assertEquals(table.getValueRow(2, i), USERID);
 		assertEquals(table.getValueRow(3, i), CUSTOMERUSEREMAIL);
 		assertEquals(table.getValueRow(4, i), USERGROUPNAME);
@@ -122,7 +122,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		// The system wrong here
 		// assertEquals(driver.findElement(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER)).getText(),
 		// "Maintain Customer Users");
-		i = table.findRowByString1(3, CUSTOMERUSEREMAIL);
+		i = table.findRowByString(3, CUSTOMERUSEREMAIL);
 		assertEquals(table.getValueRow(2, i), USERID);
 		assertEquals(table.getValueRow(3, i), CUSTOMERUSEREMAIL);
 		assertEquals(table.getValueRow(4, i), USERGROUPNAME);
@@ -151,7 +151,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	public void updateUserInfo() throws InterruptedException {
 		//
 
-		i = table.findRowByString1(1, userNo);
+		i = table.findRowByString(1, userNo);
 		assertEquals(table.getValueRow(2, i), USERID);
 		assertEquals(table.getValueRow(3, i), CUSTOMERUSEREMAIL);
 		assertEquals(table.getValueRow(4, i), USERGROUPNAME);
@@ -255,12 +255,12 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	@Test(dependsOnMethods = "deleteCustomerAdmin", alwaysRun = true)
 	public void clickTrashBinIconOfUser() throws InterruptedException {
 
-		i = table.findRowByString1(3, CUSTOMERUSEREMAIL);
+		i = table.findRowByString(3, CUSTOMERUSEREMAIL);
 		if (i <= 0) {
-			i = table.findRowByString1(1, userNo);
+			i = table.findRowByString(1, userNo);
 		}
 		if (i <= 0) {
-			i = table.findRowByString1(3, USEREMAILLOWERCASE);
+			i = table.findRowByString(3, USEREMAILLOWERCASE);
 		}
 		Assert.assertTrue("User doesn't exist", i > 0);
 		action.clickBtn(By.id("deleteItemBtn" + (i - 1)));
@@ -282,12 +282,12 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	@Test(dependsOnMethods = "clickTrashBinIconOfUser")
 	public void clickYesButton() throws InterruptedException {
 
-		i = table.findRowByString1(3, CUSTOMERUSEREMAIL);
+		i = table.findRowByString(3, CUSTOMERUSEREMAIL);
 		if (i <= 0) {
-			i = table.findRowByString1(1, userNo);
+			i = table.findRowByString(1, userNo);
 		}
 		if (i <= 0) {
-			i = table.findRowByString1(3, USEREMAILLOWERCASE);
+			i = table.findRowByString(3, USEREMAILLOWERCASE);
 		}
 		Assert.assertTrue("User doesn't exist", i > 0);
 		action.clickBtn(By.id("deleteItemBtn" + (i - 1)));
@@ -322,7 +322,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.USERS_SUBMENU));
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.ADD_BUTTON)));
-		table.clickUserNo(table.findRowByString1(1, "4073"));
+		table.clickUserNo(table.findRowByString(1, "4073"));
 		action.waitObjVisible(By.id(CustomerUsers.SAVE_BUTTON_ID));
 
 		action.assertFieldReadOnly(By.id(CustomerUsers.USERNUMBER_MODIFYSCREEN_ID));

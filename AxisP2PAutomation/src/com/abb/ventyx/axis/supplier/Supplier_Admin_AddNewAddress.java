@@ -148,7 +148,7 @@ public class Supplier_Admin_AddNewAddress extends BaseTestCase {
 		action.waitObjVisible(By.id("addrId0"));
 		//Click a record with Address type = Default Address
 		table = new TableFunction(driver);
-		i = table.findRowByString1(2, "Default Address");
+		i = table.findRowByString(2, "Default Address");
 		j=i-1;
 		WebElement elemement= driver.findElement(By.id("addrId"+j));
 		elemement.click();

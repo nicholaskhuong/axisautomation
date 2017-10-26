@@ -65,7 +65,7 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 		table = new TableFunction(driver);
 		action = new ScreenAction(driver);
 
-		i = table.findRowByString1(6, SUPPLIEREMAIL);
+		i = table.findRowByString(6, SUPPLIEREMAIL);
 		System.out.println("print i: "+i);
 		assertEquals(table.getValueRow(2, i), COMPANYREGIRATIONNO);
 		assertEquals(table.getValueRow(3, i), TAXREGIRATIONNO);
