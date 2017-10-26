@@ -22,7 +22,7 @@ import com.abb.ventyx.utilities.ScreenAction;
 public class Permissions_Updating extends BaseTestCase {
 	String PERMISSION_NAME_A = "AUTOMATION_PERMISSION_AA";
 	String PERMISSION_NAME_B = "AUTOMATION_PERMISSION_BB";
-	String DOCUMENT_TYPE_A = "Purchase Orders";
+	String DOCUMENT_TYPE_A = "PurchaseOrder";
 	String USER_TYPE_A = "CSA";
 	WebDriverWait wait;
 	// Step 1
@@ -36,13 +36,13 @@ public class Permissions_Updating extends BaseTestCase {
 		permissionsAction.clickPermissionsSubMenu();
 
 		permissionsAction.filterPermissionbyPermissionName(PERMISSION_NAME_A);
-		permissionsAction.filterPermissionbyDocumentType("Purchase Orders");
+		permissionsAction.filterPermissionbyDocumentType("PurchaseOrder");
 		Thread.sleep(1000);
 
 		// Get Document Type value
 		assertEquals(driver.findElement(By.cssSelector(Permissions.PNROW1)).getText(), PERMISSION_NAME_A);
 		assertEquals(driver.findElement(By.cssSelector(Permissions.UTROW1)).getText(), "CSA");
-		assertEquals(driver.findElement(By.cssSelector(Permissions.DTROW1)).getText(), "Purchase Orders");
+		assertEquals(driver.findElement(By.cssSelector(Permissions.DTROW1)).getText(), "PurchaseOrder");
 
 		// Click on Permission ID
 		WebElement gridCell = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By
@@ -56,7 +56,7 @@ public class Permissions_Updating extends BaseTestCase {
 		 * assertEquals(driver.findElement(By.id(Permissions.PERMISSION_NAME)).
 		 * getText(), PERMISSION_NAME_A);
 		 * assertEquals(driver.findElement(By.id(Permissions
-		 * .DOCUMENT_TYPE)).getText(), "Purchase Orders");
+		 * .DOCUMENT_TYPE)).getText(), "PurchaseOrder");
 		 */
 
 		/*

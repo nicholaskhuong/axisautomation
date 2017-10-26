@@ -22,7 +22,7 @@ public class Permissions_Creating extends BaseTestCase {
 	int numberOfRowsBeforeAdding;
 	public static int numberOfRowsAfterAdding;
 	String PERMISSION_NAME_A = "AUTOMATION_PERMISSION_AA";
-	String PurchaseorderType = "Purchase Orders";
+	String PurchaseorderType = "PurchaseOrder";
 	String USER_TYPE_A = "CSA";
 	String ADDPERMISSIONHEADER = "Add Permission";
 	String MAINTAINPERMISSIONHEADER = "Maintain Permissions";
@@ -37,7 +37,7 @@ public class Permissions_Creating extends BaseTestCase {
 
 		// Check there is any permission AA_MAINTAIN_PERMISSION existing
 		permissionsAction.filterPermissionbyPermissionName(PERMISSION_NAME_A);
-		permissionsAction.filterPermissionbyDocumentType("Purchase Orders");
+		permissionsAction.filterPermissionbyDocumentType("PurchaseOrder");
 		numberOfRowsBeforeAdding = permissionsAction.countRow(Permissions.TABLEBODY);
 		System.out.print(numberOfRowsBeforeAdding + "numberOfRowsBeforeAdding");
 	}
@@ -49,7 +49,7 @@ public class Permissions_Creating extends BaseTestCase {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		permissionsAction.clickAddButton();
 		permissionsAction.enterPermissionName(PERMISSION_NAME_A);
-		permissionsAction.selectDocTypebyText("Purchase Orders");
+		permissionsAction.selectDocTypebyText("PurchaseOrder");
 		Thread.sleep(200);
 		permissionsAction.selectUserType(Permissions.AXIS_ADMIN);
 		permissionsAction.selectUserType(Permissions.CUSTOMER);
@@ -61,7 +61,7 @@ public class Permissions_Creating extends BaseTestCase {
 				Messages.PERMISSION_CREATED_SUCCESSFULLY);
 		// Filter
 		permissionsAction.enterValueTofilterPermission(PERMISSION_NAME_A);
-		permissionsAction.filterPermissionbyDocumentType("Purchase Orders");
+		permissionsAction.filterPermissionbyDocumentType("PurchaseOrder");
 		Thread.sleep(2000);
 		numberOfRowsAfterAdding = permissionsAction.countRow(Permissions.TABLEBODY);
 
