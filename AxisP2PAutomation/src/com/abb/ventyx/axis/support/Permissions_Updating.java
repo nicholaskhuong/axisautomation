@@ -104,17 +104,16 @@ public class Permissions_Updating extends BaseTestCase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(Permissions.PERMISSIONWINDOWHEADER)));
 		permissionsAction.enterPermissionName("ECHO2");
 		permissionsAction.clickCancelButtonOnAddPermisisonPopUp();
-		assertEquals(driver.findElement(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION)).getText(), Messages.UNSAVED_CHANGE);
+		action.assertTextEqual(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION), Messages.UNSAVED_CHANGE);
 
 		// Step 4 Click No
 		driver.findElement(By.id(ScreenObjects.NO_BTN_ID)).click();
-		Thread.sleep(1000);
+		action.waitObjInvisible(By.id(ScreenObjects.NO_BTN_ID));
 		assertEquals(driver.findElement(By.cssSelector(Permissions.PERMISSIONWINDOWHEADER)).getText(), "Edit Permission");
 
 		permissionsAction.clickCancelButtonOnAddPermisisonPopUp();
 		driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
-		Thread.sleep(1000);
-
+		action.waitObjInvisible(By.id(ScreenObjects.YES_BTN_ID));
 		assertEquals(action.isElementPresent(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION)), false);
 		assertEquals(action.isElementPresent(By.cssSelector(Permissions.PERMISSIONWINDOWHEADER)), false);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(Permissions.PERMISSIONHEADER)));

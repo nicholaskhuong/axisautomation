@@ -129,7 +129,7 @@ public class ScreenAction {
 	}
 
 	public void assertTextEqual(By by, String exptectedValue) {
-		WebElement screenTitle = driver.findElement(by);
+		WebElement screenTitle = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(by));
 		if (screenTitle.getText().trim().isEmpty()) {
 			assertEquals(screenTitle.getAttribute("value"), exptectedValue, "Value is wrong");
 		}
