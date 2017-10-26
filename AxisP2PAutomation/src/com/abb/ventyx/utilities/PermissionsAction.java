@@ -100,23 +100,19 @@ public class PermissionsAction {
 		WebElement adminUserType = (new WebDriverWait(driver, 20))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(userTypeCSS)));
-		adminUserType.click();
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", adminUserType);
 	}
 	public void clickSaveButtonOnAddPermisisonPopUp() throws InterruptedException{
 		// Click Save button on Add Permission Window Pop Up
-		Thread.sleep(500);
 		WebElement saveButton = (new WebDriverWait(driver, 30))
 				.until(ExpectedConditions.presenceOfElementLocated(By.id(Permissions.SAVE)));
 		saveButton.click();
-		Thread.sleep(3000);
-		
 	}
 
 	public void clickCancelButtonOnAddPermisisonPopUp() throws InterruptedException{
-		WebElement saveButton = (new WebDriverWait(driver, 30))
+		WebElement cancelButton = (new WebDriverWait(driver, 30))
 				.until(ExpectedConditions.presenceOfElementLocated(By.id(Permissions.CANCEL)));
-		saveButton.click();
-		Thread.sleep(1000);
+		cancelButton.click();
 	}
 
 	
@@ -125,8 +121,8 @@ public class PermissionsAction {
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.id(Permissions.DOCUMENT_TYPE)));
 		permissionDocType.click();
-		Thread.sleep(1000);
-		WebElement baseTable = driver.findElement(By.cssSelector("#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table"));
+		WebElement baseTable = (new WebDriverWait(driver, 30)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector("#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table")));
 		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
 		int sumRow = tableRows.size();
 		
@@ -142,7 +138,7 @@ public class PermissionsAction {
 			}
 				
 		}
-		((JavascriptExecutor) driver).executeScript("window.focus();");
+		permissionDocType.click();
 	
 	}
 }

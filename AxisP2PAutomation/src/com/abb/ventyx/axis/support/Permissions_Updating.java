@@ -25,12 +25,15 @@ public class Permissions_Updating extends BaseTestCase {
 	String DOCUMENT_TYPE_A = "PurchaseOrder";
 	String USER_TYPE_A = "CSA";
 	WebDriverWait wait;
+	ScreenAction action;
+	PermissionsAction permissionsAction;
 	// Step 1
 	@Test
 	public void openMaintainPermissionScreen() throws Exception {
 		// Update Permission
 		wait = new WebDriverWait(driver, 30);
-
+		action = new ScreenAction(driver);
+		permissionsAction = new PermissionsAction(driver);
 		PermissionsAction permissionsAction = new PermissionsAction(driver);
 		permissionsAction.clickSystemConfigurationMenu();
 		permissionsAction.clickPermissionsSubMenu();
@@ -73,22 +76,19 @@ public class Permissions_Updating extends BaseTestCase {
 	@Test(dependsOnMethods = "openMaintainPermissionScreen")
 	public void updatePermissionWithValidValue() throws InterruptedException {
 
-
-		PermissionsAction permissionsAction = new PermissionsAction(driver);
 		// Step 2 update
 		permissionsAction.selectDocTypebyText(DOCUMENT_TYPE_A);
 		// Unselect Customer and Supplier
 		permissionsAction.selectUserType(Permissions.CUSTOMER_CHECKBOX);
-
 		permissionsAction.selectUserType(Permissions.SUPPLIER_CHECKBOX);
+//		USER_TYPE
 		permissionsAction.clickSaveButtonOnAddPermisisonPopUp();
-		Thread.sleep(200);
-		assertEquals(driver.findElement(By.cssSelector(Messages.PERMISSION_CREATED_SUCCESSFULLY_CSS)).getText(),
-				Messages.PERMISSION_UPADTED_SUCCESSFULLY);
+		action.waitObjInvisible(By.id(Permissions.SAVE));
+		action.assertTextEqual(By.cssSelector(Messages.PERMISSION_CREATED_SUCCESSFULLY_CSS), Messages.PERMISSION_UPADTED_SUCCESSFULLY);
 		permissionsAction.enterValueTofilterPermission(PERMISSION_NAME_A);
 		permissionsAction.filterPermissionbyDocumentType(DOCUMENT_TYPE_A);
 		assertEquals(driver.findElement(By.cssSelector(Permissions.PNROW1)).getText(), PERMISSION_NAME_A);
-		assertEquals(driver.findElement(By.cssSelector(Permissions.UTROW1)).getText(), USER_TYPE_A);
+		assertEquals(driver.findElement(By.cssSelector(Permissions.UTROW1)).getText(), "A");
 		assertEquals(driver.findElement(By.cssSelector(Permissions.DTROW1)).getText(), DOCUMENT_TYPE_A);
 
 	}
@@ -97,8 +97,6 @@ public class Permissions_Updating extends BaseTestCase {
 	@Test(dependsOnMethods = "updatePermissionWithValidValue")
 	public void checkUnsavedChangesDialog() throws InterruptedException {
 
-		ScreenAction action = new ScreenAction(driver);
-		PermissionsAction permissionsAction = new PermissionsAction(driver);
 		// Step 3 Click 1st instance ID
 		WebElement gridCell1 = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By
 				.xpath(Permissions.GRID_PERMISSIONIDCELL)));
