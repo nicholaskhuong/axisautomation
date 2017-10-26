@@ -26,7 +26,6 @@ public class Users_Deleting extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
 	int row;
-	String userID = "DathyUser1";
 	String email = "email@dathy.com";
 	String suserID;
 	@Test
@@ -42,7 +41,7 @@ public class Users_Deleting extends BaseTestCase {
 
 	@Test(dependsOnMethods = "checkScreen")
 	public void deleteUserGroupClickNo() throws Exception {
-		row = table.findRowByString(ScreenObjects.TABLE_BODY_USER_XPATH, 2, userID, true);
+		row = table.findRowByString(ScreenObjects.TABLE_BODY_USER_XPATH, 2, Users_Creating.userID, true);
 		Assert.assertTrue("User not found!", row > 0);
 		table.assertValueRow(ScreenObjects.TABLE_BODY_USER_XPATH, 3, row, email);
 		driver.findElement(By.id(AxisAdministratorUsers.DELETE_ID + row))
@@ -63,7 +62,7 @@ public class Users_Deleting extends BaseTestCase {
 
 	@Test(dependsOnMethods = "deleteUserGroupClickNo")
 	public void deleteUserGroupClickYes() throws Exception {
-		row = table.findRowByString(ScreenObjects.TABLE_BODY_USER_XPATH, 2, userID, true);
+		row = table.findRowByString(ScreenObjects.TABLE_BODY_USER_XPATH, 2, Users_Creating.userID, true);
 		Assert.assertTrue("User not found!", row > 0);
 		table.assertValueRow(ScreenObjects.TABLE_BODY_USER_XPATH, 3, row, email);
 		// Click Yes on dialog
