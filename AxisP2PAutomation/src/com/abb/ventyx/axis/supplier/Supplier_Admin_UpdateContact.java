@@ -5,6 +5,8 @@ import static org.testng.Assert.assertEquals;
 import java.util.Random;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.MaintainSuppliers;
@@ -99,7 +101,8 @@ public class Supplier_Admin_UpdateContact extends BaseTestCase {
 		// Click 1 row, dont change anything
 		action.waitObjVisible(By.id(MaintainSuppliers.SELECT_ROW));
 		action.pause(milliseconds);
-		action.clickBtn(By.id(MaintainSuppliers.SELECT_ROW));
+		WebElement btn = driver.findElement(By.id(MaintainSuppliers.SELECT_ROW));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
 		action.waitObjVisible(By.cssSelector(MaintainSuppliers.TITLE_POPUP));
 		// Click on cancel button
 		action.clickBtn(By.id(ScreenObjects.CANCEL_ID));
