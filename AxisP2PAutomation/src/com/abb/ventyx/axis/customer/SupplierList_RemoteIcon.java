@@ -95,7 +95,7 @@ public class SupplierList_RemoteIcon extends BaseTestCase {
 	}
 
 	// Step 5
-	@Test(dependsOnMethods = "openProfilePanel")
+	@Test(dependsOnMethods = "signOut")
 	public void signInAgain() {
 		action.signIn("cadmin1@abb.com", "Testuser1");
 		action.waitObjVisible(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
@@ -161,7 +161,6 @@ public class SupplierList_RemoteIcon extends BaseTestCase {
 	// Step 13
 	@Test(dependsOnMethods = "loginAsCustomerUserAndCheckRemoteIconAvailable")
 	public void loginAsCustomerUser() {
-
 		action.signOut();
 		action.waitObjVisible(By
 				.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
@@ -178,5 +177,4 @@ public class SupplierList_RemoteIcon extends BaseTestCase {
 		assertEquals(action.isFieldDisable(By.id("accessSupplierBtn" + j)),
 				false);
 	}
-
 }
