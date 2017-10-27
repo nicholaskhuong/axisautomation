@@ -43,7 +43,14 @@ public class TableFunction {
 			return row;
 
 		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
-		int sumRow = tableRows.size() - 1;
+		int sumRow;
+		if (isXpath) {
+			sumRow = tableRows.size();
+		}
+		else
+		{
+			sumRow = tableRows.size() - 1;
+		}
 		if (sumRow > 0) {
 			WebElement columnValue;
 			for (int i = 1; i < sumRow; i++) {

@@ -12,6 +12,7 @@ public class UserGroup {
 	public static final String TITLE_MODIFY = "Modify User Group";
 	public static final String ROW_ID = "userGroupNameBtn";
 	public static final String SUPPLIER_GROUP_TABLE_CSS = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div > div > div > div > div > div > div > div.v-grid-tablewrapper";
+	public static final String USER_PERMISSION_TABLE_XPATH = "//*[@id='docTypeGrid']/div[3]/table/tbody";
 	public static final String EXPAND_ID = "showPermBtn-";
 	public static final String PERMISSION_CHILD_ID = "#permGrid-";
 	public static final String PERMISSION_CHILD_TABLE_CSS = " > div.v-grid-tablewrapper";

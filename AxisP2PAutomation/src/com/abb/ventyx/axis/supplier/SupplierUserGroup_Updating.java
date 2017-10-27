@@ -40,8 +40,8 @@ public class SupplierUserGroup_Updating extends BaseTestCase {
 	public void selectRowUpdating() {
 		table = new TableFunction(driver);
 		row = table.findRowByString(UserGroup.SUPPLIER_GROUP_TABLE_CSS, 1, USER_GROUP_NAME);
-		table.assertRowEqual(UserGroup.ROW_ID, USER_GROUP_NAME, row - 1);
-		row = row - 1;
+		row -= 1;
+		table.assertRowEqual(UserGroup.ROW_ID, USER_GROUP_NAME, row);
 
 		action.clickBtn(By.id(UserGroup.ROW_ID + row));
 	}
@@ -50,6 +50,8 @@ public class SupplierUserGroup_Updating extends BaseTestCase {
 	public void selectRowUpdatingDetail() {
 		action.waitObjVisible(By.id(UserGroup.USERGROUP_NAME_ID));
 		action.assertTitleScreen(UserGroup.TITLE_MODIFY);
+		row = table.findRowByString(UserGroup.USER_PERMISSION_TABLE_XPATH, 3, PERMISSION, true);
+		row -= 1;
 		// click expand row
 		action.clickBtn(By.id(UserGroup.EXPAND_ID + row));
 
@@ -102,7 +104,9 @@ public class SupplierUserGroup_Updating extends BaseTestCase {
 	public void cancelWithoutdata() throws InterruptedException {
 
 		action.inputTextField(UserGroup.USERGROUP_NAME_ID, USER_GROUP_NAME);
-		action.cancelWithoutdata(By.cssSelector(UserGroup.ADD_BTN_CSS), UserGroup.TITLE);
+		driver.findElement(By.id(ScreenObjects.CANCEL_ID)).click();
+		action.waitObjInvisible(By.id(ScreenObjects.CANCEL_ID));
+		action.assertTitleScreen(UserGroup.TITLE);
 
 	}
 
