@@ -78,6 +78,7 @@ public class Supplier_Admin_UpdateContact extends BaseTestCase {
 		driver.findElement(By.id(MaintainSuppliers.CONTACT_ID_FILED)).clear();
 		action.clickBtn(By.cssSelector(MaintainSuppliers.OK_BUTTON));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
+		((JavascriptExecutor) driver).executeScript("window.focus();");
 		// Step 4
 		// Fill all data in the Update Contact popup
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
