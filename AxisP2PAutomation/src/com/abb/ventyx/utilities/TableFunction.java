@@ -22,6 +22,13 @@ public class TableFunction {
 		this.driver = driver;
 	}
 
+	public int findRowByString(String tableCSS, int columnindex, String value) {
+		return findRowByString(tableCSS, columnindex, value, false);
+	}
+
+	public int findRowByString(int columnindex, String value) {
+		return findRowByString(ScreenObjects.TABLE_BODY_XPATH, columnindex, value, true);
+	}
 	public int findRowByString(String tableBody, int columnindex, String value, boolean isXpath) {
 		int row = -1;
 		WebDriverWait wait = new WebDriverWait(driver, timeout);
@@ -31,6 +38,10 @@ public class TableFunction {
 		} else {
 			baseTable = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(tableBody)));
 		}
+
+		if (null == baseTable)
+			return row;
+
 		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
 		int sumRow = tableRows.size() - 1;
 		if (sumRow > 0) {
@@ -51,15 +62,6 @@ public class TableFunction {
 		}
 		return row;
 	}
-
-	public int findRowByString(String tableCSS, int columnindex, String value) {
-		return findRowByString(tableCSS, columnindex, value, true);
-	}
-
-	public int findRowByString(int columnindex, String value) {
-		return findRowByString(ScreenObjects.TABLE_BODY_XPATH, columnindex, value, true);
-	}
-
 	public boolean isValueExisting(int columnindex, String value) throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ScreenObjects.TABLE_BODY_XPATH + "")));
@@ -166,60 +168,40 @@ public class TableFunction {
 	}
 
 	public void filterPermission(String filterValue) {
-		// Click Filter Icon
-		WebElement filterButton = (new WebDriverWait(driver, 20))
-				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.FILTER_BTN_CSS)));
-		filterButton.click();
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", filterButton);
-		// Enter filter value
-		WebElement filterPermissionName = (new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Permissions.PERMISSION_NAME_FILTER)));
-		filterPermissionName.sendKeys(filterValue);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		inputFilter(filterValue, Permissions.PERMISSION_NAME_FILTER, true);
 	}
 
 	public void filter(String columnXpath, String filterValue) {
-		// Click Filter Icon
-		WebElement filterButton = (new WebDriverWait(driver, 20))
-				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.FILTER_BTN_CSS)));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", filterButton);
-		filterButton.click();
-
-		// Enter filter value
-		WebElement filterPermissionName = (new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(columnXpath)));
-		filterPermissionName.sendKeys(filterValue);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		inputFilter(filterValue, columnXpath, true);
 	}
 
 	public void inputFilter(String value) {
-
-		WebElement filterButton = driver.findElement(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
-		filterButton.click();
-		ScreenAction action = new ScreenAction(driver);
-		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
-		action.inputTextField(ScreenObjects.FILTER_FIELD_ID, value);
-
+		inputFilter(value, ScreenObjects.FILTER_FIELD_ID, false);
 	}
 
-	public void inputFilter(String value, String filterString) {
+	public void inputFilter(String value, String filterXPath) {
+		inputFilter(value, ScreenObjects.FILTER_FIELD_ID, true);
+	}
 
-		WebElement filterButton = driver.findElement(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
+	public void inputFilter(String value, String filterPath, Boolean isXpath) {
+
+		WebElement filterButton = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(ScreenObjects.FILTER_BTN_CSS)));
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", filterButton);
 		filterButton.click();
-		WebElement filterColumn = (new WebDriverWait(driver, 20))
-				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(filterString)));
+		WebElement filterColumn;
+		if (isXpath) {
+			filterColumn = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By.xpath(filterPath)));
+		} else {
+			filterColumn = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By.id(filterPath)));
+		}
 		filterColumn.clear();
 		filterColumn.sendKeys(value);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 
 	}
 
