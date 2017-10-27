@@ -112,6 +112,7 @@ public class Permissions_Updating extends BaseTestCase {
 		assertEquals(driver.findElement(By.cssSelector(Permissions.PERMISSIONWINDOWHEADER)).getText(), "Edit Permission");
 
 		permissionsAction.clickCancelButtonOnAddPermisisonPopUp();
+		action.waitObjVisible(By.id(ScreenObjects.YES_BTN_ID));
 		driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
 		action.waitObjInvisible(By.id(ScreenObjects.YES_BTN_ID));
 		assertEquals(action.isElementPresent(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION)), false);

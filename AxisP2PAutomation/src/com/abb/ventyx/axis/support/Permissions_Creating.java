@@ -120,6 +120,7 @@ public class Permissions_Creating extends BaseTestCase {
 
 		// Step 10
 		permissionsAction.clickCancelButtonOnAddPermisisonPopUp();
+		action.waitObjVisible(By.id(ScreenObjects.YES_BTN_ID));
 		driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
 		Thread.sleep(1000);
 		action.assertTextEqual(By.cssSelector(Permissions.PERMISSIONHEADER), MAINTAINPERMISSIONHEADER);
