@@ -23,4 +23,12 @@
 		</classes>	
   	</test>
   	
+  	 <test name="Update Default Profile">
+		<classes>
+				<class name="com.abb.ventyx.axis.support.Profile_Update_Default_Profile_Steps01_08" />
+				
+				<class name="com.abb.ventyx.axis.support.Profile_Update_Default_Profile_Step09" />
+		</classes>	
+  	</test>
+  	
 </suite> 

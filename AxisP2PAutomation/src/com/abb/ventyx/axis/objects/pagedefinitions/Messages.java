@@ -105,4 +105,9 @@ public class Messages {
 	public static final String MESSAGE_DUPLICATED_PROFILE_NAME = "Profile Name already exists";
 	public static final String MESSAGE_EDIT_PROFILE_NAME_SUCCESSFULLY = "Customer Defined Profile successfully updated";
 	public static final String MESSAGE_DELETE_SUCCESSFULLY = "Customer Defined Profile successfully deleted";
-}
+
+	//Customers
+	public static final String CREATE_CUSTOMER_SUCCESSFULLY ="Customer successfully created";
+
+	
+}	
