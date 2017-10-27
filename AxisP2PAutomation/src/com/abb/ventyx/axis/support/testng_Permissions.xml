@@ -10,10 +10,11 @@
 		<classes>
 				<class name="com.abb.ventyx.axis.support.Permissions_Updating" />
 		</classes>
+	</test> 
 	<test name="Delete Permission">
 		<classes>
 				<class name="com.abb.ventyx.axis.support.Permissions_Deleting" />
 		</classes>
 	</test>	
-  	</test> <!-- Test -->
+  	<!-- Test -->
 </suite> <!-- Suite -->
