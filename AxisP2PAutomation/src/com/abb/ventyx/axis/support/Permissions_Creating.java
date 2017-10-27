@@ -26,11 +26,16 @@ public class Permissions_Creating extends BaseTestCase {
 	String USER_TYPE_A = "CSA";
 	String ADDPERMISSIONHEADER = "Add Permission";
 	String MAINTAINPERMISSIONHEADER = "Maintain Permissions";
+	PermissionsAction permissionsAction;
+	ScreenAction action;
+	WebDriverWait wait;
 
 	// Step 1
 	@Test
 	public void openMaintainPermissionScreen() throws InterruptedException {
-		PermissionsAction permissionsAction = new PermissionsAction(driver);
+		permissionsAction = new PermissionsAction(driver);
+		action = new ScreenAction(driver);
+		wait = new WebDriverWait(driver, 30);
 
 		permissionsAction.clickSystemConfigurationMenu();
 		permissionsAction.clickPermissionsSubMenu();
@@ -45,8 +50,7 @@ public class Permissions_Creating extends BaseTestCase {
 	// Step 2, 3, 4
 	@Test(dependsOnMethods = "openMaintainPermissionScreen")
 	public void createPermissionwithValidValue() throws InterruptedException {
-		PermissionsAction permissionsAction = new PermissionsAction(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+
 		permissionsAction.clickAddButton();
 		permissionsAction.enterPermissionName(PERMISSION_NAME_A);
 		permissionsAction.selectDocTypebyText("Purchase Orders");
@@ -89,49 +93,42 @@ public class Permissions_Creating extends BaseTestCase {
 	// Step 5, 6, 7
 	@Test(dependsOnMethods = "createPermissionwithValidValue")
 	public void addPermissonWithoutMandatoryField() throws InterruptedException {
-		PermissionsAction permissionsAction = new PermissionsAction(driver);
+
 		permissionsAction.clickAddButton();
 
 		// Step 6
 		permissionsAction.clickSaveButtonOnAddPermisisonPopUp();
-		Thread.sleep(1000);
-		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)).getText(), Messages.EMPTYPERMISSIONNAME);
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.EMPTYPERMISSIONNAME);
 
 		// Step 7
 		permissionsAction.enterPermissionName("ECHO 1");
 		permissionsAction.clickSaveButtonOnAddPermisisonPopUp();
-		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)).getText(), Messages.EMPTYUSERTYPE);
-		Thread.sleep(2000);
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.EMPTYUSERTYPE);
 	}
 
 	// Step 8, 9, 10
 	@Test(dependsOnMethods = "addPermissonWithoutMandatoryField")
 	public void checkUnsavedChangesDialog() throws InterruptedException {
-		// Step 8
-		PermissionsAction permissionsAction = new PermissionsAction(driver);
-		ScreenAction action = new ScreenAction(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+
 		permissionsAction.clickCancelButtonOnAddPermisisonPopUp();
-		assertEquals(driver.findElement(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION)).getText(), Messages.UNSAVED_CHANGE);
+		action.assertTextEqual(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION), Messages.UNSAVED_CHANGE);
 
 		// Step 9
 		driver.findElement(By.id(ScreenObjects.NO_BTN_ID)).click();
 		Thread.sleep(1000);
-		assertEquals(driver.findElement(By.cssSelector(Permissions.PERMISSIONWINDOWHEADER)).getText(), ADDPERMISSIONHEADER);
+		action.assertTextEqual(By.cssSelector(Permissions.PERMISSIONWINDOWHEADER), ADDPERMISSIONHEADER);
 
 		// Step 10
 		permissionsAction.clickCancelButtonOnAddPermisisonPopUp();
 		driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
 		Thread.sleep(1000);
-		assertEquals(driver.findElement(By.cssSelector(Permissions.PERMISSIONHEADER)).getText(), MAINTAINPERMISSIONHEADER);
-
+		action.assertTextEqual(By.cssSelector(Permissions.PERMISSIONHEADER), MAINTAINPERMISSIONHEADER);
 		// Step 11
 		permissionsAction.clickAddButton();
 		permissionsAction.clickCancelButtonOnAddPermisisonPopUp();
 
 		assertEquals(action.isElementPresent(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION)), false);
 		assertEquals(action.isElementPresent(By.cssSelector(Permissions.PERMISSIONWINDOWHEADER)), false);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(Permissions.PERMISSIONHEADER)));
-		assertEquals(driver.findElement(By.cssSelector(Permissions.PERMISSIONHEADER)).getText(), MAINTAINPERMISSIONHEADER);
+		action.assertTextEqual(By.cssSelector(Permissions.PERMISSIONHEADER), MAINTAINPERMISSIONHEADER);
 	}
 }
