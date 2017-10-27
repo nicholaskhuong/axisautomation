@@ -41,11 +41,11 @@ public class Profile_Create extends BaseTestCase {
 	@Test(dependsOnMethods = "clickAddButton", alwaysRun = true)
 	public void inputProfileNameandCustomerName() {
 		action.pause(waitTime);
-		action.inputTextField(Profiles.PROFILE_NAME_ID, "Perl6");
+		action.inputTextField(Profiles.PROFILE_NAME_ID, "Profile3");
 		WebElement customer = driver.findElement(By.className(Profiles.CUSTOMER_CLASS));
-		customer.sendKeys("Customer Perla");
+		customer.sendKeys("QATest");
 		list = new BaseDropDownList(driver,Profiles.LIST_CSS);
-		row = list.findItemInDropDownList("Customer Perla");
+		row = list.findItemInDropDownList("QATest");
 		WebElement rowClick = (new WebDriverWait(driver, 60)).until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(Profiles.LIST_CSS + "> tbody > tr:nth-child(" + (row - 1) + ") > td")));
 		rowClick.click();
@@ -58,11 +58,12 @@ public class Profile_Create extends BaseTestCase {
 	@Test(dependsOnMethods = "inputProfileNameandCustomerName", alwaysRun = true)
 	public void slelectAuthorisedDocumentTypes() {
 		action.pause(waitTime);
-		action.clickCheckBoxN(2);
+		action.clickCheckBoxN(4);
 		action.pause(waitTime);
 		WebElement menu = driver.findElement(By.id(Profiles.SAVE_BTN));
 		Actions build = new Actions(driver);
 		build.moveToElement(menu).build().perform(); 
+		action.pause(waitTime);
 		WebElement m2m= driver.findElement(By.id(Profiles.SAVE_BTN));
 		m2m.click();
 		if(action.isElementPresent(By.id(Profiles.SAVE_BTN))==true){
@@ -80,7 +81,7 @@ public class Profile_Create extends BaseTestCase {
 	@Test(dependsOnMethods = "clickAddButton2", alwaysRun = true)
 	public void inputProfileNameandCustomerNameOnCreatePage() {
 		action.pause(waitTime);
-		action.inputTextField(Profiles.PROFILE_NAME_ID, "Per3");
+		action.inputTextField(Profiles.PROFILE_NAME_ID, "Profile4");
 		action.waitObjVisible(By.id(Profiles.PROFILE_NAME_ID));
 		action.cancelClickNo(Profiles.TITLE_MAINTAIN_CUSTOMER);
 	}
@@ -93,7 +94,7 @@ public class Profile_Create extends BaseTestCase {
 	
 	@Test(dependsOnMethods = "inputMissingAllFields", alwaysRun = true)
 	public void inputMissingCustomerName() {
-		action.inputTextField(Profiles.PROFILE_NAME_ID, "Per3");
+		action.inputTextField(Profiles.PROFILE_NAME_ID, "Profile4");
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
 		action.pause(waitTime);
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.MESSAGE_MISSING_CUSTOMER_NAME);
@@ -103,9 +104,9 @@ public class Profile_Create extends BaseTestCase {
 	public void inputMissingProfileName() {
 		action.inputTextField(Profiles.PROFILE_NAME_ID, "");
 		WebElement customer = driver.findElement(By.className(Profiles.CUSTOMER_CLASS));
-		customer.sendKeys("Customer Perla");
+		customer.sendKeys("QATest");
 		list = new BaseDropDownList(driver,Profiles.LIST_CSS);
-		row = list.findItemInDropDownList("Customer Perla");
+		row = list.findItemInDropDownList("QATest");
 		WebElement rowClick = (new WebDriverWait(driver, 60)).until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(Profiles.LIST_CSS + "> tbody > tr:nth-child(" + (row - 1) + ") > td")));
 		rowClick.click();
@@ -118,8 +119,8 @@ public class Profile_Create extends BaseTestCase {
 	@Test(dependsOnMethods = "inputMissingProfileName", alwaysRun = true)
 	public void inputDuplicationProfileName() {
 		action.pause(waitTime);
-		action.inputTextField(Profiles.PROFILE_NAME_ID, "Perl6");
-		action.clickCheckBoxN(2);
+		action.inputTextField(Profiles.PROFILE_NAME_ID, "Profile3");
+		action.clickCheckBoxN(4);
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
 		action.pause(waitTime);
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
