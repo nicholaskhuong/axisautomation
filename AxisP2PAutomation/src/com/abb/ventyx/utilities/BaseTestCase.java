@@ -147,13 +147,13 @@ public class BaseTestCase {
 	@AfterClass(alwaysRun=true)
 	public void afterClass() throws IOException {
 		// Save to disk
-
+		driver.quit();
 		Serializion serializer = new Serializion();
 		for (TestMethodResultAdapter result : resultAdapters) {
 			serializer.saveToDisk(result);
 		}
 		exportALMReferenceCsv(testCaseName, testCaseStatus);
-		driver.quit();
+
 	}
 
 	private void exportALMReferenceCsv(String tcName, String status) {
