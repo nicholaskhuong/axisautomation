@@ -90,9 +90,11 @@ public class TestMethodResultAdapter implements Serializable {
 		if (testResult.getStatus() == ITestResult.FAILURE) {
 			this.actualvalue = String.format("%s<br/><br/><br/><br/>%s", testResult.getThrowable().getMessage(), testResult.getThrowable()
 					.getStackTrace());
-			System.out.println(String.format("----------------Test Class: %s---------------", this.testClass));
-			System.out.println(String.format("----------------Test method :%s---------------", this.testClass));
-			testResult.getThrowable().printStackTrace();
+			// System.out.println(String.format("----------------Test Class: %s---------------",
+			// this.testClass));
+			// System.out.println(String.format("----------------Test method :%s---------------",
+			// this.testClass));
+			// testResult.getThrowable().printStackTrace();
 		}
 	}
 

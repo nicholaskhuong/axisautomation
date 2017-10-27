@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.annotation.Annotation;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
 import java.util.Random;
@@ -28,6 +29,7 @@ import org.openqa.selenium.WebDriver;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
+import org.testng.IResultMap;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -51,6 +53,7 @@ public class BaseTestCase {
 	public static final String TEST_SELENIUM_SERVER = "test.selenium.server";
 	public static final String TEST_SELENIUM_PORT = "test.selenium.port";
 	public static final String TEST_REPORT_DIR = "test.report.directory";
+	public static final String TEST_DEVELOPER_MODE = "test.developer.mode";
 	private static Properties properties = new Properties();
 	private TestLoginCredentials defaultCredentials;
 	private TestLoginCredentials currentCredentials;
@@ -60,6 +63,8 @@ public class BaseTestCase {
 	private static int endRow = 1;
 	private static int currentRow = 1;
 	protected HashMap<String, String> data = new HashMap<String, String>();
+	IResultMap skipMethods;
+	ArrayList<TestMethodResultAdapter> resultAdapters = new ArrayList<>();
 
 	public BaseTestCase() {
 		DOMConfigurator.configure("log4j.xml");
@@ -87,7 +92,6 @@ public class BaseTestCase {
 
 	@BeforeClass
 	public void beforeClass() throws Exception {
-
 		try {
 
 			currentCredentials = getClassCredentials();
@@ -111,34 +115,24 @@ public class BaseTestCase {
 		String screenShotPath = "";
 		String takingTime = "";
 		String tempPath = "screenshots/%s_%s_%s.png";
-		if (testResult.getStatus() == ITestResult.FAILURE
-				|| Boolean.valueOf(BaseTestCase.getProperties().getProperty(
-						"test.developer.mode"))) {
+		if (testResult.getStatus() == ITestResult.FAILURE || Boolean.valueOf(BaseTestCase.getProperties().getProperty(TEST_DEVELOPER_MODE))) {
 			System.out.println(testResult.getStatus());
-			File scrFile = ((TakesScreenshot) driver)
-					.getScreenshotAs(OutputType.FILE);
-			takingTime = String.format("%s_%s", testResult.getEndMillis(),
-					new Random().nextInt(99999));
-			screenShotPath = String.format(tempPath,
-					testResult.getInstanceName(), testResult.getName(),
-					takingTime);
-			FileUtils.copyFile(scrFile, new File(Constants.REPORT_FOLDER
-					+ screenShotPath));
+			File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+			takingTime = String.format("%s_%s", testResult.getEndMillis(), new Random().nextInt(99999));
+			screenShotPath = String.format(tempPath, testResult.getInstanceName(), testResult.getName(), takingTime);
+			FileUtils.copyFile(scrFile, new File(Constants.REPORT_FOLDER + screenShotPath));
 			org.testng.Reporter.setCurrentTestResult(testResult);
-			org.testng.Reporter.setCurrentTestResult(null);
+
+			skipMethods = testResult.getTestContext().getSkippedTests();
 		}
 		TestMethodResultAdapter resultAdapter = new TestMethodResultAdapter(
 				testResult, screenShotPath, testResult.getTestContext()
 						.getCurrentXmlTest().getSuite().getFileName(),
 				getALMAnnotation());
 		resultAdapter.setValue(testResult.getName());
+
 		Reporter.allResults.add(resultAdapter);
-
-		// Save to disk
-
-		Serializion serializer = new Serializion();
-		serializer.saveToDisk(resultAdapter);
-
+		resultAdapters.add(resultAdapter);
 		// End
 
 		if (testResult.getStatus() == ITestResult.FAILURE
@@ -152,6 +146,12 @@ public class BaseTestCase {
 
 	@AfterClass(alwaysRun=true)
 	public void afterClass() throws IOException {
+		// Save to disk
+
+		Serializion serializer = new Serializion();
+		for (TestMethodResultAdapter result : resultAdapters) {
+			serializer.saveToDisk(result);
+		}
 		exportALMReferenceCsv(testCaseName, testCaseStatus);
 		driver.quit();
 	}
