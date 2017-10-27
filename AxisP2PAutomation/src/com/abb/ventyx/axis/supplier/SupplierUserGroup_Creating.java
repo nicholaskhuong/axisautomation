@@ -36,6 +36,7 @@ public class SupplierUserGroup_Creating extends BaseTestCase {
 
 	@Test(dependsOnMethods = "openScreen")
 	public void addUserGroup() {
+
 		table.inputFilter(USER_GROUP_NAME);
 		rowOfUserGroupBeforeAdding = table.findRowByString(UserGroup.SUPPLIER_GROUP_TABLE_CSS, 1, USER_GROUP_NAME);
 

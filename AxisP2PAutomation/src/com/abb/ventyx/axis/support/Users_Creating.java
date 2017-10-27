@@ -158,7 +158,7 @@ public class Users_Creating extends BaseTestCase {
 
 		// Don't select User Group
 		int n = new Random().nextInt(1000);
-		userID = String.format("DathyUser%s" + n);
+		userID = String.format("DathyUser%s", n);
 		email = String.format("email%s@dathy.com",n);
 		WebElement userId = driver.findElement(By
 				.id(AxisAdministratorUsers.USER_ID));
