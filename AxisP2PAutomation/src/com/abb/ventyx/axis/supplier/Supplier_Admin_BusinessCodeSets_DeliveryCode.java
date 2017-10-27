@@ -68,7 +68,7 @@ public class Supplier_Admin_BusinessCodeSets_DeliveryCode extends BaseTestCase {
 		action.clickBtn(By.cssSelector(BusinessCodeSets.SAVE_BUTTON));
 		action.waitObjVisible(By.cssSelector(BusinessCodeSets.SUCCESS_DELIVERYCODE));
 
-		assertEquals(driver.findElement(By.cssSelector(BusinessCodeSets.SUCCESS_DELIVERYCODE)).getText(),
+		assertEquals(driver.findElement(By.cssSelector(BusinessCodeSets.SUCCESS_DELIVERYCODE)).getText().replaceAll("?", ""),
 				Messages.DELIVERY_CODE_EQUAL_15CHARACTER);
 	}
 
