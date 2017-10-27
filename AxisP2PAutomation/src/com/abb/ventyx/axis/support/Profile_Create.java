@@ -46,8 +46,10 @@ public class Profile_Create extends BaseTestCase {
 		customer.sendKeys("QATest");
 		list = new BaseDropDownList(driver,Profiles.LIST_CSS);
 		row = list.findItemInDropDownList("QATest");
+		action.pause(waitTime);
 		WebElement rowClick = (new WebDriverWait(driver, 60)).until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(Profiles.LIST_CSS + "> tbody > tr:nth-child(" + (row - 1) + ") > td")));
+		action.pause(6000);
 		rowClick.click();
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
