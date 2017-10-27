@@ -17,6 +17,7 @@ import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 public class TableFunction {
 	WebDriver driver;
 	int timeout = 60;
+
 	public TableFunction(WebDriver driver) {
 		this.driver = driver;
 	}
@@ -27,8 +28,7 @@ public class TableFunction {
 		WebElement baseTable;
 		if (isXpath) {
 			baseTable = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(tableBody)));
-		} else
-		{
+		} else {
 			baseTable = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(tableBody)));
 		}
 		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
@@ -37,10 +37,11 @@ public class TableFunction {
 			WebElement columnValue;
 			for (int i = 1; i < sumRow; i++) {
 				if (isXpath) {
-					columnValue = driver.findElement(By.xpath(String.format("%s//tr[%s]//td[%s]", tableBody, i, columnindex)));
+					columnValue = driver
+							.findElement(By.xpath(String.format("%s//tr[%s]//td[%s]", tableBody, i, columnindex)));
 				} else {
-					columnValue = driver.findElement(By.cssSelector(String.format("%s> table > tbody > tr:nth-child(%s) > td:nth-child(%s)",
-						tableBody, i, columnindex)));
+					columnValue = driver.findElement(By.cssSelector(String.format(
+							"%s> table > tbody > tr:nth-child(%s) > td:nth-child(%s)", tableBody, i, columnindex)));
 				}
 				if (columnValue.getText().equals(value)) {
 					row = i;
@@ -67,8 +68,8 @@ public class TableFunction {
 		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
 		int sumRow = tableRows.size();
 		for (int i = 1; i <= sumRow; i++) {
-			WebElement columnValue = driver.findElement(By.xpath(ScreenObjects.TABLE_BODY_XPATH + "//tr[" + i
-					+ "]//td[" + columnindex + "]"));
+			WebElement columnValue = driver
+					.findElement(By.xpath(ScreenObjects.TABLE_BODY_XPATH + "//tr[" + i + "]//td[" + columnindex + "]"));
 			if (columnValue.getText().equals(value)) {
 
 				return true;
@@ -116,8 +117,8 @@ public class TableFunction {
 		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
 		int sumRow = tableRows.size();
 		for (int i = 1; i <= sumRow; i++) {
-			String foundValue = driver.findElement(
-By.xpath(ScreenObjects.TABLE_BODY_XPATH + "//tr[" + i + "]//td[3]")).getText();
+			String foundValue = driver.findElement(By.xpath(ScreenObjects.TABLE_BODY_XPATH + "//tr[" + i + "]//td[3]"))
+					.getText();
 			if (foundValue.equals(value)) {
 				i = i - 1;
 				WebElement usrSequenceIdStrBtn = driver.findElement(By.id("usrSequenceIdStrBtn" + i));
@@ -142,8 +143,8 @@ By.xpath(ScreenObjects.TABLE_BODY_XPATH + "//tr[" + i + "]//td[3]")).getText();
 		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
 		int sumRow = tableRows.size();
 		for (int i = 1; i <= sumRow; i++) {
-			String foundValue = driver.findElement(
-By.xpath(ScreenObjects.TABLE_BODY_XPATH + "//tr[" + i + "]//td[3]")).getText();
+			String foundValue = driver.findElement(By.xpath(ScreenObjects.TABLE_BODY_XPATH + "//tr[" + i + "]//td[3]"))
+					.getText();
 			if (foundValue.equals(value)) {
 				i = i - 1;
 				driver.findElement(By.id("spIdBtn" + i)).click();
@@ -160,20 +161,19 @@ By.xpath(ScreenObjects.TABLE_BODY_XPATH + "//tr[" + i + "]//td[3]")).getText();
 	}
 
 	public void selectRow(int rowIndex) {
-		WebElement row = driver
-.findElement(By.xpath(ScreenObjects.TABLE_BODY_XPATH + "//tr[" + rowIndex + "]"));
+		WebElement row = driver.findElement(By.xpath(ScreenObjects.TABLE_BODY_XPATH + "//tr[" + rowIndex + "]"));
 		row.click();
 	}
 
 	public void filterPermission(String filterValue) {
 		// Click Filter Icon
-		WebElement filterButton = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By
-				.cssSelector(ScreenObjects.FILTER_BTN_CSS)));
+		WebElement filterButton = (new WebDriverWait(driver, 20))
+				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.FILTER_BTN_CSS)));
 		filterButton.click();
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", filterButton);
 		// Enter filter value
-		WebElement filterPermissionName = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By
-				.xpath(Permissions.PERMISSION_NAME_FILTER)));
+		WebElement filterPermissionName = (new WebDriverWait(driver, 10))
+				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Permissions.PERMISSION_NAME_FILTER)));
 		filterPermissionName.sendKeys(filterValue);
 		try {
 			Thread.sleep(2000);
@@ -185,14 +185,14 @@ By.xpath(ScreenObjects.TABLE_BODY_XPATH + "//tr[" + i + "]//td[3]")).getText();
 
 	public void filter(String columnXpath, String filterValue) {
 		// Click Filter Icon
-		WebElement filterButton = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By
-				.cssSelector(ScreenObjects.FILTER_BTN_CSS)));
+		WebElement filterButton = (new WebDriverWait(driver, 20))
+				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.FILTER_BTN_CSS)));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", filterButton);
 		filterButton.click();
 
 		// Enter filter value
-		WebElement filterPermissionName = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By
-.xpath(columnXpath)));
+		WebElement filterPermissionName = (new WebDriverWait(driver, 10))
+				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(columnXpath)));
 		filterPermissionName.sendKeys(filterValue);
 		try {
 			Thread.sleep(2000);
@@ -216,7 +216,8 @@ By.xpath(ScreenObjects.TABLE_BODY_XPATH + "//tr[" + i + "]//td[3]")).getText();
 
 		WebElement filterButton = driver.findElement(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 		filterButton.click();
-		WebElement filterColumn = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.xpath(filterString)));
+		WebElement filterColumn = (new WebDriverWait(driver, 20))
+				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(filterString)));
 		filterColumn.clear();
 		filterColumn.sendKeys(value);
 
@@ -237,15 +238,17 @@ By.xpath(ScreenObjects.TABLE_BODY_XPATH + "//tr[" + i + "]//td[3]")).getText();
 	}
 
 	public void assertValueRow(String tableBodyXpath, int column, int row, String value) {
-		WebElement cell = driver.findElement(By.xpath(String.format("%s//tr[%s]//td[%s]", tableBodyXpath, row, column)));
+		WebElement cell = driver
+				.findElement(By.xpath(String.format("%s//tr[%s]//td[%s]", tableBodyXpath, row, column)));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", cell);
 		assertEquals(cell.getText(), value);
 	}
+
 	public String getValueAllRowchecked(int column, int row) {
 		String allValue = "";
 		for (int i = 1; i <= row; i++) {
-			WebElement cell = driver.findElement(By.xpath(ScreenObjects.TABLE_BODY_XPATH + "//tr[" + i
-					+ "]//td[" + column + "]"));
+			WebElement cell = driver
+					.findElement(By.xpath(ScreenObjects.TABLE_BODY_XPATH + "//tr[" + i + "]//td[" + column + "]"));
 			if (i == row) {
 				allValue = allValue + cell.getText();
 			} else {
@@ -256,13 +259,22 @@ By.xpath(ScreenObjects.TABLE_BODY_XPATH + "//tr[" + i + "]//td[3]")).getText();
 	}
 
 	public WebElement getCellObject(int column, int row) {
-		WebElement cell = driver.findElement(By.xpath(String.format("%s//tr[%s]//td[%s]", ScreenObjects.TABLE_BODY_XPATH, row, column)));
+		WebElement cell = driver.findElement(
+				By.xpath(String.format("%s//tr[%s]//td[%s]", ScreenObjects.TABLE_BODY_XPATH, row, column)));
+		return cell;
+	}
+
+	public WebElement getCellObjectSupplierCodeSet(int column, int row) {
+		WebElement cell = driver.findElement(By.xpath(String.format("%s//tr[%s]//td[%s]//div//div",
+				"//*[@id=\"codeSetGrid-AsnDeliveryCode\"]/div[3]/table/tbody", row, column)));
+		// div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']";
 		return cell;
 	}
 
 	public String getIDValue(int row) {
 		return getIDValue(1, row);
 	}
+
 	public String getIDValue(int column, int row) {
 		return getIDValue(ScreenObjects.TABLE_BODY_XPATH, column, row);
 	}
@@ -270,8 +282,10 @@ By.xpath(ScreenObjects.TABLE_BODY_XPATH + "//tr[" + i + "]//td[3]")).getText();
 	public String getIDValue(String tableXpath, int column, int row) {
 		return getValueRow(String.format("%s//tr[%s]//td[%s]/div/div/span/span", tableXpath, row, column), column, row);
 	}
+
 	public String getValueRow(int column, int row) {
-		return getValueRow(String.format("%s//tr[%s]//td[%s]", ScreenObjects.TABLE_BODY_XPATH, row, column), column, row);
+		return getValueRow(String.format("%s//tr[%s]//td[%s]", ScreenObjects.TABLE_BODY_XPATH, row, column), column,
+				row);
 	}
 
 	private String getValueRow(String cellXpath, int column, int row) {
@@ -281,8 +295,8 @@ By.xpath(ScreenObjects.TABLE_BODY_XPATH + "//tr[" + i + "]//td[3]")).getText();
 	}
 
 	public String getValueTableHeader(int column) {
-		WebElement header = driver.findElement(By.xpath(ScreenObjects.TABLE_HEAD_XPATH + "//tr//th[" + column
-				+ "]//div[1]"));
+		WebElement header = driver
+				.findElement(By.xpath(ScreenObjects.TABLE_HEAD_XPATH + "//tr//th[" + column + "]//div[1]"));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", header);
 		return header.getText();
 	}

@@ -4,6 +4,7 @@ import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.BusinessCodeSets;
@@ -25,6 +26,7 @@ public class Supplier_Admin_BusinessCodeSets_DeliveryCode extends BaseTestCase {
 	String deliveryCodeLessThan15 = "001";
 	String deliveryCodeMoreThan15 = "DONNA NGUYEN THI NGUYEN";
 	int milliseconds = 800;
+	String codeSetDescription = "Code set";
 
 	@Test
 	public void openScreen() throws InterruptedException {
@@ -53,8 +55,8 @@ public class Supplier_Admin_BusinessCodeSets_DeliveryCode extends BaseTestCase {
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.inputTextField(BusinessCodeSets.TAXTYPE_ID, deliveryCodeLessThan15);
 		action.clickBtn(By.cssSelector(BusinessCodeSets.SAVE_BUTTON));
-		action.waitObjVisible(By.cssSelector(BusinessCodeSets.ERROR_DELIVERYCODE));
-		assertEquals(driver.findElement(By.cssSelector(BusinessCodeSets.ERROR_DELIVERYCODE)).getText(),
+		action.waitObjVisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)).getText(),
 				Messages.DELIVERY_CODE_LESS_15CHARACTER);
 
 	}
@@ -63,13 +65,43 @@ public class Supplier_Admin_BusinessCodeSets_DeliveryCode extends BaseTestCase {
 	public void addDeliverySuccessfully() throws InterruptedException {
 		// step 6
 		action.pause(milliseconds);
-		action.waitObjVisible(By.cssSelector(BusinessCodeSets.ERROR_DELIVERYCODE));
+		action.waitObjVisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
+		action.pause(milliseconds);
 		action.inputTextField(BusinessCodeSets.TAXTYPE_ID, deliveryCodeMoreThan15);
 		action.clickBtn(By.cssSelector(BusinessCodeSets.SAVE_BUTTON));
-		action.waitObjVisible(By.cssSelector(BusinessCodeSets.SUCCESS_DELIVERYCODE));
 
-		assertEquals(driver.findElement(By.cssSelector(BusinessCodeSets.SUCCESS_DELIVERYCODE)).getText().replaceAll("?", ""),
+		action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)).getText(),
 				Messages.DELIVERY_CODE_EQUAL_15CHARACTER);
+	}
+
+	@Test(dependsOnMethods = "addDeliverySuccessfully")
+	public void verify() {
+		// step 8
+		action.pause(4000);
+		table = new TableFunction(driver);
+		WebElement index = table.getCellObjectSupplierCodeSet(1, 1);
+		index.click();
+		action.inputTextField(BusinessCodeSets.CODE_SET_DESCRIPTION, codeSetDescription);
+		action.clickBtn(By.id(ScreenObjects.CANCEL_ID));
+		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(),
+				Messages.UNSAVED_CHANGE);
+		// Step 9
+		driver.findElement(By.id(ScreenObjects.NO_BTN_ID)).click();
+		// Step 10
+
+		action.inputTextField(BusinessCodeSets.CODE_SET_DESCRIPTION, codeSetDescription);
+		action.clickBtn(By.id(ScreenObjects.CANCEL_ID));
+		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(),
+				Messages.UNSAVED_CHANGE);
+		driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
+		action.pause(milliseconds);
+		/*
+		 * assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)
+		 * ).getText(), Messages.DELIVERY_CODE_EQUAL_15CHARACTER);
+		 */
 	}
 
 }

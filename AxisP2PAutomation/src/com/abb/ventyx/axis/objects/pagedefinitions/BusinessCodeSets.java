@@ -14,7 +14,6 @@ public class BusinessCodeSets {
 	public static final String ADD_NEW_SUPPLIER_CODE_SETS_POPUP = "#common-header-left-layout > div > div";
 	public static final String ADD_BUTTON = "#supplierCodeSetTypeGrid > div.v-grid-tablewrapper > table > tbody > tr.v-grid-spacer.stripe > td > div > div.v-slot.v-slot-FeatureBarTable.v-slot-v-common-grid-menubar.v-slot-v-common-page-header-menubar-background-color.v-align-right.v-align-middle > div > span";
 	public static final String SAVE_BUTTON = "#supplierCodeSetCreationWindow > div > div > div.v-window-contents > div > div > div:nth-child(2) > div > div.v-slot.v-align-right.v-align-middle > div > div:nth-child(3)";
-	public static final String ERROR_DELIVERYCODE = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-error-notification-no-icon.v-Notification-v-error-notification-no-icon";
-	public static final String SUCCESS_DELIVERYCODE = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-success-notification.v-Notification-v-success-notification";
+	public static final String CODE_SET_DESCRIPTION = "codeSetDesc";
 
 }
