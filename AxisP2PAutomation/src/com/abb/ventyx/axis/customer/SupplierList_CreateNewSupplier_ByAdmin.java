@@ -137,12 +137,12 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, SUPPLIEREMAIL);
 		WebElement txtField = driver.findElement(By.id(SupplierList.COMPANYREGISTRATIONNO_ID));
 		txtField.clear();
-		Thread.sleep(1000);
+		// Thread.sleep(1000);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
 		txtField.sendKeys(DUPLICATEDCOMPANYREGISTRATIONNO);
 		// action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID,
 		// DUPLICATEDCOMPANYREGISTRATIONNO);
-		// Thread.sleep(2000);
+		// //Thread.sleep(2000);
 
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.DUPLICATECOMPANYREGISTRATIONNO);
@@ -216,7 +216,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
 		action.assertTextEqual(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS), Messages.UNSAVED_CHANGE);
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.NO_BTN_ID));
-		Thread.sleep(1000);
+		// Thread.sleep(1000);
 		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)), false);
 		// action.assertTitleScreen("Create New Supplier");
 	}
@@ -246,14 +246,14 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	}
 	// Step 15
 	@Test(dependsOnMethods = "loginAsTheCreatedSupplier")
-	public void getPasswordForTheNewSupplier() throws InterruptedException{
+	public void getPasswordForTheNewSupplier() {
 
 		action.signIn(AXISSUPPORTEMAIL, AXISSUPPORTPWD);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.AXIS_ADMIN));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.RESET_USER_PASSWORD));
-		Thread.sleep(2000);
+		// Thread.sleep(2000);
 		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.EMAILCHECKBOX_RESETUSERPASSWORDSCREEN_ID));
-		Thread.sleep(500);
+		// Thread.sleep(500);
 		action.inputTextField(ScreenObjects.USER_LOGIN, SUPPLIEREMAIL);
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.RESET_BUTTON));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
@@ -264,7 +264,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		System.out.println(password);
 
 		action.signOut();
-		Thread.sleep(1000);
+		// Thread.sleep(1000);
 		action.signIn(SUPPLIEREMAIL, password);
 
 		action.waitObjVisible(By.id(ScreenObjects.NEWPASSWORD_ID));
@@ -275,7 +275,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	}
 	// Step 16
 	@Test(dependsOnMethods="getPasswordForTheNewSupplier")
-	public void acceptTradingRelationshipRequest() throws InterruptedException{
+	public void acceptTradingRelationshipRequest() {
 
 
 		wait.until(ExpectedConditions.presenceOfElementLocated(By
@@ -285,7 +285,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	}
 
 	@Test(dependsOnMethods = "acceptTradingRelationshipRequest", alwaysRun = true)
-	public void checkAddressAndContact() throws InterruptedException{
+	public void checkAddressAndContact() {
 
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADDRESS_CONTACT_ID));
@@ -299,10 +299,10 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	}
 	
 	@Test(dependsOnMethods = "checkAddressAndContact", alwaysRun = true)
-	public void checkStatusAndRemoteIcon() throws InterruptedException{
+	public void checkStatusAndRemoteIcon() {
 
 		action.signOut();
-		Thread.sleep(1000);
+		// Thread.sleep(1000);
 		action.signIn("cadmin1@abb.com", "Testuser1");
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.SUPPLIERLIST_SUBMENU));

@@ -64,18 +64,26 @@ public class PermissionsAction {
 
 	}
 
-	public void clickPermissionsSubMenu() throws InterruptedException{
+	public void clickPermissionsSubMenu() {
 		WebElement axisPermissionsMenu = (new WebDriverWait(driver, 20))
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.PERMISSIONS)));
 		axisPermissionsMenu.click();
-		Thread.sleep(1000);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 
 	}
-	public void clickAddButton() throws InterruptedException{
+	public void clickAddButton() {
 		WebElement addPermissionButton = (new WebDriverWait(driver, 20))
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(Permissions.ADD)));
 		addPermissionButton.click();
-		Thread.sleep(1000);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	public void enterPermissionName(String permissionName) throws InterruptedException{
 		WebElement permissionNameElm = (new WebDriverWait(driver, 20))
@@ -102,14 +110,14 @@ public class PermissionsAction {
 						.cssSelector(userTypeCSS)));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", adminUserType);
 	}
-	public void clickSaveButtonOnAddPermisisonPopUp() throws InterruptedException{
+	public void clickSaveButtonOnAddPermisisonPopUp() {
 		// Click Save button on Add Permission Window Pop Up
 		WebElement saveButton = (new WebDriverWait(driver, 30))
 				.until(ExpectedConditions.presenceOfElementLocated(By.id(Permissions.SAVE)));
 		saveButton.click();
 	}
 
-	public void clickCancelButtonOnAddPermisisonPopUp() throws InterruptedException{
+	public void clickCancelButtonOnAddPermisisonPopUp() {
 		WebElement cancelButton = (new WebDriverWait(driver, 30))
 				.until(ExpectedConditions.presenceOfElementLocated(By.id(Permissions.CANCEL)));
 		cancelButton.click();

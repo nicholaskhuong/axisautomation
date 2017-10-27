@@ -39,7 +39,7 @@ public class Supplier_Admin_AddNewAddress extends BaseTestCase {
 
 
 	@Test
-	public void openScreen() throws InterruptedException {
+	public void openScreen() {
 		action = new ScreenAction(driver);
 		// Step 1:
 		// click on Administration button

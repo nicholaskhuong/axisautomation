@@ -29,7 +29,7 @@ public class Supplier_Admin_BusinessCodeSets_DeliveryCode extends BaseTestCase {
 	String codeSetDescription = "Code set";
 
 	@Test
-	public void openScreen() throws InterruptedException {
+	public void openScreen() {
 		// Step 1
 		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));

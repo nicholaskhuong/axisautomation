@@ -2,6 +2,7 @@ package com.abb.ventyx.axis.supplier;
 
 import static org.testng.Assert.assertEquals;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
@@ -25,7 +26,7 @@ public class SupplierUserGroup_Deleting extends BaseTestCase {
 	int row;
 
 	@Test
-	public void openScreen() throws InterruptedException {
+	public void openScreen() {
 		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.USER_GROUPS_ID));
@@ -37,6 +38,7 @@ public class SupplierUserGroup_Deleting extends BaseTestCase {
 	public void selectRowDeleting() {
 		table = new TableFunction(driver);
 		row = table.findRowByString(UserGroup.SUPPLIER_GROUP_TABLE_CSS, 1, USER_GROUP_NAME);
+		Assert.assertTrue("Record not found!", row > 0);
 		table.assertRowEqual(UserGroup.ROW_ID, USER_GROUP_NAME, row - 1);
 		row = row - 1;
 		action.clickBtn(By.id(ScreenObjects.DELETE_BTN_ID + row));

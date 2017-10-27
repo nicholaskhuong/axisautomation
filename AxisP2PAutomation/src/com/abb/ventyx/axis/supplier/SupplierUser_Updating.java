@@ -34,7 +34,7 @@ public class SupplierUser_Updating extends BaseTestCase {
 	int row;
 
 	@Test
-	public void openScreen() throws InterruptedException {
+	public void openScreen() {
 		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.USERS_ID));

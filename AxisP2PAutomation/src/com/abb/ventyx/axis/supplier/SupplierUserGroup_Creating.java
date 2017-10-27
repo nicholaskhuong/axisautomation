@@ -25,7 +25,7 @@ public class SupplierUserGroup_Creating extends BaseTestCase {
 	public static int row, rowOfUserGroupBeforeAdding;
 
 	@Test
-	public void openScreen() throws InterruptedException {
+	public void openScreen() {
 		action = new ScreenAction(driver);
 		table = new TableFunction(driver);
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));

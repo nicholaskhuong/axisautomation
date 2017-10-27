@@ -32,7 +32,7 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 	ScreenAction action;
 	// Step 1 Open Users sub menu
 	@Test
-	public void selectUsersSubMenu() throws InterruptedException{
+	public void selectUsersSubMenu() {
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		WebElement customerMaintenanceMenu = (new WebDriverWait(driver, 120))
 				.until(ExpectedConditions.presenceOfElementLocated(By
@@ -44,28 +44,27 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By
 				.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER)));
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.ADD_BUTTON)));
-		Thread.sleep(2000);
 		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER)).getText(), "Maintain Customer Users");
 	}
 
 	// Step 2 Check error message in case inputting lack of mandatory field.
 	@Test(dependsOnMethods="selectUsersSubMenu")
-	public void addNewUserWithoutMandatoryField() throws InterruptedException{
+	public void addNewUserWithoutMandatoryField() {
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		table = new TableFunction(driver);
 		action = new ScreenAction(driver);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.ADD_BUTTON)));
 		driver.findElement(By.cssSelector(CustomerUsers.ADD_BUTTON)).click();
-		Thread.sleep(1500);
+		// Thread.sleep(1500);
 		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER)).getText(), "Create User");
 
 		// Case 1: User ID is empty
 		driver.findElement(By.id(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID)).sendKeys(USEREMAILADDRESS);
-		Thread.sleep(100);
+		// Thread.sleep(100);
 		driver.findElement(By.id(CustomerUsers.PASSWORD_TEXTBOX_ID)).sendKeys(PASSWORD);
-		Thread.sleep(100);
+		// Thread.sleep(100);
 		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).sendKeys(PASSWORD);
-		Thread.sleep(100);
+		// Thread.sleep(100);
 		table.selectUserGroup(CustomerUsers.USERGROUP_GRID, USERGROUPNAME1);
 		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();	
 
@@ -76,7 +75,7 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 
 		// Case 2: User Email Address ID is empty
 		driver.findElement(By.id(CustomerUsers.USERID_TEXTBOX_ID)).sendKeys(USERID);
-		Thread.sleep(100);
+		// Thread.sleep(100);
 		driver.findElement(By.id(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID)).clear();
 		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();	
 
@@ -87,7 +86,7 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 
 		// Case 3: Password is empty
 		driver.findElement(By.id(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID)).sendKeys(USEREMAILADDRESS);
-		Thread.sleep(100);
+		// Thread.sleep(100);
 		driver.findElement(By.id(CustomerUsers.PASSWORD_TEXTBOX_ID)).clear();
 		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();
 
@@ -98,7 +97,7 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 
 		// Case 4: Confirm Password is empty
 		driver.findElement(By.id(CustomerUsers.PASSWORD_TEXTBOX_ID)).sendKeys(PASSWORD);
-		Thread.sleep(100);
+		// Thread.sleep(100);
 		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).clear();
 		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();
 
@@ -111,13 +110,13 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 
 	// Step 3 Input mandatory field, don't select user group
 	@Test(dependsOnMethods="addNewUserWithoutMandatoryField")
-	public void addNewUserWithoutUserGroup() throws InterruptedException{
+	public void addNewUserWithoutUserGroup() {
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		TableFunction action = new TableFunction(driver);
 		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).sendKeys(PASSWORD);
 		action.selectUserGroup(CustomerUsers.USERGROUP_GRID, USERGROUPNAME1);
 		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();
-		Thread.sleep(500);
+		// Thread.sleep(500);
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)).getText(), Messages.USER_SELECT_USERGROUP);
 		// Focus on this field to make the error message be invisibility
 		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).click();
@@ -126,13 +125,13 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 
 	// Step 4 Input invalid e-mail
 	@Test(dependsOnMethods="addNewUserWithoutUserGroup")
-	public void addNewUserWithInvalidEmail() throws InterruptedException{
+	public void addNewUserWithInvalidEmail() {
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		TableFunction action = new TableFunction(driver);
 		action.selectUserGroup(CustomerUsers.USERGROUP_GRID, USERGROUPNAME1);
-		Thread.sleep(300);
+		// Thread.sleep(300);
 		driver.findElement(By.id(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID)).clear();
-		Thread.sleep(200);
+		// Thread.sleep(200);
 		driver.findElement(By.id(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID)).sendKeys(INVALIDEMAIL);
 
 		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();
@@ -181,7 +180,7 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 
 	// Step 7 Create a new customer user successfully
 	@Test(dependsOnMethods="addNewUserWithUnmatchedPassword")
-	public void addNewUserWithValidValue() throws InterruptedException{
+	public void addNewUserWithValidValue() {
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).clear();
 		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).sendKeys(PASSWORD);
@@ -194,7 +193,7 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 
 	// Step 8 Check cancel button on unsaved changes Dialog
 	@Test(dependsOnMethods="addNewUserWithUnmatchedPassword")
-	public void cancelCreateNewUserWithoutInput() throws InterruptedException{
+	public void cancelCreateNewUserWithoutInput() {
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		driver.findElement(By.cssSelector(CustomerUsers.ADD_BUTTON)).click();
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.id(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID)));
@@ -206,7 +205,7 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 
 	// Step 9, 10, 11, 12 Check cancel button on unsaved changes Dialog
 	@Test(dependsOnMethods="cancelCreateNewUserWithoutInput")
-	public void cancelCreateNewUserWithInput() throws InterruptedException{
+	public void cancelCreateNewUserWithInput() {
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		ScreenAction action = new ScreenAction(driver);
 		driver.findElement(By.cssSelector(CustomerUsers.ADD_BUTTON)).click();

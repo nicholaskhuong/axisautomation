@@ -56,12 +56,8 @@ public class ScreenAction {
 	}
 
 	public void assertTitleScreen(String titleScreen) {
-		WebDriverWait wait = new WebDriverWait(driver, timeout);
-
-		wait.until(ExpectedConditions.presenceOfElementLocated(By
+		WebElement screenTitle = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By
 				.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)));
-		WebElement screenTitle = driver.findElement(By
-				.cssSelector(ScreenObjects.SCREEN_TITLE_CSS));
 
 		assertEquals(screenTitle.getText(), titleScreen, "Title is wrong");
 	}

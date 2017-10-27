@@ -26,7 +26,7 @@ public class Supplier_Admin_DeleteAddress extends BaseTestCase {
 	public int j;
 
 	@Test
-	public void openScreen() throws InterruptedException {
+	public void openScreen() {
 		// Step 1
 		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));

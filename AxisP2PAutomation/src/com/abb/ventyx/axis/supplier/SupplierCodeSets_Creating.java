@@ -28,7 +28,7 @@ public class SupplierCodeSets_Creating extends BaseTestCase {
 	int sumRowAfter;
 
 	@Test
-	public void openScreen() throws InterruptedException {
+	public void openScreen() {
 		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.BUSINESS_CODE_SETS_ID));

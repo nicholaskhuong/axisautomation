@@ -92,37 +92,37 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 
 	// Step 3 
 	@Test(dependsOnMethods="updateSupplierWithBlankMandatoryField")
-	public void updateSupplierWithValidValue() throws InterruptedException{
+	public void updateSupplierWithValidValue() {
 		action = new ScreenAction(driver);
 
 		action.inputTextField(SupplierList.SUPPLIERNAME_ID, NEWSUPPLIERNAME);
 		action.clickBtn(By.cssSelector(SupplierList.PROFILE_CSS));
-		Thread.sleep(1000);
+		// Thread.sleep(1000);
 		action.selectStatus(SupplierList.COMBOBOX_CSS, PROFILEUPDATED);
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.SUPPLIER_UPDATED_SUCCESSFULLY);
 		System.out.println("2 print i: "+i);
-		Thread.sleep(1000);
+		// Thread.sleep(1000);
 		assertEquals(table.getValueRow(5, i), NEWSUPPLIERNAME);
 		assertEquals(table.getValueRow(7, i), PROFILEUPDATED);
 	}
 
 	// Step 4
 	@Test(dependsOnMethods="updateSupplierWithValidValue")
-	public void checkCancelWithoutInput() throws InterruptedException{
+	public void checkCancelWithoutInput() {
 		action = new ScreenAction(driver);
 		table.clickSupplierIDInSupplierListGrid(TAXREGIRATIONNO);
 		action.waitObjVisible(By.id(SupplierList.SUPPLIERNAME_ID));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.CANCEL_ID));
 		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)),false);
-		Thread.sleep(1000);
+		// Thread.sleep(1000);
 		action.assertTitleScreen("Maintain Suppliers");
 	}
 
 	// Step 5,6 Check No button on Unsaved Changes dialog 
 	@Test(dependsOnMethods="checkCancelWithoutInput")
-	public void checkNoButtonOnUnsavedChangesDialog() throws InterruptedException{
+	public void checkNoButtonOnUnsavedChangesDialog() {
 		action = new ScreenAction(driver);	
 		table.clickSupplierIDInSupplierListGrid(TAXREGIRATIONNO);
 		action.inputTextField(SupplierList.SUPPLIERNAME_ID, "test");
@@ -130,7 +130,7 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
 		action.assertTextEqual(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS), Messages.UNSAVED_CHANGE);
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.NO_BTN_ID));
-		Thread.sleep(500);
+		// Thread.sleep(500);
 		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)), false);
 		assertEquals(action.isElementPresent(By.id(SupplierList.SUPPLIERNAME_ID)),true);
 	}
@@ -146,12 +146,12 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
 		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)), false);
 		assertEquals(action.isElementPresent(By.id(SupplierList.SUPPLIERNAME_ID)), false);
-		Thread.sleep(1000);
+		// Thread.sleep(1000);
 		action.assertTitleScreen("Maintain Suppliers");
 	}
 
 	@Test(dependsOnMethods="checkYesButtonOnUnsavedChangesDialog")
-	public void accessSupplierFromCustomerAndCheckASNOff() throws InterruptedException{
+	public void accessSupplierFromCustomerAndCheckASNOff() {
 		action = new ScreenAction(driver);
 		action.clickBtn(By.id("accessSupplierBtn"+j));
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));
@@ -169,7 +169,7 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 	public void loginAsTheUpdatedSupplierAndCheckASNOff() throws InterruptedException {
 		action = new ScreenAction(driver);
 		action.signOut();
-		Thread.sleep(1000);
+		// Thread.sleep(1000);
 		action.signOut();
 		action.signIn(SUPPLIEREMAIL, NEWPASSWORD);
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));

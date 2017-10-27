@@ -40,7 +40,7 @@ public class Supplier_Admin_UpdateContact extends BaseTestCase {
 	int milliseconds = 800;
 
 	@Test
-	public void openScreen() throws InterruptedException {
+	public void openScreen() {
 		// Step 1
 		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));
