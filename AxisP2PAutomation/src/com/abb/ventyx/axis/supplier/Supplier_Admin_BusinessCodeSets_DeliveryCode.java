@@ -49,6 +49,7 @@ public class Supplier_Admin_BusinessCodeSets_DeliveryCode extends BaseTestCase {
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		// step 5
 		((JavascriptExecutor) driver).executeScript("window.focus();");
+		action.inputTextField(BusinessCodeSets.TAXTYPE_ID, deliveryCodeLessThan15);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.inputTextField(BusinessCodeSets.TAXTYPE_ID, deliveryCodeLessThan15);
 		action.clickBtn(By.cssSelector(BusinessCodeSets.SAVE_BUTTON));

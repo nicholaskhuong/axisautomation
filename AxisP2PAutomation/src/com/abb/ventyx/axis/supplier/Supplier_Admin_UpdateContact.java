@@ -81,9 +81,9 @@ public class Supplier_Admin_UpdateContact extends BaseTestCase {
 		((JavascriptExecutor) driver).executeScript("window.focus();");
 		// Step 4
 		// Fill all data in the Update Contact popup
+		action.inputTextField(MaintainSuppliers.CONTACT_ID_FILED, contact_Id);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.waitObjVisible(By.id(MaintainSuppliers.CONTACT_ID_FILED));
-		action.inputTextField(MaintainSuppliers.CONTACT_ID_FILED, contact_Id);
 		action.inputTextField(MaintainSuppliers.CONTACT_NAME_FILED, contact_name);
 		action.inputTextField(MaintainSuppliers.CONTACT_ROLE_FILED, role_field);
 		action.inputTextField(MaintainSuppliers.CONTACT_EMAIl_FILED, valid_Email);
