@@ -14,6 +14,7 @@ public class Serializion {
 	private ArrayList<TestMethodResultAdapter> resultFromDisks;
 	
 	private TestMethodResultAdapter result;
+	String fileLocation = String.format("%s%sresult.ser", System.getProperty("user.dir"), File.separator);
 	
 	public Serializion(TestMethodResultAdapter result) {
 		this.result = result;
@@ -28,7 +29,7 @@ public class Serializion {
 		ArrayList<TestMethodResultAdapter> result = new ArrayList<>();
 		
 		try {
-	         FileInputStream fileIn = new FileInputStream(System.getProperty("user.dir") + "\\result.ser");
+			FileInputStream fileIn = new FileInputStream(fileLocation);
 	         ObjectInputStream in = new ObjectInputStream(fileIn);
 	         result = (ArrayList<TestMethodResultAdapter>) in.readObject();
 	         in.close();
@@ -44,18 +45,14 @@ public class Serializion {
 	}
 	
 	public void saveToDisk(TestMethodResultAdapter result){
-		File resultFile = new File(System.getProperty("user.dir") + "\\result.ser");
-		if(!resultFile.exists()){
-			resultFromDisks.add(result);
-		}
-		else{
+		File resultFile = new File(fileLocation);
+		if (resultFile.exists()) {
 			resultFromDisks = getAllTestResult();
-			resultFromDisks.add(result);
 		}
+		resultFromDisks.add(result);
 		
 		try {
-	         FileOutputStream fileOut =
-	         new FileOutputStream(System.getProperty("user.dir") + "\\result.ser");
+			FileOutputStream fileOut = new FileOutputStream(fileLocation);
 	         ObjectOutputStream out = new ObjectOutputStream(fileOut);
 	         out.writeObject(resultFromDisks);
 	         out.close();
@@ -64,6 +61,26 @@ public class Serializion {
 	      }catch(IOException i) {
 	         i.printStackTrace();
 	      }
+	}
+
+	public void saveToDisk(ArrayList<TestMethodResultAdapter> results) {
+		File resultFile = new File(fileLocation);
+		if (resultFile.exists()) {
+			resultFromDisks = getAllTestResult();
+		}
+		for (TestMethodResultAdapter result : results) {
+			resultFromDisks.add(result);
+		}
+		try {
+			FileOutputStream fileOut = new FileOutputStream(System.getProperty("user.dir") + "\\result.ser");
+			ObjectOutputStream out = new ObjectOutputStream(fileOut);
+			out.writeObject(resultFromDisks);
+			out.close();
+			fileOut.close();
+			System.out.println("Serialized data is saved");
+		} catch (IOException i) {
+			i.printStackTrace();
+		}
 	}
 	
 }

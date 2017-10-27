@@ -149,9 +149,7 @@ public class BaseTestCase {
 		// Save to disk
 		driver.quit();
 		Serializion serializer = new Serializion();
-		for (TestMethodResultAdapter result : resultAdapters) {
-			serializer.saveToDisk(result);
-		}
+		serializer.saveToDisk(resultAdapters);
 		exportALMReferenceCsv(testCaseName, testCaseStatus);
 
 	}
