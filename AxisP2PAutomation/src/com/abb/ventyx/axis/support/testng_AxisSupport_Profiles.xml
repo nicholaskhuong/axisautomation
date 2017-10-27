@@ -11,7 +11,9 @@
   	
   	<test name="Update Customer Defined Profile">
 		<classes>
-				<class name="com.abb.ventyx.axis.support.Profile_Update_Customer_Defined" />
+				<class name="com.abb.ventyx.axis.support.Profile_Update_Customer_Defined_Steps01_06" />
+		
+				<class name="com.abb.ventyx.axis.support.Profile_Update_Customer_Defined_Step07" />
 		</classes>	
   	</test>
   	

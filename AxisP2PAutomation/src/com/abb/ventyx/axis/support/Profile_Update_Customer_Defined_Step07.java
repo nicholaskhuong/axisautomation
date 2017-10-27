@@ -19,16 +19,16 @@ import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
 
 @ALM(id = "622")
-@Credentials(user = "mail5@abb.com", password = "testuser")
-public class Profile_Update_Customer_Defined extends BaseTestCase {
+@Credentials(user = "Tomato@abb.com", password = "Testuser1")
+public class Profile_Update_Customer_Defined_Step07 extends BaseTestCase {
 	ScreenAction action;
 	BaseDropDownList list;
 	TableFunction table;
 	TableFunction table1;
 	int row;
 	int waitTime = 3000;
-	String profileName = "Profile3";
-	String profileNameEdited = "Profile4";
+	String profileName = "POProfile2";
+	String profileNameEdited = "POProfile3";
 	int i,j;
 	WebElement index;
 	String User_Login = "mail222@abb.com";
@@ -60,10 +60,10 @@ public class Profile_Update_Customer_Defined extends BaseTestCase {
 	public void clickPencilIconOnMaintainCustomerScreen(){
 		action.pause(waitTime);
 		table = new TableFunction(driver);
-		i = table.findRowByString(4, profileName);
+		i = table.findRowByString(3, profileName);
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
-		index = table.getCellObject(5, 4);
+		index = table.getCellObject(5, 3);
 		action.pause(waitTime);
 		index.click();	
 	}
@@ -115,10 +115,10 @@ public class Profile_Update_Customer_Defined extends BaseTestCase {
 	@Test(dependsOnMethods = "openMaintainCustomerScreenWithAccountCustomer", alwaysRun = true)
 	public void clickEditIconOnMaintainCustomerScreen(){
 		table = new TableFunction(driver);
-		i = table.findRowByString(4, "Advance Shipping Notice, Purchase Orders");
+		i = table.findRowByString(3, "Advance Shipping Notice, Purchase Orders");
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
-		index = table.getCellObject(4, 4);
+		index = table.getCellObject(4, 3);
 		index.click();
 		action.pause(waitTime);
 		action.clickBtn(By.id(Profiles.CANCEL_BTN));
@@ -157,10 +157,10 @@ public class Profile_Update_Customer_Defined extends BaseTestCase {
 	public void clickEditIconAgainOnMaintainCustomerScreen(){
 		action.pause(waitTime);
 		table = new TableFunction(driver);
-		i = table.findRowByString(4, profileNameEdited);
+		i = table.findRowByString(3, profileNameEdited);
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
-		index = table.getCellObject(5, 4);
+		index = table.getCellObject(5, 3);
 		index.click();
 	}
 	
