@@ -72,7 +72,7 @@ public class Serializion {
 			resultFromDisks.add(result);
 		}
 		try {
-			FileOutputStream fileOut = new FileOutputStream(System.getProperty("user.dir") + "\\result.ser");
+			FileOutputStream fileOut = new FileOutputStream(fileLocation);
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);
 			out.writeObject(resultFromDisks);
 			out.close();
