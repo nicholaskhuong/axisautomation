@@ -29,8 +29,6 @@ public class SupplierList_RemoteIcon extends BaseTestCase {
 	WebDriverWait wait;
 	int i;
 	int j;
-	public static String supplierEmail = "297587967@abb.com";
-
 	String inactiveStatus = "Inactive";
 	String activeStatus = "Active";
 	String password1 = "Testuser1";
