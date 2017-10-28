@@ -59,12 +59,12 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
 
 		// The system wrong here
-		// assertEquals(driver.findElement(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER)).getText(),
-		// "Maintain Customer Users");
+		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER)).getText(), "Maintain Customer Users",
+				"Title is displaying incorrectly, need to raise a P3 defect here");
 	}
 
 	// Step 1 Customer user creates another user
-	@Test(dependsOnMethods = "selectUsersSubMenu")
+	@Test(dependsOnMethods = "selectUsersSubMenu", alwaysRun = true)
 	public void createNewUser() throws InterruptedException {
 		i = table.findRowByString(3, CUSTOMERUSEREMAIL);
 		if (i > 0) {
@@ -313,9 +313,6 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.ERROR_CSS)).getText(), Messages.USERNOTFOUND);
 	}
 
-	// User can't update customer user as we got the error message: id value
-	// forbidden for non admin user type, so I put this method at the end of the
-	// class
 	@Test(dependsOnMethods = "loginAsTheDeletedUser")
 	public void updateAdminInfo() throws InterruptedException {
 		action.signIn("cuserdefault@abb.com", "Testuser1");
