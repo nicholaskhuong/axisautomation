@@ -53,7 +53,7 @@ public class TableFunction {
 		}
 		if (sumRow > 0) {
 			WebElement columnValue;
-			for (int i = 1; i < sumRow; i++) {
+			for (int i = 1; i <= sumRow; i++) {
 				if (isXpath) {
 					columnValue = driver
 							.findElement(By.xpath(String.format("%s//tr[%s]//td[%s]", tableBody, i, columnindex)));
@@ -69,7 +69,8 @@ public class TableFunction {
 		}
 		return row;
 	}
-	public boolean isValueExisting(int columnindex, String value) throws InterruptedException {
+
+	public boolean isValueExisting(int columnindex, String value) {
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ScreenObjects.TABLE_BODY_XPATH + "")));
 		// int row = 0;

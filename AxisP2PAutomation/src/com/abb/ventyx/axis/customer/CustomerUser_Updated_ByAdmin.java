@@ -32,7 +32,7 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 	String CREATEDSTATUS ="Created";
 	int i;
 
-	// String userNo = " ";
+	String userNo = " ";
 	// Step 1 Select Users Sub Menu
 	@Test
 	public void selectUsersSubMenu() {
@@ -54,8 +54,9 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 		assertEquals(table.getValueRow(2, i), USERID);
 		assertEquals(table.getValueRow(4, i), "All Permissions");
 		assertEquals(table.getValueRow(5, i), CREATEDSTATUS);
-		// userNo = table.getValueRow(1, i);
-		table.clickUserNumber(CUSTOMERUSEREMAIL);
+		userNo = table.getValueRow(1, i);
+		i = table.findRowByString(1, userNo);
+		table.clickUserNo(i);
 
 	}
 
@@ -117,11 +118,13 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 		assertEquals(table.getValueRow(2, i), NEWUSERID);
 		assertEquals(table.getValueRow(4, i), "All Permissions");
 
+
 	}
 	// Step 7 Check Cancel button without input
 	@Test(dependsOnMethods="updateWithValidData")
 	public void checkCancelButtonWithoutInput() {
-		table.clickUserNumber(CUSTOMERUSEREMAIL);
+		// table.clickUserNumber(CUSTOMERUSEREMAIL);
+		table.clickUserNo(i);
 		action.waitObjVisible(By.id(CustomerUsers.USERID_TEXTBOX_ID));
 		action.waitObjVisible(By.cssSelector(CustomerUsers.CANCEL_BUTTON));
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerUsers.CANCEL_BUTTON));
@@ -135,8 +138,8 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 	// Step 8 Check No button on Unsaved Changes dialog 
 	@Test(dependsOnMethods="checkCancelButtonWithoutInput")
 	public void checkNoButtonOnUnsavedChanges() {
-		assertEquals(action.isElementPresent(By.id("usrSequenceIdStrBtn" + i)), true);
-		table.clickUserNumber(CUSTOMERUSEREMAIL);
+		// table.clickUserNumber(CUSTOMERUSEREMAIL);
+		table.clickUserNo(i);
 		action.waitObjVisible(By.id(CustomerUsers.USERID_TEXTBOX_ID));
 		action.inputTextField(CustomerUsers.USERID_TEXTBOX_ID, "test");
 		driver.findElement(By.cssSelector(CustomerUsers.CANCEL_BUTTON)).click();
