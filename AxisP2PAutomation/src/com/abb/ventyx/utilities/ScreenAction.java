@@ -112,6 +112,20 @@ public class ScreenAction {
 		return false;
 	}
 
+	public boolean isRemoteIconDisable(int row) {
+		WebElement remoteIcon = driver.findElement(By.xpath(String.format("%s//tr[%s]//td[8]//div//div", ScreenObjects.TABLE_BODY_XPATH, row)));
+		String disabled = remoteIcon.getAttribute("aria-disabled");
+		if (null != disabled && disabled.equals("true"))
+			return true;
+		return false;
+
+	}
+
+	public void clickRemoteIcon(int row) {
+		WebElement remoteIcon = driver.findElement(By.xpath(String.format("%s//tr[%s]//td[8]//div//div", ScreenObjects.TABLE_BODY_XPATH, row)));
+		remoteIcon.click();
+
+	}
 	public boolean isFieldDisable(WebElement field) {
 		String disabled = field.getAttribute("aria-disabled");
 		if (disabled != null && disabled.equals("true"))

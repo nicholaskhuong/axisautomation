@@ -248,7 +248,7 @@ public class TableFunction {
 		return allValue;
 	}
 
-	public WebElement getCellObject(int column, int row) {
+	public WebElement getCellObject(int row, int column) {
 		WebElement cell = driver.findElement(
 				By.xpath(String.format("%s//tr[%s]//td[%s]", ScreenObjects.TABLE_BODY_XPATH, row, column)));
 		return cell;

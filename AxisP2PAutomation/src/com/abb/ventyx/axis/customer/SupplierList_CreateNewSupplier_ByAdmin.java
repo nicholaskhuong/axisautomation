@@ -33,12 +33,12 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	WebDriverWait wait;
 	int i, j;
 
-	String supplierName = "Yamaha10";
-	String supplierEmail = "yamaha10@abb.com";
-	String companyRegistrationNo = "COMYAMAHA10";
-	String taxRegistrationNo = "TAXYAMAHA10";
+	public static String supplierName = "Name 297587967";
+	public static String supplierEmail = "297587967@abb.com";
+	public static String companyRegistrationNo = "NO297587967";
+	public static String taxRegistrationNo = "Tax297587967";
 	String pendingStatus = "Pending";
-	String profile = "All Document Types";
+	public static String profile = "All Document Types";
 	String invalidEmail = "<HTML>";
 	String passwordOriginally = "Testuser2";
 	String newPassword = "Testuser1";
@@ -57,7 +57,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		table = new TableFunction(driver);
 		wait = new WebDriverWait(driver, 20);
 		Random rand = new Random();
-		long drand = (long) (rand.nextDouble() * 10000000000L);
+		long drand = (long) (rand.nextDouble() * 100000000L);
 		supplierName = String.format("Name %s", drand);
 		supplierEmail = String.format("%s@abb.com", drand);
 		companyRegistrationNo = String.format("NO%s", drand);
