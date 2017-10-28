@@ -28,7 +28,10 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 	WebDriverWait wait;
 	int i;
 	int j;
-
+	public static String supplierName = "Name 297587967";
+	public static String supplierEmail = "297587967@abb.com";
+	public static String companyRegistrationNo = "NO297587967";
+	public static String taxRegistrationNo = "Tax297587967";
 	String activeStatus = "Active";
 	String INVALIDEMAIL = "<HTML>";
 	String PASSWORDORIGINALLY = "Testuser2";

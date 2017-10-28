@@ -402,7 +402,6 @@ public class ScreenAction {
 		waitObjVisible(By.id(UserPreferences.PROFILE_PANEL));
 		clickBtn(By.id(UserPreferences.PROFILE_PANEL));
 		waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
-		waitObjVisible(By.id(LoginPageDefinition.USERNAME_TEXT_FIELD_ID));
 	}
 
 	public void signIn(String emailAddress, String password) {
