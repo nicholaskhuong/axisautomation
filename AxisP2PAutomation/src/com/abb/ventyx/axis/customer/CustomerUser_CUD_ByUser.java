@@ -50,14 +50,14 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	String userNo = "";
 
 	@Test
-	public void selectUsersSubMenu() throws InterruptedException {
+	public void selectUsersSubMenu(){
 		wait = new WebDriverWait(driver, 60);
 		action = new ScreenAction(driver);
 		table = new TableFunction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.USERS_SUBMENU));
 		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
-		Thread.sleep(1000);
+
 		// The system wrong here
 		// assertEquals(driver.findElement(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER)).getText(),
 		// "Maintain Customer Users");
