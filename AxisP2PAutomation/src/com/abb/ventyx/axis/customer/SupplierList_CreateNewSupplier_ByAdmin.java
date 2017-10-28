@@ -33,22 +33,22 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	WebDriverWait wait;
 	int i, j;
 
-	String SUPPLIERNAME = "Yamaha10";
-	String SUPPLIEREMAIL = "yamaha10@abb.com";
-	String COMPANYREGIRATIONNO = "COMYAMAHA10";
-	String TAXREGIRATIONNO = "TAXYAMAHA10";
-	String PENDINGSTATUS = "Pending";
-	String PROFILE = "All Document Types";
-	String INVALIDEMAIL = "<HTML>";
-	String PASSWORDORIGINALLY = "Testuser2";
-	String NEWPASSWORD = "Testuser1";
+	String supplierName = "Yamaha10";
+	String supplierEmail = "yamaha10@abb.com";
+	String companyRegistrationNo = "COMYAMAHA10";
+	String taxRegistrationNo = "TAXYAMAHA10";
+	String pendingStatus = "Pending";
+	String profile = "All Document Types";
+	String invalidEmail = "<HTML>";
+	String passwordOriginally = "Testuser2";
+	String newPassword = "Testuser1";
 
-	String DUPLICATEDNAME = "ENCLAVE";
-	String DUPLICATEDCOMPANYREGISTRATIONNO = "ENCLAVE";
-	String DUPLICATEDTAXREGISTRATIONNO = "ENCLAVE";
-	String DUPLICATEDSUPPLIEREMAIL = "perla@enclave.vn";
-	String AXISSUPPORTEMAIL = "mail5@abb.com";
-	String AXISSUPPORTPWD = "testuser";
+	String dupplicatedName = "ENCLAVE";
+	String duplicatedCompanyRegistrationNo = "ENCLAVE";
+	String duplicatedTaxRegistrationNo = "ENCLAVE";
+	String duplicatedSupplierEmail = "perla@enclave.vn";
+	String axisSupportEmail = "mail5@abb.com";
+	String axisSupportPWD = "testuser";
 
 	// Step 1
 	@Test
@@ -58,10 +58,10 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		wait = new WebDriverWait(driver, 20);
 		Random rand = new Random();
 		long drand = (long) (rand.nextDouble() * 10000000000L);
-		SUPPLIERNAME = String.format("Name %s",drand);
-		SUPPLIEREMAIL = String.format("%s@abb.com", drand);
-		COMPANYREGIRATIONNO = String.format("NO%s", drand);
-		TAXREGIRATIONNO = String.format("Tax%s", drand);
+		supplierName = String.format("Name %s", drand);
+		supplierEmail = String.format("%s@abb.com", drand);
+		companyRegistrationNo = String.format("NO%s", drand);
+		taxRegistrationNo = String.format("Tax%s", drand);
 
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.SUPPLIERLIST_SUBMENU));
@@ -84,28 +84,28 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.waitObjVisible(By.id(SupplierList.SUPPLIERNAME_ID));
 
 		// Empty Supplier Name
-		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, SUPPLIEREMAIL);
-		action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID, SUPPLIERNAME);
-		action.inputTextField(SupplierList.TAXREGRISTRATIONNO_ID, TAXREGIRATIONNO);
+		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, supplierEmail);
+		action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID, companyRegistrationNo);
+		action.inputTextField(SupplierList.TAXREGRISTRATIONNO_ID, taxRegistrationNo);
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 
 		// Empty Company Registration No
-		action.inputTextField(SupplierList.SUPPLIERNAME_ID, SUPPLIERNAME);
+		action.inputTextField(SupplierList.SUPPLIERNAME_ID, supplierName);
 		driver.findElement(By.id(SupplierList.COMPANYREGISTRATIONNO_ID)).clear();
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 
 		// Empty Tax Registration No
-		action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID, COMPANYREGIRATIONNO);
+		action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID, companyRegistrationNo);
 		driver.findElement(By.id(SupplierList.TAXREGRISTRATIONNO_ID)).clear();
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 
 		// Empty Supplier Email
-		action.inputTextField(SupplierList.TAXREGRISTRATIONNO_ID, TAXREGIRATIONNO);
+		action.inputTextField(SupplierList.TAXREGRISTRATIONNO_ID, taxRegistrationNo);
 		driver.findElement(By.id(SupplierList.SUPPLIEREMAIL_ID)).clear();
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
@@ -116,7 +116,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	@Test(dependsOnMethods = "createSupplierWithBlankMandatoryField")
 	public void createSupplierWithInvalidEmail() {
 
-		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, INVALIDEMAIL);
+		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, invalidEmail);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INVALID_EMAIL);
@@ -126,62 +126,56 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 
 	// Step 4
 	@Test(dependsOnMethods = "createSupplierWithInvalidEmail")
-	public void createSupplierWithDuplicatedValue() throws InterruptedException {
+	public void createSupplierWithDuplicatedValue() {
 
 		// Duplicated email
-		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, DUPLICATEDSUPPLIEREMAIL);
+		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, duplicatedSupplierEmail);
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.DUPLICATEDEMAIL);
 
 		// Duplicated Comp. Registration Number
-		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, SUPPLIEREMAIL);
+		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, supplierEmail);
 		WebElement txtField = driver.findElement(By.id(SupplierList.COMPANYREGISTRATIONNO_ID));
 		txtField.clear();
-		// Thread.sleep(1000);
+		action.pause(1000);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
-		txtField.sendKeys(DUPLICATEDCOMPANYREGISTRATIONNO);
-		// action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID,
-		// DUPLICATEDCOMPANYREGISTRATIONNO);
-		// //Thread.sleep(2000);
+		txtField.sendKeys(duplicatedCompanyRegistrationNo);
 
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.DUPLICATECOMPANYREGISTRATIONNO);
+
 		// Duplicated Tax Registration Number
-		// action.inputTextField(SupplierList.TAXREGRISTRATIONNO_ID,
-		// DUPLICATEDTAXREGISTRATIONNO);
-		/*
-		 * action.inputTextField(SupplierList.TAXREGRISTRATIONNO_ID,
-		 * DUPLICATEDTAXREGISTRATIONNO);
-		 * 
-		 * WebElement txtField1 =
-		 * driver.findElement(By.id(SupplierList.TAXREGRISTRATIONNO_ID));
-		 * txtField1.clear(); txtField1.sendKeys(DUPLICATEDTAXREGISTRATIONNO);
-		 * action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
-		 * action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID,
-		 * COMPANYREGIRATIONNO);
-		 * 
-		 * action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
-		 * action.assertMessgeError(ScreenObjects.ERROR_CSS,
-		 * Messages.DUPLICATEDTAXREGISTRATIONNO);
-		 */
+		action.inputTextField(SupplierList.TAXREGRISTRATIONNO_ID, duplicatedTaxRegistrationNo);
+
+		WebElement txtField1 = driver.findElement(By.id(SupplierList.TAXREGRISTRATIONNO_ID));
+		txtField1.clear();
+		action.pause(500);
+		txtField1.sendKeys(duplicatedTaxRegistrationNo);
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
+		action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID, companyRegistrationNo);
+
+		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
+		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.DUPLICATEDTAXREGISTRATIONNO);
+
 	}
 
 	// Step 5
 	@Test(dependsOnMethods = "createSupplierWithInvalidEmail")
-	public void createSupplierWithValidValue() throws InterruptedException {
+	public void createSupplierWithValidValue() {
 
-		action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID, COMPANYREGIRATIONNO);
+		action.inputTextField(SupplierList.TAXREGRISTRATIONNO_ID, taxRegistrationNo);
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
+
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.SUPPLIER_CREATED_SUCCESSFULLY);
-		table.filter(SupplierList.SUPPLIER_EMAIL_FILTER_XPATH, SUPPLIEREMAIL);
-		i = table.findRowByString(6, SUPPLIEREMAIL);
+		table.filter(SupplierList.SUPPLIER_EMAIL_FILTER_XPATH, supplierEmail);
+		i = table.findRowByString(6, supplierEmail);
 		Assert.assertTrue(i>0,"Supplier doesn't exist");
-		assertEquals(table.getValueRow(2, i), COMPANYREGIRATIONNO);
-		assertEquals(table.getValueRow(3, i), TAXREGIRATIONNO);
-		assertEquals(table.getValueRow(4, i), PENDINGSTATUS);
-		assertEquals(table.getValueRow(5, i), SUPPLIERNAME);
-		assertEquals(table.getValueRow(6, i), SUPPLIEREMAIL);
-		assertEquals(table.getValueRow(7, i), PROFILE);
+		assertEquals(table.getValueRow(2, i), companyRegistrationNo);
+		assertEquals(table.getValueRow(3, i), taxRegistrationNo);
+		assertEquals(table.getValueRow(4, i), pendingStatus);
+		assertEquals(table.getValueRow(5, i), supplierName);
+		assertEquals(table.getValueRow(6, i), supplierEmail);
+		assertEquals(table.getValueRow(7, i), profile);
 		// WebElement accessColumn = driver.findElement(By
 		// .xpath("//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div[3]/table/tbody/tr/td[8]"));
 		// List<WebElement> allEle =
@@ -194,12 +188,13 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	// Step 6,7 can't auto
 	// Step 8
 	@Test(dependsOnMethods = "createSupplierWithValidValue")
-	public void checkCancelButtonWithoutInput() throws InterruptedException {
+	public void checkCancelButtonWithoutInput() {
 
 		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.CREATE_BTN_ID));
 		action.waitObjVisible(By.id(SupplierList.SUPPLIERNAME_ID));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.CANCEL_ID));
+		action.pause(1000);
 		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)), false);
 		assertEquals(action.isElementPresent(By.id(SupplierList.SUPPLIERNAME_SEARCHFIELD_ID)), true);
 		// action.assertTitleScreen("Check Suppliers");
@@ -207,7 +202,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 
 	// Step 9,10 Check No button on Unsaved Changes dialog
 	@Test(dependsOnMethods = "checkCancelButtonWithoutInput")
-	public void checkNoButtonOnUnsavedChangesDialog() throws InterruptedException {
+	public void checkNoButtonOnUnsavedChangesDialog() {
 
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.CREATE_BTN_ID));
 		action.waitObjVisible(By.id(SupplierList.SUPPLIERNAME_ID));
@@ -216,7 +211,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
 		action.assertTextEqual(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS), Messages.UNSAVED_CHANGE);
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.NO_BTN_ID));
-		// Thread.sleep(1000);
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
 		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)), false);
 		// action.assertTitleScreen("Create New Supplier");
 	}
@@ -240,7 +235,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	public void loginAsTheCreatedSupplier() {
 
 		action.signOut();
-		action.signIn(SUPPLIEREMAIL, PASSWORDORIGINALLY);
+		action.signIn(supplierEmail, passwordOriginally);
 		action.waitObjVisible(By.cssSelector(ScreenObjects.ERROR_CSS));
 		action.assertTextEqual(By.cssSelector(ScreenObjects.ERROR_CSS), Messages.USERNOTFOUND);
 	}
@@ -248,13 +243,13 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	@Test(dependsOnMethods = "loginAsTheCreatedSupplier")
 	public void getPasswordForTheNewSupplier() {
 
-		action.signIn(AXISSUPPORTEMAIL, AXISSUPPORTPWD);
+		action.signIn(axisSupportEmail, axisSupportPWD);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.AXIS_ADMIN));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.RESET_USER_PASSWORD));
-		// Thread.sleep(2000);
+		action.pause(1000);
 		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.EMAILCHECKBOX_RESETUSERPASSWORDSCREEN_ID));
-		// Thread.sleep(500);
-		action.inputTextField(ScreenObjects.USER_LOGIN, SUPPLIEREMAIL);
+		action.pause(1000);
+		action.inputTextField(ScreenObjects.USER_LOGIN, supplierEmail);
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.RESET_BUTTON));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 
@@ -264,13 +259,15 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		System.out.println(password);
 
 		action.signOut();
-		// Thread.sleep(1000);
-		action.signIn(SUPPLIEREMAIL, password);
+		System.out.println("supplierEmail: " + supplierEmail);
+		action.pause(2000);
+		assertEquals(action.isElementPresent(By.id(LoginPageDefinition.USERNAME_TEXT_FIELD_ID)), true);
+		action.signIn(supplierEmail, password);
 
 		action.waitObjVisible(By.id(ScreenObjects.NEWPASSWORD_ID));
 		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, password);
-		action.inputTextField(ScreenObjects.NEWPASSWORD_ID, NEWPASSWORD);
-		action.inputTextField(ScreenObjects.CONFIRMPASSWORD_ID,NEWPASSWORD);
+		action.inputTextField(ScreenObjects.NEWPASSWORD_ID, newPassword);
+		action.inputTextField(ScreenObjects.CONFIRMPASSWORD_ID, newPassword);
 		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
 	}
 	// Step 16
@@ -292,17 +289,16 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 
 		WebElement companyName = wait.until(ExpectedConditions.presenceOfElementLocated(By
 				.id(AddressContact.COMPANY_NAME)));
-		Assert.assertEquals(companyName.getAttribute("value"), SUPPLIERNAME);
-		action.assertTextEqual(By.id(AddressContact.COMPANY_REGISTRATION_NO), COMPANYREGIRATIONNO);
-		action.assertTextEqual(By.id(AddressContact.TAX_REGISTRATION_NO), TAXREGIRATIONNO);
-		action.assertTextEqual(By.id(AddressContact.SUPPLIER_EMAIL), SUPPLIEREMAIL);
+		Assert.assertEquals(companyName.getAttribute("value"), supplierName);
+		action.assertTextEqual(By.id(AddressContact.COMPANY_REGISTRATION_NO), companyRegistrationNo);
+		action.assertTextEqual(By.id(AddressContact.TAX_REGISTRATION_NO), taxRegistrationNo);
+		action.assertTextEqual(By.id(AddressContact.SUPPLIER_EMAIL), supplierEmail);
 	}
 	
 	@Test(dependsOnMethods = "checkAddressAndContact", alwaysRun = true)
 	public void checkStatusAndRemoteIcon() {
 
 		action.signOut();
-		// Thread.sleep(1000);
 		action.signIn("cadmin1@abb.com", "Testuser1");
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.SUPPLIERLIST_SUBMENU));

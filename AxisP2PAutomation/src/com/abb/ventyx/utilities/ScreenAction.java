@@ -395,7 +395,7 @@ public class ScreenAction {
 		waitObjVisible(By.id(LoginPageDefinition.USERNAME_TEXT_FIELD_ID));
 		inputEmailField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, emailAddress);
 		pause(timeout);
-		inputEmailField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, password);
+		inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, password);
 		clickBtn(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));
 	}
 
