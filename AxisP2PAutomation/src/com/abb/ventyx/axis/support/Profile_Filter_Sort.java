@@ -19,7 +19,7 @@ import com.abb.ventyx.utilities.TableFunction;
 
 @ALM(id = "720")
 @Credentials(user = "mail5@abb.com", password = "testuser")
-public class Profile_Fiter_Sort extends BaseTestCase {
+public class Profile_Filter_Sort extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
 	int waitTime = 2000;

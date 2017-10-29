@@ -31,4 +31,10 @@
 		</classes>	
   	</test>
   	
+  	  	 <test name=" Filter And Sort">
+		<classes>
+				<class name="com.abb.ventyx.axis.support.Profile_Filter_Sort" />
+		</classes>	
+  	</test>
+  	
 </suite> 
