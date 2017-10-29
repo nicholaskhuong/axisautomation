@@ -5,7 +5,6 @@ import static org.junit.Assert.assertThat;
 import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -19,12 +18,13 @@ import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
 import com.abb.ventyx.utilities.PermissionsAction;
 import com.abb.ventyx.utilities.ScreenAction;
+import com.abb.ventyx.utilities.TableFunction;
 
-@ALM(id = "156")
+@ALM(id = "549")
 @Credentials(user = "mail5@abb.com", password = "testuser")
 public class Permissions_Deleting extends BaseTestCase {
-	String PERMISSION_NAME_A = "AUTOMATION_PERMISSION_AA";
 	ScreenAction action;
+	TableFunction table;
 
 	@Test
 	public void openMaintainPermissionScreen() throws Exception {
@@ -35,21 +35,24 @@ public class Permissions_Deleting extends BaseTestCase {
 	}
 
 	@Test(dependsOnMethods = "openMaintainPermissionScreen")
-	public void deletePermisison() throws InterruptedException {
+	public void deletePermisison() {
 		action = new ScreenAction(driver);
+		table = new TableFunction(driver);
 		PermissionsAction permissionsAction = new PermissionsAction(driver);
-		permissionsAction.filterPermissionbyPermissionName(PERMISSION_NAME_A);
-		permissionsAction.filterPermissionbyDocumentType("PurchaseOrder");
-		Thread.sleep(2000);
+		permissionsAction.filterPermissionbyPermissionName(Permissions_Creating.permissionName);
+		permissionsAction.filterPermissionbyDocumentType(Permissions_Updating.invoiceTypeDescription);
+		action.pause(2000);
 
 		// final String PERMISION_ID_A =
 		// driver.findElement(By.id(Permissions.ROW1)).getText();
-		int numberOfRowsBeforeDelete = permissionsAction.countRow(Permissions.TABLEBODY);
+		/*int numberOfRowsBeforeDelete = permissionsAction.countRow(Permissions.TABLEBODY);
 		WebElement trashBinIcon = driver.findElement(By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr["
 				+ numberOfRowsBeforeDelete + "]//td[5]"));
 
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", trashBinIcon);
 		trashBinIcon.click();
+		action.waitObjVisibleAndClick(obj);*/
+		table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH, 1, 5).click();
 		action.waitObjVisible(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION));
 		// Make sure this is a Confirmation of deleting process
 		assertThat(driver.findElement(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION)).getText(), containsString(Messages.DELETE_CONFIRM));

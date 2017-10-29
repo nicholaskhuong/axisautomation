@@ -254,10 +254,13 @@ public class TableFunction {
 		return cell;
 	}
 
+	public WebElement getCellObject(String tableXpath, int row, int column) {
+		WebElement cell = driver.findElement(By.xpath(String.format("%s/tr[%s]/td[%s]/div", tableXpath, row, column)));
+		return cell;
+	}
 	public WebElement getCellObjectSupplierCodeSet(int column, int row) {
 		WebElement cell = driver.findElement(By.xpath(String.format("%s//tr[%s]//td[%s]//div//div",
 				"//*[@id=\"codeSetGrid-AsnDeliveryCode\"]/div[3]/table/tbody", row, column)));
-		// div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']";
 		return cell;
 	}
 

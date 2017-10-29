@@ -20,7 +20,7 @@ import com.abb.ventyx.utilities.ScreenAction;
 public class Permissions_Updating extends BaseTestCase {
 
 	String invoiceTypeName = "Invoicing";
-	String invoiceTypeDescription = "Invoice";
+	public static String invoiceTypeDescription = "Invoice";
 	ScreenAction action;
 	PermissionsAction permissionsAction;
 	// Step 1
