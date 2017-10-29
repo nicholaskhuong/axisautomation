@@ -54,6 +54,7 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 		ScreenAction action = new ScreenAction(driver);
 		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
 		action.inputTextField(ScreenObjects.FILTER_FIELD_ID, "QATest");
+		action.pause(waitTime);
 	}
 	
 	@Test(dependsOnMethods = "openMaintainCustomerDefinedProfilesScreen", alwaysRun = true)
@@ -62,8 +63,7 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 		table = new TableFunction(driver);
 		i = table.findRowByString(4, profileName);
 		action.clickHorizontalScrollBar();
-		action.pause(waitTime);
-		index = table.getCellObject(5, 4);
+		index = table.getCellObject(4, 5);
 		action.pause(waitTime);
 		index.click();	
 	}
@@ -160,7 +160,7 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 		i = table.findRowByString(4, profileNameEdited);
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
-		index = table.getCellObject(5, 4);
+		index = table.getCellObject(4, 5);
 		index.click();
 	}
 	

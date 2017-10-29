@@ -30,8 +30,8 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 	BaseDropDownList list;
 	TableFunction table;
 	int waitTime = 2000;
-	String customerName = "Tomatooo";
-	String emailAddress = "Tomatooo@abb.com";
+	String customerName = "Honda";
+	String emailAddress = "Honda@abb.com";
 	String password;
 	String NEWPASSWORD = "Testuser1";
 	int i;
@@ -160,7 +160,7 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 		i = table.findRowByString(1, customerName);
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
-		index = table.getCellObject(5, 1);
+		index = table.getCellObject(1, 5);
 		action.pause(waitTime);
 		index.click();	
 	}
@@ -229,7 +229,7 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 		i = table.findRowByString(1, profileName);
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
-		index = table.getCellObject(5, 1);
+		index = table.getCellObject(1, 5);
 		action.pause(waitTime);
 		index.click();	
 	}
@@ -278,7 +278,7 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 		i = table.findRowByString(1, customerName);
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
-		index = table.getCellObject(5, 1);
+		index = table.getCellObject(1, 5);
 		action.pause(waitTime);
 		index.click();	
 	}
@@ -328,7 +328,7 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 		i = table.findRowByString(1, profileName);
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
-		index = table.getCellObject(5, 1);
+		index = table.getCellObject(1, 5);
 		action.pause(waitTime);
 		index.click();	
 	}

@@ -145,7 +145,7 @@ public class Profile_Update_Default_Profile_Step09 extends BaseTestCase {
 		i = table.findRowByString(1, customerName);
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
-		index = table.getCellObject(5, 1);
+		index = table.getCellObject(1, 5);
 		action.pause(waitTime);
 		index.click();	
 	}
@@ -215,7 +215,7 @@ public class Profile_Update_Default_Profile_Step09 extends BaseTestCase {
 		i = table.findRowByString(1, profileName);
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
-		index = table.getCellObject(5, 1);
+		index = table.getCellObject(1, 5);
 		action.pause(waitTime);
 		index.click();	
 	}
@@ -264,7 +264,7 @@ public class Profile_Update_Default_Profile_Step09 extends BaseTestCase {
 		i = table.findRowByString(1, customerName);
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
-		index = table.getCellObject(5, 1);
+		index = table.getCellObject(1, 5);
 		action.pause(waitTime);
 		index.click();	
 	}
@@ -314,7 +314,7 @@ public class Profile_Update_Default_Profile_Step09 extends BaseTestCase {
 		i = table.findRowByString(1, profileName);
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
-		index = table.getCellObject(5, 1);
+		index = table.getCellObject(1, 5);
 		action.pause(waitTime);
 		index.click();	
 	}

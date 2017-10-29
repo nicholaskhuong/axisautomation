@@ -63,7 +63,7 @@ public class Profile_Update_Customer_Defined_Step07 extends BaseTestCase {
 		i = table.findRowByString(3, profileName);
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
-		index = table.getCellObject(5, 3);
+		index = table.getCellObject(3, 5);
 		action.pause(waitTime);
 		index.click();	
 	}
@@ -118,7 +118,7 @@ public class Profile_Update_Customer_Defined_Step07 extends BaseTestCase {
 		i = table.findRowByString(3, "Advance Shipping Notice, Purchase Orders");
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
-		index = table.getCellObject(4, 3);
+		index = table.getCellObject(3, 4);
 		index.click();
 		action.pause(waitTime);
 		action.clickBtn(By.id(Profiles.CANCEL_BTN));
@@ -160,7 +160,7 @@ public class Profile_Update_Customer_Defined_Step07 extends BaseTestCase {
 		i = table.findRowByString(3, profileNameEdited);
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
-		index = table.getCellObject(5, 3);
+		index = table.getCellObject(3, 5);
 		index.click();
 	}
 	
