@@ -40,17 +40,17 @@ public class PermissionsAction {
 		filterPermissionName.sendKeys(filterValue);
 	}
 
-	public void filterPermissionbyPermissionName(String filterValue) throws InterruptedException{
+	public void filterPermissionbyPermissionName(String filterValue) {
 		// Click Filter Icon
 		WebElement filterButton = (new WebDriverWait(driver, 20))
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#HeaderMenuBar > span:nth-child(1)")));
 		filterButton.click();
-		Thread.sleep(2000);
+
 		// Enter filter value
 		WebElement filterPermissionName = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Permissions.PERMISSION_NAME_FILTER)));
 		filterPermissionName.sendKeys(filterValue);
-		Thread.sleep(2000);
+
 
 	}
 	

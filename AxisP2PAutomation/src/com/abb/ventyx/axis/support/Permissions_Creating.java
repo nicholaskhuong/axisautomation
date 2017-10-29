@@ -22,10 +22,10 @@ import com.abb.ventyx.utilities.TableFunction;
 @Credentials(user = "mail5@abb.com", password = "testuser")
 public class Permissions_Creating extends BaseTestCase {
 
-	public static String permissionName = "";
-	String purchaseorderTypeName = "PurchaseOrder";
+	public static String permissionName = "Permision 85997387";
+	public static String purchaseorderTypeName = "PurchaseOrder";
 	String purchaseorderTypeDescription = "Purchase Orders";
-	String userTypeCSA = "CSA";
+	public static String userTypeCSA = "CSA";
 	String addPermissionHeader = "Add Permission";
 	String maintainPermissionHeader = "Maintain Permissions";
 
