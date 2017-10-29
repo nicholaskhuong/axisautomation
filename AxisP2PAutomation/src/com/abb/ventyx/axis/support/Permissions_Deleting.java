@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.Permissions;
+import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
@@ -57,8 +58,8 @@ public class Permissions_Deleting extends BaseTestCase {
 				.cssSelector(Permissions.DELETE_YES)));
 		yesButton.click();
 
-		action.waitObjVisible(By.cssSelector(Messages.PERMISSION_CREATED_SUCCESSFULLY_CSS));
-		assertEquals(driver.findElement(By.cssSelector(Messages.PERMISSION_CREATED_SUCCESSFULLY_CSS)).getText(),
+		action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)).getText(),
 				Messages.PERMISSION_DELETED_SUCCESSFULLY);
 
 	}

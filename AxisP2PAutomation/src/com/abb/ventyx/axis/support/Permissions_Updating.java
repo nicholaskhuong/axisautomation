@@ -84,7 +84,7 @@ public class Permissions_Updating extends BaseTestCase {
 //		USER_TYPE
 		permissionsAction.clickSaveButtonOnAddPermisisonPopUp();
 		action.waitObjInvisible(By.id(Permissions.SAVE));
-		action.assertTextEqual(By.cssSelector(Messages.PERMISSION_CREATED_SUCCESSFULLY_CSS), Messages.PERMISSION_UPADTED_SUCCESSFULLY);
+		action.assertTextEqual(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE), Messages.PERMISSION_UPADTED_SUCCESSFULLY);
 		permissionsAction.enterValueTofilterPermission(PERMISSION_NAME_A);
 		permissionsAction.filterPermissionbyDocumentType(DOCUMENT_TYPE_A);
 		assertEquals(driver.findElement(By.cssSelector(Permissions.PNROW1)).getText(), PERMISSION_NAME_A);

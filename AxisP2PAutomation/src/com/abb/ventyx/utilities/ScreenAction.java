@@ -397,6 +397,15 @@ public class ScreenAction {
 
 	}
 
+	public String getTextField(By by) {
+		try {
+			WebElement textField = driver.findElement(by);
+			return textField.getText();
+		} catch (NoSuchElementException e) {
+			return "";
+		}
+
+	}
 	public void signOut() {
 
 		waitObjVisible(By.id(UserPreferences.PROFILE_PANEL));

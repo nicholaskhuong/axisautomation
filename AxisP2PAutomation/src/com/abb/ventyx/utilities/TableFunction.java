@@ -175,8 +175,8 @@ public class TableFunction {
 		row.click();
 	}
 
-	public void filterPermission(String filterValue) {
-		inputFilter(filterValue, Permissions.PERMISSION_NAME_FILTER, true);
+	public void filterPermission(String filterPermissionName) {
+		inputFilter(filterPermissionName, Permissions.PERMISSION_NAME_FILTER, true);
 	}
 
 	public void filter(String columnXpath, String filterValue) {

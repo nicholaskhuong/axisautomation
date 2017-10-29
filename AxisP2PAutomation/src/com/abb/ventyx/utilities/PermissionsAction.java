@@ -32,13 +32,12 @@ public class PermissionsAction {
 						.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION)));
 		axisConfigParentButton.click();
 	}
-	public void filterPermissionbyDocumentType(String filterValue) throws InterruptedException{
+
+	public void filterPermissionbyDocumentType(String filterValue) {
 		// Enter filter value
 		WebElement filterPermissionName = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Permissions.DOC_TYPE_FILTER)));
 		filterPermissionName.sendKeys(filterValue);
-		Thread.sleep(2000);
-
 	}
 
 	public void filterPermissionbyPermissionName(String filterValue) throws InterruptedException{
@@ -55,12 +54,11 @@ public class PermissionsAction {
 
 	}
 	
-	public void enterValueTofilterPermission(String filterValue) throws InterruptedException{	
+	public void enterValueTofilterPermission(String filterValue) {
 		// Enter filter value
 		WebElement filterPermissionName = (new WebDriverWait(driver, 30))
 				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Permissions.PERMISSION_NAME_FILTER)));
 		filterPermissionName.sendKeys(filterValue);
-		Thread.sleep(2000);
 
 	}
 
@@ -124,7 +122,7 @@ public class PermissionsAction {
 	}
 
 	
-	public void selectDocTypebyText(String docType) throws InterruptedException{
+	public void selectDocTypebyText(String docType) {
 		WebElement permissionDocType = (new WebDriverWait(driver, 20))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.id(Permissions.DOCUMENT_TYPE)));
@@ -136,7 +134,7 @@ public class PermissionsAction {
 		
 		System.out.print(sumRow +" test");
 		
-		for(int i=1;i<sumRow;i++){
+		for (int i = 1; i <= sumRow; i++) {
 			WebElement POAckType = (new WebDriverWait(driver, 10))
 					.until(ExpectedConditions.presenceOfElementLocated(By
 							.cssSelector("#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table > tbody > tr:nth-child("+i+") > td > span")));

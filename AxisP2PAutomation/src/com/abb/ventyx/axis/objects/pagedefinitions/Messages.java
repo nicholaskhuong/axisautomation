@@ -56,7 +56,6 @@ public class Messages {
 	public static final String EMPTYPERMISSIONNAME = "Please enter permission name";
 	public static final String EMPTYUSERTYPE = "Please select the User Type";
 	public static final String PERMISSION_CREATED_SUCCESSFULLY = "Permission successfully created";
-	public static final String PERMISSION_CREATED_SUCCESSFULLY_CSS = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-success-notification.v-Notification-v-success-notification > div > div > h1 > div > div > div.v-slot.v-align-center.v-align-middle.v-notification-inline-caption";
 	public static final String PERMISSION_UPADTED_SUCCESSFULLY = "Permission successfully updated";
 	public static final String PERMISSION_DELETED_SUCCESSFULLY = "Permission successfully deleted";
 
