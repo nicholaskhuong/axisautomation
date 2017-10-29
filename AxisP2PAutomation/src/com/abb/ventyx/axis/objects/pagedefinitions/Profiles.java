@@ -25,4 +25,5 @@ public class Profiles {
  	public static final String CANCEL_NO  = "#confirmation-window > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-confirmation-window-text-and-button-layout > div > div.v-slot.v-slot-v-bottombar-button-layout.v-align-right.v-align-middle > div > div:nth-child(1)";
  	public static final String TABLE_AUTHORISED_DOCUMENT =  "//*[@id='createcustomerprofilewindow']/div/div/div[3]/div/div/div[2]/div/div[7]/div/div";
  	
+ 	public static final String SORT_CUSTOMER_NAME = "//*[@id='content-component']/div/div[2]/div/div[3]/div/div/div/div/div/div/div[3]/table/thead/tr/th[1]";
 }

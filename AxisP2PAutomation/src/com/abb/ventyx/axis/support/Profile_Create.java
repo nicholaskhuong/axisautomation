@@ -49,7 +49,6 @@ public class Profile_Create extends BaseTestCase {
 		action.pause(waitTime);
 		WebElement rowClick = (new WebDriverWait(driver, 60)).until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(Profiles.LIST_CSS + "> tbody > tr:nth-child(" + (row - 1) + ") > td")));
-		action.pause(6000);
 		rowClick.click();
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
@@ -66,9 +65,11 @@ public class Profile_Create extends BaseTestCase {
 		Actions build = new Actions(driver);
 		build.moveToElement(menu).build().perform(); 
 		action.pause(waitTime);
+		action.pause(6000);
 		WebElement m2m= driver.findElement(By.id(Profiles.SAVE_BTN));
 		m2m.click();
 		if(action.isElementPresent(By.id(Profiles.SAVE_BTN))==true){
+			action.pause(waitTime);
 			action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
 		}
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.MESSAGE_SUCCESSFULLY);
