@@ -6,6 +6,7 @@ import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AddressContact;
@@ -58,6 +59,7 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 		table.filter(SupplierList.SUPPLIER_EMAIL_FILTER_XPATH, SupplierList_CreateNewSupplier_ByAdmin.supplierEmail);
 		i = table.findRowByString(6, SupplierList_CreateNewSupplier_ByAdmin.supplierEmail);
 		System.out.println("print i: "+i);
+		Assert.assertTrue(1 > 0, "Item doesn't exist!");
 		assertEquals(table.getValueRow(2, i), SupplierList_CreateNewSupplier_ByAdmin.companyRegistrationNo);
 		assertEquals(table.getValueRow(3, i), SupplierList_CreateNewSupplier_ByAdmin.taxRegistrationNo);
 		assertEquals(table.getValueRow(4, i), activeStatus);
@@ -65,7 +67,7 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 		assertEquals(table.getValueRow(7, i), SupplierList_CreateNewSupplier_ByAdmin.profile);
 
 		assertEquals(action.isRemoteIconDisable(i), false);
-
+		action.scrollToElement(table.getCellObject(i, 1));
 		table.getCellObject(i, 1).click();
 
 		action.waitObjVisible(By.id(SupplierList.SUPPLIERNAME_ID));

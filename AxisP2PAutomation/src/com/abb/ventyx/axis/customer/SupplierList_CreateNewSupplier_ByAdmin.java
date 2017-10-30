@@ -71,12 +71,12 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		assertEquals(table.getValueTableHeader(3), "Tax Registration No");
 		assertEquals(table.getValueTableHeader(4), "Supplier Status");
 		assertEquals(table.getValueTableHeader(5), "Supplier Name");
-		assertEquals(table.getValueTableHeader(6), "Supplier Email");
+		assertEquals(table.getValueTableHeader(6), "Supplier Notification Email");
 		assertEquals(table.getValueTableHeader(7), "Profile Name");
 	}
 
 	// Step 2
-	@Test(dependsOnMethods = "openSupplierListScreen")
+	@Test(dependsOnMethods = "openSupplierListScreen", alwaysRun = true)
 	public void createSupplierWithBlankMandatoryField() {
 
 		action.clickBtn(By.cssSelector(ScreenObjects.ADD_BTN_CSS));

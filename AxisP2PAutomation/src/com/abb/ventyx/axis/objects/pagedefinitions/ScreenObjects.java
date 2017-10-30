@@ -25,7 +25,12 @@ public class ScreenObjects {
 	public static final String UNSAVED_CHANGE_CSS = "#confirmation-window > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-confirmation-window-text-and-button-layout > div > div:nth-child(1) > div";
 	public static final String EXPAND_CLASS = "v-icon material-icons";
 	public static final String DELETE_BTN_ID = "deleteItemBtn";
-	public static final String HORIZONTAL_SCROLLBAR_CLASS = "v-grid-horizontal-scrollbar-deco";
+	public static final String VERTICAL_SCROLLBAR_CSS = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div > div.v-grid-scroller.v-grid-scroller-vertical";
+	public static final String VERTICAL_SCROLLBAR_CLASS = "v-grid-scroller-vertical";
+	// public static final String HORIZONTAL_SCROLLBAR_CLASS1 =
+	// "v-grid-horizontal-scrollbar-deco";
+	public static final String HORIZONTAL_SCROLLBAR_CLASS = "v-grid-scroller-horizontal";
+	public static final String HORIZONTAL_SCROLLBAR_CSS = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div > div.v-grid-scroller.v-grid-scroller-horizontal";
 	public static final String NEWPASSWORD_ID = "newPassword";
 	public static final String USERID_ID = "userID";
 

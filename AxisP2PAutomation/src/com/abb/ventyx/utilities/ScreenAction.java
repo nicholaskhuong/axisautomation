@@ -377,6 +377,13 @@ public class ScreenAction {
 
 	}
 
+	public void clickVerticalScrollBar() {
+		WebElement horizontal_scroll = driver.findElement(By.className(ScreenObjects.VERTICAL_SCROLLBAR_CLASS));
+		int width = horizontal_scroll.getSize().getWidth();
+		Actions move = new Actions(driver);
+		move.dragAndDropBy(horizontal_scroll, ((width * 25) / 100), 0).build().perform();
+
+	}
 	public void clickHorizontalScrollBar() {
 		WebElement horizontal_scroll = driver.findElement(By
 				.className(ScreenObjects.HORIZONTAL_SCROLLBAR_CLASS));
@@ -387,6 +394,25 @@ public class ScreenAction {
 
 	}
 
+	public void scrollToElement(WebElement element) {
+		for (int i = 0; i < 20; i++) {
+
+			if (!element.isDisplayed()) {
+				clickHorizontalScrollBar();
+				clickVerticalScrollBar();
+			}
+ else {
+				break;
+			}
+		}
+		// ((JavascriptExecutor) driver)
+		// .executeScript("$('.mCustomScrollbar#content').mCustomScrollbar('scrollTo',document.querySelector(\"div.class button.class\"))");
+
+	}
+
+	public void scrollToElement(String cssObject) {
+		scrollToElement(driver.findElement(By.cssSelector(cssObject)));
+	}
 	public String getTextField(String obj) {
 		try {
 			WebElement textField = driver.findElement(By.id(obj));

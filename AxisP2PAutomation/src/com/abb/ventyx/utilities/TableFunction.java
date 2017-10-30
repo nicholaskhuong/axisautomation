@@ -16,10 +16,12 @@ import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 
 public class TableFunction {
 	WebDriver driver;
+	ScreenAction action;
 	int timeout = 60;
 
 	public TableFunction(WebDriver driver) {
 		this.driver = driver;
+		action = new ScreenAction(driver);
 	}
 
 	public int findRowByString(String tableCSS, int columnindex, String value) {
@@ -132,7 +134,7 @@ public class TableFunction {
 			if (foundValue.equals(value)) {
 				i = i - 1;
 				WebElement usrSequenceIdStrBtn = driver.findElement(By.id("usrSequenceIdStrBtn" + i));
-				((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", usrSequenceIdStrBtn);
+				action.scrollToElement(usrSequenceIdStrBtn);
 				usrSequenceIdStrBtn.click();
 				break;
 			}
@@ -142,7 +144,7 @@ public class TableFunction {
 	// Click User Number in Maintain Customer User (Customer account)
 	public void clickUserNo(int row) {
 		WebElement usrSequenceIdStrBtn = driver.findElement(By.id("usrSequenceIdStrBtn" + (row - 1)));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", usrSequenceIdStrBtn);
+		action.scrollToElement(usrSequenceIdStrBtn);
 		usrSequenceIdStrBtn.click();
 	}
 
@@ -195,7 +197,7 @@ public class TableFunction {
 
 		WebElement filterButton = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By
 				.cssSelector(ScreenObjects.FILTER_BTN_CSS)));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", filterButton);
+		action.scrollToElement(filterButton);
 		filterButton.click();
 		WebElement filterColumn;
 		if (isXpath) {
