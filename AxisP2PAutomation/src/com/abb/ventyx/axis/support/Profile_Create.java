@@ -2,7 +2,6 @@ package com.abb.ventyx.axis.support;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
@@ -53,7 +52,6 @@ public class Profile_Create extends BaseTestCase {
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ERROR_MESSAGE);
-		action.waitObjVisible(By.id(Profiles.SAVE_BTN));
 	}
 	
 	@Test(dependsOnMethods = "inputProfileNameandCustomerName", alwaysRun = true)
@@ -61,17 +59,9 @@ public class Profile_Create extends BaseTestCase {
 		action.pause(waitTime);
 		action.clickCheckBoxN(4);
 		action.pause(waitTime);
-		WebElement menu = driver.findElement(By.id(Profiles.SAVE_BTN));
-		Actions build = new Actions(driver);
-		build.moveToElement(menu).build().perform(); 
-		action.pause(waitTime);
 		action.pause(6000);
-		WebElement m2m= driver.findElement(By.id(Profiles.SAVE_BTN));
-		m2m.click();
-		if(action.isElementPresent(By.id(Profiles.SAVE_BTN))==true){
-			action.pause(waitTime);
-			action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
-		}
+		action.clickBtn(By.id(Profiles.SAVE_BTN));
+		action.pause(waitTime);
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.MESSAGE_SUCCESSFULLY);
 	}
 	
