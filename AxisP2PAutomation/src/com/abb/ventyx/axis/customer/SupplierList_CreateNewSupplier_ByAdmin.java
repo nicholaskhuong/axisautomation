@@ -31,7 +31,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
 	WebDriverWait wait;
-	int i, j;
+	int i;
 
 	public static String supplierName = "Name 297587967";
 	public static String supplierEmail = "297587967@abb.com";
@@ -301,7 +301,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
 		
 		assertEquals(table.getValueRow(4, i), "Active");
-		assertEquals(action.isFieldDisable(By.id("accessSupplierBtn"+j)),false);
+		assertEquals(action.isFieldDisable(By.id("accessSupplierBtn" + i)), false);
 	
 	}
 

@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -379,12 +380,17 @@ public class ScreenAction {
 
 	public void clickVerticalScrollBar(Boolean scrollToTop) {
 		WebElement vertical_scroll = driver.findElement(By.className(ScreenObjects.VERTICAL_SCROLLBAR_CLASS));
-		int height = vertical_scroll.getSize().getHeight();
-		Actions move = new Actions(driver);
-		if (scrollToTop) {
-			move.dragAndDropBy(vertical_scroll, 0, height * (-1)).build().perform();
-		} else {
-			move.dragAndDropBy(vertical_scroll, ((height * 25) / 100), 0).build().perform();
+		if (vertical_scroll.isDisplayed()) {
+			int height = vertical_scroll.getSize().getHeight();
+			Actions move = new Actions(driver);
+			if (scrollToTop) {
+				move.click(vertical_scroll);
+				move.sendKeys(vertical_scroll, Keys.HOME);
+				move.build().perform();
+			} else {
+				move.dragAndDropBy(vertical_scroll, ((height * 25) / 100), 0).build().perform();
+			}
+
 		}
 
 	}
@@ -398,12 +404,16 @@ public class ScreenAction {
 
 		WebElement horizontal_scroll = driver.findElement(By
 				.className(ScreenObjects.HORIZONTAL_SCROLLBAR_CLASS));
-		int width = horizontal_scroll.getSize().getWidth();
-		Actions move = new Actions(driver);
-		if (scrollToFirst) {
-			move.dragAndDropBy(horizontal_scroll, 0, width * (-1)).build().perform();
-		} else {
-			move.dragAndDropBy(horizontal_scroll, ((width * 25) / 100), 0).build().perform();
+		if (horizontal_scroll.isDisplayed()) {
+			int width = horizontal_scroll.getSize().getWidth();
+			Actions move = new Actions(driver);
+			if (scrollToFirst) {
+				move.click(horizontal_scroll);
+				move.sendKeys(horizontal_scroll, Keys.HOME);
+				move.build().perform();
+			} else {
+				move.dragAndDropBy(horizontal_scroll, ((width * 25) / 100), 0).build().perform();
+			}
 		}
 
 	}
