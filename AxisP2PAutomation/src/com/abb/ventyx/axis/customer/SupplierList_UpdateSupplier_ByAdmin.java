@@ -67,7 +67,7 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 		assertEquals(table.getValueRow(7, i), SupplierList_CreateNewSupplier_ByAdmin.profile);
 
 		assertEquals(action.isRemoteIconDisable(i), false);
-		action.scrollToElement(table.getCellObject(i, 1));
+		// //action.scrollToElement(table.getCellObject(i, 1));
 		table.getCellObject(i, 1).click();
 
 		action.waitObjVisible(By.id(SupplierList.SUPPLIERNAME_ID));

@@ -377,24 +377,46 @@ public class ScreenAction {
 
 	}
 
-	public void clickVerticalScrollBar() {
+	public void clickVerticalScrollBar(Boolean scrollToTop) {
 		WebElement vertical_scroll = driver.findElement(By.className(ScreenObjects.VERTICAL_SCROLLBAR_CLASS));
 		int height = vertical_scroll.getSize().getHeight();
 		Actions move = new Actions(driver);
-		move.dragAndDropBy(vertical_scroll, ((height * 25) / 100), 0).build().perform();
+		if (scrollToTop) {
+			move.dragAndDropBy(vertical_scroll, 0, height * (-1)).build().perform();
+		} else {
+			move.dragAndDropBy(vertical_scroll, ((height * 25) / 100), 0).build().perform();
+		}
 
 	}
-	public void clickHorizontalScrollBar() {
+
+	public void clickVerticalScrollBar() {
+		clickVerticalScrollBar(false);
+
+	}
+
+	public void clickHorizontalScrollBar(Boolean scrollToFirst) {
+
 		WebElement horizontal_scroll = driver.findElement(By
 				.className(ScreenObjects.HORIZONTAL_SCROLLBAR_CLASS));
 		int width = horizontal_scroll.getSize().getWidth();
 		Actions move = new Actions(driver);
-		move.dragAndDropBy(horizontal_scroll, ((width * 25) / 100), 0).build()
-				.perform();
+		if (scrollToFirst) {
+			move.dragAndDropBy(horizontal_scroll, 0, width * (-1)).build().perform();
+		} else {
+			move.dragAndDropBy(horizontal_scroll, ((width * 25) / 100), 0).build().perform();
+		}
+
+	}
+
+	public void clickHorizontalScrollBar() {
+		clickHorizontalScrollBar(false);
 
 	}
 
 	public void scrollToElement(WebElement element) {
+		clickVerticalScrollBar(true);
+		clickHorizontalScrollBar(true);
+
 		for (int i = 0; i < 20; i++) {
 
 			if (!element.isDisplayed()) {
