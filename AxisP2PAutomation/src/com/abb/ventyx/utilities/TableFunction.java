@@ -5,7 +5,6 @@ import static org.testng.Assert.assertEquals;
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -232,7 +231,7 @@ public class TableFunction {
 	public void assertValueRow(String tableBodyXpath, int column, int row, String value) {
 		WebElement cell = driver
 				.findElement(By.xpath(String.format("%s//tr[%s]//td[%s]", tableBodyXpath, row, column)));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", cell);
+		action.scrollToElement(cell);
 		assertEquals(cell.getText(), value);
 	}
 
@@ -285,14 +284,14 @@ public class TableFunction {
 
 	private String getValueRow(String cellXpath, int column, int row) {
 		WebElement cell = driver.findElement(By.xpath(cellXpath));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", cell);
+		action.scrollToElement(cell);
 		return cell.getText();
 	}
 
 	public String getValueTableHeader(int column) {
 		WebElement header = driver
 				.findElement(By.xpath(ScreenObjects.TABLE_HEAD_XPATH + "//tr//th[" + column + "]//div[1]"));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", header);
+		action.scrollToElement(header);
 		return header.getText();
 	}
 }

@@ -176,11 +176,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		assertEquals(table.getValueRow(5, i), supplierName);
 		assertEquals(table.getValueRow(6, i), supplierEmail);
 		assertEquals(table.getValueRow(7, i), profile);
-		// WebElement accessColumn = driver.findElement(By
-		// .xpath("//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div[3]/table/tbody/tr/td[8]"));
-		// List<WebElement> allEle =
-		// accessColumn.findElements(By.cssSelector("[id^='accessSupplierBtn']"));
-		WebElement accessCell = table.getCellObject(8, i);
+		WebElement accessCell = table.getCellObject(i, 8);
 		action.isFieldDisable(accessCell);
 		String supplierID = table.getIDValue(i);
 	}
