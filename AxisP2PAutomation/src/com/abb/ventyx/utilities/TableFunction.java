@@ -259,7 +259,7 @@ public class TableFunction {
 	}
 
 	public WebElement getCellObject(String tableXpath, int row, int column) {
-		WebElement cell = driver.findElement(By.xpath(String.format("%s/tr[%s]/td[%s]/div", tableXpath, row, column)));
+		WebElement cell = driver.findElement(By.xpath(String.format("%s/tr[%s]/td[%s]/div/div", tableXpath, row, column)));
 		return cell;
 	}
 

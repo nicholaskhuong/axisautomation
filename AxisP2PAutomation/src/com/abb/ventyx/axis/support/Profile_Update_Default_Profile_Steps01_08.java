@@ -181,6 +181,7 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 		action.clickCheckBoxN(0);
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
+		action.pause(waitTime);
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ERROR_MESSAGE);
 	    action.pause(waitTime);
 	}

@@ -21,4 +21,8 @@ public class Users {
 	public static final String TITLE = "Maintain Supplier Users";
 	public static final String TITLE_CREATE = "Create User";
 	public static final String TITLE_MODIFY = "Modify User";
+	
+	public static final String SAVE_BTN_ID= "saveBtn";
+	public static final String CANCEL_BTN_ID= "cancelBtn";
+	
 }

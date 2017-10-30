@@ -56,7 +56,7 @@ public class Profile_Delete_Customer_Defined extends BaseTestCase {
 		table = new TableFunction(driver);
 		i = table.findRowByString(1, customerName);
 		action.clickHorizontalScrollBar();
-		index = table.getCellObject(6, 1);
+		index = table.getCellObject(1, 6);
 		action.pause(waitTime);
 		index.isDisplayed();
 	}	

@@ -20,7 +20,7 @@ public class AxisConfigMenu {
 		public static final String CUSTOMER_LIST = "#deactivateCust > span > span";
 		public static final String PROFILES = "#maintainCustomerProfileButton > span > span";
 		public static final String BUSINESS_CODE_SETS = "#maintainCodeSetButton > span > span";
-		public static final String USERS = "#maintainCustomerUsergroupButton > span > span";
+		public static final String USERS = "#maintainCustUsersButton > span > span";
 		public static final String PDF_FORMAT_PARAMETERS = "#maintainPdfFormatParams > span > span";
 		public static final String FOP_RESOURCE_PROFILES = "#maintainFOPResource > span > span";
 		public static final String CUSTOMISE_LITERALS = "#maintainTranslatedText > span > span";
