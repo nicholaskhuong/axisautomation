@@ -196,7 +196,7 @@ public class TableFunction {
 
 		WebElement filterButton = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By
 				.cssSelector(ScreenObjects.FILTER_BTN_CSS)));
-		action.scrollToElement(filterButton);
+
 		filterButton.click();
 		WebElement filterColumn;
 		if (isXpath) {
@@ -204,6 +204,7 @@ public class TableFunction {
 		} else {
 			filterColumn = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By.id(filterPath)));
 		}
+		action.scrollToElement(filterColumn);
 		filterColumn.clear();
 		filterColumn.sendKeys(value);
 		try {

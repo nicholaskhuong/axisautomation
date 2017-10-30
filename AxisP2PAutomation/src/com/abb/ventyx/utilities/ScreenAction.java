@@ -378,10 +378,10 @@ public class ScreenAction {
 	}
 
 	public void clickVerticalScrollBar() {
-		WebElement horizontal_scroll = driver.findElement(By.className(ScreenObjects.VERTICAL_SCROLLBAR_CLASS));
-		int width = horizontal_scroll.getSize().getWidth();
+		WebElement vertical_scroll = driver.findElement(By.className(ScreenObjects.VERTICAL_SCROLLBAR_CLASS));
+		int height = vertical_scroll.getSize().getHeight();
 		Actions move = new Actions(driver);
-		move.dragAndDropBy(horizontal_scroll, ((width * 25) / 100), 0).build().perform();
+		move.dragAndDropBy(vertical_scroll, ((height * 25) / 100), 0).build().perform();
 
 	}
 	public void clickHorizontalScrollBar() {
