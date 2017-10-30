@@ -30,6 +30,7 @@ public class TableFunction {
 	public int findRowByString(int columnindex, String value) {
 		return findRowByString(ScreenObjects.TABLE_BODY_XPATH, columnindex, value, true);
 	}
+
 	public int findRowByString(String tableBody, int columnindex, String value, boolean isXpath) {
 		int row = -1;
 		WebDriverWait wait = new WebDriverWait(driver, timeout);
@@ -47,9 +48,7 @@ public class TableFunction {
 		int sumRow;
 		if (isXpath) {
 			sumRow = tableRows.size();
-		}
-		else
-		{
+		} else {
 			sumRow = tableRows.size() - 1;
 		}
 		if (sumRow > 0) {
@@ -194,15 +193,17 @@ public class TableFunction {
 
 	public void inputFilter(String value, String filterPath, Boolean isXpath) {
 
-		WebElement filterButton = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By
-				.cssSelector(ScreenObjects.FILTER_BTN_CSS)));
+		WebElement filterButton = (new WebDriverWait(driver, timeout))
+				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.FILTER_BTN_CSS)));
 
 		filterButton.click();
 		WebElement filterColumn;
 		if (isXpath) {
-			filterColumn = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By.xpath(filterPath)));
+			filterColumn = (new WebDriverWait(driver, timeout))
+					.until(ExpectedConditions.presenceOfElementLocated(By.xpath(filterPath)));
 		} else {
-			filterColumn = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By.id(filterPath)));
+			filterColumn = (new WebDriverWait(driver, timeout))
+					.until(ExpectedConditions.presenceOfElementLocated(By.id(filterPath)));
 		}
 		action.scrollToElement(filterColumn);
 		filterColumn.clear();
@@ -261,7 +262,8 @@ public class TableFunction {
 		WebElement cell = driver.findElement(By.xpath(String.format("%s/tr[%s]/td[%s]/div", tableXpath, row, column)));
 		return cell;
 	}
-	public WebElement getCellObjectSupplierCodeSet(int column, int row) {
+
+	public WebElement getCellObjectSupplierCodeSet(int row, int column) {
 		WebElement cell = driver.findElement(By.xpath(String.format("%s//tr[%s]//td[%s]//div//div",
 				"//*[@id=\"codeSetGrid-AsnDeliveryCode\"]/div[3]/table/tbody", row, column)));
 		return cell;

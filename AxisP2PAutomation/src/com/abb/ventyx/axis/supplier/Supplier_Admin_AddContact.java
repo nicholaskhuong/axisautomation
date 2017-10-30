@@ -78,8 +78,10 @@ public class Supplier_Admin_AddContact extends BaseTestCase {
 		// Verify that message display
 		// wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.ERROR)));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
-		// assertEquals(driver.findElement(By.cssSelector(CustomerUsers.ERROR)).getText(),
-		// Messages.INVALID_EMAIL_2);
+		/*
+		 * assertEquals(driver.findElement(By.cssSelector(CustomerUsers.ERROR)).getText(
+		 * ), Messages.INVALID_EMAIL_2);
+		 */
 	}
 
 	@Test(dependsOnMethods = "verifyPopup")

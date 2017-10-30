@@ -25,8 +25,9 @@ public class Supplier_Admin_BusinessCodeSets_DeliveryCode extends BaseTestCase {
 	String supplierName = "Donna 1";
 	String deliveryCodeLessThan15 = "001";
 	String deliveryCodeMoreThan15 = "DONNA NGUYEN THI NGUYEN";
-	int milliseconds = 800;
+	int milliseconds = 1000;
 	String codeSetDescription = "Code set";
+	String expected = "Supplier Code Sets";
 
 	@Test
 	public void openScreen() {
@@ -78,7 +79,7 @@ public class Supplier_Admin_BusinessCodeSets_DeliveryCode extends BaseTestCase {
 	@Test(dependsOnMethods = "addDeliverySuccessfully")
 	public void verify() {
 		// step 8
-		action.pause(4000);
+		action.pause(milliseconds);
 		table = new TableFunction(driver);
 		WebElement index = table.getCellObjectSupplierCodeSet(1, 1);
 		index.click();
@@ -98,10 +99,29 @@ public class Supplier_Admin_BusinessCodeSets_DeliveryCode extends BaseTestCase {
 				Messages.UNSAVED_CHANGE);
 		driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
 		action.pause(milliseconds);
-		/*
-		 * assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)
-		 * ).getText(), Messages.DELIVERY_CODE_EQUAL_15CHARACTER);
-		 */
+
+	}
+
+	@Test(dependsOnMethods = "verify")
+	public void deleteDeliveryCode() {
+		// Step 11, 12
+		WebElement index = table.getCellObjectSupplierCodeSet(1, 3);
+		action.pause(milliseconds);
+		index.click();
+		action.pause(milliseconds);
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(),
+				Messages.MESSAGE_DELETE_DILIVERY_CODE);
+		driver.findElement(By.id(ScreenObjects.NO_BTN_ID)).click();
+		WebElement index2 = table.getCellObjectSupplierCodeSet(3, 3);
+		action.pause(milliseconds);
+		index2.click();
+		action.pause(milliseconds);
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(),
+				Messages.MESSAGE_DELETE_DILIVERY_CODE);
+		driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
+		action.pause(milliseconds);
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)).getText(),
+				Messages.DELIVERY_CODE_SET_DELETED_SUCCESS);
 	}
 
 }

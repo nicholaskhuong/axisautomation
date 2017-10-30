@@ -94,7 +94,8 @@ public class Messages {
 	public static final String USERPREFERENCES_UPDATED_SUCCESSFULLY = "Profile successfully updated";
 	public static final String DELIVERY_CODE_LESS_15CHARACTER = "Delivery Code must be exactly 15 characters";
 	public static final String DELIVERY_CODE_EQUAL_15CHARACTER = "Code Set successfully added";
-
+	public static final String DELIVERY_CODE_SET_UPDATED_SUCCESS = "Code Set successfully updated";
+	public static final String DELIVERY_CODE_SET_DELETED_SUCCESS = "Code Set successfully deleted";
 	// Profiles
 	public static final String ERROR_MESSAGE = "Please select at least one business document beside System";
 	public static final String MESSAGE_SUCCESSFULLY = "Customer Defined Profile successfully created";
@@ -105,8 +106,9 @@ public class Messages {
 	public static final String MESSAGE_EDIT_PROFILE_NAME_SUCCESSFULLY = "Customer Defined Profile successfully updated";
 	public static final String MESSAGE_DELETE_SUCCESSFULLY = "Customer Defined Profile successfully deleted";
 
-	//Customers
-	public static final String CREATE_CUSTOMER_SUCCESSFULLY ="Customer successfully created";
+	// Customers
+	public static final String CREATE_CUSTOMER_SUCCESSFULLY = "Customer successfully created";
+	// Supplier
+	public static final String MESSAGE_DELETE_DILIVERY_CODE = "Are you sure you want to delete the selected code?";
 
-	
-}	
+}
