@@ -80,7 +80,7 @@ public class Profile_Update_Customer_Defined_Step07 extends BaseTestCase {
 	@Test(dependsOnMethods = "checkStatusProfileAndCustomerName", alwaysRun = true)
 	public void editProfileNameonModifyProfileSreen(){
 		action.inputTextField(Profiles.PROFILE_NAME_ID, profileNameEdited);
-		action.pause(waitTime);
+		action.pause(6000);
 		action.clickCheckBoxN(2);
 	}
 	
@@ -166,9 +166,9 @@ public class Profile_Update_Customer_Defined_Step07 extends BaseTestCase {
 	
 	@Test(dependsOnMethods = "clickEditIconAgainOnMaintainCustomerScreen", alwaysRun = true)
 	public void editAuthorisedDocumentTypes(){
-		action.pause(waitTime);
+		action.pause(5000);
 		action.clickBtn(By.id("showConfigBtn-AdvanceShippingNotice"));
-		action.pause(waitTime);
+		action.pause(4000);
 		List<WebElement> checkBoxIndex0 = driver.findElements(By.xpath("//*[@id='configurationGrid-AdvanceShippingNotice']/div[3]/table/tbody/tr[1]/td[1]"));
 		checkBoxIndex0.get(0).click();
 	}

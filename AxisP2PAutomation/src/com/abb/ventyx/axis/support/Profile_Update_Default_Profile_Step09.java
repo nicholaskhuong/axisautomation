@@ -163,6 +163,7 @@ public class Profile_Update_Default_Profile_Step09 extends BaseTestCase {
 	//Step 4
 	@Test(dependsOnMethods = "verifyDataOnModifyProfileScreen", alwaysRun = true)
 	public void untickCheckBoxandSaveButtonOnModifyProfileScreen(){
+		action.pause(waitTime);
 		action.clickCheckBoxN(0);
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
