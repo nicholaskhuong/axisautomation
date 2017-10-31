@@ -17,6 +17,8 @@ public class SupplierList {
 	public static final String ACTIVATE_CSS = "#HeaderMenuBar > span:nth-child(3)";
 	public static final String DEACTIVATE_CSS = "#HeaderMenuBar > span:nth-child(4)";
 	public static final String SUPPLIER_EMAIL_FILTER_XPATH = "//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div[3]/table/thead/tr[2]/th[6]/input";
+	public static final String SUPPLIER_ID_FILTER_XPATH = "//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div[3]/table/thead/tr[2]/th[1]/input";
+	public static final String SUPPLIER_STATUS_FILTER_XPATH = "//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div[3]/table/thead/tr[2]/th[4]/input";
 	public static final String SUPPLIER_EMAIL_FILTER_CSS = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div > div.v-grid-tablewrapper > table > thead > tr:nth-child(2) > th:nth-child(6) > input";
 	
 	

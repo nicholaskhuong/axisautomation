@@ -63,6 +63,13 @@ public class ScreenAction {
 		assertEquals(screenTitle.getText(), titleScreen, "Title is wrong");
 	}
 
+	public void assertDocumentTitle(String titleScreen) {
+		WebElement screenTitle = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(ScreenObjects.DOCUMENT_TITLE_CSS)));
+
+		assertEquals(screenTitle.getText(), titleScreen, "Title is wrong");
+	}
+
 	public void clickBtn(By obj) {
 		WebElement btn = driver.findElement(obj);
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", btn);

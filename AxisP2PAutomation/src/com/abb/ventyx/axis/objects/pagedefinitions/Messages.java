@@ -114,5 +114,11 @@ public class Messages {
 	// User Customer Maintenance
 	public static final String INPUT_INVALID_PASSWORD1 = "Password must be 6-16 characters. Password must have at least one uppercase letter, one lowercase letter, and one number. This is not a valid password string";
 	public static final String INPUT_INVALID_PASSWORD2 = "Password must have at least one uppercase letter, one lowercase letter, and one number.";
-
+	public static final String MESSAGE_ERROR_PASSWORD = "Entered Password is not the same, please verify.";
+	public static final String ADD_USER_CUSTOMER_SUCCESSFULLY = "User successfully created";
+	public static final String UPDATE_USER_CUSTOMER_SUCCESSFULLY = "User successfully updated";
+	public static final String DELETE_USER_CUSTOMER_SUCCESSFULLY = "User successfully deleted";
+	public static final String ASN_NOT_FOUND = "The Shipping Notice document is not found";
+	public static final String INVOICE_NOT_FOUND = "The Invoice document is not found";
+	public static final String POACK_NOT_FOUND = "The Purchase Order Acknowledgement document is not found";
 }

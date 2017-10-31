@@ -208,11 +208,7 @@ public class TableFunction {
 		action.scrollToElement(filterColumn);
 		filterColumn.clear();
 		filterColumn.sendKeys(value);
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		action.pause(1000);
 
 	}
 
