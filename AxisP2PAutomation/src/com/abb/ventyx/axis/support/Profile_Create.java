@@ -77,12 +77,13 @@ public class Profile_Create extends BaseTestCase {
 		action.inputTextField(Profiles.PROFILE_NAME_ID, "Profile4");
 		action.waitObjVisible(By.id(Profiles.PROFILE_NAME_ID));
 		action.cancelClickNo(Profiles.TITLE_MAINTAIN_CUSTOMER);
+		action.pause(waitTime);
 	}
 	@Test(dependsOnMethods = "inputProfileNameandCustomerNameOnCreatePage", alwaysRun = true)
 	public void inputMissingAllFields() {
 		action.pause(waitTime);
 		action.inputTextField(Profiles.PROFILE_NAME_ID, "");
-		action.pause(5000);
+		action.pause(6000);
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
 		action.pause(waitTime);
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.MESSAGE_MISSING_ALL_FIELD);
@@ -92,7 +93,7 @@ public class Profile_Create extends BaseTestCase {
 	public void inputMissingCustomerName() {
 		action.pause(waitTime);
 		action.inputTextField(Profiles.PROFILE_NAME_ID, "Profile4");
-		action.pause(5000);
+		action.pause(6000);
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
 		action.pause(waitTime);
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.MESSAGE_MISSING_CUSTOMER_NAME);
@@ -108,7 +109,7 @@ public class Profile_Create extends BaseTestCase {
 		WebElement rowClick = (new WebDriverWait(driver, 60)).until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(Profiles.LIST_CSS + "> tbody > tr:nth-child(" + (row - 1) + ") > td")));
 		rowClick.click();
-		action.pause(5000);
+		action.pause(6000);
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
 		action.pause(waitTime);
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
@@ -120,7 +121,7 @@ public class Profile_Create extends BaseTestCase {
 		action.pause(waitTime);
 		action.inputTextField(Profiles.PROFILE_NAME_ID, "Profile3");
 		action.clickCheckBoxN(4);
-		action.pause(5000);
+		action.pause(6000);
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
 		action.pause(waitTime);
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,

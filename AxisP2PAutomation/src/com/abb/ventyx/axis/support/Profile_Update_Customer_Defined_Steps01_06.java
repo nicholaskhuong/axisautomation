@@ -144,7 +144,7 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 	
 	@Test(dependsOnMethods = "openMaintainCustomerDefinedProfilesScreenAgain", alwaysRun = true)
 	public void clickFiterButtonAgainOnMaintainCustomerScreen() {
-		action.pause(6000);
+		action.pause(7000);
 		WebElement filterButton = driver.findElement(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 		filterButton.click();
 		ScreenAction action = new ScreenAction(driver);
