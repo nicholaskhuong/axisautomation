@@ -163,7 +163,7 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
 		index = table.getCellObject(4, 5);
-		index.click();
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", index);
 	}
 	
 	@Test(dependsOnMethods = "clickEditIconAgainOnMaintainCustomerScreen", alwaysRun = true)

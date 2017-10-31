@@ -3,6 +3,7 @@ package com.abb.ventyx.axis.support;
 import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
@@ -61,7 +62,7 @@ public class User_Customer_Creating extends BaseTestCase {
 	public void clickCustomerIDOnCustomerScreen() {
 		action.pause(waitTime);
 		index = table.getCellObject("//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div/div/div/div[3]/table/tbody",1, 1);
-		index.click();
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", index);
 	}
 	
 	//Step 4
