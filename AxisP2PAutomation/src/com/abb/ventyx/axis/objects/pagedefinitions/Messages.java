@@ -120,5 +120,7 @@ public class Messages {
 	public static final String INPUT_INVALID_PASSWORD2 = "Password must have at least one uppercase letter, one lowercase letter, and one number.";
 	public static final String MESSAGE_ERROR_PASSWORD = "Entered Password is not the same, please verify.";
 	public static final String ADD_USER_CUSTOMER_SUCCESSFULLY = "User successfully created";
+	public static final String UPDATE_USER_CUSTOMER_SUCCESSFULLY = "User successfully updated";
+	public static final String DELETE_USER_CUSTOMER_SUCCESSFULLY = "User successfully deleted";
 
 }

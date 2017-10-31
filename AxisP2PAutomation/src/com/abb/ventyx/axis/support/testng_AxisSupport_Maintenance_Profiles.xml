@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="AxisSupport_Profiles" parallel="none">
- 
+<suite name="AxisSupport_Maintenance_Profiles" parallel="none">
 	<test name="Create Profile">
 		<classes>
 				<class name="com.abb.ventyx.axis.support.Profile_Create" />

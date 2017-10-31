@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="AxisSupport_User" parallel="none">
+<suite name="AxisSupport_Administration_User" parallel="none">
  
 	<test name="Axis Support Administration Users Creating">
 		<classes>
