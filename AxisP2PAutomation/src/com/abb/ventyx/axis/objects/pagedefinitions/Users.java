@@ -25,4 +25,6 @@ public class Users {
 	public static final String SAVE_BTN_ID= "saveBtn";
 	public static final String CANCEL_BTN_ID= "cancelBtn";
 	
+ 	public static final String USER_ID_FILTER = "(//input[@id='filterField'])[2]";
+	
 }

@@ -58,7 +58,9 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 	public void inputDataOnCreateNewCustomerScreen() {
 		action.pause(waitTime);
 		action.inputTextField(CreateNewCustomer.CUSTOMER_NAME, customerName);
+		action.pause(waitTime);
 		action.inputTextField(CreateNewCustomer.EMAIL_ADDRESS, emailAddress);
+		action.pause(waitTime);
 		action.clickCheckBoxN(0);
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));

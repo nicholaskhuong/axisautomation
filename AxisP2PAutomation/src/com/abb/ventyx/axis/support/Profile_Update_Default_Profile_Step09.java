@@ -176,7 +176,7 @@ public class Profile_Update_Default_Profile_Step09 extends BaseTestCase {
 	public void tickCheckBoxOnModifyProfileScreen(){
 		action.clickCheckBoxN(2);
 		action.clickCheckBoxN(3);
-		action.pause(waitTime);
+		action.pause(5000);
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
 		action.checkAddSuccess(Messages.MESSAGE_EDIT_PROFILE_NAME_SUCCESSFULLY);
 	    action.pause(waitTime);
