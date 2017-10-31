@@ -68,6 +68,7 @@ public class Profile_Filter_Sort extends BaseTestCase {
 		assertEquals(table.getValueRow(1, 1), "CryTest");
 		assertEquals(table.getValueRow(2, 1), "All Document Types");
 		assertEquals(table.getValueRow(3, 1), "Advance Shipping Notice, Invoicing, Purchase Orders, Purchase Order Acknowledgement, Remittance Advices");
+		action.pause(waitTime);
 		action.clickBtn(By.xpath(Profiles.SORT_CUSTOMER_NAME));
 	}
 	

@@ -16,6 +16,7 @@ import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.Profiles;
 import com.abb.ventyx.axis.objects.pagedefinitions.ResetUserPassword;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
+import com.abb.ventyx.axis.objects.pagedefinitions.Users;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseDropDownList;
 import com.abb.ventyx.utilities.BaseTestCase;
@@ -57,9 +58,11 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 	@Test(dependsOnMethods = "clickAddButtonOnMaintainCustomerScreen", alwaysRun = true)
 	public void inputDataOnCreateNewCustomerScreen() {
 		action.pause(waitTime);
-		action.inputTextField(CreateNewCustomer.CUSTOMER_NAME, customerName);
+		WebElement password = driver.findElement(By.id(CreateNewCustomer.CUSTOMER_NAME));
+		password.sendKeys(customerName);
 		action.pause(waitTime);
-		action.inputTextField(CreateNewCustomer.EMAIL_ADDRESS, emailAddress);
+		WebElement email_Address = driver.findElement(By.id(CreateNewCustomer.EMAIL_ADDRESS));
+		email_Address.sendKeys(emailAddress);
 		action.pause(waitTime);
 		action.clickCheckBoxN(0);
 		action.pause(waitTime);

@@ -80,8 +80,9 @@ public class Profile_Update_Customer_Defined_Step07 extends BaseTestCase {
 	@Test(dependsOnMethods = "checkStatusProfileAndCustomerName", alwaysRun = true)
 	public void editProfileNameonModifyProfileSreen(){
 		action.inputTextField(Profiles.PROFILE_NAME_ID, profileNameEdited);
-		action.pause(6000);
+		action.pause(waitTime);
 		action.clickCheckBoxN(2);
+		action.pause(waitTime);
 	}
 	
 	@Test(dependsOnMethods = "editProfileNameonModifyProfileSreen", alwaysRun = true)
