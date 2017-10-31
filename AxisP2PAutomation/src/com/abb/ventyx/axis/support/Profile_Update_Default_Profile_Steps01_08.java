@@ -16,7 +16,6 @@ import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.Profiles;
 import com.abb.ventyx.axis.objects.pagedefinitions.ResetUserPassword;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
-import com.abb.ventyx.axis.objects.pagedefinitions.Users;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseDropDownList;
 import com.abb.ventyx.utilities.BaseTestCase;
