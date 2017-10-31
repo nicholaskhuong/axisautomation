@@ -5,6 +5,7 @@ import static org.testng.Assert.assertEquals;
 import java.util.Random;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -68,8 +69,7 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 
 		assertEquals(action.isRemoteIconDisable(i), false);
 		// //action.scrollToElement(table.getCellObject(i, 1));
-		table.getCellObject(i, 1).click();
-
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", table.getCellObject(i, 1));
 		action.waitObjVisible(By.id(SupplierList.SUPPLIERNAME_ID));
 		action.assertTextBoxDisable(By.id(SupplierList.COMPANYREGISTRATIONNO_ID));
 		action.assertTextBoxDisable(By.id(SupplierList.TAXREGRISTRATIONNO_ID));
@@ -105,7 +105,7 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 	public void checkCancelWithoutInput() {
 		action.pause(500);
 		// table.clickSupplierIDInSupplierListGrid(SupplierList_CreateNewSupplier_ByAdmin.taxRegistrationNo);
-		table.getCellObject(i, 1).click();
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", table.getCellObject(i, 1));
 		action.waitObjVisible(By.id(SupplierList.SUPPLIERNAME_ID));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.CANCEL_ID));
 		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)),false);
@@ -118,7 +118,7 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 	public void checkNoButtonOnUnsavedChangesDialog() {
 
 		// table.clickSupplierIDInSupplierListGrid(SupplierList_CreateNewSupplier_ByAdmin.taxRegistrationNo);
-		table.getCellObject(i, 1).click();
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", table.getCellObject(i, 1));
 		action.pause(500);
 		action.inputTextField(SupplierList.SUPPLIERNAME_ID, "test");
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.CANCEL_ID));

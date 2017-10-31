@@ -5,6 +5,7 @@ import static org.testng.Assert.assertEquals;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -97,8 +98,7 @@ public class TableFunction {
 		for (int i = 0; i < sumRow; i++) {
 			String DocTypevalue = driver.findElement(By.id("docTypeBtn" + i)).getText();
 			if (DocTypevalue.equals(value)) {
-				driver.findElement(By.id("docTypeBtn" + i)).click();
-				// row=i;
+				((JavascriptExecutor) driver).executeScript("arguments[0].click();", driver.findElement(By.id("docTypeBtn" + i)));
 				break;
 			}
 		}
@@ -133,7 +133,7 @@ public class TableFunction {
 				i = i - 1;
 				WebElement usrSequenceIdStrBtn = driver.findElement(By.id("usrSequenceIdStrBtn" + i));
 				action.scrollToElement(usrSequenceIdStrBtn);
-				usrSequenceIdStrBtn.click();
+				((JavascriptExecutor) driver).executeScript("arguments[0].click();", usrSequenceIdStrBtn);
 				break;
 			}
 		}
@@ -143,7 +143,7 @@ public class TableFunction {
 	public void clickUserNo(int row) {
 		WebElement usrSequenceIdStrBtn = driver.findElement(By.id("usrSequenceIdStrBtn" + (row - 1)));
 		action.scrollToElement(usrSequenceIdStrBtn);
-		usrSequenceIdStrBtn.click();
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", usrSequenceIdStrBtn);
 	}
 
 	// Click User Number in Maintain Customer User (Customer account)
@@ -157,7 +157,7 @@ public class TableFunction {
 					.getText();
 			if (foundValue.equals(value)) {
 				i = i - 1;
-				driver.findElement(By.id("spIdBtn" + i)).click();
+				((JavascriptExecutor) driver).executeScript("arguments[0].click();", driver.findElement(By.id("spIdBtn" + i)));
 				break;
 			}
 		}

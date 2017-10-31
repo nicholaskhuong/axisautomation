@@ -4,6 +4,7 @@ package com.abb.ventyx.axis.support;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
@@ -65,7 +66,7 @@ public class Profile_Update_Customer_Defined_Step07 extends BaseTestCase {
 		action.pause(waitTime);
 		index = table.getCellObject(3, 5);
 		action.pause(waitTime);
-		index.click();	
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", index);
 	}
 
 	@Test(dependsOnMethods = "clickPencilIconOnMaintainCustomerScreen", alwaysRun = true)
@@ -120,7 +121,7 @@ public class Profile_Update_Customer_Defined_Step07 extends BaseTestCase {
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
 		index = table.getCellObject(3, 4);
-		index.click();
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", index);
 		action.pause(waitTime);
 		action.clickBtn(By.id(Profiles.CANCEL_BTN));
 	}
@@ -162,7 +163,7 @@ public class Profile_Update_Customer_Defined_Step07 extends BaseTestCase {
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
 		index = table.getCellObject(3, 5);
-		index.click();
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", index);
 	}
 	
 	@Test(dependsOnMethods = "clickEditIconAgainOnMaintainCustomerScreen", alwaysRun = true)

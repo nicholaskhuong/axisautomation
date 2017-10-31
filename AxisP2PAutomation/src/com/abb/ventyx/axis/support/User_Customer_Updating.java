@@ -5,6 +5,7 @@ import static org.testng.Assert.assertEquals;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -69,7 +70,7 @@ public class User_Customer_Updating extends BaseTestCase {
 	public void clickCustomerIDOnCustomerScreen() {
 		action.pause(waitTime);
 		index = table.getCellObject("//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div/div/div/div[3]/table/tbody",1, 1);
-		index.click();
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", index);
 	}
 	
 	//Step 3
@@ -92,7 +93,7 @@ public class User_Customer_Updating extends BaseTestCase {
 	public void clickUserNumberOnMaintainCustomerUsersScreen() {
 		action.pause(5000);
 		index1 = table.getCellObject("//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div[3]/table/tbody",1, 1);
-		index1.click();	
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", index);
 	}
 	
 	@Test(dependsOnMethods = "clickUserNumberOnMaintainCustomerUsersScreen", alwaysRun = true)

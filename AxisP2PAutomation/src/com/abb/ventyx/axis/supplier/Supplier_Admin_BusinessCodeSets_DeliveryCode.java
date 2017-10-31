@@ -83,6 +83,7 @@ public class Supplier_Admin_BusinessCodeSets_DeliveryCode extends BaseTestCase {
 		table = new TableFunction(driver);
 		WebElement index = table.getCellObjectSupplierCodeSet(1, 1);
 		index.click();
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", index);
 		action.inputTextField(BusinessCodeSets.CODE_SET_DESCRIPTION, codeSetDescription);
 		action.clickBtn(By.id(ScreenObjects.CANCEL_ID));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
@@ -107,14 +108,14 @@ public class Supplier_Admin_BusinessCodeSets_DeliveryCode extends BaseTestCase {
 		// Step 11, 12
 		WebElement index = table.getCellObjectSupplierCodeSet(1, 3);
 		action.pause(milliseconds);
-		index.click();
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", index);
 		action.pause(milliseconds);
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(),
 				Messages.MESSAGE_DELETE_DILIVERY_CODE);
 		driver.findElement(By.id(ScreenObjects.NO_BTN_ID)).click();
 		WebElement index2 = table.getCellObjectSupplierCodeSet(3, 3);
 		action.pause(milliseconds);
-		index2.click();
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", index2);
 		action.pause(milliseconds);
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(),
 				Messages.MESSAGE_DELETE_DILIVERY_CODE);

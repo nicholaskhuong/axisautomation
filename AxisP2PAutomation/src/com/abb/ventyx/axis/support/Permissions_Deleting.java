@@ -5,6 +5,7 @@ import static org.junit.Assert.assertThat;
 import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -52,7 +53,7 @@ public class Permissions_Deleting extends BaseTestCase {
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", trashBinIcon);
 		trashBinIcon.click();
 		action.waitObjVisibleAndClick(obj);*/
-		table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH, 1, 5).click();
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH, 1, 5));
 		action.waitObjVisible(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION));
 		// Make sure this is a Confirmation of deleting process
 		assertThat(driver.findElement(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION)).getText(), containsString(Messages.DELETE_CONFIRM));

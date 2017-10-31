@@ -3,6 +3,7 @@ package com.abb.ventyx.axis.support;
 import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -56,7 +57,7 @@ public class User_Customer_Deleting extends BaseTestCase {
 	public void clickCustomerIDOnCustomerScreen() {
 		action.pause(waitTime);
 		index = table.getCellObject("//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div/div/div/div[3]/table/tbody",1, 1);
-		index.click();
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", index);
 	}
 	
 	@Test(dependsOnMethods = "clickCustomerIDOnCustomerScreen", alwaysRun = true)
@@ -79,7 +80,7 @@ public class User_Customer_Deleting extends BaseTestCase {
 		table = new TableFunction(driver);
 		action.clickHorizontalScrollBar();
 		index =  table.getCellObject(1, 6);
-		index.click();
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", index);
 		action.pause(waitTime);
 		action.clickBtn(By.id(ScreenObjects.NO_BTN_ID));
 		action.pause(waitTime);
