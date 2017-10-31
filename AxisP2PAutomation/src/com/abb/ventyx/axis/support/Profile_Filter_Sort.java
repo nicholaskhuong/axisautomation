@@ -59,11 +59,12 @@ public class Profile_Filter_Sort extends BaseTestCase {
 		action.pause(waitTime);
 		WebElement filterButton = driver.findElement(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 		filterButton.click();
+		action.pause(waitTime);
 	}
 	
 	@Test(dependsOnMethods = "clickFiterToCloseOnMaintainCustomerScreen", alwaysRun = true)
 	public void clickSortIconOnMaintainCustomerScreen(){
-		action.pause(waitTime);
+		action.pause(5000);
 		assertEquals(table.getValueRow(1, 1), "Development Cust");
 		assertEquals(table.getValueRow(2, 1), "All Document Types");
 		assertEquals(table.getValueRow(3, 1), "Invoicing, Purchase Order Acknowledgement");
@@ -72,7 +73,7 @@ public class Profile_Filter_Sort extends BaseTestCase {
 	
 	@Test(dependsOnMethods = "clickSortIconOnMaintainCustomerScreen", alwaysRun = true)
 	public void checkDataOnMaintainCustomerScreen(){
-		action.pause(waitTime);
+		action.pause(5000);
 		assertEquals(table.getValueRow(2, 1), "All Document Types");
 		assertEquals(table.getValueRow(3, 1), "Advance Shipping Notice, Invoicing, Purchase Orders");
 	}
