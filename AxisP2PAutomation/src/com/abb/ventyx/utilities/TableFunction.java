@@ -132,7 +132,7 @@ public class TableFunction {
 			if (foundValue.equals(value)) {
 				i = i - 1;
 				WebElement usrSequenceIdStrBtn = driver.findElement(By.id("usrSequenceIdStrBtn" + i));
-				action.scrollToElement(usrSequenceIdStrBtn);
+				// action.scrollToElement(usrSequenceIdStrBtn);
 				((JavascriptExecutor) driver).executeScript("arguments[0].click();", usrSequenceIdStrBtn);
 				break;
 			}
@@ -142,7 +142,7 @@ public class TableFunction {
 	// Click User Number in Maintain Customer User (Customer account)
 	public void clickUserNo(int row) {
 		WebElement usrSequenceIdStrBtn = driver.findElement(By.id("usrSequenceIdStrBtn" + (row - 1)));
-		action.scrollToElement(usrSequenceIdStrBtn);
+		// action.scrollToElement(usrSequenceIdStrBtn);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", usrSequenceIdStrBtn);
 	}
 
@@ -229,7 +229,7 @@ public class TableFunction {
 	public void assertValueRow(String tableBodyXpath, int column, int row, String value) {
 		WebElement cell = driver
 				.findElement(By.xpath(String.format("%s//tr[%s]//td[%s]", tableBodyXpath, row, column)));
-		action.scrollToElement(cell);
+		// action.scrollToElement(cell);
 		assertEquals(cell.getText(), value);
 	}
 
@@ -250,7 +250,7 @@ public class TableFunction {
 	public WebElement getCellObject(int row, int column) {
 		WebElement cell = driver.findElement(
 				By.xpath(String.format("%s//tr[%s]//td[%s]", ScreenObjects.TABLE_BODY_XPATH, row, column)));
-		action.scrollToElement(cell);
+		// action.scrollToElement(cell);
 		return cell;
 	}
 
@@ -284,14 +284,14 @@ public class TableFunction {
 
 	private String getValueRow(String cellXpath, int column, int row) {
 		WebElement cell = driver.findElement(By.xpath(cellXpath));
-		action.scrollToElement(cell);
+		// action.scrollToElement(cell);
 		return cell.getText();
 	}
 
 	public String getValueTableHeader(int column) {
 		WebElement header = driver
 				.findElement(By.xpath(ScreenObjects.TABLE_HEAD_XPATH + "//tr//th[" + column + "]//div[1]"));
-		action.scrollToElement(header);
+		// action.scrollToElement(header);
 		return header.getText();
 	}
 }
