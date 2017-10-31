@@ -85,7 +85,7 @@ public class User_Customer_Creating extends BaseTestCase {
 		action.inputTextField(Users.USER_ID, USER);
 		action.inputTextField(Users.PASSWORD_ID, PASSWORD);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
-		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.LACK_MANDATORY_FIELD);
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 	}
 	
 	//Step 6
@@ -105,7 +105,7 @@ public class User_Customer_Creating extends BaseTestCase {
 		action.inputEmailField(Users.EMAIL_ID, EMAIL);
 		action.inputTextField(Users.CONFIMRPASSWORD_ID, PASSWORD);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
-		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INPUT_MANDATORY_FIELD_WITHOUR_USER_GROUP);
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.USER_SELECT_USERGROUP);
 	}
 	
 	//Step 7
@@ -118,11 +118,13 @@ public class User_Customer_Creating extends BaseTestCase {
 		comfirmPassword.sendKeys(PASSWORD);
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
-		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INPUT_INVALID_EMAIL);
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INVALID_EMAIL);
 		action.inputEmailField(Users.EMAIL_ID, EMAIL_ALREADY);
 		action.clickCheckBoxN(6);
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
-		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INPUT_EMAIL_ALREADY);
+		action.pause(waitTime);
+		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.SAME_EMAIL);
 		action.pause(waitTime);
 	}
 	
@@ -160,7 +162,7 @@ public class User_Customer_Creating extends BaseTestCase {
 		action.pause(waitTime);
 		comfirmPassword.sendKeys(CONFIRM_PASSWORD);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
-		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.MESSAGE_ERROR_PASSWORD);
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.UNMATCHED_CONFIRM_PWD);
 	}
 	
 	//Step 10
@@ -171,7 +173,7 @@ public class User_Customer_Creating extends BaseTestCase {
 		action.pause(waitTime);
 		comfirmPassword.sendKeys(PASSWORD);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
-		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.ADD_USER_CUSTOMER_SUCCESSFULLY);
+		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_CREATE_SUCCESSFULLY);
 	}
 	
 	//Step 11

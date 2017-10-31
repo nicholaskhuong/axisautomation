@@ -112,15 +112,7 @@ public class Messages {
 	public static final String MESSAGE_DELETE_DILIVERY_CODE = "Are you sure you want to delete the selected code?";
 	
 	// User Customer Maintenance
-	public static final String LACK_MANDATORY_FIELD = "One or more fields are in error. Please correct.";
-	public static final String INPUT_MANDATORY_FIELD_WITHOUR_USER_GROUP = "Please select at least one user group";
-	public static final String INPUT_INVALID_EMAIL = "Invalid email address";
-	public static final String INPUT_EMAIL_ALREADY = "Invalid email address";
 	public static final String INPUT_INVALID_PASSWORD1 = "Password must be 6-16 characters. Password must have at least one uppercase letter, one lowercase letter, and one number. This is not a valid password string";
 	public static final String INPUT_INVALID_PASSWORD2 = "Password must have at least one uppercase letter, one lowercase letter, and one number.";
-	public static final String MESSAGE_ERROR_PASSWORD = "Entered Password is not the same, please verify.";
-	public static final String ADD_USER_CUSTOMER_SUCCESSFULLY = "User successfully created";
-	public static final String UPDATE_USER_CUSTOMER_SUCCESSFULLY = "User successfully updated";
-	public static final String DELETE_USER_CUSTOMER_SUCCESSFULLY = "User successfully deleted";
 
 }

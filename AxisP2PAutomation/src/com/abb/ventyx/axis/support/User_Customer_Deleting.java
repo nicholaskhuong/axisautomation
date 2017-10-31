@@ -86,7 +86,7 @@ public class User_Customer_Deleting extends BaseTestCase {
 		index.click();
 		action.pause(waitTime);
 		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
-		action.checkAddSuccess(Messages.DELETE_USER_CUSTOMER_SUCCESSFULLY);
+		action.checkAddSuccess(Messages.USER_DELETE_SUCCESSFULLY);
 	}
 	
 }

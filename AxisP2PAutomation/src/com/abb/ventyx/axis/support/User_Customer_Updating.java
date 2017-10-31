@@ -100,7 +100,7 @@ public class User_Customer_Updating extends BaseTestCase {
 		action.inputTextField(Users.EMAIL_ID, "");
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
-		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.LACK_MANDATORY_FIELD);
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 	}
 	
 	//Step 4
@@ -114,7 +114,7 @@ public class User_Customer_Updating extends BaseTestCase {
 		action.clickCheckBoxN(6);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
 		action.pause(waitTime);
-		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INPUT_MANDATORY_FIELD_WITHOUR_USER_GROUP);
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.USER_SELECT_USERGROUP);
 	}
 	
 	//Step 5
@@ -125,12 +125,12 @@ public class User_Customer_Updating extends BaseTestCase {
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
 		action.pause(waitTime);
-		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INPUT_INVALID_EMAIL);
-		//If email exit in Customer List
-//		action.inputEmailField(Users.EMAIL_ID, EMAIL_ALREADY);
-//		action.pause(waitTime);
-//		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
-//		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INPUT_EMAIL_ALREADY);
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INVALID_EMAIL);
+		action.inputEmailField(Users.EMAIL_ID, EMAIL_ALREADY);
+		action.pause(waitTime);
+		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
+		action.pause(waitTime);
+		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.UPDATE_SAME_EMAIL);
 	}
 	
 	//Step 6
@@ -180,7 +180,7 @@ public class User_Customer_Updating extends BaseTestCase {
 		comfirmPassword.sendKeys(CONFIRM_PASSWORD);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
 		action.pause(waitTime);
-		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.MESSAGE_ERROR_PASSWORD);
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.UNMATCHED_CONFIRM_PWD);
 	}
 	
 	//Step 8
@@ -192,7 +192,7 @@ public class User_Customer_Updating extends BaseTestCase {
 		action.pause(waitTime);
 		comfirmPassword.sendKeys(PASSWORD);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
-		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.UPDATE_USER_CUSTOMER_SUCCESSFULLY);
+		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_UPDATE_SUCCESSFULLY);
 	}
 	
 	//Step 9
