@@ -65,9 +65,9 @@ public class Profile_Filter_Sort extends BaseTestCase {
 	@Test(dependsOnMethods = "clickFiterToCloseOnMaintainCustomerScreen", alwaysRun = true)
 	public void clickSortIconOnMaintainCustomerScreen(){
 		action.pause(5000);
-		assertEquals(table.getValueRow(3, 1), "Advance Shipping Notice");
+		assertEquals(table.getValueRow(1, 1), "Development Cust");
 		assertEquals(table.getValueRow(2, 1), "All Document Types");
-		assertEquals(table.getValueRow(1, 1), "Customer2");
+		assertEquals(table.getValueRow(3, 1), "Invoicing, Purchase Order Acknowledgement");
 		action.pause(waitTime);
 		action.clickBtn(By.xpath(Profiles.SORT_CUSTOMER_NAME));
 	}
@@ -76,7 +76,7 @@ public class Profile_Filter_Sort extends BaseTestCase {
 	public void checkDataOnMaintainCustomerScreen(){
 		action.pause(5000);
 		assertEquals(table.getValueRow(2, 1), "All Document Types");
-		assertEquals(table.getValueRow(3, 1), "Advance Shipping Notice, Invoicing, Purchase Orders, Purchase Order Acknowledgement, Remittance Advices");
+		assertEquals(table.getValueRow(3, 1), "Advance Shipping Notice, Invoicing, Purchase Orders");
 	}
 	
 }
