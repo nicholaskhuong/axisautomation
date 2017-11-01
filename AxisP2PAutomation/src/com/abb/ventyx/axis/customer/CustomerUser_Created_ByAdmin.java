@@ -53,7 +53,7 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 		action.inputTextField(CustomerUsers.PASSWORD_TEXTBOX_ID, PASSWORD);
 		action.inputTextField(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID, PASSWORD);
 		table.selectUserGroup(CustomerUsers.USERGROUP_GRID, USERGROUPNAME1);
-		action.waitObjVisibleAndClick(By.cssSelector(CustomerUsers.SAVE_BUTTON));
+		action.waitObjVisibleAndClick(By.id(CustomerUsers.SAVE_BUTTON));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		// Focus on this field to make the error message be invisibility
 		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).click();
@@ -61,7 +61,7 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 		// Case 2: User Email Address ID is empty
 		driver.findElement(By.id(CustomerUsers.USERID_TEXTBOX_ID)).sendKeys(USERID);
 		driver.findElement(By.id(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID)).clear();
-		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();	
+		driver.findElement(By.id(CustomerUsers.SAVE_BUTTON)).click();
 
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		// Focus on this field to make the error message be invisibility
@@ -70,7 +70,7 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 		// Case 3: Password is empty
 		driver.findElement(By.id(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID)).sendKeys(USEREMAILADDRESS);
 		driver.findElement(By.id(CustomerUsers.PASSWORD_TEXTBOX_ID)).clear();
-		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();
+		driver.findElement(By.id(CustomerUsers.SAVE_BUTTON)).click();
 
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		// Focus on this field to make the error message be invisibility
@@ -79,7 +79,7 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 		// Case 4: Confirm Password is empty
 		driver.findElement(By.id(CustomerUsers.PASSWORD_TEXTBOX_ID)).sendKeys(PASSWORD);
 		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).clear();
-		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();
+		driver.findElement(By.id(CustomerUsers.SAVE_BUTTON)).click();
 
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		// Focus on this field to make the error message be invisibility
@@ -93,7 +93,7 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 	public void addNewUserWithoutUserGroup() {
 		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).sendKeys(PASSWORD);
 		table.selectUserGroup(CustomerUsers.USERGROUP_GRID, USERGROUPNAME1);
-		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();
+		driver.findElement(By.id(CustomerUsers.SAVE_BUTTON)).click();
 		action.waitObjVisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.USER_SELECT_USERGROUP);
 		// Focus on this field to make the error message be invisibility
@@ -110,7 +110,7 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 
 		driver.findElement(By.id(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID)).sendKeys(INVALIDEMAIL);
 
-		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();
+		driver.findElement(By.id(CustomerUsers.SAVE_BUTTON)).click();
 
 		action.waitObjVisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INVALID_EMAIL);
@@ -128,7 +128,7 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).sendKeys(INVALIDPASSWORD);
 		driver.findElement(By.id(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID)).clear();
 		driver.findElement(By.id(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID)).sendKeys(USEREMAILADDRESS);
-		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();
+		driver.findElement(By.id(CustomerUsers.SAVE_BUTTON)).click();
 
 		action.waitObjVisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INVALID_PWD);
@@ -146,7 +146,7 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).clear();
 		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).sendKeys(CONFIRMPASSWORD);
 
-		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();
+		driver.findElement(By.id(CustomerUsers.SAVE_BUTTON)).click();
 
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.UNMATCHED_CONFIRM_PWD);
 		// Focus on this field to make the error message be invisibility
@@ -159,7 +159,7 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 	public void addNewUserWithValidValue() {
 		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).clear();
 		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).sendKeys(PASSWORD);
-		action.waitObjVisibleAndClick(By.cssSelector(CustomerUsers.SAVE_BUTTON));
+		action.waitObjVisibleAndClick(By.id(CustomerUsers.SAVE_BUTTON));
 		action.pause(2000);
 		action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_CREATE_SUCCESSFULLY);

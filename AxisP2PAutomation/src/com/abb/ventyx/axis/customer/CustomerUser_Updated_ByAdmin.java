@@ -81,7 +81,7 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 		action.waitObjVisible(By.id(CustomerUsers.PASSWORD_TEXTBOX_ID));
 		driver.findElement(By.id(CustomerUsers.PASSWORD_TEXTBOX_ID)).sendKeys(INVALIDPASSWORD);
 		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).sendKeys(INVALIDPASSWORD);
-		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();
+		driver.findElement(By.id(CustomerUsers.SAVE_BUTTON)).click();
 		action.waitObjVisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)).getText(),Messages.INVALID_PWD1);
 	}
@@ -95,7 +95,7 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).clear();
 
 		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).sendKeys(CONFIRMPASSWORD);
-		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();
+		driver.findElement(By.id(CustomerUsers.SAVE_BUTTON)).click();
 		action.waitObjVisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)).getText(),Messages.UNMATCHED_CONFIRM_PWD);
 	}
@@ -111,7 +111,7 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 		action.inputTextField(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID, NEWPASSWORD);
 
 		action.inputTextField(CustomerUsers.USERID_TEXTBOX_ID, NEWUSERID);
-		driver.findElement(By.cssSelector(CustomerUsers.SAVE_BUTTON)).click();
+		driver.findElement(By.id(CustomerUsers.SAVE_BUTTON)).click();
 		action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)).getText(), Messages.USER_UPDATE_SUCCESSFULLY);
