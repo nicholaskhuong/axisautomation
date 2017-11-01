@@ -65,7 +65,7 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 	public void updateWithInvalidEmail() {
 		action.waitObjVisible(By.id(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID));
 		action.inputEmailField(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID, INVALIDCUSTOMERUSEREMAIL);
-		action.waitObjVisibleAndClick(By.cssSelector(CustomerUsers.SAVE_BUTTON));
+		action.waitObjVisibleAndClick(By.id(CustomerUsers.SAVE_BUTTON));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INVALID_EMAIL);
 	}
