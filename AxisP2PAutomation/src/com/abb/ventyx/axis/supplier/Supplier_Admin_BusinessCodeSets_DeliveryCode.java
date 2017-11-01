@@ -83,10 +83,13 @@ public class Supplier_Admin_BusinessCodeSets_DeliveryCode extends BaseTestCase {
 		table = new TableFunction(driver);
 		WebElement index = table.getCellObjectSupplierCodeSet(1, 1);
 		index.click();
+<<<<<<< Updated upstream
 	}
 
 	@Test(dependsOnMethods = "clickOnDataToCheck")
 	public void cancelTheChanges() {
+=======
+>>>>>>> Stashed changes
 		action.inputTextField(BusinessCodeSets.CODE_SET_DESCRIPTION, codeSetDescription);
 		action.clickBtn(By.id(ScreenObjects.CANCEL_ID));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));

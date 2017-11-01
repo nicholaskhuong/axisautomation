@@ -19,7 +19,6 @@ public class Messages {
 	public static final String DOC_TYPES_EXIST = "This Document Type already exists";
 	public static final String ENTER_MANDATORY_FIELDS = "One or more fields are in error. Please correct.";
 	public static final String EMPTY_PERMISSION = "Please select permissions for user group";
-
 	// User group page
 	public static final String USERGROUP_CREATE_SUCCESSFULLY = "User group successfully created";
 	public static final String USERGROUP_UPDATE_SUCCESSFULLY = "User group successfully updated";
@@ -110,7 +109,7 @@ public class Messages {
 	public static final String CREATE_CUSTOMER_SUCCESSFULLY = "Customer successfully created";
 	// Supplier
 	public static final String MESSAGE_DELETE_DILIVERY_CODE = "Are you sure you want to delete the selected code?";
-	
+
 	// User Customer Maintenance
 	public static final String INPUT_INVALID_PASSWORD1 = "Password must be 6-16 characters. Password must have at least one uppercase letter, one lowercase letter, and one number. This is not a valid password string";
 	public static final String INPUT_INVALID_PASSWORD2 = "Password must have at least one uppercase letter, one lowercase letter, and one number.";
@@ -122,7 +121,7 @@ public class Messages {
 	public static final String INVOICE_NOT_FOUND = "The Invoice document is not found";
 	public static final String POACK_NOT_FOUND = "The Purchase Order Acknowledgement document is not found";
 	public static final String CUSTOMER_SELECT_USERGROUP = "Please select at least one business document";
-	
+
 	// Active and Deactive Customer
 	public static final String DEACTIVE_CUSTOMER = "Please select a customer first";
 	public static final String ACTIVE_CUSTOMER = "Please select at least one business document";
