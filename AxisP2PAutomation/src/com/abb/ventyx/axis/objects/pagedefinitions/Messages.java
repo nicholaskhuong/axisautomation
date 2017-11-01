@@ -121,4 +121,9 @@ public class Messages {
 	public static final String ASN_NOT_FOUND = "The Shipping Notice document is not found";
 	public static final String INVOICE_NOT_FOUND = "The Invoice document is not found";
 	public static final String POACK_NOT_FOUND = "The Purchase Order Acknowledgement document is not found";
+	public static final String CUSTOMER_SELECT_USERGROUP = "Please select at least one business document";
+	
+	// Active and Deactive Customer
+	public static final String DEACTIVE_CUSTOMER = "Please select a customer first";
+	public static final String ACTIVE_CUSTOMER = "Please select at least one business document";
 }
