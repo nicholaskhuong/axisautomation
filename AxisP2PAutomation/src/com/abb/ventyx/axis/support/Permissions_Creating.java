@@ -160,6 +160,7 @@ public class Permissions_Creating extends BaseTestCase {
 		action.waitObjVisible(By.id(AxisSupportCustomerUserGroup.SYSTEM_TAB_ID));
 
 		action.waitObjVisibleAndClick(By.id(AxisSupportCustomerUserGroup.ADMINUSERGROUP_ID));
+		action.pause(1000);
 		action.waitObjVisible(By.cssSelector(AxisSupportCustomerUserGroup.ADMIN_USERGROUPNAME_CSS));
 
 		action.assertTextEqual(By.cssSelector(AxisSupportCustomerUserGroup.ADMIN_USERGROUPNAME_CSS), custAdminUserGroupName);
