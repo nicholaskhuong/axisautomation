@@ -207,14 +207,14 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.id(CustomerUsers.SAVE_BUTTON_ID));
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_UPDATE_SUCCESSFULLY);
 		assertEquals(table.getValueRow(4, i), "NoInvoice");
-		assertEquals(table.getValueRow(5, i), "Active");
-
-		// Login as the new updated user.
-		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
-		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
 	}
 
-	@Test(dependsOnMethods = "updateUserInfo")
+	@Test(dependsOnMethods = "updateUserInfo", alwaysRun = true)
+	public void signOut() throws InterruptedException {
+		action.signOut();
+	}
+
+	@Test(dependsOnMethods = "signOut")
 	public void loginAgainWithNewInfo() throws InterruptedException {
 
 		action.inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, USEREMAILLOWERCASE);
