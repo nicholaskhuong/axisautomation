@@ -5,7 +5,6 @@ import static org.testng.Assert.assertEquals;
 import java.util.Random;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -59,8 +58,7 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 
 		table.filter(SupplierList.SUPPLIER_EMAIL_FILTER_XPATH, SupplierList_CreateNewSupplier_ByAdmin.supplierEmail);
 		i = table.findRowByString(6, SupplierList_CreateNewSupplier_ByAdmin.supplierEmail);
-		System.out.println("print i: "+i);
-		Assert.assertTrue(1 > 0, "Item doesn't exist!");
+		Assert.assertTrue(1 >= 0, "Item doesn't exist!");
 		assertEquals(table.getValueRow(2, i), SupplierList_CreateNewSupplier_ByAdmin.companyRegistrationNo);
 		assertEquals(table.getValueRow(3, i), SupplierList_CreateNewSupplier_ByAdmin.taxRegistrationNo);
 		assertEquals(table.getValueRow(4, i), activeStatus);
@@ -69,7 +67,7 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 
 		assertEquals(action.isRemoteIconDisable(i), false);
 		// //action.scrollToElement(table.getCellObject(i, 1));
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", table.getCellObject(i, 1));
+		table.getCellObject(i, 1);
 		action.waitObjVisible(By.id(SupplierList.SUPPLIERNAME_ID));
 		action.assertTextBoxDisable(By.id(SupplierList.COMPANYREGISTRATIONNO_ID));
 		action.assertTextBoxDisable(By.id(SupplierList.TAXREGRISTRATIONNO_ID));
@@ -105,7 +103,7 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 	public void checkCancelWithoutInput() {
 		action.pause(500);
 		// table.clickSupplierIDInSupplierListGrid(SupplierList_CreateNewSupplier_ByAdmin.taxRegistrationNo);
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", table.getCellObject(i, 1));
+		table.getCellObject(i, 1);
 		action.waitObjVisible(By.id(SupplierList.SUPPLIERNAME_ID));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.CANCEL_ID));
 		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)),false);
@@ -118,7 +116,7 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 	public void checkNoButtonOnUnsavedChangesDialog() {
 
 		// table.clickSupplierIDInSupplierListGrid(SupplierList_CreateNewSupplier_ByAdmin.taxRegistrationNo);
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", table.getCellObject(i, 1));
+		table.getCellObject(i, 1);
 		action.pause(500);
 		action.inputTextField(SupplierList.SUPPLIERNAME_ID, "test");
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.CANCEL_ID));

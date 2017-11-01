@@ -2,8 +2,8 @@ package com.abb.ventyx.axis.supplier;
 
 import static org.testng.Assert.assertEquals;
 
-import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
@@ -38,7 +38,7 @@ public class SupplierUserGroup_Deleting extends BaseTestCase {
 	public void selectRowDeleting() {
 		table = new TableFunction(driver);
 		row = table.findRowByString(UserGroup.SUPPLIER_GROUP_TABLE_CSS, 1, USER_GROUP_NAME);
-		Assert.assertTrue("Record not found!", row > 0);
+		Assert.assertTrue(row >= 0, "Record not found!");
 		table.assertRowEqual(UserGroup.ROW_ID, USER_GROUP_NAME, row - 1);
 		row = row - 1;
 		action.clickBtn(By.id(ScreenObjects.DELETE_BTN_ID + row));

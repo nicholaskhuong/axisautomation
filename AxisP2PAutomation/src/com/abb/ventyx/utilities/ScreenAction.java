@@ -508,7 +508,7 @@ public class ScreenAction {
 
 	public void pause(int milliseconds) {
 		try {
-			Thread.sleep(timeout);
+			Thread.sleep(milliseconds);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

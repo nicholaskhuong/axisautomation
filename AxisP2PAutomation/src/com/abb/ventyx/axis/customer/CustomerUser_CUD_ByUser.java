@@ -152,7 +152,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		//
 
 		i = table.findRowByString(1, userNo);
-		org.testng.Assert.assertTrue(1 > 0, "User not found!");
+		org.testng.Assert.assertTrue(1 >= 0, "User not found!");
 		assertEquals(table.getValueRow(2, i), USERID);
 		assertEquals(table.getValueRow(3, i), CUSTOMERUSEREMAIL);
 		assertEquals(table.getValueRow(4, i), USERGROUPNAME);

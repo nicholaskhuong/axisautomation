@@ -47,7 +47,7 @@ public class SupplierUserGroup_Creating extends BaseTestCase {
 
 		// Click PO permission
 		row = table.findRowByString(UserGroup.PERMISSION_TABLE_CSS, 3, PERMISSION);
-		Assert.assertTrue(row > 0, "Permission doesn't exist!");
+		Assert.assertTrue(row >= 0, "Permission doesn't exist!");
 		action.clickCheckBoxN(row);
 		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
 		action.checkAddSuccess(Messages.USERGROUP_CREATE_SUCCESSFULLY);

@@ -33,7 +33,7 @@
 				<class name="com.abb.ventyx.axis.supplier.Supplier_Admin_DeleteContact" />					
 		</classes>	
   	</test>
-  	<test name="Supplier Admin Business Code Sets ">
+  	<test name="Supplier Admin Business Code Sets">
 		<classes>
 				<class name="com.abb.ventyx.axis.supplier.Supplier_Admin_BusinessCodeSets_DeliveryCode" />					
 		</classes>	
