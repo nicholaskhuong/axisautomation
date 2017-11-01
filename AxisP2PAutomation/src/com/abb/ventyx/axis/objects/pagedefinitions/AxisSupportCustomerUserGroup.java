@@ -22,4 +22,12 @@ public class AxisSupportCustomerUserGroup {
 	public static final String USERGROUP_TABLE_CSS= "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div.v-slot.v-slot-v-common-page-content-layout.v-slot-v-vertical-scrollable > div > div > div > div.v-tabsheet-content > div > div > div > div > div.v-slot.v-slot-v-horizontal-layout-with-border.v-slot-v-vertical-scrollable > div > div > div > div > div > div.v-slot.v-slot-v-default-grid > div > div.v-grid-tablewrapper > table";
 	public static final String NAME_COLUMN= "Name";
 	
+	public static final String USERGROUP_GRID_XPATH = "//*[@id='docTypeGrid']//div[3]//table//tbody";
+
+	public static String ADMINUSERGROUP_ID = "userGroupNameBtn0";
+	public static String ADMIN_USERGROUPNAME_CSS = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div.v-slot.v-slot-v-common-page-content-layout > div > div:nth-child(1) > div > div.v-slot.v-slot-v-normal-label > div";
+
+	public static String SHOWPERMISSON_ID = "showPermBtn-";
+	public static String SYSTEM_PERMISSION_XPATH = "//*[@id='permGrid-0']//div[3]//table//tbody";
+
 }

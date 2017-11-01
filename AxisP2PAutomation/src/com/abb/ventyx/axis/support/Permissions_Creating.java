@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
+import com.abb.ventyx.axis.objects.pagedefinitions.AxisSupportCustomerUserGroup;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.Permissions;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
@@ -22,9 +23,8 @@ import com.abb.ventyx.utilities.TableFunction;
 @Credentials(user = "mail5@abb.com", password = "testuser")
 public class Permissions_Creating extends BaseTestCase {
 
-	public static String permissionName = "Permision 85997387";
+	public static String permissionName = "Permision 61093109";
 	public static String purchaseorderTypeName = "PurchaseOrder";
-	String purchaseorderTypeDescription = "Purchase Orders";
 	public static String userTypeCSA = "CSA";
 	String addPermissionHeader = "Add Permission";
 	String maintainPermissionHeader = "Maintain Permissions";
@@ -32,6 +32,11 @@ public class Permissions_Creating extends BaseTestCase {
 	PermissionsAction permissionsAction;
 	ScreenAction action;
 	TableFunction table;
+	String supplierAdminUserGroupName = "SUPP_ADMIN";
+	String systemType = "SYSTEM";
+	String axisAdminUserGroupName = "AXIS_ADMIN";
+	String custAdminUserGroupName = "CUST_ADMIN";
+	String POTypeDescription = "Purchase Orders";
 
 	// Step 1
 	@Test
@@ -50,8 +55,8 @@ public class Permissions_Creating extends BaseTestCase {
 		assertEquals(table.getValueTableHeader(4), "User Type");
 	}
 
-	// Step 2, 3, 4
-	@Test(dependsOnMethods = "openMaintainPermissionScreen")
+	// Step 2, 3
+	@Test(dependsOnMethods = "openMaintainPermissionScreen", alwaysRun = true)
 	public void createPermissionwithValidValue() {
 
 		Random rand = new Random();
@@ -60,16 +65,18 @@ public class Permissions_Creating extends BaseTestCase {
 
 		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
 		action.inputTextField(Permissions.PERMISSION_NAME, permissionName);
-		permissionsAction.selectDocTypebyText("Purchase Orders");
+		permissionsAction.selectDocTypebyText(POTypeDescription);
+		// action.pause(2000);
 		permissionsAction.selectUserType(Permissions.AXIS_ADMIN);
 		permissionsAction.selectUserType(Permissions.CUSTOMER);
 		permissionsAction.selectUserType(Permissions.SUPPLIER);
-
-		action.clickBtn(By.id(Permissions.SAVE));
-
+		action.pause(4000);
+		// action.clickBtn(By.id(Permissions.SAVE));
+		driver.findElement(
+				By.cssSelector("#permissioncreatewindow > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-mainform-verticallayout > div > div.v-slot.v-slot-v-bottombar-button-layout > div > div > div > div > div:nth-child(3)"))
+				.click();
 		action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
-		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)).getText(),
-				Messages.PERMISSION_CREATED_SUCCESSFULLY);
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)).getText(), Messages.PERMISSION_CREATED_SUCCESSFULLY);
 
 		// Filter
 		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
@@ -91,9 +98,92 @@ public class Permissions_Creating extends BaseTestCase {
 
 	}
 
+	// Step 4
+	@Test(dependsOnMethods = "createPermissionwithValidValue", alwaysRun = true)
+	public void checkNewPermissionAvailableInSupplierUserGroup() {
+
+		action.waitObjVisibleAndClick(By.id(AxisConfigMenu.AXIS_ADMIN_ID));
+		// Supplier Usergroup sub-menu
+		action.waitObjVisibleAndClick(By.id(AxisConfigMenu.SUPPLIER_USERGROUP_ID));
+
+		action.waitObjVisible(By.id(AxisSupportCustomerUserGroup.SYSTEM_TAB_ID));
+
+		action.waitObjVisibleAndClick(By.id(AxisSupportCustomerUserGroup.ADMINUSERGROUP_ID));
+		action.waitObjVisible(By.cssSelector(AxisSupportCustomerUserGroup.ADMIN_USERGROUPNAME_CSS));
+
+		action.assertTextEqual(By.cssSelector(AxisSupportCustomerUserGroup.ADMIN_USERGROUPNAME_CSS), supplierAdminUserGroupName);
+		System.out.println("Perla Perla 1");
+		action.pause(2000);
+		int row = table.findRowByString(AxisSupportCustomerUserGroup.USERGROUP_GRID_XPATH, 3, POTypeDescription, true);
+
+		assertEquals(table.getCellObjectUserGroup(AxisSupportCustomerUserGroup.USERGROUP_GRID_XPATH, row, 3).getText(), POTypeDescription);
+
+		table.clickArrowDownToShowPermission(row, 2);
+		System.out.println("Row: " + row);
+		action.pause(2000);
+
+		table.isPermissionExisting(permissionName, row - 1);
+	}
+
+	@Test(dependsOnMethods = "checkNewPermissionAvailableInSupplierUserGroup", alwaysRun = true)
+	public void checkNewPermissionAvailableInAxisUserGroup() {
+
+		// Supplier Usergroup sub-menu
+		action.waitObjVisibleAndClick(By.id(AxisConfigMenu.AXIS_USERGROUP_ID));
+		action.waitObjVisible(By.id(AxisSupportCustomerUserGroup.SYSTEM_TAB_ID));
+
+		action.waitObjVisibleAndClick(By.id(AxisSupportCustomerUserGroup.ADMINUSERGROUP_ID));
+		action.waitObjVisible(By.cssSelector(AxisSupportCustomerUserGroup.ADMIN_USERGROUPNAME_CSS));
+
+		action.assertTextEqual(By.cssSelector(AxisSupportCustomerUserGroup.ADMIN_USERGROUPNAME_CSS), axisAdminUserGroupName);
+		System.out.println("Perla Perla 1");
+		action.pause(2000);
+		int row = table.findRowByString(AxisSupportCustomerUserGroup.USERGROUP_GRID_XPATH, 3, POTypeDescription, true);
+
+		assertEquals(table.getCellObjectUserGroup(AxisSupportCustomerUserGroup.USERGROUP_GRID_XPATH, row, 3).getText(), POTypeDescription);
+
+		table.clickArrowDownToShowPermission(row, 2);
+		System.out.println("Row: " + row);
+		action.pause(2000);
+
+		table.isPermissionExisting(permissionName, row - 1);
+
+	}
+
+	@Test(dependsOnMethods = "checkNewPermissionAvailableInAxisUserGroup", alwaysRun = true)
+	public void checkNewPermissionAvailableInCustomerUserGroup() {
+		action = new ScreenAction(driver);
+		table = new TableFunction(driver);
+		action.waitObjVisibleAndClick(By.id(AxisConfigMenu.CUSTOMER_MAINTENANCE_ID));
+		// Customer Usergroup sub-menu
+		action.waitObjVisibleAndClick(By.id(AxisConfigMenu.CUSTOMER_USERGROUP_ID));
+
+		action.waitObjVisible(By.id(AxisSupportCustomerUserGroup.SYSTEM_TAB_ID));
+
+		action.waitObjVisibleAndClick(By.id(AxisSupportCustomerUserGroup.ADMINUSERGROUP_ID));
+		action.waitObjVisible(By.cssSelector(AxisSupportCustomerUserGroup.ADMIN_USERGROUPNAME_CSS));
+
+		action.assertTextEqual(By.cssSelector(AxisSupportCustomerUserGroup.ADMIN_USERGROUPNAME_CSS), custAdminUserGroupName);
+		System.out.println("Perla Perla 1");
+		action.pause(2000);
+		int row = table.findRowByString(AxisSupportCustomerUserGroup.USERGROUP_GRID_XPATH, 3, POTypeDescription, true);
+
+		assertEquals(table.getCellObjectUserGroup(AxisSupportCustomerUserGroup.USERGROUP_GRID_XPATH, row, 3).getText(), POTypeDescription);
+
+		table.clickArrowDownToShowPermission(row, 2);
+		System.out.println("Row: " + row);
+		action.pause(2000);
+		table.isPermissionExisting(permissionName, row - 1);
+		action.waitObjVisibleAndClick(By.id(AxisConfigMenu.CUSTOMER_MAINTENANCE_ID));
+
+	}
+
 	// Step 5, 6, 7
-	@Test(dependsOnMethods = "createPermissionwithValidValue")
+	@Test(dependsOnMethods = "checkNewPermissionAvailableInCustomerUserGroup", alwaysRun = true)
 	public void addPermissonWithoutMandatoryField() throws InterruptedException {
+
+		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PERMISSIONS));
+		action.waitObjVisible(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
 
 		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
 
@@ -109,7 +199,7 @@ public class Permissions_Creating extends BaseTestCase {
 	}
 
 	// Step 8, 9, 10
-	@Test(dependsOnMethods = "addPermissonWithoutMandatoryField")
+	@Test(dependsOnMethods = "addPermissonWithoutMandatoryField", alwaysRun = true)
 	public void checkUnsavedChangesDialog() throws InterruptedException {
 
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.CANCEL_ID));

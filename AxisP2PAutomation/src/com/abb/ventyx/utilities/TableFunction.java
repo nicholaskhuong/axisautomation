@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.abb.ventyx.axis.objects.pagedefinitions.AxisSupportCustomerUserGroup;
 import com.abb.ventyx.axis.objects.pagedefinitions.Permissions;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 
@@ -259,12 +260,23 @@ public class TableFunction {
 		return cell;
 	}
 
+	public WebElement getCellObjectUserGroup(String tableXpath, int row, int column) {
+		WebElement cell = driver.findElement(By.xpath(String.format("%s/tr[%s]/td[%s]", tableXpath, row, column)));
+		action.scrollToElement(cell);
+		return cell;
+	}
 	public WebElement getCellObjectSupplierCodeSet(int row, int column) {
 		WebElement cell = driver.findElement(By.xpath(String.format("%s//tr[%s]//td[%s]//div//div",
 				"//*[@id=\"codeSetGrid-AsnDeliveryCode\"]/div[3]/table/tbody", row, column)));
 		return cell;
 	}
 
+	// In User Group grid.
+	public void clickArrowDownToShowPermission(int row, int column) {
+		WebElement cell = driver.findElement(By.xpath(String.format("%s/tr[%s]/td[%s]/div/div/span/span",
+				AxisSupportCustomerUserGroup.USERGROUP_GRID_XPATH, row, column)));
+		cell.click();
+	}
 	public String getIDValue(int row) {
 		return getIDValue(1, row);
 	}
@@ -293,5 +305,31 @@ public class TableFunction {
 				.findElement(By.xpath(ScreenObjects.TABLE_HEAD_XPATH + "//tr//th[" + column + "]//div[1]"));
 		action.clickHorizontalScrollBarToElement(header);
 		return header.getText();
+	}
+
+	// Check Permission under document type in User Group grid
+	public void isPermissionExisting(String permissionName, int docIndex) {
+
+		int i = findRowByString("//*[@id='permGrid-" + docIndex + "']//div[3]//table//tbody", 2, permissionName, true);
+		System.out.println("Permission Index 1:" + i);
+
+		WebElement baseTable = driver.findElement(By.xpath("//*[@id='permGrid-" + docIndex + "']//div[3]//table//tbody"));
+		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
+		int sumRow = tableRows.size();
+		System.out.println("Sum Row:" + sumRow);
+		int row = 5;
+		while (i == -1 && row <= sumRow) {
+			action.pause(2000);
+			WebElement element = driver.findElement(By.xpath("//*[@id='permGrid-" + docIndex + "']//div[3]//table//tbody//tr[" + row + "]"));
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
+			jse.executeScript("arguments[0].scrollIntoView(true)", element);
+			i = findRowByString("//*[@id='permGrid-" + docIndex + "']//div[3]//table//tbody", 2, permissionName, true);
+			row = row + 3;
+		}
+		System.out.println("Permission Index 2:" + i);
+
+		assertEquals(action.isElementPresent(By.xpath("//*[@id='permGrid-" + docIndex + "']//div[3]//table//tbody//tr[" + i + "]//td[2]")), true,
+				"Can't find permission, i=-1");
+		action.assertTextEqual(By.xpath("//*[@id='permGrid-" + docIndex + "']//div[3]//table//tbody//tr[" + i + "]//td[2]"), permissionName);
 	}
 }

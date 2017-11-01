@@ -144,7 +144,8 @@ public class PermissionsAction {
 			}
 				
 		}
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", permissionDocType);
+		//((JavascriptExecutor) driver).executeScript("arguments[0].click();", permissionDocType);
+
 	
 	}
 }
