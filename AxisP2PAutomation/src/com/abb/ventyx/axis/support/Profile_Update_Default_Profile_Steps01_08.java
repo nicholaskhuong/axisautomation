@@ -6,7 +6,6 @@ import static org.testng.Assert.assertEquals;
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
@@ -167,7 +166,7 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 		action.pause(waitTime);
 		index = table.getCellObject(1, 5);
 		action.pause(waitTime);
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", index);
+		index.click();
 	}
 	
 	@Test(dependsOnMethods = "clickEditButtonOnMaintainCustomerScreen", alwaysRun = true)
@@ -238,7 +237,7 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 		action.pause(waitTime);
 		index = table.getCellObject(1, 5);
 		action.pause(waitTime);
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", index);
+		index.click();
 	}
 	
 	@Test(dependsOnMethods = "clickEditButtonOnMaintainCustomerScreen2", alwaysRun = true)
@@ -287,7 +286,7 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 		action.pause(waitTime);
 		index = table.getCellObject(1, 5);
 		action.pause(waitTime);
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", index);
+		index.click();
 	}
 	
 	@Test(dependsOnMethods = "clickEditButtonOnMaintainCustomer2", alwaysRun = true)
@@ -337,7 +336,7 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 		action.pause(waitTime);
 		index = table.getCellObject(1, 5);
 		action.pause(waitTime);
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", index);
+		index.click();
 	}
 	
 	@Test(dependsOnMethods = "clickEditButtonOnMaintainCustomerScreen3", alwaysRun = true)
