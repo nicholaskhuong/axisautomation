@@ -92,7 +92,7 @@ public class User_Customer_Updating extends BaseTestCase {
 	public void clickUserNumberOnMaintainCustomerUsersScreen() {
 		action.pause(5000);
 		index1 = table.getCellObject("//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div[3]/table/tbody",1, 1);
-		index.click();
+		index1.click();
 	}
 	
 	@Test(dependsOnMethods = "clickUserNumberOnMaintainCustomerUsersScreen", alwaysRun = true)
