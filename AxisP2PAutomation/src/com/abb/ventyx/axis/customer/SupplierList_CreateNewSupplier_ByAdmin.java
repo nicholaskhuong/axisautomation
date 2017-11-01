@@ -49,6 +49,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	String duplicatedSupplierEmail = "perla@enclave.vn";
 	String axisSupportEmail = "mail5@abb.com";
 	String axisSupportPWD = "testuser";
+	String password;
 
 	// Step 1
 	@Test
@@ -178,7 +179,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		assertEquals(table.getValueRow(7, i), profile);
 		WebElement accessCell = table.getCellObject(i, 8);
 		action.isFieldDisable(accessCell);
-		String supplierID = table.getIDValue(i);
+		// String supplierID = table.getIDValue(i);
 	}
 
 	// Step 6,7 can't auto
@@ -250,13 +251,18 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 
 		String message = driver.findElement(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)).getText();
-		System.out.println("Message: "+ message);
-		String password = action.getPassword(message);
-		System.out.println(password);
+		password = action.getPassword(message);
+	}
 
+	// Step 16
+	@Test(dependsOnMethods = "getPasswordForTheNewSupplier")
+	public void signOut() {
 		action.signOut();
-		System.out.println("supplierEmail: " + supplierEmail);
-		action.pause(2000);
+	}
+
+	// Step 16
+	@Test(dependsOnMethods = "signOut")
+	public void changePassword() {
 		assertEquals(action.isElementPresent(By.id(LoginPageDefinition.USERNAME_TEXT_FIELD_ID)), true);
 		action.signIn(supplierEmail, password);
 
@@ -267,7 +273,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
 	}
 	// Step 16
-	@Test(dependsOnMethods="getPasswordForTheNewSupplier")
+	@Test(dependsOnMethods = "changePassword")
 	public void acceptTradingRelationshipRequest() {
 
 

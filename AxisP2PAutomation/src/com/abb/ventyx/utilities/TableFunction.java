@@ -250,7 +250,7 @@ public class TableFunction {
 	public WebElement getCellObject(int row, int column) {
 		WebElement cell = driver.findElement(
 				By.xpath(String.format("%s//tr[%s]//td[%s]", ScreenObjects.TABLE_BODY_XPATH, row, column)));
-		// action.scrollToElement(cell);
+		action.scrollToElementWithColumnNo(cell, column);
 		return cell;
 	}
 
@@ -284,14 +284,14 @@ public class TableFunction {
 
 	private String getValueRow(String cellXpath, int column, int row) {
 		WebElement cell = driver.findElement(By.xpath(cellXpath));
-		// action.scrollToElement(cell);
+		action.scrollToElementWithColumnNo(cell, column);
 		return cell.getText();
 	}
 
 	public String getValueTableHeader(int column) {
 		WebElement header = driver
 				.findElement(By.xpath(ScreenObjects.TABLE_HEAD_XPATH + "//tr//th[" + column + "]//div[1]"));
-		// action.scrollToElement(header);
+		action.clickHorizontalScrollBarToElement(header);
 		return header.getText();
 	}
 }

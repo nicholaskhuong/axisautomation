@@ -10,7 +10,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -83,7 +82,6 @@ public class ScreenAction {
 		for (int i = 0; i < value.length(); i++) {
 			char c = value.charAt(i);
 			String s = new StringBuilder().append(c).toString();
-			pause(50);
 			txtField.sendKeys(s);
 		}
 		if (!((txtField.getText().trim() == value) || (txtField.getAttribute("value").trim() == value))) {
@@ -97,7 +95,6 @@ public class ScreenAction {
 		for (int i = 0; i < value.length(); i++) {
 			char c = value.charAt(i);
 			String s = new StringBuilder().append(c).toString();
-			pause(timeout);
 			txtField.sendKeys(s);
 		}
 		if (!((txtField.getText().trim() == value) || (txtField.getAttribute("value").trim() == value))) {
@@ -391,11 +388,9 @@ public class ScreenAction {
 			int height = vertical_scroll.getSize().getHeight();
 			Actions move = new Actions(driver);
 			if (scrollToTop) {
-				move.click(vertical_scroll);
-				move.sendKeys(vertical_scroll, Keys.HOME);
-				move.build().perform();
+				move.dragAndDropBy(vertical_scroll, 0, (height * -1)).build().perform();
 			} else {
-				move.dragAndDropBy(vertical_scroll, ((height * 25) / 100), 0).build().perform();
+				move.dragAndDropBy(vertical_scroll, 0, ((height * 10) / 100)).build().perform();
 			}
 
 		}
@@ -415,11 +410,21 @@ public class ScreenAction {
 			int width = horizontal_scroll.getSize().getWidth();
 			Actions move = new Actions(driver);
 			if (scrollToFirst) {
-				move.click(horizontal_scroll);
-				move.sendKeys(horizontal_scroll, Keys.HOME);
-				move.build().perform();
+				move.dragAndDropBy(horizontal_scroll, (width * -1), 0).build().perform();
 			} else {
-				move.dragAndDropBy(horizontal_scroll, ((width * 25) / 100), 0).build().perform();
+				move.dragAndDropBy(horizontal_scroll, ((width * 10) / 100), 0).build().perform();
+			}
+		}
+
+	}
+
+	public void clickHorizontalScrollBarToElement(WebElement element) {
+		for (int i = 0; i < 20; i++) {
+
+			if (!element.isDisplayed()) {
+				clickHorizontalScrollBar();
+			} else {
+				break;
 			}
 		}
 
@@ -430,6 +435,20 @@ public class ScreenAction {
 
 	}
 
+	public void scrollToElementWithColumnNo(WebElement element, int column) {
+		clickVerticalScrollBar(true);
+		WebElement header = driver.findElement(By.xpath(ScreenObjects.TABLE_HEAD_XPATH + "//tr//th[" + column + "]//div[1]"));
+		clickHorizontalScrollBarToElement(header);
+
+		for (int i = 0; i < 20; i++) {
+
+			if (!element.isDisplayed()) {
+				clickVerticalScrollBar();
+			} else {
+				break;
+			}
+		}
+	}
 	public void scrollToElement(WebElement element) {
 		clickVerticalScrollBar(true);
 		clickHorizontalScrollBar(true);
@@ -444,9 +463,6 @@ public class ScreenAction {
 				break;
 			}
 		}
-		// ((JavascriptExecutor) driver)
-		// .executeScript("$('.mCustomScrollbar#content').mCustomScrollbar('scrollTo',document.querySelector(\"div.class button.class\"))");
-
 	}
 
 	public void scrollToElement(String cssObject) {
@@ -493,7 +509,7 @@ public class ScreenAction {
 
 	public void pause(int milliseconds) {
 		try {
-			TimeUnit.MILLISECONDS.sleep(milliseconds);
+			TimeUnit.MILLISECONDS.sleep(timeout);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
