@@ -23,6 +23,7 @@ public class Permissions {
 	 	public static final String REMITTANCE_ADVICES = "#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table > tbody > tr:nth-child(6) > td > span";
 	 	public static final String TEST_DOCUMENT_TYPE = "#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table > tbody > tr:nth-child(7) > td > span";
 	 	public static final String TESTING = "#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table > tbody > tr:nth-child(8) > td > span";
+	public static final String PERMISSION_EDIT_TITLE = "#permissioncreatewindow > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-default-page-header-layout > div > div > div > div > div > div";
 	 	public static final String SAVE = "createEditBtn";
 	 	public static final String CANCEL = "cancelBtn"; 
 	 	public static final String CONFIRMATION_OF_DELETION = "#confirmation-window > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-confirmation-window-text-and-button-layout > div > div:nth-child(1) > div";

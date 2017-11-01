@@ -47,8 +47,8 @@ public class Permissions_Updating extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.xpath(Permissions.GRID_PERMISSIONIDCELL));
 		action.waitObjVisible(By.id(Permissions.PERMISSION_NAME));
 		action.pause(2000);
-		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), "Edit Permission", "Selenium can't get title here");
-
+		assertEquals(driver.findElement(By.cssSelector(Permissions.PERMISSION_EDIT_TITLE)).getText(), "Edit Permission",
+				"Selenium can't get title here");
 		/*
 		 * assertEquals(driver.findElement(By.id(Permissions.PERMISSION_NAME)).
 		 * getText(), PERMISSION_NAME_A);
@@ -68,7 +68,7 @@ public class Permissions_Updating extends BaseTestCase {
 
 	// Step 2
 	@Test(dependsOnMethods = "openMaintainPermissionScreen", alwaysRun = true)
-	public void updatePermissionWithValidValue() throws InterruptedException {
+	public void updatePermissionWithValidValue() {
 
 		// Step 2 update
 		permissionsAction.selectDocTypebyText(invoiceTypeName);

@@ -126,7 +126,7 @@ public class PermissionsAction {
 		WebElement permissionDocType = (new WebDriverWait(driver, 20))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.id(Permissions.DOCUMENT_TYPE)));
-		permissionDocType.click();
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", permissionDocType);
 		WebElement baseTable = (new WebDriverWait(driver, 30)).until(ExpectedConditions.presenceOfElementLocated(By
 				.cssSelector("#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table")));
 		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
@@ -139,12 +139,12 @@ public class PermissionsAction {
 					.until(ExpectedConditions.presenceOfElementLocated(By
 							.cssSelector("#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table > tbody > tr:nth-child("+i+") > td > span")));
 			if(POAckType.getText().equals(docType)){
-				POAckType.click();
+				((JavascriptExecutor) driver).executeScript("arguments[0].click();", POAckType);
 				break;
 			}
 				
 		}
-		permissionDocType.click();
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", permissionDocType);
 	
 	}
 }

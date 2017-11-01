@@ -4,6 +4,7 @@ import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.CustomerMenu;
@@ -44,19 +45,16 @@ public class SupplierList_ActivateSupplier extends BaseTestCase {
 		action.waitObjVisibleAndClick(By
 				.cssSelector(CustomerMenu.SUPPLIERLIST_SUBMENU));
 		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
-		assertEquals(
-				driver.findElement(
-						By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER))
-						.getText(), "Maintain Suppliers");
+		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER)).getText(), "Maintain Suppliers");
 		i = table.findRowByString(6, supplierEmail);
+		Assert.assertTrue(i >= 0, "Record not found!");
 		assertEquals(table.getValueRow(4, i), inactiveStatus);
 		j = i - 1;
-		assertEquals(action.isFieldDisable(By.id("accessSupplierBtn" + j)),
-				true);
+		assertEquals(action.isFieldDisable(By.id("accessSupplierBtn" + j)), true);
 	}
 
 	// Step 2
-	@Test(dependsOnMethods = "openSupplierListScreen")
+	@Test(dependsOnMethods = "openSupplierListScreen", alwaysRun = true)
 	public void clickActiveWithoutSelectedSupplier() {
 		action.waitObjVisibleAndClick(By.cssSelector(SupplierList.ACTIVATE_CSS));
 		action.assertMessgeError(ScreenObjects.WARNING_MESSAGE_CSS,

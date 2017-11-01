@@ -127,7 +127,7 @@ public class ScreenAction {
 
 	public void clickRemoteIcon(int row) {
 		WebElement remoteIcon = driver.findElement(By.xpath(String.format("%s//tr[%s]//td[8]//div//div", ScreenObjects.TABLE_BODY_XPATH, row)));
-		remoteIcon.click();
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", remoteIcon);
 
 	}
 	public boolean isFieldDisable(WebElement field) {

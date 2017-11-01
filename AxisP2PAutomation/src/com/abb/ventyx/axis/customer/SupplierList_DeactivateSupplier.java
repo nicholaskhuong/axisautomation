@@ -51,7 +51,7 @@ public class SupplierList_DeactivateSupplier extends BaseTestCase {
 	}
 
 	// Step 2
-	@Test(dependsOnMethods="openSupplierListScreen")
+	@Test(dependsOnMethods = "openSupplierListScreen", alwaysRun = true)
 	public void clickDeactivateWithoutSelectedSupplier(){
 		action.waitObjVisibleAndClick(By.cssSelector(SupplierList.DEACTIVATE_CSS));
 		action.assertMessgeError(ScreenObjects.WARNING_MESSAGE_CSS, Messages.ACTIVATE_DEACTIVE_WITHOUTSUPPLIER);

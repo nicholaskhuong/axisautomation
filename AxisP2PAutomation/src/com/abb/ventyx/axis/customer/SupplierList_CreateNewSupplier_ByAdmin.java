@@ -305,7 +305,8 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.SUPPLIERLIST_SUBMENU));
 		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
-		table.filter(SupplierList.SUPPLIER_EMAIL_FILTER_XPATH, supplierEmail);
+		// table.filter(SupplierList.SUPPLIER_EMAIL_FILTER_XPATH,
+		// supplierEmail);
 		i = table.findRowByString(6, supplierEmail);
 		assertEquals(table.getValueRow(4, i), "Active");
 		assertEquals(action.isFieldDisable(By.id("accessSupplierBtn" + i)), false);

@@ -67,7 +67,12 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 
 		assertEquals(action.isRemoteIconDisable(i), false);
 		// //action.scrollToElement(table.getCellObject(i, 1));
-		table.getCellObject(i, 1);
+		table.getCellObject(i, 1).click();
+	}
+
+	// Step 3
+	@Test(dependsOnMethods = "updateSupplierWithBlankMandatoryField", alwaysRun = true)
+	public void checkErrorMessage() {
 		action.waitObjVisible(By.id(SupplierList.SUPPLIERNAME_ID));
 		action.assertTextBoxDisable(By.id(SupplierList.COMPANYREGISTRATIONNO_ID));
 		action.assertTextBoxDisable(By.id(SupplierList.TAXREGRISTRATIONNO_ID));
@@ -81,7 +86,7 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 	}
 
 	// Step 3 
-	@Test(dependsOnMethods="updateSupplierWithBlankMandatoryField")
+	@Test(dependsOnMethods = "checkErrorMessage", alwaysRun = true)
 	public void updateSupplierWithValidValue() {
 		Random rand = new Random();
 		long drand = (long) (rand.nextDouble() * 10000000000L);
