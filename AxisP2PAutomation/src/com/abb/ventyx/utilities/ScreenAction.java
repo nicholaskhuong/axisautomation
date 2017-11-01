@@ -6,7 +6,6 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -509,7 +508,7 @@ public class ScreenAction {
 
 	public void pause(int milliseconds) {
 		try {
-			TimeUnit.MILLISECONDS.sleep(timeout);
+			Thread.sleep(timeout);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
