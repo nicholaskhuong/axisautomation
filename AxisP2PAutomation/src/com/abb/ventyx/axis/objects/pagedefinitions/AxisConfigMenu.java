@@ -27,5 +27,7 @@ public class AxisConfigMenu {
 		public static final String AUDIT_LOG = "#auditLogButton > span > span";
 		public static final String CUSTOMER_MAINTENANCE_WITH_CUSTOMER = "#custConfigParentButton > span > span.valo-menu-item-caption > div > span.v-menu-item-caption";
 		public static final String PROFILE_CUSTOMER = "#maintainCustomerProfileButton > span > span";
-
+		public static final String USER_CUSTOMER = "#maintainUserButton > span > span";
+		public static final String USER_GROUP_CUSTOMER = "#maintainCustomerUsergroupButton > span > span";
+		public static final String USER_CUSTOMER_ADMIN = "#maintainAdminUsersButton > span";
 }

@@ -26,5 +26,6 @@ public class Users {
 	public static final String CANCEL_BTN_ID= "cancelBtn";
 	
  	public static final String USER_ID_FILTER = "(//input[@id='filterField'])[2]";
+ 	public static final String ADD_USERS = "#HeaderMenuBar > span:nth-child(2) > span > span";
 	
 }
