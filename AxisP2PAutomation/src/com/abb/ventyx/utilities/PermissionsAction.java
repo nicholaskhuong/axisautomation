@@ -126,7 +126,7 @@ public class PermissionsAction {
 		WebElement permissionDocType = (new WebDriverWait(driver, 20))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.id(Permissions.DOCUMENT_TYPE)));
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", permissionDocType);
+		permissionDocType.click();
 		WebElement baseTable = (new WebDriverWait(driver, 30)).until(ExpectedConditions.presenceOfElementLocated(By
 				.cssSelector("#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table")));
 		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));

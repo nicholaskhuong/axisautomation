@@ -65,16 +65,15 @@ public class Permissions_Creating extends BaseTestCase {
 
 		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
 		action.inputTextField(Permissions.PERMISSION_NAME, permissionName);
+		action.pause(500);
 		permissionsAction.selectDocTypebyText(POTypeDescription);
 		// action.pause(2000);
 		permissionsAction.selectUserType(Permissions.AXIS_ADMIN);
 		permissionsAction.selectUserType(Permissions.CUSTOMER);
 		permissionsAction.selectUserType(Permissions.SUPPLIER);
 		action.pause(4000);
-		// action.clickBtn(By.id(Permissions.SAVE));
-		driver.findElement(
-				By.cssSelector("#permissioncreatewindow > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-mainform-verticallayout > div > div.v-slot.v-slot-v-bottombar-button-layout > div > div > div > div > div:nth-child(3)"))
-				.click();
+		action.clickBtn(By.id(Permissions.SAVE));
+	
 		action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)).getText(), Messages.PERMISSION_CREATED_SUCCESSFULLY);
 
