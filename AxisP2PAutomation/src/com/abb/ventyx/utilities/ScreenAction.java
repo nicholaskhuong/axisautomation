@@ -26,7 +26,7 @@ import com.abb.ventyx.axis.objects.pagedefinitions.UserPreferences;
 
 public class ScreenAction {
 	WebDriver driver;
-	int timeout = 30;
+	int timeout = 60;
 	public ScreenAction(WebDriver driver) {
 		this.driver = driver;
 	}

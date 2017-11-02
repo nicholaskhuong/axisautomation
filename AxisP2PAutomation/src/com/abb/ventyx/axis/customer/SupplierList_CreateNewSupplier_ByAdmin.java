@@ -49,7 +49,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	String duplicatedSupplierEmail = "perla@enclave.vn";
 	String axisSupportEmail = "mail5@abb.com";
 	String axisSupportPWD = "testuser";
-	String password;
+	public static String password = "Testuser1";
 
 	// Step 1
 	@Test
@@ -160,6 +160,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.inputTextField(ScreenObjects.NEWPASSWORD_ID, newPassword);
 		action.inputTextField(ScreenObjects.CONFIRMPASSWORD_ID, newPassword);
 		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
+		password = newPassword;
 	}
 
 	// Step 16

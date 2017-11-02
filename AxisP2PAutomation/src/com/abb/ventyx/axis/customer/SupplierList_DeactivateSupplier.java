@@ -3,6 +3,7 @@ package com.abb.ventyx.axis.customer;
 import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -27,8 +28,6 @@ public class SupplierList_DeactivateSupplier extends BaseTestCase {
 	WebDriverWait wait;
 	int i;
 	int j;
-	String supplierName = "Yamaha8";
-	String supplierEmail = "yamaha8@abb.com";
 	String userSupplierEmailCreated = "cuseryamaha8@abb.com";
 	String userSupplierEmailActive = "cuseractive@abb.com";
 	String inactiveStatus = "Inactive";
@@ -45,11 +44,13 @@ public class SupplierList_DeactivateSupplier extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.SUPPLIERLIST_SUBMENU));
 		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
 		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER)).getText(), "Maintain Suppliers");
-		i = table.findRowByString(6, supplierEmail);
-		Assert.assertTrue(i > 01, String.format("Supplier %s not found!", supplierEmail));
+		table.filter(SupplierList.SUPPLIER_EMAIL_FILTER_XPATH, SupplierList_CreateNewSupplier_ByAdmin.supplierEmail);
+		i = table.findRowByString(6, SupplierList_CreateNewSupplier_ByAdmin.supplierEmail);
+		Assert.assertTrue(i > 01, String.format("Supplier %s not found!", SupplierList_CreateNewSupplier_ByAdmin.supplierEmail));
 		assertEquals(table.getValueRow(4, i), activeStatus);
-		j=i-1;
-		assertEquals(action.isFieldDisable(By.id("accessSupplierBtn"+j)),false);
+		WebElement supplierIDCell = table.getCellObject(i, 1);
+		int indexOfSupplier = table.findRealIndexByCell(supplierIDCell, "spIdBtn");
+		assertEquals(action.isFieldDisable(By.id("accessSupplierBtn" + indexOfSupplier)), false);
 	}
 
 	// Step 2
@@ -102,24 +103,24 @@ public class SupplierList_DeactivateSupplier extends BaseTestCase {
 	}
 
 	@Test(dependsOnMethods="clickYesToDeactivateSupplier")
-	public void loginAsInactiveUser(){
+	public void signOut() {
 		action.signOut();
+	}
 
+	@Test(dependsOnMethods = "signOut")
+	public void loginAsInactiveUser(){
 		//Admin
-		action.signIn(supplierEmail, password1);
+		action.signIn(SupplierList_CreateNewSupplier_ByAdmin.supplierEmail, SupplierList_CreateNewSupplier_ByAdmin.password);
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.SUPPLIER_INACTIVE);
 		action.clickBtn(By.id(LoginPageDefinition.USERNAME_TEXT_FIELD_ID));
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
-		// User with Active status
-		action.signIn(userSupplierEmailActive, password1);
-		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.SUPPLIER_INACTIVE);
-		action.clickBtn(By.id(LoginPageDefinition.USERNAME_TEXT_FIELD_ID));
-		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
+	}
+
+	@Test(dependsOnMethods = "loginAsInactiveUser")
+	public void loginAsActiveUser() {
 		// User with Created status
 		action.signIn(userSupplierEmailCreated, password2);
-		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.SUPPLIER_INACTIVE);
-
-
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), "Supplier Dashboard");
 	}
 
 }

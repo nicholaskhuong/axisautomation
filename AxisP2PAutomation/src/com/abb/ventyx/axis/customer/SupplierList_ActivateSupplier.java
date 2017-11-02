@@ -3,6 +3,7 @@ package com.abb.ventyx.axis.customer;
 import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -26,8 +27,6 @@ public class SupplierList_ActivateSupplier extends BaseTestCase {
 	WebDriverWait wait;
 	int i;
 	int j;
-	String supplierName = "Yamaha8";
-	String supplierEmail = "yamaha8@abb.com";
 	String userSupplierEmailCreated = "cuseryamaha8@abb.com";
 	String userSupplierEmailActive = "cuseractive@abb.com";
 	String inactiveStatus = "Inactive";
@@ -40,17 +39,17 @@ public class SupplierList_ActivateSupplier extends BaseTestCase {
 	public void openSupplierListScreen() {
 		action = new ScreenAction(driver);
 		table = new TableFunction(driver);
-		action.waitObjVisibleAndClick(By
-				.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
-		action.waitObjVisibleAndClick(By
-				.cssSelector(CustomerMenu.SUPPLIERLIST_SUBMENU));
+		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
+		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.SUPPLIERLIST_SUBMENU));
 		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
 		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER)).getText(), "Maintain Suppliers");
-		i = table.findRowByString(6, supplierEmail);
+		table.filter(SupplierList.SUPPLIER_EMAIL_FILTER_XPATH, SupplierList_CreateNewSupplier_ByAdmin.supplierEmail);
+		i = table.findRowByString(6, SupplierList_CreateNewSupplier_ByAdmin.supplierEmail);
 		Assert.assertTrue(i >= 0, "Record not found!");
 		assertEquals(table.getValueRow(4, i), inactiveStatus);
-		j = i - 1;
-		assertEquals(action.isFieldDisable(By.id("accessSupplierBtn" + j)), true);
+		WebElement supplierIDCell = table.getCellObject(i, 1);
+		int indexOfSupplier = table.findRealIndexByCell(supplierIDCell, "spIdBtn");
+		assertEquals(action.isFieldDisable(By.id("accessSupplierBtn" + indexOfSupplier)), true);
 	}
 
 	// Step 2
@@ -109,40 +108,50 @@ public class SupplierList_ActivateSupplier extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
 		action.assertTitleScreen("Maintain Suppliers");
 		assertEquals(table.getValueRow(4, i), activeStatus);
-		assertEquals(action.isFieldDisable(By.id("accessSupplierBtn" + j)),
-				false);
+		assertEquals(action.isFieldDisable(By.id("accessSupplierBtn" + j)),false);
 	}
 
 	// Step 7
 	@Test(dependsOnMethods = "clickYesToActivateSupplier")
-	public void loginAsActiveUser() {
+	public void signOut() {
 		action.signOut();
-		// Admin
-		action.signIn(supplierEmail, password1);
-		action.waitObjVisible(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS));
-		assertEquals(
-				driver.findElement(
-						By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS))
-						.getText(), "Supplier Dashboard");
+	}
 
-		action.signOut();
+	// Step 7
+	@Test(dependsOnMethods = "signOut")
+	public void loginAsActiveUser() {
+		// Admin
+		action.signIn(SupplierList_CreateNewSupplier_ByAdmin.supplierEmail, SupplierList_CreateNewSupplier_ByAdmin.password);
+		action.waitObjVisible(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), "Supplier Dashboard");
+	}
+		// Step 7
+	@Test(dependsOnMethods = "loginAsActiveUser")
+	public void signOutAgain() {
+			action.signOut();
+	}
+
+	// Step 7
+	@Test(dependsOnMethods = "signOutAgain")
+	public void loginAsActiveUserAgain() {
 		// User with Active status
 		action.signIn(userSupplierEmailActive, password1);
 		action.waitObjVisible(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS));
-		assertEquals(
-				driver.findElement(
-						By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS))
-						.getText(), "Supplier Dashboard");
-
-		action.signOut();
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), "Supplier Dashboard");
+	}
+		// Step 7
+	@Test(dependsOnMethods = "loginAsActiveUserAgain")
+	public void signOut3nd() {
+				action.signOut();
+	}
+		// Step 7
+	@Test(dependsOnMethods = "signOut3nd")
+	public void loginAsActiveUser3nd() {
 		// User with Created status
 		action.signIn(userSupplierEmailCreated, password2);
-		assertEquals(action.isElementPresent(By
-				.cssSelector(ScreenObjects.ERROR_CSS)), false);
+		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.ERROR_CSS)), false);
 		action.waitObjVisible(By.id(ScreenObjects.NEWPASSWORD_ID));
-		assertEquals(
-				action.isElementPresent(By.id(ScreenObjects.NEWPASSWORD_ID)),
-				true);
+		assertEquals(action.isElementPresent(By.id(ScreenObjects.NEWPASSWORD_ID)),true);
 	}
 
 }

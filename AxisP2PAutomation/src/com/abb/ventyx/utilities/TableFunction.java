@@ -72,6 +72,9 @@ public class TableFunction {
 		return row;
 	}
 
+	public int findRealIndexByCell(int row, int column, String indexString) {
+		return findRealIndexByCell(getCellObject(row, column), indexString);
+	}
 	public int findRealIndexByCell(WebElement cell, String indexString) {
 		List<WebElement> idLink = cell.findElements(By.cssSelector(String.format("div[id^=%s]", indexString)));
 		int indexOfSupplier=-1;

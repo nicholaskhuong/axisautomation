@@ -165,10 +165,9 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 	@Test(dependsOnMethods = "accessSupplierFromCustomerAndCheckASNOff", alwaysRun = true)
 	public void signOut() {
 		action.signOut();
-		action.pause(3000);
 	}
 
-	@Test(dependsOnMethods = "signOut")
+	@Test(dependsOnMethods = "signOut", alwaysRun = true)
 	public void loginAsTheUpdatedSupplierAndCheckASNOff() {
 
 		action.signIn(SupplierList_CreateNewSupplier_ByAdmin.supplierEmail, NEWPASSWORD);
