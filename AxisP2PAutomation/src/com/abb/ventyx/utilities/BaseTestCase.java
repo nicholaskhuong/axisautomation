@@ -187,7 +187,7 @@ public class BaseTestCase {
 		return ALMid;
 	}
 
-	public String getServerURL() {
+	public static String getServerURL() {
 		return getProperty(TEST_SERVER_URL);
 	}
 

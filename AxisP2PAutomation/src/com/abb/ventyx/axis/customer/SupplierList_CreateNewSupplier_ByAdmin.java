@@ -131,7 +131,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.inputTextField(SupplierList.TAXREGRISTRATIONNO_ID, taxRegistrationNo_draft);
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
-		driver.findElement(By.id(SupplierList.SUPPLIERNAME_ID)).clear();
+		driver.findElement(By.id(SupplierList.SUPPLIERNAME_ID)).click();
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
 
@@ -143,7 +143,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		driver.findElement(By.id(SupplierList.TAXREGRISTRATIONNO_ID)).clear();
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
-		driver.findElement(By.id(SupplierList.COMPANYREGISTRATIONNO_ID)).clear();
+		driver.findElement(By.id(SupplierList.COMPANYREGISTRATIONNO_ID)).click();
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
 
@@ -155,7 +155,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		driver.findElement(By.id(SupplierList.TAXREGRISTRATIONNO_ID)).clear();
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
-
+		driver.findElement(By.id(SupplierList.TAXREGRISTRATIONNO_ID)).click();
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
 
@@ -167,7 +167,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		driver.findElement(By.id(SupplierList.SUPPLIEREMAIL_ID)).clear();
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
-		driver.findElement(By.id(SupplierList.SUPPLIEREMAIL_ID)).clear();
+		driver.findElement(By.id(SupplierList.SUPPLIEREMAIL_ID)).click();
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
 
@@ -180,7 +180,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.pause(500);
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INVALID_EMAIL);
-		driver.findElement(By.id(SupplierList.SUPPLIEREMAIL_ID)).clear();
+		driver.findElement(By.id(SupplierList.SUPPLIEREMAIL_ID)).click();
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
 
@@ -192,7 +192,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, duplicatedSupplierEmail);
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.DUPLICATEDEMAIL);
-		driver.findElement(By.id(SupplierList.SUPPLIEREMAIL_ID)).clear();
+		driver.findElement(By.id(SupplierList.SUPPLIEREMAIL_ID)).click();
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
 		// Step 4
 	}
@@ -204,7 +204,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID, duplicatedCompanyRegistrationNo);
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.DUPLICATECOMPANYREGISTRATIONNO);
-		driver.findElement(By.id(SupplierList.TAXREGRISTRATIONNO_ID)).clear();
+		driver.findElement(By.id(SupplierList.TAXREGRISTRATIONNO_ID)).click();
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
 	}
 
