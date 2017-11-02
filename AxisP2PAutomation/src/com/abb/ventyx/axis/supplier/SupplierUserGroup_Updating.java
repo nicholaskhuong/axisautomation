@@ -107,8 +107,8 @@ public class SupplierUserGroup_Updating extends BaseTestCase {
 
 		action.inputTextField(UserGroup.USERGROUP_NAME_ID, USER_GROUP_NAME);
 		action.clickBtn(By.id(ScreenObjects.CANCEL_ID));
-		action.clickBtn(By.id(ScreenObjects.NO_BTN_ID));
-		action.waitObjInvisible(By.id(ScreenObjects.NO_BTN_ID));
+		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
+		action.waitObjInvisible(By.id(ScreenObjects.YES_BTN_ID));
 		action.assertTitleScreen(UserGroup.TITLE);
 
 	}
