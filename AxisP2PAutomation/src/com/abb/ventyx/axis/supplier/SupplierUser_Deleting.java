@@ -37,7 +37,7 @@ public class SupplierUser_Deleting extends BaseTestCase {
 	public void selectRowDeleting() {
 		table = new TableFunction(driver);
 		row = table.findRowByString(Users.SUPPLIER_USERS_TABLE_CSS, 2, SupplierUser_Creating.userIDvalid);
-		Assert.assertTrue(row > 0, String.format("Supplier user %s not found!", SupplierUser_Creating.userIDvalid));
+		Assert.assertTrue(row >= 0, String.format("Supplier user %s not found!", SupplierUser_Creating.userIDvalid));
 		table.assertValueRow(2, row, SupplierUser_Creating.userIDvalid);
 		row = row - 1;
 		action.clickBtn(By.id(ScreenObjects.DELETE_BTN_ID + row));

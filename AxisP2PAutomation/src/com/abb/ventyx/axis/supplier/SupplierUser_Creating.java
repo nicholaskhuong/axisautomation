@@ -72,17 +72,16 @@ public class SupplierUser_Creating extends BaseTestCase {
 	}
 
 	@Test(dependsOnMethods = "createUser")
-	public void userIdExist() {
+	public void checkUserIdExist() {
 		// Step 4
 		action.clickCheckBoxN(1);
 		action.pause(milliseconds);
 		action.inputTextField(Users.USER_ID, user_id_exist);
 		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.USERS_EXISTING);
-		((JavascriptExecutor) driver).executeScript("window.focus();");
 	}
 
-	@Test(dependsOnMethods = "userIdExist")
+	@Test(dependsOnMethods = "checkUserIdExist", alwaysRun = true)
 	public void emailExist() {
 		// Step 4
 		action.pause(milliseconds);
@@ -96,7 +95,7 @@ public class SupplierUser_Creating extends BaseTestCase {
 		((JavascriptExecutor) driver).executeScript("window.focus();");
 	}
 
-	@Test(dependsOnMethods = "emailExist")
+	@Test(dependsOnMethods = "emailExist", alwaysRun = true)
 	public void passwordLessThan6Character() {
 		// Step 4
 		action.inputTextField(Users.PASSWORD_ID, password_less_than_6_character);
@@ -106,7 +105,7 @@ public class SupplierUser_Creating extends BaseTestCase {
 		((JavascriptExecutor) driver).executeScript("window.focus();");
 	}
 
-	@Test(dependsOnMethods = "passwordLessThan6Character")
+	@Test(dependsOnMethods = "passwordLessThan6Character", alwaysRun = true)
 	public void passwordWrongFormat() {
 		// Step 5
 		action.pause(milliseconds);
@@ -119,7 +118,7 @@ public class SupplierUser_Creating extends BaseTestCase {
 		((JavascriptExecutor) driver).executeScript("window.focus();");
 	}
 
-	@Test(dependsOnMethods = "passwordWrongFormat")
+	@Test(dependsOnMethods = "passwordWrongFormat", alwaysRun = true)
 	public void passwordIsNotMap() {
 		// Step 6
 		action.pause(milliseconds);
@@ -133,7 +132,7 @@ public class SupplierUser_Creating extends BaseTestCase {
 		((JavascriptExecutor) driver).executeScript("window.focus();");
 	}
 
-	@Test(dependsOnMethods = "passwordIsNotMap")
+	@Test(dependsOnMethods = "passwordIsNotMap", alwaysRun = true)
 	public void userCreateSuccessfully() {
 		// step 7
 		Random rand = new Random();
@@ -151,7 +150,7 @@ public class SupplierUser_Creating extends BaseTestCase {
 		((JavascriptExecutor) driver).executeScript("window.focus();");
 	}
 
-	@Test(dependsOnMethods = "userCreateSuccessfully")
+	@Test(dependsOnMethods = "userCreateSuccessfully", alwaysRun = true)
 	public void noSaveChange() {
 		action.pause(milliseconds);
 		action.clickBtn(By.cssSelector(ScreenObjects.ADD_BTN_CSS));

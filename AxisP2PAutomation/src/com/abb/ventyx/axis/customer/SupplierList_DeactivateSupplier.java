@@ -4,13 +4,13 @@ import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.CustomerMenu;
 import com.abb.ventyx.axis.objects.pagedefinitions.CustomerUsers;
-import com.abb.ventyx.axis.objects.pagedefinitions.LoginPageDefinition;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 import com.abb.ventyx.axis.objects.pagedefinitions.SupplierList;
@@ -33,7 +33,7 @@ public class SupplierList_DeactivateSupplier extends BaseTestCase {
 	String inactiveStatus = "Inactive";
 	String activeStatus = "Active";
 	String password1 = "Testuser1";
-	String password2 = "Testuser2";
+	String password2 = "Testuser1";
 
 	// Step 1
 	@Test
@@ -114,15 +114,16 @@ public class SupplierList_DeactivateSupplier extends BaseTestCase {
 		//Admin
 		action.signIn(SupplierList_CreateNewSupplier_ByAdmin.supplierEmail, SupplierList_CreateNewSupplier_ByAdmin.password);
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.SUPPLIER_INACTIVE);
-		action.clickBtn(By.id(LoginPageDefinition.USERNAME_TEXT_FIELD_ID));
-		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
 	}
 
 	@Test(dependsOnMethods = "loginAsInactiveUser")
 	public void loginAsActiveUser() {
+
 		// User with Created status
 		action.signIn(userSupplierEmailCreated, password2);
-		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), "Supplier Dashboard");
+		assertEquals(
+				(new WebDriverWait(driver, 30)).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)))
+						.getText(), "Supplier Dashboard");
 	}
 
 }

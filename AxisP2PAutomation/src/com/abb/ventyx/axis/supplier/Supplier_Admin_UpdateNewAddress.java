@@ -3,7 +3,6 @@ package com.abb.ventyx.axis.supplier;
 import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
@@ -22,11 +21,11 @@ import com.abb.ventyx.utilities.TableFunction;
 public class Supplier_Admin_UpdateNewAddress extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
-	String address_Popup = "Address 1";
-	String address_Popup_2 = "Address 2";
+	String address_Popup = "Address 10";
+	String address_Popup_2 = "Address 20";
 	String city_Popup = "American";
 	String state_Popup = "Los Angeles";
-	String zip_Code = "123456789";
+	String zip_Code = "123456788";
 	String address_Type = "Invoice";
 	String country = "ARGENTINAsd";
 	int milliseconds = 800;
@@ -50,7 +49,6 @@ public class Supplier_Admin_UpdateNewAddress extends BaseTestCase {
 		action.waitObjVisible(By.id(ScreenObjects.YES_BTN_ID));
 		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
 		action.checkAddSuccess(Messages.ADDRESS_CONTACT_SUCCESSFULLY_UPDATED);
-		((JavascriptExecutor) driver).executeScript("window.focus();");
 
 	}
 

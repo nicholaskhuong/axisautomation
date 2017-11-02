@@ -161,8 +161,5 @@ public class Supplier_Admin_AddNewAddress extends BaseTestCase {
 		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
 
 		action.checkAddSuccess(Messages.ADDRESS_SUCCESSFULLY_UPDATED);
-		((JavascriptExecutor) driver).executeScript("window.focus();");
-		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
-		// action.clickBtn(By.id(ScreenObjects.CANCEL_ID));
 	}
 }

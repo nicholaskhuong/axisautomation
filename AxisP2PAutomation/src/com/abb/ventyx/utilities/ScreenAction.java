@@ -50,7 +50,7 @@ public class ScreenAction {
 	public void waitObjVisibleAndClick(By obj, int timeout) {
 		WebElement element = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(obj));
 		element.click();
-
+		waitObjInvisible(obj);
 	}
 
 	public void assertTitleScreen(String titleScreen) {
@@ -208,6 +208,7 @@ public class ScreenAction {
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(ScreenObjects.SUCCESS_MESSAGE)));
 		Assert.assertEquals(flashMessage1.getText(), msg);
+		flashMessage1.click();
 	}
 
 	public void selectComboValue(By by, String value) {
@@ -489,6 +490,7 @@ public class ScreenAction {
 		// "/SupplierPortal/");
 		waitObjVisible(By.id(UserPreferences.PROFILE_PANEL));
 		clickBtn(By.id(UserPreferences.PROFILE_PANEL));
+		pause(1000);
 		waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
 	}
 
