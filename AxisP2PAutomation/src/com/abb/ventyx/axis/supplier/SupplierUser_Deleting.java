@@ -19,10 +19,9 @@ import com.abb.ventyx.utilities.TableFunction;
 @ALM(id = "618")
 @Credentials(user = "mail232@abb.com", password = "Testuser1")
 public class SupplierUser_Deleting extends BaseTestCase {
-	String USER_ID = "BOSS";
+	// String SupplierUser_Creating.userIDvalid = "BOSS";
 	ScreenAction action;
 	TableFunction table;
-
 	int row;
 
 	@Test
@@ -37,9 +36,9 @@ public class SupplierUser_Deleting extends BaseTestCase {
 	@Test(dependsOnMethods = "openScreen")
 	public void selectRowDeleting() {
 		table = new TableFunction(driver);
-		row = table.findRowByString(Users.SUPPLIER_USERS_TABLE_CSS, 2, USER_ID);
-		Assert.assertTrue(row > 0, String.format("Supplier user %s not found!", USER_ID));
-		table.assertValueRow(2, row, USER_ID);
+		row = table.findRowByString(Users.SUPPLIER_USERS_TABLE_CSS, 2, SupplierUser_Creating.userIDvalid);
+		Assert.assertTrue(row > 0, String.format("Supplier user %s not found!", SupplierUser_Creating.userIDvalid));
+		table.assertValueRow(2, row, SupplierUser_Creating.userIDvalid);
 		row = row - 1;
 		action.clickBtn(By.id(ScreenObjects.DELETE_BTN_ID + row));
 	}
@@ -48,7 +47,7 @@ public class SupplierUser_Deleting extends BaseTestCase {
 	public void deleteUserClickNo() throws Exception {
 		// Click No on dialog
 		action.deleteClickNo(Messages.DELETE_USER_CONFIRM);
-		table.assertValueRow(2, row + 1, USER_ID);
+		table.assertValueRow(2, row + 1, SupplierUser_Creating.userIDvalid);
 
 	}
 

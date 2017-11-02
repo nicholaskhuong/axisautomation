@@ -141,11 +141,11 @@ public class SupplierList_ActivateSupplier extends BaseTestCase {
 	}
 		// Step 7
 	@Test(dependsOnMethods = "loginAsActiveUserAgain")
-	public void signOut3nd() {
+	public void signOut3rd() {
 				action.signOut();
 	}
 		// Step 7
-	@Test(dependsOnMethods = "signOut3nd")
+	@Test(dependsOnMethods = "signOut3rd")
 	public void loginAsActiveUser3nd() {
 		// User with Created status
 		action.signIn(userSupplierEmailCreated, password2);

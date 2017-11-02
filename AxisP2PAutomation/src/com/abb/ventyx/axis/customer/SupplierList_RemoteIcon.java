@@ -206,14 +206,15 @@ public class SupplierList_RemoteIcon extends BaseTestCase {
 	}
 
 	// Step 12
-	@Test(dependsOnMethods = "checkDocumentsInError")
+	@Test(dependsOnMethods = "checkDocumentsInError", alwaysRun = true)
+	public void signOutAgain() {
+		action.signOut();
+	}
+
+	// Step 12
+	@Test(dependsOnMethods = "signOutAgain", alwaysRun = true)
 	public void loginAsCustomerUserAndCheckRemoteIconAvailable() {
 
-		action.signOut();
-		action.waitObjVisible(By
-				.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
-		action.assertTitleScreen("Customer Dashboard");
-		action.signOut();
 		action.signIn(customerUser, password1);
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
 		action.waitObjVisibleAndClick(By
@@ -284,9 +285,15 @@ public class SupplierList_RemoteIcon extends BaseTestCase {
 
 	// Step 14
 	@Test(dependsOnMethods = "accessSupplier")
-	public void CheckRemoteIconForPendingSupplier() {
+	public void signOut3rd() {
 
 		action.signOut();
+	}
+
+	// Step 14
+	@Test(dependsOnMethods = "signOut3rd")
+	public void CheckRemoteIconForPendingSupplier() {
+
 		action.waitObjVisible(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
 		action.assertTitleScreen("Customer Dashboard");
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));

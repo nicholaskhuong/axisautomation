@@ -2,6 +2,8 @@ package com.abb.ventyx.axis.supplier;
 
 import static org.testng.Assert.assertEquals;
 
+import java.util.Random;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.Test;
@@ -33,10 +35,10 @@ public class SupplierUser_Creating extends BaseTestCase {
 	String password_less_than_6_character = "test";
 	String password_wrong_format = "test1234567";
 	String confirmPasswordNotMap = "Testuser6000";
-	String userIDvalid = "Salem 200";
+	public static String userIDvalid = "Salem%s";
 	String passwordValid = "Testuser1";
 	String confirmPasswordValid = "Testuser1";
-	String userEmailAddressValid = "salem200@abb.com";
+	public static String userEmailAddressValid = "salem%s@abb.com";
 
 	@Test
 	public void openScreen() {
@@ -134,6 +136,10 @@ public class SupplierUser_Creating extends BaseTestCase {
 	@Test(dependsOnMethods = "passwordIsNotMap")
 	public void userCreateSuccessfully() {
 		// step 7
+		Random rand = new Random();
+		int drand = rand.nextInt(10000);
+		userIDvalid = String.format(userIDvalid, drand);
+		userEmailAddressValid = String.format(userEmailAddressValid, drand);
 		action.inputEmailField(Users.USER_ID, userIDvalid);
 		action.inputTextField(Users.EMAIL_ID, userEmailAddressValid);
 		action.inputTextField(Users.PASSWORD_ID, passwordValid);
