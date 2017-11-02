@@ -90,21 +90,33 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.inputTextField(SupplierList.TAXREGRISTRATIONNO_ID, taxRegistrationNo);
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
+	}
 
+	// Step 3
+	@Test(dependsOnMethods = "createSupplierWithBlankMandatoryField", alwaysRun = true)
+	public void createSupplierWithEmptyCompanyRegistrationNo() {
 		// Empty Company Registration No
 		action.inputTextField(SupplierList.SUPPLIERNAME_ID, supplierName);
 		driver.findElement(By.id(SupplierList.COMPANYREGISTRATIONNO_ID)).clear();
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
+	}
 
+	// Step 3
+	@Test(dependsOnMethods = "createSupplierWithEmptyCompanyRegistrationNo", alwaysRun = true)
+	public void createSupplierWithEmptyTaxRegistrationNo() {
 		// Empty Tax Registration No
 		action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID, companyRegistrationNo);
 		driver.findElement(By.id(SupplierList.TAXREGRISTRATIONNO_ID)).clear();
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
+	}
 
+	// Step 3
+	@Test(dependsOnMethods = "createSupplierWithEmptyTaxRegistrationNo", alwaysRun = true)
+	public void createSupplierWithEmptySupplierEmail() {
 		// Empty Supplier Email
 		action.inputTextField(SupplierList.TAXREGRISTRATIONNO_ID, taxRegistrationNo);
 		driver.findElement(By.id(SupplierList.SUPPLIEREMAIL_ID)).clear();
@@ -114,7 +126,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	}
 
 	// Step 3
-	@Test(dependsOnMethods = "createSupplierWithBlankMandatoryField")
+	@Test(dependsOnMethods = "createSupplierWithEmptySupplierEmail", alwaysRun = true)
 	public void createSupplierWithInvalidEmail() {
 
 		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, invalidEmail);
@@ -126,14 +138,18 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	}
 
 	// Step 4
-	@Test(dependsOnMethods = "createSupplierWithInvalidEmail")
+	@Test(dependsOnMethods = "createSupplierWithInvalidEmail", alwaysRun = true)
 	public void createSupplierWithDuplicatedValue() {
 
 		// Duplicated email
 		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, duplicatedSupplierEmail);
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.DUPLICATEDEMAIL);
+		// Step 4
+	}
 
+	@Test(dependsOnMethods = "createSupplierWithDuplicatedValue", alwaysRun = true)
+	public void createSupplierWithDuplicatedCompanyRegistrationNo() {
 		// Duplicated Comp. Registration Number
 		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, supplierEmail);
 		WebElement txtField = driver.findElement(By.id(SupplierList.COMPANYREGISTRATIONNO_ID));
@@ -144,7 +160,10 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.DUPLICATECOMPANYREGISTRATIONNO);
+	}
 
+	@Test(dependsOnMethods = "createSupplierWithDuplicatedCompanyRegistrationNo", alwaysRun = true)
+	public void createSupplierWithDuplicatedTaxRegistrationNo() {
 		// Duplicated Tax Registration Number
 		action.inputTextField(SupplierList.TAXREGRISTRATIONNO_ID, duplicatedTaxRegistrationNo);
 
@@ -161,7 +180,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	}
 
 	// Step 5
-	@Test(dependsOnMethods = "createSupplierWithInvalidEmail")
+	@Test(dependsOnMethods = "createSupplierWithDuplicatedTaxRegistrationNo", alwaysRun = true)
 	public void createSupplierWithValidValue() {
 
 		action.inputTextField(SupplierList.TAXREGRISTRATIONNO_ID, taxRegistrationNo);
