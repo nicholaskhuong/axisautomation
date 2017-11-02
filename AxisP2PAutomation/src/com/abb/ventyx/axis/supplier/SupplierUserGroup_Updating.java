@@ -106,8 +106,9 @@ public class SupplierUserGroup_Updating extends BaseTestCase {
 	public void cancelWithoutdata() throws InterruptedException {
 
 		action.inputTextField(UserGroup.USERGROUP_NAME_ID, USER_GROUP_NAME);
-		driver.findElement(By.id(ScreenObjects.CANCEL_ID)).click();
-		action.waitObjInvisible(By.id(ScreenObjects.CANCEL_ID));
+		action.clickBtn(By.id(ScreenObjects.CANCEL_ID));
+		action.clickBtn(By.id(ScreenObjects.NO_BTN_ID));
+		action.waitObjInvisible(By.id(ScreenObjects.NO_BTN_ID));
 		action.assertTitleScreen(UserGroup.TITLE);
 
 	}

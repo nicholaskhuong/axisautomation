@@ -69,7 +69,7 @@ public class ScreenAction {
 	}
 
 	public void clickBtn(By obj) {
-		WebElement btn = driver.findElement(obj);
+		WebElement btn = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(obj));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", btn);
 		btn.click();
 	}
