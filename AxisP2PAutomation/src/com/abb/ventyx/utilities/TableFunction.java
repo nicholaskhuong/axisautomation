@@ -77,8 +77,7 @@ public class TableFunction {
 		String stringIDOfSupplier = idLink.get(0).getAttribute("id");
 		stringIDOfSupplier = stringIDOfSupplier
 				.substring(stringIDOfSupplier.indexOf(indexString) + indexString.length(), stringIDOfSupplier.length());
-		int indexOfSupplier = Integer.valueOf(stringIDOfSupplier.substring(stringIDOfSupplier.indexOf(indexString) + indexString.length(),
-				stringIDOfSupplier.length()));
+		int indexOfSupplier = Integer.valueOf(stringIDOfSupplier);
 		return indexOfSupplier;
 	}
 	public boolean isValueExisting(int columnindex, String value) {
