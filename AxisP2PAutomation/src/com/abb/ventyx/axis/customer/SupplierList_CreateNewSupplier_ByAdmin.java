@@ -50,6 +50,10 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	String axisSupportEmail = "mail5@abb.com";
 	String axisSupportPWD = "testuser";
 	String password;
+	String supplierName_draft = "Yamaha1231313";
+	String supplierEmail_draft = "yamaha13213@abb.com";
+	String companyRegistrationNo_draft = "COMYAMAHA12313213213";
+	String taxRegistrationNo_draft = "TAXYAMAHA123313213";
 
 	// Step 1
 	@Test
@@ -63,6 +67,11 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		supplierEmail = String.format("%s@abb.com", drand);
 		companyRegistrationNo = String.format("NO%s", drand);
 		taxRegistrationNo = String.format("Tax%s", drand);
+		drand = (long) (rand.nextDouble() * 100000000L);
+		supplierName_draft = String.format("Name %s", drand);
+		supplierEmail_draft = String.format("%s@abb.com", drand);
+		companyRegistrationNo_draft = String.format("NO%s", drand);
+		taxRegistrationNo_draft = String.format("Tax%s", drand);
 
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.SUPPLIERLIST_SUBMENU));
@@ -78,16 +87,48 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 
 	// Step 2
 	@Test(dependsOnMethods = "openSupplierListScreen", alwaysRun = true)
-	public void createSupplierWithBlankMandatoryField() {
+	public void openCreateSupplierForm() {
 
 		action.clickBtn(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.CREATE_BTN_ID));
 		action.waitObjVisible(By.id(SupplierList.SUPPLIERNAME_ID));
+	}
+	// Step 5
+	@Test(dependsOnMethods = "openCreateSupplierForm", alwaysRun = true)
+	public void createSupplierWithValidValue() {
 
-		// Empty Supplier Name
 		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, supplierEmail);
 		action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID, companyRegistrationNo);
+		action.inputTextField(SupplierList.SUPPLIERNAME_ID, supplierName);
 		action.inputTextField(SupplierList.TAXREGRISTRATIONNO_ID, taxRegistrationNo);
+		action.pause(1000);
+		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
+
+		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.SUPPLIER_CREATED_SUCCESSFULLY);
+		table.filter(SupplierList.SUPPLIER_EMAIL_FILTER_XPATH, supplierEmail);
+		i = table.findRowByString(6, supplierEmail);
+		Assert.assertTrue(i >= 0, "Supplier doesn't exist");
+		assertEquals(table.getValueRow(2, i), companyRegistrationNo);
+		assertEquals(table.getValueRow(3, i), taxRegistrationNo);
+		assertEquals(table.getValueRow(4, i), pendingStatus);
+		assertEquals(table.getValueRow(5, i), supplierName);
+		assertEquals(table.getValueRow(6, i), supplierEmail);
+		assertEquals(table.getValueRow(7, i), profile);
+		WebElement accessCell = table.getCellObject(i, 8);
+		action.isFieldDisable(accessCell);
+			// String supplierID = table.getIDValue(i);
+	}
+
+	// Step 5
+	@Test(dependsOnMethods = "createSupplierWithValidValue", alwaysRun = true)
+	public void createSupplierWithBlankMandatoryField() {
+		action.clickBtn(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
+		action.waitObjVisibleAndClick(By.id(ScreenObjects.CREATE_BTN_ID));
+		action.waitObjVisible(By.id(SupplierList.SUPPLIERNAME_ID));
+		// Empty Supplier Name
+		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, supplierEmail_draft);
+		action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID, companyRegistrationNo_draft);
+		action.inputTextField(SupplierList.TAXREGRISTRATIONNO_ID, taxRegistrationNo_draft);
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
@@ -97,9 +138,10 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	@Test(dependsOnMethods = "createSupplierWithBlankMandatoryField", alwaysRun = true)
 	public void createSupplierWithEmptyCompanyRegistrationNo() {
 		// Empty Company Registration No
-		action.inputTextField(SupplierList.SUPPLIERNAME_ID, supplierName);
+		action.inputTextField(SupplierList.SUPPLIERNAME_ID, supplierName_draft);
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
+		action.clickBtn(By.id(SupplierList.COMPANYREGISTRATIONNO_ID));
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
 
@@ -107,7 +149,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	@Test(dependsOnMethods = "createSupplierWithEmptyCompanyRegistrationNo", alwaysRun = true)
 	public void createSupplierWithEmptyTaxRegistrationNo() {
 		// Empty Tax Registration No
-		action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID, companyRegistrationNo);
+		action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID, companyRegistrationNo_draft);
 		driver.findElement(By.id(SupplierList.TAXREGRISTRATIONNO_ID)).clear();
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
@@ -118,7 +160,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	@Test(dependsOnMethods = "createSupplierWithEmptyTaxRegistrationNo", alwaysRun = true)
 	public void createSupplierWithEmptySupplierEmail() {
 		// Empty Supplier Email
-		action.inputTextField(SupplierList.TAXREGRISTRATIONNO_ID, taxRegistrationNo);
+		action.inputTextField(SupplierList.TAXREGRISTRATIONNO_ID, taxRegistrationNo_draft);
 		driver.findElement(By.id(SupplierList.SUPPLIEREMAIL_ID)).clear();
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
@@ -131,6 +173,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 
 		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, invalidEmail);
 		action.clickBtn(By.id(SupplierList.TAXREGRISTRATIONNO_ID));
+		action.pause(500);
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INVALID_EMAIL);
 		action.clickBtn(By.id(SupplierList.SUPPLIEREMAIL_ID));
@@ -152,7 +195,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	@Test(dependsOnMethods = "createSupplierWithDuplicatedValue", alwaysRun = true)
 	public void createSupplierWithDuplicatedCompanyRegistrationNo() {
 		// Duplicated Comp. Registration Number
-		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, supplierEmail);
+		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, supplierEmail_draft);
 		action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID, duplicatedCompanyRegistrationNo);
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.DUPLICATECOMPANYREGISTRATIONNO);
@@ -163,42 +206,19 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	public void createSupplierWithDuplicatedTaxRegistrationNo() {
 		// Duplicated Tax Registration Number
 		action.inputTextField(SupplierList.TAXREGRISTRATIONNO_ID, duplicatedTaxRegistrationNo);
-		action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID, companyRegistrationNo);
+		action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID, companyRegistrationNo_draft);
 
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.DUPLICATEDTAXREGISTRATIONNO);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
+		action.waitObjVisibleAndClick(By.id(ScreenObjects.CANCEL_ID));
+		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
+		action.assertTextEqual(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS), Messages.UNSAVED_CHANGE);
+		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
 
 	}
 
-	// Step 5
 	@Test(dependsOnMethods = "createSupplierWithDuplicatedTaxRegistrationNo", alwaysRun = true)
-	public void createSupplierWithValidValue() {
-
-		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, supplierEmail);
-		action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID, companyRegistrationNo);
-		action.inputTextField(SupplierList.SUPPLIERNAME_ID, supplierName);
-		action.inputTextField(SupplierList.TAXREGRISTRATIONNO_ID, taxRegistrationNo);
-		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
-
-		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.SUPPLIER_CREATED_SUCCESSFULLY);
-		table.filter(SupplierList.SUPPLIER_EMAIL_FILTER_XPATH, supplierEmail);
-		i = table.findRowByString(6, supplierEmail);
-		Assert.assertTrue(i >= 0, "Supplier doesn't exist");
-		assertEquals(table.getValueRow(2, i), companyRegistrationNo);
-		assertEquals(table.getValueRow(3, i), taxRegistrationNo);
-		assertEquals(table.getValueRow(4, i), pendingStatus);
-		assertEquals(table.getValueRow(5, i), supplierName);
-		assertEquals(table.getValueRow(6, i), supplierEmail);
-		assertEquals(table.getValueRow(7, i), profile);
-		WebElement accessCell = table.getCellObject(i, 8);
-		action.isFieldDisable(accessCell);
-		// String supplierID = table.getIDValue(i);
-	}
-
-	// Step 6,7 can't auto
-	// Step 8
-	@Test(dependsOnMethods = "createSupplierWithValidValue")
 	public void checkCancelButtonWithoutInput() {
 
 		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.ADD_BTN_CSS));

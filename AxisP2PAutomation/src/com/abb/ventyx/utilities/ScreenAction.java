@@ -71,8 +71,7 @@ public class ScreenAction {
 	public void clickBtn(By obj) {
 		WebElement btn = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(obj));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", btn);
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
-		pause(100);
+		btn.click();
 	}
 
 	public void inputEmailField(String obj, String value) {
@@ -92,7 +91,6 @@ public class ScreenAction {
 	public void inputTextField(String obj, String value) {
 		WebElement txtField = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By.id(obj)));
 		txtField.clear();
-		pause(100);
 		for (int i = 0; i < value.length(); i++) {
 			char c = value.charAt(i);
 			String s = new StringBuilder().append(c).toString();
