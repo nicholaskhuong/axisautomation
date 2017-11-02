@@ -191,7 +191,8 @@ public class SupplierList_RemoteIcon extends BaseTestCase {
 		action.waitObjVisible(By.id("componentId0"));
 		action.assertTitleScreen("Documents in Error");
 	}
-	@Test(dependsOnMethods = "filterDocument")
+
+	@Test(dependsOnMethods = "filterDocumentInvoice")
 	public void filterDocumentPOAckType() {
 		// Check PO Ack in Error
 		table.filter(DocumentsInError.DOC_TYPE_FILTER_XPATH, POAckType);
