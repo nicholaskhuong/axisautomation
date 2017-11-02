@@ -37,5 +37,8 @@ public class AxisConfigMenu {
 	public static final String AXIS_ADMIN_ID = "axisAdminParentButton";
 	public static final String CUSTOMER_MAINTENANCE_ID = "custMaintParentButton";
 	public static final String CUSTOMER_USERGROUP_ID = "maintainCustomerUsergroupButton";
+	// ----
+	public static final String CUSTOMERMAINTAINCE_MENU_CSS= "#custMaintParentButton > span > span.valo-menu-item-caption > div > span.v-menu-item-caption";
+	public static final String USERGROUP_SUBMENU_CSS= "#maintainCustomerUsergroupButton > span > span";
 
 }

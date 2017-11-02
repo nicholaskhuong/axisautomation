@@ -193,7 +193,7 @@ public class TableFunction {
 		WebElement row = driver.findElement(By.xpath(ScreenObjects.TABLE_BODY_XPATH + "//tr[" + rowIndex + "]"));
 		row.click();
 	}
-
+	
 	public void filterPermission(String filterPermissionName) {
 		inputFilter(filterPermissionName, Permissions.PERMISSION_NAME_FILTER, true);
 	}

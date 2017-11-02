@@ -9,6 +9,8 @@ public class Users {
 	public static final String USERNUMBER_ID = "userSequenceNo";
 	public static final String USERGROUP_TABLE_CSS = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div.v-slot.v-slot-v-common-page-content-layout > div > div:nth-child(3) > div > div.v-slot.v-slot-v-horizontal-layout-with-border > div > div > div > div > div.v-grid-tablewrapper > table > tbody";
 	public static final String USERNUMBER_LINKID = "usrSequenceIdStrBtn";
+	public static final String GROUPNAME_LINKID = "userGroupNameBtn";
+	public static final String DELETE_BUTTON = "deleteItemBtn";
 	public static final String STATUS_ID = "userStatusCB";
 	public static final String UPDATEPASSWORD_NO_CSS = "#updatePasswordOptionGroup > span:nth-child(1)";
 	public static final String UPDATEPASSWORD_YES_CSS = "#updatePasswordOptionGroup > span:nth-child(2)";
