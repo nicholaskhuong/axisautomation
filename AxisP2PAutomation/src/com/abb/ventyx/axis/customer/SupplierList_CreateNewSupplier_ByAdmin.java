@@ -125,7 +125,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	@Test(dependsOnMethods = "createSupplierWithEmptySupplierEmail", alwaysRun = true)
 	public void createSupplierWithInvalidEmail() {
 
-		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, invalidEmail);
+		action.inputEmailField(SupplierList.SUPPLIEREMAIL_ID, invalidEmail);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INVALID_EMAIL);
