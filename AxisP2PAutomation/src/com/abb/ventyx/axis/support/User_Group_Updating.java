@@ -10,9 +10,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
-import com.abb.ventyx.axis.objects.pagedefinitions.AxisSupportCustomerUserGroup;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
+import com.abb.ventyx.axis.objects.pagedefinitions.UserGroup;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseDropDownList;
 import com.abb.ventyx.utilities.BaseGrid;
@@ -39,20 +39,20 @@ public class User_Group_Updating extends BaseTestCase {
 	public void selectuserTab() throws Exception {
 		table = new TableFunction(driver);
 		action = new ScreenAction(driver);
-		action.waitObjVisibleAndClick(By.cssSelector(AxisSupportCustomerUserGroup.CUSTOMERMAINTAINCE_MENU_CSS));
-		action.waitObjVisibleAndClick(By.cssSelector(AxisSupportCustomerUserGroup.USERGROUP_SUBMENU_CSS));
+		action.waitObjVisibleAndClick(By.cssSelector(UserGroup.CUSTOMERMAINTAINCE_MENU_CSS));
+		action.waitObjVisibleAndClick(By.cssSelector(UserGroup.USERGROUP_SUBMENU_CSS));
 		(new WebDriverWait(driver, 10)).until(ExpectedConditions
 				.presenceOfElementLocated(By
-						.id(AxisSupportCustomerUserGroup.SYSTEM_TAB_ID)));
+						.id(UserGroup.SYSTEM_TAB_ID)));
 		WebElement screenTitle = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
-						.id(AxisSupportCustomerUserGroup.SCREEN_TITLE_ID)));
+						.id(UserGroup.SCREEN_TITLE_ID)));
 		assertEquals(screenTitle.getText(),
-				AxisSupportCustomerUserGroup.SCREEN_TITLE, "Title is wrong");
+				UserGroup.SCREEN_TITLE, "Title is wrong");
 		String system_row0 = driver.findElement(
-				By.id(AxisSupportCustomerUserGroup.ROW_ID + "0")).getText();
+				By.id(UserGroup.ROW_ID + "0")).getText();
 		assertEquals(system_row0, SYSTEM_GROUP_NAME);
-		driver.findElement(By.id(AxisSupportCustomerUserGroup.USER_TAB_ID))
+		driver.findElement(By.id(UserGroup.USER_TAB_ID))
 				.click();
 
 	}
@@ -61,26 +61,26 @@ public class User_Group_Updating extends BaseTestCase {
 	@Test(dependsOnMethods = "selectuserTab")
 	public void selectRowForUpdate() throws Exception {
 		WebElement customer = driver.findElement(By
-				.className(AxisSupportCustomerUserGroup.CUSTOMER_CLASS));
+				.className(UserGroup.CUSTOMER_CLASS));
 		customer.sendKeys(CUSTOMER_NAME);
 		list = new BaseDropDownList(driver,
-				AxisSupportCustomerUserGroup.LIST_CSS);
+				UserGroup.LIST_CSS);
 		row = list.findItemInDropDownList(CUSTOMER_NAME);
 		WebElement rowClick = (new WebDriverWait(driver, 60))
 				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(AxisSupportCustomerUserGroup.LIST_CSS
+						.cssSelector(UserGroup.LIST_CSS
 								+ "> tbody > tr:nth-child(" + (row - 1)
 								+ ") > td")));
 		rowClick.click();
 		(new WebDriverWait(driver, 15)).until(ExpectedConditions
 				.presenceOfElementLocated(By
-						.id(AxisSupportCustomerUserGroup.ROW_ID + "0")));
+						.id(UserGroup.ROW_ID + "0")));
 		userGroupList = new BaseGrid(driver,
-				AxisSupportCustomerUserGroup.USERGROUP_TABLE_CSS);
+				UserGroup.USERGROUP_TABLE_CSS);
 		int rowSelected = userGroupList.findItemByColumnName(
-				AxisSupportCustomerUserGroup.NAME_COLUMN, USER_GROUP_NAME);
+				UserGroup.NAME_COLUMN, USER_GROUP_NAME);
 		driver.findElement(
-				By.id(AxisSupportCustomerUserGroup.ROW_ID + (rowSelected - 1)))
+				By.id(UserGroup.ROW_ID + (rowSelected - 1)))
 				.click();
 	}
 
@@ -90,26 +90,26 @@ public class User_Group_Updating extends BaseTestCase {
 
 		WebElement userGroupName = (new WebDriverWait(driver, 15))
 				.until(ExpectedConditions.presenceOfElementLocated(By
-						.id(AxisSupportCustomerUserGroup.USERGROUP_NAME_ID)));
+						.id(UserGroup.USERGROUP_NAME_ID)));
 		WebElement screenTitle = driver.findElement(By
-				.id(AxisSupportCustomerUserGroup.SCREEN_TITLE_ID));
+				.id(UserGroup.SCREEN_TITLE_ID));
 		assertEquals(screenTitle.getText(),
-				AxisSupportCustomerUserGroup.SCREEN_UPDATE_TITLE);
+				UserGroup.SCREEN_UPDATE_TITLE);
 		// assertEquals(userGroupName.getText(), USER_GROUP_NAME);
 		// List<WebElement> list=
-		// driver.findElements(By.className(AxisSupportCustomerUserGroup.PERMISSION_CLASS));
+		// driver.findElements(By.className(UserGroup.PERMISSION_CLASS));
 		// for(WebElement permission:list)
 		// {
 		// assertTrue(permission.isSelected());
 		// }
 		userGroupName.clear();
-		driver.findElement(By.id(AxisSupportCustomerUserGroup.SAVE_ID)).click();
+		driver.findElement(By.id(UserGroup.SAVE_ID)).click();
 		WebElement errorMessage = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)));
 		assertEquals(errorMessage.getText(), Messages.ENTER_MANDATORY_FIELDS);
 		userGroupName.sendKeys(NEW_GROUP_NAME);
-		driver.findElement(By.id(AxisSupportCustomerUserGroup.SAVE_ID)).click();
+		driver.findElement(By.id(UserGroup.SAVE_ID)).click();
 		WebElement sucessMessage = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(ScreenObjects.SUCCESS_MESSAGE)));
@@ -122,23 +122,23 @@ public class User_Group_Updating extends BaseTestCase {
 
 		(new WebDriverWait(driver, 15)).until(ExpectedConditions
 				.presenceOfElementLocated(By
-						.id(AxisSupportCustomerUserGroup.ROW_ID + "0")));
+						.id(UserGroup.ROW_ID + "0")));
 		userGroupList = new BaseGrid(driver,
-				AxisSupportCustomerUserGroup.USERGROUP_TABLE_CSS);
+				UserGroup.USERGROUP_TABLE_CSS);
 		row = userGroupList.findItemByColumnName(
-				AxisSupportCustomerUserGroup.NAME_COLUMN, NEW_GROUP_NAME);
+				UserGroup.NAME_COLUMN, NEW_GROUP_NAME);
 		driver.findElement(
-				By.id(AxisSupportCustomerUserGroup.ROW_ID + (row - 1))).click();
+				By.id(UserGroup.ROW_ID + (row - 1))).click();
 		WebElement userGroupName = (new WebDriverWait(driver, 15))
 				.until(ExpectedConditions.presenceOfElementLocated(By
-						.id(AxisSupportCustomerUserGroup.USERGROUP_NAME_ID)));
+						.id(UserGroup.USERGROUP_NAME_ID)));
 		// assertEquals(userGroupName.getText(), NEW_GROUP_NAME);
 		userGroupName.clear();
 		userGroupName.sendKeys(CUSTOMER_NAME);
 		List<WebElement> list = driver.findElements(By
-				.className(AxisSupportCustomerUserGroup.PERMISSION_CLASS));
+				.className(UserGroup.PERMISSION_CLASS));
 		list.get(0).click();
-		driver.findElement(By.id(AxisSupportCustomerUserGroup.SAVE_ID)).click();
+		driver.findElement(By.id(UserGroup.SAVE_ID)).click();
 		WebElement sucessMessage = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(ScreenObjects.SUCCESS_MESSAGE)));
@@ -149,34 +149,34 @@ public class User_Group_Updating extends BaseTestCase {
 	@Test(dependsOnMethods = "updatePermission")
 	public void clickCancelWithoutdata() throws InterruptedException {
 		WebElement rowLink = driver.findElement(By
-				.id(AxisSupportCustomerUserGroup.ROW_ID + "1"));
+				.id(UserGroup.ROW_ID + "1"));
 		rowLink.click();
 		(new WebDriverWait(driver, 10)).until(ExpectedConditions
 				.presenceOfElementLocated(By
-						.id(AxisSupportCustomerUserGroup.USERGROUP_NAME_ID)));
-		driver.findElement(By.id(AxisSupportCustomerUserGroup.CANCEL_ID))
+						.id(UserGroup.USERGROUP_NAME_ID)));
+		driver.findElement(By.id(UserGroup.CANCEL_ID))
 				.click();
 
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions
 				.presenceOfElementLocated(By
-						.id(AxisSupportCustomerUserGroup.USER_CUSTOMER_ID)));
+						.id(UserGroup.USER_CUSTOMER_ID)));
 		WebElement screenTitle = driver.findElement(By
-				.id(AxisSupportCustomerUserGroup.SCREEN_TITLE_ID));
+				.id(UserGroup.SCREEN_TITLE_ID));
 		assertEquals(screenTitle.getText(),
-				AxisSupportCustomerUserGroup.SCREEN_TITLE);
+				UserGroup.SCREEN_TITLE);
 	}
 
 	@Test(dependsOnMethods = "clickCancelWithoutdata")
 	public void clickCancelClickYes() {
 
 		WebElement rowLink = driver.findElement(By
-				.id(AxisSupportCustomerUserGroup.ROW_ID + "1"));
+				.id(UserGroup.ROW_ID + "1"));
 		rowLink.click();
 		WebElement userGroupName = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
-						.id(AxisSupportCustomerUserGroup.USERGROUP_NAME_ID)));
+						.id(UserGroup.USERGROUP_NAME_ID)));
 		userGroupName.sendKeys(USER_GROUP_NAME);
-		driver.findElement(By.id(AxisSupportCustomerUserGroup.CANCEL_ID))
+		driver.findElement(By.id(UserGroup.CANCEL_ID))
 				.click();
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions
 				.presenceOfElementLocated(By
@@ -184,24 +184,24 @@ public class User_Group_Updating extends BaseTestCase {
 		driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions
 				.presenceOfElementLocated(By
-						.id(AxisSupportCustomerUserGroup.USER_CUSTOMER_ID)));
+						.id(UserGroup.USER_CUSTOMER_ID)));
 		WebElement screenTitle = driver.findElement(By
-				.id(AxisSupportCustomerUserGroup.SCREEN_TITLE_ID));
+				.id(UserGroup.SCREEN_TITLE_ID));
 		assertEquals(screenTitle.getText(),
-				AxisSupportCustomerUserGroup.SCREEN_TITLE);
+				UserGroup.SCREEN_TITLE);
 	}
 
 	@Test(dependsOnMethods = "clickCancelClickYes")
 	public void clickCancelClickN0() {
 
 		WebElement rowLink = driver.findElement(By
-				.id(AxisSupportCustomerUserGroup.ROW_ID + "1"));
+				.id(UserGroup.ROW_ID + "1"));
 		rowLink.click();
 		WebElement userGroupName = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
-						.id(AxisSupportCustomerUserGroup.USERGROUP_NAME_ID)));
+						.id(UserGroup.USERGROUP_NAME_ID)));
 		userGroupName.sendKeys(USER_GROUP_NAME);
-		driver.findElement(By.id(AxisSupportCustomerUserGroup.CANCEL_ID))
+		driver.findElement(By.id(UserGroup.CANCEL_ID))
 				.click();
 		WebElement msgDialog = (new WebDriverWait(driver, 20))
 				.until(ExpectedConditions.presenceOfElementLocated(By
@@ -210,9 +210,9 @@ public class User_Group_Updating extends BaseTestCase {
 		driver.findElement(By.id(ScreenObjects.NO_BTN_ID)).click();
 		;
 		WebElement screenTitle = driver.findElement(By
-				.id(AxisSupportCustomerUserGroup.SCREEN_TITLE_ID));
+				.id(UserGroup.SCREEN_TITLE_ID));
 		assertEquals(screenTitle.getText(),
-				AxisSupportCustomerUserGroup.SCREEN_UPDATE_TITLE);
+				UserGroup.SCREEN_UPDATE_TITLE);
 
 	}
 

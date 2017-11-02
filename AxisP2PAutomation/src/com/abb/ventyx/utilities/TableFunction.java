@@ -11,9 +11,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.abb.ventyx.axis.objects.pagedefinitions.AxisSupportCustomerUserGroup;
 import com.abb.ventyx.axis.objects.pagedefinitions.Permissions;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
+import com.abb.ventyx.axis.objects.pagedefinitions.UserGroup;
 
 public class TableFunction {
 	WebDriver driver;
@@ -274,7 +274,7 @@ public class TableFunction {
 	// In User Group grid.
 	public void clickArrowDownToShowPermission(int row, int column) {
 		WebElement cell = driver.findElement(By.xpath(String.format("%s/tr[%s]/td[%s]/div/div/span/span",
-				AxisSupportCustomerUserGroup.USERGROUP_GRID_XPATH, row, column)));
+				UserGroup.USERGROUP_GRID_XPATH, row, column)));
 		cell.click();
 	}
 	public String getIDValue(int row) {

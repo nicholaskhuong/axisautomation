@@ -10,9 +10,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.abb.ventyx.axis.objects.pagedefinitions.AxisSupportCustomerUserGroup;
 import com.abb.ventyx.axis.objects.pagedefinitions.DocType;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
+import com.abb.ventyx.axis.objects.pagedefinitions.UserGroup;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
@@ -34,11 +34,11 @@ public class Create_User_Group extends BaseTestCase {
 		// userGroupsMenu.click();
 		WebElement addUserGroup = (new WebDriverWait(driver, 20))
 				.until(ExpectedConditions.presenceOfElementLocated(By
-						.xpath(AxisSupportCustomerUserGroup.ADD_XPATH)));
+						.xpath(UserGroup.ADD_XPATH)));
 		js.executeScript("arguments[0].click();", addUserGroup);
 		WebElement userGroupName = (new WebDriverWait(driver, 20))
 				.until(ExpectedConditions.presenceOfElementLocated(By
-						.id(AxisSupportCustomerUserGroup.USERGROUP_NAME_ID)));
+						.id(UserGroup.USERGROUP_NAME_ID)));
 		userGroupName.clear();
 		userGroupName.sendKeys(USER_GROUP_NAME);
 		List<WebElement> listCheckbox = driver.findElements(By
@@ -47,7 +47,7 @@ public class Create_User_Group extends BaseTestCase {
 		listCheckbox.get(2).click();
 		listCheckbox.get(3).click();
 		WebElement savebtn = driver.findElement(By
-				.id(AxisSupportCustomerUserGroup.SAVE_ID));
+				.id(UserGroup.SAVE_ID));
 		savebtn.click();
 		WebElement flashMessage1 = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By

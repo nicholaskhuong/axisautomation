@@ -8,10 +8,10 @@ import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
-import com.abb.ventyx.axis.objects.pagedefinitions.AxisSupportCustomerUserGroup;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.Permissions;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
+import com.abb.ventyx.axis.objects.pagedefinitions.UserGroup;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
@@ -105,17 +105,17 @@ public class Permissions_Creating extends BaseTestCase {
 		// Supplier Usergroup sub-menu
 		action.waitObjVisibleAndClick(By.id(AxisConfigMenu.SUPPLIER_USERGROUP_ID));
 
-		action.waitObjVisible(By.id(AxisSupportCustomerUserGroup.SYSTEM_TAB_ID));
+		action.waitObjVisible(By.id(UserGroup.SYSTEM_TAB_ID));
 
-		action.waitObjVisibleAndClick(By.id(AxisSupportCustomerUserGroup.ADMINUSERGROUP_ID));
-		action.waitObjVisible(By.cssSelector(AxisSupportCustomerUserGroup.ADMIN_USERGROUPNAME_CSS));
+		action.waitObjVisibleAndClick(By.id(UserGroup.ADMINUSERGROUP_ID));
+		action.waitObjVisible(By.cssSelector(UserGroup.ADMIN_USERGROUPNAME_CSS));
 
-		action.assertTextEqual(By.cssSelector(AxisSupportCustomerUserGroup.ADMIN_USERGROUPNAME_CSS), supplierAdminUserGroupName);
+		action.assertTextEqual(By.cssSelector(UserGroup.ADMIN_USERGROUPNAME_CSS), supplierAdminUserGroupName);
 		System.out.println("Perla Perla 1");
 		action.pause(2000);
-		int row = table.findRowByString(AxisSupportCustomerUserGroup.USERGROUP_GRID_XPATH, 3, POTypeDescription, true);
+		int row = table.findRowByString(UserGroup.USERGROUP_GRID_XPATH, 3, POTypeDescription, true);
 
-		assertEquals(table.getCellObjectUserGroup(AxisSupportCustomerUserGroup.USERGROUP_GRID_XPATH, row, 3).getText(), POTypeDescription);
+		assertEquals(table.getCellObjectUserGroup(UserGroup.USERGROUP_GRID_XPATH, row, 3).getText(), POTypeDescription);
 
 		table.clickArrowDownToShowPermission(row, 2);
 		System.out.println("Row: " + row);
@@ -129,17 +129,17 @@ public class Permissions_Creating extends BaseTestCase {
 
 		// Supplier Usergroup sub-menu
 		action.waitObjVisibleAndClick(By.id(AxisConfigMenu.AXIS_USERGROUP_ID));
-		action.waitObjVisible(By.id(AxisSupportCustomerUserGroup.SYSTEM_TAB_ID));
+		action.waitObjVisible(By.id(UserGroup.SYSTEM_TAB_ID));
 
-		action.waitObjVisibleAndClick(By.id(AxisSupportCustomerUserGroup.ADMINUSERGROUP_ID));
-		action.waitObjVisible(By.cssSelector(AxisSupportCustomerUserGroup.ADMIN_USERGROUPNAME_CSS));
+		action.waitObjVisibleAndClick(By.id(UserGroup.ADMINUSERGROUP_ID));
+		action.waitObjVisible(By.cssSelector(UserGroup.ADMIN_USERGROUPNAME_CSS));
 
-		action.assertTextEqual(By.cssSelector(AxisSupportCustomerUserGroup.ADMIN_USERGROUPNAME_CSS), axisAdminUserGroupName);
+		action.assertTextEqual(By.cssSelector(UserGroup.ADMIN_USERGROUPNAME_CSS), axisAdminUserGroupName);
 		System.out.println("Perla Perla 1");
 		action.pause(2000);
-		int row = table.findRowByString(AxisSupportCustomerUserGroup.USERGROUP_GRID_XPATH, 3, POTypeDescription, true);
+		int row = table.findRowByString(UserGroup.USERGROUP_GRID_XPATH, 3, POTypeDescription, true);
 
-		assertEquals(table.getCellObjectUserGroup(AxisSupportCustomerUserGroup.USERGROUP_GRID_XPATH, row, 3).getText(), POTypeDescription);
+		assertEquals(table.getCellObjectUserGroup(UserGroup.USERGROUP_GRID_XPATH, row, 3).getText(), POTypeDescription);
 
 		table.clickArrowDownToShowPermission(row, 2);
 		System.out.println("Row: " + row);
@@ -157,18 +157,18 @@ public class Permissions_Creating extends BaseTestCase {
 		// Customer Usergroup sub-menu
 		action.waitObjVisibleAndClick(By.id(AxisConfigMenu.CUSTOMER_USERGROUP_ID));
 
-		action.waitObjVisible(By.id(AxisSupportCustomerUserGroup.SYSTEM_TAB_ID));
+		action.waitObjVisible(By.id(UserGroup.SYSTEM_TAB_ID));
 
-		action.waitObjVisibleAndClick(By.id(AxisSupportCustomerUserGroup.ADMINUSERGROUP_ID));
+		action.waitObjVisibleAndClick(By.id(UserGroup.ADMINUSERGROUP_ID));
 		action.pause(1000);
-		action.waitObjVisible(By.cssSelector(AxisSupportCustomerUserGroup.ADMIN_USERGROUPNAME_CSS));
+		action.waitObjVisible(By.cssSelector(UserGroup.ADMIN_USERGROUPNAME_CSS));
 
-		action.assertTextEqual(By.cssSelector(AxisSupportCustomerUserGroup.ADMIN_USERGROUPNAME_CSS), custAdminUserGroupName);
+		action.assertTextEqual(By.cssSelector(UserGroup.ADMIN_USERGROUPNAME_CSS), custAdminUserGroupName);
 		System.out.println("Perla Perla 1");
 		action.pause(2000);
-		int row = table.findRowByString(AxisSupportCustomerUserGroup.USERGROUP_GRID_XPATH, 3, POTypeDescription, true);
+		int row = table.findRowByString(UserGroup.USERGROUP_GRID_XPATH, 3, POTypeDescription, true);
 
-		assertEquals(table.getCellObjectUserGroup(AxisSupportCustomerUserGroup.USERGROUP_GRID_XPATH, row, 3).getText(), POTypeDescription);
+		assertEquals(table.getCellObjectUserGroup(UserGroup.USERGROUP_GRID_XPATH, row, 3).getText(), POTypeDescription);
 
 		table.clickArrowDownToShowPermission(row, 2);
 		System.out.println("Row: " + row);
