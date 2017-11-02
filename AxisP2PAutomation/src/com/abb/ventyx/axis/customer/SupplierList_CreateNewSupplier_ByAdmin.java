@@ -217,6 +217,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.DUPLICATEDTAXREGISTRATIONNO);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
+		driver.findElement(By.id(SupplierList.COMPANYREGISTRATIONNO_ID)).click();
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.CANCEL_ID));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
 		action.assertTextEqual(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS), Messages.UNSAVED_CHANGE);
