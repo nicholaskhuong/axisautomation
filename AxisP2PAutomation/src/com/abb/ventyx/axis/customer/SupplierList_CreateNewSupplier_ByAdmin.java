@@ -298,10 +298,18 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	}
 	
 	@Test(dependsOnMethods = "checkAddressAndContact", alwaysRun = true)
+	public void signOutAgain() {
+		action.signOut();
+	}
+
+	@Test(dependsOnMethods = "signOutAgain", alwaysRun = true)
+	public void signInAgain() {
+
+	}
+
+	@Test(dependsOnMethods = "signInAgain", alwaysRun = true)
 	public void checkStatusAndRemoteIcon() {
 
-		action.signOut();
-		action.signIn("cadmin1@abb.com", "Testuser1");
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.SUPPLIERLIST_SUBMENU));
 		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));

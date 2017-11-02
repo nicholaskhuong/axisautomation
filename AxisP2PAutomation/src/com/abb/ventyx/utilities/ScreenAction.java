@@ -71,7 +71,7 @@ public class ScreenAction {
 	public void clickBtn(By obj) {
 		WebElement btn = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(obj));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", btn);
-		btn.click();
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
 	}
 
 	public void inputEmailField(String obj, String value) {
@@ -226,7 +226,7 @@ public class ScreenAction {
 			WebElement columnValue = driver.findElement(By.xpath("//div[@id='VAADIN_COMBOBOX_OPTIONLIST']//div//div[2]//table//tbody//tr[" + i
 					+ "]//td//span"));
 
-			System.out.println("Status " + columnValue.getText());
+			// System.out.println("Status " + columnValue.getText());
 			if (columnValue.getText().equals(value)) {
 				columnValue.click();
 				break;
