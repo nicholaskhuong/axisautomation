@@ -237,8 +237,8 @@ public class ScreenAction {
 
 	public void assertMessgeError(String msgCSS, String msg) {
 		WebElement error = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(msgCSS)));
-		error.click();
 		Assert.assertEquals(error.getText(), msg);
+		error.click();
 	}
 
 	public void checkValidationTextField(String obj, String value, String msg,
