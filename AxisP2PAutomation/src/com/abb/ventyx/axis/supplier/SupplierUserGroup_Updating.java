@@ -5,6 +5,7 @@ import static org.testng.Assert.assertEquals;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
@@ -40,6 +41,7 @@ public class SupplierUserGroup_Updating extends BaseTestCase {
 	public void selectRowUpdating() {
 		table = new TableFunction(driver);
 		row = table.findRowByString(UserGroup.SUPPLIER_GROUP_TABLE_CSS, 1, USER_GROUP_NAME);
+		Assert.assertTrue(row > 0, String.format("User %s not found!", USER_GROUP_NAME));
 		row -= 1;
 		table.assertRowEqual(UserGroup.ROW_ID, USER_GROUP_NAME, row);
 

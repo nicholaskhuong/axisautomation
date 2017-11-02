@@ -32,13 +32,13 @@ public class SupplierUserGroup_Creating extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.USER_GROUPS_ID));
 		action.waitObjVisible(By.cssSelector(UserGroup.ADD_BTN_CSS));
 		action.assertTitleScreen(UserGroup.TITLE);
+		rowOfUserGroupBeforeAdding = table.findRowByString(UserGroup.SUPPLIER_GROUP_TABLE_CSS, 1, USER_GROUP_NAME);
 	}
 
-	@Test(dependsOnMethods = "openScreen")
+	@Test(dependsOnMethods = "openScreen", alwaysRun = true)
 	public void addUserGroup() {
 
-		table.inputFilter(USER_GROUP_NAME);
-		rowOfUserGroupBeforeAdding = table.findRowByString(UserGroup.SUPPLIER_GROUP_TABLE_CSS, 1, USER_GROUP_NAME);
+		// table.inputFilter(USER_GROUP_NAME);
 
 		action.clickBtn(By.cssSelector(UserGroup.ADD_BTN_CSS));
 		action.waitObjVisible(By.id(UserGroup.USERGROUP_NAME_ID));
@@ -47,7 +47,7 @@ public class SupplierUserGroup_Creating extends BaseTestCase {
 
 		// Click PO permission
 		row = table.findRowByString(UserGroup.PERMISSION_TABLE_CSS, 3, PERMISSION);
-		Assert.assertTrue(row >= 0, "Permission doesn't exist!");
+		Assert.assertTrue(row >= 0, String.format("Permission %s doesn't exist!", PERMISSION));
 		action.clickCheckBoxN(row);
 		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
 		action.checkAddSuccess(Messages.USERGROUP_CREATE_SUCCESSFULLY);
@@ -56,7 +56,7 @@ public class SupplierUserGroup_Creating extends BaseTestCase {
 
 	@Test(dependsOnMethods = "addUserGroup")
 	public void checkAddSuccessfully() {
-		table.inputFilter(USER_GROUP_NAME);
+		// table.inputFilter(USER_GROUP_NAME);
 		row = table.findRowByString(UserGroup.SUPPLIER_GROUP_TABLE_CSS, 1, USER_GROUP_NAME);
 		if (rowOfUserGroupBeforeAdding > 0) {
 			Assert.assertEquals(rowOfUserGroupBeforeAdding, row - 1);

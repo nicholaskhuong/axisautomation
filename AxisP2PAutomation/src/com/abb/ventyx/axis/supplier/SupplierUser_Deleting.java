@@ -3,6 +3,7 @@ package com.abb.ventyx.axis.supplier;
 import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
@@ -37,6 +38,7 @@ public class SupplierUser_Deleting extends BaseTestCase {
 	public void selectRowDeleting() {
 		table = new TableFunction(driver);
 		row = table.findRowByString(Users.SUPPLIER_USERS_TABLE_CSS, 2, USER_ID);
+		Assert.assertTrue(row > 0, String.format("Supplier user %s not found!", USER_ID));
 		table.assertValueRow(2, row, USER_ID);
 		row = row - 1;
 		action.clickBtn(By.id(ScreenObjects.DELETE_BTN_ID + row));

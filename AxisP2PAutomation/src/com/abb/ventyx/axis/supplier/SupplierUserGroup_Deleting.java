@@ -38,9 +38,9 @@ public class SupplierUserGroup_Deleting extends BaseTestCase {
 	public void selectRowDeleting() {
 		table = new TableFunction(driver);
 		row = table.findRowByString(UserGroup.SUPPLIER_GROUP_TABLE_CSS, 1, USER_GROUP_NAME);
-		Assert.assertTrue(row >= 0, "Record not found!");
+		Assert.assertTrue(row > 0, String.format("User group %s not found!", USER_GROUP_NAME));
 		table.assertRowEqual(UserGroup.ROW_ID, USER_GROUP_NAME, row - 1);
-		row = row - 1;
+		row -= 1;
 		action.clickBtn(By.id(ScreenObjects.DELETE_BTN_ID + row));
 
 	}

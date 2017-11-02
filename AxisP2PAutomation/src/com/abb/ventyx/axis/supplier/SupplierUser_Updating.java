@@ -4,6 +4,7 @@ import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
@@ -46,8 +47,9 @@ public class SupplierUser_Updating extends BaseTestCase {
 	public void selectUser() {
 		table = new TableFunction(driver);
 		row = table.findRowByString(Users.SUPPLIER_USERS_TABLE_CSS, 2, USER_ID);
+		Assert.assertTrue(row >= 0, String.format("User %s not found!", USER_ID));
 		table.assertValueRow(2, row, USER_ID);
-		row = row - 1;
+		row -= 1;
 		USER_NO = driver.findElement(By.id(Users.USERNUMBER_LINKID + row)).getText();
 		action.clickBtn(By.id(Users.USERNUMBER_LINKID + row));
 		action.waitObjVisible(By.id(Users.USER_ID));
