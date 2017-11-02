@@ -4,6 +4,7 @@ import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.CustomerMenu;
@@ -45,6 +46,7 @@ public class SupplierList_DeactivateSupplier extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
 		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER)).getText(), "Maintain Suppliers");
 		i = table.findRowByString(6, supplierEmail);
+		Assert.assertTrue(i > 01, String.format("Supplier %s not found!", supplierEmail));
 		assertEquals(table.getValueRow(4, i), activeStatus);
 		j=i-1;
 		assertEquals(action.isFieldDisable(By.id("accessSupplierBtn"+j)),false);

@@ -72,6 +72,13 @@ public class TableFunction {
 		return row;
 	}
 
+	public int findRealIndexByCell(WebElement cell, String indexString) {
+		List<WebElement> idLink = cell.findElements(By.id("id^=spIdBtn"));
+		String stringIDOfSupplier = idLink.get(0).getAttribute("id");
+		int indexOfSupplier = Integer.valueOf(stringIDOfSupplier.substring(stringIDOfSupplier.indexOf(indexString) + indexString.length(),
+				stringIDOfSupplier.length()));
+		return indexOfSupplier;
+	}
 	public boolean isValueExisting(int columnindex, String value) {
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ScreenObjects.TABLE_BODY_XPATH + "")));

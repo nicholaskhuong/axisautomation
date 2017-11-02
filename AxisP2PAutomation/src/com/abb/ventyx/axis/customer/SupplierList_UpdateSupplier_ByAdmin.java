@@ -108,7 +108,7 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 	public void checkCancelWithoutInput() {
 		action.pause(500);
 		// table.clickSupplierIDInSupplierListGrid(SupplierList_CreateNewSupplier_ByAdmin.taxRegistrationNo);
-		table.getCellObject(i, 1);
+		table.getCellObject(i, 1).click();
 		action.waitObjVisible(By.id(SupplierList.SUPPLIERNAME_ID));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.CANCEL_ID));
 		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)),false);
@@ -121,7 +121,7 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 	public void checkNoButtonOnUnsavedChangesDialog() {
 
 		// table.clickSupplierIDInSupplierListGrid(SupplierList_CreateNewSupplier_ByAdmin.taxRegistrationNo);
-		table.getCellObject(i, 1);
+		table.getCellObject(i, 1).click();
 		action.pause(500);
 		action.inputTextField(SupplierList.SUPPLIERNAME_ID, "test");
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.CANCEL_ID));
@@ -162,13 +162,15 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 	
 	}
 	
-	@Test(dependsOnMethods="accessSupplierFromCustomerAndCheckASNOff")
-	public void loginAsTheUpdatedSupplierAndCheckASNOff() {
-
+	@Test(dependsOnMethods = "accessSupplierFromCustomerAndCheckASNOff", alwaysRun = true)
+	public void signOut() {
 		action.signOut();
 		action.pause(3000);
-		action.signOut();
-		action.pause(1000);
+	}
+
+	@Test(dependsOnMethods = "signOut")
+	public void loginAsTheUpdatedSupplierAndCheckASNOff() {
+
 		action.signIn(SupplierList_CreateNewSupplier_ByAdmin.supplierEmail, NEWPASSWORD);
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADDRESS_CONTACT_ID));

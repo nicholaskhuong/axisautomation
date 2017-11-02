@@ -308,9 +308,11 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		// table.filter(SupplierList.SUPPLIER_EMAIL_FILTER_XPATH,
 		// supplierEmail);
 		i = table.findRowByString(6, supplierEmail);
+		WebElement supplierIDCell = table.getCellObject(i, 1);
+		int indexOfSupplier = table.findRealIndexByCell(supplierIDCell, "spIdBtn");
 		Assert.assertTrue(i >= 0, String.format("Supplier %s not found!", supplierEmail));
 		assertEquals(table.getValueRow(4, i), "Active");
-		assertEquals(action.isFieldDisable(By.id("accessSupplierBtn" + i)), false);
+		assertEquals(action.isFieldDisable(By.id("accessSupplierBtn" + indexOfSupplier)), false);
 	
 	}
 
