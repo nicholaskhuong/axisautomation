@@ -486,7 +486,8 @@ public class ScreenAction {
 
 	}
 	public void signOut() {
-		driver.navigate().to(BaseTestCase.getServerURL() + "/SupplierPortal/");
+		// driver.navigate().to(BaseTestCase.getServerURL() +
+		// "/SupplierPortal/");
 		waitObjVisible(By.id(UserPreferences.PROFILE_PANEL));
 		clickBtn(By.id(UserPreferences.PROFILE_PANEL));
 		waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));

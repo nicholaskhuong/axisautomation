@@ -99,10 +99,12 @@ public class SupplierList_DeactivateSupplier extends BaseTestCase {
 		action.pause(500);
 		assertEquals(table.getValueRow(4, i), inactiveStatus);
 		action.assertTitleScreen("Maintain Suppliers");
-		assertEquals(action.isFieldDisable(By.id("accessSupplierBtn"+j)),true);
+		WebElement supplierIDCell = table.getCellObject(i, 1);
+		int indexOfSupplier = table.findRealIndexByCell(supplierIDCell, "spIdBtn");
+		assertEquals(action.isFieldDisable(By.id("accessSupplierBtn" + indexOfSupplier)), true);
 	}
 
-	@Test(dependsOnMethods="clickYesToDeactivateSupplier")
+	@Test(dependsOnMethods = "clickYesToDeactivateSupplier", alwaysRun = true)
 	public void signOut() {
 		action.signOut();
 	}
