@@ -33,10 +33,10 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	WebDriverWait wait;
 	int i;
 
-	public static String supplierName = "Name 297587967";
-	public static String supplierEmail = "297587967@abb.com";
-	public static String companyRegistrationNo = "NO297587967";
-	public static String taxRegistrationNo = "Tax297587967";
+	public static String supplierName = "Yamaha1231313";
+	public static String supplierEmail = "yamaha13213@abb.com";
+	public static String companyRegistrationNo = "COMYAMAHA12313213213";
+	public static String taxRegistrationNo = "TAXYAMAHA123313213";
 	String pendingStatus = "Pending";
 	public static String profile = "All Document Types";
 	String invalidEmail = "<HTML>";
@@ -90,6 +90,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.inputTextField(SupplierList.TAXREGRISTRATIONNO_ID, taxRegistrationNo);
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
 
 	// Step 3
@@ -99,6 +100,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.inputTextField(SupplierList.SUPPLIERNAME_ID, supplierName);
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
 
 	// Step 3
@@ -109,6 +111,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		driver.findElement(By.id(SupplierList.TAXREGRISTRATIONNO_ID)).clear();
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
 
 	// Step 3
@@ -119,14 +122,15 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		driver.findElement(By.id(SupplierList.SUPPLIEREMAIL_ID)).clear();
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
 
 	// Step 3
 	@Test(dependsOnMethods = "createSupplierWithEmptySupplierEmail", alwaysRun = true)
 	public void createSupplierWithInvalidEmail() {
 
-		action.inputEmailField(SupplierList.SUPPLIEREMAIL_ID, invalidEmail);
-		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
+		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, invalidEmail);
+		action.clickBtn(By.id(SupplierList.TAXREGRISTRATIONNO_ID));
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INVALID_EMAIL);
 		action.clickBtn(By.id(SupplierList.SUPPLIEREMAIL_ID));
@@ -141,6 +145,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, duplicatedSupplierEmail);
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.DUPLICATEDEMAIL);
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
 		// Step 4
 	}
 
@@ -151,6 +156,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID, duplicatedCompanyRegistrationNo);
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.DUPLICATECOMPANYREGISTRATIONNO);
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
 	}
 
 	@Test(dependsOnMethods = "createSupplierWithDuplicatedCompanyRegistrationNo", alwaysRun = true)
@@ -161,6 +167,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.DUPLICATEDTAXREGISTRATIONNO);
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
 
 	}
 
