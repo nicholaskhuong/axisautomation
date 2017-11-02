@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="Supplier_UserGroup" parallel="none">
+<suite name="Supplier User Group" parallel="none">
  
 	<test name="Supplier User Group Creating">
 		<classes>
