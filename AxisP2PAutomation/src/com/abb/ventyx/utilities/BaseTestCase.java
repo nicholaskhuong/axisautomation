@@ -15,10 +15,6 @@ import java.util.Properties;
 import java.util.Random;
 import java.util.Vector;
 
-import jxl.Sheet;
-import jxl.Workbook;
-import jxl.read.biff.BiffException;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.logging.impl.Log4JLogger;
 import org.apache.log4j.xml.DOMConfigurator;
@@ -36,10 +32,13 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 
-import au.com.bytecode.opencsv.CSVReader;
-
 import com.abb.ventyx.axis.objects.pages.LoginPage;
 import com.abb.ventyx.utilities.report.TestMethodResultAdapter;
+
+import au.com.bytecode.opencsv.CSVReader;
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
 
 public class BaseTestCase {
 
@@ -71,21 +70,18 @@ public class BaseTestCase {
 		try {
 			// load default properties
 			properties = PropertiesLoaderUtils
-					.loadProperties(new ClassPathResource("test.properties",
-							BaseTestCase.class));
+					.loadProperties(new ClassPathResource("test.properties", BaseTestCase.class));
 		} catch (Exception e) {
 			// System.out.println(e.getMessage());
 		}
 		try {
 			// override with any local test.properties
-			PropertiesLoaderUtils.fillProperties(properties,
-					new FileSystemResource("test.properties"));
+			PropertiesLoaderUtils.fillProperties(properties, new FileSystemResource("test.properties"));
 		} catch (Exception e) {
 			// System.out.println(e.getMessage());
 		}
 		properties.putAll(System.getProperties());
-		defaultCredentials = new TestLoginCredentials(
-				getProperty("test.username"), getProperty("test.password"));
+		defaultCredentials = new TestLoginCredentials(getProperty("test.username"), getProperty("test.password"));
 		currentCredentials = defaultCredentials;
 		getTestDataDriven();
 	}
@@ -99,8 +95,7 @@ public class BaseTestCase {
 				currentCredentials = defaultCredentials;
 			}
 			this.expectedResult = "";
-			DriverCreator driverCreator = new DriverCreator(BaseTestCase
-					.getProperties().getProperty("test.browser"));
+			DriverCreator driverCreator = new DriverCreator(BaseTestCase.getProperties().getProperty("test.browser"));
 			driver = driverCreator.getWebDriver();
 			LoginPage login = new LoginPage(driver);
 			login.login(getServerURL() + "/SupplierPortal/", currentCredentials);
@@ -115,7 +110,8 @@ public class BaseTestCase {
 		String screenShotPath = "";
 		String takingTime = "";
 		String tempPath = "screenshots/%s_%s_%s.png";
-		if (testResult.getStatus() == ITestResult.FAILURE || Boolean.valueOf(BaseTestCase.getProperties().getProperty(TEST_DEVELOPER_MODE))) {
+		if (testResult.getStatus() == ITestResult.FAILURE
+				|| Boolean.valueOf(BaseTestCase.getProperties().getProperty(TEST_DEVELOPER_MODE))) {
 			System.out.println(testResult.getStatus());
 			File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 			takingTime = String.format("%s_%s", testResult.getEndMillis(), new Random().nextInt(99999));
@@ -125,18 +121,15 @@ public class BaseTestCase {
 
 			skipMethods = testResult.getTestContext().getSkippedTests();
 		}
-		TestMethodResultAdapter resultAdapter = new TestMethodResultAdapter(
-				testResult, screenShotPath, testResult.getTestContext()
-						.getCurrentXmlTest().getSuite().getFileName(),
-				getALMAnnotation());
+		TestMethodResultAdapter resultAdapter = new TestMethodResultAdapter(testResult, screenShotPath,
+				testResult.getTestContext().getCurrentXmlTest().getSuite().getFileName(), getALMAnnotation());
 		resultAdapter.setValue(testResult.getName());
 
 		Reporter.allResults.add(resultAdapter);
 		resultAdapters.add(resultAdapter);
 		// End
 
-		if (testResult.getStatus() == ITestResult.FAILURE
-				&& !testCaseStatus.equals("fail")) {
+		if (testResult.getStatus() == ITestResult.FAILURE && !testCaseStatus.equals("fail")) {
 			testCaseStatus = "fail";
 		}
 		if ("".equals(testCaseName)) {
@@ -144,7 +137,7 @@ public class BaseTestCase {
 		}
 	}
 
-	@AfterClass(alwaysRun=true)
+	@AfterClass(alwaysRun = true)
 	public void afterClass() throws IOException {
 		// Save to disk
 		driver.quit();
@@ -226,9 +219,9 @@ public class BaseTestCase {
 	}
 
 	/**
-	 * This data provider reads all lines from the CSV associated with the
-	 * current test. Current test will be whatever has extended
-	 * AbstractGuicedTestNGTest. Returns null if not found CSV file.
+	 * This data provider reads all lines from the CSV associated with the current
+	 * test. Current test will be whatever has extended AbstractGuicedTestNGTest.
+	 * Returns null if not found CSV file.
 	 * 
 	 * @throws IOException
 	 */
@@ -239,8 +232,7 @@ public class BaseTestCase {
 		String[] line; // current line
 
 		/* Get CSV file from the class path */
-		String expectedCSVFileName = Constants.TESTDATA_FOLDER
-				+ testDataFileName;
+		String expectedCSVFileName = Constants.TESTDATA_FOLDER + testDataFileName;
 		InputStream cSVStream = null;
 		try {
 			cSVStream = new FileInputStream(expectedCSVFileName);
@@ -250,8 +242,7 @@ public class BaseTestCase {
 			return null;
 		}
 		if (startRow > endRow) {
-			System.out.println("Start Row cant be greater than End Row  name: "
-					+ startRow + " > " + endRow);
+			System.out.println("Start Row cant be greater than End Row  name: " + startRow + " > " + endRow);
 			cSVStream.close();
 			return null;
 		}
@@ -286,9 +277,9 @@ public class BaseTestCase {
 
 	@DataProvider(name = "ExcelDataProvider")
 	public Object[][] loginData() {
-		Object[][] arrayObject = getExcelData(Constants.TESTDATA_FOLDER
-				+ testDataFileName, "Data");// Constants.TESTDATA_FOLDER +
-											// testDataFileName;
+		Object[][] arrayObject = getExcelData(Constants.TESTDATA_FOLDER + testDataFileName, "Data");// Constants.TESTDATA_FOLDER
+																									// +
+																									// testDataFileName;
 		return arrayObject;
 	}
 
@@ -310,13 +301,11 @@ public class BaseTestCase {
 			int totalNoOfCols = sh.getColumns();
 			int totalNoOfRows = sh.getRows();
 			if (startRow > endRow) {
-				System.out.println("Start Row cant be greater than End Row : "
-						+ startRow + " > " + endRow);
+				System.out.println("Start Row cant be greater than End Row : " + startRow + " > " + endRow);
 				return null;
 			}
 			if (endRow > totalNoOfRows - 1) {
-				System.out.println("End Row cant be greater than totalRow : "
-						+ endRow + " > " + (totalNoOfRows - 1));
+				System.out.println("End Row cant be greater than totalRow : " + endRow + " > " + (totalNoOfRows - 1));
 				return null;
 			}
 			if (startRow == 0 && endRow == 0) {
@@ -333,14 +322,12 @@ public class BaseTestCase {
 				if (fixedRow) {
 					if (i >= startRow && i <= endRow) {
 						for (int j = 0; j < totalNoOfCols; j++) {
-							arrayExcelData[i - startRow][j] = sh.getCell(j, i)
-									.getContents();
+							arrayExcelData[i - startRow][j] = sh.getCell(j, i).getContents();
 						}
 					}
 				} else {
 					for (int j = 0; j < totalNoOfCols; j++) {
-						arrayExcelData[i - 1][j] = sh.getCell(j, i)
-								.getContents();
+						arrayExcelData[i - 1][j] = sh.getCell(j, i).getContents();
 					}
 				}
 			}
