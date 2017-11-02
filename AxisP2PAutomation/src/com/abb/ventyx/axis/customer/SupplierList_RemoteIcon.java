@@ -173,7 +173,9 @@ public class SupplierList_RemoteIcon extends BaseTestCase {
 		}
 		action.waitObjVisible(By.id("componentId0"));
 		action.assertTitleScreen("Documents in Error");
-
+	}
+	@Test(dependsOnMethods = "checkDocumentsInError")
+	public void filterDocumentInvoice() {
 		// Check Invoice in Error
 		table.filter(DocumentsInError.DOC_TYPE_FILTER_XPATH, invoiceType);
 		table.getCellObject(1, 2).click();
@@ -188,7 +190,9 @@ public class SupplierList_RemoteIcon extends BaseTestCase {
 		}
 		action.waitObjVisible(By.id("componentId0"));
 		action.assertTitleScreen("Documents in Error");
-
+	}
+	@Test(dependsOnMethods = "filterDocument")
+	public void filterDocumentPOAckType() {
 		// Check PO Ack in Error
 		table.filter(DocumentsInError.DOC_TYPE_FILTER_XPATH, POAckType);
 		table.getCellObject(1, 2).click();
@@ -206,7 +210,7 @@ public class SupplierList_RemoteIcon extends BaseTestCase {
 	}
 
 	// Step 12
-	@Test(dependsOnMethods = "checkDocumentsInError", alwaysRun = true)
+	@Test(dependsOnMethods = "filterDocumentPOAckType", alwaysRun = true)
 	public void signOutAgain() {
 		action.signOut();
 	}
