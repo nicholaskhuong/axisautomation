@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
-import com.abb.ventyx.axis.objects.pagedefinitions.CreateNewCustomer;
+import com.abb.ventyx.axis.objects.pagedefinitions.CustomerList;
 import com.abb.ventyx.axis.objects.pagedefinitions.LoginPageDefinition;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.Profiles;
@@ -55,12 +55,12 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 	}
 	
 	@Test(dependsOnMethods = "clickAddButtonOnMaintainCustomerScreen", alwaysRun = true)
-	public void inputDataOnCreateNewCustomerScreen() {
+	public void inputDataOnCustomerListScreen() {
 		action.pause(waitTime);
-		WebElement password = driver.findElement(By.id(CreateNewCustomer.CUSTOMER_NAME));
+		WebElement password = driver.findElement(By.id(CustomerList.CUSTOMER_NAME));
 		password.sendKeys(customerName);
 		action.pause(waitTime);
-		WebElement email_Address = driver.findElement(By.id(CreateNewCustomer.EMAIL_ADDRESS));
+		WebElement email_Address = driver.findElement(By.id(CustomerList.EMAIL_ADDRESS));
 		email_Address.sendKeys(emailAddress);
 		action.pause(waitTime);
 		action.clickCheckBoxN(0);
