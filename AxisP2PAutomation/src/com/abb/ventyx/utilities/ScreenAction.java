@@ -48,8 +48,7 @@ public class ScreenAction {
 	}
 
 	public void waitObjVisibleAndClick(By obj, int timeout) {
-		WebElement element = (new WebDriverWait(driver, timeout))
-				.until(ExpectedConditions.presenceOfElementLocated(obj));
+		WebElement element = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(obj));
 		element.click();
 
 	}
