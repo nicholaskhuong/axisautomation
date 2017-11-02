@@ -101,7 +101,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID, companyRegistrationNo);
 		action.inputTextField(SupplierList.SUPPLIERNAME_ID, supplierName);
 		action.inputTextField(SupplierList.TAXREGRISTRATIONNO_ID, taxRegistrationNo);
-		action.pause(1000);
+		action.pause(500);
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.SUPPLIER_CREATED_SUCCESSFULLY);
@@ -172,9 +172,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	@Test(dependsOnMethods = "changePassword")
 	public void acceptTradingRelationshipRequest() {
 
-
-		wait.until(ExpectedConditions.presenceOfElementLocated(By
-				.cssSelector(ScreenObjects.ACCEPT_BUTTON_CSS)));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.ACCEPT_BUTTON_CSS)));
 		action.clickBtn(By.cssSelector(ScreenObjects.ACCEPT_BUTTON_CSS));
 
 	}
