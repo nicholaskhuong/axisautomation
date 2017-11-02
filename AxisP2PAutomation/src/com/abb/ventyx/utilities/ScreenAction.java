@@ -72,6 +72,7 @@ public class ScreenAction {
 		WebElement btn = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(obj));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", btn);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
+		pause(100);
 	}
 
 	public void inputEmailField(String obj, String value) {
