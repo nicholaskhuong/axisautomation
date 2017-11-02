@@ -33,7 +33,7 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 	String customerName = "Honda";
 	String emailAddress = "Honda@abb.com";
 	String password;
-	String NEWPASSWORD = "Testuser1";
+	String newPassword = "Testuser1";
 	int i;
 	String profileName = "All Document Types";
 	WebElement index, index2;
@@ -106,8 +106,8 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 	public void changePasswordOnAxisSupplierPortal() {
 		action.waitObjVisible(By.id(ScreenObjects.NEWPASSWORD_ID));
 		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, password);
-		action.inputTextField(ScreenObjects.NEWPASSWORD_ID, NEWPASSWORD);
-		action.inputTextField(ScreenObjects.CONFIRMPASSWORD_ID,NEWPASSWORD);
+		action.inputTextField(ScreenObjects.NEWPASSWORD_ID, newPassword);
+		action.inputTextField(ScreenObjects.CONFIRMPASSWORD_ID,newPassword);
 		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
 	}
 	
@@ -207,7 +207,7 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 	public void logoutAndLoginWithNewCustomerList2() {
 		action.signOut();
 		action.pause(waitTime);
-		action.signIn(emailAddress, NEWPASSWORD);
+		action.signIn(emailAddress, newPassword);
 	}
 	
 	@Test(dependsOnMethods = "logoutAndLoginWithNewCustomerList2", alwaysRun = true)
@@ -306,7 +306,7 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 	public void logoutAndLoginWithNewCustomerList3() {
 		action.signOut();
 		action.pause(waitTime);
-		action.signIn(emailAddress, NEWPASSWORD);
+		action.signIn(emailAddress, newPassword);
 	}
 	
 	@Test(dependsOnMethods = "logoutAndLoginWithNewCustomerList3", alwaysRun = true)

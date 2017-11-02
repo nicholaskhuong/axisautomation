@@ -25,14 +25,14 @@ public class User_Customer_Creating extends BaseTestCase {
 	TableFunction table;
 	int waitTime = 3000;
 	WebElement index;
-	String USER = "lead";
-	String PASSWORD = "Testuser1";
-	String EMAIL = "lead@abb.com";
-	String EMAIL_INVALID = "111";
-	String EMAIL_ALREADY = "thuy15@abb.com";
-	String CONFIRM_PASSWORD = "Testuser2";
-	String INVALID_PASSWORD1 = "111";
-	String INVALID_PASSWORD2 = "testuser";
+	String user = "lead";
+	String password = "Testuser1";
+	String email = "lead@abb.com";
+	String emailInvalid = "111";
+	String emailAlready = "thuy15@abb.com";
+	String confirmPassword = "Testuser2";
+	String invalidPassword1 = "111";
+	String invalidPassword2 = "testuser";
 	
 	//Step 1
 	@Test
@@ -83,8 +83,8 @@ public class User_Customer_Creating extends BaseTestCase {
 	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomerUsersScreen", alwaysRun = true)
 	public void clickAddButtonAndInputLackMandatoryFields(){
 		action.waitObjVisibleAndClick(By.cssSelector(Profiles.ADD_PROFILE));
-		action.inputTextField(Users.USER_ID, USER);
-		action.inputTextField(Users.PASSWORD_ID, PASSWORD);
+		action.inputTextField(Users.USER_ID, user);
+		action.inputTextField(Users.PASSWORD_ID, password);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 	}
@@ -98,13 +98,13 @@ public class User_Customer_Creating extends BaseTestCase {
 		action.pause(waitTime);
 		id.sendKeys("lead");
 		action.pause(6000);
-		WebElement password = driver.findElement(By.id(Users.PASSWORD_ID));
-		password.clear();
+		WebElement password1 = driver.findElement(By.id(Users.PASSWORD_ID));
+		password1.clear();
 		action.pause(waitTime);
-		password.sendKeys(PASSWORD);
+		password1.sendKeys(password);
 		action.pause(waitTime);
-		action.inputEmailField(Users.EMAIL_ID, EMAIL);
-		action.inputTextField(Users.CONFIMRPASSWORD_ID, PASSWORD);
+		action.inputEmailField(Users.EMAIL_ID, email);
+		action.inputTextField(Users.CONFIMRPASSWORD_ID, password);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.USER_SELECT_USERGROUP);
 	}
@@ -112,15 +112,15 @@ public class User_Customer_Creating extends BaseTestCase {
 	//Step 7
 	@Test(dependsOnMethods = "inputMandatoryFields", alwaysRun = true)
 	public void inputInvalidEmail(){
-		action.inputEmailField(Users.EMAIL_ID, EMAIL_INVALID);
+		action.inputEmailField(Users.EMAIL_ID, emailInvalid);
 		WebElement comfirmPassword = driver.findElement(By.id(Users.CONFIMRPASSWORD_ID));
 		comfirmPassword.clear();
 		action.pause(waitTime);
-		comfirmPassword.sendKeys(PASSWORD);
+		comfirmPassword.sendKeys(password);
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INVALID_EMAIL);
-		action.inputEmailField(Users.EMAIL_ID, EMAIL_ALREADY);
+		action.inputEmailField(Users.EMAIL_ID, emailAlready);
 		action.clickCheckBoxN(6);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
@@ -135,18 +135,18 @@ public class User_Customer_Creating extends BaseTestCase {
 		WebElement password = driver.findElement(By.id(Users.PASSWORD_ID));
 		password.clear();
 		action.pause(waitTime);
-		password.sendKeys(INVALID_PASSWORD1);
-		action.inputEmailField(Users.EMAIL_ID, EMAIL);
+		password.sendKeys(invalidPassword1);
+		action.inputEmailField(Users.EMAIL_ID, email);
 		WebElement comfirmPassword = driver.findElement(By.id(Users.CONFIMRPASSWORD_ID));
 		comfirmPassword.clear();
 		action.pause(waitTime);
-		comfirmPassword.sendKeys(INVALID_PASSWORD1);
+		comfirmPassword.sendKeys(invalidPassword1);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INPUT_INVALID_PASSWORD1);
 		action.pause(waitTime);
-		action.inputTextField(Users.PASSWORD_ID, INVALID_PASSWORD2);
-		action.inputEmailField(Users.EMAIL_ID, EMAIL);
-		action.inputTextField(Users.CONFIMRPASSWORD_ID, INVALID_PASSWORD2);
+		action.inputTextField(Users.PASSWORD_ID, invalidPassword2);
+		action.inputEmailField(Users.EMAIL_ID, email);
+		action.inputTextField(Users.CONFIMRPASSWORD_ID, invalidPassword2);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INPUT_INVALID_PASSWORD2);
 	}
@@ -154,14 +154,14 @@ public class User_Customer_Creating extends BaseTestCase {
 	//Step 9
 	@Test(dependsOnMethods = "inputInvalidPassword", alwaysRun = true)
 	public void inputPasswordAndConfirmPasswordAreNotTheSame(){
-		WebElement password = driver.findElement(By.id(Users.PASSWORD_ID));
-		password.clear();
+		WebElement password1 = driver.findElement(By.id(Users.PASSWORD_ID));
+		password1.clear();
 		action.pause(waitTime);
-		password.sendKeys(PASSWORD);
+		password1.sendKeys(password);
 		WebElement comfirmPassword = driver.findElement(By.id(Users.CONFIMRPASSWORD_ID));
 		comfirmPassword.clear();
 		action.pause(waitTime);
-		comfirmPassword.sendKeys(CONFIRM_PASSWORD);
+		comfirmPassword.sendKeys(confirmPassword);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.UNMATCHED_CONFIRM_PWD);
 	}
@@ -172,7 +172,7 @@ public class User_Customer_Creating extends BaseTestCase {
 		WebElement comfirmPassword = driver.findElement(By.id(Users.CONFIMRPASSWORD_ID));
 		comfirmPassword.clear();
 		action.pause(waitTime);
-		comfirmPassword.sendKeys(PASSWORD);
+		comfirmPassword.sendKeys(password);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_CREATE_SUCCESSFULLY);
 	}
@@ -190,7 +190,7 @@ public class User_Customer_Creating extends BaseTestCase {
 	public void clickAddButtonAndInputDataName(){
 		action.waitObjVisibleAndClick(By.cssSelector(Profiles.ADD_PROFILE));
 		action.pause(waitTime);
-		action.inputTextField(Users.USER_ID, USER);
+		action.inputTextField(Users.USER_ID, user);
 		action.clickBtn(By.id(Users.CANCEL_BTN_ID));
 		action.pause(waitTime);
 		action.clickBtn(By.id(ScreenObjects.NO_BTN_ID));

@@ -31,11 +31,11 @@ public class Profile_Update_Customer_Defined_Step07 extends BaseTestCase {
 	String profileNameEdited = "POProfile3";
 	int i,j;
 	WebElement index;
-	String User_Login = "mail222@abb.com";
-	String User_Password = "Testuser2";
-	String Admin_Login = "mail5@abb.com";
-	String Admin_Password = "testuser";
-	String profileName_AccountCustomer = "POProfile";
+	String userLogin = "mail222@abb.com";
+	String userPassword = "Testuser2";
+	String adminLogin = "mail5@abb.com";
+	String adminPassword = "testuser";
+	String profileNameAccountCustomer = "POProfile";
 	
 	//Step1
 	@Test
@@ -101,7 +101,7 @@ public class Profile_Update_Customer_Defined_Step07 extends BaseTestCase {
 	
 	@Test(dependsOnMethods = "logoutFromMaintainCustomerScreen", alwaysRun = true)
 	public void loginWithAccountCustomer(){
-		action.signIn(User_Login, User_Password);
+		action.signIn(userLogin, userPassword);
 		action.pause(waitTime);
 	}
 	
@@ -132,7 +132,7 @@ public class Profile_Update_Customer_Defined_Step07 extends BaseTestCase {
 		
 	@Test(dependsOnMethods = "logoutfromAccountCustomer", alwaysRun = true)
 	public void loginfromAccountCustomer(){
-			action.signIn(Admin_Login, Admin_Password);
+			action.signIn(adminLogin, adminPassword);
 			action.pause(waitTime);
 		}
 	

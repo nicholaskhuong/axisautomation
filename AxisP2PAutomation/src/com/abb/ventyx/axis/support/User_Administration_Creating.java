@@ -25,14 +25,14 @@ public class User_Administration_Creating extends BaseTestCase {
 	TableFunction table;
 	int waitTime = 3000;
 	WebElement index;
-	String USER = "Taumato";
-	String USER1 = "Tauuu";
-	String PASSWORD = "Testuser1";
-	String EMAIL = "Taumato@abb.com";
-	String EMAIL_ALREADY = "thuy15@abb.com";
-	String CONFIRM_PASSWORD = "Testuser2";
+	String user = "Taumato";
+	String user1 = "Tauuu";
+	String password = "Testuser1";
+	String email = "Taumato@abb.com";
+	String emailAlready = "thuy15@abb.com";
+	String confirmPassword = "Testuser2";
 	String passwordReset;
-	String NEWPASSWORD = "Testuser2";
+	String newPassword = "Testuser2";
 	//Step 1
 	@Test
 	public void openUserScreen(){
@@ -46,8 +46,8 @@ public class User_Administration_Creating extends BaseTestCase {
 	@Test(dependsOnMethods = "openUserScreen", alwaysRun = true)
 	public void clickAddButtonAndInputLackMandatoryFields(){
 		action.waitObjVisibleAndClick(By.cssSelector(Users.ADD_USERS));
-		action.inputTextField(Users.USER_ID, USER);
-		action.inputTextField(Users.PASSWORD_ID, PASSWORD);
+		action.inputTextField(Users.USER_ID, user);
+		action.inputTextField(Users.PASSWORD_ID, password);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 	}
@@ -59,15 +59,15 @@ public class User_Administration_Creating extends BaseTestCase {
 		WebElement id = driver.findElement(By.id(Users.USER_ID));
 		id.clear();
 		action.pause(waitTime);
-		id.sendKeys(USER);
+		id.sendKeys(user);
 		action.pause(6000);
-		WebElement password = driver.findElement(By.id(Users.PASSWORD_ID));
-		password.clear();
+		WebElement password1 = driver.findElement(By.id(Users.PASSWORD_ID));
+		password1.clear();
 		action.pause(waitTime);
-		password.sendKeys(PASSWORD);
+		password1.sendKeys(password);
 		action.pause(waitTime);
-		action.inputEmailField(Users.EMAIL_ID, EMAIL);
-		action.inputTextField(Users.CONFIMRPASSWORD_ID, PASSWORD);
+		action.inputEmailField(Users.EMAIL_ID, email);
+		action.inputTextField(Users.CONFIMRPASSWORD_ID, password);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.USER_SELECT_USERGROUP);
 	}
@@ -78,7 +78,7 @@ public class User_Administration_Creating extends BaseTestCase {
 		WebElement comfirmPassword = driver.findElement(By.id(Users.CONFIMRPASSWORD_ID));
 		comfirmPassword.clear();
 		action.pause(waitTime);
-		comfirmPassword.sendKeys(PASSWORD);
+		comfirmPassword.sendKeys(password);
 		action.clickCheckBoxN(0);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_CREATE_SUCCESSFULLY);
@@ -88,16 +88,16 @@ public class User_Administration_Creating extends BaseTestCase {
 	@Test(dependsOnMethods = "inputAllMandatoryFields", alwaysRun = true)
 	public void inputInvalidEmail(){
 		action.waitObjVisibleAndClick(By.cssSelector(Users.ADD_USERS));
-		action.inputTextField(Users.USER_ID, USER1);
-		action.inputEmailField(Users.EMAIL_ID, EMAIL_ALREADY);
-		WebElement password = driver.findElement(By.id(Users.PASSWORD_ID));
-		password.clear();
+		action.inputTextField(Users.USER_ID, user1);
+		action.inputEmailField(Users.EMAIL_ID, emailAlready);
+		WebElement password2 = driver.findElement(By.id(Users.PASSWORD_ID));
+		password2.clear();
 		action.pause(waitTime);
-		password.sendKeys(PASSWORD);
+		password2.sendKeys(password);
 		WebElement comfirmPassword = driver.findElement(By.id(Users.CONFIMRPASSWORD_ID));
 		comfirmPassword.clear();
 		action.pause(waitTime);
-		comfirmPassword.sendKeys(PASSWORD);
+		comfirmPassword.sendKeys(password);
 		action.clickCheckBoxN(6);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
@@ -124,7 +124,7 @@ public class User_Administration_Creating extends BaseTestCase {
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.cssSelector(Profiles.ADD_PROFILE));
 		action.pause(waitTime);
-		action.inputTextField(Users.USER_ID, USER);
+		action.inputTextField(Users.USER_ID, user);
 		action.clickBtn(By.id(Users.CANCEL_BTN_ID));
 		action.pause(waitTime);
 		action.clickBtn(By.id(ScreenObjects.NO_BTN_ID));
@@ -140,15 +140,15 @@ public class User_Administration_Creating extends BaseTestCase {
 	public void logoutAndLoginWithNewUser() {
 		action.signOut();
 		action.pause(waitTime);
-		action.signIn(EMAIL, PASSWORD);
+		action.signIn(email, password);
 	}
 	
 	@Test(dependsOnMethods = "logoutAndLoginWithNewUser", alwaysRun = true)
 	public void changePasswordOnAxisSupplierPortal() {
 		action.waitObjVisible(By.id(ScreenObjects.NEWPASSWORD_ID));
-		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, PASSWORD);
-		action.inputTextField(ScreenObjects.NEWPASSWORD_ID, NEWPASSWORD);
-		action.inputTextField(ScreenObjects.CONFIRMPASSWORD_ID,NEWPASSWORD);
+		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, password);
+		action.inputTextField(ScreenObjects.NEWPASSWORD_ID, newPassword);
+		action.inputTextField(ScreenObjects.CONFIRMPASSWORD_ID,newPassword);
 		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
 	}
 	
@@ -159,5 +159,5 @@ public class User_Administration_Creating extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.USER_CUSTOMER_ADMIN));
 		action.pause(waitTime);
 	}
-	}
+}
 

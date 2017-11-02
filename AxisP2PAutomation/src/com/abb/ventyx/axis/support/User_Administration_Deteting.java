@@ -25,7 +25,7 @@ public class User_Administration_Deteting extends BaseTestCase {
 	TableFunction table;
 	int waitTime = 3000;
 	WebElement index;
-	String USER_UPDATE = "Taumato1";
+	String userUpdate = "Taumato1";
 	//Step 1
 	@Test
 	public void openUserScreen(){
@@ -45,7 +45,7 @@ public class User_Administration_Deteting extends BaseTestCase {
 		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
 		WebElement filterPermissionName = (new WebDriverWait(driver, 30))
 				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Users.USER_ID_FILTER)));
-		filterPermissionName.sendKeys(USER_UPDATE);
+		filterPermissionName.sendKeys(userUpdate);
 		action.pause(waitTime);
 	}
 	

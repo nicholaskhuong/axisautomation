@@ -25,9 +25,9 @@ public class User_Customer_Deleting extends BaseTestCase {
 	TableFunction table;
 	int waitTime = 3000;
 	WebElement index;
-	String USER_UPDATE = "lead1";
-	String PASSWORD = "Testuser1";
-	String EMAIL_UPDATE = "lead1@abb.com";
+	String userUpdate = "lead1";
+	String password = "Testuser1";
+	String emailUpdate = "lead1@abb.com";
 	
 	@Test
 	public void openCustomerScreen(){
@@ -69,9 +69,9 @@ public class User_Customer_Deleting extends BaseTestCase {
 		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
 		WebElement filterPermissionName = (new WebDriverWait(driver, 30))
 				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Users.USER_ID_FILTER)));
-		filterPermissionName.sendKeys(USER_UPDATE);
+		filterPermissionName.sendKeys(userUpdate);
 		action.pause(waitTime);
-		assertEquals(table.getValueRow(2, 1), USER_UPDATE);
+		assertEquals(table.getValueRow(2, 1), userUpdate);
 	}
 	
 	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomerUsersScreen", alwaysRun = true)

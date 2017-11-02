@@ -28,19 +28,19 @@ public class User_Administration_Updating extends BaseTestCase {
 	TableFunction table;
 	int waitTime = 3000;
 	WebElement index;
-	String USER = "Taumato";
-	String USER1 = "Tauuu";
-	String PASSWORD = "Testuser1";
-	String EMAIL = "Taumato@abb.com";
-	String EMAIL_ALREADY = "thuy15@abb.com";
-	String CONFIRM_PASSWORD = "Testuser2";
+	String user = "Taumato";
+	String user1 = "Tauuu";
+	String password = "Testuser1";
+	String email = "Taumato@abb.com";
+	String emailAlready = "thuy15@abb.com";
+	String confirmPassword = "Testuser2";
 	String passwordReset;
-	String NEWPASSWORD = "Testuser2";
-	String EMAIL_INVALID = "111";
-	String USER_UPDATE = "Taumato1";
-	String EMAIL_UPDATE = "Taumato1@abb.com";
-	String INVALID_PASSWORD1 = "111";
-	String INVALID_PASSWORD2 = "testuser";
+	String newPassword = "Testuser2";
+	String emailInvalid = "111";
+	String userUpdate = "Taumato1";
+	String emailUpdate = "Taumato1@abb.com";
+	String invalidPassword1 = "111";
+	String invalidPassword2 = "testuser";
 	//Step 1
 	@Test
 	public void openUserScreen(){
@@ -61,7 +61,7 @@ public class User_Administration_Updating extends BaseTestCase {
 		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
 		WebElement filterPermissionName = (new WebDriverWait(driver, 30))
 				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Users.USER_ID_FILTER)));
-		filterPermissionName.sendKeys(USER);
+		filterPermissionName.sendKeys(user);
 		action.pause(5000);
 		index = table.getCellObject("//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div[3]/table/tbody",1, 1);
 		action.pause(waitTime);      
@@ -72,13 +72,13 @@ public class User_Administration_Updating extends BaseTestCase {
 	//Step 3
 	@Test(dependsOnMethods = "clickFiterButtonOnUserScreen", alwaysRun = true)
 	public void inputInvalidEmail(){
-		action.inputEmailField(Users.EMAIL_ID, EMAIL_INVALID);
+		action.inputEmailField(Users.EMAIL_ID, emailInvalid);
 		action.clickCheckBoxN(6);
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
 		action.pause(4000);
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INVALID_EMAIL);
-		action.inputEmailField(Users.EMAIL_ID, EMAIL_ALREADY);
+		action.inputEmailField(Users.EMAIL_ID, emailAlready);
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
 		action.pause(4000);
@@ -96,24 +96,24 @@ public class User_Administration_Updating extends BaseTestCase {
 	
 	@Test(dependsOnMethods = "clickYesForUpdatePassword", alwaysRun = true)
 	public void inputInvalidPassword(){
-		action.inputEmailField(Users.EMAIL_ID, EMAIL_UPDATE);
+		action.inputEmailField(Users.EMAIL_ID, emailUpdate);
 		action.pause(waitTime);
 		WebElement password = driver.findElement(By.id(Users.PASSWORD_ID));
 		action.pause(waitTime);
-		password.sendKeys(INVALID_PASSWORD1);
+		password.sendKeys(invalidPassword1);
 		WebElement comfirmPassword = driver.findElement(By.id(Users.CONFIMRPASSWORD_ID));
 		comfirmPassword.clear();
 		action.pause(waitTime);
-		comfirmPassword.sendKeys(INVALID_PASSWORD1);
+		comfirmPassword.sendKeys(invalidPassword1);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INPUT_INVALID_PASSWORD1);
 		action.pause(waitTime);
-		action.inputTextField(Users.PASSWORD_ID, INVALID_PASSWORD2);
+		action.inputTextField(Users.PASSWORD_ID, invalidPassword2);
 		action.pause(waitTime);
 		WebElement comfirmPassword1 = driver.findElement(By.id(Users.CONFIMRPASSWORD_ID));
 		comfirmPassword1.clear();
 		action.pause(waitTime);
-		comfirmPassword.sendKeys(INVALID_PASSWORD2);
+		comfirmPassword.sendKeys(invalidPassword2);
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INPUT_INVALID_PASSWORD2);
@@ -121,14 +121,14 @@ public class User_Administration_Updating extends BaseTestCase {
 	//Step 5
 	@Test(dependsOnMethods = "inputInvalidPassword", alwaysRun = true)
 	public void inputPasswordAndConfirmPasswordAreNotTheSame(){
-		WebElement password = driver.findElement(By.id(Users.PASSWORD_ID));
-		password.clear();
+		WebElement password1 = driver.findElement(By.id(Users.PASSWORD_ID));
+		password1.clear();
 		action.pause(waitTime);
-		password.sendKeys(PASSWORD);
+		password1.sendKeys(password);
 		WebElement comfirmPassword = driver.findElement(By.id(Users.CONFIMRPASSWORD_ID));
 		comfirmPassword.clear();
 		action.pause(waitTime);
-		comfirmPassword.sendKeys(CONFIRM_PASSWORD);
+		comfirmPassword.sendKeys(confirmPassword);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
 		action.pause(waitTime);
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.UNMATCHED_CONFIRM_PWD);
@@ -140,11 +140,11 @@ public class User_Administration_Updating extends BaseTestCase {
 		WebElement user = driver.findElement(By.id(Users.USER_ID));
 		user.clear();
 		action.pause(waitTime);
-		user.sendKeys(USER_UPDATE);
+		user.sendKeys(userUpdate);
 		WebElement comfirmPassword = driver.findElement(By.id(Users.CONFIMRPASSWORD_ID));
 		comfirmPassword.clear();
 		action.pause(waitTime);
-		comfirmPassword.sendKeys(PASSWORD);
+		comfirmPassword.sendKeys(password);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_UPDATE_SUCCESSFULLY);
 	}
@@ -172,7 +172,7 @@ public class User_Administration_Updating extends BaseTestCase {
 	public void clickAddButtonAndInputDataName(){
 		action.waitObjVisibleAndClick(By.cssSelector(Profiles.ADD_PROFILE));
 		action.pause(waitTime);
-		action.inputTextField(Users.USER_ID, USER_UPDATE);
+		action.inputTextField(Users.USER_ID, userUpdate);
 		action.clickBtn(By.id(Users.CANCEL_BTN_ID));
 		action.pause(waitTime);
 		action.clickBtn(By.id(ScreenObjects.NO_BTN_ID));
@@ -189,7 +189,7 @@ public class User_Administration_Updating extends BaseTestCase {
 		action.pause(waitTime);
 		action.signOut();
 		action.pause(waitTime);
-		action.signIn(EMAIL_UPDATE, PASSWORD);
+		action.signIn(emailUpdate, password);
 	}
 	
 	@Test(dependsOnMethods = "logoutAndLoginWithNewUser", alwaysRun = true)

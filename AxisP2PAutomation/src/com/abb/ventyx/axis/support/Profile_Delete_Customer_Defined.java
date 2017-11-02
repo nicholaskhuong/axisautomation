@@ -27,8 +27,8 @@ public class Profile_Delete_Customer_Defined extends BaseTestCase {
 	int i;
 	WebElement index;
 	WebElement profile;
-	String User_Login = "mail222@abb.com";
-	String User_Password = "Testuser2";
+	String UserLogin = "mail222@abb.com";
+	String UserPassword = "Testuser2";
 	
 	//Step 1
 	@Test
@@ -87,7 +87,7 @@ public class Profile_Delete_Customer_Defined extends BaseTestCase {
 	
 	@Test(dependsOnMethods = "logoutFromMaintainCustomerScreen", alwaysRun = true)
 	public void loginWithAccountCustomer(){
-		action.signIn(User_Login, User_Password);
+		action.signIn(UserLogin, UserPassword);
 	}
 	
 	@Test(dependsOnMethods = "loginWithAccountCustomer", alwaysRun = true)

@@ -48,6 +48,8 @@ public class ScreenObjects {
 	public static final String ACCEPT_BUTTON_CSS = "#SupplierPortal-1227837064 > div > div.v-verticallayout.v-layout.v-vertical.v-widget.v-has-width.v-has-height > div > div > div > div > div:nth-child(2) > div > div.v-panel-content.v-scrollable > div > div > div:nth-child(3) > div > div > div:nth-child(3) > div";
 	public static final String DROPDOWNLIST_CSS = "#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table > tbody";
 	public static final String TABLE_BODY_XPATH = "//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']";
+	public static final String TABLE_BODY_XPATH_CUSTOMER  = "//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div/div/div/div[3]/table/tbody/tr";
+	public static final String TABLE_BODY_XPATH_CUSTOMER_ID  = "//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div/div/div/div[3]/table/tbody/tr";
 	public static final String TABLE_BODY_USER_XPATH = "//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div[3]/table/tbody";
 	public static final String TABLE_HEAD_XPATH = "//div[@class='v-grid-tablewrapper']//table//thead[@class='v-grid-header']";
 }
