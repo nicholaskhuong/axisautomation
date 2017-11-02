@@ -97,8 +97,6 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	public void createSupplierWithEmptyCompanyRegistrationNo() {
 		// Empty Company Registration No
 		action.inputTextField(SupplierList.SUPPLIERNAME_ID, supplierName);
-		driver.findElement(By.id(SupplierList.COMPANYREGISTRATIONNO_ID)).clear();
-		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 	}
@@ -109,7 +107,6 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		// Empty Tax Registration No
 		action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID, companyRegistrationNo);
 		driver.findElement(By.id(SupplierList.TAXREGRISTRATIONNO_ID)).clear();
-		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 	}
@@ -120,7 +117,6 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		// Empty Supplier Email
 		action.inputTextField(SupplierList.TAXREGRISTRATIONNO_ID, taxRegistrationNo);
 		driver.findElement(By.id(SupplierList.SUPPLIEREMAIL_ID)).clear();
-		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 	}
@@ -152,12 +148,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	public void createSupplierWithDuplicatedCompanyRegistrationNo() {
 		// Duplicated Comp. Registration Number
 		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, supplierEmail);
-		WebElement txtField = driver.findElement(By.id(SupplierList.COMPANYREGISTRATIONNO_ID));
-		txtField.clear();
-		action.pause(1000);
-		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
-		txtField.sendKeys(duplicatedCompanyRegistrationNo);
-
+		action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID, duplicatedCompanyRegistrationNo);
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.DUPLICATECOMPANYREGISTRATIONNO);
 	}
@@ -166,12 +157,6 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	public void createSupplierWithDuplicatedTaxRegistrationNo() {
 		// Duplicated Tax Registration Number
 		action.inputTextField(SupplierList.TAXREGRISTRATIONNO_ID, duplicatedTaxRegistrationNo);
-
-		WebElement txtField1 = driver.findElement(By.id(SupplierList.TAXREGRISTRATIONNO_ID));
-		txtField1.clear();
-		action.pause(500);
-		txtField1.sendKeys(duplicatedTaxRegistrationNo);
-		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
 		action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID, companyRegistrationNo);
 
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
@@ -242,7 +227,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.CANCEL_ID));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
 		action.assertTextEqual(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS), Messages.UNSAVED_CHANGE);
-		driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
+		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
 		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)), false);
 		// action.assertTitleScreen("Check Suppliers");
