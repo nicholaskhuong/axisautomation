@@ -19,17 +19,18 @@ public class Supplier_Admin_AddContact extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
 	String supplierName = "Donna 1";
-	String expected_AddNewContact = "Add New Contact";
-	String contact_Id = "Donna 123";
-	String contact_name = "Donna Nguyen";
-	String invalid_Email = "Donna";
-	String valid_Email = "Donna@enclave.vn";
-	String role_field = "Manager";
-	String phone_filed = "0973600146";
-	String extension_field = "Extension";
-	String fax_number = "+84973600146";
-	String mobile_number = "0905842718";
-	String title_header = "Maintain Address & Contact";
+	String expectedAddNewContact = "Add New Contact";
+	String contactId = "Donna 123";
+	String contactName = "Donna Nguyen";
+	String invalidEmail = "Donna";
+	String validEmail = "Donna@enclave.vn";
+	String roleField = "Manager";
+
+	String phoneFiled = "0973600146";
+	String extensionField = "Extension";
+	String faxNumber = "+84973600146";
+	String mobileNumber = "0905842718";
+	String titleHeader = "Maintain Address & Contact";
 	int milliseconds = 800;
 
 	@Test
@@ -65,14 +66,14 @@ public class Supplier_Admin_AddContact extends BaseTestCase {
 		// Step 4,5: Input lack mandatory fields and try cto click OK
 		// Input Only Contact ID
 		// action.waitObjVisible(By.id(MaintainSuppliers.CONTACT_ID_FILED));
-		action.inputTextField(MaintainSuppliers.CONTACT_ID_FILED, contact_Id);
+		action.inputTextField(MaintainSuppliers.CONTACT_ID_FILED, contactId);
 		action.clickBtn(By.cssSelector(MaintainSuppliers.OK_BUTTON));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		// action.waitObjInvisible(By.cssSelector(CustomerUsers.ERROR));
 		// Input Name
-		action.inputTextField(MaintainSuppliers.CONTACT_NAME_FILED, contact_name);
+		action.inputTextField(MaintainSuppliers.CONTACT_NAME_FILED, contactName);
 		// Input Invalid email
-		action.inputTextField(MaintainSuppliers.CONTACT_EMAIl_FILED, invalid_Email);
+		action.inputTextField(MaintainSuppliers.CONTACT_EMAIl_FILED, invalidEmail);
 		// Click on OK button
 		action.clickBtn(By.cssSelector(MaintainSuppliers.OK_BUTTON));
 		// Verify that message display
@@ -89,17 +90,17 @@ public class Supplier_Admin_AddContact extends BaseTestCase {
 		// Step 6
 		// action.waitObjInvisible(By.cssSelector(CustomerUsers.ERROR));
 		// Input Email valid
-		action.inputTextField(MaintainSuppliers.CONTACT_EMAIl_FILED, valid_Email);
+		action.inputTextField(MaintainSuppliers.CONTACT_EMAIl_FILED, validEmail);
 		// Input Role
-		action.inputTextField(MaintainSuppliers.CONTACT_ROLE_FILED, role_field);
+		action.inputTextField(MaintainSuppliers.CONTACT_ROLE_FILED, roleField);
 		// Input Phone Number
-		action.inputTextField(MaintainSuppliers.CONTACT_PHONE_FILED, phone_filed);
+		action.inputTextField(MaintainSuppliers.CONTACT_PHONE_FILED, phoneFiled);
 		// Input Extension
-		action.inputTextField(MaintainSuppliers.CONTACT_EXTENSION_FILED, extension_field);
+		action.inputTextField(MaintainSuppliers.CONTACT_EXTENSION_FILED, extensionField);
 		// Input Fax Number
-		action.inputTextField(MaintainSuppliers.CONTACT_FAX_FILED, fax_number);
+		action.inputTextField(MaintainSuppliers.CONTACT_FAX_FILED, faxNumber);
 		// Input Mobile Number
-		action.inputTextField(MaintainSuppliers.CONTACT_MOBILE_FILED, mobile_number);
+		action.inputTextField(MaintainSuppliers.CONTACT_MOBILE_FILED, mobileNumber);
 		action.clickBtn(By.cssSelector(MaintainSuppliers.OK_BUTTON));
 		// Step 7
 		// Click Add button, don't change anything and click Cancel at the popup.
@@ -119,14 +120,14 @@ public class Supplier_Admin_AddContact extends BaseTestCase {
 		action.pause(milliseconds);
 		action.clickBtn(By.cssSelector(MaintainSuppliers.ADDICON));
 		action.waitObjVisible(By.id(MaintainSuppliers.CONTACT_ID_FILED));
-		action.inputTextField(MaintainSuppliers.CONTACT_ID_FILED, contact_Id);
-		action.inputTextField(MaintainSuppliers.CONTACT_NAME_FILED, contact_name);
-		action.inputTextField(MaintainSuppliers.CONTACT_ROLE_FILED, role_field);
-		action.inputTextField(MaintainSuppliers.CONTACT_EMAIl_FILED, valid_Email);
-		action.inputTextField(MaintainSuppliers.CONTACT_PHONE_FILED, phone_filed);
-		action.inputTextField(MaintainSuppliers.CONTACT_EXTENSION_FILED, extension_field);
-		action.inputTextField(MaintainSuppliers.CONTACT_FAX_FILED, fax_number);
-		action.inputTextField(MaintainSuppliers.CONTACT_MOBILE_FILED, mobile_number);
+		action.inputTextField(MaintainSuppliers.CONTACT_ID_FILED, contactId);
+		action.inputTextField(MaintainSuppliers.CONTACT_NAME_FILED, contactName);
+		action.inputTextField(MaintainSuppliers.CONTACT_ROLE_FILED, roleField);
+		action.inputTextField(MaintainSuppliers.CONTACT_EMAIl_FILED, validEmail);
+		action.inputTextField(MaintainSuppliers.CONTACT_PHONE_FILED, phoneFiled);
+		action.inputTextField(MaintainSuppliers.CONTACT_EXTENSION_FILED, extensionField);
+		action.inputTextField(MaintainSuppliers.CONTACT_FAX_FILED, faxNumber);
+		action.inputTextField(MaintainSuppliers.CONTACT_MOBILE_FILED, mobileNumber);
 		action.waitObjVisible(By.id(ScreenObjects.CANCEL_ID));
 		action.pause(milliseconds);
 		/*

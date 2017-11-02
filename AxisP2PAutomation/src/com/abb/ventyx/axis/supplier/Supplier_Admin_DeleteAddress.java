@@ -21,7 +21,6 @@ public class Supplier_Admin_DeleteAddress extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
 	String expected = "Maintain Address & Contact";
-	String message_cant_delete = "The default address cannot be deleted";
 	public int i;
 	public int j;
 
@@ -64,21 +63,5 @@ public class Supplier_Admin_DeleteAddress extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(MaintainSuppliers.EDIT_SUPPLIER_POPUP));
 		assertEquals(driver.findElement(By.cssSelector(MaintainSuppliers.EDIT_SUPPLIER_POPUP)).getText(), expected);
 	}
-	/*
-	 * @Test(dependsOnMethods = "deleteOneorMoreYES") public void
-	 * deleteDefaultType() throws InterruptedException { //Step 5
-	 * action.waitObjVisible(By.id("addrId1")); //Click a record with Address type =
-	 * Default Address table = new TableFunction(driver); i =
-	 * table.findRowByString1(2, "Default Address"); j=i-1; WebElement elemement=
-	 * driver.findElement(By.id("addrId"+j)); elemement.click();
-	 * action.clickCheckBoxN(2);
-	 * //action.clickBtn(By.cssSelector(MaintainSuppliers.DELETE_ICON));
-	 * //action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
-	 * //assertEquals(driver.findElement(By.cssSelector(ScreenObjects.
-	 * UNSAVED_CHANGE_CSS)).getText(), Messages.UNDELETE_MESSAGE);
-	 * //driver.findElement(By.cssSelector(Maintain]=[Suppliers.YES_BTN)).click();
-	 * 
-	 * }
-	 */
 
 }

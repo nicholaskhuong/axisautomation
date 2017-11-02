@@ -94,7 +94,6 @@ public class Supplier_Admin_BusinessCodeSets_DeliveryCode extends BaseTestCase {
 				Messages.UNSAVED_CHANGE);
 		// Step 9
 		driver.findElement(By.id(ScreenObjects.NO_BTN_ID)).click();
-		// Step 10
 	}
 
 	@Test(dependsOnMethods = "cancelTheChanges")

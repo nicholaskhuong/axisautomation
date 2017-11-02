@@ -26,17 +26,17 @@ import com.abb.ventyx.utilities.TableFunction;
 public class Supplier_Admin_UpdateContact extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
-	String title_header = "Update Contact";
-	String contact_Id = "Donna 123";
-	String contact_name = "Donna Nguyen";
-	String invalid_Email = "Donna";
-	String valid_Email = "Donna@enclave.vn";
-	String role_field = "Manager";
-	String phone_filed = "0973600146";
-	String extension_field = "Extension";
-	String fax_number = "+84973600146";
-	String mobile_number = "0905842718";
-	String title_header_Maintain = "Maintain Address & Contact";
+	String titleHeader = "Update Contact";
+	String contactId = "Donna 123";
+	String contactName = "Donna Nguyen";
+	String invalidEmail = "Donna";
+	String validEmail = "Donna@enclave.vn";
+	String roleField = "Manager";
+	String phoneFiled = "0973600146";
+	String extensionField = "Extension";
+	String faxNumber = "+84973600146";
+	String mobileNumber = "0905842718";
+	String titleHeaderMaintain = "Maintain Address & Contact";
 	int milliseconds = 800;
 
 	@Test
@@ -47,83 +47,70 @@ public class Supplier_Admin_UpdateContact extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADDRESS_CONTACT_ID));
 		action.waitObjVisible(By.id(MaintainSuppliers.SUPPLIER_NAME));
 		Random rand = new Random();
-		long drand = (long)(rand.nextDouble()*10000000000L);
-		contact_Id = "ID" + drand;
-		contact_name = "Name" + drand;
-		valid_Email =drand + "@enclave.vn";
-		phone_filed = String.valueOf(drand);
+		long drand = (long) (rand.nextDouble() * 10000000000L);
+		contactId = "ID" + drand;
+		contactName = "Name" + drand;
+		validEmail = drand + "@enclave.vn";
+		phoneFiled = String.valueOf(drand);
 		drand = (long) (rand.nextDouble() * 10000000000L);
-		fax_number =String.valueOf(drand);
+		faxNumber = String.valueOf(drand);
 		drand = (long) (rand.nextDouble() * 10000000000L);
-		mobile_number = String.valueOf(drand);
-		
+		mobileNumber = String.valueOf(drand);
+
 	}
 
 	@Test(dependsOnMethods = "openScreen")
 	public void addNewContact() throws InterruptedException {
 		// step 2
-		// click on Contact tab
 		action.clickBtn(By.cssSelector(MaintainSuppliers.CONTACT_TAB));
-		// Click on a row in summary
-		// Thread.sleep(900);
 		action.waitObjVisible(By.id(MaintainSuppliers.SUPPLIER_NAME));
-		WebElement btn = (new WebDriverWait(driver, 30)).until(ExpectedConditions
-.presenceOfElementLocated(By.id(MaintainSuppliers.SELECT_ROW)));
+		WebElement btn = (new WebDriverWait(driver, 30))
+				.until(ExpectedConditions.presenceOfElementLocated(By.id(MaintainSuppliers.SELECT_ROW)));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
 		action.waitObjVisible(By.cssSelector(MaintainSuppliers.TITLE_POPUP));
-		assertEquals(driver.findElement(By.cssSelector(MaintainSuppliers.TITLE_POPUP)).getText(), title_header);
-		
+		assertEquals(driver.findElement(By.cssSelector(MaintainSuppliers.TITLE_POPUP)).getText(), titleHeader);
 		// Step 3
-		// Input lack data mandatory in the form, clear data of Contact ID
 		driver.findElement(By.id(MaintainSuppliers.CONTACT_ID_FILED)).clear();
 		action.clickBtn(By.cssSelector(MaintainSuppliers.OK_BUTTON));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		((JavascriptExecutor) driver).executeScript("window.focus();");
 		// Step 4
-		// Fill all data in the Update Contact popup
-		action.inputTextField(MaintainSuppliers.CONTACT_ID_FILED, contact_Id);
+		action.inputTextField(MaintainSuppliers.CONTACT_ID_FILED, contactId);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.waitObjVisible(By.id(MaintainSuppliers.CONTACT_ID_FILED));
-		action.inputTextField(MaintainSuppliers.CONTACT_NAME_FILED, contact_name);
-		action.inputTextField(MaintainSuppliers.CONTACT_ROLE_FILED, role_field);
-		action.inputTextField(MaintainSuppliers.CONTACT_EMAIl_FILED, valid_Email);
-		action.inputTextField(MaintainSuppliers.CONTACT_PHONE_FILED, phone_filed);
-		action.inputTextField(MaintainSuppliers.CONTACT_EXTENSION_FILED, extension_field);
-		action.inputTextField(MaintainSuppliers.CONTACT_FAX_FILED, fax_number);
-		action.inputTextField(MaintainSuppliers.CONTACT_MOBILE_FILED, mobile_number);
+		action.inputTextField(MaintainSuppliers.CONTACT_NAME_FILED, contactName);
+		action.inputTextField(MaintainSuppliers.CONTACT_ROLE_FILED, roleField);
+		action.inputTextField(MaintainSuppliers.CONTACT_EMAIl_FILED, validEmail);
+		action.inputTextField(MaintainSuppliers.CONTACT_PHONE_FILED, phoneFiled);
+		action.inputTextField(MaintainSuppliers.CONTACT_EXTENSION_FILED, extensionField);
+		action.inputTextField(MaintainSuppliers.CONTACT_FAX_FILED, faxNumber);
+		action.inputTextField(MaintainSuppliers.CONTACT_MOBILE_FILED, mobileNumber);
 		action.clickBtn(By.cssSelector(MaintainSuppliers.OK_BUTTON));
 		action.waitObjVisible(By.cssSelector(MaintainSuppliers.EDIT_SUPPLIER_POPUP));
 		assertEquals(driver.findElement(By.cssSelector(MaintainSuppliers.EDIT_SUPPLIER_POPUP)).getText(),
-				title_header_Maintain);
+				titleHeaderMaintain);
 
 	}
 
 	@Test(dependsOnMethods = "addNewContact")
 	public void verifyMessage() throws InterruptedException {
 		// step 5
-		// Click 1 row, dont change anything
 		action.waitObjVisible(By.id(MaintainSuppliers.SELECT_ROW));
 		action.pause(milliseconds);
 		WebElement btn = driver.findElement(By.id(MaintainSuppliers.SELECT_ROW));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
 		action.waitObjVisible(By.cssSelector(MaintainSuppliers.TITLE_POPUP));
-		// Click on cancel button
 		action.clickBtn(By.id(ScreenObjects.CANCEL_ID));
-		// verify back to Maintain Address & Contact
 		action.waitObjVisible(By.cssSelector(MaintainSuppliers.EDIT_SUPPLIER_POPUP));
 		assertEquals(driver.findElement(By.cssSelector(MaintainSuppliers.EDIT_SUPPLIER_POPUP)).getText(),
-				title_header_Maintain);
+				titleHeaderMaintain);
 		// step 6
-		// Click a row, change any data and click on cancel
 		action.waitObjVisible(By.id(MaintainSuppliers.SELECT_ROW));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
 		action.waitObjVisible(By.cssSelector(MaintainSuppliers.TITLE_POPUP));
-		// Change any data
-		action.inputTextField(MaintainSuppliers.CONTACT_NAME_FILED, contact_name + "New");
-		action.inputTextField(MaintainSuppliers.CONTACT_MOBILE_FILED, mobile_number + "1");
-		// Click on cancel
+		action.inputTextField(MaintainSuppliers.CONTACT_NAME_FILED, contactName + "New");
+		action.inputTextField(MaintainSuppliers.CONTACT_MOBILE_FILED, mobileNumber + "1");
 		action.clickBtn(By.id(ScreenObjects.CANCEL_ID));
-		// Verify the message
 		action.assertMessgeError(ScreenObjects.UNSAVED_CHANGE_CSS, Messages.UNSAVED_CHANGE);
 
 	}

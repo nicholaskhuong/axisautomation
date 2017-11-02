@@ -3,6 +3,7 @@ package com.abb.ventyx.axis.supplier;
 import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
@@ -46,10 +47,10 @@ public class Supplier_Admin_UpdateNewAddress extends BaseTestCase {
 		commonMethod();
 		action.clickBtn(By.cssSelector(MaintainSuppliers.OK_BUTTON));
 		action.pause(milliseconds);
-		// try to Saving
-		// action.waitObjVisible(By.id(ScreenObjects.YES_BTN_ID));
-		// action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
-		// action.checkAddSuccess(Messages.ADDRESS_CONTACT_SUCCESSFULLY_UPDATED);
+		action.waitObjVisible(By.id(ScreenObjects.YES_BTN_ID));
+		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
+		action.checkAddSuccess(Messages.ADDRESS_CONTACT_SUCCESSFULLY_UPDATED);
+		((JavascriptExecutor) driver).executeScript("window.focus();");
 
 	}
 
@@ -62,14 +63,11 @@ public class Supplier_Admin_UpdateNewAddress extends BaseTestCase {
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		action.waitObjVisible(By.id(MaintainSuppliers.ADDRESS_POPUP));
 		commonMethod();
-		// Do not save. Try click on Cancel button
 		action.clickBtn(By.cssSelector(MaintainSuppliers.CANCEL_BUTTON));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
-		// wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(),
 				Messages.UNSAVED_CHANGE);
 		driver.findElement(By.id(ScreenObjects.NO_BTN_ID)).click();
-		// action.clickBtn(By.cssSelector(MaintainSuppliers.CANCEL_BUTTON));
 
 	}
 
