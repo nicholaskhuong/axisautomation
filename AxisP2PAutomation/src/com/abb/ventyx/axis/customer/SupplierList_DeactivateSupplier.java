@@ -46,7 +46,7 @@ public class SupplierList_DeactivateSupplier extends BaseTestCase {
 		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER)).getText(), "Maintain Suppliers");
 		table.filter(SupplierList.SUPPLIER_EMAIL_FILTER_XPATH, SupplierList_CreateNewSupplier_ByAdmin.supplierEmail);
 		i = table.findRowByString(6, SupplierList_CreateNewSupplier_ByAdmin.supplierEmail);
-		Assert.assertTrue(i > 01, String.format("Supplier %s not found!", SupplierList_CreateNewSupplier_ByAdmin.supplierEmail));
+		Assert.assertTrue(i > 0, String.format("Supplier %s not found!", SupplierList_CreateNewSupplier_ByAdmin.supplierEmail));
 		assertEquals(table.getValueRow(4, i), activeStatus);
 		WebElement supplierIDCell = table.getCellObject(i, 1);
 		int indexOfSupplier = table.findRealIndexByCell(supplierIDCell, "spIdBtn");

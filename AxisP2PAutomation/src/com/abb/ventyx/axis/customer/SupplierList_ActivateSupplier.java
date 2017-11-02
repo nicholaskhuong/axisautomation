@@ -26,7 +26,6 @@ public class SupplierList_ActivateSupplier extends BaseTestCase {
 	TableFunction table;
 	WebDriverWait wait;
 	int i;
-	int j;
 	String userSupplierEmailCreated = "cuseryamaha8@abb.com";
 	String userSupplierEmailActive = "cuseractive@abb.com";
 	String inactiveStatus = "Inactive";
@@ -108,11 +107,12 @@ public class SupplierList_ActivateSupplier extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
 		action.assertTitleScreen("Maintain Suppliers");
 		assertEquals(table.getValueRow(4, i), activeStatus);
-		assertEquals(action.isFieldDisable(By.id("accessSupplierBtn" + j)),false);
+		int indexOfSupplier = table.findRealIndexByCell(i, 1, "spIdBtn");
+		assertEquals(action.isFieldDisable(By.id("accessSupplierBtn" + indexOfSupplier)), false);
 	}
 
 	// Step 7
-	@Test(dependsOnMethods = "clickYesToActivateSupplier")
+	@Test(dependsOnMethods = "clickYesToActivateSupplier", alwaysRun = true)
 	public void signOut() {
 		action.signOut();
 	}
