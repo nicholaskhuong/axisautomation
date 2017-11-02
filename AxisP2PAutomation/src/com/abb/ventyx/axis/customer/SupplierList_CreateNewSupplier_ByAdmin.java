@@ -131,6 +131,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.inputTextField(SupplierList.TAXREGRISTRATIONNO_ID, taxRegistrationNo_draft);
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
+		driver.findElement(By.id(SupplierList.SUPPLIERNAME_ID)).clear();
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
 
@@ -142,7 +143,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		driver.findElement(By.id(SupplierList.TAXREGRISTRATIONNO_ID)).clear();
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
-		action.clickBtn(By.id(SupplierList.COMPANYREGISTRATIONNO_ID));
+		driver.findElement(By.id(SupplierList.COMPANYREGISTRATIONNO_ID)).clear();
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
 
@@ -154,6 +155,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		driver.findElement(By.id(SupplierList.TAXREGRISTRATIONNO_ID)).clear();
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
+
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
 
@@ -165,6 +167,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		driver.findElement(By.id(SupplierList.SUPPLIEREMAIL_ID)).clear();
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
+		driver.findElement(By.id(SupplierList.SUPPLIEREMAIL_ID)).clear();
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
 
@@ -177,7 +180,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.pause(500);
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INVALID_EMAIL);
-		action.clickBtn(By.id(SupplierList.SUPPLIEREMAIL_ID));
+		driver.findElement(By.id(SupplierList.SUPPLIEREMAIL_ID)).clear();
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
 
@@ -189,6 +192,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, duplicatedSupplierEmail);
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.DUPLICATEDEMAIL);
+		driver.findElement(By.id(SupplierList.SUPPLIEREMAIL_ID)).clear();
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
 		// Step 4
 	}
@@ -200,6 +204,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID, duplicatedCompanyRegistrationNo);
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.DUPLICATECOMPANYREGISTRATIONNO);
+		driver.findElement(By.id(SupplierList.TAXREGRISTRATIONNO_ID)).clear();
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
 	}
 
@@ -222,7 +227,6 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	@Test(dependsOnMethods = "createSupplierWithDuplicatedTaxRegistrationNo", alwaysRun = true)
 	public void checkCancelButtonWithoutInput() {
 
-		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.CREATE_BTN_ID));
 		action.waitObjVisible(By.id(SupplierList.SUPPLIERNAME_ID));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.CANCEL_ID));
@@ -339,7 +343,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 
 	@Test(dependsOnMethods = "signOutAgain", alwaysRun = true)
 	public void signInAgain() {
-
+		action.signIn(axisSupportEmail, axisSupportPWD);
 	}
 
 	@Test(dependsOnMethods = "signInAgain", alwaysRun = true)
