@@ -19,7 +19,7 @@ import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
 
 @ALM(id = "634")
-@Credentials(user = "salem1@abb.com", password = "Testuser1")
+@Credentials(user = "mail232@abb.com", password = "Testuser1")
 public class SupplierUser_Creating extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
