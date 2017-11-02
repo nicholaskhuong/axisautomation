@@ -73,11 +73,15 @@ public class TableFunction {
 	}
 
 	public int findRealIndexByCell(WebElement cell, String indexString) {
-		List<WebElement> idLink = cell.findElements(By.id("id^=spIdBtn"));
-		String stringIDOfSupplier = idLink.get(0).getAttribute("id");
-		stringIDOfSupplier = stringIDOfSupplier
+		List<WebElement> idLink = cell.findElements(By.cssSelector("div[id^='spIdBtn']"));
+		int indexOfSupplier=-1;
+		if (idLink.size()>0) 
+		{
+			String stringIDOfSupplier = idLink.get(0).getAttribute("id");
+			stringIDOfSupplier = stringIDOfSupplier
 				.substring(stringIDOfSupplier.indexOf(indexString) + indexString.length(), stringIDOfSupplier.length());
-		int indexOfSupplier = Integer.valueOf(stringIDOfSupplier);
+			indexOfSupplier = Integer.valueOf(stringIDOfSupplier);
+		}
 		return indexOfSupplier;
 	}
 	public boolean isValueExisting(int columnindex, String value) {

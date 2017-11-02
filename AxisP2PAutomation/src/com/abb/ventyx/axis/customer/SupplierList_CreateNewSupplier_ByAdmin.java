@@ -50,10 +50,6 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	String axisSupportEmail = "mail5@abb.com";
 	String axisSupportPWD = "testuser";
 	String password;
-	String supplierName_draft = "Yamaha1231313";
-	String supplierEmail_draft = "yamaha13213@abb.com";
-	String companyRegistrationNo_draft = "COMYAMAHA12313213213";
-	String taxRegistrationNo_draft = "TAXYAMAHA123313213";
 
 	// Step 1
 	@Test
@@ -67,11 +63,6 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		supplierEmail = String.format("%s@abb.com", drand);
 		companyRegistrationNo = String.format("NO%s", drand);
 		taxRegistrationNo = String.format("Tax%s", drand);
-		drand = (long) (rand.nextDouble() * 100000000L);
-		supplierName_draft = String.format("Name %s", drand);
-		supplierEmail_draft = String.format("%s@abb.com", drand);
-		companyRegistrationNo_draft = String.format("NO%s", drand);
-		taxRegistrationNo_draft = String.format("Tax%s", drand);
 
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.SUPPLIERLIST_SUBMENU));
@@ -93,6 +84,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.CREATE_BTN_ID));
 		action.waitObjVisible(By.id(SupplierList.SUPPLIERNAME_ID));
 	}
+
 	// Step 5
 	@Test(dependsOnMethods = "openCreateSupplierForm", alwaysRun = true)
 	public void createSupplierWithValidValue() {
@@ -116,7 +108,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		assertEquals(table.getValueRow(7, i), profile);
 		WebElement accessCell = table.getCellObject(i, 8);
 		action.isFieldDisable(accessCell);
-			// String supplierID = table.getIDValue(i);
+		// String supplierID = table.getIDValue(i);
 	}
 
 	// //////////////////////////
@@ -134,6 +126,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(ScreenObjects.ERROR_CSS));
 		action.assertTextEqual(By.cssSelector(ScreenObjects.ERROR_CSS), Messages.USERNOTFOUND);
 	}
+
 	// Step 15
 	@Test(dependsOnMethods = "loginAsTheCreatedSupplier", alwaysRun = true)
 	public void getPasswordForTheNewSupplier() {
@@ -168,6 +161,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.inputTextField(ScreenObjects.CONFIRMPASSWORD_ID, newPassword);
 		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
 	}
+
 	// Step 16
 	@Test(dependsOnMethods = "changePassword")
 	public void acceptTradingRelationshipRequest() {
@@ -183,14 +177,13 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADDRESS_CONTACT_ID));
 
-		WebElement companyName = wait.until(ExpectedConditions.presenceOfElementLocated(By
-				.id(AddressContact.COMPANY_NAME)));
+		WebElement companyName = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(AddressContact.COMPANY_NAME)));
 		Assert.assertEquals(companyName.getAttribute("value"), supplierName);
 		action.assertTextEqual(By.id(AddressContact.COMPANY_REGISTRATION_NO), companyRegistrationNo);
 		action.assertTextEqual(By.id(AddressContact.TAX_REGISTRATION_NO), taxRegistrationNo);
 		action.assertTextEqual(By.id(AddressContact.SUPPLIER_EMAIL), supplierEmail);
 	}
-	
+
 	@Test(dependsOnMethods = "checkAddressAndContact", alwaysRun = true)
 	public void signOutAgain() {
 		action.signOut();
