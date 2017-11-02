@@ -183,6 +183,9 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	@Test(dependsOnMethods = "createSupplierWithDuplicatedTaxRegistrationNo", alwaysRun = true)
 	public void createSupplierWithValidValue() {
 
+		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, supplierEmail);
+		action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID, companyRegistrationNo);
+		action.inputTextField(SupplierList.SUPPLIERNAME_ID, supplierName);
 		action.inputTextField(SupplierList.TAXREGRISTRATIONNO_ID, taxRegistrationNo);
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 
