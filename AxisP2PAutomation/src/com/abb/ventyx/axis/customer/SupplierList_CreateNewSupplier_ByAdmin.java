@@ -343,7 +343,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 
 	@Test(dependsOnMethods = "signOutAgain", alwaysRun = true)
 	public void signInAgain() {
-		action.signIn(axisSupportEmail, axisSupportPWD);
+		action.signIn("cadmin1@abb.com", "Testuser1");
 	}
 
 	@Test(dependsOnMethods = "signInAgain", alwaysRun = true)
