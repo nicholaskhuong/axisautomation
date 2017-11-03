@@ -19,19 +19,14 @@ import com.abb.ventyx.utilities.TableFunction;
 @ALM(id = "603")
 @Credentials(user = "salem5@abb.com", password = "Testuser1")
 public class SupplierUser_Updating extends BaseTestCase {
-	String USER_ID = "salem 10";
-	String PASSWORD = "Testuser1";
-	String PASSWORD_VAILD = "Testuser2";
+	String userId = "salem 10";
+	String passwordValid = "Testuser2";
 	String confirmPasswordNotMap = "Testuser300";
 	String confirmPasswordValid = "Testuser2";
-	String EMAIL = "salem10@abb.com";
-	String USER_NO = "";
+	String email = "salem10@abb.com";
+	String userNo = "";
 	ScreenAction action;
 	TableFunction table;
-	String USERGROUP = "Datherine";
-	String AllGROUP = "";
-	String USERID_EXISTING = "";
-	String STATUS = "Created";
 	int row;
 	int milliseconds = 3000;
 	String emailInvalid = "salem";
@@ -52,11 +47,11 @@ public class SupplierUser_Updating extends BaseTestCase {
 	public void selectUser() {
 		// step 2
 		table = new TableFunction(driver);
-		row = table.findRowByString(Users.SUPPLIER_USERS_TABLE_CSS, 2, USER_ID);
-		Assert.assertTrue(row >= 0, String.format("User %s not found!", USER_ID));
-		table.assertValueRow(2, row, USER_ID);
+		row = table.findRowByString(Users.SUPPLIER_USERS_TABLE_CSS, 2, userId);
+		Assert.assertTrue(row >= 0, String.format("User %s not found!", userId));
+		table.assertValueRow(2, row, userId);
 		row -= 1;
-		USER_NO = driver.findElement(By.id(Users.USERNUMBER_LINKID + row)).getText();
+		userNo = driver.findElement(By.id(Users.USERNUMBER_LINKID + row)).getText();
 		action.clickBtn(By.id(Users.USERNUMBER_LINKID + row));
 		action.waitObjVisible(By.id(Users.USER_ID));
 		action.assertTitleScreen(Users.TITLE_MODIFY);
@@ -85,7 +80,7 @@ public class SupplierUser_Updating extends BaseTestCase {
 		driver.findElement(By.cssSelector(Users.UPDATEPASSWORD_YES_CSS)).findElement(By.tagName("label")).click();
 		action.waitObjVisible(By.id(Users.PASSWORD_ID));
 		action.inputTextField(Users.PASSWORD_ID, password_less_than_6_character);
-		action.inputTextField(Users.EMAIL_ID, EMAIL);
+		action.inputTextField(Users.EMAIL_ID, email);
 		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INVALID_PWD);
 	}
@@ -93,7 +88,7 @@ public class SupplierUser_Updating extends BaseTestCase {
 	@Test(dependsOnMethods = "updateInvalidEmail")
 	public void updatePasswordNotMap() {
 		// step 5
-		action.inputTextField(Users.PASSWORD_ID, PASSWORD_VAILD);
+		action.inputTextField(Users.PASSWORD_ID, passwordValid);
 		action.inputTextField(Users.CONFIMRPASSWORD_ID, confirmPasswordNotMap);
 		driver.findElement(By.id(Users.USER_ID)).click();
 		action.clickBtn(By.id(ScreenObjects.SAVE_ID));

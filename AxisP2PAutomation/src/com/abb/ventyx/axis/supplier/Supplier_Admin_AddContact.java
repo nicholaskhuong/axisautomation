@@ -45,39 +45,25 @@ public class Supplier_Admin_AddContact extends BaseTestCase {
 	@Test(dependsOnMethods = "openScreen")
 	public void addNewContact() throws InterruptedException {
 		// step 2
-		// click on Contact tab
 		action.clickBtn(By.cssSelector(MaintainSuppliers.CONTACT_TAB));
-		// Delete Supplier Name
 		action.inputTextField(MaintainSuppliers.SUPPLIER_NAME, "");
-		// try to save
 		action.pause(milliseconds);
 		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
-		// Verify message display
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		// Step 3
-		// Input Supplier again
 		action.inputTextField(MaintainSuppliers.SUPPLIER_NAME, supplierName);
-		// Click on Add button
 		action.clickBtn(By.cssSelector(MaintainSuppliers.ADDICON));
 	}
 
 	@Test(dependsOnMethods = "addNewContact")
 	public void verifyPopup() throws InterruptedException {
 		// Step 4,5: Input lack mandatory fields and try cto click OK
-		// Input Only Contact ID
-		// action.waitObjVisible(By.id(MaintainSuppliers.CONTACT_ID_FILED));
 		action.inputTextField(MaintainSuppliers.CONTACT_ID_FILED, contactId);
 		action.clickBtn(By.cssSelector(MaintainSuppliers.OK_BUTTON));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
-		// action.waitObjInvisible(By.cssSelector(CustomerUsers.ERROR));
-		// Input Name
 		action.inputTextField(MaintainSuppliers.CONTACT_NAME_FILED, contactName);
-		// Input Invalid email
 		action.inputTextField(MaintainSuppliers.CONTACT_EMAIl_FILED, invalidEmail);
-		// Click on OK button
 		action.clickBtn(By.cssSelector(MaintainSuppliers.OK_BUTTON));
-		// Verify that message display
-		// wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.ERROR)));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		/*
 		 * assertEquals(driver.findElement(By.cssSelector(CustomerUsers.ERROR)).getText(
@@ -88,22 +74,14 @@ public class Supplier_Admin_AddContact extends BaseTestCase {
 	@Test(dependsOnMethods = "verifyPopup")
 	public void addContactSuccessfully() throws InterruptedException {
 		// Step 6
-		// action.waitObjInvisible(By.cssSelector(CustomerUsers.ERROR));
-		// Input Email valid
 		action.inputTextField(MaintainSuppliers.CONTACT_EMAIl_FILED, validEmail);
-		// Input Role
 		action.inputTextField(MaintainSuppliers.CONTACT_ROLE_FILED, roleField);
-		// Input Phone Number
 		action.inputTextField(MaintainSuppliers.CONTACT_PHONE_FILED, phoneFiled);
-		// Input Extension
 		action.inputTextField(MaintainSuppliers.CONTACT_EXTENSION_FILED, extensionField);
-		// Input Fax Number
 		action.inputTextField(MaintainSuppliers.CONTACT_FAX_FILED, faxNumber);
-		// Input Mobile Number
 		action.inputTextField(MaintainSuppliers.CONTACT_MOBILE_FILED, mobileNumber);
 		action.clickBtn(By.cssSelector(MaintainSuppliers.OK_BUTTON));
 		// Step 7
-		// Click Add button, don't change anything and click Cancel at the popup.
 		action.pause(milliseconds);
 		action.clickBtn(By.cssSelector(MaintainSuppliers.ADDICON));
 		action.waitObjVisible(By.id(ScreenObjects.CANCEL_ID));
@@ -129,7 +107,6 @@ public class Supplier_Admin_AddContact extends BaseTestCase {
 		action.inputTextField(MaintainSuppliers.CONTACT_FAX_FILED, faxNumber);
 		action.inputTextField(MaintainSuppliers.CONTACT_MOBILE_FILED, mobileNumber);
 		action.waitObjVisible(By.id(ScreenObjects.CANCEL_ID));
-		action.pause(milliseconds);
 		/*
 		 * action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
 		 * assertEquals(driver.findElement(By.cssSelector(ScreenObjects.
