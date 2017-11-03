@@ -23,27 +23,24 @@ import com.abb.ventyx.utilities.TableFunction;
 public class User_Customer_Deleting extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
-	int waitTime = 3000;
+	int waitTime = 1000;
 	WebElement index;
-	String userUpdate = "lead1";
+	String userUpdate = "customer_user1";
 	String password = "Testuser1";
-	String emailUpdate = "lead1@abb.com";
+	String emailUpdate = "customer_user1@abb.com";
 	
 	@Test
 	public void openCustomerScreen(){
 		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.USERS));
-		action.pause(waitTime);
 	}
 	
 	@Test(dependsOnMethods = "openCustomerScreen", alwaysRun = true)
 	public void clickFiterButtonOnCustomerScreen() {
 		table = new TableFunction(driver);
-		action.pause(5000);
-		WebElement filterButton = driver.findElement(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
-		filterButton.click();
-		ScreenAction action = new ScreenAction(driver);
+		action.pause(waitTime);
+		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
 		WebElement filterPermissionName = (new WebDriverWait(driver, 30))
 				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Users.USER_ID_FILTER)));
@@ -54,38 +51,35 @@ public class User_Customer_Deleting extends BaseTestCase {
 	
 	@Test(dependsOnMethods = "clickFiterButtonOnCustomerScreen", alwaysRun = true)
 	public void clickCustomerIDOnCustomerScreen() {
-		action.pause(waitTime);
 		index = table.getCellObject("//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div/div/div/div[3]/table/tbody",1, 1);
+		action.pause(waitTime);
 		index.click();
 	}
 	
 	@Test(dependsOnMethods = "clickCustomerIDOnCustomerScreen", alwaysRun = true)
 	public void clickFiterButtonOnMaintainCustomerUsersScreen() {
-		table = new TableFunction(driver);
 		action.pause(waitTime);
-		WebElement filterButton = driver.findElement(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
-		filterButton.click();
-		ScreenAction action = new ScreenAction(driver);
+		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
-		WebElement filterPermissionName = (new WebDriverWait(driver, 30))
+		WebElement filterCustomerName = (new WebDriverWait(driver, 30))
 				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Users.USER_ID_FILTER)));
-		filterPermissionName.sendKeys(userUpdate);
+		filterCustomerName.clear();
+		filterCustomerName.sendKeys(userUpdate);
 		action.pause(waitTime);
 		assertEquals(table.getValueRow(2, 1), userUpdate);
 	}
 	
 	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomerUsersScreen", alwaysRun = true)
 	public void clickDeleteButtonOnMaintainCustomerUsersScreen() {
-		table = new TableFunction(driver);
 		action.clickHorizontalScrollBar();
+		action.pause(waitTime);
 		index =  table.getCellObject(1, 6);
-		index.click();
-		action.pause(waitTime);
-		action.clickBtn(By.id(ScreenObjects.NO_BTN_ID));
 		action.pause(waitTime);
 		index.click();
+		action.waitObjVisibleAndClick(By.id(ScreenObjects.NO_BTN_ID));
 		action.pause(waitTime);
-		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
+		index.click();
+		action.waitObjVisibleAndClick(By.id(ScreenObjects.YES_BTN_ID));
 		action.checkAddSuccess(Messages.USER_DELETE_SUCCESSFULLY);
 	}
 	

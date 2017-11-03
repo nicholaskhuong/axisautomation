@@ -27,13 +27,13 @@ import com.abb.ventyx.utilities.TableFunction;
 public class User_Customer_Updating extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
-	int waitTime = 3000;
+	int waitTime = 1000;
 	WebElement index, index1;
-	String user = "lead";
-	String userUpdate = "lead1";
+	String user = "customer_userab";
+	String userUpdate = "customer_user1";
 	String password = "Testuser1";
-	String email = "lead@abb.com";
-	String emailUpdate = "lead1@abb.com";
+	String email = "customer_userab@abb.com";
+	String emailUpdate = "customer_user1@abb.com";
 	String emailInvalid = "111";
 	String emailAlready = "thuy15@abb.com";
 	String confirmPassword = "Testuser2";
@@ -46,17 +46,14 @@ public class User_Customer_Updating extends BaseTestCase {
 		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.USERS));
-		action.pause(waitTime);
 	}
 	
 	//Step 2
 	@Test(dependsOnMethods = "openCustomerScreen", alwaysRun = true)
 	public void clickFiterButtonOnCustomerScreen() {
 		table = new TableFunction(driver);
-		action.pause(5000);
-		WebElement filterButton = driver.findElement(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
-		filterButton.click();
-		ScreenAction action = new ScreenAction(driver);
+		action.pause(waitTime);
+		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
 		WebElement filterPermissionName = (new WebDriverWait(driver, 30))
 				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Users.USER_ID_FILTER)));
@@ -65,32 +62,30 @@ public class User_Customer_Updating extends BaseTestCase {
 		assertEquals(table.getValueRow(2, 1), "QATest");
 	}
 	
+	//Step3
 	@Test(dependsOnMethods = "clickFiterButtonOnCustomerScreen", alwaysRun = true)
 	public void clickCustomerIDOnCustomerScreen() {
-		action.pause(waitTime);
 		index = table.getCellObject("//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div/div/div/div[3]/table/tbody",1, 1);
+		action.pause(waitTime);
 		index.click();
 	}
-	
-	//Step 3
+		
+	//Step 4
 	@Test(dependsOnMethods = "clickCustomerIDOnCustomerScreen", alwaysRun = true)
 	public void clickFiterButtonOnMaintainCustomerUsersScreen() {
-		table = new TableFunction(driver);
 		action.pause(waitTime);
-		WebElement filterButton = driver.findElement(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
-		filterButton.click();
-		ScreenAction action = new ScreenAction(driver);
+		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
-		WebElement filterPermissionName = (new WebDriverWait(driver, 30))
+		WebElement filterCustomerName = (new WebDriverWait(driver, 30))
 				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Users.USER_ID_FILTER)));
-		filterPermissionName.sendKeys(user);
+		filterCustomerName.clear();
+		filterCustomerName.sendKeys("customer_userab");
 		action.pause(waitTime);
-		assertEquals(table.getValueRow(2, 1), user);
+		assertEquals(table.getValueRow(2, 1), "customer_userab");
 	}
-	
+		
 	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomerUsersScreen", alwaysRun = true)
 	public void clickUserNumberOnMaintainCustomerUsersScreen() {
-		action.pause(5000);
 		index1 = table.getCellObject("//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div[3]/table/tbody",1, 1);
 		index1.click();
 	}
@@ -98,23 +93,20 @@ public class User_Customer_Updating extends BaseTestCase {
 	@Test(dependsOnMethods = "clickUserNumberOnMaintainCustomerUsersScreen", alwaysRun = true)
 	public void updateLackMandatoryField(){
 		action.inputTextField(Users.EMAIL_ID, "");
-		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
 	
 	//Step 4
 	@Test(dependsOnMethods = "updateLackMandatoryField", alwaysRun = true)
 	public void inputMandatoryFields(){
-		action.pause(waitTime);
-		WebElement password = driver.findElement(By.id(Users.EMAIL_ID));
-		password.clear();
-		action.pause(waitTime);
-		password.sendKeys(emailUpdate);
+		action.inputTextField(Users.EMAIL_ID, emailUpdate);
 		action.clickCheckBoxN(6);
+		action.waitObjVisible(By.id(Users.SAVE_BTN_ID));
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
-		action.pause(waitTime);
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.USER_SELECT_USERGROUP);
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
 	
 	//Step 5
@@ -122,77 +114,62 @@ public class User_Customer_Updating extends BaseTestCase {
 	public void inputInvalidEmail(){
 		action.inputEmailField(Users.EMAIL_ID, emailInvalid);
 		action.clickCheckBoxN(6);
-		action.pause(waitTime);
+		action.waitObjVisible(By.id(Users.SAVE_BTN_ID));
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
-		action.pause(waitTime);
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INVALID_EMAIL);
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.inputEmailField(Users.EMAIL_ID, emailAlready);
-		action.pause(waitTime);
+		action.waitObjVisible(By.id(Users.SAVE_BTN_ID));
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
-		action.pause(waitTime);
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.UPDATE_SAME_EMAIL);
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
 	}
 	
 	//Step 6
 	@Test(dependsOnMethods = "inputInvalidEmail", alwaysRun = true)
 	public void clickYesForUpdatePassword(){
-		action.pause(waitTime);
 		List<WebElement> onBtn = driver.findElements(By
 				.id(AxisAdministratorUsers.UPDATED_PASSWORD_ID));
 		onBtn.get(0).click();
-		action.pause(waitTime);
 	}
 	@Test(dependsOnMethods = "clickYesForUpdatePassword", alwaysRun = true)
 	public void inputInvalidPassword(){
 		action.inputEmailField(Users.EMAIL_ID, emailUpdate);
-		action.pause(waitTime);
-		WebElement password1 = driver.findElement(By.id(Users.PASSWORD_ID));
-		action.pause(waitTime);
-		password1.sendKeys(invalidPassword1);
-		WebElement comfirmPassword = driver.findElement(By.id(Users.CONFIMRPASSWORD_ID));
-		comfirmPassword.clear();
-		action.pause(waitTime);
-		comfirmPassword.sendKeys(invalidPassword1);
+		action.inputEmailField(Users.PASSWORD_ID, invalidPassword1);
+		action.inputEmailField(Users.CONFIMRPASSWORD_ID, invalidPassword1);
+		action.waitObjVisible(By.id(Users.SAVE_BTN_ID));
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INPUT_INVALID_PASSWORD1);
-		action.pause(waitTime);
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.inputTextField(Users.PASSWORD_ID, invalidPassword2);
-		action.pause(waitTime);
-		WebElement comfirmPassword1 = driver.findElement(By.id(Users.CONFIMRPASSWORD_ID));
-		comfirmPassword1.clear();
-		action.pause(waitTime);
-		comfirmPassword.sendKeys(invalidPassword2);
-		action.pause(waitTime);
+		action.inputEmailField(Users.CONFIMRPASSWORD_ID, invalidPassword2);
+		action.waitObjVisible(By.id(Users.SAVE_BTN_ID));
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INPUT_INVALID_PASSWORD2);
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
 	
 	//Step 7
 	@Test(dependsOnMethods = "inputInvalidPassword", alwaysRun = true)
 	public void inputPasswordAndConfirmPasswordAreNotTheSame(){
-		WebElement password1 = driver.findElement(By.id(Users.PASSWORD_ID));
-		password1.clear();
-		action.pause(waitTime);
-		password1.sendKeys(password);
-		WebElement comfirmPassword = driver.findElement(By.id(Users.CONFIMRPASSWORD_ID));
-		comfirmPassword.clear();
-		action.pause(waitTime);
-		comfirmPassword.sendKeys(confirmPassword);
+		action.inputEmailField(Users.PASSWORD_ID, password);
+		action.inputEmailField(Users.CONFIMRPASSWORD_ID, confirmPassword);
+		action.waitObjVisible(By.id(Users.SAVE_BTN_ID));
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
-		action.pause(waitTime);
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.UNMATCHED_CONFIRM_PWD);
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
 	
 	//Step 8
 	@Test(dependsOnMethods = "inputPasswordAndConfirmPasswordAreNotTheSame", alwaysRun = true)
 	public void inputAllMandatoryFields(){
 		action.inputTextField(Users.USER_ID, userUpdate);
-		WebElement comfirmPassword = driver.findElement(By.id(Users.CONFIMRPASSWORD_ID));
-		comfirmPassword.clear();
-		action.pause(waitTime);
-		comfirmPassword.sendKeys(password);
+		action.inputEmailField(Users.CONFIMRPASSWORD_ID, password);
+		action.waitObjVisible(By.id(Users.SAVE_BTN_ID));
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
+		action.pause(waitTime);
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_UPDATE_SUCCESSFULLY);
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 	}
 	
 	//Step 9
@@ -200,22 +177,20 @@ public class User_Customer_Updating extends BaseTestCase {
 	public void clickAddButtonAndNoInputData(){
 		action.waitObjVisibleAndClick(By.cssSelector(Profiles.ADD_PROFILE));
 		action.pause(waitTime);
-		action.clickBtn(By.id(Users.CANCEL_BTN_ID));
+		action.waitObjVisibleAndClick(By.id(Users.CANCEL_BTN_ID));
 	}
 	
 	//Step 10-13
 	@Test(dependsOnMethods = "clickAddButtonAndNoInputData", alwaysRun = true)
 	public void clickAddButtonAndInputDataName(){
 		action.waitObjVisibleAndClick(By.cssSelector(Profiles.ADD_PROFILE));
-		action.pause(waitTime);
 		action.inputTextField(Users.USER_ID, userUpdate);
-		action.clickBtn(By.id(Users.CANCEL_BTN_ID));
 		action.pause(waitTime);
-		action.clickBtn(By.id(ScreenObjects.NO_BTN_ID));
+		action.waitObjVisibleAndClick(By.id(Users.CANCEL_BTN_ID));
+		action.waitObjVisibleAndClick(By.id(ScreenObjects.NO_BTN_ID));
 		action.pause(waitTime);
-		action.clickBtn(By.id(Users.CANCEL_BTN_ID));
-		action.pause(waitTime);
-		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
+		action.waitObjVisibleAndClick(By.id(Users.CANCEL_BTN_ID));
+		action.waitObjVisibleAndClick(By.id(ScreenObjects.YES_BTN_ID));
 	}
 
 }
