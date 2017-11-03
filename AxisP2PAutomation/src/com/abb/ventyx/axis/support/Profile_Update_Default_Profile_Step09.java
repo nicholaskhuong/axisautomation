@@ -234,12 +234,12 @@ public class Profile_Update_Default_Profile_Step09 extends BaseTestCase {
 	}
 	
 	@Test(dependsOnMethods = "logoutWithCustomerList2", alwaysRun = true)
-	public void loginWithMail5Again(){
+	public void loginWithMailSecondTime() {
 		action.signIn(mail5Login, mail5Password);
 		action.pause(waitTime);
 	}
 	
-	@Test(dependsOnMethods = "loginWithMail5Again", alwaysRun = true)
+	@Test(dependsOnMethods = "loginWithMailSecondTime", alwaysRun = true)
 	public void openMaintainCustomerScreen2(){
 		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE));

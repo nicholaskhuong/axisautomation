@@ -243,11 +243,11 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 	
 	//Step 7
 	@Test(dependsOnMethods = "verifyAuthorisedDocumentOnModifyProfileScreen2", alwaysRun = true)
-	public void logoutWithCustomerList2(){
+	public void logoutWithCustomerListSecondTime() {
 		action.signOut();
 	}
 	
-	@Test(dependsOnMethods = "logoutWithCustomerList2", alwaysRun = true)
+	@Test(dependsOnMethods = "logoutWithCustomerListSecondTime", alwaysRun = true)
 	public void loginWithMail5Again(){
 		action.signIn(mail5Login, mail5Password);
 		action.pause(waitTime);
