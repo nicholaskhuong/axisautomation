@@ -32,7 +32,6 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 	int waitTime = 1000;
 	String profileName = "Profile3";
 	String profileNameEdited = "Profile4";
-	int i,j;
 	WebElement index;
 	String userLogin = "mail222@abb.com";
 	String userPassword = "Testuser2";
@@ -47,33 +46,26 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 		table = new TableFunction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PROFILES));
-		action.pause(waitTime);
 	}
 	//Step2
 	@Test(dependsOnMethods = "openMaintainCustomerDefinedProfilesScreen", alwaysRun = true)
 	public void clickFiterButtonOnMaintainCustomerScreen() {
-		action.pause(7000);
-		WebElement filterButton = driver.findElement(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
-		filterButton.click();
-		ScreenAction action = new ScreenAction(driver);
+		action.waitObjVisible(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
+		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
 		action.inputTextField(ScreenObjects.FILTER_FIELD_ID, "QATest");
-		action.pause(waitTime);
 	}
 	
-	@Test(dependsOnMethods = "openMaintainCustomerDefinedProfilesScreen", alwaysRun = true)
+	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomerScreen", alwaysRun = true)
 	public void clickPencilIconOnMaintainCustomerScreen(){
 		action.pause(waitTime);
-		i = table.findRowByString(4, profileName);
 		action.clickHorizontalScrollBar();
 		index = table.getCellObject(4, 5);
-		action.pause(waitTime);
 		index.click();
 	}
 
 	@Test(dependsOnMethods = "clickPencilIconOnMaintainCustomerScreen", alwaysRun = true)
 	public void checkStatusProfileAndCustomerName(){
-		action.pause(waitTime);
 		WebElement profileName = driver.findElement(By.id(Profiles.PROFILE_NAME_ID));
 		profileName.isEnabled();
 		WebElement customerName = driver.findElement(By.id(Profiles.CUSTOMER_NAME));
@@ -82,10 +74,9 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 	
 	@Test(dependsOnMethods = "checkStatusProfileAndCustomerName", alwaysRun = true)
 	public void editProfileNameonModifyProfileSreen(){
+		action.waitObjVisible(By.id(Profiles.PROFILE_NAME_ID));
 		action.inputTextField(Profiles.PROFILE_NAME_ID, profileNameEdited);
-		action.pause(5000);
 		action.clickCheckBoxN(2);
-		action.pause(waitTime);
 	}
 	
 	@Test(dependsOnMethods = "editProfileNameonModifyProfileSreen", alwaysRun = true)
@@ -97,31 +88,28 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 	//Step3
 	@Test(dependsOnMethods = "clickSaveButtonAndDisplayMessageSuccessfully", alwaysRun = true)
 	public void logoutFromMaintainCustomerScreen(){
+		action.pause(waitTime);
 		action.signOut();
 	}
 	
 	@Test(dependsOnMethods = "logoutFromMaintainCustomerScreen", alwaysRun = true)
 	public void loginWithAccountCustomer(){
 		action.signIn(userLogin, userPassword);
-		action.pause(waitTime);
 	}
 	
 	@Test(dependsOnMethods = "loginWithAccountCustomer", alwaysRun = true)
 	public void openMaintainCustomerScreenWithAccountCustomer(){
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE_WITH_CUSTOMER));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PROFILE_CUSTOMER));
-		action.pause(waitTime);
 	}
 	
 	@Test(dependsOnMethods = "openMaintainCustomerScreenWithAccountCustomer", alwaysRun = true)
 	public void clickEditIconOnMaintainCustomerScreen(){
-		i = table.findRowByString(4, "Advance Shipping Notice, Purchase Orders");
+		
 		action.clickHorizontalScrollBar();
-		action.pause(waitTime);
 		index = table.getCellObject(4, 4);
 		index.click();
-		action.pause(waitTime);
-		action.clickBtn(By.id(Profiles.CANCEL_BTN));
+		action.waitObjVisibleAndClick(By.id(Profiles.CANCEL_BTN));
 	}
 	//Step 5
 	@Test(dependsOnMethods = "clickEditIconOnMaintainCustomerScreen", alwaysRun = true)
@@ -132,7 +120,6 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 	@Test(dependsOnMethods = "logoutfromAccountCustomer", alwaysRun = true)
 	public void loginfromAccountCustomer(){
 			action.signIn(adminLogin, adminPassword);
-			action.pause(waitTime);
 		}
 	
 	@Test(dependsOnMethods = "loginfromAccountCustomer", alwaysRun = true)
@@ -143,33 +130,23 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 	
 	@Test(dependsOnMethods = "openMaintainCustomerDefinedProfilesScreenAgain", alwaysRun = true)
 	public void clickFiterButtonAgainOnMaintainCustomerScreen() {
-		action.pause(7000);
-		WebElement filterButton = driver.findElement(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
-		filterButton.click();
-		ScreenAction action = new ScreenAction(driver);
+		action.waitObjVisible(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
+		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
 		action.inputTextField(ScreenObjects.FILTER_FIELD_ID, "QATest");
-		action.pause(waitTime);
 	}
 
 	@Test(dependsOnMethods = "clickFiterButtonAgainOnMaintainCustomerScreen", alwaysRun = true)
 	public void clickEditIconAgainOnMaintainCustomerScreen(){
-		action.pause(waitTime);
-
-		i = table.findRowByString(4, profileNameEdited);
 		action.clickHorizontalScrollBar();
-		action.pause(waitTime);
 		index = table.getCellObject(4, 5);
 		index.click();
 	}
 	
 	@Test(dependsOnMethods = "clickEditIconAgainOnMaintainCustomerScreen", alwaysRun = true)
 	public void editAuthorisedDocumentTypes(){
-		action.clickBtn(By.id("showConfigBtn-AdvanceShippingNotice"));
-		action.pause(waitTime);
-		List<WebElement> checkBoxIndex0 = (new WebDriverWait(driver, 30)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By
-				.xpath("//*[@id='configurationGrid-AdvanceShippingNotice']/div[3]/table/tbody/tr[1]/td[1]")));
-		Assert.assertTrue(checkBoxIndex0.size() > 0, "Item not found!");
+		action.waitObjVisibleAndClick(By.id("showConfigBtn-AdvanceShippingNotice"));
+		List<WebElement> checkBoxIndex0 = driver.findElements(By.xpath("//*[@id='configurationGrid-AdvanceShippingNotice']/div[3]/table/tbody/tr[1]/td[1]"));
 		checkBoxIndex0.get(0).click();
 	}
 	
