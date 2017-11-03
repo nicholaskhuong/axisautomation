@@ -24,7 +24,6 @@ public class SupplierList_UpdateSupplier_ByAdmin_Step9 extends BaseTestCase {
 		action.signIn(SupplierList_CreateNewSupplier_ByAdmin.supplierEmail, SupplierList_CreateNewSupplier_ByAdmin.password);
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADDRESS_CONTACT_ID));
-		assertEquals(action.isElementPresent(By.id("menuItemAsn")),false);
 		action.waitObjVisible(By.id(AddressContact.COMPANY_NAME));
 		// action.assertTextEqual(By.id(AddressContact.COMPANY_NAME),
 		// newSupplierName);
