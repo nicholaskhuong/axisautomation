@@ -5,6 +5,9 @@ import static org.testng.Assert.assertEquals;
 import java.util.Random;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -165,9 +168,9 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 	@Test(dependsOnMethods = "accessSupplierFromCustomerAndCheckASNOff", alwaysRun = true)
 	public void signOutDefaultUser() {
 		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
-		action.pause(3000);
-		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
-		action.pause(3000);
+		action.pause(5000);
+		WebElement btn = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id(ScreenObjects.SIGNOUT_BUTTON)));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
 	}
 
 	@Test(dependsOnMethods = "signOutDefaultUser", alwaysRun = true)
