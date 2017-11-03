@@ -17,7 +17,7 @@ import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
 
 @ALM(id = "618")
-@Credentials(user = "mail232@abb.com", password = "Testuser1")
+@Credentials(user = "salem85@abb.com", password = "Testuser1")
 public class SupplierUser_Deleting extends BaseTestCase {
 	// String SupplierUser_Creating.userIDvalid = "BOSS";
 	ScreenAction action;
@@ -26,6 +26,7 @@ public class SupplierUser_Deleting extends BaseTestCase {
 
 	@Test
 	public void openScreen() {
+		// Step 1
 		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.USERS_ID));
@@ -34,31 +35,26 @@ public class SupplierUser_Deleting extends BaseTestCase {
 	}
 
 	@Test(dependsOnMethods = "openScreen")
-	public void selectRowDeleting() {
+	public void deleteConfirmNO() {
+		// Step 2,3
 		table = new TableFunction(driver);
-		row = table.findRowByString(Users.SUPPLIER_USERS_TABLE_CSS, 2, SupplierUser_Creating.userIDvalid);
-		Assert.assertTrue(row >= 0, String.format("Supplier user %s not found!", SupplierUser_Creating.userIDvalid));
-		table.assertValueRow(2, row, SupplierUser_Creating.userIDvalid);
+		row = table.findRowByString(Users.SUPPLIER_USERS_TABLE_CSS, 2, "User ID 1");
+		Assert.assertTrue(row >= 0, String.format("Supplier user %s not found!", "User ID 1"));
+		table.assertValueRow(2, row, "User ID 1");
 		row = row - 1;
 		action.clickBtn(By.id(ScreenObjects.DELETE_BTN_ID + row));
+		action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.CONFIRMATION)).getText(), Messages.DELETE_USER_CONFIRM);
+		driver.findElement(By.id(ScreenObjects.NO_BTN_ID)).click();
 	}
 
-	@Test(dependsOnMethods = "selectRowDeleting")
-	public void deleteUserClickNo() throws Exception {
-		// Click No on dialog
-		action.deleteClickNo(Messages.DELETE_USER_CONFIRM);
-		table.assertValueRow(2, row + 1, SupplierUser_Creating.userIDvalid);
-
-	}
-
-	@Test(dependsOnMethods = "deleteUserClickNo")
-	public void deleteUserClickYes() throws Exception {
-		int sumRowBefore = table.countRow(Users.SUPPLIER_USERS_TABLE_CSS);
-		// Click Yes on dialog
+	@Test(dependsOnMethods = "deleteConfirmNO")
+	public void deleteConfirmYes() {
 		action.clickBtn(By.id(ScreenObjects.DELETE_BTN_ID + row));
-		action.deleteClickYes(Messages.USER_DELETE_SUCCESSFULLY);
-		int sumRowAfter = table.countRow(Users.SUPPLIER_USERS_TABLE_CSS);
-		assertEquals(sumRowAfter, sumRowBefore - 1);
-	}
+		action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.CONFIRMATION)).getText(), Messages.DELETE_USER_CONFIRM);
+		// driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
+		// action.checkAddSuccess(Messages.USER_DELETE_SUCCESSFULLY);
 
+	}
 }
