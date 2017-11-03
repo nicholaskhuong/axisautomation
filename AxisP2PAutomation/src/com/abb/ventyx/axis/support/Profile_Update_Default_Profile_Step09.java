@@ -200,7 +200,7 @@ public class Profile_Update_Default_Profile_Step09 extends BaseTestCase {
 	}
 	
 	@Test(dependsOnMethods = "openMaintainCustomerScreenWithAccountCustomer2", alwaysRun = true)
-	public void clickFiterButtonOnMaintainCustomerScreen2() {
+	public void clickFiterButtonOnMaintainCustomerScreen4() {
 		action.pause(7000);
 		WebElement filterButton = driver.findElement(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 		filterButton.click();
@@ -209,7 +209,7 @@ public class Profile_Update_Default_Profile_Step09 extends BaseTestCase {
 		action.inputTextField(ScreenObjects.FILTER_FIELD_ID, profileName);
 	}
 	
-	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomerScreen2", alwaysRun = true)
+	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomerScreen4", alwaysRun = true)
 	public void clickEditButtonOnMaintainCustomerScreen2(){
 		action.pause(waitTime);
 		i = table.findRowByString(1, profileName);
@@ -221,14 +221,14 @@ public class Profile_Update_Default_Profile_Step09 extends BaseTestCase {
 	}
 	
 	@Test(dependsOnMethods = "clickEditButtonOnMaintainCustomerScreen2", alwaysRun = true)
-	public void verifyAuthorisedDocumentOnModifyProfileScreen2(){
+	public void verifyAuthorisedDocumentOnModifyProfileScreen4() {
 		action.pause(waitTime);
 	//  All business documents are selected as default
 	//	action.checkObjSelected(1,4);
 	}
 	
 	//Step 7
-	@Test(dependsOnMethods = "verifyAuthorisedDocumentOnModifyProfileScreen2", alwaysRun = true)
+	@Test(dependsOnMethods = "verifyAuthorisedDocumentOnModifyProfileScreen4", alwaysRun = true)
 	public void logoutWithCustomerList2(){
 		action.signOut();
 	}
@@ -240,15 +240,15 @@ public class Profile_Update_Default_Profile_Step09 extends BaseTestCase {
 	}
 	
 	@Test(dependsOnMethods = "loginWithMailSecondTime", alwaysRun = true)
-	public void openMaintainCustomerScreen2(){
+	public void openMaintainCustomerScreen3() {
 		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PROFILES));
 		action.pause(waitTime);
 	}
 	
-	@Test(dependsOnMethods = "openMaintainCustomerScreen2", alwaysRun = true)
-	public void clickFiterButtonOnMaintainCustomer2() {
+	@Test(dependsOnMethods = "openMaintainCustomerScreen3", alwaysRun = true)
+	public void clickFiterButtonOnMaintainCustomer3() {
 		action.pause(7000);
 		WebElement filterButton = driver.findElement(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 		filterButton.click();
@@ -257,8 +257,8 @@ public class Profile_Update_Default_Profile_Step09 extends BaseTestCase {
 		action.inputTextField(ScreenObjects.FILTER_FIELD_ID, customerName);
 	}
 	
-	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomer2", alwaysRun = true)
-	public void clickEditButtonOnMaintainCustomer2(){
+	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomer3", alwaysRun = true)
+	public void clickEditButtonOnMaintainCustomer3() {
 		action.pause(waitTime);
 		i = table.findRowByString(1, customerName);
 		action.clickHorizontalScrollBar();
@@ -269,8 +269,8 @@ public class Profile_Update_Default_Profile_Step09 extends BaseTestCase {
 		index.click();
 	}
 	
-	@Test(dependsOnMethods = "clickEditButtonOnMaintainCustomer2", alwaysRun = true)
-	public void verifyDataOnModifyProfileScreen2(){
+	@Test(dependsOnMethods = "clickEditButtonOnMaintainCustomer3", alwaysRun = true)
+	public void verifyDataOnModifyProfileScreen3() {
 		action.pause(waitTime);
 		action.clickBtn(By.id("showConfigBtn-AdvanceShippingNotice"));
 		action.pause(waitTime);
@@ -282,7 +282,7 @@ public class Profile_Update_Default_Profile_Step09 extends BaseTestCase {
 	}
 	
 	//Step 8
-	@Test(dependsOnMethods = "verifyDataOnModifyProfileScreen2", alwaysRun = true)
+	@Test(dependsOnMethods = "verifyDataOnModifyProfileScreen3", alwaysRun = true)
 	public void signOutAgain() {
 		action.signOut();
 	}

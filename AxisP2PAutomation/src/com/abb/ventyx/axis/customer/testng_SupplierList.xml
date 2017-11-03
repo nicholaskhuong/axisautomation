@@ -14,6 +14,7 @@
 	<test name="Update Supplier By Admin">
 		<classes>
 				<class name="com.abb.ventyx.axis.customer.SupplierList_UpdateSupplier_ByAdmin" />
+				<class name="com.abb.ventyx.axis.customer.SupplierList_UpdateSupplier_ByAdmin_LoginNewUser" />
 		</classes>
 	</test>	
 	<test name="Deactivate Supplier">
@@ -29,6 +30,7 @@
 	<test name="Access Supplier by Remote Icon">
 		<classes>
 				<class name="com.abb.ventyx.axis.customer.SupplierList_RemoteIcon" />
+				<class name="com.abb.ventyx.axis.customer.SupplierList_RemoteIcon_LoginNewUser" />
 		</classes>
 	</test>	
 </suite> 

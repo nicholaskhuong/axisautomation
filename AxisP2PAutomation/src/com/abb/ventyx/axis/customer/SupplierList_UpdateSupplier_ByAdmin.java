@@ -173,15 +173,4 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
 	}
 
-	@Test(dependsOnMethods = "signOutDefaultUser", alwaysRun = true)
-	public void loginAsTheUpdatedSupplierAndCheckASNOff() {
-		action.signIn(SupplierList_CreateNewSupplier_ByAdmin.supplierEmail, SupplierList_CreateNewSupplier_ByAdmin.password);
-		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));
-		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADDRESS_CONTACT_ID));
-		assertEquals(action.isElementPresent(By.id("menuItemAsn")),false);
-		action.waitObjVisible(By.id(AddressContact.COMPANY_NAME));
-		// action.assertTextEqual(By.id(AddressContact.COMPANY_NAME),
-		// newSupplierName);
-		assertEquals(driver.findElement(By.id(AddressContact.COMPANY_NAME)).getAttribute("value"), newSupplierName);
-	}
 }

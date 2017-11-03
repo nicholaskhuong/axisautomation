@@ -4,6 +4,7 @@ package com.abb.ventyx.axis.support;
 import static org.testng.Assert.assertEquals;
 
 import java.util.List;
+import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -47,6 +48,11 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 		table = new TableFunction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_LIST));
+		Random rand = new Random();
+		int drand = rand.nextInt(10000);
+		customerName = String.format("Honda %s", drand);
+		emailAddress = String.format("Honda%s@abb.com", drand);
+		;
 	}
 	
 	@Test(dependsOnMethods = "openCustomersScreen", alwaysRun = true)
@@ -254,7 +260,7 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 	}
 	
 	@Test(dependsOnMethods = "loginWithMail5Again", alwaysRun = true)
-	public void openMaintainCustomerScreen2(){
+	public void openMaintainCustomerScreen2() {
 		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PROFILES));
