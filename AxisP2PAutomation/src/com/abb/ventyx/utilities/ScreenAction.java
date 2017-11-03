@@ -50,7 +50,6 @@ public class ScreenAction {
 	public void waitObjVisibleAndClick(By obj, int timeout) {
 		WebElement element = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(obj));
 		element.click();
-		waitObjInvisible(obj);
 	}
 
 	public void assertTitleScreen(String titleScreen) {
@@ -486,12 +485,10 @@ public class ScreenAction {
 
 	}
 	public void signOut() {
-		// driver.navigate().to(BaseTestCase.getServerURL() +
-		// "/SupplierPortal/");
 		waitObjVisible(By.id(UserPreferences.PROFILE_PANEL));
-		clickBtn(By.id(UserPreferences.PROFILE_PANEL));
+		waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
 		pause(1000);
-		waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
+		waitObjVisible(By.id(LoginPageDefinition.USERNAME_TEXT_FIELD_ID));
 	}
 
 	public void signIn(String emailAddress, String password) {
