@@ -29,7 +29,7 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 	ScreenAction action;
 	BaseDropDownList list;
 	TableFunction table;
-	int waitTime = 2000;
+	int waitTime = 1000;
 	String customerName = "Honda";
 	String emailAddress = "Honda@abb.com";
 	String password;
@@ -44,9 +44,9 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 	@Test
 	public void openCustomersScreen(){
 		action = new ScreenAction(driver);
+		table = new TableFunction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_LIST));
-		action.pause(waitTime);
 	}
 	
 	@Test(dependsOnMethods = "openCustomersScreen", alwaysRun = true)
@@ -71,10 +71,8 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 	
 	@Test(dependsOnMethods = "clickAddButtonOnMaintainCustomerScreen", alwaysRun = true)
 	public void openResetUserPasswordScreen(){
-		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.AXIS_ADMIN));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.RESET_USER_PASSWORD));
-		action.pause(waitTime);
 	}
 	
 	@Test(dependsOnMethods = "openResetUserPasswordScreen", alwaysRun = true)
@@ -89,15 +87,17 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 	public void getPassworkOfNewCustomerList() {
 		action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 		String message = driver.findElement(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)).getText();
-		System.out.println("Message: "+ message);
 	    password = action.getPassword(message);
 		System.out.println(password);
 	}
-	
 	//Step 2
 	@Test(dependsOnMethods = "getPassworkOfNewCustomerList", alwaysRun = true)
-	public void logoutAndLoginWithNewCustomerList() {
+	public void signOut() {
 		action.signOut();
+	}
+	//Step 2
+	@Test(dependsOnMethods = "signOut", alwaysRun = true)
+	public void logoutAndLoginWithNewCustomerList() {
 		action.pause(waitTime);
 		action.signIn(emailAddress, password);
 	}
@@ -113,7 +113,6 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 	
 	@Test(dependsOnMethods = "changePasswordOnAxisSupplierPortal", alwaysRun = true)
 	public void openMaintainCustomerScreenWithAccountCustomer(){
-		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE_WITH_CUSTOMER));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PROFILE_CUSTOMER));
 		action.pause(waitTime);
@@ -121,7 +120,7 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 	
 	@Test(dependsOnMethods = "openMaintainCustomerScreenWithAccountCustomer", alwaysRun = true)
 	public void verifyDocumentTypesOnMaintainCustomerScreen(){
-		table = new TableFunction(driver);
+
 		action.pause(waitTime);
 		assertEquals(table.getValueRow(1, 1), "All Document Types");
 	}
@@ -160,7 +159,6 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomerScreen", alwaysRun = true)
 	public void clickEditButtonOnMaintainCustomerScreen(){
 		action.pause(waitTime);
-		table = new TableFunction(driver);
 		i = table.findRowByString(1, customerName);
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
@@ -220,10 +218,7 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 	
 	@Test(dependsOnMethods = "openMaintainCustomerScreenWithAccountCustomer2", alwaysRun = true)
 	public void clickFiterButtonOnMaintainCustomerScreen2() {
-		action.pause(7000);
-		WebElement filterButton = driver.findElement(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
-		filterButton.click();
-		ScreenAction action = new ScreenAction(driver);
+		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
 		action.inputTextField(ScreenObjects.FILTER_FIELD_ID, profileName);
 	}
@@ -231,7 +226,6 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomerScreen2", alwaysRun = true)
 	public void clickEditButtonOnMaintainCustomerScreen2(){
 		action.pause(waitTime);
-		table = new TableFunction(driver);
 		i = table.findRowByString(1, profileName);
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
@@ -264,15 +258,11 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PROFILES));
-		action.pause(waitTime);
 	}
 	
 	@Test(dependsOnMethods = "openMaintainCustomerScreen2", alwaysRun = true)
 	public void clickFiterButtonOnMaintainCustomer2() {
-		action.pause(7000);
-		WebElement filterButton = driver.findElement(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
-		filterButton.click();
-		ScreenAction action = new ScreenAction(driver);
+		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
 		action.inputTextField(ScreenObjects.FILTER_FIELD_ID, customerName);
 	}
@@ -280,7 +270,6 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomer2", alwaysRun = true)
 	public void clickEditButtonOnMaintainCustomer2(){
 		action.pause(waitTime);
-		table = new TableFunction(driver);
 		i = table.findRowByString(1, customerName);
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
@@ -311,18 +300,13 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 	
 	@Test(dependsOnMethods = "logoutAndLoginWithNewCustomerList3", alwaysRun = true)
 	public void openMaintainCustomerScreenWithAccountCustomer3(){
-		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE_WITH_CUSTOMER));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PROFILE_CUSTOMER));
-		action.pause(waitTime);
 	}
 	
 	@Test(dependsOnMethods = "openMaintainCustomerScreenWithAccountCustomer3", alwaysRun = true)
 	public void clickFiterButtonOnMaintainCustomerScreen3() {
-		action.pause(7000);
-		WebElement filterButton = driver.findElement(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
-		filterButton.click();
-		ScreenAction action = new ScreenAction(driver);
+		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
 		action.inputTextField(ScreenObjects.FILTER_FIELD_ID, profileName);
 	}
@@ -330,7 +314,6 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomerScreen3", alwaysRun = true)
 	public void clickEditButtonOnMaintainCustomerScreen3(){
 		action.pause(waitTime);
-		table = new TableFunction(driver);
 		i = table.findRowByString(1, profileName);
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);

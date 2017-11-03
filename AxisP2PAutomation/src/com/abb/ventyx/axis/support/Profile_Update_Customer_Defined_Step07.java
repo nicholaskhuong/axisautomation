@@ -26,7 +26,7 @@ public class Profile_Update_Customer_Defined_Step07 extends BaseTestCase {
 	TableFunction table;
 	TableFunction table1;
 	int row;
-	int waitTime = 3000;
+	int waitTime = 1000;
 	String profileName = "POProfile2";
 	String profileNameEdited = "POProfile3";
 	int i,j;
@@ -43,15 +43,11 @@ public class Profile_Update_Customer_Defined_Step07 extends BaseTestCase {
 		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PROFILES));
-		action.pause(waitTime);
 	}
 	//Step2
 	@Test(dependsOnMethods = "openMaintainCustomerDefinedProfilesScreen", alwaysRun = true)
 	public void clickFiterButtonOnMaintainCustomerScreen() {
-		action.pause(7000);
-		WebElement filterButton = driver.findElement(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
-		filterButton.click();
-		ScreenAction action = new ScreenAction(driver);
+		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
 		action.inputTextField(ScreenObjects.FILTER_FIELD_ID, "QATest");
 	}
@@ -138,16 +134,13 @@ public class Profile_Update_Customer_Defined_Step07 extends BaseTestCase {
 	
 	@Test(dependsOnMethods = "loginfromAccountCustomer", alwaysRun = true)
 	public void openMaintainCustomerDefinedProfilesScreenAgain(){
-		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PROFILES));
 	}
 	
 	@Test(dependsOnMethods = "openMaintainCustomerDefinedProfilesScreenAgain", alwaysRun = true)
 	public void clickFiterButtonAgainOnMaintainCustomerScreen() {
-		action.pause(6000);
-		WebElement filterButton = driver.findElement(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
-		filterButton.click();
+		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 		ScreenAction action = new ScreenAction(driver);
 		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
 		action.inputTextField(ScreenObjects.FILTER_FIELD_ID, "QATest");
@@ -167,8 +160,7 @@ public class Profile_Update_Customer_Defined_Step07 extends BaseTestCase {
 	
 	@Test(dependsOnMethods = "clickEditIconAgainOnMaintainCustomerScreen", alwaysRun = true)
 	public void editAuthorisedDocumentTypes(){
-		action.pause(5000);
-		action.clickBtn(By.id("showConfigBtn-AdvanceShippingNotice"));
+		action.waitObjVisibleAndClick(By.id("showConfigBtn-AdvanceShippingNotice"));
 		action.pause(4000);
 		List<WebElement> checkBoxIndex0 = driver.findElements(By.xpath("//*[@id='configurationGrid-AdvanceShippingNotice']/div[3]/table/tbody/tr[1]/td[1]"));
 		checkBoxIndex0.get(0).click();

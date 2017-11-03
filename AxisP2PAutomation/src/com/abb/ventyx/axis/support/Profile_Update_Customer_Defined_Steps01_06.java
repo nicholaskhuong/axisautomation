@@ -26,7 +26,7 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 	TableFunction table;
 	TableFunction table1;
 	int row;
-	int waitTime = 3000;
+	int waitTime = 1000;
 	String profileName = "Profile3";
 	String profileNameEdited = "Profile4";
 	int i,j;
@@ -41,6 +41,7 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 	@Test
 	public void openMaintainCustomerDefinedProfilesScreen(){
 		action = new ScreenAction(driver);
+		table = new TableFunction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PROFILES));
 		action.pause(waitTime);
@@ -60,7 +61,6 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 	@Test(dependsOnMethods = "openMaintainCustomerDefinedProfilesScreen", alwaysRun = true)
 	public void clickPencilIconOnMaintainCustomerScreen(){
 		action.pause(waitTime);
-		table = new TableFunction(driver);
 		i = table.findRowByString(4, profileName);
 		action.clickHorizontalScrollBar();
 		index = table.getCellObject(4, 5);
@@ -87,10 +87,8 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 	
 	@Test(dependsOnMethods = "editProfileNameonModifyProfileSreen", alwaysRun = true)
 	public void clickSaveButtonAndDisplayMessageSuccessfully(){
-		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
 		action.checkAddSuccess(Messages.MESSAGE_EDIT_PROFILE_NAME_SUCCESSFULLY);
-	    action.pause(waitTime);
 	}
 	
 	//Step3
@@ -107,7 +105,6 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 	
 	@Test(dependsOnMethods = "loginWithAccountCustomer", alwaysRun = true)
 	public void openMaintainCustomerScreenWithAccountCustomer(){
-		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE_WITH_CUSTOMER));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PROFILE_CUSTOMER));
 		action.pause(waitTime);
@@ -115,7 +112,6 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 	
 	@Test(dependsOnMethods = "openMaintainCustomerScreenWithAccountCustomer", alwaysRun = true)
 	public void clickEditIconOnMaintainCustomerScreen(){
-		table = new TableFunction(driver);
 		i = table.findRowByString(4, "Advance Shipping Notice, Purchase Orders");
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
@@ -138,7 +134,6 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 	
 	@Test(dependsOnMethods = "loginfromAccountCustomer", alwaysRun = true)
 	public void openMaintainCustomerDefinedProfilesScreenAgain(){
-		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PROFILES));
 	}
@@ -157,7 +152,7 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 	@Test(dependsOnMethods = "clickFiterButtonAgainOnMaintainCustomerScreen", alwaysRun = true)
 	public void clickEditIconAgainOnMaintainCustomerScreen(){
 		action.pause(waitTime);
-		table = new TableFunction(driver);
+
 		i = table.findRowByString(4, profileNameEdited);
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
@@ -176,7 +171,6 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 	
 	@Test(dependsOnMethods = "editAuthorisedDocumentTypes", alwaysRun = true)
 	public void clickSaveBtnAndDisplayMessageSuccessfully(){
-		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
 		action.checkAddSuccess(Messages.MESSAGE_EDIT_PROFILE_NAME_SUCCESSFULLY);
 	}

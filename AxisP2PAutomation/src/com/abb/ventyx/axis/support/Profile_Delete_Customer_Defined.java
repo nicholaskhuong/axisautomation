@@ -22,7 +22,7 @@ public class Profile_Delete_Customer_Defined extends BaseTestCase {
 	ScreenAction action;
 	BaseDropDownList list;
 	TableFunction table;
-	int waitTime = 2000;
+	int waitTime = 1000;
 	String customerName = "QA Test";
 	int i;
 	WebElement index;
@@ -34,16 +34,14 @@ public class Profile_Delete_Customer_Defined extends BaseTestCase {
 	@Test
 	public void openMaintainCustomerDefinedProfilesScreen(){
 		action = new ScreenAction(driver);
+		table = new TableFunction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PROFILES));
-		action.pause(waitTime);
 	}
 	
 	@Test(dependsOnMethods = "openMaintainCustomerDefinedProfilesScreen", alwaysRun = true)
 	public void clickFiterButtonOnMaintainCustomerScreen() {
-		action.pause(7000);
-		WebElement filterButton = driver.findElement(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
-		filterButton.click();
+		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 		ScreenAction action = new ScreenAction(driver);
 		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
 		action.inputTextField(ScreenObjects.FILTER_FIELD_ID, "QATest");
@@ -53,7 +51,6 @@ public class Profile_Delete_Customer_Defined extends BaseTestCase {
 	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomerScreen", alwaysRun = true)
 	public void checkDefaultProfileOnMaintainCustomerScreen(){
 		action.pause(waitTime);
-		table = new TableFunction(driver);
 		i = table.findRowByString(1, customerName);
 		action.clickHorizontalScrollBar();
 		index = table.getCellObject(1, 6);
@@ -92,10 +89,8 @@ public class Profile_Delete_Customer_Defined extends BaseTestCase {
 	
 	@Test(dependsOnMethods = "loginWithAccountCustomer", alwaysRun = true)
 	public void openMaintainCustomerScreenWithAccountCustomer(){
-		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE_WITH_CUSTOMER));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PROFILE_CUSTOMER));
-		action.pause(waitTime);
 	}
 }
 

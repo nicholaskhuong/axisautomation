@@ -3,7 +3,6 @@ package com.abb.ventyx.axis.support;
 
 import static org.testng.Assert.assertEquals;
 
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
@@ -22,7 +21,7 @@ import com.abb.ventyx.utilities.TableFunction;
 public class Profile_Filter_Sort extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
-	int waitTime = 2000;
+	int waitTime = 1000;
 	int i;
 	String customerName = "Tomatoo";
 	String profileName = "All Document Types";
@@ -31,16 +30,14 @@ public class Profile_Filter_Sort extends BaseTestCase {
 	@Test
 	public void openCustomersScreen(){
 		action = new ScreenAction(driver);
+		table = new TableFunction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PROFILES));
-		action.pause(waitTime);
 	}
 	
 	@Test(dependsOnMethods = "openCustomersScreen", alwaysRun = true)
 	public void clickFiterButtonOnMaintainCustomerScreen() {
-		action.pause(7000);
-		WebElement filterButton = driver.findElement(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
-		filterButton.click();
+		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 		ScreenAction action = new ScreenAction(driver);
 		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
 		action.inputTextField(ScreenObjects.FILTER_FIELD_ID, customerName);
@@ -48,7 +45,6 @@ public class Profile_Filter_Sort extends BaseTestCase {
 	
 	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomerScreen", alwaysRun = true)
 	public void checkFiterOnMaintainCustomerScreen(){
-		table = new TableFunction(driver);
 		action.pause(waitTime);
 		assertEquals(table.getValueRow(1, 1), customerName);
 		assertEquals(table.getValueRow(2, 1), profileName);
@@ -56,19 +52,12 @@ public class Profile_Filter_Sort extends BaseTestCase {
 	
 	@Test(dependsOnMethods = "checkFiterOnMaintainCustomerScreen", alwaysRun = true)
 	public void clickFiterToCloseOnMaintainCustomerScreen(){
-		action.pause(waitTime);
-		WebElement filterButton = driver.findElement(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
-		filterButton.click();
-		action.pause(waitTime);
+		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 	}
 	
 	@Test(dependsOnMethods = "clickFiterToCloseOnMaintainCustomerScreen", alwaysRun = true)
 	public void clickSortIconOnMaintainCustomerScreen(){
-		action.pause(5000);
-		action.clickBtn(By.xpath(Profiles.SORT_CUSTOMER_NAME));
-		action.pause(waitTime);
-	
+		action.waitObjVisibleAndClick(By.xpath(Profiles.SORT_CUSTOMER_NAME));
 	}
-	
 }
 
