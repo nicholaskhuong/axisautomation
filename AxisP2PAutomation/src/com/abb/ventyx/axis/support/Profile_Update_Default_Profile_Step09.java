@@ -68,12 +68,12 @@ public class Profile_Update_Default_Profile_Step09 extends BaseTestCase {
 	
 	//Step 2
 	@Test(dependsOnMethods = "getPassworkOfNewCustomerList", alwaysRun = true)
-	public void signOut() {
+	public void signOutDefaultUser() {
 		action.signOut();
 	}
 
 	// Step 2
-	@Test(dependsOnMethods = "signOut", alwaysRun = true)
+	@Test(dependsOnMethods = "signOutDefaultUser", alwaysRun = true)
 	public void loginWithNewCustomerList() {
 		action.signIn(emailAddress, password);
 	}
