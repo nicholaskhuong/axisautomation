@@ -18,13 +18,13 @@ import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
 
 @ALM(id = "613")
-@Credentials(user = "donna202@abb.com", password = "Testuser1")
+@Credentials(user = "supplier_user_3@abb.com", password = "Testuser1")
 public class Supplier_Admin_BusinessCodeSets_DeliveryCode extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
-	String supplierName = "Donna 1";
+	String supplierName = "Supplier Name";
 	String deliveryCodeLessThan15 = "001";
-	String deliveryCodeMoreThan15 = "DONNA NGUYEN THI NGUYEN";
+	String deliveryCodeMoreThan15 = "Delivery Code example 123";
 	int milliseconds = 1000;
 	String codeSetDescription = "Code set";
 	String expected = "Supplier Code Sets";
@@ -44,7 +44,7 @@ public class Supplier_Admin_BusinessCodeSets_DeliveryCode extends BaseTestCase {
 		// step 2
 		action.clickBtn(By.cssSelector(BusinessCodeSets.DELIVERY_CODE_ICON));
 		// step 3
-		action.waitObjVisibleAndClick(By.cssSelector(BusinessCodeSets.ADD_BUTTON));
+		action.clickBtn(By.cssSelector(BusinessCodeSets.ADD_BUTTON1));
 		action.waitObjVisible(By.cssSelector(BusinessCodeSets.ADD_NEW_SUPPLIER_CODE_SETS_POPUP));
 		action.pause(milliseconds);
 		// step 4
@@ -57,8 +57,7 @@ public class Supplier_Admin_BusinessCodeSets_DeliveryCode extends BaseTestCase {
 		action.inputTextField(BusinessCodeSets.TAXTYPE_ID, deliveryCodeLessThan15);
 		action.clickBtn(By.cssSelector(BusinessCodeSets.SAVE_BUTTON));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
-		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)).getText(),
-				Messages.DELIVERY_CODE_LESS_15CHARACTER);
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)).getText(), Messages.DELIVERY_CODE_LESS_15CHARACTER);
 
 	}
 
@@ -72,8 +71,7 @@ public class Supplier_Admin_BusinessCodeSets_DeliveryCode extends BaseTestCase {
 		action.clickBtn(By.cssSelector(BusinessCodeSets.SAVE_BUTTON));
 
 		action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
-		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)).getText(),
-				Messages.DELIVERY_CODE_EQUAL_15CHARACTER);
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)).getText(), Messages.DELIVERY_CODE_EQUAL_15CHARACTER);
 	}
 
 	@Test(dependsOnMethods = "addDeliverySuccessfully")
@@ -90,8 +88,7 @@ public class Supplier_Admin_BusinessCodeSets_DeliveryCode extends BaseTestCase {
 		action.inputTextField(BusinessCodeSets.CODE_SET_DESCRIPTION, codeSetDescription);
 		action.clickBtn(By.id(ScreenObjects.CANCEL_ID));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
-		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(),
-				Messages.UNSAVED_CHANGE);
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
 		// Step 9
 		driver.findElement(By.id(ScreenObjects.NO_BTN_ID)).click();
 	}
@@ -101,8 +98,7 @@ public class Supplier_Admin_BusinessCodeSets_DeliveryCode extends BaseTestCase {
 		action.inputTextField(BusinessCodeSets.CODE_SET_DESCRIPTION, codeSetDescription);
 		action.clickBtn(By.id(ScreenObjects.CANCEL_ID));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
-		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(),
-				Messages.UNSAVED_CHANGE);
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
 		driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
 		action.pause(milliseconds);
 
@@ -115,19 +111,16 @@ public class Supplier_Admin_BusinessCodeSets_DeliveryCode extends BaseTestCase {
 		action.pause(milliseconds);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", index);
 		action.pause(milliseconds);
-		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(),
-				Messages.MESSAGE_DELETE_DILIVERY_CODE);
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.MESSAGE_DELETE_DILIVERY_CODE);
 		driver.findElement(By.id(ScreenObjects.NO_BTN_ID)).click();
 		WebElement index2 = table.getCellObjectSupplierCodeSet(3, 3);
 		action.pause(milliseconds);
 		index2.click();
 		action.pause(milliseconds);
-		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(),
-				Messages.MESSAGE_DELETE_DILIVERY_CODE);
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.MESSAGE_DELETE_DILIVERY_CODE);
 		driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
 		action.pause(milliseconds);
-		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)).getText(),
-				Messages.DELIVERY_CODE_SET_DELETED_SUCCESS);
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)).getText(), Messages.DELIVERY_CODE_SET_DELETED_SUCCESS);
 	}
 
 }

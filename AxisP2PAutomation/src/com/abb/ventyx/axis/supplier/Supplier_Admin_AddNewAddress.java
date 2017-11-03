@@ -18,20 +18,20 @@ import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
 
 @ALM(id = "604")
-@Credentials(user = "donna900@abb.com", password = "Testuser2")
+@Credentials(user = "supplier_user_2@abb.com", password = "Testuser1")
 public class Supplier_Admin_AddNewAddress extends BaseTestCase {
 
-	String supplierEmail = "duc800@abb.com";
-	String supplierMultiEmail = "duc800@abb.com,donna@abb.com,hieunguyen@abb.com";
+	String supplierEmail = "supplier_user_test@abb.com";
+	String supplierMultiEmail = "supplier_user_test1@abb.com,supplier_user_test2@abb.com,supplier_user_test3@abb.com";
 	String supplierInvalidEmail = "invalid";
 	String companyRegistrationNo = "$%#%%%(&";
 	String taxRegistrationNo = "$%#%%%(&";
-	String supplierNameValid = "Donna Nguyen Thi";
+	String supplierNameValid = "Supplier User Test";
 	String companyRegistrationNoValid = "123456789";
 	String taxRegistrationNoValid = "123456";
-	String userLogin = "mail222@abb.com";
-	String passwordLogin = "Testuser2";
-	String supplierNameInpopup = "Donna NGUYEN Thi DONNA";
+	String userLogin = "customer_user_1@abb.com";
+	String passwordLogin = "Testuser1";
+	String supplierNameInpopup = "Supplier Name Test";
 	String addressPopup = "Address 1";
 	ScreenAction action;
 	TableFunction table;
@@ -109,6 +109,7 @@ public class Supplier_Admin_AddNewAddress extends BaseTestCase {
 		action.inputTextField(AddressContact.TAX_REGISTRATION_NO, "");
 
 		action.inputTextField(AddressContact.SUPPLIER_EMAIL, "");
+		action.pause(milliseconds);
 		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
 		action.pause(milliseconds);
 		action.assertMessgeError(ScreenObjects.EMPTY_DATE, Messages.ENTER_MANDATORY_FIELDS);
@@ -135,8 +136,8 @@ public class Supplier_Admin_AddNewAddress extends BaseTestCase {
 		action.signIn(userLogin, passwordLogin);
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.SUPPLIER_LIST));
-		action.waitObjVisible(By.cssSelector(MaintainSuppliers.SELECT_RECORD));
-		action.clickBtn(By.cssSelector(MaintainSuppliers.SELECT_RECORD));
+		action.waitObjVisible(By.id("spIdBtn0"));
+		action.clickBtn(By.id("spIdBtn0"));
 		action.waitObjVisible(By.id(MaintainSuppliers.SUPPLIER_NAME_INPOPUP));
 		action.inputTextField(MaintainSuppliers.SUPPLIER_NAME_INPOPUP, supplierNameInpopup);
 		action.inputTextField(MaintainSuppliers.SUPPLIER_NAME_INPOPUP, supplierNameInpopup);

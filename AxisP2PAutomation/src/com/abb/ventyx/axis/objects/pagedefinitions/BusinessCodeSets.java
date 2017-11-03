@@ -15,5 +15,6 @@ public class BusinessCodeSets {
 	public static final String ADD_BUTTON = "#supplierCodeSetTypeGrid > div.v-grid-tablewrapper > table > tbody > tr.v-grid-spacer.stripe > td > div > div.v-slot.v-slot-FeatureBarTable.v-slot-v-common-grid-menubar.v-slot-v-common-page-header-menubar-background-color.v-align-right.v-align-middle > div > span";
 	public static final String SAVE_BUTTON = "#supplierCodeSetCreationWindow > div > div > div.v-window-contents > div > div > div:nth-child(2) > div > div.v-slot.v-align-right.v-align-middle > div > div:nth-child(3)";
 	public static final String CODE_SET_DESCRIPTION = "codeSetDesc";
+	public static final String ADD_BUTTON1 = "#supplierCodeSetTypeGrid > div.v-grid-tablewrapper > table > tbody > tr.v-grid-spacer > td > div > div.v-slot.v-slot-FeatureBarTable.v-slot-v-common-grid-menubar.v-slot-v-common-page-header-menubar-background-color.v-align-right.v-align-middle > div > span";
 
 }
