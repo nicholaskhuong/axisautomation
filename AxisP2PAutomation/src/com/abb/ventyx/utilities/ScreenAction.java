@@ -485,10 +485,9 @@ public class ScreenAction {
 
 	}
 	public void signOut() {
-		waitObjVisible(By.id(UserPreferences.PROFILE_PANEL));
 		waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
 		pause(1000);
-		waitObjVisible(By.id(LoginPageDefinition.USERNAME_TEXT_FIELD_ID));
+		waitObjVisibleAndClick(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));
 	}
 
 	public void signIn(String emailAddress, String password) {
