@@ -30,7 +30,7 @@ public class User_Group_Deleting extends BaseTestCase {
 	int row = 0;
 	ScreenAction action;
 	TableFunction table;
-	int waitTime = 2000;
+	int waitTime = 1000;
 	WebElement index;
 
 	//Step 1
@@ -39,7 +39,6 @@ public class User_Group_Deleting extends BaseTestCase {
 		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMERMAINTAINCE_MENU_CSS));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.USERGROUP_SUBMENU_CSS));
-		action.pause(waitTime);
 	}
 	
 	@Test(dependsOnMethods = "openUserGroupScreen", alwaysRun = true)
@@ -53,22 +52,17 @@ public class User_Group_Deleting extends BaseTestCase {
 	//Step 2
 	@Test(dependsOnMethods = "selectTabAndClickAddButton", alwaysRun = true)
 	public void selectCustomerAndClickOneRowInGrid() {
-		action.pause(waitTime);
 		WebElement customer = driver.findElement(By.className(UserGroup.CUSTOMER_CLASS));
 		customer.sendKeys(customerName);
 		action.selectStatus(ScreenObjects.DROPDOWNLIST_CSS, customerName);
-		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.xpath(UserGroup.FILTER_XPATH));
 		action.inputTextField(UserGroup.NAME_FILTER, newGroupName);
 		action.pause(waitTime);
-		action.clickBtn(By.id(Users.DELETE_BUTTON + row));
+		action.waitObjVisibleAndClick(By.id(Users.DELETE_BUTTON + row));
+		action.waitObjVisibleAndClick(By.id(ScreenObjects.NO_BTN_ID));
 		action.pause(waitTime);
-		action.clickBtn(By.id(ScreenObjects.NO_BTN_ID));
-		action.pause(waitTime);
-		action.clickBtn(By.id(Users.DELETE_BUTTON + row));
-		action.pause(waitTime);
-		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
-		action.pause(waitTime);
+		action.waitObjVisibleAndClick(By.id(Users.DELETE_BUTTON + row));
+		action.waitObjVisibleAndClick(By.id(ScreenObjects.YES_BTN_ID));
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE,Messages.USERGROUP_DELETE_SUCCESSFULLY);
 	}
 

@@ -3,6 +3,8 @@ package com.abb.ventyx.axis.support;
 import static org.testng.Assert.assertEquals;
 
 
+
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
@@ -28,7 +30,7 @@ public class User_Group_Creating extends BaseTestCase {
 	int row;
 	ScreenAction action;
 	TableFunction table;
-	int waitTime = 2000;
+	int waitTime = 1000;
 
 	//Step 1
 	@Test
@@ -36,7 +38,6 @@ public class User_Group_Creating extends BaseTestCase {
 		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMERMAINTAINCE_MENU_CSS));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.USERGROUP_SUBMENU_CSS));
-		action.pause(waitTime);
 	}
 	
 	//Step 2
@@ -49,6 +50,7 @@ public class User_Group_Creating extends BaseTestCase {
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.xpath(UserGroup.ADD_XPATH));
 		action.assertMessgeError(ScreenObjects.WARNING_MESSAGE_CSS, Messages.USERGROUP_SELECT_CUSTOMER);
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.WARNING_MESSAGE_CSS));
 	}
 	
 	//Step 3
@@ -57,22 +59,23 @@ public class User_Group_Creating extends BaseTestCase {
 		WebElement customer = driver.findElement(By.className(UserGroup.CUSTOMER_CLASS));
 		customer.sendKeys(customerName);
 		action.selectStatus(ScreenObjects.DROPDOWNLIST_CSS, customerName);
-		action.pause(waitTime);
+		action.waitObjVisible(By.xpath(UserGroup.ADD_XPATH));
 		action.waitObjVisibleAndClick(By.xpath(UserGroup.ADD_XPATH));
-		action.pause(waitTime);
 		action.inputTextField(UserGroup.USERGROUP_NAME_ID, userGroupName);
-		action.pause(waitTime);
-		driver.findElement(By.id(UserGroup.SAVE_ID)).click();
+		action.waitObjVisible(By.id(UserGroup.SAVE_ID));
+		action.waitObjVisibleAndClick(By.id(UserGroup.SAVE_ID));
 		action.assertMessgeError(ScreenObjects.WARNING_MESSAGE_CSS, Messages.EMPTY_PERMISSION);
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.WARNING_MESSAGE_CSS));
 	}
 	
 	// Step 4
 	@Test(dependsOnMethods = "selectCustomerAndClickAddButton", alwaysRun = true)
 	public void addWithSelectedCustomerHasUserGroupName() {
-		action.pause(waitTime);
 		action.clickCheckBoxN(2);
-		driver.findElement(By.id(UserGroup.SAVE_ID)).click();
+		action.waitObjVisible(By.id(UserGroup.SAVE_ID));
+		action.waitObjVisibleAndClick(By.id(UserGroup.SAVE_ID));
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE,Messages.USERGROUP_CREATE_SUCCESSFULLY);
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 	}
 	
 	//Step 5
@@ -87,10 +90,9 @@ public class User_Group_Creating extends BaseTestCase {
 	@Test(dependsOnMethods = "cancelWithoutdata", alwaysRun = true)
 	public void cancelClickNo() {
 		action.waitObjVisibleAndClick(By.xpath(UserGroup.ADD_XPATH));
-		action.pause(waitTime);
 		action.inputTextField(UserGroup.USERGROUP_NAME_ID, userGroupName);
-		action.waitObjVisibleAndClick(By.id(UserGroup.CANCEL_ID));
 		action.pause(waitTime);
+		action.waitObjVisibleAndClick(By.id(UserGroup.CANCEL_ID));
 		action.clickBtn(By.id(ScreenObjects.NO_BTN_ID));
 	}
 	
@@ -99,7 +101,6 @@ public class User_Group_Creating extends BaseTestCase {
 	public void cancelClickYes() {
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(UserGroup.CANCEL_ID));
-		action.pause(waitTime);
 		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
 	}
 }
