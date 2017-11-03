@@ -17,21 +17,25 @@ public class Users {
 	public static final String STATUSCOMBOBOX_ID = "VAADIN_COMBOBOX_OPTIONLIST";
 
 	// public static final String ROWUSERS_ID =
-	// "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div > div.v-grid-tablewrapper > table > tbody > tr > td:nth-child(2)";
+	// "#content-component > div >
+	// div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable
+	// > div > div > div.v-slot.v-slot-v-common-page-content-layout > div > div >
+	// div > div > div > div > div > div.v-grid-tablewrapper > table > tbody > tr >
+	// td:nth-child(2)";
 	public static final String SUPPLIER_USERS_TABLE_CSS = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div > div.v-grid-tablewrapper";
 	public static final String DELETE_BTN_ID = "deleteItemBtn";
 	public static final String TITLE = "Maintain Supplier Users";
 	public static final String TITLE_CREATE = "Create User";
 	public static final String TITLE_MODIFY = "Modify User";
-	
-	public static final String SAVE_BTN_ID= "saveBtn";
-	public static final String CANCEL_BTN_ID= "cancelBtn";
-	
+
+	public static final String SAVE_BTN_ID = "saveBtn";
+	public static final String CANCEL_BTN_ID = "cancelBtn";
+
 	public static final String USER_NUMBER_FILTER = "(//input[@id='filterField'])[1]";
- 	public static final String USER_ID_FILTER = "(//input[@id='filterField'])[2]";
- 	public static final String EMAIL_FILTER = "(//input[@id='filterField'])[3]";
- 	public static final String USER_GROUP_FILTER = "(//input[@id='filterField'])[4]";
- 	
- 	public static final String ADD_USERS = "#HeaderMenuBar > span:nth-child(2) > span > span";
-	
+	public static final String USER_ID_FILTER = "(//input[@id='filterField'])[2]";
+	public static final String EMAIL_FILTER = "(//input[@id='filterField'])[3]";
+	public static final String USER_GROUP_FILTER = "(//input[@id='filterField'])[4]";
+
+	public static final String ADD_USERS = "#HeaderMenuBar > span:nth-child(2) > span > span";
+
 }

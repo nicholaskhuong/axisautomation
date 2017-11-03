@@ -3,8 +3,6 @@ package com.abb.ventyx.axis.supplier;
 import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -24,7 +22,8 @@ public class SupplierUser_Updating extends BaseTestCase {
 	String USER_ID = "salem 10";
 	String PASSWORD = "Testuser1";
 	String PASSWORD_VAILD = "Testuser2";
-	String CONFIRMPASSWORD = "Testuser2";
+	String confirmPasswordNotMap = "Testuser300";
+	String confirmPasswordValid = "Testuser2";
 	String EMAIL = "salem10@abb.com";
 	String USER_NO = "";
 	ScreenAction action;
@@ -32,10 +31,12 @@ public class SupplierUser_Updating extends BaseTestCase {
 	String USERGROUP = "Datherine";
 	String AllGROUP = "";
 	String USERID_EXISTING = "";
-    String STATUS = "Created";
+	String STATUS = "Created";
 	int row;
 	int milliseconds = 3000;
-	String emailInvalid ="salem";
+	String emailInvalid = "salem";
+	String emailExist = "salem11@abb.com";
+	String password_less_than_6_character = "test";
 
 	@Test
 	public void openScreen() {
@@ -47,9 +48,9 @@ public class SupplierUser_Updating extends BaseTestCase {
 		action.assertTitleScreen(Users.TITLE);
 	}
 
-    @Test(dependsOnMethods = "openScreen")
+	@Test(dependsOnMethods = "openScreen")
 	public void selectUser() {
-    	// step 2
+		// step 2
 		table = new TableFunction(driver);
 		row = table.findRowByString(Users.SUPPLIER_USERS_TABLE_CSS, 2, USER_ID);
 		Assert.assertTrue(row >= 0, String.format("User %s not found!", USER_ID));
@@ -59,166 +60,74 @@ public class SupplierUser_Updating extends BaseTestCase {
 		action.clickBtn(By.id(Users.USERNUMBER_LINKID + row));
 		action.waitObjVisible(By.id(Users.USER_ID));
 		action.assertTitleScreen(Users.TITLE_MODIFY);
-
 	}
 
 	@Test(dependsOnMethods = "selectUser")
-	public void checkDataOfUser() {
-		// Check data is read only
-		WebElement userNo = driver.findElement(By.id(Users.USERNUMBER_ID));
-		assertEquals(userNo.getAttribute("value"), USER_NO);
-		assertEquals(userNo.getAttribute("readonly"), "true");
-		assertEquals(driver.findElement(By.id(Users.USER_ID)).getAttribute("value"), USER_ID);
-		assertEquals(driver.findElement(By.id(Users.EMAIL_ID)).getAttribute("value"), EMAIL);
+	public void updateInvalidEmail() {
+		// Step 3
+		// update Email exist
+		action.inputTextField(Users.EMAIL_ID, emailExist);
+		driver.findElement(By.id(Users.USER_ID)).click();
+		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
+		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.UPDATE_SAME_EMAIL);
+		// update Email invalid
+		action.inputTextField(Users.EMAIL_ID, emailInvalid);
+		action.inputTextField(Users.EMAIL_ID, emailInvalid);
+		driver.findElement(By.id(Users.USER_ID)).click();
+		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INVALID_EMAIL);
 
-		WebElement userStatus = driver.findElement(By.id(Users.STATUS_ID)).findElement(By.tagName("input"));
-		assertEquals(userStatus.getAttribute("value"), "Created");
-		assertEquals(userStatus.getAttribute("aria-readonly"), "true");
-		action.checkObjSelected(1);
-		WebElement radioNO = driver.findElement(By.cssSelector(Users.UPDATEPASSWORD_NO_CSS));
-		assertEquals(radioNO.findElement(By.tagName("label")).getText(), "No");
-		assertEquals(radioNO.findElement(By.tagName("input")).getAttribute("checked"), "true");
-		assertEquals(action.isElementPresent(By.id(Users.PASSWORD_ID)), false);
-		assertEquals(action.isElementPresent(By.id(Users.CONFIMRPASSWORD_ID)), false);
-		AllGROUP = table.getValueAllRowchecked(2, table.countRow(Users.USERGROUP_TABLE_CSS));
 	}
-	
-	@Test(dependsOnMethods = "checkDataOfUser")
-	public void updateUserSuccessfully() {
-		// update users successfully
+
+	@Test(dependsOnMethods = "updateInvalidEmail")
+	public void updatePasswordLessThan6Character() {
+		// step 4
 		driver.findElement(By.cssSelector(Users.UPDATEPASSWORD_YES_CSS)).findElement(By.tagName("label")).click();
 		action.waitObjVisible(By.id(Users.PASSWORD_ID));
-		action.inputTextField(Users.PASSWORD_ID, PASSWORD_VAILD);
-		action.inputTextField(Users.CONFIMRPASSWORD_ID, CONFIRMPASSWORD);
+		action.inputTextField(Users.PASSWORD_ID, password_less_than_6_character);
 		action.inputTextField(Users.EMAIL_ID, EMAIL);
-		driver.findElement(By.id(Users.PASSWORD_ID)).click();
-		((JavascriptExecutor) driver).executeScript("window.focus();");
+		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INVALID_PWD);
+	}
+
+	@Test(dependsOnMethods = "updateInvalidEmail")
+	public void updatePasswordNotMap() {
+		// step 5
+		action.inputTextField(Users.PASSWORD_ID, PASSWORD_VAILD);
+		action.inputTextField(Users.CONFIMRPASSWORD_ID, confirmPasswordNotMap);
+		driver.findElement(By.id(Users.USER_ID)).click();
+		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.MESSAGE_ERROR_PASSWORD);
+	}
+
+	@Test(dependsOnMethods = "updatePasswordNotMap")
+	public void updateSuccessfully() {
+		// step 6
+		action.inputTextField(Users.CONFIMRPASSWORD_ID, confirmPasswordValid);
+		driver.findElement(By.id(Users.USER_ID)).click();
 		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
 		action.checkAddSuccess(Messages.USER_UPDATE_SUCCESSFULLY);
 	}
-	
-	@Test(dependsOnMethods = "updateUserSuccessfully")
-	public void checkUpdateSuccessfully() throws InterruptedException {
-		// check data is updated successfully
-		action.clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
-		row = row + 1;
-		table.assertValueRow(2, row, USER_ID);
-		table.assertValueRow(3, row, EMAIL);
-		//table.assertValueRow(4, row, AllGROUP);
-		//table.assertValueRow(5, row, STATUS);
-		USERID_EXISTING = table.getValueRow(2, 1);
-	}
-	
-	@Test(dependsOnMethods = "checkUpdateSuccessfully")
-	public void cancelClickYes() {
-		row = row - 1;
+
+	@Test(dependsOnMethods = "updateSuccessfully")
+	public void withoutSavingNO() {
+		// step 7,8,9
 		action.clickBtn(By.id(Users.USERNUMBER_LINKID + row));
-		action.waitObjVisible(By.id(Users.USER_ID));
-		action.inputTextField(Users.USER_ID, "ABC");
-		action.cancelClickYes(By.cssSelector(ScreenObjects.ADD_BTN_CSS), Users.TITLE);
-	}
-	
-	@Test(dependsOnMethods = "cancelClickYes")
-	public void cancelClickNo() {
-
-		action.clickBtn(By.id(Users.USERNUMBER_LINKID + row));
-		action.waitObjVisible(By.id(Users.USER_ID));
-		action.inputTextField(Users.USER_ID, "ABC");
-		action.cancelClickNo(Users.TITLE_MODIFY);
-	}
-	
-	@Test(dependsOnMethods = "cancelClickNo")
-	public void cancelWithoutdata() throws InterruptedException {
-
-		action.inputTextField(Users.USER_ID, USER_ID);
-		action.cancelWithoutdata(By.cssSelector(ScreenObjects.ADD_BTN_CSS), Users.TITLE);
-	}
-	
-	@Test(dependsOnMethods = "cancelWithoutdata")
-	public void addValidationEmail() throws InterruptedException {
-
-		action.clickBtn(By.id(Users.USERNUMBER_LINKID + row));
-		action.waitObjVisible(By.id(Users.USER_ID));
-		action.inputTextField(Users.USER_ID, USER_ID);
-		// don't input
-		//action.checkValidationTextField(Users.EMAIL_ID);
-		action.inputTextField(Users.EMAIL_ID, "mail232@abb.com");
-		action.inputTextField(Users.EMAIL_ID, "mail232@abb.com");
-		driver.findElement(By.id(Users.USER_ID)).click();
-		((JavascriptExecutor) driver).executeScript("window.focus();");
-		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
-		
-		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.UPDATE_SAME_EMAIL);
-		action.clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
-		//action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_ICON_CSS));
-		action.inputTextField(Users.EMAIL_ID, emailInvalid);
-		driver.findElement(By.id(Users.USER_ID)).click();
-		((JavascriptExecutor) driver).executeScript("window.focus();");
-		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
-		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INVALID_EMAIL);
-	}
-	
-/*	@Test(dependsOnMethods = "addValidationEmail")
-	public void addValidationPassword() throws InterruptedException {
-		((JavascriptExecutor) driver).executeScript("window.focus();");
-		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
-		action.clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
-
-		// don't input UserID
-		driver.findElement(By.cssSelector(Users.UPDATEPASSWORD_YES_CSS)).findElement(By.tagName("label")).click();
-		action.waitObjVisible(By.id(Users.CONFIMRPASSWORD_ID));
-		assertEquals(action.isElementPresent(By.id(Users.PASSWORD_ID)), true);
-		assertEquals(action.isElementPresent(By.id(Users.CONFIMRPASSWORD_ID)), true);
-		action.inputTextField(Users.CONFIMRPASSWORD_ID, PASSWORD);
-		action.inputTextField(Users.EMAIL_ID, EMAIL);
-		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
-		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
-		action.clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
-		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
-		// input password is not same connfirm password
-		action.inputTextField(Users.PASSWORD_ID, CONFIRMPASSWORD);
-		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
-		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INVALID_CONFIRM_PWD);
-		action.clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
-		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
-		// input invalid password
-		action.inputTextField(Users.PASSWORD_ID, "ABC");
-		action.inputTextField(Users.CONFIMRPASSWORD_ID, PASSWORD);
-		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
-		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INVALID_PWD);
-	}*/
-	/*
-	@Test(dependsOnMethods = "addValidationPassword")
-	public void addValidationConfirmPassword() throws InterruptedException {
-		// input other data
-		action.clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
-		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
-
-		action.inputTextField(Users.PASSWORD_ID, PASSWORD);
-		// don't input UserID
-		action.checkValidationTextField(Users.CONFIMRPASSWORD_ID);
+		action.inputTextField(Users.USER_ID, "any change");
+		driver.findElement(By.id(ScreenObjects.CANCEL_ID)).click();
+		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
+		driver.findElement(By.id(ScreenObjects.NO_BTN_ID)).click();
 	}
 
-	@Test(dependsOnMethods = "addValidationConfirmPassword")
-	public void unselectUserGroup() throws InterruptedException {
-
-		action.clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
-		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
-
-		action.inputTextField(Users.PASSWORD_ID, PASSWORD);
-		action.inputTextField(Users.CONFIMRPASSWORD_ID, PASSWORD);
-		action.clickCheckBoxN(0);
-		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
-		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.USER_SELECT_USERGROUP);
+	@Test(dependsOnMethods = "updateSuccessfully")
+	public void withoutSavingYES() {
+		// Step 10,11
+		action.inputTextField(Users.USER_ID, "any change update");
+		driver.findElement(By.id(ScreenObjects.CANCEL_ID)).click();
+		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
+		driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
 	}
 
-	@Test(dependsOnMethods = "unselectUserGroup")
-	public void addValidationUserID() throws InterruptedException {
-
-		action.clickCheckBoxN(1);
-		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
-		// Now, this is an issue
-		action.checkValidationTextField(Users.USER_ID, USERID_EXISTING, Messages.USERS_EXISTING,
-				ScreenObjects.ERROR_CSS);
-	}*/
 }

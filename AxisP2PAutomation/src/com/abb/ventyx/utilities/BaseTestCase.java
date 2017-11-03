@@ -69,8 +69,7 @@ public class BaseTestCase {
 		DOMConfigurator.configure("log4j.xml");
 		try {
 			// load default properties
-			properties = PropertiesLoaderUtils
-					.loadProperties(new ClassPathResource("test.properties", BaseTestCase.class));
+			properties = PropertiesLoaderUtils.loadProperties(new ClassPathResource("test.properties", BaseTestCase.class));
 		} catch (Exception e) {
 			// System.out.println(e.getMessage());
 		}
@@ -110,8 +109,7 @@ public class BaseTestCase {
 		String screenShotPath = "";
 		String takingTime = "";
 		String tempPath = "screenshots/%s_%s_%s.png";
-		if (testResult.getStatus() == ITestResult.FAILURE
-				|| Boolean.valueOf(BaseTestCase.getProperties().getProperty(TEST_DEVELOPER_MODE))) {
+		if (testResult.getStatus() == ITestResult.FAILURE || Boolean.valueOf(BaseTestCase.getProperties().getProperty(TEST_DEVELOPER_MODE))) {
 			System.out.println(testResult.getStatus());
 			File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 			takingTime = String.format("%s_%s", testResult.getEndMillis(), new Random().nextInt(99999));
