@@ -41,6 +41,7 @@ public class Profile_Update_Customer_Defined_Step07 extends BaseTestCase {
 	@Test
 	public void openMaintainCustomerDefinedProfilesScreen(){
 		action = new ScreenAction(driver);
+		table = new TableFunction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PROFILES));
 	}
@@ -55,7 +56,6 @@ public class Profile_Update_Customer_Defined_Step07 extends BaseTestCase {
 	@Test(dependsOnMethods = "openMaintainCustomerDefinedProfilesScreen", alwaysRun = true)
 	public void clickPencilIconOnMaintainCustomerScreen(){
 		action.pause(waitTime);
-		table = new TableFunction(driver);
 		i = table.findRowByString(3, profileName);
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
@@ -111,7 +111,6 @@ public class Profile_Update_Customer_Defined_Step07 extends BaseTestCase {
 	
 	@Test(dependsOnMethods = "openMaintainCustomerScreenWithAccountCustomer", alwaysRun = true)
 	public void clickEditIconOnMaintainCustomerScreen(){
-		table = new TableFunction(driver);
 		i = table.findRowByString(3, "Advance Shipping Notice, Purchase Orders");
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
@@ -150,7 +149,6 @@ public class Profile_Update_Customer_Defined_Step07 extends BaseTestCase {
 	@Test(dependsOnMethods = "clickFiterButtonAgainOnMaintainCustomerScreen", alwaysRun = true)
 	public void clickEditIconAgainOnMaintainCustomerScreen(){
 		action.pause(waitTime);
-		table = new TableFunction(driver);
 		i = table.findRowByString(3, profileNameEdited);
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
