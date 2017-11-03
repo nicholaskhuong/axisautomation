@@ -24,7 +24,6 @@ import com.abb.ventyx.utilities.TableFunction;
 public class SupplierList_RemoteIcon_Step12 extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
-	int i;
 
 	String activeStatus = "Active";
 	String invoiceType = "Invoice";
@@ -52,7 +51,7 @@ public class SupplierList_RemoteIcon_Step12 extends BaseTestCase {
 	// Step 13
 	@Test(dependsOnMethods = "loginAsCustomerUserAndCheckRemoteIconAvailable", alwaysRun = true)
 	public void accessSupplier() {
-		action.clickRemoteIcon(i);
+		action.clickRemoteIcon(1);
 		action.waitObjVisible(By.id(SupplierMenu.PURCHASE_ORDERS_ID));
 		action.assertTitleScreen("Supplier Dashboard");
 
