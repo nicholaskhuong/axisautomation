@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
@@ -162,10 +165,11 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 	
 	@Test(dependsOnMethods = "clickEditIconAgainOnMaintainCustomerScreen", alwaysRun = true)
 	public void editAuthorisedDocumentTypes(){
-		action.pause(waitTime);
 		action.clickBtn(By.id("showConfigBtn-AdvanceShippingNotice"));
 		action.pause(waitTime);
-		List<WebElement> checkBoxIndex0 = driver.findElements(By.xpath("//*[@id='configurationGrid-AdvanceShippingNotice']/div[3]/table/tbody/tr[1]/td[1]"));
+		List<WebElement> checkBoxIndex0 = (new WebDriverWait(driver, 30)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By
+				.xpath("//*[@id='configurationGrid-AdvanceShippingNotice']/div[3]/table/tbody/tr[1]/td[1]")));
+		Assert.assertTrue(checkBoxIndex0.size() > 0, "Item not found!");
 		checkBoxIndex0.get(0).click();
 	}
 	
