@@ -49,15 +49,10 @@ public class CustomerUser_Deleted_ByAdmin extends BaseTestCase {
 	public void clickTrashBinIconOfUser() {
 		action.pause(1000);
 		j = table.findRowByString(3, customerUserEmail);
-		System.out.println("adfasfdad " + j);
-		i = j - 1;
-		System.out.print(i + "Test test ");
-		action.clickBtn(By.id("deleteItemBtn" + i));
+		action.clickBtn(By.id("deleteItemBtn" + (j - 1)));
 
 		action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
-		assertEquals(
-				driver.findElement(By.cssSelector(ScreenObjects.CONFIRMATION))
-						.getText(), Messages.DELETE_USER_CONFIRM);
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.CONFIRMATION)).getText(), Messages.DELETE_USER_CONFIRM);
 	}
 
 	// Step 3 Choose No
