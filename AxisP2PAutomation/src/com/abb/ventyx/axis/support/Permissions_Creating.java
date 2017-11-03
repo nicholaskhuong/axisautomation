@@ -20,7 +20,7 @@ import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
 
 @ALM(id = "437")
-@Credentials(user = "mail5@abb.com", password = "testuser")
+@Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class Permissions_Creating extends BaseTestCase {
 
 	public static String permissionName = "Permision 61093109";

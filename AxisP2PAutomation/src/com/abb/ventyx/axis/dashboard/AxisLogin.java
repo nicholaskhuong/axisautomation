@@ -8,7 +8,7 @@ import com.abb.ventyx.utilities.TestData;
 
 import org.testng.annotations.Test;
 @ALM(id = "1") 
-@Credentials(user = "mail5@abb.com", password = "testuser")
+@Credentials(user = "axis_support@abb.com", password = "Testuser1")
 @TestData(fileName = "login.xls", startRow =1, endRow=2)
 public class AxisLogin extends BaseTestCase{
 

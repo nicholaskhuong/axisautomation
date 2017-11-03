@@ -19,7 +19,7 @@ import com.abb.ventyx.axis.objects.pagedefinitions.DocType;
 import com.abb.ventyx.axis.objects.pagedefinitions.FilterField;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 @ALM(id = "158") 
-@Credentials(user = "mail5@abb.com", password = "testuser")
+@Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class Filter_Field_Creating extends BaseTestCase {
 
 	String DOCTYPE_A;

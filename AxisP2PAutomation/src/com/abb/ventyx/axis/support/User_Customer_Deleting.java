@@ -19,7 +19,7 @@ import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
 
 @ALM(id = "716")
-@Credentials(user = "mail5@abb.com", password = "testuser")
+@Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class User_Customer_Deleting extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;

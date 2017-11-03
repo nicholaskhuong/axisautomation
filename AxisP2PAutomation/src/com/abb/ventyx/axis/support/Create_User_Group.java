@@ -18,7 +18,7 @@ import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
 
 @ALM(id = "1")
-@Credentials(user = "mail5@abb.com", password = "testuser")
+@Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class Create_User_Group extends BaseTestCase {
 
 	String USER_GROUP_NAME = "Manage Group";

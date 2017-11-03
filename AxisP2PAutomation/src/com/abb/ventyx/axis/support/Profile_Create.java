@@ -17,7 +17,7 @@ import com.abb.ventyx.utilities.Credentials;
 import com.abb.ventyx.utilities.ScreenAction;
 
 @ALM(id = "600")
-@Credentials(user = "mail5@abb.com", password = "testuser")
+@Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class Profile_Create extends BaseTestCase {
 	ScreenAction action;
 	BaseDropDownList list;

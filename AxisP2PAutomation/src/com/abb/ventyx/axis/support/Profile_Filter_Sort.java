@@ -17,7 +17,7 @@ import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
 
 @ALM(id = "720")
-@Credentials(user = "mail5@abb.com", password = "testuser")
+@Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class Profile_Filter_Sort extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;

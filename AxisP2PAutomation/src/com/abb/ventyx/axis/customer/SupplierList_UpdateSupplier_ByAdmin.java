@@ -37,7 +37,6 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 	String activeStatus = "Active";
 	String INVALIDEMAIL = "<HTML>";
 	String PASSWORDORIGINALLY = "Testuser2";
-	String NEWPASSWORD = "Testuser1";
 
 	String newSupplierName = "NewName";
 	String profileUpdated = "ASNOFF";
@@ -168,12 +167,12 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
 		action.pause(3000);
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
-		action.pause(5000);
+		action.pause(3000);
 	}
 
 	@Test(dependsOnMethods = "signOutDefaultUser", alwaysRun = true)
 	public void loginAsTheUpdatedSupplierAndCheckASNOff() {
-		action.signIn(SupplierList_CreateNewSupplier_ByAdmin.supplierEmail, NEWPASSWORD);
+		action.signIn(SupplierList_CreateNewSupplier_ByAdmin.supplierEmail, SupplierList_CreateNewSupplier_ByAdmin.password);
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADDRESS_CONTACT_ID));
 		assertEquals(action.isElementPresent(By.id("menuItemAsn")),false);

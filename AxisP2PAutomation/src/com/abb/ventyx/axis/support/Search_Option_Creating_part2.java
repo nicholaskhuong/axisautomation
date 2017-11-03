@@ -19,7 +19,7 @@ import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
 
 @ALM(id = "158")
-@Credentials(user = "mail5@abb.com", password = "testuser")
+@Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class Search_Option_Creating_part2 extends BaseTestCase {
 
 	String FIELD_TYPE = "QUANTITY";

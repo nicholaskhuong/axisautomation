@@ -17,7 +17,7 @@ import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
 
 @ALM(id = "623")
-@Credentials(user = "mail5@abb.com", password = "testuser")
+@Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class Profile_Delete_Customer_Defined extends BaseTestCase {
 	ScreenAction action;
 	BaseDropDownList list;

@@ -47,8 +47,8 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	String duplicatedCompanyRegistrationNo = "ENCLAVE";
 	String duplicatedTaxRegistrationNo = "ENCLAVE";
 	String duplicatedSupplierEmail = "perla@enclave.vn";
-	String axisSupportEmail = "mail5@abb.com";
-	String axisSupportPWD = "testuser";
+	String axisSupportEmail = "axis_support@abb.com";
+	String axisSupportPWD = "Testuser1";
 	public static String password = "Testuser1";
 
 	// Step 1

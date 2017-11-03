@@ -19,7 +19,7 @@ import com.abb.ventyx.axis.objects.pagedefinitions.DialogBtns;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.SearchOption;
 @ALM(id = "158") 
-@Credentials(user = "mail5@abb.com", password = "testuser")
+@Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class Search_Option_Creating extends BaseTestCase {
 
 	String FIELD_TYPE = "QUANTITY";

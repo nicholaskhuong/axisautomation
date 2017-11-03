@@ -24,7 +24,7 @@ import com.abb.ventyx.utilities.Credentials;
 import com.ventyx.testng.TestDataKey;
 
 @ALM(id = "166")
-@Credentials(user = "mail5@abb.com", password = "testuser")
+@Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class Filter_Field_Deleting extends BaseTestCase {
 	@TestDataKey
 	private final String FIELD_NAME = "Test 2017";

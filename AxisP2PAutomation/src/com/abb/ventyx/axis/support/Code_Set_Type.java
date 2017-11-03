@@ -13,7 +13,7 @@ import com.abb.ventyx.utilities.Credentials;
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
 import com.abb.ventyx.axis.objects.pagedefinitions.SearchOption;
 
-@Credentials(user = "mail5@abb.com", password = "testuser")
+@Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class Code_Set_Type extends BaseTestCase {
 	String FIELD_TYPE = "QUANTITY";
 	String FILTER_SUB_TYPE = "UNIT";

@@ -23,7 +23,7 @@ import com.abb.ventyx.utilities.Credentials;
 import com.abb.ventyx.utilities.ScreenAction;
 
 @ALM(id = "158")
-@Credentials(user = "mail5@abb.com", password = "testuser")
+@Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class Document_Type_Creating extends BaseTestCase {
 	private final String DOCTYPE_B = "Abb";
 	private final String DESC_B = "AA_MAINTAIN_DOCTYPES";

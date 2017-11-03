@@ -16,7 +16,7 @@ import com.abb.ventyx.utilities.PermissionsAction;
 import com.abb.ventyx.utilities.ScreenAction;
 
 @ALM(id = "544")
-@Credentials(user = "mail5@abb.com", password = "testuser")
+@Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class Permissions_Updating extends BaseTestCase {
 
 	String invoiceTypeName = "Invoicing";

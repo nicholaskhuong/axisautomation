@@ -20,7 +20,7 @@ import com.abb.ventyx.utilities.Credentials;
 import com.ventyx.testng.TestDataKey;
 
 @ALM(id = "160")
-@Credentials(user = "mail5@abb.com", password = "testuser")
+@Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class Document_Type_Deleting extends BaseTestCase {
 	@TestDataKey
 	private final String DOCTYPE_B = "Abb";

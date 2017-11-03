@@ -33,8 +33,8 @@ public class Profile_Update_Customer_Defined_Step07 extends BaseTestCase {
 	WebElement index;
 	String userLogin = "mail222@abb.com";
 	String userPassword = "Testuser2";
-	String adminLogin = "mail5@abb.com";
-	String adminPassword = "testuser";
+	String adminLogin = "axis_support@abb.com";
+	String adminPassword = "Testuser1";
 	String profileNameAccountCustomer = "POProfile";
 	
 	//Step1

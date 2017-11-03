@@ -34,8 +34,8 @@ public class SupplierList_CreateNewSupplier_ByAdmin_Invalid_Data extends BaseTes
 	String duplicatedCompanyRegistrationNo = "ENCLAVE";
 	String duplicatedTaxRegistrationNo = "ENCLAVE";
 	String duplicatedSupplierEmail = "perla@enclave.vn";
-	String axisSupportEmail = "mail5@abb.com";
-	String axisSupportPWD = "testuser";
+	String axisSupportEmail = "axis_support@abb.com";
+	String axisSupportPWD = "Testuser1";
 	String password;
 	String supplierName_draft = "Yamaha1231313";
 	String supplierEmail_draft = "yamaha13213@abb.com";

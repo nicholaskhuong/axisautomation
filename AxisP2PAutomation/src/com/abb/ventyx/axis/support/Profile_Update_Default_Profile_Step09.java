@@ -23,7 +23,7 @@ import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
 
 @ALM(id = "789")
-@Credentials(user = "mail5@abb.com", password = "testuser")
+@Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class Profile_Update_Default_Profile_Step09 extends BaseTestCase {
 	ScreenAction action;
 	BaseDropDownList list;
@@ -36,8 +36,8 @@ public class Profile_Update_Default_Profile_Step09 extends BaseTestCase {
 	int i;
 	String profileName = "All Document Types";
 	WebElement index, index2;
-	String mail5Login = "mail5@abb.com";
-	String mail5Password = "testuser";
+	String mail5Login = "axis_support@abb.com";
+	String adminPassword = "Testuser1";
 	
 	//Step 1
 	@Test

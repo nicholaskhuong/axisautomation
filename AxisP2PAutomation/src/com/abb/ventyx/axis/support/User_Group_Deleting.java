@@ -20,7 +20,7 @@ import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
 
 @ALM(id = "164")
-@Credentials(user = "mail5@abb.com", password = "testuser")
+@Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class User_Group_Deleting extends BaseTestCase {
 	String systemGroupName = "CUST_ADMIN";
 	String customerName = "Tanya Customer 11";
