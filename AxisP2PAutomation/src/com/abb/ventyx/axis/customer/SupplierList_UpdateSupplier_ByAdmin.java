@@ -16,6 +16,7 @@ import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 import com.abb.ventyx.axis.objects.pagedefinitions.SupplierList;
 import com.abb.ventyx.axis.objects.pagedefinitions.SupplierMenu;
+import com.abb.ventyx.axis.objects.pagedefinitions.UserPreferences;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
@@ -163,13 +164,15 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 	}
 	
 	@Test(dependsOnMethods = "accessSupplierFromCustomerAndCheckASNOff", alwaysRun = true)
-	public void signOut() {
-		action.signOut();
+	public void signOutDefaultUser() {
+		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
+		action.pause(3000);
+		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
+		action.pause(5000);
 	}
 
-	@Test(dependsOnMethods = "signOut", alwaysRun = true)
+	@Test(dependsOnMethods = "signOutDefaultUser", alwaysRun = true)
 	public void loginAsTheUpdatedSupplierAndCheckASNOff() {
-
 		action.signIn(SupplierList_CreateNewSupplier_ByAdmin.supplierEmail, NEWPASSWORD);
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADDRESS_CONTACT_ID));

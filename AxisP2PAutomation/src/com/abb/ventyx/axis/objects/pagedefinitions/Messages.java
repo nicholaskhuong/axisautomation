@@ -50,7 +50,7 @@ public class Messages {
 	public static final String INVALID_CONFIRM_PWD = "Entered Password is not the same, please verify.";
 	public static final String USERNOTFOUND = "Unable to login. Please check your email address and password.";
 
-	public static final String USERS_EXISTING = "User ID exists";
+	public static final String USERS_EXISTING = "Unable to use email address, please contact your Support admin";
 	// Permissions
 	public static final String EMPTYPERMISSIONNAME = "Please enter permission name";
 	public static final String EMPTYUSERTYPE = "Please select the User Type";

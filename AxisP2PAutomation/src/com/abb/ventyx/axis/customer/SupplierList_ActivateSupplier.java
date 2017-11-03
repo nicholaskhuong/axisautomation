@@ -4,6 +4,7 @@ import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -31,7 +32,7 @@ public class SupplierList_ActivateSupplier extends BaseTestCase {
 	String inactiveStatus = "Inactive";
 	String activeStatus = "Active";
 	String password1 = "Testuser1";
-	String password2 = "Testuser2";
+	String password2 = "Testuser1";
 
 	// Step 1
 	@Test
@@ -142,16 +143,15 @@ public class SupplierList_ActivateSupplier extends BaseTestCase {
 		// Step 7
 	@Test(dependsOnMethods = "loginAsActiveUserAgain")
 	public void signOut3rd() {
-				action.signOut();
+		action.signOut();
 	}
 		// Step 7
 	@Test(dependsOnMethods = "signOut3rd")
 	public void loginAsActiveUser3nd() {
 		// User with Created status
 		action.signIn(userSupplierEmailCreated, password2);
-		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.ERROR_CSS)), false);
-		action.waitObjVisible(By.id(ScreenObjects.NEWPASSWORD_ID));
-		assertEquals(action.isElementPresent(By.id(ScreenObjects.NEWPASSWORD_ID)),true);
+		assertEquals(
+				(new WebDriverWait(driver, 30)).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)))
+						.getText(), "Supplier Dashboard");
 	}
-
 }

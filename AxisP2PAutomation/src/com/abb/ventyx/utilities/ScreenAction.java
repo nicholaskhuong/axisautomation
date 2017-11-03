@@ -158,7 +158,11 @@ public class ScreenAction {
 
 	public void clickCheckBoxN(int n) {
 		List<WebElement> listCheckbox = driver.findElements(By.xpath("//input[@type='checkbox']"));
-		listCheckbox.get(n).click();
+		if (listCheckbox.size() > 0) {
+			if (listCheckbox.get(n).isDisplayed()) {
+				listCheckbox.get(n).click();
+			}
+		}
 	}
 
 	public void checkObjSelected(int start, int end) {
@@ -486,7 +490,7 @@ public class ScreenAction {
 	}
 	public void signOut() {
 		waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
-		pause(1000);
+		pause(3000);
 		waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
 	}
 

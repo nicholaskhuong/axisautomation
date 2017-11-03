@@ -2,7 +2,10 @@ package com.abb.ventyx.axis.supplier;
 
 import static org.testng.Assert.assertEquals;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
@@ -30,6 +33,7 @@ public class Supplier_Admin_UpdateNewAddress extends BaseTestCase {
 	String country = "ARGENTINAsd";
 	int milliseconds = 800;
 	WebDriverWait wait;
+	String expected = "Maintain Address & Contact";
 
 	@Test
 	public void openScreen() {
@@ -41,6 +45,22 @@ public class Supplier_Admin_UpdateNewAddress extends BaseTestCase {
 	}
 
 	@Test(dependsOnMethods = "openScreen")
+	public void checkAndDeletExistingAddress() throws InterruptedException {
+		List<WebElement> listCheckbox = driver.findElements(By.xpath("//input[@type='checkbox']"));
+		if (listCheckbox.size() > 0) {
+			if (listCheckbox.get(1).isDisplayed()) {
+				action.clickCheckBoxN(1);
+				action.clickBtn(By.cssSelector(MaintainSuppliers.DELETE_ICON));
+				action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
+				assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.DELETE_ADDRESS_MESSAGE);
+				driver.findElement(By.cssSelector(MaintainSuppliers.YES_BTN)).click();
+				action.waitObjVisible(By.cssSelector(MaintainSuppliers.EDIT_SUPPLIER_POPUP));
+				assertEquals(driver.findElement(By.cssSelector(MaintainSuppliers.EDIT_SUPPLIER_POPUP)).getText(), expected);
+			}
+		}
+	}
+
+	@Test(dependsOnMethods = "checkAndDeletExistingAddress")
 	public void addNewAddress() throws InterruptedException {
 		action.waitObjVisible(By.id(MaintainSuppliers.ADDRESS_POPUP));
 		commonMethod();

@@ -213,7 +213,10 @@ public class SupplierList_RemoteIcon extends BaseTestCase {
 	// Step 12
 	@Test(dependsOnMethods = "filterDocumentPOAckType", alwaysRun = true)
 	public void signOutAgain() {
-		action.signOut();
+		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
+		action.pause(3000);
+		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
+		action.pause(3000);
 	}
 
 	// Step 12
