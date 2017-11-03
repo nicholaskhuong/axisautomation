@@ -22,7 +22,6 @@ public class Profile_Create extends BaseTestCase {
 	ScreenAction action;
 	BaseDropDownList list;
 	int row;
-	int waitTime = 1000;
 	
 	@Test
 	public void openMaintainCustomerDefinedProfilesScreen(){
@@ -33,98 +32,100 @@ public class Profile_Create extends BaseTestCase {
 	
 	@Test(dependsOnMethods = "openMaintainCustomerDefinedProfilesScreen", alwaysRun = true)
 	public void clickAddButton(){
+		
 		action.waitObjVisibleAndClick(By.cssSelector(Profiles.ADD_PROFILE));
 	}
 	
 	@Test(dependsOnMethods = "clickAddButton", alwaysRun = true)
 	public void inputProfileNameandCustomerName() {
-		action.pause(waitTime);
+		action.waitObjVisible(By.id(Profiles.PROFILE_NAME_ID));
 		action.inputTextField(Profiles.PROFILE_NAME_ID, "Profile3");
-		WebElement customer = driver.findElement(By.className(Profiles.CUSTOMER_CLASS));
-		customer.sendKeys("QATest");
+		action.waitObjVisible(By.className(Profiles.CUSTOMER_CLASS));
+		WebElement customerClass = driver.findElement(By.className(Profiles.CUSTOMER_CLASS));
+		customerClass.sendKeys("QATest");
 		list = new BaseDropDownList(driver,Profiles.LIST_CSS);
 		row = list.findItemInDropDownList("QATest");
-		action.pause(waitTime);
 		WebElement rowClick = (new WebDriverWait(driver, 60)).until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(Profiles.LIST_CSS + "> tbody > tr:nth-child(" + (row - 1) + ") > td")));
 		rowClick.click();
-		action.pause(waitTime);
+		action.waitObjVisible(By.id(Profiles.SAVE_BTN));
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ERROR_MESSAGE);
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
 	
 	@Test(dependsOnMethods = "inputProfileNameandCustomerName", alwaysRun = true)
 	public void slelectAuthorisedDocumentTypes() {
-		action.pause(waitTime);
 		action.clickCheckBoxN(4);
-		action.pause(waitTime);
-		action.pause(6000);
+		action.waitObjVisible(By.id(Profiles.SAVE_BTN));
 		action.clickBtn(By.id(Profiles.SAVE_BTN));
-		action.pause(waitTime);
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.MESSAGE_SUCCESSFULLY);
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 	}
 	
 	@Test(dependsOnMethods = "slelectAuthorisedDocumentTypes", alwaysRun = true)
 	public void clickAddButton2(){
-		action.pause(waitTime);
+		action.waitObjVisible(By.cssSelector(Profiles.ADD_PROFILE));
 		action.waitObjVisibleAndClick(By.cssSelector(Profiles.ADD_PROFILE));
 	}
 	
 	@Test(dependsOnMethods = "clickAddButton2", alwaysRun = true)
 	public void inputProfileNameandCustomerNameOnCreatePage() {
-		action.pause(waitTime);
+		action.waitObjVisible(By.id(Profiles.PROFILE_NAME_ID));
 		action.inputTextField(Profiles.PROFILE_NAME_ID, "Profile4");
 		action.waitObjVisible(By.id(Profiles.PROFILE_NAME_ID));
 		action.cancelClickNo(Profiles.TITLE_MAINTAIN_CUSTOMER);
-		action.pause(waitTime);
 	}
 	@Test(dependsOnMethods = "inputProfileNameandCustomerNameOnCreatePage", alwaysRun = true)
 	public void inputMissingAllFields() {
-		action.pause(waitTime);
+		action.waitObjVisible(By.id(Profiles.PROFILE_NAME_ID));
 		action.inputTextField(Profiles.PROFILE_NAME_ID, "");
-		action.pause(1000);
-		action.clickBtn(By.id(Profiles.SAVE_BTN));
-		action.pause(waitTime);
+		action.waitObjVisible(By.id(Profiles.SAVE_BTN));
+		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.MESSAGE_MISSING_ALL_FIELD);
-		}
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
+	}
 	
 	@Test(dependsOnMethods = "inputMissingAllFields", alwaysRun = true)
 	public void inputMissingCustomerName() {
-		action.pause(waitTime);
+		action.waitObjVisible(By.id(Profiles.PROFILE_NAME_ID));
 		action.inputTextField(Profiles.PROFILE_NAME_ID, "Profile4");
-		action.pause(1000);
-		action.clickBtn(By.id(Profiles.SAVE_BTN));
-		action.pause(waitTime);
+		action.waitObjVisible(By.id(Profiles.SAVE_BTN));
+		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.MESSAGE_MISSING_CUSTOMER_NAME);
-		}
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
+	}
 	
 	@Test(dependsOnMethods = "inputMissingCustomerName", alwaysRun = true)
 	public void inputMissingProfileName() {
+		action.waitObjVisible(By.id(Profiles.PROFILE_NAME_ID));
 		action.inputTextField(Profiles.PROFILE_NAME_ID, "");
-		WebElement customer = driver.findElement(By.className(Profiles.CUSTOMER_CLASS));
-		customer.sendKeys("QATest");
+		action.waitObjVisible(By.className(Profiles.CUSTOMER_CLASS));
+		WebElement customerClass = driver.findElement(By.className(Profiles.CUSTOMER_CLASS));
+		customerClass.sendKeys("QATest");
 		list = new BaseDropDownList(driver,Profiles.LIST_CSS);
 		row = list.findItemInDropDownList("QATest");
 		WebElement rowClick = (new WebDriverWait(driver, 60)).until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(Profiles.LIST_CSS + "> tbody > tr:nth-child(" + (row - 1) + ") > td")));
 		rowClick.click();
-		action.pause(1000);
-		action.clickBtn(By.id(Profiles.SAVE_BTN));
-		action.pause(waitTime);
-		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
-				Messages.MESSAGE_MISSING_PROFILE_FIELD);
-		}
+		action.waitObjVisible(By.id(Profiles.SAVE_BTN));
+		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,Messages.MESSAGE_MISSING_PROFILE_FIELD);
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
+	}
 	
 	@Test(dependsOnMethods = "inputMissingProfileName", alwaysRun = true)
 	public void inputDuplicationProfileName() {
-		action.pause(waitTime);
+		action.waitObjVisible(By.id(Profiles.PROFILE_NAME_ID));
 		action.inputTextField(Profiles.PROFILE_NAME_ID, "Profile3");
+		action.waitObjVisible(By.className(Profiles.CUSTOMER_CLASS));
+		WebElement customerClass = driver.findElement(By.className(Profiles.CUSTOMER_CLASS));
+		customerClass.sendKeys("QATest");
 		action.clickCheckBoxN(4);
-		action.pause(1000);
-		action.clickBtn(By.id(Profiles.SAVE_BTN));
-		action.pause(waitTime);
-		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
-				Messages.MESSAGE_DUPLICATED_PROFILE_NAME);
-		}
+		action.waitObjVisible(By.id(Profiles.SAVE_BTN));
+		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,Messages.MESSAGE_DUPLICATED_PROFILE_NAME);
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
+}
 
