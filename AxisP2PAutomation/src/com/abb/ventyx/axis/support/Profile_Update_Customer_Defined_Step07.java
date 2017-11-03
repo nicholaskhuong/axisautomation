@@ -91,17 +91,17 @@ public class Profile_Update_Customer_Defined_Step07 extends BaseTestCase {
 	
 	//Step3
 	@Test(dependsOnMethods = "clickSaveButtonAndDisplayMessageSuccessfully", alwaysRun = true)
-	public void logoutFromMaintainCustomerScreen(){
+	public void logoutFromMaintainCustomerScreen1() {
 		action.signOut();
 	}
 	
-	@Test(dependsOnMethods = "logoutFromMaintainCustomerScreen", alwaysRun = true)
-	public void loginWithAccountCustomer(){
+	@Test(dependsOnMethods = "logoutFromMaintainCustomerScreen1", alwaysRun = true)
+	public void loginWithAccountCustomer1() {
 		action.signIn(userLogin, userPassword);
 		action.pause(waitTime);
 	}
 	
-	@Test(dependsOnMethods = "loginWithAccountCustomer", alwaysRun = true)
+	@Test(dependsOnMethods = "loginWithAccountCustomer1", alwaysRun = true)
 	public void openMaintainCustomerScreenWithAccountCustomer(){
 		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE_WITH_CUSTOMER));

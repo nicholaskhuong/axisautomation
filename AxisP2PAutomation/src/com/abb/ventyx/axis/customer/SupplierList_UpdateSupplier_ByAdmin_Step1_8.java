@@ -27,7 +27,7 @@ import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
 @ALM(id = "614")
 @Credentials(user = "cadmin1@abb.com", password = "Testuser1")
-public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
+public class SupplierList_UpdateSupplier_ByAdmin_Step1_8 extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
 	WebDriverWait wait;

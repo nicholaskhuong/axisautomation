@@ -13,7 +13,7 @@ import com.abb.ventyx.utilities.Credentials;
 import com.abb.ventyx.utilities.ScreenAction;
 @ALM(id = "614")
 @Credentials(user = "cadmin1@abb.com", password = "Testuser1")
-public class SupplierList_UpdateSupplier_ByAdmin_LoginNewUser extends BaseTestCase {
+public class SupplierList_UpdateSupplier_ByAdmin_Step9 extends BaseTestCase {
 	ScreenAction action;
 	String newSupplierName = "NewName";
 

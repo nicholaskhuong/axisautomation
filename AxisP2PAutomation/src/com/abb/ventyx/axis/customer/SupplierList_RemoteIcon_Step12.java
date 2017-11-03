@@ -21,7 +21,7 @@ import com.abb.ventyx.utilities.TableFunction;
 
 @ALM(id = "835")
 @Credentials(user = "cuserdefault@abb.com", password = "Testuser1")
-public class SupplierList_RemoteIcon_LoginNewUser extends BaseTestCase {
+public class SupplierList_RemoteIcon_Step12 extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
 	int i;
@@ -50,7 +50,7 @@ public class SupplierList_RemoteIcon_LoginNewUser extends BaseTestCase {
 
 
 	// Step 13
-	@Test(dependsOnMethods = "loginAsCustomerUserAndCheckRemoteIconAvailable")
+	@Test(dependsOnMethods = "loginAsCustomerUserAndCheckRemoteIconAvailable", alwaysRun = true)
 	public void accessSupplier() {
 		action.clickRemoteIcon(i);
 		action.waitObjVisible(By.id(SupplierMenu.PURCHASE_ORDERS_ID));
@@ -104,16 +104,16 @@ public class SupplierList_RemoteIcon_LoginNewUser extends BaseTestCase {
 	}
 
 	// Step 14
-	@Test(dependsOnMethods = "accessSupplier")
+	@Test(dependsOnMethods = "accessSupplier", alwaysRun = true)
 	public void signOut3rd() {
 
 		action.signOut();
 	}
 
 	// Step 14
-	@Test(dependsOnMethods = "signOut3rd")
+	@Test(dependsOnMethods = "signOut3rd", alwaysRun = true)
 	public void CheckRemoteIconForPendingSupplier() {
-
+		action.signIn("cuserdefault@abb.com", "Testuser1");
 		action.waitObjVisible(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
 		action.assertTitleScreen("Customer Dashboard");
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));

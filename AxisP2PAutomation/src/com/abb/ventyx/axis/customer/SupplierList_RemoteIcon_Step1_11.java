@@ -26,7 +26,7 @@ import com.abb.ventyx.utilities.TableFunction;
 
 @ALM(id = "835")
 @Credentials(user = "cadmin1@abb.com", password = "Testuser1")
-public class SupplierList_RemoteIcon extends BaseTestCase {
+public class SupplierList_RemoteIcon_Step1_11 extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
 	WebDriverWait wait;
