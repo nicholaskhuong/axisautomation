@@ -38,7 +38,7 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 	String profileName = "All Document Types";
 	WebElement index, index2;
 	String mail5Login = "axis_support@abb.com";
-	String adminPassword = "Testuser1";
+	String mail5Password = "Testuser1";
 	
 	//Step 1
 	@Test
