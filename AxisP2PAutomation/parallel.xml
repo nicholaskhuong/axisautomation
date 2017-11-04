@@ -138,7 +138,7 @@
             <fileset dir="${lib.dir}" includes="*.jar" />
         </path>
         <taskdef resource="testngtasks" classpath="${lib.dir}/testng.jar" />
-        <!--Introduce random delay to try and start up swamping the app server too much-->
+        <!--Introduce random delay to try and start up swamping the app server too much
         <math result="delay" datatype="int">
             <op op="rint">
                 <op op="*">
@@ -146,8 +146,8 @@
                     <op op="random" />
                 </op>
             </op>
-        </math>
-        <sleep seconds="5" />                        
+        </math>-->
+        <sleep seconds="10" />                        
         <testng timeout="60000000"  
                 failureproperty="tests.failed"  
                 outputdir="${report.dir}"  
