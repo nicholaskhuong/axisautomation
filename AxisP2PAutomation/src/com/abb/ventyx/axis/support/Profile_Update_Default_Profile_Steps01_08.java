@@ -40,9 +40,8 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 	int i;
 	String profileName = "All Document Types";
 	WebElement index, index2;
-	String mail5Login = "axis_support@abb.com";
-	String mail5Password = "Testuser1";
-	public String email;
+	String mailAdminLogin = "axis_support@abb.com";
+	String PasswordAdmin = "Testuser1";
 	
 	//Step 1
 	@Test
@@ -62,8 +61,6 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 	public void inputDataOnCustomerListScreen() {
 		action.inputTextField(CustomerList.CUSTOMER_NAME, customerName);
 		action.inputEmailField(CustomerList.EMAIL_ADDRESS, emailAddress);
-		email = driver.findElement(By.id(CustomerList.EMAIL_ADDRESS)).getAttribute("value");
-		System.out.print(email);
 		action.clickCheckBoxN(0);
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.CREATE_CUSTOMER_SUCCESSFULLY);
@@ -132,7 +129,7 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 	@Test(dependsOnMethods = "logoutWithCustomerList", alwaysRun = true)
 	public void loginWithMail5(){
 		action.pause(waitTime);
-		action.signIn(mail5Login, mail5Password);
+		action.signIn(mailAdminLogin, PasswordAdmin);
 	}
 	
 	@Test(dependsOnMethods = "loginWithMail5", alwaysRun = true)
@@ -230,7 +227,7 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 	
 	@Test(dependsOnMethods = "logoutWithCustomerListSecondTime", alwaysRun = true)
 	public void loginWithMail5Again(){
-		action.signIn(mail5Login, mail5Password);
+		action.signIn(mailAdminLogin, PasswordAdmin);
 		action.pause(waitTime);
 	}
 	
