@@ -27,19 +27,18 @@ import com.abb.ventyx.axis.objects.pagedefinitions.UserPreferences;
 public class ScreenAction {
 	WebDriver driver;
 	int timeout = 60;
+
 	public ScreenAction(WebDriver driver) {
 		this.driver = driver;
 	}
 
 	public void waitObjInvisible(By obj) {
 		pause(3000);
-		(new WebDriverWait(driver, timeout)).until(ExpectedConditions
-				.invisibilityOfElementLocated(obj));
+		(new WebDriverWait(driver, timeout)).until(ExpectedConditions.invisibilityOfElementLocated(obj));
 	}
 
 	public void waitObjVisible(By obj) {
-		(new WebDriverWait(driver, timeout)).until(ExpectedConditions
-				.presenceOfElementLocated(obj));
+		(new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(obj));
 	}
 
 	public void waitObjVisibleAndClick(By obj) {
@@ -53,15 +52,15 @@ public class ScreenAction {
 	}
 
 	public void assertTitleScreen(String titleScreen) {
-		WebElement screenTitle = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By
-				.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)));
+		WebElement screenTitle = (new WebDriverWait(driver, timeout))
+				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)));
 
 		assertEquals(screenTitle.getText(), titleScreen, "Title is wrong");
 	}
 
 	public void assertDocumentTitle(String titleScreen) {
-		WebElement screenTitle = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By
-				.cssSelector(ScreenObjects.DOCUMENT_TITLE_CSS)));
+		WebElement screenTitle = (new WebDriverWait(driver, timeout))
+				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.DOCUMENT_TITLE_CSS)));
 
 		assertEquals(screenTitle.getText(), titleScreen, "Title is wrong");
 	}
@@ -86,8 +85,23 @@ public class ScreenAction {
 			txtField.sendKeys(value);
 		}
 	}
+
 	public void inputTextField(String obj, String value) {
 		WebElement txtField = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By.id(obj)));
+		txtField.clear();
+		for (int i = 0; i < value.length(); i++) {
+			char c = value.charAt(i);
+			String s = new StringBuilder().append(c).toString();
+			txtField.sendKeys(s);
+		}
+		if (!((txtField.getText().trim() == value) || (txtField.getAttribute("value").trim() == value))) {
+			txtField.clear();
+			txtField.sendKeys(value);
+		}
+	}
+
+	public void inputTextField(By by, String value) {
+		WebElement txtField = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(by));
 		txtField.clear();
 		for (int i = 0; i < value.length(); i++) {
 			char c = value.charAt(i);
@@ -128,12 +142,14 @@ public class ScreenAction {
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", remoteIcon);
 
 	}
+
 	public boolean isFieldDisable(WebElement field) {
 		String disabled = field.getAttribute("aria-disabled");
 		if (disabled != null && disabled.equals("true"))
 			return true;
 		return false;
 	}
+
 	public void assertTextBoxDisable(By by) {
 		WebElement field = driver.findElement(by);
 		String disabled = field.getAttribute("disabled");
@@ -144,8 +160,7 @@ public class ScreenAction {
 		WebElement screenTitle = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(by));
 		if (screenTitle.getText().trim().isEmpty()) {
 			assertEquals(screenTitle.getAttribute("value"), exptectedValue, "Value is wrong");
-		}
- else {
+		} else {
 			assertEquals(screenTitle.getText(), exptectedValue, "Value is wrong");
 
 		}
@@ -186,30 +201,28 @@ public class ScreenAction {
 	}
 
 	public void clickYesUpdatePasswordRadio() {
-		WebElement radioButton = (new WebDriverWait(driver, 15)).until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(CustomerUsers.YESUPDATEPASSWORD_RADIOBUTTON)));
+		WebElement radioButton = (new WebDriverWait(driver, 15))
+				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.YESUPDATEPASSWORD_RADIOBUTTON)));
 		radioButton.findElement(By.tagName("label")).click();
 	}
 
 	public void clickNoUpdatePasswordRadio() {
 
-		WebElement radioButton = (new WebDriverWait(driver, 15)).until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(CustomerUsers.NOUPDATEPASSWORD_RADIOBUTTON)));
+		WebElement radioButton = (new WebDriverWait(driver, 15))
+				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.NOUPDATEPASSWORD_RADIOBUTTON)));
 
 		radioButton.findElement(By.tagName("label")).click();
 	}
 
 	public void clickExpandButton(int n) {
-		List<WebElement> listExpand = driver.findElements(By
-				.className(ScreenObjects.EXPAND_CLASS));
+		List<WebElement> listExpand = driver.findElements(By.className(ScreenObjects.EXPAND_CLASS));
 		listExpand.get(n).click();
 	}
 
 	public void checkAddSuccess(String msg) {
 
 		WebElement flashMessage1 = (new WebDriverWait(driver, timeout))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(ScreenObjects.SUCCESS_MESSAGE)));
+				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)));
 		Assert.assertEquals(flashMessage1.getText(), msg);
 		flashMessage1.click();
 	}
@@ -226,8 +239,8 @@ public class ScreenAction {
 		int sumRow = tableRows.size();
 		for (int i = 1; i <= sumRow; i++) {
 
-			WebElement columnValue = driver.findElement(By.xpath("//div[@id='VAADIN_COMBOBOX_OPTIONLIST']//div//div[2]//table//tbody//tr[" + i
-					+ "]//td//span"));
+			WebElement columnValue = driver
+					.findElement(By.xpath("//div[@id='VAADIN_COMBOBOX_OPTIONLIST']//div//div[2]//table//tbody//tr[" + i + "]//td//span"));
 
 			// System.out.println("Status " + columnValue.getText());
 			if (columnValue.getText().equals(value)) {
@@ -244,22 +257,19 @@ public class ScreenAction {
 		error.click();
 	}
 
-	public void checkValidationTextField(String obj, String value, String msg,
-			String msgCSS) {
+	public void checkValidationTextField(String obj, String value, String msg, String msgCSS) {
 
 		// Don't input data in text Field
 		inputTextField(obj, "");
 		clickBtn(By.id(ScreenObjects.SAVE_ID));
-		assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
-				Messages.ENTER_MANDATORY_FIELDS);
+		assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
 		waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 
 		// Text Field is only space
 		inputTextField(obj, "  ");
 		clickBtn(By.id(ScreenObjects.SAVE_ID));
-		assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
-				Messages.ENTER_MANDATORY_FIELDS);
+		assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 
 		// Text Field contain existing data
 		inputTextField(obj, value);
@@ -272,16 +282,14 @@ public class ScreenAction {
 		// Don't input data in text Field
 		inputTextField(obj, "");
 		clickBtn(By.id(ScreenObjects.SAVE_ID));
-		assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
-				Messages.ENTER_MANDATORY_FIELDS);
+		assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
 		waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 
 		// Text Field is only space
 		inputTextField(obj, "  ");
 		clickBtn(By.id(ScreenObjects.SAVE_ID));
-		assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS,
-				Messages.ENTER_MANDATORY_FIELDS);
+		assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		clickBtn(By.id(ScreenObjects.SCREEN_TITLE_ID));
 		waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 
@@ -290,9 +298,7 @@ public class ScreenAction {
 	public void cancelClickYes(By obj, String titleScreen) {
 
 		driver.findElement(By.id(ScreenObjects.CANCEL_ID)).click();
-		(new WebDriverWait(driver, timeout)).until(ExpectedConditions
-				.presenceOfElementLocated(By
-						.cssSelector(ScreenObjects.CONFIRMATION)));
+		(new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.CONFIRMATION)));
 		driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
 		waitObjVisible(obj);
 		assertTitleScreen(titleScreen);
@@ -302,16 +308,14 @@ public class ScreenAction {
 
 		driver.findElement(By.id(ScreenObjects.CANCEL_ID)).click();
 		WebElement msgDialog = (new WebDriverWait(driver, timeout))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(ScreenObjects.CONFIRMATION)));
+				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.CONFIRMATION)));
 		assertEquals(msgDialog.getText(), Messages.UNSAVED_CHANGE);
 		driver.findElement(By.id(ScreenObjects.NO_BTN_ID)).click();
 		assertTitleScreen(titleScreen);
 
 	}
 
-	public void cancelWithoutdata(By obj, String titleScreen)
-			throws InterruptedException {
+	public void cancelWithoutdata(By obj, String titleScreen) throws InterruptedException {
 
 		driver.findElement(By.id(ScreenObjects.CANCEL_ID)).click();
 		waitObjVisible(obj);
@@ -321,9 +325,7 @@ public class ScreenAction {
 	public void cancelByMenuClickYes(By obj, String titleScreen, By newObj) {
 
 		driver.findElement(obj).click();
-		(new WebDriverWait(driver, timeout)).until(ExpectedConditions
-				.presenceOfElementLocated(By
-						.cssSelector(ScreenObjects.CONFIRMATION)));
+		(new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.CONFIRMATION)));
 		driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
 		waitObjVisible(newObj);
 		assertTitleScreen(titleScreen);
@@ -333,16 +335,14 @@ public class ScreenAction {
 
 		driver.findElement(obj).click();
 		WebElement msgDialog = (new WebDriverWait(driver, timeout))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(ScreenObjects.CONFIRMATION)));
+				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.CONFIRMATION)));
 		assertEquals(msgDialog.getText(), Messages.UNSAVED_CHANGE);
 		driver.findElement(By.id(ScreenObjects.NO_BTN_ID)).click();
 		assertTitleScreen(titleScreen);
 
 	}
 
-	public void cancelByMenuWithoutdata(By obj, String titleScreen, By newObj)
-			throws InterruptedException {
+	public void cancelByMenuWithoutdata(By obj, String titleScreen, By newObj) throws InterruptedException {
 
 		driver.findElement(obj).click();
 		waitObjVisible(newObj);
@@ -361,11 +361,11 @@ public class ScreenAction {
 	public void deleteClickNo(String msgConfirm) throws Exception {
 
 		// Click No on dialog
-		WebElement deleteConfirm = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By
-				.cssSelector(ScreenObjects.CONFIRMATION)));
+		WebElement deleteConfirm = (new WebDriverWait(driver, 10))
+				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.CONFIRMATION)));
 		assertThat(deleteConfirm.getText(), containsString(msgConfirm));
-		WebElement deleteNoBtn = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By
-				.cssSelector(ScreenObjects.DELETE_NO)));
+		WebElement deleteNoBtn = (new WebDriverWait(driver, 10))
+				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.DELETE_NO)));
 		deleteNoBtn.click();
 		Thread.sleep(2000);
 
@@ -374,11 +374,11 @@ public class ScreenAction {
 	public void deleteClickYes(String msgDelete) throws Exception {
 
 		(new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.CONFIRMATION)));
-		WebElement deleteYesBtn = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By
-				.cssSelector(ScreenObjects.DELETE_YES)));
+		WebElement deleteYesBtn = (new WebDriverWait(driver, 10))
+				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.DELETE_YES)));
 		deleteYesBtn.click();
-		WebElement flashMessage = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By
-				.cssSelector(ScreenObjects.SUCCESS_MESSAGE)));
+		WebElement flashMessage = (new WebDriverWait(driver, 10))
+				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)));
 		assertEquals(flashMessage.getText(), msgDelete);
 
 	}
@@ -405,8 +405,7 @@ public class ScreenAction {
 
 	public void clickHorizontalScrollBar(Boolean scrollToFirst) {
 
-		WebElement horizontal_scroll = driver.findElement(By
-				.className(ScreenObjects.HORIZONTAL_SCROLLBAR_CLASS));
+		WebElement horizontal_scroll = driver.findElement(By.className(ScreenObjects.HORIZONTAL_SCROLLBAR_CLASS));
 		if (horizontal_scroll.isDisplayed()) {
 			int width = horizontal_scroll.getSize().getWidth();
 			Actions move = new Actions(driver);
@@ -450,6 +449,7 @@ public class ScreenAction {
 			}
 		}
 	}
+
 	public void scrollToElement(WebElement element) {
 		clickVerticalScrollBar(true);
 		clickHorizontalScrollBar(true);
@@ -459,8 +459,7 @@ public class ScreenAction {
 			if (!element.isDisplayed()) {
 				clickHorizontalScrollBar();
 				clickVerticalScrollBar();
-			}
- else {
+			} else {
 				break;
 			}
 		}
@@ -469,6 +468,7 @@ public class ScreenAction {
 	public void scrollToElement(String cssObject) {
 		scrollToElement(driver.findElement(By.cssSelector(cssObject)));
 	}
+
 	public String getTextField(String obj) {
 		try {
 			WebElement textField = driver.findElement(By.id(obj));
@@ -488,6 +488,7 @@ public class ScreenAction {
 		}
 
 	}
+
 	public void signOut() {
 		waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
 		pause(3000);

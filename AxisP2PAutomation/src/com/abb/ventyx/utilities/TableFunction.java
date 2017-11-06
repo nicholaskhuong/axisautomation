@@ -57,11 +57,10 @@ public class TableFunction {
 			WebElement columnValue;
 			for (int i = 1; i <= sumRow; i++) {
 				if (isXpath) {
-					columnValue = driver
-							.findElement(By.xpath(String.format("%s//tr[%s]//td[%s]", tableBody, i, columnindex)));
+					columnValue = driver.findElement(By.xpath(String.format("%s//tr[%s]//td[%s]", tableBody, i, columnindex)));
 				} else {
-					columnValue = driver.findElement(By.cssSelector(String.format(
-							"%s> table > tbody > tr:nth-child(%s) > td:nth-child(%s)", tableBody, i, columnindex)));
+					columnValue = driver.findElement(
+							By.cssSelector(String.format("%s> table > tbody > tr:nth-child(%s) > td:nth-child(%s)", tableBody, i, columnindex)));
 				}
 				if (columnValue.getText().equals(value)) {
 					row = i;
@@ -81,8 +80,8 @@ public class TableFunction {
 		int indexOfSupplier = -1;
 		if (idLink.size() > 0) {
 			String stringIDOfSupplier = idLink.get(0).getAttribute("id");
-			stringIDOfSupplier = stringIDOfSupplier.substring(
-					stringIDOfSupplier.indexOf(indexString) + indexString.length(), stringIDOfSupplier.length());
+			stringIDOfSupplier = stringIDOfSupplier.substring(stringIDOfSupplier.indexOf(indexString) + indexString.length(),
+					stringIDOfSupplier.length());
 			indexOfSupplier = Integer.valueOf(stringIDOfSupplier);
 		}
 		return indexOfSupplier;
@@ -96,8 +95,7 @@ public class TableFunction {
 		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
 		int sumRow = tableRows.size();
 		for (int i = 1; i <= sumRow; i++) {
-			WebElement columnValue = driver
-					.findElement(By.xpath(ScreenObjects.TABLE_BODY_XPATH + "//tr[" + i + "]//td[" + columnindex + "]"));
+			WebElement columnValue = driver.findElement(By.xpath(ScreenObjects.TABLE_BODY_XPATH + "//tr[" + i + "]//td[" + columnindex + "]"));
 			if (columnValue.getText().equals(value)) {
 
 				return true;
@@ -115,8 +113,7 @@ public class TableFunction {
 		for (int i = 0; i < sumRow; i++) {
 			String DocTypevalue = driver.findElement(By.id("docTypeBtn" + i)).getText();
 			if (DocTypevalue.equals(value)) {
-				((JavascriptExecutor) driver).executeScript("arguments[0].click();",
-						driver.findElement(By.id("docTypeBtn" + i)));
+				((JavascriptExecutor) driver).executeScript("arguments[0].click();", driver.findElement(By.id("docTypeBtn" + i)));
 				break;
 			}
 		}
@@ -145,8 +142,7 @@ public class TableFunction {
 		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
 		int sumRow = tableRows.size();
 		for (int i = 1; i <= sumRow; i++) {
-			String foundValue = driver.findElement(By.xpath(ScreenObjects.TABLE_BODY_XPATH + "//tr[" + i + "]//td[3]"))
-					.getText();
+			String foundValue = driver.findElement(By.xpath(ScreenObjects.TABLE_BODY_XPATH + "//tr[" + i + "]//td[3]")).getText();
 			if (foundValue.equals(value)) {
 				i = i - 1;
 				WebElement usrSequenceIdStrBtn = driver.findElement(By.id("usrSequenceIdStrBtn" + i));
@@ -171,12 +167,10 @@ public class TableFunction {
 		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
 		int sumRow = tableRows.size();
 		for (int i = 1; i <= sumRow; i++) {
-			String foundValue = driver.findElement(By.xpath(ScreenObjects.TABLE_BODY_XPATH + "//tr[" + i + "]//td[3]"))
-					.getText();
+			String foundValue = driver.findElement(By.xpath(ScreenObjects.TABLE_BODY_XPATH + "//tr[" + i + "]//td[3]")).getText();
 			if (foundValue.equals(value)) {
 				i = i - 1;
-				((JavascriptExecutor) driver).executeScript("arguments[0].click();",
-						driver.findElement(By.id("spIdBtn" + i)));
+				((JavascriptExecutor) driver).executeScript("arguments[0].click();", driver.findElement(By.id("spIdBtn" + i)));
 				break;
 			}
 		}
@@ -193,7 +187,7 @@ public class TableFunction {
 		WebElement row = driver.findElement(By.xpath(ScreenObjects.TABLE_BODY_XPATH + "//tr[" + rowIndex + "]"));
 		row.click();
 	}
-	
+
 	public void filterPermission(String filterPermissionName) {
 		inputFilter(filterPermissionName, Permissions.PERMISSION_NAME_FILTER, true);
 	}
@@ -218,11 +212,9 @@ public class TableFunction {
 		filterButton.click();
 		WebElement filterColumn;
 		if (isXpath) {
-			filterColumn = (new WebDriverWait(driver, timeout))
-					.until(ExpectedConditions.presenceOfElementLocated(By.xpath(filterPath)));
+			filterColumn = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By.xpath(filterPath)));
 		} else {
-			filterColumn = (new WebDriverWait(driver, timeout))
-					.until(ExpectedConditions.presenceOfElementLocated(By.id(filterPath)));
+			filterColumn = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By.id(filterPath)));
 		}
 		action.scrollToElement(filterColumn);
 		filterColumn.clear();
@@ -246,8 +238,7 @@ public class TableFunction {
 	}
 
 	public void assertValueRow(String tableBodyXpath, int column, int row, String value) {
-		WebElement cell = driver
-				.findElement(By.xpath(String.format("%s//tr[%s]//td[%s]", tableBodyXpath, row, column)));
+		WebElement cell = driver.findElement(By.xpath(String.format("%s//tr[%s]//td[%s]", tableBodyXpath, row, column)));
 		// action.scrollToElement(cell);
 		assertEquals(cell.getText(), value);
 	}
@@ -255,8 +246,7 @@ public class TableFunction {
 	public String getValueAllRowchecked(int column, int row) {
 		String allValue = "";
 		for (int i = 1; i <= row; i++) {
-			WebElement cell = driver
-					.findElement(By.xpath(ScreenObjects.TABLE_BODY_XPATH + "//tr[" + i + "]//td[" + column + "]"));
+			WebElement cell = driver.findElement(By.xpath(ScreenObjects.TABLE_BODY_XPATH + "//tr[" + i + "]//td[" + column + "]"));
 			if (i == row) {
 				allValue = allValue + cell.getText();
 			} else {
@@ -267,15 +257,13 @@ public class TableFunction {
 	}
 
 	public WebElement getCellObject(int row, int column) {
-		WebElement cell = driver.findElement(
-				By.xpath(String.format("%s//tr[%s]//td[%s]", ScreenObjects.TABLE_BODY_XPATH, row, column)));
+		WebElement cell = driver.findElement(By.xpath(String.format("%s//tr[%s]//td[%s]", ScreenObjects.TABLE_BODY_XPATH, row, column)));
 		action.scrollToElementWithColumnNo(cell, column);
 		return cell;
 	}
 
 	public WebElement getCellObject(String tableXpath, int row, int column) {
-		WebElement cell = driver
-				.findElement(By.xpath(String.format("%s/tr[%s]/td[%s]/div/div", tableXpath, row, column)));
+		WebElement cell = driver.findElement(By.xpath(String.format("%s/tr[%s]/td[%s]/div/div", tableXpath, row, column)));
 		return cell;
 	}
 
@@ -286,15 +274,15 @@ public class TableFunction {
 	}
 
 	public WebElement getCellObjectSupplierCodeSet(int row, int column) {
-		WebElement cell = driver.findElement(By.xpath(String.format("%s//tr[%s]//td[%s]//div//div",
-				"//*[@id=\"codeSetGrid-AsnDeliveryCode\"]/div[3]/table/tbody", row, column)));
+		WebElement cell = driver.findElement(
+				By.xpath(String.format("%s//tr[%s]//td[%s]//div//div", "//*[@id=\"codeSetGrid-AsnDeliveryCode\"]/div[3]/table/tbody", row, column)));
 		return cell;
 	}
 
 	// In User Group grid.
 	public void clickArrowDownToShowPermission(int row, int column) {
-		WebElement cell = driver.findElement(By.xpath(
-				String.format("%s/tr[%s]/td[%s]/div/div/span/span", UserGroup.USERGROUP_GRID_XPATH, row, column)));
+		WebElement cell = driver
+				.findElement(By.xpath(String.format("%s/tr[%s]/td[%s]/div/div/span/span", UserGroup.USERGROUP_GRID_XPATH, row, column)));
 		cell.click();
 	}
 
@@ -311,8 +299,7 @@ public class TableFunction {
 	}
 
 	public String getValueRow(int column, int row) {
-		return getValueRow(String.format("%s//tr[%s]//td[%s]", ScreenObjects.TABLE_BODY_XPATH, row, column), column,
-				row);
+		return getValueRow(String.format("%s//tr[%s]//td[%s]", ScreenObjects.TABLE_BODY_XPATH, row, column), column, row);
 	}
 
 	private String getValueRow(String cellXpath, int column, int row) {
@@ -322,8 +309,7 @@ public class TableFunction {
 	}
 
 	public String getValueTableHeader(int column) {
-		WebElement header = driver
-				.findElement(By.xpath(ScreenObjects.TABLE_HEAD_XPATH + "//tr//th[" + column + "]//div[1]"));
+		WebElement header = driver.findElement(By.xpath(ScreenObjects.TABLE_HEAD_XPATH + "//tr//th[" + column + "]//div[1]"));
 		action.clickHorizontalScrollBarToElement(header);
 		return header.getText();
 	}
@@ -334,16 +320,14 @@ public class TableFunction {
 		int i = findRowByString("//*[@id='permGrid-" + docIndex + "']//div[3]//table//tbody", 2, permissionName, true);
 		System.out.println("Permission Index 1:" + i);
 
-		WebElement baseTable = driver
-				.findElement(By.xpath("//*[@id='permGrid-" + docIndex + "']//div[3]//table//tbody"));
+		WebElement baseTable = driver.findElement(By.xpath("//*[@id='permGrid-" + docIndex + "']//div[3]//table//tbody"));
 		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
 		int sumRow = tableRows.size();
 		System.out.println("Sum Row:" + sumRow);
 		int row = 5;
 		while (i == -1 && row <= sumRow) {
 			action.pause(2000);
-			WebElement element = driver.findElement(
-					By.xpath("//*[@id='permGrid-" + docIndex + "']//div[3]//table//tbody//tr[" + row + "]"));
+			WebElement element = driver.findElement(By.xpath("//*[@id='permGrid-" + docIndex + "']//div[3]//table//tbody//tr[" + row + "]"));
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].scrollIntoView(true)", element);
 			i = findRowByString("//*[@id='permGrid-" + docIndex + "']//div[3]//table//tbody", 2, permissionName, true);
@@ -351,12 +335,8 @@ public class TableFunction {
 		}
 		System.out.println("Permission Index 2:" + i);
 
-		assertEquals(
-				action.isElementPresent(
-						By.xpath("//*[@id='permGrid-" + docIndex + "']//div[3]//table//tbody//tr[" + i + "]//td[2]")),
-				true, "Can't find permission, i=-1");
-		action.assertTextEqual(
-				By.xpath("//*[@id='permGrid-" + docIndex + "']//div[3]//table//tbody//tr[" + i + "]//td[2]"),
-				permissionName);
+		assertEquals(action.isElementPresent(By.xpath("//*[@id='permGrid-" + docIndex + "']//div[3]//table//tbody//tr[" + i + "]//td[2]")), true,
+				"Can't find permission, i=-1");
+		action.assertTextEqual(By.xpath("//*[@id='permGrid-" + docIndex + "']//div[3]//table//tbody//tr[" + i + "]//td[2]"), permissionName);
 	}
 }
