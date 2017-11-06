@@ -8,9 +8,14 @@
 		</classes>	
   	</test>
   	
-  	<test name="Update Customer Defined Profile">
+  	<test name="Update Customer Defined Profile Steps01_06">
 		<classes>
 				<class name="com.abb.ventyx.axis.support.Profile_Update_Customer_Defined_Steps01_06" />
+		</classes>	
+  	</test>
+  	
+  	<test name="Update Customer Defined Profile Step_07">
+		<classes>
 		
 				<class name="com.abb.ventyx.axis.support.Profile_Update_Customer_Defined_Step07" />
 		</classes>	
@@ -22,13 +27,13 @@
 		</classes>	
   	</test>
   	
-  	 <test name="Update Default Profile">
+  	 <test name="Update Default Profile Steps01_08">
 		<classes>
 				<class name="com.abb.ventyx.axis.support.Profile_Update_Default_Profile_Steps01_08" />
 		</classes>	
   	</test>
   	
-  	<test name=" Update Default Profile Step 9">
+   	<test name="Update Default Profile Step_09">
 		<classes>		
 				<class name="com.abb.ventyx.axis.support.Profile_Update_Default_Profile_Step09" />
 		</classes>	
