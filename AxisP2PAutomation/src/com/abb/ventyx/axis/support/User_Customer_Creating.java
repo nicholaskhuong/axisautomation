@@ -4,8 +4,6 @@ import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
@@ -47,11 +45,7 @@ public class User_Customer_Creating extends BaseTestCase {
 	@Test(dependsOnMethods = "openCustomerScreen", alwaysRun = true)
 	public void clickFiterButtonOnCustomerScreen() {
 		table = new TableFunction(driver);
-		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
-		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
-		WebElement filterCustomerName = (new WebDriverWait(driver, 30))
-				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Users.USER_ID_FILTER)));
-		filterCustomerName.sendKeys("QATest");
+		table.inputFilter("435", Users.USER_NUMBER_FILTER, true);
 		action.pause(waitTime);
 		assertEquals(table.getValueRow(2, 1), "QATest");
 	}
@@ -68,12 +62,7 @@ public class User_Customer_Creating extends BaseTestCase {
 	@Test(dependsOnMethods = "clickCustomerIDOnCustomerScreen", alwaysRun = true)
 	public void clickFiterButtonOnMaintainCustomerUsersScreen() {
 		action.pause(waitTime);
-		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
-		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
-		WebElement filterCustomerName = (new WebDriverWait(driver, 30))
-				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Users.USER_ID_FILTER)));
-		filterCustomerName.clear();
-		filterCustomerName.sendKeys("axisuser1");
+		table.inputFilter("axisuser1", Users.USER_ID_FILTER, true);
 		action.pause(waitTime);
 		assertEquals(table.getValueRow(2, 1), "axisuser1");
 	}
