@@ -23,7 +23,7 @@ import com.abb.ventyx.utilities.TableFunction;
 @Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class Permissions_Creating extends BaseTestCase {
 
-	public static String permissionName = "Permision 61093109";
+	public static String permissionName = "Permision 19197527";
 	public static String purchaseorderTypeName = "PurchaseOrder";
 	public static String userTypeCSA = "CSA";
 	String addPermissionHeader = "Add Permission";
@@ -48,7 +48,7 @@ public class Permissions_Creating extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PERMISSIONS));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
-
+		action.waitObjVisible(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 		assertEquals(table.getValueTableHeader(1), "Permission ID");
 		assertEquals(table.getValueTableHeader(2), "Document Type");
 		assertEquals(table.getValueTableHeader(3), "Permission Name");
@@ -79,7 +79,7 @@ public class Permissions_Creating extends BaseTestCase {
 
 	}
 	// Step 3
-	@Test(dependsOnMethods = "openMaintainPermissionScreen", alwaysRun = true)
+	@Test(dependsOnMethods = "createPermissionwithValidValue", alwaysRun = true)
 	public void checkNewlyCreatedPermissionDisplayingOnTheGrid() {
 
 		// Filter
@@ -102,7 +102,7 @@ public class Permissions_Creating extends BaseTestCase {
 	}
 
 	// Step 4
-	@Test(dependsOnMethods = "createPermissionwithValidValue", alwaysRun = true)
+	@Test(dependsOnMethods = "checkNewlyCreatedPermissionDisplayingOnTheGrid", alwaysRun = true)
 	public void checkNewPermissionAvailableInSupplierUserGroup() {
 
 		action.waitObjVisibleAndClick(By.id(AxisConfigMenu.AXIS_ADMIN_ID));
@@ -125,7 +125,7 @@ public class Permissions_Creating extends BaseTestCase {
 
 		action.pause(2000);
 
-		table.isPermissionExisting(permissionName, row - 1);
+		assertEquals(table.isPermissionExisting(permissionName, row - 1), true);
 	}
 
 	@Test(dependsOnMethods = "checkNewPermissionAvailableInSupplierUserGroup", alwaysRun = true)
@@ -149,7 +149,7 @@ public class Permissions_Creating extends BaseTestCase {
 
 		action.pause(2000);
 
-		table.isPermissionExisting(permissionName, row - 1);
+		assertEquals(table.isPermissionExisting(permissionName, row - 1), true);
 
 	}
 
@@ -177,7 +177,7 @@ public class Permissions_Creating extends BaseTestCase {
 		table.clickArrowDownToShowPermission(row, 2);
 
 		action.pause(2000);
-		table.isPermissionExisting(permissionName, row - 1);
+		assertEquals(table.isPermissionExisting(permissionName, row - 1), true);
 		action.waitObjVisibleAndClick(By.id(AxisConfigMenu.CUSTOMER_MAINTENANCE_ID));
 
 	}

@@ -11,9 +11,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
+import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.Permissions;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
+import com.abb.ventyx.axis.objects.pagedefinitions.UserGroup;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
@@ -26,45 +28,106 @@ import com.abb.ventyx.utilities.TableFunction;
 public class Permissions_Deleting extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
-
+	PermissionsAction permissionsAction;
+	String supplierAdminUserGroupName = "SUPP_ADMIN";
+	String POTypeDescription = "Purchase Orders";
 	@Test
 	public void openMaintainPermissionScreen() throws Exception {
-		// Step 1
-		PermissionsAction permissionsAction = new PermissionsAction(driver);
-		permissionsAction.clickSystemConfigurationMenu();
-		permissionsAction.clickPermissionsSubMenu();
-	}
-
-	@Test(dependsOnMethods = "openMaintainPermissionScreen")
-	public void deletePermisison() {
+		// Step 1	
+		permissionsAction = new PermissionsAction(driver);
 		action = new ScreenAction(driver);
 		table = new TableFunction(driver);
-		PermissionsAction permissionsAction = new PermissionsAction(driver);
-		permissionsAction.filterPermissionbyPermissionName(Permissions_Creating.permissionName);
-		permissionsAction.filterPermissionbyDocumentType(Permissions_Updating.invoiceTypeDescription);
-		action.pause(2000);
 
-		// final String PERMISION_ID_A =
-		// driver.findElement(By.id(Permissions.ROW1)).getText();
-		/*int numberOfRowsBeforeDelete = permissionsAction.countRow(Permissions.TABLEBODY);
-		WebElement trashBinIcon = driver.findElement(By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr["
-				+ numberOfRowsBeforeDelete + "]//td[5]"));
+		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION));
+		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PERMISSIONS));
+		action.waitObjVisible(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
 
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", trashBinIcon);
-		trashBinIcon.click();
-		action.waitObjVisibleAndClick(obj);*/
+	}
+	// Step 2
+	@Test(dependsOnMethods = "openMaintainPermissionScreen" , alwaysRun = true)
+	public void clickTrashBinIcon() {
+
+		action.waitObjVisible(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
+		driver.findElement(By.cssSelector(ScreenObjects.FILTER_BTN_CSS)).click();
+		action.pause(1000);
+		action.waitObjVisible(By.xpath(Permissions.PERMISSION_NAME_FILTER));
+		driver.findElement(By.xpath(Permissions.PERMISSION_NAME_FILTER)).sendKeys(Permissions_Creating.permissionName);		
+		action.pause(3000);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH, 1, 5));
 		action.waitObjVisible(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION));
 		// Make sure this is a Confirmation of deleting process
 		assertThat(driver.findElement(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION)).getText(), containsString(Messages.DELETE_CONFIRM));
 
+
+	}
+	// Step 3
+	@Test(dependsOnMethods = "clickTrashBinIcon", alwaysRun = true)
+	public void clickYes() {
 		WebElement yesButton = (new WebDriverWait(driver, 30)).until(ExpectedConditions.presenceOfElementLocated(By
 				.cssSelector(Permissions.DELETE_YES)));
 		yesButton.click();
-
 		action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)).getText(),
 				Messages.PERMISSION_DELETED_SUCCESSFULLY);
+	}
 
+	// Step 4
+	@Test(dependsOnMethods = "clickYes", alwaysRun = true)
+	public void checkNewPermissionUnavailableInSupplierUserGroup() {
+		action.waitObjVisibleAndClick(By.id(AxisConfigMenu.AXIS_ADMIN_ID));
+		// Supplier Usergroup sub-menu
+		action.waitObjVisibleAndClick(By.id(AxisConfigMenu.SUPPLIER_USERGROUP_ID));
+
+		action.waitObjVisible(By.id(UserGroup.SYSTEM_TAB_ID));
+
+		action.waitObjVisibleAndClick(By.id(UserGroup.ADMINUSERGROUP_ID));
+		action.waitObjVisible(By.cssSelector(UserGroup.ADMIN_USERGROUPNAME_CSS));
+
+		action.assertTextEqual(By.cssSelector(UserGroup.ADMIN_USERGROUPNAME_CSS), supplierAdminUserGroupName);
+
+		action.pause(2000);
+		int row = table.findRowByString(UserGroup.USERGROUP_GRID_XPATH, 3, POTypeDescription, true);
+
+		assertEquals(table.getCellObjectUserGroup(UserGroup.USERGROUP_GRID_XPATH, row, 3).getText(), POTypeDescription);
+
+		table.clickArrowDownToShowPermission(row, 2);
+
+		action.pause(2000);
+		assertEquals(table.isPermissionExisting(Permissions_Creating.permissionName, row - 1), false);
+
+	}
+	// Step 5
+	@Test(dependsOnMethods = "checkNewPermissionUnavailableInSupplierUserGroup", alwaysRun = true)
+	public void clickTrashBinIconFistPermisson() {
+		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION));
+		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PERMISSIONS));
+		action.waitObjVisible(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
+		
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH, 1, 5));
+		action.waitObjVisible(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION));
+		// Make sure this is a Confirmation of deleting process
+		assertThat(driver.findElement(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION)).getText(), containsString(Messages.DELETE_CONFIRM));
+
+	}
+	// Step 6
+	@Test(dependsOnMethods = "clickTrashBinIconFistPermisson", alwaysRun = true)
+	public void clickNo() {
+		WebElement NoButton = (new WebDriverWait(driver, 30)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(Permissions.DELETE_NO)));
+		NoButton.click();
+		action.waitObjInvisible(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION));
+		action.pause(2000);
+		action.assertTitleScreen("Maintain Permissions");
+	}
+	// Step 7
+	@Test(dependsOnMethods = "clickNo", alwaysRun = true)
+	public void deletePermissionAssigningToUserGroup() {
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH, 1, 5));
+		action.waitObjVisible(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION));
+		WebElement yesButton = (new WebDriverWait(driver, 30)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(Permissions.DELETE_YES)));
+		yesButton.click();
+		action.pause(1000);
+		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.DELELE_PERMISSION_IN_USE);
 	}
 }

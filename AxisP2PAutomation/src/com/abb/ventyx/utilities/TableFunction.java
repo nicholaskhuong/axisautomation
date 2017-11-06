@@ -315,7 +315,7 @@ public class TableFunction {
 	}
 
 	// Check Permission under document type in User Group grid
-	public void isPermissionExisting(String permissionName, int docIndex) {
+	public boolean isPermissionExisting(String permissionName, int docIndex) {
 
 		int i = findRowByString("//*[@id='permGrid-" + docIndex + "']//div[3]//table//tbody", 2, permissionName, true);
 		System.out.println("Permission Index 1:" + i);
@@ -334,9 +334,15 @@ public class TableFunction {
 			row = row + 3;
 		}
 		System.out.println("Permission Index 2:" + i);
+		/*assertEquals(action.isElementPresent(By.xpath("//*[@id='permGrid-" + docIndex + "']//div[3]//table//tbody//tr[" + i + "]//td[2]")), true,
+		"Can't find permission, i=-1");*/
+		//action.assertTextEqual(By.xpath("//*[@id='permGrid-" + docIndex + "']//div[3]//table//tbody//tr[" + i + "]//td[2]"), permissionName);
 
-		assertEquals(action.isElementPresent(By.xpath("//*[@id='permGrid-" + docIndex + "']//div[3]//table//tbody//tr[" + i + "]//td[2]")), true,
-				"Can't find permission, i=-1");
-		action.assertTextEqual(By.xpath("//*[@id='permGrid-" + docIndex + "']//div[3]//table//tbody//tr[" + i + "]//td[2]"), permissionName);
+		if(action.isElementPresent(By.xpath("//*[@id='permGrid-" + docIndex + "']//div[3]//table//tbody//tr[" + i + "]//td[2]"))&&driver.findElement(By.xpath("//*[@id='permGrid-" + docIndex + "']//div[3]//table//tbody//tr[" + i + "]//td[2]")).getText().equals(permissionName))
+			return true;
+		return false;
+		
+		
+		
 	}
 }

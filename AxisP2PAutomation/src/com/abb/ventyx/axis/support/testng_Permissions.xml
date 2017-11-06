@@ -16,5 +16,4 @@
 				<class name="com.abb.ventyx.axis.support.Permissions_Deleting" />
 		</classes>
 	</test>	
-  	<!-- Test -->
-</suite> <!-- Suite -->
+</suite> 

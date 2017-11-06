@@ -57,7 +57,7 @@ public class Messages {
 	public static final String PERMISSION_CREATED_SUCCESSFULLY = "Permission successfully created";
 	public static final String PERMISSION_UPADTED_SUCCESSFULLY = "Permission successfully updated";
 	public static final String PERMISSION_DELETED_SUCCESSFULLY = "Permission successfully deleted";
-
+	public static final String DELELE_PERMISSION_IN_USE = "Unable to delete. Permission is in use in one or more user groups.";
 	// Users under Customer Maintenance menu in Customer view
 	public static final String ADDRESS_CONTACT_SUCCESSFULLY_UPDATED = "Address & Details successfully updated";
 	public static final String INVALIED_EMAIL_MESSAGE = "Please enter valid email addresses with comma separator";
