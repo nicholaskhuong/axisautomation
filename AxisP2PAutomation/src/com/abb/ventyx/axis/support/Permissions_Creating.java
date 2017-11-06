@@ -55,7 +55,7 @@ public class Permissions_Creating extends BaseTestCase {
 		assertEquals(table.getValueTableHeader(4), "User Type");
 	}
 
-	// Step 2, 3
+	// Step 2
 	@Test(dependsOnMethods = "openMaintainPermissionScreen", alwaysRun = true)
 	public void createPermissionwithValidValue() {
 
@@ -67,15 +67,20 @@ public class Permissions_Creating extends BaseTestCase {
 		action.inputTextField(Permissions.PERMISSION_NAME, permissionName);
 		action.pause(500);
 		permissionsAction.selectDocTypebyText(POTypeDescription);
-		// action.pause(2000);
 		permissionsAction.selectUserType(Permissions.AXIS_ADMIN);
 		permissionsAction.selectUserType(Permissions.CUSTOMER);
 		permissionsAction.selectUserType(Permissions.SUPPLIER);
-		action.pause(4000);
+		action.pause(2000);
 		action.clickBtn(By.id(Permissions.SAVE));
-	
+
 		action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)).getText(), Messages.PERMISSION_CREATED_SUCCESSFULLY);
+
+
+	}
+	// Step 3
+	@Test(dependsOnMethods = "openMaintainPermissionScreen", alwaysRun = true)
+	public void checkNewlyCreatedPermissionDisplayingOnTheGrid() {
 
 		// Filter
 		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
@@ -94,7 +99,6 @@ public class Permissions_Creating extends BaseTestCase {
 
 		assertEquals(action.getTextField(By.xpath("//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']//tr[1]//td[4]")),
 				userTypeCSA);
-
 	}
 
 	// Step 4
@@ -111,14 +115,14 @@ public class Permissions_Creating extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(UserGroup.ADMIN_USERGROUPNAME_CSS));
 
 		action.assertTextEqual(By.cssSelector(UserGroup.ADMIN_USERGROUPNAME_CSS), supplierAdminUserGroupName);
-		System.out.println("Perla Perla 1");
+
 		action.pause(2000);
 		int row = table.findRowByString(UserGroup.USERGROUP_GRID_XPATH, 3, POTypeDescription, true);
 
 		assertEquals(table.getCellObjectUserGroup(UserGroup.USERGROUP_GRID_XPATH, row, 3).getText(), POTypeDescription);
 
 		table.clickArrowDownToShowPermission(row, 2);
-		System.out.println("Row: " + row);
+
 		action.pause(2000);
 
 		table.isPermissionExisting(permissionName, row - 1);
@@ -135,14 +139,14 @@ public class Permissions_Creating extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(UserGroup.ADMIN_USERGROUPNAME_CSS));
 
 		action.assertTextEqual(By.cssSelector(UserGroup.ADMIN_USERGROUPNAME_CSS), axisAdminUserGroupName);
-		System.out.println("Perla Perla 1");
+
 		action.pause(2000);
 		int row = table.findRowByString(UserGroup.USERGROUP_GRID_XPATH, 3, POTypeDescription, true);
 
 		assertEquals(table.getCellObjectUserGroup(UserGroup.USERGROUP_GRID_XPATH, row, 3).getText(), POTypeDescription);
 
 		table.clickArrowDownToShowPermission(row, 2);
-		System.out.println("Row: " + row);
+
 		action.pause(2000);
 
 		table.isPermissionExisting(permissionName, row - 1);
@@ -164,21 +168,21 @@ public class Permissions_Creating extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(UserGroup.ADMIN_USERGROUPNAME_CSS));
 
 		action.assertTextEqual(By.cssSelector(UserGroup.ADMIN_USERGROUPNAME_CSS), custAdminUserGroupName);
-		System.out.println("Perla Perla 1");
+
 		action.pause(2000);
 		int row = table.findRowByString(UserGroup.USERGROUP_GRID_XPATH, 3, POTypeDescription, true);
 
 		assertEquals(table.getCellObjectUserGroup(UserGroup.USERGROUP_GRID_XPATH, row, 3).getText(), POTypeDescription);
 
 		table.clickArrowDownToShowPermission(row, 2);
-		System.out.println("Row: " + row);
+
 		action.pause(2000);
 		table.isPermissionExisting(permissionName, row - 1);
 		action.waitObjVisibleAndClick(By.id(AxisConfigMenu.CUSTOMER_MAINTENANCE_ID));
 
 	}
 
-	// Step 5, 6, 7
+	// Step 5, 6
 	@Test(dependsOnMethods = "checkNewPermissionAvailableInCustomerUserGroup", alwaysRun = true)
 	public void addPermissonWithoutMandatoryField() throws InterruptedException {
 
@@ -187,38 +191,38 @@ public class Permissions_Creating extends BaseTestCase {
 
 		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
 
-		// Step 6
+		// Step 5
 		action.waitObjVisibleAndClick(By.id(Permissions.SAVE));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.EMPTYPERMISSIONNAME);
 
-		// Step 7
+		// Step 6
 		action.inputTextField(Permissions.PERMISSION_NAME, "ECHO 1");
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		action.clickBtn(By.id(Permissions.SAVE));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.EMPTYUSERTYPE);
 	}
 
-	// Step 8, 9, 10
+	// Step 7, 8, 9, 10
 	@Test(dependsOnMethods = "addPermissonWithoutMandatoryField", alwaysRun = true)
 	public void checkUnsavedChangesDialog() throws InterruptedException {
-
+		// Step 7
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.CANCEL_ID));
 		action.assertTextEqual(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION), Messages.UNSAVED_CHANGE);
 
-		// Step 9
+		// Step 8
 
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.NO_BTN_ID));
 		action.pause(1000);
 		action.assertTextEqual(By.cssSelector(Permissions.PERMISSIONWINDOWHEADER), addPermissionHeader);
 
-		// Step 10
+		// Step 9
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.CANCEL_ID));
 
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.YES_BTN_ID));
 
 		action.pause(2000);
 		action.assertTextEqual(By.cssSelector(Permissions.PERMISSIONHEADER), maintainPermissionHeader);
-		// Step 11
+		// Step 10
 		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
 
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.CANCEL_ID));
@@ -226,5 +230,7 @@ public class Permissions_Creating extends BaseTestCase {
 		assertEquals(action.isElementPresent(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION)), false);
 		assertEquals(action.isElementPresent(By.cssSelector(Permissions.PERMISSIONWINDOWHEADER)), false);
 		action.assertTextEqual(By.cssSelector(Permissions.PERMISSIONHEADER), maintainPermissionHeader);
+
 	}
+
 }
