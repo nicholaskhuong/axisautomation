@@ -22,6 +22,8 @@ public class Profile_Create extends BaseTestCase {
 	ScreenAction action;
 	BaseDropDownList list;
 	int row;
+	String nameCustomer = "QATest2";
+	String profileName ="Profile1";
 	
 	@Test
 	public void openMaintainCustomerDefinedProfilesScreen(){
@@ -39,12 +41,12 @@ public class Profile_Create extends BaseTestCase {
 	@Test(dependsOnMethods = "clickAddButton", alwaysRun = true)
 	public void inputProfileNameandCustomerName() {
 		action.waitObjVisible(By.id(Profiles.PROFILE_NAME_ID));
-		action.inputTextField(Profiles.PROFILE_NAME_ID, "Profile3");
+		action.inputTextField(Profiles.PROFILE_NAME_ID, profileName);
 		action.waitObjVisible(By.className(Profiles.CUSTOMER_CLASS));
 		WebElement customerClass = driver.findElement(By.className(Profiles.CUSTOMER_CLASS));
-		customerClass.sendKeys("QATest");
+		customerClass.sendKeys(nameCustomer);
 		list = new BaseDropDownList(driver,Profiles.LIST_CSS);
-		row = list.findItemInDropDownList("QATest");
+		row = list.findItemInDropDownList(nameCustomer);
 		WebElement rowClick = (new WebDriverWait(driver, 60)).until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(Profiles.LIST_CSS + "> tbody > tr:nth-child(" + (row - 1) + ") > td")));
 		rowClick.click();
@@ -102,9 +104,9 @@ public class Profile_Create extends BaseTestCase {
 		action.inputTextField(Profiles.PROFILE_NAME_ID, "");
 		action.waitObjVisible(By.className(Profiles.CUSTOMER_CLASS));
 		WebElement customerClass = driver.findElement(By.className(Profiles.CUSTOMER_CLASS));
-		customerClass.sendKeys("QATest");
+		customerClass.sendKeys(nameCustomer);
 		list = new BaseDropDownList(driver,Profiles.LIST_CSS);
-		row = list.findItemInDropDownList("QATest");
+		row = list.findItemInDropDownList(nameCustomer);
 		WebElement rowClick = (new WebDriverWait(driver, 60)).until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(Profiles.LIST_CSS + "> tbody > tr:nth-child(" + (row - 1) + ") > td")));
 		rowClick.click();
@@ -117,10 +119,10 @@ public class Profile_Create extends BaseTestCase {
 	@Test(dependsOnMethods = "inputMissingProfileName", alwaysRun = true)
 	public void inputDuplicationProfileName() {
 		action.waitObjVisible(By.id(Profiles.PROFILE_NAME_ID));
-		action.inputTextField(Profiles.PROFILE_NAME_ID, "Profile3");
+		action.inputTextField(Profiles.PROFILE_NAME_ID, profileName);
 		action.waitObjVisible(By.className(Profiles.CUSTOMER_CLASS));
 		WebElement customerClass = driver.findElement(By.className(Profiles.CUSTOMER_CLASS));
-		customerClass.sendKeys("QATest");
+		customerClass.sendKeys(nameCustomer);
 		action.clickCheckBoxN(4);
 		action.waitObjVisible(By.id(Profiles.SAVE_BTN));
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));

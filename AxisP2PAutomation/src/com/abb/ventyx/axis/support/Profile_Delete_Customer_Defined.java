@@ -23,12 +23,12 @@ public class Profile_Delete_Customer_Defined extends BaseTestCase {
 	BaseDropDownList list;
 	TableFunction table;
 	int waitTime = 1000;
-	String customerName = "QA Test";
+	String customerName = "QATest2";
 	int i;
 	WebElement index;
 	WebElement profile;
-	String UserLogin = "mail222@abb.com";
-	String UserPassword = "Testuser2";
+	String UserLogin = "admin_customer22@abb.com";
+	String UserPassword = "Testuser1";
 	
 	//Step 1
 	@Test
@@ -44,41 +44,37 @@ public class Profile_Delete_Customer_Defined extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 		ScreenAction action = new ScreenAction(driver);
 		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
-		action.inputTextField(ScreenObjects.FILTER_FIELD_ID, "QATest");
+		action.inputTextField(ScreenObjects.FILTER_FIELD_ID, customerName);
 	}
 	
 	//#1: Default Profile
 	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomerScreen", alwaysRun = true)
 	public void checkDefaultProfileOnMaintainCustomerScreen(){
 		action.pause(waitTime);
-		i = table.findRowByString(1, customerName);
 		action.clickHorizontalScrollBar();
 		index = table.getCellObject(1, 6);
-		action.pause(waitTime);
 		index.isDisplayed();
 	}	
 	//#2 Non-default Profile
 	@Test(dependsOnMethods = "checkDefaultProfileOnMaintainCustomerScreen", alwaysRun = true)
 	public void checkNonDefaultProfileOnMaintainCustomerScreen(){
-		table = new TableFunction(driver);
-		i = table.findRowByString(4, customerName);
-		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
-		index = table.getCellObject(4, 6);
+		action.clickHorizontalScrollBar();
+		index = table.getCellObject(2, 6);
 		index.isEnabled();
 	}
 	
 	@Test(dependsOnMethods = "checkNonDefaultProfileOnMaintainCustomerScreen", alwaysRun = true)
 	public void clickDeleteIconOnMaintainCustomerScreen() {
 		index.click();
-		action.pause(waitTime);
-		action.clickBtn(By.cssSelector(Profiles.DELETE_YES));
+		action.waitObjVisibleAndClick(By.cssSelector(Profiles.DELETE_YES));
 		action.checkAddSuccess(Messages.MESSAGE_DELETE_SUCCESSFULLY); 
 	}
 	
 	//Step3
 	@Test(dependsOnMethods = "clickDeleteIconOnMaintainCustomerScreen", alwaysRun = true)
 	public void logoutFromMaintainCustomerScreen(){
+		action.pause(waitTime);
 		action.signOut();
 	}
 	

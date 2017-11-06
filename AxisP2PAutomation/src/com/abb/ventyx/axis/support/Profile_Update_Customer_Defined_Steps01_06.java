@@ -5,9 +5,6 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
@@ -30,11 +27,12 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 	TableFunction table1;
 	int row;
 	int waitTime = 1000;
-	String profileName = "Profile3";
-	String profileNameEdited = "Profile4";
+	String nameCustomer = "QATest2";
+	String profileName ="Profile1";
+	String profileNameEdited = "Profile2";
 	WebElement index;
-	String userLogin = "mail222@abb.com";
-	String userPassword = "Testuser2";
+	String userLogin = "admin_customer22@abb.com";
+	String userPassword = "Testuser1";
 	String adminLogin = "axis_support@abb.com";
 	String adminPassword = "Testuser1";
 	String profileName_AccountCustomer = "POProfile";
@@ -53,21 +51,23 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
-		action.inputTextField(ScreenObjects.FILTER_FIELD_ID, "QATest");
+		action.inputTextField(ScreenObjects.FILTER_FIELD_ID, nameCustomer);
 	}
 	
 	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomerScreen", alwaysRun = true)
 	public void clickPencilIconOnMaintainCustomerScreen(){
 		action.pause(waitTime);
 		action.clickHorizontalScrollBar();
-		index = table.getCellObject(4, 5);
+		index = table.getCellObject(2, 5);
 		index.click();
 	}
 
 	@Test(dependsOnMethods = "clickPencilIconOnMaintainCustomerScreen", alwaysRun = true)
 	public void checkStatusProfileAndCustomerName(){
+		action.waitObjVisible(By.id(Profiles.PROFILE_NAME_ID));
 		WebElement profileName = driver.findElement(By.id(Profiles.PROFILE_NAME_ID));
 		profileName.isEnabled();
+		action.waitObjVisible(By.id(Profiles.CUSTOMER_NAME));
 		WebElement customerName = driver.findElement(By.id(Profiles.CUSTOMER_NAME));
 		customerName.isDisplayed();
 	}
@@ -101,13 +101,14 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 	public void openMaintainCustomerScreenWithAccountCustomer(){
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE_WITH_CUSTOMER));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PROFILE_CUSTOMER));
-	}
+		action.pause(waitTime);
+		}
 	
 	@Test(dependsOnMethods = "openMaintainCustomerScreenWithAccountCustomer", alwaysRun = true)
 	public void clickEditIconOnMaintainCustomerScreen(){
-		
+		action.pause(waitTime);
 		action.clickHorizontalScrollBar();
-		index = table.getCellObject(4, 4);
+		index = table.getCellObject(2, 4);
 		index.click();
 		action.waitObjVisibleAndClick(By.id(Profiles.CANCEL_BTN));
 	}
@@ -133,19 +134,21 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
-		action.inputTextField(ScreenObjects.FILTER_FIELD_ID, "QATest");
+		action.inputTextField(ScreenObjects.FILTER_FIELD_ID, nameCustomer);
 	}
 
 	@Test(dependsOnMethods = "clickFiterButtonAgainOnMaintainCustomerScreen", alwaysRun = true)
 	public void clickEditIconAgainOnMaintainCustomerScreen(){
+		action.pause(waitTime);
 		action.clickHorizontalScrollBar();
-		index = table.getCellObject(4, 5);
+		index = table.getCellObject(2, 5);
 		index.click();
 	}
 	
 	@Test(dependsOnMethods = "clickEditIconAgainOnMaintainCustomerScreen", alwaysRun = true)
 	public void editAuthorisedDocumentTypes(){
 		action.waitObjVisibleAndClick(By.id("showConfigBtn-AdvanceShippingNotice"));
+		action.pause(waitTime);
 		List<WebElement> checkBoxIndex0 = driver.findElements(By.xpath("//*[@id='configurationGrid-AdvanceShippingNotice']/div[3]/table/tbody/tr[1]/td[1]"));
 		checkBoxIndex0.get(0).click();
 	}
