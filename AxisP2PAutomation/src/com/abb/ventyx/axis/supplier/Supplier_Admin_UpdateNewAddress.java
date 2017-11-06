@@ -61,9 +61,14 @@ public class Supplier_Admin_UpdateNewAddress extends BaseTestCase {
 	}
 
 	@Test(dependsOnMethods = "checkAndDeletExistingAddress")
-	public void addNewAddress() throws InterruptedException {
+	public void addNewAddress() {
 		action.waitObjVisible(By.id(MaintainSuppliers.ADDRESS_POPUP));
-		commonMethod();
+		try {
+			commonMethod();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		action.clickBtn(By.cssSelector(MaintainSuppliers.OK_BUTTON));
 		action.pause(milliseconds);
 		action.waitObjVisible(By.id(ScreenObjects.YES_BTN_ID));
@@ -73,18 +78,22 @@ public class Supplier_Admin_UpdateNewAddress extends BaseTestCase {
 	}
 
 	@Test(dependsOnMethods = "addNewAddress")
-	public void verifyElement() throws InterruptedException {
+	public void verifyElement() {
 		action.waitObjVisible(By.id(MaintainSuppliers.SUPPLIER_NAME));
 		action.clickBtn(By.cssSelector(MaintainSuppliers.ADDICON));
 		action.waitObjVisible(By.id(MaintainSuppliers.ADDRESS_POPUP));
 		action.clickBtn(By.cssSelector(MaintainSuppliers.OK_BUTTON));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		action.waitObjVisible(By.id(MaintainSuppliers.ADDRESS_POPUP));
-		commonMethod();
+		try {
+			commonMethod();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		action.clickBtn(By.cssSelector(MaintainSuppliers.CANCEL_BUTTON));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
-		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(),
-				Messages.UNSAVED_CHANGE);
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
 		driver.findElement(By.id(ScreenObjects.NO_BTN_ID)).click();
 
 	}

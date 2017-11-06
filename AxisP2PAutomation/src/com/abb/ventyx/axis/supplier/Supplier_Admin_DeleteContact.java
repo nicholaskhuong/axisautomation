@@ -16,7 +16,7 @@ import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
 
 @ALM(id = "648")
-@Credentials(user = "donna202@abb.com", password = "Testuser1")
+@Credentials(user = "supplier_user_4@abb.com", password = "Testuser1")
 public class Supplier_Admin_DeleteContact extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
@@ -43,8 +43,7 @@ public class Supplier_Admin_DeleteContact extends BaseTestCase {
 		action.clickBtn(By.cssSelector(MaintainSuppliers.DELETE_ICON));
 
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
-		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(),
-				Messages.DELETE_CONTACT_MESSAGE);
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.DELETE_CONTACT_MESSAGE);
 		action.pause(milliseconds);
 		driver.findElement(By.id(ScreenObjects.NO_BTN_ID)).click();
 		action.waitObjVisible(By.cssSelector(MaintainSuppliers.EDIT_SUPPLIER_POPUP));
@@ -58,8 +57,7 @@ public class Supplier_Admin_DeleteContact extends BaseTestCase {
 		action.clickBtn(By.cssSelector(MaintainSuppliers.DELETE_ICON));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
 		action.pause(milliseconds);
-		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(),
-				Messages.DELETE_CONTACT_MESSAGE);
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.DELETE_CONTACT_MESSAGE);
 		driver.findElement(By.cssSelector(MaintainSuppliers.YES_BTN)).click();
 		action.waitObjVisible(By.cssSelector(MaintainSuppliers.EDIT_SUPPLIER_POPUP));
 		assertEquals(driver.findElement(By.cssSelector(MaintainSuppliers.EDIT_SUPPLIER_POPUP)).getText(), expected);

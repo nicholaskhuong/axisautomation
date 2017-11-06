@@ -17,13 +17,13 @@ import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
 
 @ALM(id = "603")
-@Credentials(user = "salem5@abb.com", password = "Testuser1")
+@Credentials(user = "supplier_user_2@abb.com", password = "Testuser1")
 public class SupplierUser_Updating extends BaseTestCase {
 	String userId = "salem 10";
 	String passwordValid = "Testuser2";
 	String confirmPasswordNotMap = "Testuser300";
 	String confirmPasswordValid = "Testuser2";
-	String email = "salem10@abb.com";
+	String email = "salem13@abb.com";
 	String userNo = "";
 	ScreenAction action;
 	TableFunction table;
