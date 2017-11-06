@@ -24,6 +24,7 @@ public class Profile_Create extends BaseTestCase {
 	int row;
 	String nameCustomer = "QATest2";
 	String profileName ="Profile1";
+	int milliseconds = 1000;
 	
 	@Test
 	public void openMaintainCustomerDefinedProfilesScreen(){
@@ -61,6 +62,7 @@ public class Profile_Create extends BaseTestCase {
 		action.clickCheckBoxN(4);
 		action.waitObjVisible(By.id(Profiles.SAVE_BTN));
 		action.clickBtn(By.id(Profiles.SAVE_BTN));
+		action.pause(milliseconds);
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.MESSAGE_SUCCESSFULLY);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 	}

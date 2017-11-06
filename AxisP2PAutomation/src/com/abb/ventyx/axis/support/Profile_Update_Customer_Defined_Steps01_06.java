@@ -75,14 +75,21 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 	@Test(dependsOnMethods = "checkStatusProfileAndCustomerName", alwaysRun = true)
 	public void editProfileNameonModifyProfileSreen(){
 		action.waitObjVisible(By.id(Profiles.PROFILE_NAME_ID));
-		action.inputTextField(Profiles.PROFILE_NAME_ID, profileNameEdited);
+		WebElement fileName = driver.findElement(By.id(Profiles.PROFILE_NAME_ID));
+		fileName.clear();
+		action.pause(waitTime);
+		fileName.sendKeys(profileNameEdited);
+		action.pause(2000);
 		action.clickCheckBoxN(2);
 	}
 	
 	@Test(dependsOnMethods = "editProfileNameonModifyProfileSreen", alwaysRun = true)
 	public void clickSaveButtonAndDisplayMessageSuccessfully(){
+		action.waitObjVisible(By.id(Profiles.SAVE_BTN));
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
-		action.checkAddSuccess(Messages.MESSAGE_EDIT_PROFILE_NAME_SUCCESSFULLY);
+		action.pause(waitTime);
+		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.MESSAGE_EDIT_PROFILE_NAME_SUCCESSFULLY);
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));	
 	}
 	
 	//Step3
@@ -156,7 +163,8 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 	@Test(dependsOnMethods = "editAuthorisedDocumentTypes", alwaysRun = true)
 	public void clickSaveBtnAndDisplayMessageSuccessfully(){
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
-		action.checkAddSuccess(Messages.MESSAGE_EDIT_PROFILE_NAME_SUCCESSFULLY);
+		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.MESSAGE_EDIT_PROFILE_NAME_SUCCESSFULLY);
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));	
 	}
 }
 

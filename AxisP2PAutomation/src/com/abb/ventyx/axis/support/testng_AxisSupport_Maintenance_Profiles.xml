@@ -16,7 +16,6 @@
   	
   	<test name="Update Customer Defined Profile Step_07">
 		<classes>
-		
 				<class name="com.abb.ventyx.axis.support.Profile_Update_Customer_Defined_Step07" />
 		</classes>	
   	</test>
@@ -39,7 +38,7 @@
 		</classes>	
   	</test>
   	
-  	  	 <test name=" Filter And Sort">
+   <test name="Filter And Sort">
 		<classes>
 				<class name="com.abb.ventyx.axis.support.Profile_Filter_Sort" />
 		</classes>	

@@ -74,7 +74,11 @@ public class Profile_Update_Customer_Defined_Step07 extends BaseTestCase {
 	@Test(dependsOnMethods = "checkStatusProfileAndCustomerName", alwaysRun = true)
 	public void editProfileNameonModifyProfileSreen(){
 		action.waitObjVisible(By.id(Profiles.PROFILE_NAME_ID));
-		action.inputTextField(Profiles.PROFILE_NAME_ID, profileNameEdited);
+		WebElement fileName = driver.findElement(By.id(Profiles.PROFILE_NAME_ID));
+		fileName.clear();
+		action.pause(waitTime);
+		fileName.sendKeys(profileNameEdited);
+		action.pause(2000);
 		action.clickCheckBoxN(2);
 	}
 	
