@@ -78,7 +78,7 @@ public class Profile_Update_Default_Profile_Step09 extends BaseTestCase {
 		action.signIn(emailAddress, password);
 	}
 	
-	@Test(dependsOnMethods = "logoutAndLoginWithNewCustomerList", alwaysRun = true)
+	@Test(dependsOnMethods = "loginWithNewCustomerList", alwaysRun = true)
 	public void changePasswordOnAxisSupplierPortal() {
 		action.waitObjVisible(By.id(ScreenObjects.NEWPASSWORD_ID));
 		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, password);
@@ -293,7 +293,7 @@ public class Profile_Update_Default_Profile_Step09 extends BaseTestCase {
 		action.signIn(emailAddress, newPassword);
 	}
 	
-	@Test(dependsOnMethods = "logoutAndLoginWithNewCustomerList3", alwaysRun = true)
+	@Test(dependsOnMethods = "loginWithNewCustomerList3", alwaysRun = true)
 	public void openMaintainCustomerScreenWithAccountCustomer3(){
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE_WITH_CUSTOMER));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PROFILE_CUSTOMER));
