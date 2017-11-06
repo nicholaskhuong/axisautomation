@@ -25,6 +25,8 @@ public class Users {
 	public static final String SUPPLIER_USERS_TABLE_CSS = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div > div.v-grid-tablewrapper";
 	public static final String DELETE_BTN_ID = "deleteItemBtn";
 	public static final String TITLE = "Maintain Supplier Users";
+	public static final String TITLE_HEADER = "Maintain Supplier User Groups";
+
 	public static final String TITLE_CREATE = "Create User";
 	public static final String TITLE_MODIFY = "Modify User";
 

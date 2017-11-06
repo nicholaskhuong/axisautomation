@@ -13,43 +13,29 @@ import com.abb.ventyx.utilities.Credentials;
 import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
 
-@ALM(id = "626")
+@ALM(id = "640")
 @Credentials(user = "supplier_user_2@abb.com", password = "Testuser1")
-public class SupplierUser_FilterSort extends BaseTestCase {
+public class SupplierUserGroups_Filter extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
 	int row;
 	WebElement index;
-	String userId = "salem 10";
-	String email = "salem13@abb.com";
-	String userGroup = "Salem 11";
 
 	@Test
 	public void openScreen() {
 		// Step 1
 		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));
-		action.waitObjVisibleAndClick(By.id(SupplierMenu.USERS_ID));
+		action.waitObjVisibleAndClick(By.id(SupplierMenu.USER_GROUPS_ID));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
-		action.assertTitleScreen(Users.TITLE);
+		action.assertTitleScreen(Users.TITLE_HEADER);
 	}
 
 	@Test(dependsOnMethods = "openScreen")
 	public void filterFunction() {
 		table = new TableFunction(driver);
 		// step 2,3
-		table.inputFilter("5838");
-		driver.findElement(By.xpath(Users.USER_NUMBER_FILTER)).clear();
-		// step 4
-		action.inputTextField(By.xpath(Users.USER_ID_FILTER), userId);
-		driver.findElement(By.xpath(Users.USER_ID_FILTER)).clear();
-		// Step 5
-		action.inputTextField(By.xpath(Users.EMAIL_FILTER), email);
-		driver.findElement(By.xpath(Users.EMAIL_FILTER)).clear();
-
-		// step 6
-		action.inputTextField(By.xpath(Users.USER_GROUP_FILTER), userGroup);
-		action.pause(800);
+		table.inputFilter("Salem 11");
 		driver.findElement(By.cssSelector(ScreenObjects.FILTER_BTN_CSS)).click();
 
 	}
