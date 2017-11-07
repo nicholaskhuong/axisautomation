@@ -23,7 +23,7 @@ import com.abb.ventyx.utilities.TableFunction;
 @Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class Permissions_Creating extends BaseTestCase {
 
-	public static String permissionName = "Permision 19197527";
+	public static String permissionName = "Permision 9562202";
 	public static String purchaseorderTypeName = "PurchaseOrder";
 	public static String userTypeCSA = "CSA";
 	String addPermissionHeader = "Add Permission";
@@ -84,9 +84,9 @@ public class Permissions_Creating extends BaseTestCase {
 
 		// Filter
 		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
-		permissionsAction.enterValueTofilterPermission(permissionName);
-		action.pause(2000);
-		permissionsAction.filterPermissionbyDocumentType("PurchaseOrder");
+		action.inputTextField(By.xpath(Permissions.PERMISSION_NAME_FILTER), Permissions_Creating.permissionName);
+		action.pause(1000);
+		action.inputTextField(By.xpath(Permissions.DOC_TYPE_FILTER), "PurchaseOrder");
 		action.pause(1000);
 		action.waitObjVisible(By.cssSelector(Permissions.PNROW1));
 		action.waitObjVisible(By.cssSelector(Permissions.UTROW1));

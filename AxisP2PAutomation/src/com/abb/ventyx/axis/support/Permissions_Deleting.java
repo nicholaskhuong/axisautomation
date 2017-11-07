@@ -19,7 +19,6 @@ import com.abb.ventyx.axis.objects.pagedefinitions.UserGroup;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
-import com.abb.ventyx.utilities.PermissionsAction;
 import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
 
@@ -28,13 +27,12 @@ import com.abb.ventyx.utilities.TableFunction;
 public class Permissions_Deleting extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
-	PermissionsAction permissionsAction;
-	String supplierAdminUserGroupName = "SUPP_ADMIN";
-	String POTypeDescription = "Purchase Orders";
+	String invoiceTypeName = "Invoicing";
+	String axisAdminUserGroupName = "AXIS_ADMIN";
+	String invoiceTypeDescription = "Invoice";
 	@Test
 	public void openMaintainPermissionScreen() throws Exception {
 		// Step 1	
-		permissionsAction = new PermissionsAction(driver);
 		action = new ScreenAction(driver);
 		table = new TableFunction(driver);
 
@@ -60,14 +58,15 @@ public class Permissions_Deleting extends BaseTestCase {
 			
 		}
 		action.assertTextEqual(By.cssSelector(Permissions.PNROW1), Permissions_Creating.permissionName);
-		
+		action.assertTextEqual(By.cssSelector(Permissions.UTROW1), "A");
+		action.assertTextEqual(By.cssSelector(Permissions.DTROW1), invoiceTypeDescription);
+
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH, 1, 5));
 		action.waitObjVisible(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION));
 		// Make sure this is a Confirmation of deleting process
 		assertThat(driver.findElement(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION)).getText(), containsString(Messages.DELETE_CONFIRM));
-
-
 	}
+	
 	// Step 3
 	@Test(dependsOnMethods = "clickTrashBinIcon")
 	public void clickYes() {
@@ -77,37 +76,38 @@ public class Permissions_Deleting extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)).getText(),
 				Messages.PERMISSION_DELETED_SUCCESSFULLY);
+		assertEquals(action.isElementPresent(By.cssSelector(Permissions.PNROW1)), false);
 	}
 
 	// Step 4
 	@Test(dependsOnMethods = "clickYes", alwaysRun = true)
-	public void checkNewPermissionUnavailableInSupplierUserGroup() {
+	public void checkNewPermissionUnavailableInAxisUserGroup() {
 		action.waitObjVisibleAndClick(By.id(AxisConfigMenu.AXIS_ADMIN_ID));
-		// Supplier Usergroup sub-menu
-		action.waitObjVisibleAndClick(By.id(AxisConfigMenu.SUPPLIER_USERGROUP_ID));
-
+		// Axis Usergroup sub-menu
+		action.waitObjVisibleAndClick(By.id(AxisConfigMenu.AXIS_USERGROUP_ID));
 		action.waitObjVisible(By.id(UserGroup.SYSTEM_TAB_ID));
 
 		action.waitObjVisibleAndClick(By.id(UserGroup.ADMINUSERGROUP_ID));
 		action.waitObjVisible(By.cssSelector(UserGroup.ADMIN_USERGROUPNAME_CSS));
 
-		action.assertTextEqual(By.cssSelector(UserGroup.ADMIN_USERGROUPNAME_CSS), supplierAdminUserGroupName);
+		action.assertTextEqual(By.cssSelector(UserGroup.ADMIN_USERGROUPNAME_CSS), axisAdminUserGroupName);
 
 		action.pause(2000);
-		int row = table.findRowByString(UserGroup.USERGROUP_GRID_XPATH, 3, POTypeDescription, true);
+		int row = table.findRowByString(UserGroup.USERGROUP_GRID_XPATH, 3, invoiceTypeName, true);
 
-		assertEquals(table.getCellObjectUserGroup(UserGroup.USERGROUP_GRID_XPATH, row, 3).getText(), POTypeDescription);
+		assertEquals(table.getCellObjectUserGroup(UserGroup.USERGROUP_GRID_XPATH, row, 3).getText(), invoiceTypeName);
 
 		table.clickArrowDownToShowPermission(row, 2);
 
 		action.pause(2000);
+
 		assertEquals(table.isPermissionExisting(Permissions_Creating.permissionName, row - 1), false);
 
 	}
 	// Step 5
-	@Test(dependsOnMethods = "checkNewPermissionUnavailableInSupplierUserGroup", alwaysRun = true)
+	@Test(dependsOnMethods = "checkNewPermissionUnavailableInAxisUserGroup", alwaysRun = true)
 	public void clickTrashBinIconFistPermisson() {
-		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION));
+
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PERMISSIONS));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
 		
