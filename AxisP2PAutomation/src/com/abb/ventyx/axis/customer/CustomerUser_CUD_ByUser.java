@@ -148,7 +148,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	// User update other user's info
 
 	@Test(dependsOnMethods = "logOutAndLoginToTheDefaultUser")
-	public void updateUserInfo() throws InterruptedException {
+	public void checkUserInfo() throws InterruptedException {
 		//
 
 		i = table.findRowByString(1, userNo);
@@ -157,7 +157,9 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		assertEquals(table.getValueRow(3, i), CUSTOMERUSEREMAIL);
 		assertEquals(table.getValueRow(4, i), USERGROUPNAME);
 		assertEquals(table.getValueRow(5, i), ACTIVESTATUS);
-
+	}
+	@Test(dependsOnMethods = "checkUserInfo", alwaysRun = true)
+	public void openDetailScreen() throws InterruptedException {
 		table.clickUserNo(i);
 		action.waitObjVisible(By.id(CustomerUsers.SAVE_BUTTON_ID));
 		Thread.sleep(500);
@@ -165,7 +167,10 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		assertEquals(action.getAttribute(By.id(Users.USER_ID)), USERID);
 		assertEquals(action.getAttribute(By.id(Users.EMAIL_ID)), CUSTOMERUSEREMAIL);
 		action.checkObjSelected(0);
+	}
 
+	@Test(dependsOnMethods = "openDetailScreen", alwaysRun = true)
+	public void checkCanUpdateSuccessfully() throws InterruptedException {
 		driver.findElement(By.cssSelector(CustomerUsers.YESUPDATEPASSWORD_RADIOBUTTON)).findElement(By.tagName("label")).isSelected();
 
 		action.inputEmailField(Users.USER_ID, USERID2);
@@ -176,31 +181,47 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		action.inputTextField(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID, NEWPASSWORD2);
 		action.waitObjVisibleAndClick(By.id(CustomerUsers.SAVE_BUTTON_ID));
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_UPDATE_SUCCESSFULLY);
+	}
 
+	@Test(dependsOnMethods = "checkCanUpdateSuccessfully", alwaysRun = true)
+	public void checkUserInfoAfterUpdated() throws InterruptedException {
 		assertEquals(table.getValueRow(2, i), USERID2);
 		assertEquals(table.getValueRow(3, i), USEREMAILLOWERCASE);
 		assertEquals(table.getValueRow(4, i), USERGROUPNAME);
 		assertEquals(table.getValueRow(5, i), ACTIVESTATUS);
 		assertEquals(table.getValueRow(1, i), userNo);
+	}
 
+	@Test(dependsOnMethods = "checkUserInfoAfterUpdated", alwaysRun = true)
+	public void changeStatusOfUser() throws InterruptedException {
 		// Update status to Inactive
 		table.clickUserNo(i);
 		action.waitObjVisible(By.id(CustomerUsers.SAVE_BUTTON_ID));
 		Thread.sleep(500);
 		action.clickBtn(By.id(Users.STATUS_ID));
 		Thread.sleep(500);
+	}
 
+	@Test(dependsOnMethods = "changeStatusOfUser", alwaysRun = true)
+	public void updateStatusToInactive() throws InterruptedException {
 		action.selectStatus(CustomerUsers.STATUSLIST, "Inactive");
 		action.waitObjVisibleAndClick(By.id(CustomerUsers.SAVE_BUTTON_ID));
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_UPDATE_SUCCESSFULLY);
 		assertEquals(table.getValueRow(5, i), "Inactive");
+	}
 
+	@Test(dependsOnMethods = "updateStatusToInactive", alwaysRun = true)
+	public void checkStatusAferUpdated() throws InterruptedException {
 		// Update user group to "NoInvoice" and Active
 		table.clickUserNo(i);
 		action.waitObjVisible(By.id(CustomerUsers.SAVE_BUTTON_ID));
 		Thread.sleep(500);
 		action.clickBtn(By.id(Users.STATUS_ID));
 		Thread.sleep(500);
+	}
+
+	@Test(dependsOnMethods = "checkStatusAferUpdated", alwaysRun = true)
+	public void updateUserInfo() throws InterruptedException {
 		action.selectStatus(CustomerUsers.STATUSLIST, "Active");
 		table.selectUserGroup(CustomerUsers.USERGROUP_GRID, "NoInvoice");
 		table.selectUserGroup(CustomerUsers.USERGROUP_GRID, "All Permissions");

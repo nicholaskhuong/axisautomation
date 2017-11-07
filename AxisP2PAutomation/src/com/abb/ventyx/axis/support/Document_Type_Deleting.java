@@ -14,19 +14,19 @@ import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
 import com.abb.ventyx.axis.objects.pagedefinitions.DocType;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.utilities.ALM;
-import com.abb.ventyx.utilities.BaseGrid;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
+import com.abb.ventyx.utilities.TableFunction;
 
 @ALM(id = "160")
 @Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class Document_Type_Deleting extends BaseTestCase {
 	int row;
-	BaseGrid grid;
+	TableFunction table;
 
 	@Test
 	public void Delete_Document_Type_From_Grid() throws Exception {
-
+		table = new TableFunction(driver);
 		WebElement axisConfigParentButton = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION)));
@@ -37,9 +37,8 @@ public class Document_Type_Deleting extends BaseTestCase {
 		axisDocType.click();
 
 		// Step 1 Delete the record from Add New Doc Type Step.
-		grid = new BaseGrid(driver, DocType.GRID);
-		row = grid.findItemByColumnName("Document Types", Document_Type_Creating.DOCTYPE_B);
-		Assert.assertNotEquals(row, -1, "Record to be deleted not found");
+		row = table.findRowByString(1, Document_Type_Creating.DOCTYPE_B);
+		Assert.assertTrue(row >= 0, "Record to be deleted not found");
 		driver.findElement(By.id("deleteItemBtn" + (row - 1))).click();
 		WebElement delete_Confirm = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
