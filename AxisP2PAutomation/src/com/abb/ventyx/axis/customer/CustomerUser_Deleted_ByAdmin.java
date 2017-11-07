@@ -23,7 +23,7 @@ public class CustomerUser_Deleted_ByAdmin extends BaseTestCase {
 	TableFunction table;
 	WebDriverWait wait;
 	int i;
-	String customerUserEmail = "cuser1@abb.com";
+	//String customerUserEmail = "cuser1@abb.com";
 	String password = "Testuser1";
 	String customerUserEmailDefault = "cuserdefault@abb.com";
 	int j;
@@ -48,7 +48,7 @@ public class CustomerUser_Deleted_ByAdmin extends BaseTestCase {
 	@Test(dependsOnMethods = "deleteCustomerAdminDisable")
 	public void clickTrashBinIconOfUser() {
 		action.pause(1000);
-		j = table.findRowByString(3, customerUserEmail);
+		j = table.findRowByString(3, CustomerUser_Created_ByAdmin.USEREMAILADDRESS);
 		action.clickBtn(By.id("deleteItemBtn" + (j - 1)));
 
 		action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
@@ -81,7 +81,7 @@ public class CustomerUser_Deleted_ByAdmin extends BaseTestCase {
 				driver.findElement(
 						By.cssSelector(ScreenObjects.SUCCESS_MESSAGE))
 						.getText(), Messages.USER_DELETE_SUCCESSFULLY);
-		assertEquals(table.isValueExisting(3, customerUserEmail), false);
+		assertEquals(table.isValueExisting(3, CustomerUser_Created_ByAdmin.USEREMAILADDRESS), false);
 	}
 
 	// Step 5 check that can't login as the deleted user
@@ -89,7 +89,7 @@ public class CustomerUser_Deleted_ByAdmin extends BaseTestCase {
 	public void loginAsTheDeletedUser() throws InterruptedException {
 
 		action.signOut();
-		action.signIn(customerUserEmail, password);
+		action.signIn(CustomerUser_Created_ByAdmin.USEREMAILADDRESS, password);
 		action.waitObjVisible(By.cssSelector(ScreenObjects.ERROR_CSS));
 		assertEquals(
 				driver.findElement(By.cssSelector(ScreenObjects.ERROR_CSS))

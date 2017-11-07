@@ -2,6 +2,8 @@ package com.abb.ventyx.axis.customer;
 
 import static org.testng.Assert.assertEquals;
 
+import java.util.Random;
+
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
@@ -19,7 +21,7 @@ import com.abb.ventyx.utilities.TableFunction;
 @Credentials(user = "cadmin1@abb.com", password = "Testuser1")
 public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 	String USERID ="Automator 1";
-	String USEREMAILADDRESS ="cuser1@abb.com";
+	public static String USEREMAILADDRESS ="cuser7363@abb.com";
 	String PASSWORD ="Testuser2";
 	String CONFIRMPASSWORD ="Testuser3";
 	String INVALIDEMAIL = "<HTML>";
@@ -46,7 +48,9 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerUsers.ADD_BUTTON));
 		action.waitObjVisible(By.id(CustomerUsers.USERID_TEXTBOX_ID));
 		action.assertTitleScreen("Create User");
-		
+		Random rand = new Random();
+		long drand = (long) (rand.nextDouble() * 10000L);
+		USEREMAILADDRESS = String.format("cuser%s@abb.com", drand);
 		// Case 1: User ID is empty
 		action.inputTextField(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID, USEREMAILADDRESS);
 

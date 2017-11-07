@@ -2,6 +2,8 @@ package com.abb.ventyx.axis.customer;
 
 import static org.testng.Assert.assertEquals;
 
+import java.util.Random;
+
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
@@ -20,13 +22,12 @@ import com.abb.ventyx.utilities.TableFunction;
 public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
-	String CUSTOMERUSEREMAIL = "cuser1@abb.com";
 	String INVALIDCUSTOMERUSEREMAIL = "cuser1abb.com";
 	String INVALIDPASSWORD = "<html>";
 	String PASSWORD ="Testuser2";
 	String CONFIRMPASSWORD ="Testuser3";
 	String NEWPASSWORD ="Testuser4";
-	String NEWUSERID ="Automator 1 Upda";
+	String NEWUSERID ="Automator 1 1";
 	String USERID ="Automator 1";
 	String ACTIONSTATUS ="Active";
 	String CREATEDSTATUS ="Created";
@@ -49,7 +50,7 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 	@Test(dependsOnMethods="selectUsersSubMenu")
 	public void openModifyUserScreen() {
 		action.pause(1000);
-		i = table.findRowByString(3, CUSTOMERUSEREMAIL);
+		i = table.findRowByString(3, CustomerUser_Created_ByAdmin.USEREMAILADDRESS);
 		System.out.print("Row: " + i + " ");
 		assertEquals(table.getValueRow(2, i), USERID);
 		assertEquals(table.getValueRow(4, i), "All Permissions");
@@ -74,7 +75,7 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 	@Test(dependsOnMethods="updateWithInvalidEmail")
 	public void updateWithInvalidPassword() {
 
-		action.inputEmailField(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID, CUSTOMERUSEREMAIL);
+		action.inputEmailField(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID, CustomerUser_Created_ByAdmin.USEREMAILADDRESS);
 
 		driver.findElement(By.cssSelector(CustomerUsers.YESUPDATEPASSWORD_RADIOBUTTON)).findElement(By.tagName("label")).click();
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
@@ -110,6 +111,10 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 
 		action.inputTextField(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID, NEWPASSWORD);
 
+		Random rand = new Random();
+		long drand = (long) (rand.nextDouble() * 1000L);
+		NEWUSERID = String.format("updated%s", drand);
+		
 		action.inputTextField(CustomerUsers.USERID_TEXTBOX_ID, NEWUSERID);
 		driver.findElement(By.id(CustomerUsers.SAVE_BUTTON)).click();
 		action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
@@ -129,7 +134,7 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(CustomerUsers.CANCEL_BUTTON));
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerUsers.CANCEL_BUTTON));
 		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)), false);
-		action.pause(1000);
+		action.pause(2000);
 		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
 		action.assertTitleScreen("Maintain Customer Users");
 
