@@ -23,10 +23,8 @@ public class CustomerUser_Deleted_ByAdmin extends BaseTestCase {
 	TableFunction table;
 	WebDriverWait wait;
 	int i;
-	//String customerUserEmail = "cuser1@abb.com";
 	String password = "Testuser1";
 	String customerUserEmailDefault = "cuserdefault@abb.com";
-	int j;
 	// Step 1 Select Users Sub Menu
 	@Test
 	public void selectUsersSubMenu() {
@@ -48,8 +46,8 @@ public class CustomerUser_Deleted_ByAdmin extends BaseTestCase {
 	@Test(dependsOnMethods = "deleteCustomerAdminDisable")
 	public void clickTrashBinIconOfUser() {
 		action.pause(1000);
-		j = table.findRowByString(3, CustomerUser_Created_ByAdmin.USEREMAILADDRESS);
-		action.clickBtn(By.id("deleteItemBtn" + (j - 1)));
+		i = table.findRowByString(3, CustomerUser_Created_ByAdmin.USEREMAILADDRESS);
+		action.clickBtn(By.id("deleteItemBtn" + (i - 1)));
 
 		action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.CONFIRMATION)).getText(), Messages.DELETE_USER_CONFIRM);
@@ -72,8 +70,8 @@ public class CustomerUser_Deleted_ByAdmin extends BaseTestCase {
 	// Step 4 Click Trash Bin and choose Yes
 	@Test(dependsOnMethods = "clickNoButton")
 	public void clickYesButton() {
-
-		action.clickBtn(By.id("deleteItemBtn" + i));
+		action.pause(2000);
+		action.clickBtn(By.id("deleteItemBtn" + (i-1)));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.YES_BTN_ID));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
