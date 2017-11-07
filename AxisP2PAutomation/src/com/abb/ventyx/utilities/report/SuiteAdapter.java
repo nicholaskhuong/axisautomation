@@ -19,6 +19,7 @@ import org.testng.xml.XmlSuite;
 import com.google.gson.Gson;
 import com.google.inject.Injector;
 
+@SuppressWarnings("serial")
 public class SuiteAdapter implements ISuite{
 	public String toJson() {
 	       Gson gson = new Gson();

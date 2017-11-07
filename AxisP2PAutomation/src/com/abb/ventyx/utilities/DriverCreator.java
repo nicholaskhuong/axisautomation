@@ -18,6 +18,7 @@ public class DriverCreator {
 		this.driverType = driverType;
 	}
 
+	@SuppressWarnings("unused")
 	private WebDriver createAndroidDriver() {
 		WebDriver result = null;
 		if (Constants.MOBILE_PLATFORM == Platform.APPIUM_ANDROID) {

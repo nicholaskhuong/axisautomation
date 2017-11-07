@@ -8,6 +8,7 @@ import org.testng.ITestResult;
 
 import com.abb.ventyx.utilities.BaseTestCase;
 
+@SuppressWarnings("serial")
 public class TestMethodResultAdapter implements Serializable {
 	private String id, text, label, value, actualvalue, action;
 	private String status = "0";

@@ -13,11 +13,9 @@ import com.abb.ventyx.utilities.report.TestMethodResultAdapter;
 public class Serializion {
 	private ArrayList<TestMethodResultAdapter> resultFromDisks;
 	
-	private TestMethodResultAdapter result;
 	String fileLocation = String.format("%s%sresult.ser", System.getProperty("user.dir"), File.separator);
 	
 	public Serializion(TestMethodResultAdapter result) {
-		this.result = result;
 		resultFromDisks = new ArrayList<>();
 	}
 	
@@ -25,19 +23,20 @@ public class Serializion {
 		resultFromDisks = new ArrayList<>();
 	}
 	
+	@SuppressWarnings("unchecked")
 	public ArrayList<TestMethodResultAdapter> getAllTestResult(){
 		ArrayList<TestMethodResultAdapter> result = new ArrayList<>();
 		
 		try {
 			FileInputStream fileIn = new FileInputStream(fileLocation);
-	         ObjectInputStream in = new ObjectInputStream(fileIn);
-	         result = (ArrayList<TestMethodResultAdapter>) in.readObject();
-	         in.close();
-	         fileIn.close();
+	        ObjectInputStream in = new ObjectInputStream(fileIn);
+			result = (ArrayList<TestMethodResultAdapter>) in.readObject();
+	        in.close();
+	        fileIn.close();
 	      }catch(IOException i) {
 	         i.printStackTrace();
 
-	      }catch(ClassNotFoundException c) {
+		} catch (Exception c) {
 	         System.out.println("Error when reading data from disk");
 	         c.printStackTrace();
 	      }
