@@ -88,7 +88,7 @@ public class Permissions_Updating extends BaseTestCase {
 	}
 
 	// Step 3
-	@Test(dependsOnMethods = "updatePermissionWithValidValue", alwaysRun = true)
+	@Test(dependsOnMethods = "updatePermissionWithValidValue")
 	public void checkUnsavedChangesDialog() throws InterruptedException {
 
 		// Step 3 Click 1st instance ID
