@@ -23,7 +23,6 @@ import com.abb.ventyx.utilities.TableFunction;
 @ALM(id = "163")
 @Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class User_Group_Updating extends BaseTestCase {
-
 	String systemGroupName = "CUST_ADMIN";
 	String customerName = "Tanya Customer 11";
 	String userGroupName = "Cry Group";
@@ -60,8 +59,8 @@ public class User_Group_Updating extends BaseTestCase {
 		customer.sendKeys(customerName);
 		action.selectStatus(ScreenObjects.DROPDOWNLIST_CSS, customerName);
 		action.waitObjVisibleAndClick(By.xpath(UserGroup.FILTER_XPATH));
-		action.pause(waitTime);
 		action.inputTextField(UserGroup.NAME_FILTER, "Cry Group");
+		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(Users.GROUPNAME_LINKID + row));
 	}
 	
@@ -69,11 +68,14 @@ public class User_Group_Updating extends BaseTestCase {
 	@Test(dependsOnMethods = "selectCustomerAndClickOneRowInGrid", alwaysRun = true)
 	public void updateWithNewName() {
 		action.pause(waitTime);
-		WebElement newGroupUser = driver.findElement(By.id(UserGroup.USERGROUP_NAME_ID));
-		newGroupUser.clear();;
-		newGroupUser.sendKeys(newGroupName);
+		WebElement newGroupUser1 = driver.findElement(By.id(UserGroup.USERGROUP_NAME_ID));
+		newGroupUser1.clear();
+		action.pause(waitTime);
+		newGroupUser1.sendKeys(newGroupName);
+		action.pause(waitTime);
 		action.waitObjVisible(By.id(UserGroup.SAVE_ID));
 		action.waitObjVisibleAndClick(By.id(UserGroup.SAVE_ID));
+		action.pause(waitTime);
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE,Messages.USERGROUP_UPDATE_SUCCESSFULLY);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 	}
@@ -82,7 +84,6 @@ public class User_Group_Updating extends BaseTestCase {
 	@Test(dependsOnMethods = "updateWithNewName", alwaysRun = true)
 	public void selectCustomerAndClickOneRowInGrid2() {
 		action.waitObjVisibleAndClick(By.xpath(UserGroup.FILTER_XPATH));
-		action.pause(waitTime);
 		action.inputTextField(UserGroup.NAME_FILTER, newGroupName);
 		action.waitObjVisibleAndClick(By.id(Users.GROUPNAME_LINKID + row));
 		
@@ -102,7 +103,6 @@ public class User_Group_Updating extends BaseTestCase {
 	public void clickCancelWithoutdata() {
 		action.waitObjVisibleAndClick(By.xpath(UserGroup.FILTER_XPATH));
 		action.inputTextField(UserGroup.NAME_FILTER, newGroupName);
-		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(Users.GROUPNAME_LINKID + row));
 		action.waitObjVisibleAndClick(By.id(UserGroup.CANCEL_ID));
 	}
@@ -113,6 +113,7 @@ public class User_Group_Updating extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.xpath(UserGroup.FILTER_XPATH));
 		action.inputTextField(UserGroup.NAME_FILTER, newGroupName);
 		action.waitObjVisibleAndClick(By.id(Users.GROUPNAME_LINKID + row));
+		action.waitObjVisible(By.id(UserGroup.USERGROUP_NAME_ID));
 		action.inputTextField(UserGroup.USERGROUP_NAME_ID, userGroupName);
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(UserGroup.CANCEL_ID));
