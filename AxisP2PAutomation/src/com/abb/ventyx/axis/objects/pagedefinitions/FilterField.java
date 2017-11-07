@@ -26,5 +26,9 @@ public class FilterField {
  	public static final String YES = "okBtn";
  	public static final String LIST = "#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table";
  	public static final String GRID = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div > div.v-grid-tablewrapper > table";
-
+ 	public static final String SELECT_DOCTYPE = "//*[@id='VAADIN_COMBOBOX_OPTIONLIST']/div/div[2]/table/tbody/tr[2]/td";
+ 	public static final String SELECT_FIELDTYPE = "//*[@id='VAADIN_COMBOBOX_OPTIONLIST']/div/div[2]/table/tbody/tr[8]/td";
+ 	public static final String SELECT_COLUMNNAME = "//*[@id='VAADIN_COMBOBOX_OPTIONLIST']/div/div[2]/table/tbody/tr[2]/td";
+	public static final String FIELD_NAME_FILTER = "(//input[@id='filterField'])[3]";	
+	
 }

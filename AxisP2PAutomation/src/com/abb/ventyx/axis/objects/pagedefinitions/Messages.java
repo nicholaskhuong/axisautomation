@@ -110,7 +110,6 @@ public class Messages {
 	// Supplier
 	public static final String MESSAGE_DELETE_DILIVERY_CODE = "Are you sure you want to delete the selected code?";
 
-	// User Customer Maintenance
 	public static final String INPUT_INVALID_PASSWORD1 = "Password must be 6-16 characters. Password must have at least one uppercase letter, one lowercase letter, and one number. This is not a valid password string";
 	public static final String INPUT_INVALID_PASSWORD2 = "Password must have at least one uppercase letter, one lowercase letter, and one number.";
 	public static final String MESSAGE_ERROR_PASSWORD = "Entered Password is not the same, please verify.";
