@@ -3,6 +3,8 @@ package com.abb.ventyx.axis.support;
 import static org.junit.Assert.assertThat;
 import static org.testng.Assert.assertEquals;
 
+import java.util.Random;
+
 import org.hamcrest.CoreMatchers;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -25,14 +27,16 @@ import com.abb.ventyx.utilities.ScreenAction;
 @ALM(id = "158")
 @Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class Document_Type_Creating extends BaseTestCase {
-	private final String DOCTYPE_B = "Abb";
-	private final String DESC_B = "AA_MAINTAIN_DOCTYPES";
+	public static String DOCTYPE_B = "DocType508678";
+	String DESC_B = "AA_MAINTAIN_DOCTYPES";
 	BaseGrid grid;
 	ScreenAction action;
 	// Step 1 Add new doc type and success message
+	
 	@Test
-	public void createDocumentType() throws InterruptedException {
+	public void createDocumentType() {
 		action = new ScreenAction(driver);
+		
 		WebElement axisConfigParentButton = (new WebDriverWait(driver, 120))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION)));
@@ -52,6 +56,10 @@ public class Document_Type_Creating extends BaseTestCase {
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.id(DocType.DOCTYPES)));
 		clickDocTpe.click();
+		
+		Random rand = new Random();
+		long drand = (long) (rand.nextDouble() * 1000000L);
+		DOCTYPE_B = String.format("DocType%s", drand);
 		
 		driver.findElement(By.id(DocType.DOCTYPES)).sendKeys(DOCTYPE_B);
 		driver.findElement(By.id(DocType.DESC)).click();
@@ -98,7 +106,7 @@ public class Document_Type_Creating extends BaseTestCase {
 
 	// Step 3 Check error message of Input Mandatory data to mandatory fields.
 	@Test(dependsOnMethods = "createExistingDocType")
-	public void leaveRequiredInputFieldsEmpty() throws InterruptedException {
+	public void leaveRequiredInputFieldsEmpty() {
 
 		WebElement addDocType = (new WebDriverWait(driver, 30))
 				.until(ExpectedConditions.presenceOfElementLocated(By
@@ -123,7 +131,7 @@ public class Document_Type_Creating extends BaseTestCase {
 
 	// Step 4 Check unsaved change message.
 	@Test(dependsOnMethods = "leaveRequiredInputFieldsEmpty")
-	public void checkUnsavedChange() throws InterruptedException {
+	public void checkUnsavedChange() {
 		ScreenAction action = new ScreenAction(driver);
 		WebElement cancelBtn = (new WebDriverWait(driver, 60))
 				.until(ExpectedConditions.presenceOfElementLocated(By

@@ -17,15 +17,10 @@ import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseGrid;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
-import com.ventyx.testng.TestDataKey;
 
 @ALM(id = "160")
 @Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class Document_Type_Deleting extends BaseTestCase {
-	@TestDataKey
-	private final String DOCTYPE_B = "Abb";
-	@TestDataKey
-	private final String DESC_B = "AAA_MAINTAIN_DOCTYPES";
 	int row;
 	BaseGrid grid;
 
@@ -43,7 +38,7 @@ public class Document_Type_Deleting extends BaseTestCase {
 
 		// Step 1 Delete the record from Add New Doc Type Step.
 		grid = new BaseGrid(driver, DocType.GRID);
-		row = grid.findItemByColumnName("Document Types", DOCTYPE_B);
+		row = grid.findItemByColumnName("Document Types", Document_Type_Creating.DOCTYPE_B);
 		Assert.assertNotEquals(row, -1, "Record to be deleted not found");
 		driver.findElement(By.id("deleteItemBtn" + (row - 1))).click();
 		WebElement delete_Confirm = (new WebDriverWait(driver, 10))
