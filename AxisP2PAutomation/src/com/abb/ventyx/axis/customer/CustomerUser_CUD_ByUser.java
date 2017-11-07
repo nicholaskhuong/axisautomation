@@ -30,7 +30,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	WebDriverWait wait;
 	int i;
 	String USERID = "createdby_nick";
-	String CUSTOMERUSEREMAIL = "nickcustomeruser@abb.com";
+	String CUSTOMERUSEREMAIL = "nickcustomeruser1@abb.com";
 	String PASSWORD = "Testuser2";
 	String CONFIRMPASSWORD = "Testuser2";
 	String USERGROUPNAME = "All Permissions";

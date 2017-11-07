@@ -97,6 +97,7 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 
 		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).sendKeys(CONFIRMPASSWORD);
 		driver.findElement(By.id(CustomerUsers.SAVE_BUTTON)).click();
+		
 		action.waitObjVisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS)).getText(),Messages.UNMATCHED_CONFIRM_PWD);
 	}
@@ -104,13 +105,14 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 	// Step 6 Update with valid data
 	@Test(dependsOnMethods="updateWithUnmachtedPassword")
 	public void updateWithValidData() {
-
-		action.inputTextField(CustomerUsers.PASSWORD_TEXTBOX_ID, NEWPASSWORD);
-
+		action.clickBtn(By.id(CustomerUsers.USERID_TEXTBOX_ID));
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
-
+		
+		action.inputTextField(CustomerUsers.PASSWORD_TEXTBOX_ID, NEWPASSWORD);
+		action.pause(1000);
 		action.inputTextField(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID, NEWPASSWORD);
-
+		
+		
 		Random rand = new Random();
 		long drand = (long) (rand.nextDouble() * 1000L);
 		NEWUSERID = String.format("updated%s", drand);
@@ -129,6 +131,7 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 	@Test(dependsOnMethods="updateWithValidData")
 	public void checkCancelButtonWithoutInput() {
 		// table.clickUserNumber(CUSTOMERUSEREMAIL);
+		action.pause(1000);
 		table.clickUserNo(i);
 		action.waitObjVisible(By.id(CustomerUsers.USERID_TEXTBOX_ID));
 		action.waitObjVisible(By.cssSelector(CustomerUsers.CANCEL_BUTTON));

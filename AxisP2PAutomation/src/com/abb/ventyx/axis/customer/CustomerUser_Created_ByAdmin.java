@@ -21,7 +21,7 @@ import com.abb.ventyx.utilities.TableFunction;
 @Credentials(user = "cadmin1@abb.com", password = "Testuser1")
 public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 	String USERID ="Automator 1";
-	public static String USEREMAILADDRESS ="cuser7363@abb.com";
+	public static String USEREMAILADDRESS ="cuser740@abb.com";
 	String PASSWORD ="Testuser2";
 	String CONFIRMPASSWORD ="Testuser3";
 	String INVALIDEMAIL = "<HTML>";
