@@ -53,6 +53,14 @@ public class Permissions_Deleting extends BaseTestCase {
 		action.waitObjVisible(By.xpath(Permissions.PERMISSION_NAME_FILTER));
 		driver.findElement(By.xpath(Permissions.PERMISSION_NAME_FILTER)).sendKeys(Permissions_Creating.permissionName);		
 		action.pause(3000);
+		
+		if(!driver.findElement(By.xpath(Permissions.FIRST_PERMISSION_NAME_XPATH)).getText().equals(Permissions_Creating.permissionName))
+		{
+			action.pause(3000);
+			
+		}
+		action.assertTextEqual(By.xpath(Permissions.FIRST_PERMISSION_NAME_XPATH), Permissions_Creating.permissionName);
+		
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH, 1, 5));
 		action.waitObjVisible(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION));
 		// Make sure this is a Confirmation of deleting process
