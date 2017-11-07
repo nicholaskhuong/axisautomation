@@ -5,6 +5,7 @@ public class ScreenObjects {
 	public static final String FILTER_BTN_CSS = "#HeaderMenuBar > span:nth-child(1)";
 	public static final String YES_BTN_ID = "okBtn";
 	public static final String NO_BTN_ID = "noBtn";
+	public static final String YES_BTN_BACKUP = "#confirmation-window > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-confirmation-window-text-and-button-layout > div > div.v-slot.v-slot-v-bottombar-button-layout.v-align-right.v-align-middle > div > div:nth-child(3)";
 	public static final String SAVE_ID = "saveBtn";
 	public static final String CANCEL_ID = "cancelBtn";
 	public static final String BACK_ID = "backBtn";
@@ -39,7 +40,6 @@ public class ScreenObjects {
 	public static final String CONFIRMPASSWORD_ID = "confirmPassword";
 	public static final String SIGNOUT_BUTTON = "signOutBtn";
 
-	public static final String EMPTY_DATE = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-error-notification-no-icon.v-Notification-v-error-notification-no-icon";
 	public static final String LOGIN_BUTTON = "signInBtn";
 	public static final String USER_LOGIN = "userEmail";
 	public static final String PASSWORD_LOGIN = "password";
@@ -53,5 +53,5 @@ public class ScreenObjects {
 	public static final String TABLE_ROW_XPATH_CUSTOMER = "//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div/div/div/div[3]/table/tbody/tr";
 	public static final String TABLE_BODY_USER_XPATH = "//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div[3]/table/tbody";
 	public static final String TABLE_HEAD_XPATH = "//div[@class='v-grid-tablewrapper']//table//thead[@class='v-grid-header']";
-	
+
 }

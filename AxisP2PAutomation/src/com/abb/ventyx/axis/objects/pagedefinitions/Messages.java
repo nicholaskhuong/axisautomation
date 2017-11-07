@@ -128,4 +128,6 @@ public class Messages {
 	public static final String ACTIVATE_CUSTOMER_SUCCESSFULLY = "Customer successfully activated";
 	public static final String USER_INACTIVE = "User inactive";
 	public static final String UPDATE_CUSTOMER_SUCCESSFULLY = "Customer successfully updated";
+	public static final String DEFAULT_ADDRESS_EXIST = "The default address already exists";
+
 }
