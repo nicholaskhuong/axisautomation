@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="AxisSupport_Configuration_FilterFiled" parallel="none">
+ 
+	<test name="Axis Support Filter Field Creating">
+		<classes>
+				<class name="com.abb.ventyx.axis.support.Filter_Field_Creating" />
+		</classes>	
+  	</test>
+  	<test name="Axis Support Filter Field Updating">
+		<classes>
+				<class name="com.abb.ventyx.axis.support.Filter_Field_Updating" />
+		</classes>	
+  	</test>
+  	<test name="Axis Support Filter Field Deleting">
+		<classes>
+				<class name="com.abb.ventyx.axis.support.Filter_Field_Deleting" />
+		</classes>	
+  	</test>
+  	
+</suite> 
