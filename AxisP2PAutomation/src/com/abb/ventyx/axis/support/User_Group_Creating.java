@@ -64,6 +64,7 @@ public class User_Group_Creating extends BaseTestCase {
 		action.inputTextField(UserGroup.USERGROUP_NAME_ID, userGroupName);
 		action.waitObjVisible(By.id(UserGroup.SAVE_ID));
 		action.waitObjVisibleAndClick(By.id(UserGroup.SAVE_ID));
+		action.pause(waitTime);
 		action.assertMessgeError(ScreenObjects.WARNING_MESSAGE_CSS, Messages.EMPTY_PERMISSION);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.WARNING_MESSAGE_CSS));
 	}
@@ -74,6 +75,7 @@ public class User_Group_Creating extends BaseTestCase {
 		action.clickCheckBoxN(2);
 		action.waitObjVisible(By.id(UserGroup.SAVE_ID));
 		action.waitObjVisibleAndClick(By.id(UserGroup.SAVE_ID));
+		action.pause(waitTime);
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE,Messages.USERGROUP_CREATE_SUCCESSFULLY);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 	}

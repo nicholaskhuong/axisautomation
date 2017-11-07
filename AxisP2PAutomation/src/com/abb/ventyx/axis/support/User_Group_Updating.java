@@ -55,11 +55,13 @@ public class User_Group_Updating extends BaseTestCase {
 	//Step 2
 	@Test(dependsOnMethods = "selectTabAndClickAddButton", alwaysRun = true)
 	public void selectCustomerAndClickOneRowInGrid() {
+		action.pause(waitTime);
 		WebElement customer = driver.findElement(By.className(UserGroup.CUSTOMER_CLASS));
 		customer.sendKeys(customerName);
 		action.selectStatus(ScreenObjects.DROPDOWNLIST_CSS, customerName);
 		action.waitObjVisibleAndClick(By.xpath(UserGroup.FILTER_XPATH));
-		action.inputTextField(UserGroup.NAME_FILTER, userGroupName);
+		action.pause(waitTime);
+		action.inputTextField(UserGroup.NAME_FILTER, "Cry Group");
 		action.waitObjVisibleAndClick(By.id(Users.GROUPNAME_LINKID + row));
 	}
 	
@@ -80,8 +82,10 @@ public class User_Group_Updating extends BaseTestCase {
 	@Test(dependsOnMethods = "updateWithNewName", alwaysRun = true)
 	public void selectCustomerAndClickOneRowInGrid2() {
 		action.waitObjVisibleAndClick(By.xpath(UserGroup.FILTER_XPATH));
+		action.pause(waitTime);
 		action.inputTextField(UserGroup.NAME_FILTER, newGroupName);
 		action.waitObjVisibleAndClick(By.id(Users.GROUPNAME_LINKID + row));
+		
 	}
 	
 	@Test(dependsOnMethods = "selectCustomerAndClickOneRowInGrid2", alwaysRun = true)
@@ -98,6 +102,7 @@ public class User_Group_Updating extends BaseTestCase {
 	public void clickCancelWithoutdata() {
 		action.waitObjVisibleAndClick(By.xpath(UserGroup.FILTER_XPATH));
 		action.inputTextField(UserGroup.NAME_FILTER, newGroupName);
+		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(Users.GROUPNAME_LINKID + row));
 		action.waitObjVisibleAndClick(By.id(UserGroup.CANCEL_ID));
 	}

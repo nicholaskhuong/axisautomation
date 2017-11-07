@@ -52,9 +52,11 @@ public class User_Group_Deleting extends BaseTestCase {
 	//Step 2
 	@Test(dependsOnMethods = "selectTabAndClickAddButton", alwaysRun = true)
 	public void selectCustomerAndClickOneRowInGrid() {
+		action.pause(waitTime);
 		WebElement customer = driver.findElement(By.className(UserGroup.CUSTOMER_CLASS));
 		customer.sendKeys(customerName);
 		action.selectStatus(ScreenObjects.DROPDOWNLIST_CSS, customerName);
+		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.xpath(UserGroup.FILTER_XPATH));
 		action.inputTextField(UserGroup.NAME_FILTER, newGroupName);
 		action.pause(waitTime);
