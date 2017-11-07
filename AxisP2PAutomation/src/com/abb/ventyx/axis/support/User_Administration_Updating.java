@@ -5,12 +5,11 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisAdministratorUsers;
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
+import com.abb.ventyx.axis.objects.pagedefinitions.LoginPageDefinition;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.Profiles;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
@@ -53,11 +52,7 @@ public class User_Administration_Updating extends BaseTestCase {
 	@Test(dependsOnMethods = "openUserScreen", alwaysRun = true)
 	public void clickFiterButtonOnUserScreen() {
 		table = new TableFunction(driver);
-		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
-		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
-		WebElement filterPermissionName = (new WebDriverWait(driver, 30))
-				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Users.USER_ID_FILTER)));
-		filterPermissionName.sendKeys(user);
+		table.inputFilter(user, Users.USER_ID_FILTER , true);
 		index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH,1, 1);
 		index.click();
 	}
@@ -91,6 +86,7 @@ public class User_Administration_Updating extends BaseTestCase {
 		action.inputEmailField(Users.EMAIL_ID, emailUpdate);
 		action.waitObjVisible(By.id(Users.PASSWORD_ID));
 		action.inputTextField(Users.PASSWORD_ID, invalidPassword1);
+		action.pause(waitTime);
 		action.waitObjVisible(By.id(Users.CONFIMRPASSWORD_ID));
 		action.inputTextField(Users.CONFIMRPASSWORD_ID, invalidPassword1);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
@@ -122,11 +118,13 @@ public class User_Administration_Updating extends BaseTestCase {
 	//Step 6
 	@Test(dependsOnMethods = "inputPasswordAndConfirmPasswordAreNotTheSame", alwaysRun = true)
 	public void inputAllMandatoryFields(){
+		action.pause(waitTime);
 		action.waitObjVisible(By.id(Users.USER_ID));
 		action.inputTextField(Users.USER_ID, userUpdate);
 		action.waitObjVisible(By.id(Users.CONFIMRPASSWORD_ID));
 		action.inputTextField(Users.CONFIMRPASSWORD_ID, password);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
+		action.pause(waitTime);
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_UPDATE_SUCCESSFULLY);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 	}
@@ -134,10 +132,7 @@ public class User_Administration_Updating extends BaseTestCase {
 	//Step 7
 	@Test(dependsOnMethods = "inputAllMandatoryFields", alwaysRun = true)
 	public void ClickAnExistingRecord () {
-		WebElement filterPermissionName = (new WebDriverWait(driver, 30))
-				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Users.USER_ID_FILTER)));
-		filterPermissionName.clear();
-		filterPermissionName.sendKeys("Tau1");
+		table.inputFilter("Tau1", Users.USER_ID_FILTER , true);
 		index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH,1, 1);
 		index.click();
 		action.pause(waitTime);
@@ -167,6 +162,16 @@ public class User_Administration_Updating extends BaseTestCase {
 	}
 	
 	@Test(dependsOnMethods = "logoutAndLoginWithNewUser", alwaysRun = true)
+	public void changePasswordOnAxisSupplierPortal() {
+		action.waitObjVisible(By.id(ScreenObjects.NEWPASSWORD_ID));
+		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, password);
+		action.inputTextField(ScreenObjects.NEWPASSWORD_ID, newPassword);
+		action.inputTextField(ScreenObjects.CONFIRMPASSWORD_ID,newPassword);
+		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
+	}
+	
+	
+	@Test(dependsOnMethods = "changePasswordOnAxisSupplierPortal", alwaysRun = true)
 	public void openMaintainCustomerScreenWithNewUser(){
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.AXIS_ADMIN));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.USER_CUSTOMER_ADMIN));

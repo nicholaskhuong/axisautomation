@@ -23,7 +23,7 @@ import com.abb.ventyx.utilities.TableFunction;
 public class User_Administration_Creating extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
-	int waitTime = 1000;
+	int waitTime = 1500;
 	WebElement index;
 	String user = "Taumato";
 	String user1 = "Tauuu";
@@ -58,6 +58,7 @@ public class User_Administration_Creating extends BaseTestCase {
 		action.waitObjVisible(By.id(Users.EMAIL_ID));
 		action.inputEmailField(Users.EMAIL_ID, email);
 		action.waitObjVisible(By.id(Users.CONFIMRPASSWORD_ID));
+		action.pause(waitTime);
 		action.inputTextField(Users.CONFIMRPASSWORD_ID, password);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.USER_SELECT_USERGROUP);
@@ -67,12 +68,9 @@ public class User_Administration_Creating extends BaseTestCase {
 	//Step 4
 	@Test(dependsOnMethods = "inputMandatoryFields", alwaysRun = true)
 	public void inputAllMandatoryFields(){
-		action.waitObjVisible(By.id(Users.CONFIMRPASSWORD_ID));
-		action.inputTextField(Users.CONFIMRPASSWORD_ID, password);
 		action.clickCheckBoxN(0);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
 		action.pause(waitTime);
-		action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_CREATE_SUCCESSFULLY);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 	}

@@ -1,9 +1,8 @@
 package com.abb.ventyx.axis.support;
 
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisAdministratorUsers;
@@ -23,6 +22,8 @@ public class User_Administration_Deteting extends BaseTestCase {
 	TableFunction table;
 	WebElement index;
 	String userUpdate = "Taumato1";
+	String email = "Taumato1@abb.com";
+	String newPassword = "Testuser2";
 	int waitTime = 1000;
 	//Step 1
 	@Test
@@ -35,14 +36,11 @@ public class User_Administration_Deteting extends BaseTestCase {
 	@Test(dependsOnMethods = "openUserScreen", alwaysRun = true)
 	public void clickFiterButton() {
 		table = new TableFunction(driver);
-		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
-		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
-		WebElement filterPermissionName = (new WebDriverWait(driver, 30))
-				.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Users.USER_ID_FILTER)));
-		filterPermissionName.sendKeys(userUpdate);
+		table.inputFilter(userUpdate, Users.USER_ID_FILTER , true);
+		action.pause(3000);
 	}
 	
-	@Test(dependsOnMethods = "clickFiterButton", alwaysRun = true)
+	@Test(dependsOnMethods = "clickFiterButton")
 	public void clickDeleteButton() {
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
@@ -53,7 +51,18 @@ public class User_Administration_Deteting extends BaseTestCase {
 		action.pause(waitTime);
 		index.click();
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.YES_BTN_ID));
-		action.checkAddSuccess(Messages.USER_DELETE_SUCCESSFULLY);
+		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_DELETE_SUCCESSFULLY);
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
+	}
+	
+	@Test(dependsOnMethods = "clickDeleteButton", alwaysRun = true)
+	public void logoutAndLoginWithNewUser() {
+		action.pause(waitTime);
+		action.signOut();
+		action.pause(waitTime);
+		action.signIn(email, newPassword);
+		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.USERNOTFOUND);
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
 	}
 	
 }
