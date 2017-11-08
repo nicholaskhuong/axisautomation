@@ -125,11 +125,12 @@ public class Messages {
 
 	// Active and Deactive Customer
 	public static final String DEACTIVE_CUSTOMER = "Please select a customer first";
-	public static final String ACTIVE_CUSTOMER = "Please select at least one business document";
+	public static final String ACTIVE_CUSTOMER = "Please select a customer first";
 	public static final String DEACTIVATE_CUSTOMER_SUCCESSFULLY = "Customer successfully deactivated";
 	public static final String ACTIVATE_CUSTOMER_SUCCESSFULLY = "Customer successfully activated";
 	public static final String USER_INACTIVE = "User inactive";
 	public static final String UPDATE_CUSTOMER_SUCCESSFULLY = "Customer successfully updated";
 	public static final String DEFAULT_ADDRESS_EXIST = "The default address already exists";
-
+	public static final String CUSTOMER_ACTIAVTE = "Are you sure you want to activate the selected customer?";
+	public static final String CUSTOMER_DEACTIAVTE = "Are you sure you want to deactivate the selected customer?";
 }
