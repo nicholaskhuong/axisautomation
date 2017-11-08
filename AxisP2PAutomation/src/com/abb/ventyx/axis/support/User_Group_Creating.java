@@ -82,7 +82,7 @@ public class User_Group_Creating extends BaseTestCase {
 	
 	//Step 5
 	@Test(dependsOnMethods = "addWithSelectedCustomerHasUserGroupName", alwaysRun = true)
-	public void cancelWithoutdata(){
+	public void cancelWithoutData(){
 		action.waitObjVisibleAndClick(By.xpath(UserGroup.ADD_XPATH));
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(UserGroup.CANCEL_ID));
@@ -95,6 +95,8 @@ public class User_Group_Creating extends BaseTestCase {
 		action.inputTextField(UserGroup.USERGROUP_NAME_ID, userGroupName);
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(UserGroup.CANCEL_ID));
+		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
 		action.clickBtn(By.id(ScreenObjects.NO_BTN_ID));
 	}
 	
@@ -103,6 +105,8 @@ public class User_Group_Creating extends BaseTestCase {
 	public void cancelClickYes() {
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(UserGroup.CANCEL_ID));
+		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
 		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
 	}
 }

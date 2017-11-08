@@ -85,6 +85,7 @@ public class User_Group_Updating extends BaseTestCase {
 	public void selectCustomerAndClickOneRowInGrid2() {
 		action.waitObjVisibleAndClick(By.xpath(UserGroup.FILTER_XPATH));
 		action.inputTextField(UserGroup.NAME_FILTER, newGroupName);
+		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(Users.GROUPNAME_LINKID + row));
 		
 	}
@@ -100,7 +101,7 @@ public class User_Group_Updating extends BaseTestCase {
 
 	//Step 5 
 	@Test(dependsOnMethods = "updateWithNewPermissions", alwaysRun = true)
-	public void clickCancelWithoutdata() {
+	public void clickCancelWithoutData() {
 		action.waitObjVisibleAndClick(By.xpath(UserGroup.FILTER_XPATH));
 		action.inputTextField(UserGroup.NAME_FILTER, newGroupName);
 		action.waitObjVisibleAndClick(By.id(Users.GROUPNAME_LINKID + row));
@@ -117,6 +118,8 @@ public class User_Group_Updating extends BaseTestCase {
 		action.inputTextField(UserGroup.USERGROUP_NAME_ID, userGroupName);
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(UserGroup.CANCEL_ID));
+		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.NO_BTN_ID));
 	}
 	
@@ -125,6 +128,8 @@ public class User_Group_Updating extends BaseTestCase {
 	public void clickCancelClickYes() {
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(UserGroup.CANCEL_ID));
+		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.YES_BTN_ID));
 	}
 }
