@@ -23,6 +23,8 @@ public class SupplierUser_Filter extends BaseTestCase {
 	String userId = "salem 10";
 	String email = "salem13@abb.com";
 	String userGroup = "Salem 11";
+	String userNumber = "5840";
+	int i = 0;
 
 	@Test
 	public void openScreen() {
@@ -38,7 +40,7 @@ public class SupplierUser_Filter extends BaseTestCase {
 	public void filterFunction() {
 		table = new TableFunction(driver);
 		// step 2,3
-		table.inputFilter("5838");
+		table.inputFilter(userNumber);
 		driver.findElement(By.xpath(Users.USER_NUMBER_FILTER)).clear();
 		// step 4
 		action.inputTextField(By.xpath(Users.USER_ID_FILTER), userId);
@@ -49,9 +51,24 @@ public class SupplierUser_Filter extends BaseTestCase {
 
 		// step 6
 		action.inputTextField(By.xpath(Users.USER_GROUP_FILTER), userGroup);
-		action.pause(800);
-		// Step 8
-		driver.findElement(By.cssSelector(ScreenObjects.FILTER_BTN_CSS)).click();
+	}
+
+	@Test(dependsOnMethods = "filterFunction")
+	public void selectRowAfterFilter() {
+		table.inputFilter(userNumber);
+		WebElement index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH, 1, 1);
+		index.click();
+		action.waitObjVisible(By.id(ScreenObjects.CANCEL_ID));
+		action.clickBtn(By.id(ScreenObjects.CANCEL_ID));
+		action.waitObjVisible(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
+	}
+
+	@Test(dependsOnMethods = "selectRowAfterFilter")
+	public void selectRowAfterFilterDelete() {
+		table.inputFilter(userNumber);
+		action.scrollToElementWithColumnNo(driver.findElement(By.id("deleteItemBtn1")), 6);
+		WebElement index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH, 1, 6);
+		index.click();
 
 	}
 

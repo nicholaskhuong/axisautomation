@@ -20,6 +20,7 @@ public class SupplierUserGroups_Filter extends BaseTestCase {
 	TableFunction table;
 	int row;
 	WebElement index;
+	String userGroupNumber = "Salem 11";
 
 	@Test
 	public void openScreen() {
@@ -34,10 +35,9 @@ public class SupplierUserGroups_Filter extends BaseTestCase {
 	@Test(dependsOnMethods = "openScreen")
 	public void filterFunction() {
 		table = new TableFunction(driver);
-		// step 2,3
-		table.inputFilter("Salem 11");
-		driver.findElement(By.cssSelector(ScreenObjects.FILTER_BTN_CSS)).click();
-
+		// step 2,3,4
+		table.inputFilter(userGroupNumber);
+		action.clickBtn(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 	}
 
 }

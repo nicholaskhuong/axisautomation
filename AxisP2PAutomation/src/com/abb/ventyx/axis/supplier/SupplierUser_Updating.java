@@ -19,18 +19,18 @@ import com.abb.ventyx.utilities.TableFunction;
 @ALM(id = "603")
 @Credentials(user = "supplier_user_2@abb.com", password = "Testuser1")
 public class SupplierUser_Updating extends BaseTestCase {
-	String userId = "salem 10";
+	String userId = "salem 20";
 	String passwordValid = "Testuser2";
 	String confirmPasswordNotMap = "Testuser300";
 	String confirmPasswordValid = "Testuser2";
-	String email = "salem13@abb.com";
+	String email = "salem14@abb.com";
 	String userNo = "";
 	ScreenAction action;
 	TableFunction table;
 	int row;
 	int milliseconds = 3000;
 	String emailInvalid = "salem";
-	String emailExist = "salem11@abb.com";
+	String emailExist = "user_id5@abb.com";
 	String password_less_than_6_character = "test";
 
 	@Test
@@ -107,6 +107,7 @@ public class SupplierUser_Updating extends BaseTestCase {
 	@Test(dependsOnMethods = "updateSuccessfully")
 	public void withoutSavingNO() {
 		// step 7,8,9
+		action.waitObjVisible(By.id(Users.USERNUMBER_LINKID + row));
 		action.clickBtn(By.id(Users.USERNUMBER_LINKID + row));
 		action.inputTextField(Users.USER_ID, "any change");
 		driver.findElement(By.id(ScreenObjects.CANCEL_ID)).click();
