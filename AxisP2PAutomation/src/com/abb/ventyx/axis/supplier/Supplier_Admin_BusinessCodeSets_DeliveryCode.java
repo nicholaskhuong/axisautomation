@@ -40,7 +40,7 @@ public class Supplier_Admin_BusinessCodeSets_DeliveryCode extends BaseTestCase {
 	}
 
 	@Test(dependsOnMethods = "openScreen")
-	public void addNewContact() throws InterruptedException {
+	public void addNewContact() {
 		// step 2
 		action.clickBtn(By.cssSelector(BusinessCodeSets.DELIVERY_CODE_ICON));
 		// step 3
@@ -62,7 +62,7 @@ public class Supplier_Admin_BusinessCodeSets_DeliveryCode extends BaseTestCase {
 	}
 
 	@Test(dependsOnMethods = "addNewContact")
-	public void addDeliverySuccessfully() throws InterruptedException {
+	public void addDeliverySuccessfully() {
 		// step 6
 		action.pause(milliseconds);
 		action.waitObjVisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
