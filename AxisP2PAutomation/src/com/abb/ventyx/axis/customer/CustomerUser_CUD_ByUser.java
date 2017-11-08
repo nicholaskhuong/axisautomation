@@ -29,26 +29,22 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	String defaultUser = "cuserdefault@abb.com";
 	String defaultPass = "Testuser1";
 	
-	String USERID = "createdby_nick";
-	String CUSTOMERUSEREMAIL = "nickcustomeruser1@abb.com";
-	String PASSWORD = "Testuser2";
-	String CONFIRMPASSWORD = "Testuser2";
-	String USERGROUPNAME = "All Permissions";
-	String NEWUSERGROUPNAME = "NoInvoice";
-	String CREATEDSTATUS = "Created";
-	String ACTIVESTATUS = "Active";
-	String NEWPASSWORD = "Testuser1";
-	String USEREMAIL_ADMIN = "cadmin1@abb.com";
-	String NEWPASSWORD_ADMIN = "Testuser2";
-	String NEWUSEREMAIL_ADMIN = "cadmin1updated@abb.com";
+	String userID = "createdby_nick";
+	String customerUserEmail = "nickcustomeruser@abb.com";
+	String password = "Testuser2";
+	String confirmPassword = "Testuser2";
+	String userGroupName = "All Permissions";
+	String newUserGroupName = "NoInvoice";
+	String createdStatus = "Created";
+	String activeStatus = "Active";
+	String newPassword = "Testuser1";
+	//String userEmailAdmin = "cadmin1@abb.com";
 
 	// New info for customer user to use for updating
-	String USERID2 = "CU Updated";
-	String USEREMAIL2 = "CUUPDATED@abb.com";
-	String USEREMAILLOWERCASE = "cuupdated@abb.com";
-	String USERGGROUP2 = "test";
-	String NEWPASSWORD2 = "Testuser3";
-	String NEWPASSWORD3 = "Testuser4";
+	String userID2 = "CU Updated";
+	String userEmail2 = "cuupdated@abb.com";
+	String newPassword2 = "Testuser3";
+	String newPassword3 = "Testuser4";
 	String userNo = "";
 
 	@Test
@@ -67,7 +63,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	// Step 1 Customer user creates another user
 	@Test(dependsOnMethods = "openUsersScreen", alwaysRun = true)
 	public void createNewUser() {
-		i = table.findRowByString(3, CUSTOMERUSEREMAIL);
+		i = table.findRowByString(3, customerUserEmail);
 		if (i > 0) {
 			action.clickBtn(By.id("deleteItemBtn" + (i - 1)));
 			action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
@@ -75,7 +71,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 			action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 			assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)).getText(), Messages.USER_DELETE_SUCCESSFULLY);
 		}
-		i = table.findRowByString(3, USEREMAILLOWERCASE);
+		i = table.findRowByString(3, userEmail2);
 		if (i > 0) {
 			action.clickBtn(By.id("deleteItemBtn" + (i - 1)));
 			action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
@@ -83,21 +79,21 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 			action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 			assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)).getText(), Messages.USER_DELETE_SUCCESSFULLY);
 		}
-		assertEquals(table.isValueExisting(3, CUSTOMERUSEREMAIL), false, "User exists! Can't create a new user with the same email");
+		assertEquals(table.isValueExisting(3, customerUserEmail), false, "User exists! Can't create a new user with the same email");
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerUsers.ADD_BUTTON));
-		action.inputEmailField(CustomerUsers.USERID_TEXTBOX_ID, USERID);
-		action.inputEmailField(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID, CUSTOMERUSEREMAIL);
-		action.inputEmailField(CustomerUsers.PASSWORD_TEXTBOX_ID, PASSWORD);
-		action.inputEmailField(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID, CONFIRMPASSWORD);
-		table.selectUserGroup(CustomerUsers.USERGROUP_GRID, USERGROUPNAME);
+		action.inputEmailField(CustomerUsers.USERID_TEXTBOX_ID, userID);
+		action.inputEmailField(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID, customerUserEmail);
+		action.inputEmailField(CustomerUsers.PASSWORD_TEXTBOX_ID, password);
+		action.inputEmailField(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID, confirmPassword);
+		table.selectUserGroup(CustomerUsers.USERGROUP_GRID, userGroupName);
 		action.clickBtn(By.id(CustomerUsers.SAVE_BUTTON_ID));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_CREATE_SUCCESSFULLY);
-		i = table.findRowByString(3, CUSTOMERUSEREMAIL);
-		assertEquals(table.getValueRow(2, i), USERID);
-		assertEquals(table.getValueRow(3, i), CUSTOMERUSEREMAIL);
-		assertEquals(table.getValueRow(4, i), USERGROUPNAME);
-		assertEquals(table.getValueRow(5, i), CREATEDSTATUS);
+		i = table.findRowByString(3, customerUserEmail);
+		assertEquals(table.getValueRow(2, i), userID);
+		assertEquals(table.getValueRow(3, i), customerUserEmail);
+		assertEquals(table.getValueRow(4, i), userGroupName);
+		assertEquals(table.getValueRow(5, i), createdStatus);
 		userNo = table.getIDValue(i);
 	}
 
@@ -106,15 +102,15 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
 
-		action.inputEmailField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, CUSTOMERUSEREMAIL);
-		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, PASSWORD);
+		action.inputEmailField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, customerUserEmail);
+		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, password);
 		action.clickBtn(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));
 
 		
 		action.waitObjVisible(By.id(ScreenObjects.NEWPASSWORD_ID));
-		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, PASSWORD);
-		action.inputTextField(ScreenObjects.NEWPASSWORD_ID, NEWPASSWORD);
-		action.inputTextField(ScreenObjects.CONFIRMPASSWORD_ID, NEWPASSWORD);
+		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, password);
+		action.inputTextField(ScreenObjects.NEWPASSWORD_ID, newPassword);
+		action.inputTextField(ScreenObjects.CONFIRMPASSWORD_ID, newPassword);
 		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
 		
 		
@@ -124,11 +120,11 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.USERS_SUBMENU));
 
 		
-		i = table.findRowByString(3, CUSTOMERUSEREMAIL);
-		assertEquals(table.getValueRow(2, i), USERID);
-		assertEquals(table.getValueRow(3, i), CUSTOMERUSEREMAIL);
-		assertEquals(table.getValueRow(4, i), USERGROUPNAME);
-		assertEquals(table.getValueRow(5, i), ACTIVESTATUS);
+		i = table.findRowByString(3, customerUserEmail);
+		assertEquals(table.getValueRow(2, i), userID);
+		assertEquals(table.getValueRow(3, i), customerUserEmail);
+		assertEquals(table.getValueRow(4, i), userGroupName);
+		assertEquals(table.getValueRow(5, i), activeStatus);
 		assertEquals(table.getValueRow(1, i), userNo);
 
 	}
@@ -159,10 +155,10 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		
 		i = table.findRowByString(1, userNo);
 		org.testng.Assert.assertTrue(1 >= 0, "User not found!");
-		assertEquals(table.getValueRow(2, i), USERID);
-		assertEquals(table.getValueRow(3, i), CUSTOMERUSEREMAIL);
-		assertEquals(table.getValueRow(4, i), USERGROUPNAME);
-		assertEquals(table.getValueRow(5, i), ACTIVESTATUS);
+		assertEquals(table.getValueRow(2, i), userID);
+		assertEquals(table.getValueRow(3, i), customerUserEmail);
+		assertEquals(table.getValueRow(4, i), userGroupName);
+		assertEquals(table.getValueRow(5, i), activeStatus);
 
 	}
 	@Test(dependsOnMethods = "openUsersScreenAndAssertUserInfoInGrid", alwaysRun = true)
@@ -174,8 +170,8 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		action.pause(500);
 		
 		action.assertFieldReadOnly(By.id(Users.USERNUMBER_ID));
-		assertEquals(action.getAttribute(By.id(Users.USER_ID)), USERID);
-		assertEquals(action.getAttribute(By.id(Users.EMAIL_ID)), CUSTOMERUSEREMAIL);
+		assertEquals(action.getAttribute(By.id(Users.USER_ID)), userID);
+		assertEquals(action.getAttribute(By.id(Users.EMAIL_ID)), customerUserEmail);
 		
 		action.clickBtn(By.id(Users.STATUS_ID));
 		action.pause(1000);
@@ -195,8 +191,8 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
 
-		action.inputEmailField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, CUSTOMERUSEREMAIL);
-		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, PASSWORD);
+		action.inputEmailField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, customerUserEmail);
+		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, password);
 		action.clickBtn(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.ERROR_CSS));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.ERROR_CSS)).getText(), "User inactive");
@@ -227,18 +223,18 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		
 		action.clickBtn(By.id(Users.STATUS_ID));
 		action.pause(500);
-		action.selectStatus(CustomerUsers.STATUSLIST, ACTIVESTATUS);
+		action.selectStatus(CustomerUsers.STATUSLIST, activeStatus);
 		// Unselect All Permissions group
-		table.selectUserGroup(CustomerUsers.USERGROUP_GRID, USERGROUPNAME);
+		table.selectUserGroup(CustomerUsers.USERGROUP_GRID, userGroupName);
 		action.pause(500);
 		
 		// Select NoInvoice group
-		table.selectUserGroup(CustomerUsers.USERGROUP_GRID, NEWUSERGROUPNAME);
+		table.selectUserGroup(CustomerUsers.USERGROUP_GRID, newUserGroupName);
 		
 		action.waitObjVisibleAndClick(By.id(CustomerUsers.SAVE_BUTTON_ID));
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_UPDATE_SUCCESSFULLY);
 		action.pause(1000);
-		assertEquals(table.getValueRow(4, i), "NoInvoice");
+		assertEquals(table.getValueRow(4, i), newUserGroupName);
 		
 		
 	}
@@ -252,21 +248,21 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		
 		driver.findElement(By.cssSelector(CustomerUsers.YESUPDATEPASSWORD_RADIOBUTTON)).findElement(By.tagName("label")).isSelected();
 
-		action.inputTextField(Users.USER_ID, USERID2);
-		action.inputEmailField(Users.EMAIL_ID, USEREMAIL2);
+		action.inputTextField(Users.USER_ID, userID2);
+		action.inputEmailField(Users.EMAIL_ID, userEmail2);
 
 		action.clickYesUpdatePasswordRadio();
 		
-		action.inputTextField(CustomerUsers.PASSWORD_TEXTBOX_ID, NEWPASSWORD2);
-		action.inputTextField(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID, NEWPASSWORD2);
+		action.inputTextField(CustomerUsers.PASSWORD_TEXTBOX_ID, newPassword2);
+		action.inputTextField(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID, newPassword2);
 		
 		action.waitObjVisibleAndClick(By.id(CustomerUsers.SAVE_BUTTON_ID));
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_UPDATE_SUCCESSFULLY);
 
-		assertEquals(table.getValueRow(2, i), USERID2);
-		assertEquals(table.getValueRow(3, i), USEREMAILLOWERCASE);
+		assertEquals(table.getValueRow(2, i), userID2);
+		assertEquals(table.getValueRow(3, i), userEmail2);
 		// Status is "Created" after updating password
-		assertEquals(table.getValueRow(5, i), CREATEDSTATUS);
+		assertEquals(table.getValueRow(5, i), createdStatus);
 		assertEquals(table.getValueRow(1, i), userNo);
 	}
 	
@@ -279,14 +275,14 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	@Test(dependsOnMethods = "signOut")
 	public void loginAgainWithNewInfo() {
 
-		action.inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, USEREMAILLOWERCASE);
-		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, NEWPASSWORD2);
+		action.inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, userEmail2);
+		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, newPassword2);
 		action.clickBtn(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));
 		
 		action.waitObjVisible(By.id(ScreenObjects.NEWPASSWORD_ID));
-		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, NEWPASSWORD2);
-		action.inputTextField(ScreenObjects.NEWPASSWORD_ID, NEWPASSWORD3);
-		action.inputTextField(ScreenObjects.CONFIRMPASSWORD_ID, NEWPASSWORD3);
+		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, newPassword2);
+		action.inputTextField(ScreenObjects.NEWPASSWORD_ID, newPassword3);
+		action.inputTextField(ScreenObjects.CONFIRMPASSWORD_ID, newPassword3);
 		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
 
 		action.waitObjVisible(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER));
@@ -322,12 +318,12 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	@Test(dependsOnMethods = "deleteCustomerAdmin", alwaysRun = true)
 	public void clickTrashBinIconToDeleteUser() {
 
-		i = table.findRowByString(3, CUSTOMERUSEREMAIL);
+		i = table.findRowByString(3, customerUserEmail);
 		if (i <= 0) {
 			i = table.findRowByString(1, userNo);
 		}
 		if (i <= 0) {
-			i = table.findRowByString(3, USEREMAILLOWERCASE);
+			i = table.findRowByString(3, userEmail2);
 		}
 		Assert.assertTrue("User doesn't exist", i > 0);
 		action.clickBtn(By.id("deleteItemBtn" + (i - 1)));
@@ -349,12 +345,12 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	@Test(dependsOnMethods = "clickTrashBinIconToDeleteUser")
 	public void clickYesButton() {
 
-		i = table.findRowByString(3, CUSTOMERUSEREMAIL);
+		i = table.findRowByString(3, customerUserEmail);
 		if (i <= 0) {
 			i = table.findRowByString(1, userNo);
 		}
 		if (i <= 0) {
-			i = table.findRowByString(3, USEREMAILLOWERCASE);
+			i = table.findRowByString(3, userEmail2);
 		}
 		Assert.assertTrue("User doesn't exist", i > 0);
 		action.clickBtn(By.id("deleteItemBtn" + (i - 1)));
@@ -364,7 +360,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)).getText(), Messages.USER_DELETE_SUCCESSFULLY);
 
-		assertEquals(table.isValueExisting(3, USEREMAILLOWERCASE), false);
+		assertEquals(table.isValueExisting(3, userEmail2), false);
 	}
 
 	@Test(dependsOnMethods = "clickYesButton")
@@ -373,8 +369,8 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		action.clickBtn(By.id(UserPreferences.PROFILE_PANEL));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
 		action.waitObjVisible(By.id(LoginPageDefinition.USERNAME_TEXT_FIELD_ID));
-		action.inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, USEREMAIL2);
-		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, NEWPASSWORD3);
+		action.inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, userEmail2);
+		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, newPassword3);
 		action.clickBtn(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.ERROR_CSS));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.ERROR_CSS)).getText(), Messages.USERNOTFOUND);
@@ -390,6 +386,8 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		action.waitObjVisible(By.id(CustomerUsers.SAVE_BUTTON_ID));
 
 		action.assertFieldReadOnly(By.id(CustomerUsers.USERNUMBER_MODIFYSCREEN_ID));
-		action.isFieldDisable(By.id(CustomerUsers.SAVE_BUTTON_ID));
-	}
+		assertEquals(action.isFieldDisable(By.id(CustomerUsers.SAVE_BUTTON_ID)), true);
+		action.assertFieldReadOnly(By.id(Users.USER_ID));
+		action.assertFieldReadOnly(By.id(Users.EMAIL_ID));
+}
 }
