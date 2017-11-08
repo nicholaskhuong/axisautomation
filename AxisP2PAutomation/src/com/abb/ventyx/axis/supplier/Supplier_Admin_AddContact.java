@@ -1,5 +1,7 @@
 package com.abb.ventyx.axis.supplier;
 
+import static org.testng.Assert.assertEquals;
+
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
@@ -32,6 +34,7 @@ public class Supplier_Admin_AddContact extends BaseTestCase {
 	String mobileNumber = "0905842718";
 	String titleHeader = "Maintain Address & Contact";
 	int milliseconds = 800;
+	String expected = "Maintain Address & Contact";
 
 	@Test
 	public void openScreen() {
@@ -43,7 +46,7 @@ public class Supplier_Admin_AddContact extends BaseTestCase {
 	}
 
 	@Test(dependsOnMethods = "openScreen")
-	public void addNewContact() throws InterruptedException {
+	public void addNewContact() {
 		// step 2
 		action.clickBtn(By.cssSelector(MaintainSuppliers.CONTACT_TAB));
 		action.inputTextField(MaintainSuppliers.SUPPLIER_NAME, "");
@@ -56,7 +59,7 @@ public class Supplier_Admin_AddContact extends BaseTestCase {
 	}
 
 	@Test(dependsOnMethods = "addNewContact")
-	public void verifyPopup() throws InterruptedException {
+	public void verifyPopup() {
 		// Step 4,5: Input lack mandatory fields and try cto click OK
 		action.inputTextField(MaintainSuppliers.CONTACT_ID_FILED, contactId);
 		action.clickBtn(By.cssSelector(MaintainSuppliers.OK_BUTTON));
@@ -65,14 +68,11 @@ public class Supplier_Admin_AddContact extends BaseTestCase {
 		action.inputTextField(MaintainSuppliers.CONTACT_EMAIl_FILED, invalidEmail);
 		action.clickBtn(By.cssSelector(MaintainSuppliers.OK_BUTTON));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
-		/*
-		 * assertEquals(driver.findElement(By.cssSelector(CustomerUsers.ERROR)).getText(
-		 * ), Messages.INVALID_EMAIL_2);
-		 */
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.INVALID_EMAIL_2);
 	}
 
 	@Test(dependsOnMethods = "verifyPopup")
-	public void addContactSuccessfully() throws InterruptedException {
+	public void addContactSuccessfully() {
 		// Step 6
 		action.inputTextField(MaintainSuppliers.CONTACT_EMAIl_FILED, validEmail);
 		action.inputTextField(MaintainSuppliers.CONTACT_ROLE_FILED, roleField);
@@ -88,13 +88,12 @@ public class Supplier_Admin_AddContact extends BaseTestCase {
 		action.pause(milliseconds);
 		action.clickBtn(By.id(ScreenObjects.CANCEL_ID));
 		// verify back to Maintain Address & Contact
-		// assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_ID)).getText(),
-		// title_header);
+		assertEquals(driver.findElement(By.cssSelector(MaintainSuppliers.EDIT_SUPPLIER_POPUP)).getText(), expected);
 	}
 
 	@Test(dependsOnMethods = "addContactSuccessfully")
-	public void addNoSaving() throws InterruptedException {
-		// Step 8,9 add but dont save
+	public void addNoSaving() {
+		// Step 8,9
 		action.pause(milliseconds);
 		action.clickBtn(By.cssSelector(MaintainSuppliers.ADDICON));
 		action.waitObjVisible(By.id(MaintainSuppliers.CONTACT_ID_FILED));
@@ -107,12 +106,17 @@ public class Supplier_Admin_AddContact extends BaseTestCase {
 		action.inputTextField(MaintainSuppliers.CONTACT_FAX_FILED, faxNumber);
 		action.inputTextField(MaintainSuppliers.CONTACT_MOBILE_FILED, mobileNumber);
 		action.waitObjVisible(By.id(ScreenObjects.CANCEL_ID));
-		/*
-		 * action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
-		 * assertEquals(driver.findElement(By.cssSelector(ScreenObjects.
-		 * UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
-		 * driver.findElement(By.id(ScreenObjects.NO_BTN_ID)).click();
-		 */
+		action.clickBtn(By.id(ScreenObjects.CANCEL_ID));
+		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
+		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.DELETE_NO));
+		action.pause(milliseconds);
+		action.waitObjVisible(By.id(ScreenObjects.CANCEL_ID));
+		action.clickBtn(By.id(ScreenObjects.CANCEL_ID));
+		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
+		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.DELETE_YES));
+		assertEquals(driver.findElement(By.cssSelector(MaintainSuppliers.EDIT_SUPPLIER_POPUP)).getText(), expected);
 
 	}
 
