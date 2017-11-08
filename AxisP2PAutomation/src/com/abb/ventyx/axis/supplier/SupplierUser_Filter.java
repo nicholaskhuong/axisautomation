@@ -1,9 +1,12 @@
 package com.abb.ventyx.axis.supplier;
 
+import static org.testng.Assert.assertEquals;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
+import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 import com.abb.ventyx.axis.objects.pagedefinitions.SupplierMenu;
 import com.abb.ventyx.axis.objects.pagedefinitions.Users;
@@ -25,6 +28,7 @@ public class SupplierUser_Filter extends BaseTestCase {
 	String userGroup = "Salem 11";
 	String userNumber = "5840";
 	int i = 0;
+	String expected = "Maintain Supplier Users";
 
 	@Test
 	public void openScreen() {
@@ -55,6 +59,7 @@ public class SupplierUser_Filter extends BaseTestCase {
 
 	@Test(dependsOnMethods = "filterFunction")
 	public void selectRowAfterFilter() {
+		action.pause(800);
 		table.inputFilter(userNumber);
 		WebElement index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH, 1, 1);
 		index.click();
@@ -69,6 +74,11 @@ public class SupplierUser_Filter extends BaseTestCase {
 		action.scrollToElementWithColumnNo(driver.findElement(By.id("deleteItemBtn1")), 6);
 		WebElement index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH, 1, 6);
 		index.click();
+		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.DELETE_USER_CONFIRM);
+
+		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.DELETE_NO));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), expected);
 
 	}
 
