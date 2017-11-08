@@ -42,7 +42,6 @@ public class Supplier_Admin_AddNewAddress extends BaseTestCase {
 	String city = "KL central";
 	String state = "Sanlagor";
 	String zipCode = "23656844";
-	String expected = "Maintain Address & Contact";
 
 	@Test
 	public void openScreen() {

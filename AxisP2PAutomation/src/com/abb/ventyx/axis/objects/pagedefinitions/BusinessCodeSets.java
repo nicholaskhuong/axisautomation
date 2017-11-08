@@ -11,6 +11,7 @@ public class BusinessCodeSets {
 	public static final String BUSINESS_CODE_SETS = "#menuItemSupplierCodeSet > span > span";
 	public static final String SUPPLIER_CODE_SETS_HEADER = "#common-header-left-layout > div > div";
 	public static final String DELIVERY_CODE_ICON = "#showPermBtn-AsnDeliveryCode > span > span.v-icon.material-icons";
+	public static final String TAX_CODE_ICON = "#showPermBtn-InvoiceTaxCode > span > span.v-icon.material-icons";
 	public static final String ADD_NEW_SUPPLIER_CODE_SETS_POPUP = "#common-header-left-layout > div > div";
 	public static final String ADD_BUTTON = "#supplierCodeSetTypeGrid > div.v-grid-tablewrapper > table > tbody > tr.v-grid-spacer.stripe > td > div > div.v-slot.v-slot-FeatureBarTable.v-slot-v-common-grid-menubar.v-slot-v-common-page-header-menubar-background-color.v-align-right.v-align-middle > div > span";
 	public static final String SAVE_BUTTON = "#supplierCodeSetCreationWindow > div > div > div.v-window-contents > div > div > div:nth-child(2) > div > div.v-slot.v-align-right.v-align-middle > div > div:nth-child(3)";
