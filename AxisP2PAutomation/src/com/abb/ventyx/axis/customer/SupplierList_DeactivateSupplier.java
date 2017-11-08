@@ -4,7 +4,6 @@ import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -28,6 +27,7 @@ public class SupplierList_DeactivateSupplier extends BaseTestCase {
 	WebDriverWait wait;
 	int i;
 	int j;
+	public static String  supplierAdmin = "yamaha8@abb.com";
 	String userSupplierEmailCreated = "cuseryamaha8@abb.com";
 	String userSupplierEmailActive = "cuseractive@abb.com";
 	String inactiveStatus = "Inactive";
@@ -44,9 +44,10 @@ public class SupplierList_DeactivateSupplier extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.SUPPLIERLIST_SUBMENU));
 		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
 		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER)).getText(), "Maintain Suppliers");
-		table.filter(SupplierList.SUPPLIER_EMAIL_FILTER_XPATH, SupplierList_CreateNewSupplier_ByAdmin.supplierEmail);
-		i = table.findRowByString(6, SupplierList_CreateNewSupplier_ByAdmin.supplierEmail);
-		Assert.assertTrue(i > 0, String.format("Supplier %s not found!", SupplierList_CreateNewSupplier_ByAdmin.supplierEmail));
+		table.filter(SupplierList.SUPPLIER_EMAIL_FILTER_XPATH, supplierAdmin);
+		action.pause(3000);
+		i = table.findRowByString(6, supplierAdmin);
+		Assert.assertTrue(i > 0, String.format("Supplier %s not found!", supplierAdmin));
 		assertEquals(table.getValueRow(4, i), activeStatus);
 		WebElement supplierIDCell = table.getCellObject(i, 1);
 		int indexOfSupplier = table.findRealIndexByCell(supplierIDCell, "spIdBtn");
@@ -112,7 +113,7 @@ public class SupplierList_DeactivateSupplier extends BaseTestCase {
 	@Test(dependsOnMethods = "signOut")
 	public void loginAsInactiveUser(){
 		//Admin
-		action.signIn(SupplierList_CreateNewSupplier_ByAdmin.supplierEmail, SupplierList_CreateNewSupplier_ByAdmin.password);
+		action.signIn(supplierAdmin, SupplierList_CreateNewSupplier_ByAdmin.password);
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.SUPPLIER_INACTIVE);
 	}
 
@@ -121,9 +122,10 @@ public class SupplierList_DeactivateSupplier extends BaseTestCase {
 
 		// User with Created status
 		action.signIn(userSupplierEmailCreated, password2);
-		assertEquals(
+		/*assertEquals(
 				(new WebDriverWait(driver, 30)).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)))
-						.getText(), "Supplier Dashboard");
+						.getText(), "Supplier Dashboard");*/
+		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.SUPPLIER_INACTIVE);
 	}
 
 }

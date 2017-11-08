@@ -33,10 +33,10 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	WebDriverWait wait;
 	int i;
 
-	public static String supplierName = "Yamaha1231313";
-	public static String supplierEmail = "yamaha13213@abb.com";
-	public static String companyRegistrationNo = "COMYAMAHA12313213213";
-	public static String taxRegistrationNo = "TAXYAMAHA123313213";
+	public static String supplierName = "Name 84307777";
+	public static String supplierEmail = "84307777@abb.com";
+	public static String companyRegistrationNo = "NO84307777";
+	public static String taxRegistrationNo = "Tax84307777";
 	String pendingStatus = "Pending";
 	public static String profile = "All Document Types";
 	String invalidEmail = "<HTML>";

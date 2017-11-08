@@ -43,8 +43,9 @@ public class SupplierList_ActivateSupplier extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.SUPPLIERLIST_SUBMENU));
 		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
 		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER)).getText(), "Maintain Suppliers");
-		table.filter(SupplierList.SUPPLIER_EMAIL_FILTER_XPATH, SupplierList_CreateNewSupplier_ByAdmin.supplierEmail);
-		i = table.findRowByString(6, SupplierList_CreateNewSupplier_ByAdmin.supplierEmail);
+		table.filter(SupplierList.SUPPLIER_EMAIL_FILTER_XPATH, SupplierList_DeactivateSupplier.supplierAdmin);
+		action.pause(3000);
+		i = table.findRowByString(6, SupplierList_DeactivateSupplier.supplierAdmin);
 		Assert.assertTrue(i >= 0, "Record not found!");
 		assertEquals(table.getValueRow(4, i), inactiveStatus);
 		WebElement supplierIDCell = table.getCellObject(i, 1);
@@ -122,7 +123,7 @@ public class SupplierList_ActivateSupplier extends BaseTestCase {
 	@Test(dependsOnMethods = "signOut")
 	public void loginAsActiveUser() {
 		// Admin
-		action.signIn(SupplierList_CreateNewSupplier_ByAdmin.supplierEmail, SupplierList_CreateNewSupplier_ByAdmin.password);
+		action.signIn(SupplierList_DeactivateSupplier.supplierAdmin, SupplierList_CreateNewSupplier_ByAdmin.password);
 		action.waitObjVisible(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), "Supplier Dashboard");
 	}
