@@ -4,8 +4,6 @@ import static org.testng.Assert.assertEquals;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.CustomerMenu;
@@ -27,13 +25,16 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 
 	ScreenAction action;
 	TableFunction table;
-	WebDriverWait wait;
 	int i;
+	String defaultUser = "cuserdefault@abb.com";
+	String defaultPass = "Testuser1";
+	
 	String USERID = "createdby_nick";
 	String CUSTOMERUSEREMAIL = "nickcustomeruser1@abb.com";
 	String PASSWORD = "Testuser2";
 	String CONFIRMPASSWORD = "Testuser2";
 	String USERGROUPNAME = "All Permissions";
+	String NEWUSERGROUPNAME = "NoInvoice";
 	String CREATEDSTATUS = "Created";
 	String ACTIVESTATUS = "Active";
 	String NEWPASSWORD = "Testuser1";
@@ -47,11 +48,11 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	String USEREMAILLOWERCASE = "cuupdated@abb.com";
 	String USERGGROUP2 = "test";
 	String NEWPASSWORD2 = "Testuser3";
+	String NEWPASSWORD3 = "Testuser4";
 	String userNo = "";
 
 	@Test
-	public void selectUsersSubMenu(){
-		wait = new WebDriverWait(driver, 60);
+	public void openUsersScreen(){
 		action = new ScreenAction(driver);
 		table = new TableFunction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
@@ -64,8 +65,8 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	}
 
 	// Step 1 Customer user creates another user
-	@Test(dependsOnMethods = "selectUsersSubMenu", alwaysRun = true)
-	public void createNewUser() throws InterruptedException {
+	@Test(dependsOnMethods = "openUsersScreen", alwaysRun = true)
+	public void createNewUser() {
 		i = table.findRowByString(3, CUSTOMERUSEREMAIL);
 		if (i > 0) {
 			action.clickBtn(By.id("deleteItemBtn" + (i - 1)));
@@ -101,7 +102,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	}
 
 	@Test(dependsOnMethods = "createNewUser", alwaysRun = true)
-	public void loginAsNewUser() throws InterruptedException {
+	public void loginAsNewUserAndCheckInfo() {
 		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
 
@@ -109,19 +110,20 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, PASSWORD);
 		action.clickBtn(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));
 
+		
 		action.waitObjVisible(By.id(ScreenObjects.NEWPASSWORD_ID));
 		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, PASSWORD);
-
 		action.inputTextField(ScreenObjects.NEWPASSWORD_ID, NEWPASSWORD);
 		action.inputTextField(ScreenObjects.CONFIRMPASSWORD_ID, NEWPASSWORD);
 		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER)));
+		
+		
+		action.waitObjVisible(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER));
 		action.assertTitleScreen("Customer Dashboard");
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.USERS_SUBMENU));
-		// The system wrong here
-		// assertEquals(driver.findElement(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER)).getText(),
-		// "Maintain Customer Users");
+
+		
 		i = table.findRowByString(3, CUSTOMERUSEREMAIL);
 		assertEquals(table.getValueRow(2, i), USERID);
 		assertEquals(table.getValueRow(3, i), CUSTOMERUSEREMAIL);
@@ -131,143 +133,186 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 
 	}
 
-	// Step 2 Customer user update other user
-	@Test(dependsOnMethods = "loginAsNewUser", alwaysRun = true)
-	public void logOutAndLoginToTheDefaultUser() throws InterruptedException {
+	@Test(dependsOnMethods = "loginAsNewUserAndCheckInfo", alwaysRun = true)
+	public void logOutNewUser() {
 		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
 
-		action.inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, "cuserdefault@abb.com");
-		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, "Testuser1");
+	}
+	
+	// Step 2 Customer user update other user
+	@Test(dependsOnMethods = "logOutNewUser", alwaysRun = true)
+	public void loginToDefaultUser() {
+		action.inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, defaultUser);
+		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, defaultPass);
 		action.clickBtn(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));
+		
+	}
+	
+	// User update other user's info
+	@Test(dependsOnMethods = "loginToDefaultUser")
+	public void openUsersScreenAndAssertUserInfoInGrid() {
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.USERS_SUBMENU));
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.ADD_BUTTON)));
-	}
-
-	// User update other user's info
-
-	@Test(dependsOnMethods = "logOutAndLoginToTheDefaultUser")
-	public void checkUserInfo() throws InterruptedException {
-		//
-
+		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
+		
+		
 		i = table.findRowByString(1, userNo);
 		org.testng.Assert.assertTrue(1 >= 0, "User not found!");
 		assertEquals(table.getValueRow(2, i), USERID);
 		assertEquals(table.getValueRow(3, i), CUSTOMERUSEREMAIL);
 		assertEquals(table.getValueRow(4, i), USERGROUPNAME);
 		assertEquals(table.getValueRow(5, i), ACTIVESTATUS);
+
 	}
-	@Test(dependsOnMethods = "checkUserInfo", alwaysRun = true)
-	public void openDetailScreen() throws InterruptedException {
-		table.clickUserNo(i);
-		action.waitObjVisible(By.id(CustomerUsers.SAVE_BUTTON_ID));
-		Thread.sleep(500);
-		action.assertFieldReadOnly(By.id(Users.USERNUMBER_ID));
-		assertEquals(action.getAttribute(By.id(Users.USER_ID)), USERID);
-		assertEquals(action.getAttribute(By.id(Users.EMAIL_ID)), CUSTOMERUSEREMAIL);
-		action.checkObjSelected(0);
-	}
+	@Test(dependsOnMethods = "openUsersScreenAndAssertUserInfoInGrid", alwaysRun = true)
+	public void updateUserStatus() {
 
-	@Test(dependsOnMethods = "openDetailScreen", alwaysRun = true)
-	public void checkCanUpdateSuccessfully() throws InterruptedException {
-		driver.findElement(By.cssSelector(CustomerUsers.YESUPDATEPASSWORD_RADIOBUTTON)).findElement(By.tagName("label")).isSelected();
-
-		action.inputEmailField(Users.USER_ID, USERID2);
-		action.inputEmailField(Users.EMAIL_ID, USEREMAIL2);
-
-		action.clickYesUpdatePasswordRadio();
-		action.inputTextField(CustomerUsers.PASSWORD_TEXTBOX_ID, NEWPASSWORD2);
-		action.inputTextField(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID, NEWPASSWORD2);
-		action.waitObjVisibleAndClick(By.id(CustomerUsers.SAVE_BUTTON_ID));
-		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_UPDATE_SUCCESSFULLY);
-	}
-
-	@Test(dependsOnMethods = "checkCanUpdateSuccessfully", alwaysRun = true)
-	public void checkUserInfoAfterUpdated() throws InterruptedException {
-		assertEquals(table.getValueRow(2, i), USERID2);
-		assertEquals(table.getValueRow(3, i), USEREMAILLOWERCASE);
-		assertEquals(table.getValueRow(4, i), USERGROUPNAME);
-		assertEquals(table.getValueRow(5, i), ACTIVESTATUS);
-		assertEquals(table.getValueRow(1, i), userNo);
-	}
-
-	@Test(dependsOnMethods = "checkUserInfoAfterUpdated", alwaysRun = true)
-	public void changeStatusOfUser() throws InterruptedException {
 		// Update status to Inactive
 		table.clickUserNo(i);
 		action.waitObjVisible(By.id(CustomerUsers.SAVE_BUTTON_ID));
-		Thread.sleep(500);
+		action.pause(500);
+		
+		action.assertFieldReadOnly(By.id(Users.USERNUMBER_ID));
+		assertEquals(action.getAttribute(By.id(Users.USER_ID)), USERID);
+		assertEquals(action.getAttribute(By.id(Users.EMAIL_ID)), CUSTOMERUSEREMAIL);
+		
 		action.clickBtn(By.id(Users.STATUS_ID));
-		Thread.sleep(500);
-	}
-
-	@Test(dependsOnMethods = "changeStatusOfUser", alwaysRun = true)
-	public void updateStatusToInactive() throws InterruptedException {
+		action.pause(1000);
+		
 		action.selectStatus(CustomerUsers.STATUSLIST, "Inactive");
+		action.pause(500);
 		action.waitObjVisibleAndClick(By.id(CustomerUsers.SAVE_BUTTON_ID));
+		action.pause(1000);
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_UPDATE_SUCCESSFULLY);
-		assertEquals(table.getValueRow(5, i), "Inactive");
+		
+		assertEquals(table.getValueRow(5, i), "Inactive");	
+		
 	}
+	@Test(dependsOnMethods = "updateUserStatus", alwaysRun = true)
+	public void loginToInactiveUser() {
+		
+		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
+		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
 
-	@Test(dependsOnMethods = "updateStatusToInactive", alwaysRun = true)
-	public void checkStatusAferUpdated() throws InterruptedException {
+		action.inputEmailField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, CUSTOMERUSEREMAIL);
+		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, PASSWORD);
+		action.clickBtn(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));
+		action.waitObjVisible(By.cssSelector(ScreenObjects.ERROR_CSS));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.ERROR_CSS)).getText(), "User inactive");
+	}
+	
+	@Test(dependsOnMethods = "loginToInactiveUser", alwaysRun = true)
+	public void loginToDefaultUser3nd() {
+
+		action.inputEmailField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, defaultUser);
+		action.inputEmailField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, defaultPass);
+		action.clickBtn(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));
+		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
+		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.USERS_SUBMENU));
+		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
+	}
+	
+	
+	@Test(dependsOnMethods = "loginToDefaultUser3nd", alwaysRun = true)
+	public void updateUserGroup() {
+		action.pause(1000);
 		// Update user group to "NoInvoice" and Active
 		table.clickUserNo(i);
 		action.waitObjVisible(By.id(CustomerUsers.SAVE_BUTTON_ID));
-		Thread.sleep(500);
+		action.pause(500);
+		
+		// Check All Permissions group is selected
+		action.checkObjSelected(0);
+		
 		action.clickBtn(By.id(Users.STATUS_ID));
-		Thread.sleep(500);
-	}
-
-	@Test(dependsOnMethods = "checkStatusAferUpdated", alwaysRun = true)
-	public void updateUserInfo() throws InterruptedException {
-		action.selectStatus(CustomerUsers.STATUSLIST, "Active");
-		table.selectUserGroup(CustomerUsers.USERGROUP_GRID, "NoInvoice");
-		table.selectUserGroup(CustomerUsers.USERGROUP_GRID, "All Permissions");
+		action.pause(500);
+		action.selectStatus(CustomerUsers.STATUSLIST, ACTIVESTATUS);
+		// Unselect All Permissions group
+		table.selectUserGroup(CustomerUsers.USERGROUP_GRID, USERGROUPNAME);
+		action.pause(500);
+		
+		// Select NoInvoice group
+		table.selectUserGroup(CustomerUsers.USERGROUP_GRID, NEWUSERGROUPNAME);
+		
 		action.waitObjVisibleAndClick(By.id(CustomerUsers.SAVE_BUTTON_ID));
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_UPDATE_SUCCESSFULLY);
+		action.pause(1000);
 		assertEquals(table.getValueRow(4, i), "NoInvoice");
+		
+		
 	}
 
-	@Test(dependsOnMethods = "updateUserInfo", alwaysRun = true)
-	public void signOut() throws InterruptedException {
+	@Test(dependsOnMethods = "updateUserGroup", alwaysRun = true)
+	public void updateUserIDAndUserEmail() {
+		
+		table.clickUserNo(i);
+		action.waitObjVisible(By.id(CustomerUsers.SAVE_BUTTON_ID));
+		action.pause(500);
+		
+		driver.findElement(By.cssSelector(CustomerUsers.YESUPDATEPASSWORD_RADIOBUTTON)).findElement(By.tagName("label")).isSelected();
+
+		action.inputTextField(Users.USER_ID, USERID2);
+		action.inputEmailField(Users.EMAIL_ID, USEREMAIL2);
+
+		action.clickYesUpdatePasswordRadio();
+		
+		action.inputTextField(CustomerUsers.PASSWORD_TEXTBOX_ID, NEWPASSWORD2);
+		action.inputTextField(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID, NEWPASSWORD2);
+		
+		action.waitObjVisibleAndClick(By.id(CustomerUsers.SAVE_BUTTON_ID));
+		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_UPDATE_SUCCESSFULLY);
+
+		assertEquals(table.getValueRow(2, i), USERID2);
+		assertEquals(table.getValueRow(3, i), USEREMAILLOWERCASE);
+		// Status is "Created" after updating password
+		assertEquals(table.getValueRow(5, i), CREATEDSTATUS);
+		assertEquals(table.getValueRow(1, i), userNo);
+	}
+	
+	@Test(dependsOnMethods = "updateUserIDAndUserEmail", alwaysRun = true)
+	public void signOut() {
 		action.signOut();
 	}
 
+	// Checking password expired appears here
 	@Test(dependsOnMethods = "signOut")
-	public void loginAgainWithNewInfo() throws InterruptedException {
+	public void loginAgainWithNewInfo() {
 
 		action.inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, USEREMAILLOWERCASE);
 		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, NEWPASSWORD2);
-
 		action.clickBtn(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));
+		
+		action.waitObjVisible(By.id(ScreenObjects.NEWPASSWORD_ID));
+		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, NEWPASSWORD2);
+		action.inputTextField(ScreenObjects.NEWPASSWORD_ID, NEWPASSWORD3);
+		action.inputTextField(ScreenObjects.CONFIRMPASSWORD_ID, NEWPASSWORD3);
+		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
+
 		action.waitObjVisible(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER));
 		action.assertTitleScreen("Customer Dashboard");
 	}
 
 	@Test(dependsOnMethods = "loginAgainWithNewInfo", alwaysRun = true)
-	public void logOut() throws InterruptedException {
-
+	public void signOut2nd() {
 		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
 	}
 
-	@Test(dependsOnMethods = "logOut", alwaysRun = true)
-	public void logIn() throws InterruptedException {
+	@Test(dependsOnMethods = "signOut2nd", alwaysRun = true)
+	public void loginToDefaultUser2nd() {
 
-		action.inputEmailField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, "cuserdefault@abb.com");
-		action.inputEmailField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, "Testuser1");
+		action.inputEmailField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, defaultUser);
+		action.inputEmailField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, defaultPass);
 		action.clickBtn(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.USERS_SUBMENU));
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.ADD_BUTTON)));
-
-		assertEquals(driver.findElement(By.id(CustomerUsers.DELETE_ICON_ADMIN)).getAttribute("aria-disabled"), "true");
+		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
 	}
 
-	@Test(dependsOnMethods = "logIn")
-	public void deleteCustomerAdmin() throws InterruptedException {
+	
+	@Test(dependsOnMethods = "loginToDefaultUser2nd")
+	public void deleteCustomerAdmin(){
 
 		assertEquals(driver.findElement(By.id(CustomerUsers.DELETE_ICON_ADMIN)).getAttribute("aria-disabled"), "true");
 
@@ -275,7 +320,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 
 	// Click Trash Bin icon of the user to test
 	@Test(dependsOnMethods = "deleteCustomerAdmin", alwaysRun = true)
-	public void clickTrashBinIconOfUser() throws InterruptedException {
+	public void clickTrashBinIconToDeleteUser() {
 
 		i = table.findRowByString(3, CUSTOMERUSEREMAIL);
 		if (i <= 0) {
@@ -292,8 +337,8 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 
 	}
 
-	@Test(dependsOnMethods = "clickTrashBinIconOfUser")
-	public void clickNoButton() throws InterruptedException {
+	@Test(dependsOnMethods = "clickTrashBinIconToDeleteUser")
+	public void clickNoButton() {
 
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.NO_BTN_ID));
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.CONFIRMATION));
@@ -301,8 +346,8 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	}
 
 	// Step 4 Click Trash Bin and choose Yes
-	@Test(dependsOnMethods = "clickTrashBinIconOfUser")
-	public void clickYesButton() throws InterruptedException {
+	@Test(dependsOnMethods = "clickTrashBinIconToDeleteUser")
+	public void clickYesButton() {
 
 		i = table.findRowByString(3, CUSTOMERUSEREMAIL);
 		if (i <= 0) {
@@ -322,25 +367,25 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		assertEquals(table.isValueExisting(3, USEREMAILLOWERCASE), false);
 	}
 
-	@Test(dependsOnMethods = "clickTrashBinIconOfUser")
-	public void loginAsTheDeletedUser() throws InterruptedException {
+	@Test(dependsOnMethods = "clickYesButton")
+	public void loginAsDeletedUser() {
 
 		action.clickBtn(By.id(UserPreferences.PROFILE_PANEL));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
 		action.waitObjVisible(By.id(LoginPageDefinition.USERNAME_TEXT_FIELD_ID));
 		action.inputTextField(LoginPageDefinition.USERNAME_TEXT_FIELD_ID, USEREMAIL2);
-		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, USEREMAILLOWERCASE);
+		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, NEWPASSWORD3);
 		action.clickBtn(By.id(LoginPageDefinition.LOGIN_BUTTON_ID));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.ERROR_CSS));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.ERROR_CSS)).getText(), Messages.USERNOTFOUND);
 	}
 
-	@Test(dependsOnMethods = "loginAsTheDeletedUser")
-	public void updateAdminInfo() throws InterruptedException {
-		action.signIn("cuserdefault@abb.com", "Testuser1");
+	@Test(dependsOnMethods = "loginAsDeletedUser")
+	public void updateAdminInfo() {
+		action.signIn(defaultUser, defaultPass);
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.USERS_SUBMENU));
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.ADD_BUTTON)));
+		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
 		table.clickUserNo(table.findRowByString(1, "4073"));
 		action.waitObjVisible(By.id(CustomerUsers.SAVE_BUTTON_ID));
 

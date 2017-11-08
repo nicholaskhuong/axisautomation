@@ -234,6 +234,7 @@ public class ScreenAction {
 	}
 
 	public void selectStatus(String tableCSS, String value) {
+		pause(1000);
 		waitObjVisible(By.cssSelector(tableCSS));
 		WebElement baseTable = driver.findElement(By.cssSelector(tableCSS));
 		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
