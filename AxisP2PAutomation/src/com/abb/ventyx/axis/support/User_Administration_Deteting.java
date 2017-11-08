@@ -1,6 +1,8 @@
 package com.abb.ventyx.axis.support;
 
 
+import static org.testng.Assert.assertEquals;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
@@ -47,9 +49,13 @@ public class User_Administration_Deteting extends BaseTestCase {
 		index =  table.getCellObject(1, 6);
 		action.pause(waitTime);
 		index.click();
+		action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.CONFIRMATION)).getText(), Messages.DELETE_USERGROUP_CONFIRM);
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.NO_BTN_ID));
 		action.pause(waitTime);
 		index.click();
+		action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.CONFIRMATION)).getText(), Messages.DELETE_USERGROUP_CONFIRM);
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.YES_BTN_ID));
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_DELETE_SUCCESSFULLY);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));

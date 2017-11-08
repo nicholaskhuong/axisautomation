@@ -1,6 +1,8 @@
 package com.abb.ventyx.axis.support;
 
 
+import static org.testng.Assert.assertEquals;
+
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -107,6 +109,7 @@ public class User_Administration_Updating extends BaseTestCase {
 	public void inputPasswordAndConfirmPasswordAreNotTheSame(){
 		action.waitObjVisible(By.id(Users.PASSWORD_ID));
 		action.inputTextField(Users.PASSWORD_ID, password);
+		action.pause(waitTime);
 		action.waitObjVisible(By.id(Users.CONFIMRPASSWORD_ID));
 		action.inputTextField(Users.CONFIMRPASSWORD_ID, confirmPassword);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
@@ -132,7 +135,9 @@ public class User_Administration_Updating extends BaseTestCase {
 	//Step 7
 	@Test(dependsOnMethods = "inputAllMandatoryFields", alwaysRun = true)
 	public void ClickAnExistingRecord () {
+		action.pause(2000);
 		table.inputFilter("Tau1", Users.USER_ID_FILTER , true);
+		action.pause(waitTime);
 		index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH,1, 1);
 		index.click();
 		action.pause(waitTime);
@@ -146,16 +151,19 @@ public class User_Administration_Updating extends BaseTestCase {
 		action.inputTextField(Users.USER_ID, userUpdate);
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(Users.CANCEL_BTN_ID));
+		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.NO_BTN_ID));
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(Users.CANCEL_BTN_ID));
+		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.YES_BTN_ID));
 	}
 	
 	//Step 12
 	@Test(dependsOnMethods = "clickAddButtonAndInputDataName", alwaysRun = true)
 	public void logoutAndLoginWithNewUser() {
-		action.pause(waitTime);
 		action.signOut();
 		action.pause(waitTime);
 		action.signIn(emailUpdate, password);
