@@ -50,12 +50,12 @@ public class User_Administration_Deteting extends BaseTestCase {
 		action.pause(waitTime);
 		index.click();
 		action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
-		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.CONFIRMATION)).getText(), Messages.DELETE_USERGROUP_CONFIRM);
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.CONFIRMATION)).getText(), Messages.DELETE_USER_CONFIRM);
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.NO_BTN_ID));
 		action.pause(waitTime);
 		index.click();
 		action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
-		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.CONFIRMATION)).getText(), Messages.DELETE_USERGROUP_CONFIRM);
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.CONFIRMATION)).getText(), Messages.DELETE_USER_CONFIRM);
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.YES_BTN_ID));
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_DELETE_SUCCESSFULLY);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
