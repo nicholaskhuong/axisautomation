@@ -12,6 +12,5 @@ public class SearchOption {
 			public static final String SAVE_ADD = "createEditBtn";
 			public static final String YES = "okBtn";
 			public static final String NO = "noBtn";
-			public static final String FIELD_TYPE_FILTER = "//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div[3]/table/thead/tr[2]/th[1]";
-			public static final String e = "e";												
+			public static final String FIELD_TYPE_FILTER = "(//input[@id='filterField'])[1]";											
 }

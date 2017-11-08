@@ -16,6 +16,8 @@ public class Messages {
 	public static final String DOC_TYPE_SEARCH_OPT_SUCCESSFULLY = "Document filter type search option successfully created";
 	public static final String DUPLICATE_FIELD_TYPE_CSS = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-error-notification-no-icon.v-Notification-v-error-notification-no-icon";
 	public static final String DUPLICATE_FIELD_TYPE = "Duplicate Field Type and Option, please use different values";
+	public static final String UPDATE_FIELD_TYPE = "Document filter type search option successfully updated";
+	public static final String DELETE_FIELD_TYPE = "Document Filter Type Search Option successfully deleted";
 	public static final String DOC_TYPES_EXIST = "This Document Type already exists";
 	public static final String ENTER_MANDATORY_FIELDS = "One or more fields are in error. Please correct.";
 	public static final String EMPTY_PERMISSION = "Please select permissions for user group";

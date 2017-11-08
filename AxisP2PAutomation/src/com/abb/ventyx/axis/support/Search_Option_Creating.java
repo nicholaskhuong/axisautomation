@@ -1,80 +1,108 @@
-
-
 package com.abb.ventyx.axis.support;
+
+import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
+import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 import com.abb.ventyx.axis.objects.pagedefinitions.SearchOption;
 import com.abb.ventyx.utilities.ALM;
-import com.abb.ventyx.utilities.BaseDropDownList;
-import com.abb.ventyx.utilities.BaseGrid;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
-@ALM(id = "158") 
+import com.abb.ventyx.utilities.ScreenAction;
+import com.abb.ventyx.utilities.TableFunction;
+@ALM(id = "201") 
 @Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class Search_Option_Creating extends BaseTestCase {
-
-	String FIELD_TYPE = "QUANTITY";
-	String FILTER_SUB_TYPE = "UNIT";
-	String OPTION = "TEST_SEARCH";
-	BaseDropDownList list;
-	int row;
-	BaseGrid grid;
+	String fieldType = "QUANTITY UNIT";
+	String filterSubType = "STATES";
+	String option = "LESS THAN";
+	String fieldTypeExit = "NUMBER";
+	String filterSubTypeExit = "B";
+	String optionExit = "GREATER THAN";
+	ScreenAction action;
+	int milliseconds = 1000;
+	TableFunction table;
+	WebElement index;
+	
+	//Step 01
 	@Test
-	public void filterFieldSearchOptionAdd(){
-		   // Create Filter Field
-			WebElement axisConfigParentButton = (new WebDriverWait(driver, 60))
-		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION)));
-		    axisConfigParentButton.click();
-		    WebElement axisFilterConfig = (new WebDriverWait(driver, 60))
-		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.FILTER_CONFIG)));
-		    axisFilterConfig.click();
-		    WebElement axisFilterField = (new WebDriverWait(driver, 60))
-		  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(AxisConfigMenu.SEARCH_OPTION)));
-		    axisFilterField.click();
-		    WebElement searchOptionAdd = (new WebDriverWait(driver, 60))
-		  			.until(ExpectedConditions.presenceOfElementLocated(By.xpath(SearchOption.ADD)));
-		    searchOptionAdd.click();
+	public void openSearchOptionScreen(){
+		action = new ScreenAction(driver);
+		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION));
+		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.FILTER_CONFIG));
+		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.SEARCH_OPTION));
+		action.pause(milliseconds);
+	}
 	
-	}  
-	
-	 @Test(dependsOnMethods = "filterFieldSearchOptionAdd")
-	 public void inputFields (){
-		 
-		    WebElement fieldType = (new WebDriverWait(driver, 80))
-		  			.until(ExpectedConditions.presenceOfElementLocated(By.id(SearchOption.FIELD_TYPE_ADD)));
-		    fieldType.click();
-		    fieldType.sendKeys(FIELD_TYPE);
-		    WebElement fieldSubType = (new WebDriverWait(driver, 80))
-		  			.until(ExpectedConditions.presenceOfElementLocated(By.id(SearchOption.FILTER_SUB_TYPE_ADD)));
-		    fieldSubType.click();
-		    fieldSubType.sendKeys(FILTER_SUB_TYPE);
-		    WebElement option = (new WebDriverWait(driver, 80))
-		  			.until(ExpectedConditions.presenceOfElementLocated(By.id(SearchOption.OPTION_ADD)));
-		    option.click();
-		    option.sendKeys(OPTION);
-		    WebElement save = (new WebDriverWait(driver, 80))
-		  			.until(ExpectedConditions.presenceOfElementLocated(By.id(SearchOption.SAVE_ADD)));
-		    save.click();
+	//Step 02_03
+	@Test(dependsOnMethods = "openSearchOptionScreen", alwaysRun = true)
+	 public void clickAddButtonAndInputData (){
+		 action.waitObjVisibleAndClick(By.cssSelector(SearchOption.ADD));
+		 action.inputTextField(SearchOption.FIELD_TYPE_ADD, fieldType);
+		 action.inputTextField(SearchOption.FILTER_SUB_TYPE_ADD, filterSubType);
+		 action.inputTextField(SearchOption.OPTION_ADD, option);
+		 action.waitObjVisible(By.id(SearchOption.SAVE_ADD));
+		 action.waitObjVisibleAndClick(By.id(SearchOption.SAVE_ADD));
+		 action.pause(milliseconds);
+		 action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.DOC_TYPE_SEARCH_OPT_SUCCESSFULLY);
+		 action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 	 }
-	 @Test(dependsOnMethods = "inputFields")
-	 public void catchSucessMessage (){
-		    WebElement flashMessage = (new WebDriverWait(driver, 60))
-	 	  			.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(Messages.SEARCH_OPTION_SUCCESSFULLY)));
-		    Assert.assertEquals(driver.findElement(By.cssSelector(Messages.SEARCH_OPTION_SUCCESSFULLY)).getCssValue("background-color"), "rgba(33, 190, 137, 1)");
-		    Assert.assertEquals(flashMessage.getCssValue("visibility"), "visible");
-		    Assert.assertEquals(flashMessage.getCssValue("display"), "block");
-	 	  //  Assert.assertEquals(flashMessage.getText(), Messages.DOC_TYPE_SEARCH_OPT_SUCCESSFULLY);
-		   
-			}
- 	
+	//Step 04_05
+	@Test(dependsOnMethods = "clickAddButtonAndInputData", alwaysRun = true)
+	 public void clickAddButtonAndClickCancelButton (){
+		 action.waitObjVisibleAndClick(By.cssSelector(SearchOption.ADD));
+		 action.inputTextField(SearchOption.FIELD_TYPE_ADD, fieldType);
+		 action.inputTextField(SearchOption.FILTER_SUB_TYPE_ADD, filterSubType);
+		 action.inputTextField(SearchOption.OPTION_ADD, option);
+		 action.waitObjVisibleAndClick(By.id(SearchOption.CANCEL_ADD));
+		 action.pause(milliseconds);
+		 action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
+		 assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
+		 action.waitObjVisibleAndClick(By.id(SearchOption.YES));
+	 }
+	 
+	//Step 06_07
+	@Test(dependsOnMethods = "clickAddButtonAndClickCancelButton", alwaysRun = true)
+	 public void clickFilterButtonAndNoInputMandatoryFilter (){
+		 table = new TableFunction(driver);
+		 table.inputFilter(fieldType, SearchOption.FIELD_TYPE_FILTER, true);
+		 index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH,1, 1);
+		 index.click();
+		 action.inputTextField(SearchOption.FIELD_TYPE_ADD, fieldType);
+		 action.inputTextField(SearchOption.FILTER_SUB_TYPE_ADD, "");
+		 action.inputTextField(SearchOption.OPTION_ADD, "");
+		 action.waitObjVisible(By.id(SearchOption.SAVE_ADD));
+		 action.waitObjVisibleAndClick(By.id(SearchOption.SAVE_ADD));
+		 action.pause(milliseconds);
+		 action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
+		 action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
+	 }
+	 
+	//Step 08_09
+	@Test(dependsOnMethods = "clickFilterButtonAndNoInputMandatoryFilter", alwaysRun = true)
+	 public void inputDuplicateValue (){
+		 action.inputTextField(SearchOption.FIELD_TYPE_ADD, fieldTypeExit);
+		 action.inputTextField(SearchOption.FILTER_SUB_TYPE_ADD, filterSubTypeExit);
+		 action.inputTextField(SearchOption.OPTION_ADD, optionExit);
+		 action.waitObjVisible(By.id(SearchOption.SAVE_ADD));
+		 action.waitObjVisibleAndClick(By.id(SearchOption.SAVE_ADD));
+		 action.pause(milliseconds);
+		 action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.DUPLICATE_FIELD_TYPE);
+		 action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
+		 action.waitObjVisible(By.id(SearchOption.CANCEL_ADD));
+		 action.waitObjVisibleAndClick(By.id(SearchOption.CANCEL_ADD));
+		 action.pause(milliseconds);
+		 action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
+		 assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
+		 action.waitObjVisibleAndClick(By.id(SearchOption.YES));
+	 }
+	 
+	
 }
 
 

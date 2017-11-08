@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="AxisSupport_Configuration_SearchOption" parallel="none">
+ 
+	<test name="Axis Support Search Option Creating">
+		<classes>
+				<class name="com.abb.ventyx.axis.support.Search_Option_Creating" />
+		</classes>	
+  	</test>
+  	<test name="Axis Support Search Option Updating">
+		<classes>
+				<class name="com.abb.ventyx.axis.support.Search_Option_Updating" />
+		</classes>	
+  	</test>
+  	<test name="Axis Support Search Option Deleting">
+		<classes>
+				<class name="com.abb.ventyx.axis.support.Search_Option_Deleting" />
+		</classes>	
+  	</test>
+  	
+</suite> 
