@@ -18,5 +18,10 @@
 				<class name="com.abb.ventyx.axis.supplier.SupplierUser_Deleting" />					
 		</classes>	
   	</test>
+  		<test name="Supplier Users Filter">
+		<classes>
+				<class name="com.abb.ventyx.axis.supplier.SupplierUser_Filter" />					
+		</classes>	
+  	</test>
   	
 </suite> 

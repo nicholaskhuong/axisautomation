@@ -18,4 +18,9 @@
 				<class name="com.abb.ventyx.axis.supplier.SupplierUserGroup_Deleting" />
 		</classes>
 	</test>	
+	<test name="Supplier User Group Filter">
+		<classes>
+				<class name="com.abb.ventyx.axis.supplier.SupplierUserGroups_Filter" />
+		</classes>
+	</test>	
 </suite> 
