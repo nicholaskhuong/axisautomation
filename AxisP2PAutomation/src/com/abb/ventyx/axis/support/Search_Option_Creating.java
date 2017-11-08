@@ -87,6 +87,7 @@ public class Search_Option_Creating extends BaseTestCase {
 	@Test(dependsOnMethods = "clickFilterButtonAndNoInputMandatoryFilter", alwaysRun = true)
 	 public void inputDuplicateValue (){
 		 action.inputTextField(SearchOption.FIELD_TYPE_ADD, fieldTypeExit);
+		 action.pause(milliseconds);
 		 action.inputTextField(SearchOption.FILTER_SUB_TYPE_ADD, filterSubTypeExit);
 		 action.inputTextField(SearchOption.OPTION_ADD, optionExit);
 		 action.waitObjVisible(By.id(SearchOption.SAVE_ADD));

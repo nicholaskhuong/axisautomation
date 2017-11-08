@@ -135,7 +135,7 @@ public class User_Administration_Updating extends BaseTestCase {
 	//Step 7
 	@Test(dependsOnMethods = "inputAllMandatoryFields", alwaysRun = true)
 	public void ClickAnExistingRecord () {
-		action.pause(2000);
+		action.pause(3000);
 		table.inputFilter("Tau1", Users.USER_ID_FILTER , true);
 		action.pause(waitTime);
 		index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH,1, 1);
