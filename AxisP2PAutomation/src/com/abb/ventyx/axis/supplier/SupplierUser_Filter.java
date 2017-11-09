@@ -61,6 +61,7 @@ public class SupplierUser_Filter extends BaseTestCase {
 	public void selectRowAfterFilter() {
 		action.pause(800);
 		WebElement index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH, 1, 1);
+		action.scrollToElementWithColumnNo(index, 6);
 		index.click();
 		action.waitObjVisible(By.id(ScreenObjects.CANCEL_ID));
 		action.clickBtn(By.id(ScreenObjects.CANCEL_ID));
@@ -69,9 +70,11 @@ public class SupplierUser_Filter extends BaseTestCase {
 
 	@Test(dependsOnMethods = "selectRowAfterFilter")
 	public void selectRowAfterFilterDelete() {
-		action.scrollToElementWithColumnNo(driver.findElement(By.id("deleteItemBtn1")), 6);
-		WebElement index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH, 1, 6);
-		index.click();
+		action.inputTextField(By.xpath(Users.USER_GROUP_FILTER), userGroup);
+		int actualIndex = table.findRealIndexByCell(1, 6, "deleteItemBtn");
+		WebElement deleteIcon = driver.findElement(By.id("deleteItemBtn" + actualIndex));
+		action.scrollToElementWithColumnNo(deleteIcon, 6);
+		deleteIcon.click();
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.DELETE_USER_CONFIRM);
 
