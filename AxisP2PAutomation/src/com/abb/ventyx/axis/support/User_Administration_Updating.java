@@ -109,7 +109,7 @@ public class User_Administration_Updating extends BaseTestCase {
 	public void inputPasswordAndConfirmPasswordAreNotTheSame(){
 		action.waitObjVisible(By.id(Users.PASSWORD_ID));
 		action.inputTextField(Users.PASSWORD_ID, password);
-		action.pause(waitTime);
+		action.pause(3000);
 		action.waitObjVisible(By.id(Users.CONFIMRPASSWORD_ID));
 		action.inputTextField(Users.CONFIMRPASSWORD_ID, confirmPassword);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
@@ -124,6 +124,7 @@ public class User_Administration_Updating extends BaseTestCase {
 		action.pause(waitTime);
 		action.waitObjVisible(By.id(Users.USER_ID));
 		action.inputTextField(Users.USER_ID, userUpdate);
+		action.pause(3000);
 		action.waitObjVisible(By.id(Users.CONFIMRPASSWORD_ID));
 		action.inputTextField(Users.CONFIMRPASSWORD_ID, password);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
@@ -135,9 +136,8 @@ public class User_Administration_Updating extends BaseTestCase {
 	//Step 7
 	@Test(dependsOnMethods = "inputAllMandatoryFields", alwaysRun = true)
 	public void ClickAnExistingRecord () {
-		action.pause(3000);
-		table.inputFilter("Tau1", Users.USER_ID_FILTER , true);
 		action.pause(waitTime);
+		table.inputFilterAtIndex("Tau1", Users.USER_ID_FILTER , true);
 		index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH,1, 1);
 		index.click();
 		action.pause(waitTime);

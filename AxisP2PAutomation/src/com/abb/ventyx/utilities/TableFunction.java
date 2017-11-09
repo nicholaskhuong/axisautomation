@@ -222,7 +222,21 @@ public class TableFunction {
 		action.pause(1000);
 
 	}
+	
+	public void inputFilterAtIndex(String value, String filterPath, Boolean isXpath) {
 
+		WebElement filterColumn;
+		if (isXpath) {
+			filterColumn = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By.xpath(filterPath)));
+		} else {
+			filterColumn = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By.id(filterPath)));
+		}
+		action.scrollToElement(filterColumn);
+		filterColumn.clear();
+		filterColumn.sendKeys(value);
+		action.pause(1000);
+
+	}
 	public void assertRowEqual(String obj, String value, int row) {
 		WebElement rowFilter = driver.findElement(By.id(obj + row));
 		assertEquals(rowFilter.getText(), value, "Title is wrong");
