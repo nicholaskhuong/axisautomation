@@ -3,10 +3,8 @@ package com.abb.ventyx.axis.customer;
 import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AddressAndContact;
@@ -120,15 +118,14 @@ public class SupplierList_RemoteIcon_Step1_11 extends BaseTestCase {
 	// Step 6
 	@Test(dependsOnMethods = "assertBackToCustomerView", alwaysRun = true)
 	public void openSupplierListAndClickRemoteIcon() {
-		action.pause(1000);
-		action.waitObjVisibleAndClick(By
-				.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
-		action.waitObjVisibleAndClick(By
-				.cssSelector(CustomerMenu.SUPPLIERLIST_SUBMENU));
+		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
+		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.SUPPLIERLIST_SUBMENU));
 		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
 		table.filter(SupplierList.SUPPLIER_ID_FILTER_XPATH, supplierID);
+		i = table.findRowByString(1, supplierID);
+		Assert.assertTrue(i >= 0, String.format("Supplier %s not found", supplierID));
 		action.clickRemoteIcon(i);
-		action.pause(1000);
+		action.waitObjVisible(By.id(SupplierMenu.PURCHASE_ORDERS_ID));
 		action.assertTitleScreen("Supplier Dashboard");
 		assertEquals(action.isElementPresent(By.id(SupplierMenu.PURCHASE_ORDERS_ID)), true);
 		assertEquals(action.isElementPresent(By.id(SupplierMenu.SHIPPING_NOTICES_ID)), true);
@@ -181,7 +178,9 @@ public class SupplierList_RemoteIcon_Step1_11 extends BaseTestCase {
 	public void filterDocumentInvoice() {
 		// Check Invoice in Error
 		table.filter(DocumentsInError.DOC_TYPE_FILTER_XPATH, invoiceType);
-		table.getCellObject(1, 2).click();
+		i = table.findRowByString(3, invoiceType);
+		Assert.assertTrue(i >= 0);
+		table.getCellObject(i, 1).click();
 		action.pause(1000);
 		if (action.isElementPresent(By.cssSelector(ScreenObjects.ERROR_CSS))) {
 			action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.INVOICE_NOT_FOUND);
@@ -213,13 +212,15 @@ public class SupplierList_RemoteIcon_Step1_11 extends BaseTestCase {
 
 	}
 
-	// Step 12
-	@Test(dependsOnMethods = "filterDocumentPOAckType", alwaysRun = true)
-	public void signOutAgain() {
-		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
-		action.pause(5000);
-		WebElement btn = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id(ScreenObjects.SIGNOUT_BUTTON)));
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
-	}
+	// // Step 12
+	// @Test(dependsOnMethods = "filterDocumentPOAckType", alwaysRun = true)
+	// public void signOutAgain() {
+	// action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
+	// action.pause(5000);
+	// WebElement btn = (new WebDriverWait(driver,
+	// 10)).until(ExpectedConditions.presenceOfElementLocated(By.id(ScreenObjects.SIGNOUT_BUTTON)));
+	// ((JavascriptExecutor) driver).executeScript("arguments[0].click();",
+	// btn);
+	// }
 
 }

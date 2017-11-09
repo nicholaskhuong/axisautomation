@@ -3,6 +3,10 @@ package com.abb.ventyx.axis.customer;
 import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AddressAndContact;
@@ -13,6 +17,7 @@ import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 import com.abb.ventyx.axis.objects.pagedefinitions.SupplierList;
 import com.abb.ventyx.axis.objects.pagedefinitions.SupplierMenu;
+import com.abb.ventyx.axis.objects.pagedefinitions.UserPreferences;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
@@ -106,7 +111,11 @@ public class SupplierList_RemoteIcon_Step12 extends BaseTestCase {
 	@Test(dependsOnMethods = "accessSupplier", alwaysRun = true)
 	public void signOut3rd() {
 
-		action.signOut();
+		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
+		action.pause(5000);
+		WebElement btn = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id(ScreenObjects.SIGNOUT_BUTTON)));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
+		action.pause(5000);
 	}
 
 	// Step 14
