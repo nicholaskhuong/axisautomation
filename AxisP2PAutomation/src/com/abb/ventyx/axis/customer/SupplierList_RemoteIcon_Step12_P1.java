@@ -3,10 +3,6 @@ package com.abb.ventyx.axis.customer;
 import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AddressAndContact;
@@ -17,7 +13,6 @@ import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 import com.abb.ventyx.axis.objects.pagedefinitions.SupplierList;
 import com.abb.ventyx.axis.objects.pagedefinitions.SupplierMenu;
-import com.abb.ventyx.axis.objects.pagedefinitions.UserPreferences;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
@@ -26,7 +21,7 @@ import com.abb.ventyx.utilities.TableFunction;
 
 @ALM(id = "835")
 @Credentials(user = "cuserdefault@abb.com", password = "Testuser1")
-public class SupplierList_RemoteIcon_Step12 extends BaseTestCase {
+public class SupplierList_RemoteIcon_Step12_P1 extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
 
@@ -105,32 +100,5 @@ public class SupplierList_RemoteIcon_Step12 extends BaseTestCase {
 		}
 		action.waitObjVisible(By.id("componentId0"));
 		action.assertTitleScreen("Documents in Error");
-	}
-
-	// Step 14
-	@Test(dependsOnMethods = "accessSupplier", alwaysRun = true)
-	public void signOut3rd() {
-
-		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
-		action.pause(5000);
-		WebElement btn = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id(ScreenObjects.SIGNOUT_BUTTON)));
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
-		action.pause(5000);
-	}
-
-	// Step 14
-	@Test(dependsOnMethods = "signOut3rd", alwaysRun = true)
-	public void CheckRemoteIconForPendingSupplier() {
-		action.signIn("cuserdefault@abb.com", "Testuser1");
-		action.waitObjVisible(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
-		action.assertTitleScreen("Customer Dashboard");
-		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
-		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.SUPPLIERLIST_SUBMENU));
-		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
-		action.assertTitleScreen("Maintain Suppliers");
-
-		table.filter(SupplierList.SUPPLIER_STATUS_FILTER_XPATH, "Pending");
-		action.pause(2000);
-		assertEquals(action.isRemoteIconDisable(1), true);
 	}
 }

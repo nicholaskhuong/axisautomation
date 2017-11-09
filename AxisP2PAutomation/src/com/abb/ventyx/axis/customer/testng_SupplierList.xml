@@ -30,7 +30,8 @@
 	<test name="Access Supplier by Remote Icon">
 		<classes>
 				<class name="com.abb.ventyx.axis.customer.SupplierList_RemoteIcon_Step1_11" />
-				<class name="com.abb.ventyx.axis.customer.SupplierList_RemoteIcon_Step12" />
+				<class name="com.abb.ventyx.axis.customer.SupplierList_RemoteIcon_Step12_P1" />
+				<class name="com.abb.ventyx.axis.customer.SupplierList_RemoteIcon_Step12_P2" />
 		</classes>
 	</test>	
 </suite> 
