@@ -7,4 +7,9 @@
 				<class name="com.abb.ventyx.axis.support.Customer_Creating" />
 		</classes>	
   	</test>
+  	<test name="Customer Deactivate Activate">
+		<classes>
+				<class name="com.abb.ventyx.axis.support.Customer_Deactivate_Activates" />
+		</classes>	
+  	</test>
 </suite> 
