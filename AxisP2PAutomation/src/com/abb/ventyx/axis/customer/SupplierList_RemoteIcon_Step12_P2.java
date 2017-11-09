@@ -23,6 +23,7 @@ public class SupplierList_RemoteIcon_Step12_P2 extends BaseTestCase {
 	@Test
 	public void CheckRemoteIconForPendingSupplier() {
 		action = new ScreenAction(driver);
+		table = new TableFunction(driver);
 		action.waitObjVisible(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
 		action.assertTitleScreen("Customer Dashboard");
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
