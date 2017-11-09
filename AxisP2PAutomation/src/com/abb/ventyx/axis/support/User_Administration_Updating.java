@@ -124,7 +124,6 @@ public class User_Administration_Updating extends BaseTestCase {
 		action.pause(waitTime);
 		action.waitObjVisible(By.id(Users.USER_ID));
 		action.inputTextField(Users.USER_ID, userUpdate);
-		action.pause(3000);
 		action.waitObjVisible(By.id(Users.CONFIMRPASSWORD_ID));
 		action.inputTextField(Users.CONFIMRPASSWORD_ID, password);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
