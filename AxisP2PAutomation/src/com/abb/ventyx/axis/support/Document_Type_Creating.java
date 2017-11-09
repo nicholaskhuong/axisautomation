@@ -14,7 +14,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
-import com.abb.ventyx.axis.objects.pagedefinitions.DialogBtns;
 import com.abb.ventyx.axis.objects.pagedefinitions.DocType;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
@@ -144,7 +143,7 @@ public class Document_Type_Creating extends BaseTestCase {
 		message.getText();
 		Assert.assertEquals(message.getText(), Messages.UNSAVED_CHANGE);
 		action.pause(500);
-		driver.findElement(By.id(DialogBtns.NO)).click();
+		driver.findElement(By.id(DocType.NO)).click();
 		action.pause(1000);
 		WebElement cancelBtn2 = (new WebDriverWait(driver, 60))
 				.until(ExpectedConditions.presenceOfElementLocated(By
@@ -153,7 +152,7 @@ public class Document_Type_Creating extends BaseTestCase {
 		action.pause(500);
 		WebElement yesBtn = (new WebDriverWait(driver, 60))
 				.until(ExpectedConditions.presenceOfElementLocated(By
-						.id(DialogBtns.YES)));
+						.id(DocType.YES)));
 		yesBtn.click();
 		action.pause(500);
 		assertEquals(action.isElementPresent(By.id(DocType.DOCTYPES)), false);

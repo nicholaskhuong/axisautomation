@@ -10,7 +10,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
-import com.abb.ventyx.axis.objects.pagedefinitions.DialogBtns;
 import com.abb.ventyx.axis.objects.pagedefinitions.DocType;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
@@ -95,7 +94,7 @@ public class Document_Type_Editing extends BaseTestCase {
 		action.pause(300);
 		action.waitObjVisible(By.cssSelector(DocType.CONFIRMATION));
 		assertEquals(driver.findElement(By.cssSelector(DocType.CONFIRMATION)).getText(), Messages.UNSAVED_CHANGE);
-		driver.findElement(By.id(DialogBtns.NO)).click();
+		driver.findElement(By.id(DocType.NO)).click();
 		action.pause(500);
 
 		driver.findElement(By.id(DocType.SAVE)).click();
