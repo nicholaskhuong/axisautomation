@@ -12,18 +12,11 @@
 	<classpathentry kind="lib" path="Lib/commons-logging-1.2.jar"/>
 	<classpathentry kind="lib" path="Lib/cssparser-0.9.20.jar"/>
 	<classpathentry kind="lib" path="Lib/dom4j.jar"/>
-	<classpathentry kind="lib" path="Lib/gson-2.3.1.jar"/>
-	<classpathentry kind="lib" path="Lib/gson-2.8.0-javadoc.jar"/>
-	<classpathentry kind="lib" path="Lib/gson-2.8.0-sources.jar"/>
-	<classpathentry kind="lib" path="Lib/gson-2.8.0.jar"/>
-	<classpathentry kind="lib" path="Lib/guava-19.0.jar"/>
 	<classpathentry kind="lib" path="Lib/guice-3.0.jar"/>
 	<classpathentry kind="lib" path="Lib/hamcrest-core-1.3.jar"/>
 	<classpathentry kind="lib" path="Lib/hamcrest-library-1.3.jar"/>
 	<classpathentry kind="lib" path="Lib/htmlunit-2.23.jar"/>
 	<classpathentry kind="lib" path="Lib/htmlunit-core-js-2.23.jar"/>
-	<classpathentry kind="lib" path="Lib/httpclient-4.5.2.jar"/>
-	<classpathentry kind="lib" path="Lib/httpcore-4.4.4.jar"/>
 	<classpathentry kind="lib" path="Lib/httpmime-4.5.2.jar"/>
 	<classpathentry kind="lib" path="Lib/jackson-all-1.8.2.jar"/>
 	<classpathentry kind="lib" path="Lib/jackson-core-2.8.4.jar"/>
@@ -62,5 +55,9 @@
 	<classpathentry kind="lib" path="Lib/ant-contrib-1.0b3.jar"/>
 	<classpathentry kind="lib" path="Lib/opencsv-1.8.jar"/>
 	<classpathentry kind="lib" path="Lib/jxl-2.6.12.jar"/>
+	<classpathentry kind="lib" path="Lib/gson-2.8.2.jar"/>
+	<classpathentry kind="lib" path="Lib/guava-23.0.jar"/>
+	<classpathentry kind="lib" path="Lib/httpclient-4.5.3.jar"/>
+	<classpathentry kind="lib" path="Lib/httpcore-4.4.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
