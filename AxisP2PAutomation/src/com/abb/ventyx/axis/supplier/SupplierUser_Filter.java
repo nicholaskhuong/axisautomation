@@ -60,7 +60,6 @@ public class SupplierUser_Filter extends BaseTestCase {
 	@Test(dependsOnMethods = "filterFunction")
 	public void selectRowAfterFilter() {
 		action.pause(800);
-		table.inputFilter(userNumber);
 		WebElement index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH, 1, 1);
 		index.click();
 		action.waitObjVisible(By.id(ScreenObjects.CANCEL_ID));
@@ -70,7 +69,6 @@ public class SupplierUser_Filter extends BaseTestCase {
 
 	@Test(dependsOnMethods = "selectRowAfterFilter")
 	public void selectRowAfterFilterDelete() {
-		table.inputFilter(userNumber);
 		action.scrollToElementWithColumnNo(driver.findElement(By.id("deleteItemBtn1")), 6);
 		WebElement index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH, 1, 6);
 		index.click();
