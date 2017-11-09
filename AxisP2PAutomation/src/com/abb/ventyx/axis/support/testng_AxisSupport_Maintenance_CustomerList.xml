@@ -2,12 +2,12 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="AxisSupport_Maintenance_CustomerList" parallel="none">
-	<test name="Customer Creating">
+	<test name="Maintenance Customer Creating">
 		<classes>
 				<class name="com.abb.ventyx.axis.support.Customer_Creating" />
 		</classes>	
   	</test>
-  	<test name="Customer Deactivate Activate">
+  	<test name="Maintenance Customer Deactivate Activate">
 		<classes>
 				<class name="com.abb.ventyx.axis.support.Customer_Deactivate_Activates" />
 		</classes>	

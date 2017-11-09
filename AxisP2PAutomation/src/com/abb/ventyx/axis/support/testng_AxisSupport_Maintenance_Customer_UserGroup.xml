@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="AxisSupport_Customer_UserGroup" parallel="none">
+<suite name="AxisSupport_Maintenance_Customer_UserGroup" parallel="none">
  
-	<test name="Customer User Group Creating">
+	<test name="Maintenance Customer UserGroup Creating">
 		<classes>
 				<class name="com.abb.ventyx.axis.support.User_Group_Creating" />
 		</classes>	
   	</test>
-  	<test name="Customer User Group Updating">
+  	<test name="Maintenance Customer UserGroup Updating">
 		<classes>
 				<class name="com.abb.ventyx.axis.support.User_Group_Updating" />
 		</classes>	
   	</test>
-  	<test name="Customer User Group Deleting">
+  	<test name="Maintenance Customer UserGroup Deleting">
 		<classes>
 				<class name="com.abb.ventyx.axis.support.User_Group_Deleting" />
 		</classes>	
