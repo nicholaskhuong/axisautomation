@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="AxisSupport_Configuration_CodeSetType" parallel="none">
+
+	<test name="Configuration Code Set Type Creating">
+		<classes>
+				<class name="com.abb.ventyx.axis.support.Code_Set_Type_Creating" />
+		</classes>	
+  	</test>
+  	<test name="Configuration Code Set Type Updating">
+		<classes>
+				<class name="com.abb.ventyx.axis.support.Code_Set_Type_Updating" />
+		</classes>	
+  	</test>
+  	<test name="Configuration Code Set Type Deleting">
+		<classes>
+				<class name="com.abb.ventyx.axis.support.Code_Set_Type_Deleting" />
+		</classes>	
+  	</test>
+</suite> <!-- Suite -->

@@ -10,6 +10,7 @@ public class AxisConfigMenu {
 	public static final String FILTER_CONFIG1 = "//*[@id='filterConfigParentButton']/span/span/div/span[1]";
 	public static final String SEARCH_OPTION = "#maintainDocFilterTypeSearchOption > span > span";
 	public static final String SEARCH_OPTION1 = "//*[@id='maintainDocFilterTypeSearchOption']/span/span";
+	public static final String BUSINESS_CODE_SET_TYPE = "#maintainCodeSet > span > span";
 	// ----
 	public static final String PERMISSIONS = "#maintainPermissionButton > span > span";
 	public static final String DOC_TYPE = "#maintainDocumentType > span > span";

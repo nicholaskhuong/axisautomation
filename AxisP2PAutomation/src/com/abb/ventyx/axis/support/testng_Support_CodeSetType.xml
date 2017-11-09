@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Code_Set_Type" parallel="none">
-	<test name="Code_Set_Type">
-		<classes>
-				<class name="com.abb.ventyx.axis.support.Code_Set_Type" />
-		</classes>
-  	</test> <!-- Test -->
-</suite> <!-- Suite -->

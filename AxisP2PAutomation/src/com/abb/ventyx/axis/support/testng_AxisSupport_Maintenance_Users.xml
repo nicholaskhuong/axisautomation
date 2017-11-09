@@ -3,17 +3,17 @@
 
 <suite name="AxisSupport_Maintenance_User" parallel="none">
  
-	<test name="Axis Support Maintenance Users Creating">
+	<test name="Maintenance Users Creating">
 		<classes>
 				<class name="com.abb.ventyx.axis.support.User_Customer_Creating" />
 		</classes>	
   	</test>
-  	<test name="Axis Support Maintenance Users Updating">
+  	<test name="Maintenance Users Updating">
 		<classes>
 				<class name="com.abb.ventyx.axis.support.User_Customer_Updating" />
 		</classes>	
   	</test>
-  	<test name="Axis Support Maintenance Users Deleting">
+  	<test name="Maintenance Users Deleting">
 		<classes>
 				<class name="com.abb.ventyx.axis.support.User_Customer_Deleting" />
 		</classes>	

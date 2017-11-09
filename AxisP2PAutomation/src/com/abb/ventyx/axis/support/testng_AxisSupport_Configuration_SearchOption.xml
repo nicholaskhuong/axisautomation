@@ -3,17 +3,17 @@
 
 <suite name="AxisSupport_Configuration_SearchOption" parallel="none">
  
-	<test name="Axis Support Search Option Creating">
+	<test name="Configuration Search Option Creating">
 		<classes>
 				<class name="com.abb.ventyx.axis.support.Search_Option_Creating" />
 		</classes>	
   	</test>
-  	<test name="Axis Support Search Option Updating">
+  	<test name="Configuration Search Option Updating">
 		<classes>
 				<class name="com.abb.ventyx.axis.support.Search_Option_Updating" />
 		</classes>	
   	</test>
-  	<test name="Axis Support Search Option Deleting">
+  	<test name="Configuration Search Option Deleting">
 		<classes>
 				<class name="com.abb.ventyx.axis.support.Search_Option_Deleting" />
 		</classes>	
