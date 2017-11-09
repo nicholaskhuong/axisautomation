@@ -57,7 +57,7 @@ public class SupplierList_RemoteIcon_Step1_11 extends BaseTestCase {
 		action.assertTitleScreen("Maintain Suppliers");
 	}
 
-	@Test(dependsOnMethods = "openSupplierListScreen")
+	@Test(dependsOnMethods = "openSupplierListScreen", alwaysRun = true)
 	public void assertRemoteIconDisableForTestSupplier() {
 		// table.filter(SupplierList.SUPPLIER_EMAIL_FILTER_XPATH,
 		// supplierEmail);
@@ -72,7 +72,7 @@ public class SupplierList_RemoteIcon_Step1_11 extends BaseTestCase {
 	// Step 2 already scripted in test case 644 and 630
 
 	// Step 3
-	@Test(dependsOnMethods = "openSupplierListScreen")
+	@Test(dependsOnMethods = "assertRemoteIconDisableForTestSupplier", alwaysRun = true)
 	public void changeCustomerProfileDetails() {
 
 		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
@@ -90,7 +90,7 @@ public class SupplierList_RemoteIcon_Step1_11 extends BaseTestCase {
 
 	}
 
-	@Test(dependsOnMethods = "changeCustomerProfileDetails")
+	@Test(dependsOnMethods = "changeCustomerProfileDetails", alwaysRun = true)
 	public void remoteToSupplierAndAssertDocumentAvailable() {
 		action.clickRemoteIcon(i);
 		action.waitObjVisible(By.id(SupplierMenu.PURCHASE_ORDERS_ID));
@@ -103,14 +103,14 @@ public class SupplierList_RemoteIcon_Step1_11 extends BaseTestCase {
 	}
 
 	// Step 4
-	@Test(dependsOnMethods = "remoteToSupplierAndAssertDocumentAvailable")
+	@Test(dependsOnMethods = "remoteToSupplierAndAssertDocumentAvailable", alwaysRun = true)
 	public void signOut() {
 		action.pause(1000);
 		action.signOut();
 	}
 
 	// Step 5
-	@Test(dependsOnMethods = "signOut")
+	@Test(dependsOnMethods = "signOut", alwaysRun = true)
 	public void assertBackToCustomerView() {
 		action.pause(1000);
 		action.waitObjVisible(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
@@ -118,7 +118,7 @@ public class SupplierList_RemoteIcon_Step1_11 extends BaseTestCase {
 	}
 
 	// Step 6
-	@Test(dependsOnMethods = "assertBackToCustomerView")
+	@Test(dependsOnMethods = "assertBackToCustomerView", alwaysRun = true)
 	public void openSupplierListAndClickRemoteIcon() {
 		action.pause(1000);
 		action.waitObjVisibleAndClick(By
@@ -140,7 +140,7 @@ public class SupplierList_RemoteIcon_Step1_11 extends BaseTestCase {
 	// Invoice, ASN
 
 	// Step 10
-	@Test(dependsOnMethods = "openSupplierListAndClickRemoteIcon")
+	@Test(dependsOnMethods = "openSupplierListAndClickRemoteIcon", alwaysRun = true)
 	public void checkAddressAndContact() {
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADDRESS_CONTACT_ID));
@@ -155,7 +155,7 @@ public class SupplierList_RemoteIcon_Step1_11 extends BaseTestCase {
 
 	// Step 11 documents in error not available
 
-	@Test(dependsOnMethods = "checkAddressAndContact")
+	@Test(dependsOnMethods = "checkAddressAndContact", alwaysRun = true)
 	public void checkDocumentsInError() {
 
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.DOCUMENT_IN_ERROR_ID));
@@ -177,7 +177,7 @@ public class SupplierList_RemoteIcon_Step1_11 extends BaseTestCase {
 		action.waitObjVisible(By.id("componentId0"));
 		action.assertTitleScreen("Documents in Error");
 	}
-	@Test(dependsOnMethods = "checkDocumentsInError")
+	@Test(dependsOnMethods = "checkDocumentsInError", alwaysRun = true)
 	public void filterDocumentInvoice() {
 		// Check Invoice in Error
 		table.filter(DocumentsInError.DOC_TYPE_FILTER_XPATH, invoiceType);
@@ -195,7 +195,7 @@ public class SupplierList_RemoteIcon_Step1_11 extends BaseTestCase {
 		action.assertTitleScreen("Documents in Error");
 	}
 
-	@Test(dependsOnMethods = "filterDocumentInvoice")
+	@Test(dependsOnMethods = "filterDocumentInvoice", alwaysRun = true)
 	public void filterDocumentPOAckType() {
 		// Check PO Ack in Error
 		table.filter(DocumentsInError.DOC_TYPE_FILTER_XPATH, POAckType);
