@@ -15,7 +15,6 @@ import com.abb.ventyx.utilities.ScreenAction;
 @Credentials(user = "cadmin1@abb.com", password = "Testuser1")
 public class SupplierList_UpdateSupplier_ByAdmin_Step9 extends BaseTestCase {
 	ScreenAction action;
-	String newSupplierName = "NewName";
 
 	@Test
 	public void loginAsTheUpdatedSupplierAndCheckASNOff() {
@@ -25,8 +24,7 @@ public class SupplierList_UpdateSupplier_ByAdmin_Step9 extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADDRESS_CONTACT_ID));
 		action.waitObjVisible(By.id(AddressContact.COMPANY_NAME));
-		// action.assertTextEqual(By.id(AddressContact.COMPANY_NAME),
-		// newSupplierName);
-		assertEquals(driver.findElement(By.id(AddressContact.COMPANY_NAME)).getAttribute("value"), newSupplierName);
+		assertEquals(driver.findElement(By.id(AddressContact.COMPANY_NAME)).getAttribute("value"),
+				SupplierList_CreateNewSupplier_ByAdmin.supplierName);
 	}
 }

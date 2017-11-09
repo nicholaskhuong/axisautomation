@@ -4,6 +4,7 @@ import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.CustomerMenu;
@@ -47,6 +48,7 @@ public class CustomerUser_Deleted_ByAdmin extends BaseTestCase {
 	public void clickTrashBinIconOfUser() {
 		action.pause(1000);
 		i = table.findRowByString(3, CustomerUser_Created_ByAdmin.USEREMAILADDRESS);
+		Assert.assertTrue(i >= 0, "Customer user not found!");
 		action.clickBtn(By.id("deleteItemBtn" + (i - 1)));
 
 		action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));

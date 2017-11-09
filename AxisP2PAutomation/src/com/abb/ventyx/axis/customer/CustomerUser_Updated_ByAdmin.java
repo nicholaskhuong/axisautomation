@@ -5,6 +5,7 @@ import static org.testng.Assert.assertEquals;
 import java.util.Random;
 
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.CustomerMenu;
@@ -51,7 +52,7 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 	public void openModifyUserScreen() {
 		action.pause(1000);
 		i = table.findRowByString(3, CustomerUser_Created_ByAdmin.USEREMAILADDRESS);
-		System.out.print("Row: " + i + " ");
+		Assert.assertTrue(i >= 0, "Customer user not found!");
 		assertEquals(table.getValueRow(2, i), USERID);
 		assertEquals(table.getValueRow(4, i), "All Permissions");
 		assertEquals(table.getValueRow(5, i), CREATEDSTATUS);

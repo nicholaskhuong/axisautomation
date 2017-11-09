@@ -144,12 +144,8 @@ public class CustomerUser_Created_ByAdmin extends BaseTestCase{
 	// Step 6 Password and confirm password does not match
 	@Test(dependsOnMethods="addNewUserWithInvalidPassword")
 	public void addNewUserWithUnmatchedPassword() {
-		driver.findElement(By.id(CustomerUsers.PASSWORD_TEXTBOX_ID)).clear();
-		driver.findElement(By.id(CustomerUsers.PASSWORD_TEXTBOX_ID)).sendKeys(PASSWORD);
-
-		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).clear();
-		driver.findElement(By.id(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID)).sendKeys(CONFIRMPASSWORD);
-
+		action.inputTextField(CustomerUsers.PASSWORD_TEXTBOX_ID, PASSWORD);
+		action.inputTextField(CustomerUsers.CONFIRMPASSWORD_TEXTBOX_ID, CONFIRMPASSWORD);
 		driver.findElement(By.id(CustomerUsers.SAVE_BUTTON)).click();
 
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.UNMATCHED_CONFIRM_PWD);
