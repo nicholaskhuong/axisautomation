@@ -50,7 +50,7 @@ public class User_Customer_Updating extends BaseTestCase {
 	@Test(dependsOnMethods = "openCustomerScreen", alwaysRun = true)
 	public void clickFiterButtonOnCustomerScreen() {
 		table = new TableFunction(driver);
-		table.inputFilter("435", Users.USER_NUMBER_FILTER, true);
+		table.clikFilterAndInputWithColumn("435", Users.USER_NUMBER_FILTER, true);
 		action.pause(waitTime);
 		assertEquals(table.getValueRow(2, 1), "QATest");
 	}
@@ -67,7 +67,7 @@ public class User_Customer_Updating extends BaseTestCase {
 	@Test(dependsOnMethods = "clickCustomerIDOnCustomerScreen", alwaysRun = true)
 	public void clickFiterButtonOnMaintainCustomerUsersScreen() {
 		action.pause(waitTime);
-		table.inputFilter("customer_userab", Users.USER_ID_FILTER, true);
+		table.clikFilterAndInputWithColumn("customer_userab", Users.USER_ID_FILTER, true);
 		action.pause(waitTime);
 		assertEquals(table.getValueRow(2, 1), "customer_userab");
 	}

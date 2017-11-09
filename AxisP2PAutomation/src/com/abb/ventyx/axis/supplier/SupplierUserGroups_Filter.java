@@ -36,7 +36,7 @@ public class SupplierUserGroups_Filter extends BaseTestCase {
 	public void filterFunction() {
 		table = new TableFunction(driver);
 		// step 2,3,4
-		table.inputFilter(userGroupNumber);
+		table.clickFilterAndInput(userGroupNumber);
 		action.clickBtn(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 	}
 

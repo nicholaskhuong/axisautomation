@@ -38,7 +38,7 @@ public class Search_Option_Deleting extends BaseTestCase {
 	@Test(dependsOnMethods = "openSearchOptionScreen", alwaysRun = true)
 	 public void clickFilterButtonAndClickTrashBin(){
 		 table = new TableFunction(driver);
-		 table.inputFilter(fieldTypeUpdate, SearchOption.FIELD_TYPE_FILTER, true);
+		 table.clikFilterAndInputWithColumn(fieldTypeUpdate, SearchOption.FIELD_TYPE_FILTER, true);
 		 index = table.getCellObject(1, 4);
 		 index.click();
 		 action.pause(milliseconds);

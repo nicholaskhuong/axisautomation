@@ -189,22 +189,22 @@ public class TableFunction {
 	}
 
 	public void filterPermission(String filterPermissionName) {
-		inputFilter(filterPermissionName, Permissions.PERMISSION_NAME_FILTER, true);
+		clikFilterAndInputWithColumn(filterPermissionName, Permissions.PERMISSION_NAME_FILTER, true);
 	}
 
 	public void filter(String columnXpath, String filterValue) {
-		inputFilter(filterValue, columnXpath, true);
+		clikFilterAndInputWithColumn(filterValue, columnXpath, true);
 	}
 
-	public void inputFilter(String value) {
-		inputFilter(value, ScreenObjects.FILTER_FIELD_ID, false);
+	public void clickFilterAndInput(String value) {
+		clikFilterAndInputWithColumn(value, ScreenObjects.FILTER_FIELD_ID, false);
 	}
 
-	public void inputFilter(String value, String filterXPath) {
-		inputFilter(value, ScreenObjects.FILTER_FIELD_ID, true);
+	public void clickFilterAndInputWithColumn(String value, String filterXPath) {
+		clikFilterAndInputWithColumn(value, filterXPath, true);
 	}
 
-	public void inputFilter(String value, String filterPath, Boolean isXpath) {
+	public void clikFilterAndInputWithColumn(String value, String filterPath, Boolean isXpath) {
 
 		WebElement filterButton = (new WebDriverWait(driver, timeout))
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.FILTER_BTN_CSS)));

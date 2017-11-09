@@ -35,7 +35,7 @@ public class Code_Set_Type_Updating extends BaseTestCase {
 	@Test(dependsOnMethods = "openBusinessCodeSetTypeScreen", alwaysRun = true)
 	 public void selectOneRecordOnGrid (){
 		 table = new TableFunction(driver);
-		 table.inputFilter(codeType, BusinessCodeTypes.CODE_TYPE_FILTER, true);
+		 table.clikFilterAndInputWithColumn(codeType, BusinessCodeTypes.CODE_TYPE_FILTER, true);
 		 action.pause(milliseconds);
 		 index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH,1, 1);
 		 index.click();

@@ -94,7 +94,7 @@ public class Customer_Deactivate_Activate extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 		action.pause(waitTime);
 		table = new TableFunction(driver);
-		table.inputFilter(emailAddress, CustomerList.EMAIL_FILTER, true);
+		table.clikFilterAndInputWithColumn(emailAddress, CustomerList.EMAIL_FILTER, true);
 		action.pause(waitTime);
 		WebElement cell = table.getCellObject(1, 1);
 		cell.click();
@@ -131,7 +131,7 @@ public class Customer_Deactivate_Activate extends BaseTestCase {
 	
 	@Test(dependsOnMethods = "clickActiveOnCustomerScreen", alwaysRun = true)
 	public void clickFiterButtonOnCustomerScreen2() {
-		table.inputFilter(emailAddress, CustomerList.EMAIL_FILTER, true);
+		table.clikFilterAndInputWithColumn(emailAddress, CustomerList.EMAIL_FILTER, true);
 	}
 		
 	//Steps 13_14

@@ -38,7 +38,7 @@ public class User_Administration_Deteting extends BaseTestCase {
 	@Test(dependsOnMethods = "openUserScreen", alwaysRun = true)
 	public void clickFiterButton() {
 		table = new TableFunction(driver);
-		table.inputFilter(userUpdate, Users.USER_ID_FILTER , true);
+		table.clikFilterAndInputWithColumn(userUpdate, Users.USER_ID_FILTER , true);
 		action.pause(3000);
 	}
 	

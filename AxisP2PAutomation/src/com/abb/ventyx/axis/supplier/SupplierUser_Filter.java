@@ -44,7 +44,7 @@ public class SupplierUser_Filter extends BaseTestCase {
 	public void filterFunction() {
 		table = new TableFunction(driver);
 		// step 2,3
-		table.inputFilter(userNumber);
+		table.clickFilterAndInput(userNumber);
 		driver.findElement(By.xpath(Users.USER_NUMBER_FILTER)).clear();
 		// step 4
 		action.inputTextField(By.xpath(Users.USER_ID_FILTER), userId);

@@ -36,7 +36,7 @@ public class Code_Set_Type_Deleting extends BaseTestCase {
 	@Test(dependsOnMethods = "openBusinessCodeSetTypeScreen", alwaysRun = true)
 	 public void deleteCodeTypeWithCodeSet (){
 		 table = new TableFunction(driver);
-		 table.inputFilter(codeSetCodeType, BusinessCodeTypes.CODE_TYPE_FILTER, true);
+		 table.clikFilterAndInputWithColumn(codeSetCodeType, BusinessCodeTypes.CODE_TYPE_FILTER, true);
 		 action.pause(milliseconds);
 		 index = table.getCellObject(1, 3);
 		 index.click();

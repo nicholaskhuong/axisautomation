@@ -54,7 +54,7 @@ public class User_Administration_Updating extends BaseTestCase {
 	@Test(dependsOnMethods = "openUserScreen", alwaysRun = true)
 	public void clickFiterButtonOnUserScreen() {
 		table = new TableFunction(driver);
-		table.inputFilter(user, Users.USER_ID_FILTER , true);
+		table.clikFilterAndInputWithColumn(user, Users.USER_ID_FILTER , true);
 		index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH,1, 1);
 		index.click();
 	}
