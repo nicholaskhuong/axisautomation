@@ -26,6 +26,7 @@ public class AxisSupportDashboard extends BaseTestCase {
 	String documentation = "Documentation";
 	String userName = "Axis Support 4";
 	String userID = "axis_support_4@abb.com";
+	String axisSupportPortal = "Axis Supplier Portal";
 
 	@Test
 	public void openScreen() {
@@ -37,7 +38,9 @@ public class AxisSupportDashboard extends BaseTestCase {
 	@Test(dependsOnMethods = "openScreen")
 	public void topRibbon() {
 		// step 2
-
+		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.AXIS_SUPPORT_PORTAL)).getText(), axisSupportPortal);
+		// assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.LANGUAGE)).getText(),
+		// "EN");
 	}
 
 	@Test(dependsOnMethods = "topRibbon")

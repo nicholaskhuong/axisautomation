@@ -45,5 +45,7 @@ public class AxisConfigMenu {
 	public static final String EDIT_PROFILE_ICON = "editProfileBtn";
 	public static final String USER_LOGIN = "#SupplierPortal-1227837064-overlays > div.v-window.v-widget.v-readonly.v-banner-user-profile.v-window-v-banner-user-profile.v-has-width.v-has-height > div > div > div.v-window-contents > div > div > div > div.v-slot.v-align-center.v-align-middle > div > div > div:nth-child(2) > div > div:nth-child(1) > div > div > div.v-slot.v-align-middle > div > div > div";
 	public static final String USER_ID = "#SupplierPortal-1227837064-overlays > div.v-window.v-widget.v-readonly.v-banner-user-profile.v-window-v-banner-user-profile.v-has-width.v-has-height > div > div > div.v-window-contents > div > div > div > div.v-slot.v-align-center.v-align-middle > div > div > div:nth-child(2) > div > div.v-slot.v-slot-v-user-profile-label-h3 > div";
+	public static final String AXIS_SUPPORT_PORTAL = "#app-banner > div > div > div > div:nth-child(1) > div > div.v-slot.v-slot-v-application-title.v-align-middle > div > div > div";
+	public static final String LANGUAGE = "langSelectorBtn";
 
 }
