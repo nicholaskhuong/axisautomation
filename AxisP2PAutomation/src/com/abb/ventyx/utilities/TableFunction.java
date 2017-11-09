@@ -287,9 +287,15 @@ public class TableFunction {
 		return cell;
 	}
 
-	public WebElement getCellObjectSupplierCodeSet(int row, int column) {
-		WebElement cell = driver.findElement(
-				By.xpath(String.format("%s//tr[%s]//td[%s]//div//div", "//*[@id=\"codeSetGrid-AsnDeliveryCode\"]/div[3]/table/tbody", row, column)));
+	public WebElement getCellObjectSupplierCodeSetDeliveryCode(int row, int column) {
+		WebElement cell = driver
+				.findElement(By.xpath(String.format("%s//tr[%s]//td[%s]//div//div", ScreenObjects.BUSINESS_CODE_SET_DELIVERY_CODE, row, column)));
+		return cell;
+	}
+
+	public WebElement getCellObjectSupplierCodeSetTaxCode(int row, int column) {
+		WebElement cell = driver
+				.findElement(By.xpath(String.format("%s//tr[%s]//td[%s]//div//div", ScreenObjects.BUSINESS_CODE_SET_TAX_CODE, row, column)));
 		return cell;
 	}
 
@@ -348,15 +354,19 @@ public class TableFunction {
 			row = row + 3;
 		}
 		System.out.println("Permission Index 2:" + i);
-		/*assertEquals(action.isElementPresent(By.xpath("//*[@id='permGrid-" + docIndex + "']//div[3]//table//tbody//tr[" + i + "]//td[2]")), true,
-		"Can't find permission, i=-1");*/
-		//action.assertTextEqual(By.xpath("//*[@id='permGrid-" + docIndex + "']//div[3]//table//tbody//tr[" + i + "]//td[2]"), permissionName);
+		/*
+		 * assertEquals(action.isElementPresent(By.xpath("//*[@id='permGrid-" + docIndex
+		 * + "']//div[3]//table//tbody//tr[" + i + "]//td[2]")), true,
+		 * "Can't find permission, i=-1");
+		 */
+		// action.assertTextEqual(By.xpath("//*[@id='permGrid-" + docIndex +
+		// "']//div[3]//table//tbody//tr[" + i + "]//td[2]"), permissionName);
 
-		if(action.isElementPresent(By.xpath("//*[@id='permGrid-" + docIndex + "']//div[3]//table//tbody//tr[" + i + "]//td[2]"))&&driver.findElement(By.xpath("//*[@id='permGrid-" + docIndex + "']//div[3]//table//tbody//tr[" + i + "]//td[2]")).getText().equals(permissionName))
+		if (action.isElementPresent(By.xpath("//*[@id='permGrid-" + docIndex + "']//div[3]//table//tbody//tr[" + i + "]//td[2]"))
+				&& driver.findElement(By.xpath("//*[@id='permGrid-" + docIndex + "']//div[3]//table//tbody//tr[" + i + "]//td[2]")).getText()
+						.equals(permissionName))
 			return true;
 		return false;
-		
-		
-		
+
 	}
 }
