@@ -133,12 +133,14 @@ public class Messages {
 	public static final String DEFAULT_ADDRESS_EXIST = "The default address already exists";
 	public static final String CUSTOMER_ACTIAVTE = "Are you sure you want to activate the selected customer?";
 	public static final String CUSTOMER_DEACTIAVTE = "Are you sure you want to deactivate the selected customer?";
-	
-	//Business Code Set Type
+
+	// Business Code Set Type
 	public static final String ADD_CODE_SET_TYPE_SUCCESSFULLY = "Code set type created successfully";
 	public static final String UPDATE_CODE_SET_TYPE_SUCCESSFULLY = "Code set type updated successfully";
 	public static final String DEL_CODE_SET_TYPE = "Are you sure you want to delete this code set type?";
 	public static final String DEL_CODE_SET_WITH_CODE_TYPE = "This code type has used at Code Set. Please remove this code type from Code Set first before deleting it";
 	public static final String DEL_CODE_SET = "Code set type successfully deleted";
-	
+
+	// Configuration Document Types
+	public static final String DEL_DOC_TYPES_ERROR = "The selected Document Type is used as a reference key. Please delete the related data first";
 }

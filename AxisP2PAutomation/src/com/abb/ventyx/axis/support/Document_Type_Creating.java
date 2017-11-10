@@ -1,161 +1,102 @@
 package com.abb.ventyx.axis.support;
 
-import static org.junit.Assert.assertThat;
 import static org.testng.Assert.assertEquals;
 
 import java.util.Random;
 
-import org.hamcrest.CoreMatchers;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
+import com.abb.ventyx.axis.objects.pagedefinitions.BusinessCodeTypes;
 import com.abb.ventyx.axis.objects.pagedefinitions.DocType;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 import com.abb.ventyx.utilities.ALM;
-import com.abb.ventyx.utilities.BaseGrid;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
 import com.abb.ventyx.utilities.ScreenAction;
+import com.abb.ventyx.utilities.TableFunction;
 
 @ALM(id = "158")
 @Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class Document_Type_Creating extends BaseTestCase {
-	public static String DOCTYPE_B = "DocType508678";
-	String DESC_B = "AA_MAINTAIN_DOCTYPES";
-	BaseGrid grid;
+	public static String documentTypes = "DocType50";
+	String description = "AA_MAINTAIN_DOCTYPES";
 	ScreenAction action;
-	// Step 1 Add new doc type and success message
-	
+	int milliseconds = 1000;
+	TableFunction table;
+	WebElement index;
+
+	// Step 01
 	@Test
-	public void createDocumentType() {
+	public void openDocumentTypesScreen() {
 		action = new ScreenAction(driver);
-		
-		WebElement axisConfigParentButton = (new WebDriverWait(driver, 120))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION)));
-		axisConfigParentButton.click();
-		
-		WebElement axisDocType = (new WebDriverWait(driver, 30))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(AxisConfigMenu.DOC_TYPE)));
-		axisDocType.click();
-		
-		WebElement addDocType = (new WebDriverWait(driver, 30))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(DocType.ADD)));
-		addDocType.click();
-		
-		WebElement clickDocTpe = (new WebDriverWait(driver, 30))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.id(DocType.DOCTYPES)));
-		clickDocTpe.click();
-		
+		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION));
+		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.DOC_TYPE));
+		action.pause(milliseconds);
+	}
+
+	// Step 02
+	@Test(dependsOnMethods = "openDocumentTypesScreen", alwaysRun = true)
+	public void clickAddButtonAndInputData() {
+		action.waitObjVisibleAndClick(By.cssSelector(DocType.ADD));
 		Random rand = new Random();
-		long drand = (long) (rand.nextDouble() * 1000000L);
-		DOCTYPE_B = String.format("DocType%s", drand);
-		
-		driver.findElement(By.id(DocType.DOCTYPES)).sendKeys(DOCTYPE_B);
-		driver.findElement(By.id(DocType.DESC)).click();
-		driver.findElement(By.id(DocType.DESC)).sendKeys(DESC_B);
-		driver.findElement(By.id(DocType.SAVE)).click();
-		
-		action.pause(3000);
-		action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
-		
+		long drand = (long) (rand.nextDouble() * 10000L);
+		documentTypes = String.format("DocType %s", drand);
+		action.waitObjVisible(By.id(DocType.DOCTYPES));
+		action.inputTextField(By.id(DocType.DOCTYPES), documentTypes);
+		action.waitObjVisible(By.id(DocType.DESC));
+		action.inputTextField(By.id(DocType.DESC), description);
+		action.waitObjVisible(By.id(DocType.SAVE));
+		action.waitObjVisibleAndClick(By.id(DocType.SAVE));
+		action.pause(milliseconds);
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.DOCUMENT_CREATE_SUCCESSFULLY);
-		grid = new BaseGrid(driver, DocType.GRID);
-		Assert.assertNotEquals(
-				grid.findItemByColumnName("Document Types", DOCTYPE_B), -1,
-				"Data not created");
-
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 	}
 
-	// Step 2 Check if Existing Doc type could be created one more time
-	@Test(dependsOnMethods = "createDocumentType")
-	public void createExistingDocType() {
-		WebElement addDocType = (new WebDriverWait(driver, 30))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(DocType.ADD)));
-		addDocType.click();
-		WebElement clickDocTpe = (new WebDriverWait(driver, 30))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.id(DocType.DOCTYPES)));
-		clickDocTpe.click();
-		driver.findElement(By.id(DocType.DOCTYPES)).sendKeys(DOCTYPE_B);
-		driver.findElement(By.id(DocType.DESC)).click();
-		driver.findElement(By.id(DocType.DESC)).sendKeys(DESC_B);
-		driver.findElement(By.id(DocType.SAVE)).click();
-		WebElement flashMessage2 = (new WebDriverWait(driver, 30))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(DocType.DOC_TYPES_EXIST)));
-		assertThat(flashMessage2.getText(),
-				CoreMatchers.containsString(Messages.DOC_TYPES_EXIST));
-		WebElement cancelBtn = (new WebDriverWait(driver, 30))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.id(DocType.CANCEL)));
-		cancelBtn.click();
-
+	// Step 03
+	@Test(dependsOnMethods = "clickAddButtonAndInputData", alwaysRun = true)
+	public void clickAddButtonAndInputLeaveTwoFilterEmpty() {
+		action.waitObjVisibleAndClick(By.cssSelector(DocType.ADD));
+		action.inputTextField(By.id(DocType.DOCTYPES), documentTypes);
+		action.waitObjVisible(By.id(DocType.SAVE));
+		action.waitObjVisibleAndClick(By.id(DocType.SAVE));
+		action.pause(milliseconds);
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
 
-	// Step 3 Check error message of Input Mandatory data to mandatory fields.
-	@Test(dependsOnMethods = "createExistingDocType")
-	public void leaveRequiredInputFieldsEmpty() {
-
-		WebElement addDocType = (new WebDriverWait(driver, 30))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(DocType.ADD)));
-		addDocType.click();
-		action.pause(300);
-		WebElement clickDesc = (new WebDriverWait(driver, 30))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.id(DocType.DESC)));
-		clickDesc.click();
-		driver.findElement(By.id(DocType.DESC)).sendKeys(DESC_B);
-		driver.findElement(By.id(DocType.SAVE)).click();
-		action.pause(300);
-		WebElement flashMessage3 = (new WebDriverWait(driver, 30))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(DocType.ENTER_MANDATORY_FIELDS)));
-		Assert.assertEquals(flashMessage3.getText(),
-				Messages.ENTER_MANDATORY_FIELDS);
-		action.pause(1000);
-
+	// Step 04_07
+	@Test(dependsOnMethods = "clickAddButtonAndInputLeaveTwoFilterEmpty", alwaysRun = true)
+	public void inputValueAndClickCancel() {
+		action.waitObjVisible(By.id(DocType.CANCEL));
+		action.waitObjVisibleAndClick(By.id(DocType.CANCEL));
+		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
+		action.waitObjVisible(By.id(BusinessCodeTypes.NO));
+		action.waitObjVisibleAndClick(By.id(BusinessCodeTypes.NO));
+		action.pause(milliseconds);
+		action.waitObjVisibleAndClick(By.id(DocType.CANCEL));
+		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
+		action.pause(milliseconds);
+		action.waitObjVisible(By.id(BusinessCodeTypes.YES));
+		action.waitObjVisibleAndClick(By.id(BusinessCodeTypes.YES));
 	}
 
-	// Step 4 Check unsaved change message.
-	@Test(dependsOnMethods = "leaveRequiredInputFieldsEmpty")
-	public void checkUnsavedChange() {
-		ScreenAction action = new ScreenAction(driver);
-		WebElement cancelBtn = (new WebDriverWait(driver, 60))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.id(DocType.CANCEL)));
-		cancelBtn.click();
-		action.pause(500);
-		WebElement message = (new WebDriverWait(driver, 60))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.cssSelector(DocType.CONFIRMATION)));
-		message.getText();
-		Assert.assertEquals(message.getText(), Messages.UNSAVED_CHANGE);
-		action.pause(500);
-		driver.findElement(By.id(DocType.NO)).click();
-		action.pause(1000);
-		WebElement cancelBtn2 = (new WebDriverWait(driver, 60))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.id(DocType.CANCEL)));
-		cancelBtn2.click();
-		action.pause(500);
-		WebElement yesBtn = (new WebDriverWait(driver, 60))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.id(DocType.YES)));
-		yesBtn.click();
-		action.pause(500);
-		assertEquals(action.isElementPresent(By.id(DocType.DOCTYPES)), false);
-
+	// Step 08
+	@Test(dependsOnMethods = "inputValueAndClickCancel", alwaysRun = true)
+	public void inputDocumentTypeAndDecsExits() {
+		action.pause(milliseconds);
+		action.waitObjVisibleAndClick(By.cssSelector(DocType.ADD));
+		action.inputTextField(By.id(DocType.DOCTYPES), documentTypes);
+		action.inputTextField(By.id(DocType.DESC), description);
+		action.waitObjVisible(By.id(DocType.SAVE));
+		action.waitObjVisibleAndClick(By.id(DocType.SAVE));
+		action.pause(milliseconds);
+		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.DOC_TYPES_EXIST);
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
 	}
 }

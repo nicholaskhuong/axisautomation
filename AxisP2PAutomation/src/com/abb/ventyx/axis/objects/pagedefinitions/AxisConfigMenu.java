@@ -1,7 +1,6 @@
 package com.abb.ventyx.axis.objects.pagedefinitions;
 
 public class AxisConfigMenu {
-
 	public static final String AXIS_ADMIN = "#axisAdminParentButton > span > span.valo-menu-item-caption > div > span.v-menu-item-caption";
 	public static final String RESET_USER_PASSWORD = "#resetPwdButton > span > span";
 	public static final String AXIS_CONFIGURATION1 = "//*[@id='axisConfigParentButton']/span/span[2]/div/span[1]";

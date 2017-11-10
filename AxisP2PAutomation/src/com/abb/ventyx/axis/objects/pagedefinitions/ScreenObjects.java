@@ -52,6 +52,7 @@ public class ScreenObjects {
 	public static final String TABLE_BODY_XPATH_CUSTOMER_ID = "//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div/div/div/div[3]/table/tbody/tr";
 	public static final String TABLE_ROW_XPATH_CUSTOMER = "//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div/div/div/div[3]/table/tbody/tr";
 	public static final String TABLE_BODY_USER_XPATH = "//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div[3]/table/tbody";
+	public static final String TABLE_BODY_DOCUMENT_XPATH = "//*[@id='content-component']/div/div[2]/div/div[3]/div/div/div/div/div/div/div[3]/table/tbody";
 	public static final String TABLE_HEAD_XPATH = "//div[@class='v-grid-tablewrapper']//table//thead[@class='v-grid-header']";
 	public static final String BUSINESS_CODE_SET_DELIVERY_CODE = "//*[@id=\"codeSetGrid-AsnDeliveryCode\"]/div[3]/table/tbody";
 	public static final String BUSINESS_CODE_SET_TAX_CODE = "//*[@id=\"codeSetGrid-InvoiceTaxCode\"]/div[3]/table/tbody";
