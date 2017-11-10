@@ -76,8 +76,8 @@ public class Permissions_Creating extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)).getText(), Messages.PERMISSION_CREATED_SUCCESSFULLY);
 
-
 	}
+
 	// Step 3
 	@Test(dependsOnMethods = "createPermissionwithValidValue", alwaysRun = true)
 	public void checkNewlyCreatedPermissionDisplayingOnTheGrid() {
@@ -156,7 +156,6 @@ public class Permissions_Creating extends BaseTestCase {
 	@Test(dependsOnMethods = "checkNewPermissionAvailableInAxisUserGroup", alwaysRun = true)
 	public void checkNewPermissionAvailableInCustomerUserGroup() {
 		action = new ScreenAction(driver);
-		table = new TableFunction(driver);
 		action.waitObjVisibleAndClick(By.id(AxisConfigMenu.CUSTOMER_MAINTENANCE_ID));
 		// Customer Usergroup sub-menu
 		action.waitObjVisibleAndClick(By.id(AxisConfigMenu.CUSTOMER_USERGROUP_ID));

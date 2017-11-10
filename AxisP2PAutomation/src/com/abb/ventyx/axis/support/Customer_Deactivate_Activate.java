@@ -104,7 +104,6 @@ public class Customer_Deactivate_Activate extends BaseTestCase {
 	public void clickFiterButtonToSearchInActiveCustomer() {
 		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 		action.pause(waitTime);
-		table = new TableFunction(driver);
 		table.clikFilterAndInputWithColumn(emailAddress, CustomerList.EMAIL_FILTER, true);
 		action.pause(waitTime);
 		WebElement cell = table.getCellObject(1, 1);

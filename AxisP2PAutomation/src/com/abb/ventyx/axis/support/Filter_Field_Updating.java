@@ -37,19 +37,11 @@ public class Filter_Field_Updating extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), FilterField.TITLE_FILTER_FIELDS);
 		action.waitObjVisible(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
-		assertEquals(table.getValueTableHeader(1), "Field Id");
-		assertEquals(table.getValueTableHeader(2), "Document Type");
-		assertEquals(table.getValueTableHeader(3), "Field Name");
-		assertEquals(table.getValueTableHeader(4), "Location Type");
-		assertEquals(table.getValueTableHeader(5), "Location");
-		action.clickHorizontalScrollBar();
-		assertEquals(table.getValueTableHeader(6), "Field Type");
 	}
 
 	// Step 02
 	@Test(dependsOnMethods = "openFilterField", alwaysRun = true)
 	public void selectOneRowOnGrid() {
-		table = new TableFunction(driver);
 		table.clikFilterAndInputWithColumn(fieldName, FilterField.FIELD_NAME_FILTER, true);
 		index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH, 1, 1);
 		index.click();
