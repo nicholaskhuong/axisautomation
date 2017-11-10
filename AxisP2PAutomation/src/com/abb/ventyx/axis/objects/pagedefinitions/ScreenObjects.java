@@ -7,6 +7,7 @@ public class ScreenObjects {
 	public static final String NO_BTN_ID = "noBtn";
 	public static final String YES_BTN_BACKUP = "#confirmation-window > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-confirmation-window-text-and-button-layout > div > div.v-slot.v-slot-v-bottombar-button-layout.v-align-right.v-align-middle > div > div:nth-child(3)";
 	public static final String SAVE_ID = "saveBtn";
+	public static final String TITLE_BUSINESS_CODE_SET_TYPES = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div > div.v-slot.v-slot-v-default-page-header-layout > div > div > div:nth-child(1)";
 	public static final String CANCEL_ID = "cancelBtn";
 	public static final String BACK_ID = "backBtn";
 	public static final String SCREEN_TITLE_ID = "common-header-left-layout";
@@ -56,5 +57,7 @@ public class ScreenObjects {
 	public static final String TABLE_HEAD_XPATH = "//div[@class='v-grid-tablewrapper']//table//thead[@class='v-grid-header']";
 	public static final String BUSINESS_CODE_SET_DELIVERY_CODE = "//*[@id=\"codeSetGrid-AsnDeliveryCode\"]/div[3]/table/tbody";
 	public static final String BUSINESS_CODE_SET_TAX_CODE = "//*[@id=\"codeSetGrid-InvoiceTaxCode\"]/div[3]/table/tbody";
-
+	// Configuration Business Code Set Types
+	public static final String BUSINESS_CODE_TYPES = "//*[@id=\"content-component\"]/div/div[2]/div/div/div[1]/div/div/div[1]";
+	public static final String CREATE_BUSINESS_CODE_TYPES = "#codesettypecreateeditview > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-default-page-header-layout > div > div > div >div";
 }
