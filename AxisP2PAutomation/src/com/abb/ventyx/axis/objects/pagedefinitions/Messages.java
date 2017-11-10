@@ -143,9 +143,4 @@ public class Messages {
 
 	// Configuration Document Types
 	public static final String DEL_DOC_TYPES_ERROR = "The selected Document Type is used as a reference key. Please delete the related data first";
-
-	// Search Option
-	public static final String MESSAGE_SEARCH_OPTION_SUCCESSFULLY = "Document filter field search option successfully created";
-	public static final String MESSAGE_INPUT_MANDATORY_FIELD = "Please enter a value for all mandatory fields";
-	public static final String MESSAGE_DUPLICATE_VALUE = "Duplicate Field Type and Option.please use differrent values";
 }
