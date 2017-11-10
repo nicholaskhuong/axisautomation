@@ -34,16 +34,21 @@ public class Search_Option_Updating extends BaseTestCase {
 	@Test
 	public void openSearchOptionScreen() {
 		action = new ScreenAction(driver);
+		table = new TableFunction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.FILTER_CONFIG));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.SEARCH_OPTION));
-		action.pause(milliseconds);
+		action.waitObjVisible(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), SearchOption.TITLE_SEARCH_OPTION);
+		action.waitObjVisible(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
+		assertEquals(table.getValueTableHeader(1), "Field Type");
+		assertEquals(table.getValueTableHeader(2), "Filter Sub Type");
+		assertEquals(table.getValueTableHeader(3), "Option");
 	}
 
 	// Step 02_03
 	@Test(dependsOnMethods = "openSearchOptionScreen", alwaysRun = true)
 	public void clickFilterButtonAndEditDataFilterType() {
-		table = new TableFunction(driver);
 		table.clikFilterAndInputWithColumn(fieldType, SearchOption.FIELD_TYPE_FILTER, true);
 		action.pause(milliseconds);
 		index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH, 1, 1);

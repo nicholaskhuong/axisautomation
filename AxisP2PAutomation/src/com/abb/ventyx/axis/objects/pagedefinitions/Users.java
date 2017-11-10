@@ -2,6 +2,9 @@ package com.abb.ventyx.axis.objects.pagedefinitions;
 
 public class Users {
 
+	public static final String TITLE_ADMINISTRATION_USERS = "Maintain Axis Support Users";
+	public static final String TITLE_MAINTENANCE_USERS = "Customers";
+	public static final String TITLE_MAINTENANCE_CUSTOMER_USERS = "Maintain Customer Users";
 	public static final String USER_ID = "userId";
 	public static final String PASSWORD_ID = "password";
 	public static final String CONFIMRPASSWORD_ID = "confirmPassword";
@@ -19,8 +22,10 @@ public class Users {
 	// public static final String ROWUSERS_ID =
 	// "#content-component > div >
 	// div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable
-	// > div > div > div.v-slot.v-slot-v-common-page-content-layout > div > div >
-	// div > div > div > div > div > div.v-grid-tablewrapper > table > tbody > tr >
+	// > div > div > div.v-slot.v-slot-v-common-page-content-layout > div > div
+	// >
+	// div > div > div > div > div > div.v-grid-tablewrapper > table > tbody >
+	// tr >
 	// td:nth-child(2)";
 	public static final String SUPPLIER_USERS_TABLE_CSS = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div > div.v-grid-tablewrapper";
 	public static final String DELETE_BTN_ID = "deleteItemBtn";
