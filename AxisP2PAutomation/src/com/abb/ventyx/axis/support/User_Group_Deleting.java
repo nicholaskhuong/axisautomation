@@ -19,7 +19,7 @@ import com.abb.ventyx.utilities.Credentials;
 import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
 
-@ALM(id = "164")
+@ALM(id = "553")
 @Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class User_Group_Deleting extends BaseTestCase {
 	String systemGroupName = "CUST_ADMIN";
@@ -33,14 +33,14 @@ public class User_Group_Deleting extends BaseTestCase {
 	int waitTime = 1000;
 	WebElement index;
 
-	//Step 1
+	// Step 1
 	@Test
-	public void openUserGroupScreen(){
+	public void openUserGroupScreen() {
 		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMERMAINTAINCE_MENU_CSS));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.USERGROUP_SUBMENU_CSS));
 	}
-	
+
 	@Test(dependsOnMethods = "openUserGroupScreen", alwaysRun = true)
 	public void selectTabAndClickAddButton() {
 		action.waitObjVisible(By.id(UserGroup.SYSTEM_TAB_ID));
@@ -48,8 +48,8 @@ public class User_Group_Deleting extends BaseTestCase {
 		assertEquals(system_row0, systemGroupName);
 		driver.findElement(By.id(UserGroup.USER_TAB_ID)).click();
 	}
-	
-	//Step 2
+
+	// Step 2
 	@Test(dependsOnMethods = "selectTabAndClickAddButton", alwaysRun = true)
 	public void selectCustomerAndClickOneRowInGrid() {
 		action.pause(waitTime);
@@ -65,7 +65,7 @@ public class User_Group_Deleting extends BaseTestCase {
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(Users.DELETE_BUTTON + row));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.YES_BTN_ID));
-		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE,Messages.USERGROUP_DELETE_SUCCESSFULLY);
+		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USERGROUP_DELETE_SUCCESSFULLY);
 	}
 
 }

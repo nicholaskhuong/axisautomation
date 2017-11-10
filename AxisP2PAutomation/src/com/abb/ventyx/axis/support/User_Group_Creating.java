@@ -2,9 +2,6 @@ package com.abb.ventyx.axis.support;
 
 import static org.testng.Assert.assertEquals;
 
-
-
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
@@ -20,7 +17,7 @@ import com.abb.ventyx.utilities.Credentials;
 import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
 
-@ALM(id = "162")
+@ALM(id = "513")
 @Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class User_Group_Creating extends BaseTestCase {
 	String systemGroupName = "CUST_ADMIN";
@@ -32,15 +29,15 @@ public class User_Group_Creating extends BaseTestCase {
 	TableFunction table;
 	int waitTime = 1000;
 
-	//Step 1
+	// Step 1
 	@Test
-	public void openUserGroupScreen(){
+	public void openUserGroupScreen() {
 		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMERMAINTAINCE_MENU_CSS));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.USERGROUP_SUBMENU_CSS));
 	}
-	
-	//Step 2
+
+	// Step 2
 	@Test(dependsOnMethods = "openUserGroupScreen", alwaysRun = true)
 	public void selectTabAndClickAddButton() {
 		action.waitObjVisible(By.id(UserGroup.SYSTEM_TAB_ID));
@@ -52,8 +49,8 @@ public class User_Group_Creating extends BaseTestCase {
 		action.assertMessgeError(ScreenObjects.WARNING_MESSAGE_CSS, Messages.USERGROUP_SELECT_CUSTOMER);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.WARNING_MESSAGE_CSS));
 	}
-	
-	//Step 3
+
+	// Step 3
 	@Test(dependsOnMethods = "selectTabAndClickAddButton", alwaysRun = true)
 	public void selectCustomerAndClickAddButton() {
 		WebElement customer = driver.findElement(By.className(UserGroup.CUSTOMER_CLASS));
@@ -68,7 +65,7 @@ public class User_Group_Creating extends BaseTestCase {
 		action.assertMessgeError(ScreenObjects.WARNING_MESSAGE_CSS, Messages.EMPTY_PERMISSION);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.WARNING_MESSAGE_CSS));
 	}
-	
+
 	// Step 4
 	@Test(dependsOnMethods = "selectCustomerAndClickAddButton", alwaysRun = true)
 	public void addWithSelectedCustomerHasUserGroupName() {
@@ -76,19 +73,19 @@ public class User_Group_Creating extends BaseTestCase {
 		action.waitObjVisible(By.id(UserGroup.SAVE_ID));
 		action.waitObjVisibleAndClick(By.id(UserGroup.SAVE_ID));
 		action.pause(waitTime);
-		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE,Messages.USERGROUP_CREATE_SUCCESSFULLY);
+		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USERGROUP_CREATE_SUCCESSFULLY);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 	}
-	
-	//Step 5
+
+	// Step 5
 	@Test(dependsOnMethods = "addWithSelectedCustomerHasUserGroupName", alwaysRun = true)
-	public void cancelWithoutData(){
+	public void cancelWithoutData() {
 		action.waitObjVisibleAndClick(By.xpath(UserGroup.ADD_XPATH));
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(UserGroup.CANCEL_ID));
 	}
-	
-	//Steps 6_7
+
+	// Steps 6_7
 	@Test(dependsOnMethods = "cancelWithoutdata", alwaysRun = true)
 	public void cancelClickNo() {
 		action.waitObjVisibleAndClick(By.xpath(UserGroup.ADD_XPATH));
@@ -99,8 +96,8 @@ public class User_Group_Creating extends BaseTestCase {
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
 		action.clickBtn(By.id(ScreenObjects.NO_BTN_ID));
 	}
-	
-	//Steps 8_9
+
+	// Steps 8_9
 	@Test(dependsOnMethods = "cancelClickNo", alwaysRun = true)
 	public void cancelClickYes() {
 		action.pause(waitTime);

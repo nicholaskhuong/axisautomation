@@ -17,7 +17,7 @@ import com.abb.ventyx.utilities.Credentials;
 import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
 
-@ALM(id = "159")
+@ALM(id = "543")
 @Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class Document_Type_Editing extends BaseTestCase {
 	String description = "AA_MAINTAIN_DOCTYPES";

@@ -19,7 +19,7 @@ import com.abb.ventyx.utilities.Credentials;
 import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
 
-@ALM(id = "158")
+@ALM(id = "512")
 @Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class Document_Type_Creating extends BaseTestCase {
 	public static String documentTypes = "DocType50";
