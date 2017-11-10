@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Permissions" parallel="none">
-  	<test name="Create Permission">
+<suite name="AxisSupport_Configuration_Permissions" parallel="none">
+  	<test name="Configuration Create Permission">
 		<classes>
 				<class name="com.abb.ventyx.axis.support.Permissions_Creating" />
 		</classes>
 	</test>	
-	<test name="Update Permission">
+	<test name="Configuration Update Permission">
 		<classes>
 				<class name="com.abb.ventyx.axis.support.Permissions_Updating" />
 		</classes>
 	</test> 
-	<test name="Delete Permission">
+	<test name="Configuration Delete Permission">
 		<classes>
 				<class name="com.abb.ventyx.axis.support.Permissions_Deleting" />
 		</classes>
