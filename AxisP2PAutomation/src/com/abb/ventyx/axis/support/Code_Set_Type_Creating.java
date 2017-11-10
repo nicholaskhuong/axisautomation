@@ -35,7 +35,7 @@ public class Code_Set_Type_Creating extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.BUSINESS_CODE_SET_TYPE));
 		action.waitObjVisible(By.cssSelector(BusinessCodeTypes.ADD));
-		assertEquals(driver.findElement(By.xpath(ScreenObjects.BUSINESS_CODE_TYPES)).getText(), BusinessCodeTypes.MAINTAIN_BUSINESS_CODE_SET_TYPE);
+		action.assertDocumentTitle(BusinessCodeTypes.MAINTAIN_BUSINESS_CODE_SET_TYPE);
 		action.waitObjVisible(By.cssSelector(BusinessCodeTypes.FILTER_BTN_CSS));
 		assertEquals(table.getValueTableHeader(1), "Code Type");
 		assertEquals(table.getValueTableHeader(2), "Code Desc");

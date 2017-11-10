@@ -1,5 +1,7 @@
 package com.abb.ventyx.axis.support;
 
+import static org.testng.Assert.assertEquals;
+
 import java.util.Random;
 
 import org.openqa.selenium.By;
@@ -42,9 +44,18 @@ public class Customer_Creating extends BaseTestCase {
 	@Test
 	public void openCustomerScreen() {
 		action = new ScreenAction(driver);
+		table = new TableFunction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_LIST));
-		action.pause(waitTime);
+		action.waitObjVisible(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), CustomerList.TITLE_CUSTOMERS_PAGE);
+		action.waitObjVisible(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
+		action.waitObjVisible(By.cssSelector(CustomerList.DEACTIVE));
+		action.waitObjVisible(By.cssSelector(CustomerList.ACTIVE));
+		assertEquals(table.getValueTableHeader(1), "ID");
+		assertEquals(table.getValueTableHeader(2), "Name");
+		assertEquals(table.getValueTableHeader(3), "Status");
+		assertEquals(table.getValueTableHeader(4), "Email");
 	}
 
 	// Step 2

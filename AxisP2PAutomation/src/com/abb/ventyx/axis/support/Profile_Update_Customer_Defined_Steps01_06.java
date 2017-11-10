@@ -1,5 +1,6 @@
 package com.abb.ventyx.axis.support;
 
+import static org.testng.Assert.assertEquals;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 	int row;
 	int waitTime = 1000;
 	String nameCustomer = "QATest2";
-	String profileName ="Profile1";
+	String profileName = "Profile1";
 	String profileNameEdited = "Profile2";
 	WebElement index;
 	String userLogin = "admin_customer22@abb.com";
@@ -36,16 +37,23 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 	String adminLogin = "axis_support@abb.com";
 	String adminPassword = "Testuser1";
 	String profileName_AccountCustomer = "POProfile";
-	
-	//Step1
+
+	// Step1
 	@Test
-	public void openMaintainCustomerDefinedProfilesScreen(){
+	public void openMaintainCustomerDefinedProfilesScreen() {
 		action = new ScreenAction(driver);
 		table = new TableFunction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PROFILES));
+		action.waitObjVisible(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), Profiles.TITLE_PROFILES);
+		action.waitObjVisible(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
+		assertEquals(table.getValueTableHeader(1), "Customer Name");
+		assertEquals(table.getValueTableHeader(2), "Profile Name");
+		assertEquals(table.getValueTableHeader(3), "Document Types");
 	}
-	//Step2
+
+	// Step2
 	@Test(dependsOnMethods = "openMaintainCustomerDefinedProfilesScreen", alwaysRun = true)
 	public void clickFiterButtonOnMaintainCustomerScreen() {
 		action.waitObjVisible(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
@@ -53,9 +61,9 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
 		action.inputTextField(ScreenObjects.FILTER_FIELD_ID, nameCustomer);
 	}
-	
+
 	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomerScreen", alwaysRun = true)
-	public void clickPencilIconOnMaintainCustomerScreen(){
+	public void clickPencilIconOnMaintainCustomerScreen() {
 		action.pause(waitTime);
 		action.clickHorizontalScrollBar();
 		index = table.getCellObject(2, 5);
@@ -63,7 +71,7 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 	}
 
 	@Test(dependsOnMethods = "clickPencilIconOnMaintainCustomerScreen", alwaysRun = true)
-	public void checkStatusProfileAndCustomerName(){
+	public void checkStatusProfileAndCustomerName() {
 		action.waitObjVisible(By.id(Profiles.PROFILE_NAME_ID));
 		WebElement profileName = driver.findElement(By.id(Profiles.PROFILE_NAME_ID));
 		profileName.isEnabled();
@@ -71,9 +79,9 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 		WebElement customerName = driver.findElement(By.id(Profiles.CUSTOMER_NAME));
 		customerName.isDisplayed();
 	}
-	
+
 	@Test(dependsOnMethods = "checkStatusProfileAndCustomerName", alwaysRun = true)
-	public void editProfileNameonModifyProfileSreen(){
+	public void editProfileNameonModifyProfileSreen() {
 		action.waitObjVisible(By.id(Profiles.PROFILE_NAME_ID));
 		WebElement fileName = driver.findElement(By.id(Profiles.PROFILE_NAME_ID));
 		fileName.clear();
@@ -82,60 +90,61 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 		action.pause(2000);
 		action.clickCheckBoxN(2);
 	}
-	
+
 	@Test(dependsOnMethods = "editProfileNameonModifyProfileSreen", alwaysRun = true)
-	public void clickSaveButtonAndDisplayMessageSuccessfully(){
+	public void clickSaveButtonAndDisplayMessageSuccessfully() {
 		action.waitObjVisible(By.id(Profiles.SAVE_BTN));
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
 		action.pause(waitTime);
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.MESSAGE_EDIT_PROFILE_NAME_SUCCESSFULLY);
-		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));	
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 	}
-	
-	//Step3
+
+	// Step3
 	@Test(dependsOnMethods = "clickSaveButtonAndDisplayMessageSuccessfully", alwaysRun = true)
-	public void logoutFromMaintainCustomerScreen(){
+	public void logoutFromMaintainCustomerScreen() {
 		action.pause(waitTime);
 		action.signOut();
 	}
-	
+
 	@Test(dependsOnMethods = "logoutFromMaintainCustomerScreen", alwaysRun = true)
-	public void loginWithAccountCustomer(){
+	public void loginWithAccountCustomer() {
 		action.signIn(userLogin, userPassword);
 	}
-	
+
 	@Test(dependsOnMethods = "loginWithAccountCustomer", alwaysRun = true)
-	public void openMaintainCustomerScreenWithAccountCustomer(){
+	public void openMaintainCustomerScreenWithAccountCustomer() {
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE_WITH_CUSTOMER));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PROFILE_CUSTOMER));
 		action.pause(waitTime);
-		}
-	
+	}
+
 	@Test(dependsOnMethods = "openMaintainCustomerScreenWithAccountCustomer", alwaysRun = true)
-	public void clickEditIconOnMaintainCustomerScreen(){
+	public void clickEditIconOnMaintainCustomerScreen() {
 		action.pause(waitTime);
 		action.clickHorizontalScrollBar();
 		index = table.getCellObject(2, 4);
 		index.click();
 		action.waitObjVisibleAndClick(By.id(Profiles.CANCEL_BTN));
 	}
-	//Step 5
+
+	// Step 5
 	@Test(dependsOnMethods = "clickEditIconOnMaintainCustomerScreen", alwaysRun = true)
-	public void logoutfromAccountCustomer(){
-			action.signOut();
-		}
-		
+	public void logoutfromAccountCustomer() {
+		action.signOut();
+	}
+
 	@Test(dependsOnMethods = "logoutfromAccountCustomer", alwaysRun = true)
-	public void loginfromAccountCustomer(){
-			action.signIn(adminLogin, adminPassword);
-		}
-	
+	public void loginfromAccountCustomer() {
+		action.signIn(adminLogin, adminPassword);
+	}
+
 	@Test(dependsOnMethods = "loginfromAccountCustomer", alwaysRun = true)
-	public void openMaintainCustomerDefinedProfilesScreenAgain(){
+	public void openMaintainCustomerDefinedProfilesScreenAgain() {
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PROFILES));
 	}
-	
+
 	@Test(dependsOnMethods = "openMaintainCustomerDefinedProfilesScreenAgain", alwaysRun = true)
 	public void clickFiterButtonAgainOnMaintainCustomerScreen() {
 		action.waitObjVisible(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
@@ -145,26 +154,26 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 	}
 
 	@Test(dependsOnMethods = "clickFiterButtonAgainOnMaintainCustomerScreen", alwaysRun = true)
-	public void clickEditIconAgainOnMaintainCustomerScreen(){
+	public void clickEditIconAgainOnMaintainCustomerScreen() {
 		action.pause(waitTime);
 		action.clickHorizontalScrollBar();
 		index = table.getCellObject(2, 5);
 		index.click();
 	}
-	
+
 	@Test(dependsOnMethods = "clickEditIconAgainOnMaintainCustomerScreen", alwaysRun = true)
-	public void editAuthorisedDocumentTypes(){
+	public void editAuthorisedDocumentTypes() {
 		action.waitObjVisibleAndClick(By.id("showConfigBtn-AdvanceShippingNotice"));
 		action.pause(waitTime);
-		List<WebElement> checkBoxIndex0 = driver.findElements(By.xpath("//*[@id='configurationGrid-AdvanceShippingNotice']/div[3]/table/tbody/tr[1]/td[1]"));
+		List<WebElement> checkBoxIndex0 = driver.findElements(By
+				.xpath("//*[@id='configurationGrid-AdvanceShippingNotice']/div[3]/table/tbody/tr[1]/td[1]"));
 		checkBoxIndex0.get(0).click();
 	}
-	
+
 	@Test(dependsOnMethods = "editAuthorisedDocumentTypes", alwaysRun = true)
-	public void clickSaveBtnAndDisplayMessageSuccessfully(){
+	public void clickSaveBtnAndDisplayMessageSuccessfully() {
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.MESSAGE_EDIT_PROFILE_NAME_SUCCESSFULLY);
-		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));	
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 	}
 }
-

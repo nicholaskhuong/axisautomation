@@ -31,14 +31,18 @@ public class Document_Type_Deleting extends BaseTestCase {
 	@Test
 	public void openDocumentTypesScreen() {
 		action = new ScreenAction(driver);
+		table = new TableFunction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.DOC_TYPE));
-		action.pause(milliseconds);
+		action.waitObjVisible(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), DocType.TITLE_MAINTAIN_DOCUMENT_TYPES);
+		action.waitObjVisible(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
+		assertEquals(table.getValueTableHeader(1), "Document Types");
+		assertEquals(table.getValueTableHeader(2), "Description");
 	}
 
 	@Test(dependsOnMethods = "openDocumentTypesScreen", alwaysRun = true)
 	public void deleteDocumentType() {
-		table = new TableFunction(driver);
 		table.clikFilterAndInputWithColumn(Document_Type_Creating.documentTypes, DocType.FIELD_TYPE_FILTER, true);
 		action.pause(milliseconds);
 		index = table.getCellObject(1, 3);

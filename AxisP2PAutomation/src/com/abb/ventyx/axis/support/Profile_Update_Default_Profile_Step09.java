@@ -45,6 +45,8 @@ public class Profile_Update_Default_Profile_Step09 extends BaseTestCase {
 		table = new TableFunction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.AXIS_ADMIN));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.RESET_USER_PASSWORD));
+		action.waitObjVisible(By.id(ScreenObjects.RESET_BUTTON));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), ResetUserPassword.TITLE_RESET_USER_PASSWORD);
 	}
 
 	@Test(dependsOnMethods = "openCustomersScreen", alwaysRun = true)
@@ -90,7 +92,12 @@ public class Profile_Update_Default_Profile_Step09 extends BaseTestCase {
 	public void openMaintainCustomerScreenWithAccountCustomer() {
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE_WITH_CUSTOMER));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PROFILE_CUSTOMER));
-		action.pause(waitTime);
+		action.waitObjVisible(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), Profiles.TITLE_PROFILES);
+		action.waitObjVisible(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
+		assertEquals(table.getValueTableHeader(1), "Profile Name");
+		assertEquals(table.getValueTableHeader(2), "Document Types");
+		assertEquals(table.getValueTableHeader(3), "Default");
 	}
 
 	@Test(dependsOnMethods = "openMaintainCustomerScreenWithAccountCustomer", alwaysRun = true)
@@ -123,6 +130,12 @@ public class Profile_Update_Default_Profile_Step09 extends BaseTestCase {
 	public void openMaintainCustomerScreen() {
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PROFILES));
+		action.waitObjVisible(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), Profiles.TITLE_PROFILES);
+		action.waitObjVisible(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
+		assertEquals(table.getValueTableHeader(1), "Customer Name");
+		assertEquals(table.getValueTableHeader(2), "Profile Name");
+		assertEquals(table.getValueTableHeader(3), "Document Types");
 	}
 
 	@Test(dependsOnMethods = "openMaintainCustomerScreen", alwaysRun = true)

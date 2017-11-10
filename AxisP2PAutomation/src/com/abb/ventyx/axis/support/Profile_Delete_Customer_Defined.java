@@ -1,5 +1,6 @@
 package com.abb.ventyx.axis.support;
 
+import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -29,16 +30,22 @@ public class Profile_Delete_Customer_Defined extends BaseTestCase {
 	WebElement profile;
 	String UserLogin = "admin_customer22@abb.com";
 	String UserPassword = "Testuser1";
-	
-	//Step 1
+
+	// Step 1
 	@Test
-	public void openMaintainCustomerDefinedProfilesScreen(){
+	public void openMaintainCustomerDefinedProfilesScreen() {
 		action = new ScreenAction(driver);
 		table = new TableFunction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PROFILES));
+		action.waitObjVisible(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), Profiles.TITLE_PROFILES);
+		action.waitObjVisible(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
+		assertEquals(table.getValueTableHeader(1), "Customer Name");
+		assertEquals(table.getValueTableHeader(2), "Profile Name");
+		assertEquals(table.getValueTableHeader(3), "Document Types");
 	}
-	
+
 	@Test(dependsOnMethods = "openMaintainCustomerDefinedProfilesScreen", alwaysRun = true)
 	public void clickFiterButtonOnMaintainCustomerScreen() {
 		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
@@ -46,47 +53,47 @@ public class Profile_Delete_Customer_Defined extends BaseTestCase {
 		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
 		action.inputTextField(ScreenObjects.FILTER_FIELD_ID, customerName);
 	}
-	
-	//#1: Default Profile
+
+	// #1: Default Profile
 	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomerScreen", alwaysRun = true)
-	public void checkDefaultProfileOnMaintainCustomerScreen(){
+	public void checkDefaultProfileOnMaintainCustomerScreen() {
 		action.pause(waitTime);
 		action.clickHorizontalScrollBar();
 		index = table.getCellObject(1, 6);
 		index.isDisplayed();
-	}	
-	//#2 Non-default Profile
+	}
+
+	// #2 Non-default Profile
 	@Test(dependsOnMethods = "checkDefaultProfileOnMaintainCustomerScreen", alwaysRun = true)
-	public void checkNonDefaultProfileOnMaintainCustomerScreen(){
+	public void checkNonDefaultProfileOnMaintainCustomerScreen() {
 		action.pause(waitTime);
 		action.clickHorizontalScrollBar();
 		index = table.getCellObject(2, 6);
 		index.isEnabled();
 	}
-	
+
 	@Test(dependsOnMethods = "checkNonDefaultProfileOnMaintainCustomerScreen", alwaysRun = true)
 	public void clickDeleteIconOnMaintainCustomerScreen() {
 		index.click();
 		action.waitObjVisibleAndClick(By.cssSelector(Profiles.DELETE_YES));
-		action.checkAddSuccess(Messages.MESSAGE_DELETE_SUCCESSFULLY); 
+		action.checkAddSuccess(Messages.MESSAGE_DELETE_SUCCESSFULLY);
 	}
-	
-	//Step3
+
+	// Step3
 	@Test(dependsOnMethods = "clickDeleteIconOnMaintainCustomerScreen", alwaysRun = true)
-	public void logoutFromMaintainCustomerScreen(){
+	public void logoutFromMaintainCustomerScreen() {
 		action.pause(waitTime);
 		action.signOut();
 	}
-	
+
 	@Test(dependsOnMethods = "logoutFromMaintainCustomerScreen", alwaysRun = true)
-	public void loginWithAccountCustomer(){
+	public void loginWithAccountCustomer() {
 		action.signIn(UserLogin, UserPassword);
 	}
-	
+
 	@Test(dependsOnMethods = "loginWithAccountCustomer", alwaysRun = true)
-	public void openMaintainCustomerScreenWithAccountCustomer(){
+	public void openMaintainCustomerScreenWithAccountCustomer() {
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE_WITH_CUSTOMER));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PROFILE_CUSTOMER));
 	}
 }
-

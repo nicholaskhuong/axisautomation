@@ -1,5 +1,6 @@
 package com.abb.ventyx.axis.support;
 
+import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -23,29 +24,38 @@ public class Filter_Field_Deleting extends BaseTestCase {
 	TableFunction table;
 	String fieldNameUpdate = "Quantily Updated";
 	WebElement index;
-	
-	//Step 01
+
+	// Step 01
 	@Test
-	public void openFilterField(){
+	public void openFilterField() {
 		action = new ScreenAction(driver);
+		table = new TableFunction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.FILTER_CONFIG));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.FILTER_FIELD));
-		action.pause(milliseconds);
+		action.waitObjVisible(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), FilterField.TITLE_FILTER_FIELDS);
+		action.waitObjVisible(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
+		assertEquals(table.getValueTableHeader(1), "Field Id");
+		assertEquals(table.getValueTableHeader(2), "Document Type");
+		assertEquals(table.getValueTableHeader(3), "Field Name");
+		assertEquals(table.getValueTableHeader(4), "Location Type");
+		assertEquals(table.getValueTableHeader(5), "Location");
+		action.clickHorizontalScrollBar();
+		assertEquals(table.getValueTableHeader(6), "Field Type");
 	}
-	
-	
+
 	@Test(dependsOnMethods = "openFilterField", alwaysRun = true)
-	public void clickTrashBinIcon (){   
+	public void clickTrashBinIcon() {
 		table = new TableFunction(driver);
 		table.clikFilterAndInputWithColumn(fieldNameUpdate, FilterField.FIELD_NAME_FILTER, true);
 		index = table.getCellObject(1, 8);
 		index.click();
-	 }
+	}
 
-	//Steps 02_03
+	// Steps 02_03
 	@Test(dependsOnMethods = "clickTrashBinIcon", alwaysRun = true)
-	public void clickNoAndYesToDeleteData(){
+	public void clickNoAndYesToDeleteData() {
 		action.pause(milliseconds);
 		action.waitObjVisibleAndClick(By.id(FilterField.NO));
 		action.pause(milliseconds);
@@ -53,6 +63,6 @@ public class Filter_Field_Deleting extends BaseTestCase {
 		index.click();
 		action.waitObjVisibleAndClick(By.id(FilterField.YES));
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.DEL_FILTER_FIELD_SUCCESS);
-		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));		
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 	}
 }

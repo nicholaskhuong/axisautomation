@@ -1,7 +1,7 @@
 package com.abb.ventyx.axis.objects.pagedefinitions;
 
 public class DocType {
-
+	public static final String TITLE_MAINTAIN_DOCUMENT_TYPES = "Maintain Document Types";
 	public static final String GRID = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div.v-grid-tablewrapper > table";
 	public static final String ADD = "#HeaderMenuBar > span:nth-child(2)";
 	public static final String DTROW1 = "docTypeBtn0";
