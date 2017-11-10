@@ -1,5 +1,6 @@
 package com.abb.ventyx.axis.support;
 
+import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -25,36 +26,41 @@ public class User_Administration_Creating extends BaseTestCase {
 	TableFunction table;
 	int waitTime = 1500;
 	WebElement index;
-	String user = "Taumato";
+	public static String user = "Taumato";
 	String user1 = "Tauuu";
 	String password = "Testuser1";
-	String email = "Taumato@abb.com";
+	public static String email = "Taumato@abb.com";
 	String emailAlready = "thuy15@abb.com";
 	String confirmPassword = "Testuser2";
 	String passwordReset;
 	String newPassword = "Testuser2";
-	//Step 1
+
+	// Step 1
 	@Test
-	public void openUserScreen(){
+	public void openUserScreen() {
 		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.id(AxisAdministratorUsers.AXIS_ADMINISTRATION_MENU_ID));
 		action.waitObjVisibleAndClick(By.id(AxisAdministratorUsers.USERS_SUBMENU_ID));
 	}
-	
-	//Step 2
+
+	// Step 2
 	@Test(dependsOnMethods = "openUserScreen", alwaysRun = true)
-	public void clickAddButtonAndInputLackMandatoryFields(){
+	public void clickAddButtonAndInputLackMandatoryFields() {
 		action.waitObjVisibleAndClick(By.cssSelector(Users.ADD_USERS));
+		Random rand = new Random();
+		long drand = (long) (rand.nextDouble() * 100000000L);
+		user = String.format("Taumato%s", drand);
+		email = String.format("Taumato%s@abb.com", drand);
 		action.inputTextField(Users.USER_ID, user);
 		action.inputTextField(Users.PASSWORD_ID, password);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
-	
-	//Step 3
+
+	// Step 3
 	@Test(dependsOnMethods = "clickAddButtonAndInputLackMandatoryFields", alwaysRun = true)
-	public void inputMandatoryFields(){
+	public void inputMandatoryFields() {
 		action.waitObjVisible(By.id(Users.EMAIL_ID));
 		action.inputEmailField(Users.EMAIL_ID, email);
 		action.waitObjVisible(By.id(Users.CONFIMRPASSWORD_ID));
@@ -64,20 +70,20 @@ public class User_Administration_Creating extends BaseTestCase {
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.USER_SELECT_USERGROUP);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
-	
-	//Step 4
+
+	// Step 4
 	@Test(dependsOnMethods = "inputMandatoryFields", alwaysRun = true)
-	public void inputAllMandatoryFields(){
+	public void inputAllMandatoryFields() {
 		action.clickCheckBoxN(0);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));
 		action.pause(waitTime);
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_CREATE_SUCCESSFULLY);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 	}
-	
-	//Step 5
+
+	// Step 5
 	@Test(dependsOnMethods = "inputAllMandatoryFields", alwaysRun = true)
-	public void inputInvalidEmail(){
+	public void inputInvalidEmail() {
 		action.waitObjVisibleAndClick(By.cssSelector(Users.ADD_USERS));
 		action.waitObjVisible(By.id(Users.USER_ID));
 		action.inputTextField(Users.USER_ID, user1);
@@ -92,19 +98,19 @@ public class User_Administration_Creating extends BaseTestCase {
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.SAME_EMAIL);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
 	}
-	
-	//Steps 06_08
+
+	// Steps 06_08
 	@Test(dependsOnMethods = "inputInvalidEmail", alwaysRun = true)
-	public void clickAddButtonAndNoInputData(){
+	public void clickAddButtonAndNoInputData() {
 		action.waitObjVisibleAndClick(By.id(AxisAdministratorUsers.USERS_SUBMENU_ID));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.YES_BTN_ID));
 		action.waitObjVisibleAndClick(By.cssSelector(Profiles.ADD_PROFILE));
 		action.waitObjVisibleAndClick(By.id(Users.CANCEL_BTN_ID));
 	}
-	
-	//Step 9_10
+
+	// Step 9_10
 	@Test(dependsOnMethods = "clickAddButtonAndNoInputData", alwaysRun = true)
-	public void clickAddButtonAndInputDataName(){
+	public void clickAddButtonAndInputDataName() {
 		action.waitObjVisibleAndClick(By.cssSelector(Profiles.ADD_PROFILE));
 		action.waitObjVisible(By.id(Users.USER_ID));
 		action.inputTextField(Users.USER_ID, user);
@@ -115,29 +121,28 @@ public class User_Administration_Creating extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.id(Users.CANCEL_BTN_ID));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.YES_BTN_ID));
 	}
-	
-	//Step 11
+
+	// Step 11
 	@Test(dependsOnMethods = "clickAddButtonAndInputDataName", alwaysRun = true)
 	public void logoutAndLoginWithNewUser() {
-		action.pause(waitTime);
+		action.pause(3000);
 		action.signOut();
 		action.pause(waitTime);
 		action.signIn(email, password);
 	}
-	
+
 	@Test(dependsOnMethods = "logoutAndLoginWithNewUser", alwaysRun = true)
 	public void changePasswordOnAxisSupplierPortal() {
 		action.waitObjVisible(By.id(ScreenObjects.NEWPASSWORD_ID));
 		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, password);
 		action.inputTextField(ScreenObjects.NEWPASSWORD_ID, newPassword);
-		action.inputTextField(ScreenObjects.CONFIRMPASSWORD_ID,newPassword);
+		action.inputTextField(ScreenObjects.CONFIRMPASSWORD_ID, newPassword);
 		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
 	}
-	
+
 	@Test(dependsOnMethods = "changePasswordOnAxisSupplierPortal", alwaysRun = true)
-	public void openMaintainCustomerScreenWithNewUser(){
+	public void openMaintainCustomerScreenWithNewUser() {
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.AXIS_ADMIN));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.USER_CUSTOMER_ADMIN));
 	}
 }
-

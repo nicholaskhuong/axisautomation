@@ -1,6 +1,5 @@
 package com.abb.ventyx.axis.support;
 
-
 import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
@@ -23,30 +22,29 @@ public class User_Administration_Deteting extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
 	WebElement index;
-	String userUpdate = "Taumato1";
-	String email = "Taumato1@abb.com";
 	String newPassword = "Testuser2";
 	int waitTime = 1000;
-	//Step 1
+
+	// Step 1
 	@Test
-	public void openUserScreen(){
+	public void openUserScreen() {
 		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.id(AxisAdministratorUsers.AXIS_ADMINISTRATION_MENU_ID));
 		action.waitObjVisibleAndClick(By.id(AxisAdministratorUsers.USERS_SUBMENU_ID));
 	}
-	
+
 	@Test(dependsOnMethods = "openUserScreen", alwaysRun = true)
 	public void clickFiterButton() {
 		table = new TableFunction(driver);
-		table.clikFilterAndInputWithColumn(userUpdate, Users.USER_ID_FILTER , true);
+		table.clikFilterAndInputWithColumn(User_Administration_Updating.userUpdate, Users.USER_ID_FILTER, true);
 		action.pause(3000);
 	}
-	
+
 	@Test(dependsOnMethods = "clickFiterButton")
 	public void clickDeleteButton() {
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
-		index =  table.getCellObject(1, 6);
+		index = table.getCellObject(1, 6);
 		action.pause(waitTime);
 		index.click();
 		action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
@@ -60,15 +58,15 @@ public class User_Administration_Deteting extends BaseTestCase {
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_DELETE_SUCCESSFULLY);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 	}
-	
+
 	@Test(dependsOnMethods = "clickDeleteButton", alwaysRun = true)
 	public void logoutAndLoginWithNewUser() {
 		action.pause(waitTime);
 		action.signOut();
 		action.pause(waitTime);
-		action.signIn(email, newPassword);
+		action.signIn(User_Administration_Updating.emailUpdate, newPassword);
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.USERNOTFOUND);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
 	}
-	
+
 }
