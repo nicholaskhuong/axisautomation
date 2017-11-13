@@ -99,24 +99,28 @@ public class SupplierList_RemoteIcon_Step1_11 extends BaseTestCase {
 		assertEquals(action.isElementPresent(By.id(SupplierMenu.ADMINISTRATION_ID)), true);
 
 	}
-
+	
 	// Step 4
 	@Test(dependsOnMethods = "remoteToSupplierAndAssertDocumentAvailable", alwaysRun = true)
-	public void signOut() {
-		action.pause(1000);
-		action.signOut();
+	public void assertPenIconInvisible() {
+		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
+		action.waitObjVisible(By.id(ScreenObjects.SIGNOUT_BUTTON));
+		action.pause(2000);
+		assertEquals(action.isElementPresent(By.id(UserPreferences.EDITPROFILE_ID)),false);
+	
 	}
 
 	// Step 5
-	@Test(dependsOnMethods = "signOut", alwaysRun = true)
-	public void assertBackToCustomerView() {
-		action.pause(1000);
+	@Test(dependsOnMethods = "checkPenIconInvisible", alwaysRun = true)
+	public void signOutAndAssertBackToCustomerView() {
+		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
+		action.pause(2000);
 		action.waitObjVisible(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
 		action.assertTitleScreen("Customer Dashboard");
 	}
 
 	// Step 6
-	@Test(dependsOnMethods = "assertBackToCustomerView", alwaysRun = true)
+	@Test(dependsOnMethods = "signOutAndAssertBackToCustomerView", alwaysRun = true)
 	public void openSupplierListAndClickRemoteIcon() {
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.SUPPLIERLIST_SUBMENU));
