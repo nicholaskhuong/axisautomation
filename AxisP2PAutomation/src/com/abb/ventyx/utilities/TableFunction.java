@@ -59,8 +59,8 @@ public class TableFunction {
 				if (isXpath) {
 					columnValue = driver.findElement(By.xpath(String.format("%s//tr[%s]//td[%s]", tableBody, i, columnindex)));
 				} else {
-					columnValue = driver.findElement(
-							By.cssSelector(String.format("%s> table > tbody > tr:nth-child(%s) > td:nth-child(%s)", tableBody, i, columnindex)));
+					columnValue = driver.findElement(By.cssSelector(String.format("%s> table > tbody > tr:nth-child(%s) > td:nth-child(%s)",
+							tableBody, i, columnindex)));
 				}
 				if (columnValue.getText().equals(value)) {
 					row = i;
@@ -206,8 +206,8 @@ public class TableFunction {
 
 	public void clikFilterAndInputWithColumn(String value, String filterPath, Boolean isXpath) {
 
-		WebElement filterButton = (new WebDriverWait(driver, timeout))
-				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.FILTER_BTN_CSS)));
+		WebElement filterButton = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(ScreenObjects.FILTER_BTN_CSS)));
 
 		filterButton.click();
 		WebElement filterColumn;
@@ -222,7 +222,7 @@ public class TableFunction {
 		action.pause(1000);
 
 	}
-	
+
 	public void inputFilterAtIndex(String value, String filterPath, Boolean isXpath) {
 
 		WebElement filterColumn;
@@ -237,6 +237,7 @@ public class TableFunction {
 		action.pause(1000);
 
 	}
+
 	public void assertRowEqual(String obj, String value, int row) {
 		WebElement rowFilter = driver.findElement(By.id(obj + row));
 		assertEquals(rowFilter.getText(), value, "Title is wrong");
@@ -288,21 +289,21 @@ public class TableFunction {
 	}
 
 	public WebElement getCellObjectSupplierCodeSetDeliveryCode(int row, int column) {
-		WebElement cell = driver
-				.findElement(By.xpath(String.format("%s//tr[%s]//td[%s]//div//div", ScreenObjects.BUSINESS_CODE_SET_DELIVERY_CODE, row, column)));
+		WebElement cell = driver.findElement(By.xpath(String.format("%s//tr[%s]//td[%s]//div//div", ScreenObjects.BUSINESS_CODE_SET_DELIVERY_CODE,
+				row, column)));
 		return cell;
 	}
 
 	public WebElement getCellObjectSupplierCodeSetTaxCode(int row, int column) {
-		WebElement cell = driver
-				.findElement(By.xpath(String.format("%s//tr[%s]//td[%s]//div//div", ScreenObjects.BUSINESS_CODE_SET_TAX_CODE, row, column)));
+		WebElement cell = driver.findElement(By.xpath(String.format("%s//tr[%s]//td[%s]//div//div", ScreenObjects.BUSINESS_CODE_SET_TAX_CODE, row,
+				column)));
 		return cell;
 	}
 
 	// In User Group grid.
 	public void clickArrowDownToShowPermission(int row, int column) {
-		WebElement cell = driver
-				.findElement(By.xpath(String.format("%s/tr[%s]/td[%s]/div/div/span/span", UserGroup.USERGROUP_GRID_XPATH, row, column)));
+		WebElement cell = driver.findElement(By.xpath(String
+				.format("%s/tr[%s]/td[%s]/div/div/span/span", UserGroup.USERGROUP_GRID_XPATH, row, column)));
 		cell.click();
 	}
 
@@ -355,8 +356,8 @@ public class TableFunction {
 		}
 		System.out.println("Permission Index 2:" + i);
 		/*
-		 * assertEquals(action.isElementPresent(By.xpath("//*[@id='permGrid-" + docIndex
-		 * + "']//div[3]//table//tbody//tr[" + i + "]//td[2]")), true,
+		 * assertEquals(action.isElementPresent(By.xpath("//*[@id='permGrid-" +
+		 * docIndex + "']//div[3]//table//tbody//tr[" + i + "]//td[2]")), true,
 		 * "Can't find permission, i=-1");
 		 */
 		// action.assertTextEqual(By.xpath("//*[@id='permGrid-" + docIndex +

@@ -5,6 +5,7 @@ public class Users {
 	public static final String TITLE_ADMINISTRATION_USERS = "Maintain Axis Support Users";
 	public static final String TITLE_MAINTENANCE_USERS = "Customers";
 	public static final String TITLE_MAINTENANCE_CUSTOMER_USERS = "Maintain Customer Users";
+	public static final String MAIMTAIN_CUSTOMER_TITLE_CSS = "#common-header-left-layout > div:nth-child(2) > div";
 	public static final String USER_ID = "userId";
 	public static final String PASSWORD_ID = "password";
 	public static final String CONFIMRPASSWORD_ID = "confirmPassword";

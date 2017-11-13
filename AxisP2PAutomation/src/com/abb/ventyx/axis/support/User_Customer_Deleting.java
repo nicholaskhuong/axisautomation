@@ -23,44 +23,49 @@ public class User_Customer_Deleting extends BaseTestCase {
 	TableFunction table;
 	int waitTime = 1000;
 	WebElement index;
-	String userUpdate = "customer_user1";
+	public static String userUpdate = "customer_user1";
 	String password = "Testuser1";
-	String emailUpdate = "customer_user1@abb.com";
-	
+	public static String emailUpdate = "customer_user1@abb.com";
+
 	@Test
-	public void openCustomerScreen(){
+	public void openCustomerScreen() {
 		action = new ScreenAction(driver);
+		table = new TableFunction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.USERS));
+		action.waitObjVisible(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), Users.TITLE_ADMINISTRATION_USERS);
+		assertEquals(table.getValueTableHeader(1), "ID");
+		assertEquals(table.getValueTableHeader(2), "Name");
+		assertEquals(table.getValueTableHeader(3), "Status");
 	}
-	
+
 	@Test(dependsOnMethods = "openCustomerScreen", alwaysRun = true)
 	public void clickFiterButtonOnCustomerScreen() {
-		table = new TableFunction(driver);
 		table.clikFilterAndInputWithColumn("435", Users.USER_NUMBER_FILTER, true);
 		action.pause(waitTime);
 		assertEquals(table.getValueRow(2, 1), "QATest");
 	}
-	
+
 	@Test(dependsOnMethods = "clickFiterButtonOnCustomerScreen", alwaysRun = true)
 	public void clickCustomerIDOnCustomerScreen() {
-		index = table.getCellObject("//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div/div/div/div[3]/table/tbody",1, 1);
+		index = table.getCellObject(
+				"//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div/div/div/div[3]/table/tbody", 1, 1);
 		action.pause(waitTime);
 		index.click();
 	}
-	
+
 	@Test(dependsOnMethods = "clickCustomerIDOnCustomerScreen", alwaysRun = true)
 	public void clickFiterButtonOnMaintainCustomerUsersScreen() {
-		action.pause(waitTime);
 		table.clikFilterAndInputWithColumn(userUpdate, Users.USER_ID_FILTER, true);
 		assertEquals(table.getValueRow(2, 1), userUpdate);
 	}
-	
+
 	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomerUsersScreen", alwaysRun = true)
 	public void clickDeleteButtonOnMaintainCustomerUsersScreen() {
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
-		index =  table.getCellObject(1, 6);
+		index = table.getCellObject(1, 6);
 		action.pause(waitTime);
 		index.click();
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.NO_BTN_ID));
@@ -69,6 +74,5 @@ public class User_Customer_Deleting extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.YES_BTN_ID));
 		action.checkAddSuccess(Messages.USER_DELETE_SUCCESSFULLY);
 	}
-	
-}
 
+}
