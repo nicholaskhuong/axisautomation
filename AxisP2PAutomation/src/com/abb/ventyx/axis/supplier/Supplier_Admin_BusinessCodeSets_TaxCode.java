@@ -27,7 +27,6 @@ public class Supplier_Admin_BusinessCodeSets_TaxCode extends BaseTestCase {
 	int milliseconds = 1000;
 	String codeSetDescription = "Code set";
 	String expected = "Supplier Code Sets";
-	String titleUpdatePopup = "Update Supplier Code Set";
 	String taxType = "Tax";
 	String taxtRate = "10";
 	String taxTypeEdit = "Tax edit";

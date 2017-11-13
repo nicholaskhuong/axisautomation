@@ -38,7 +38,6 @@ public class Supplier_Admin_UpdateContact extends BaseTestCase {
 	String mobileNumber = "0905842718";
 	String titleHeaderMaintain = "Maintain Address & Contact";
 	int milliseconds = 800;
-	String expected = "Maintain Address & Contact";
 
 	@Test
 	public void openScreen() {
@@ -137,7 +136,7 @@ public class Supplier_Admin_UpdateContact extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
 		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.YES_BTN_BACKUP));
-		assertEquals(driver.findElement(By.cssSelector(MaintainSuppliers.EDIT_SUPPLIER_POPUP)).getText(), expected);
+		assertEquals(driver.findElement(By.cssSelector(MaintainSuppliers.EDIT_SUPPLIER_POPUP)).getText(), titleHeaderMaintain);
 	}
 
 }
