@@ -39,6 +39,8 @@ public class User_Group_Deleting extends BaseTestCase {
 		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMERMAINTAINCE_MENU_CSS));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.USERGROUP_SUBMENU_CSS));
+		action.waitObjVisible(By.id(UserGroup.SYSTEM_TAB_ID));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), UserGroup.CUSTOMER_USERGROUP_TITLE);
 	}
 
 	@Test(dependsOnMethods = "openUserGroupScreen", alwaysRun = true)

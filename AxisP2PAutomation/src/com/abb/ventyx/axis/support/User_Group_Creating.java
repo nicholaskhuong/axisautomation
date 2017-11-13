@@ -35,6 +35,8 @@ public class User_Group_Creating extends BaseTestCase {
 		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMERMAINTAINCE_MENU_CSS));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.USERGROUP_SUBMENU_CSS));
+		action.waitObjVisible(By.id(UserGroup.SYSTEM_TAB_ID));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), UserGroup.CUSTOMER_USERGROUP_TITLE);
 	}
 
 	// Step 2
@@ -86,7 +88,7 @@ public class User_Group_Creating extends BaseTestCase {
 	}
 
 	// Steps 6_7
-	@Test(dependsOnMethods = "cancelWithoutdata", alwaysRun = true)
+	@Test(dependsOnMethods = "cancelWithoutData", alwaysRun = true)
 	public void cancelClickNo() {
 		action.waitObjVisibleAndClick(By.xpath(UserGroup.ADD_XPATH));
 		action.inputTextField(UserGroup.USERGROUP_NAME_ID, userGroupName);

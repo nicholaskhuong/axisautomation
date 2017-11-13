@@ -40,6 +40,8 @@ public class User_Group_Updating extends BaseTestCase {
 		action = new ScreenAction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMERMAINTAINCE_MENU_CSS));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.USERGROUP_SUBMENU_CSS));
+		action.waitObjVisible(By.id(UserGroup.SYSTEM_TAB_ID));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), UserGroup.CUSTOMER_USERGROUP_TITLE);
 	}
 
 	@Test(dependsOnMethods = "openUserGroupScreen", alwaysRun = true)
@@ -66,12 +68,10 @@ public class User_Group_Updating extends BaseTestCase {
 	// Step 3
 	@Test(dependsOnMethods = "selectCustomerAndClickOneRowInGrid", alwaysRun = true)
 	public void updateWithNewName() {
-		action.pause(waitTime);
+		action.pause(2000);
 		WebElement newGroupUser1 = driver.findElement(By.id(UserGroup.USERGROUP_NAME_ID));
 		newGroupUser1.clear();
-		action.pause(waitTime);
 		newGroupUser1.sendKeys(newGroupName);
-		action.pause(waitTime);
 		action.waitObjVisible(By.id(UserGroup.SAVE_ID));
 		action.waitObjVisibleAndClick(By.id(UserGroup.SAVE_ID));
 		action.pause(waitTime);
@@ -108,7 +108,7 @@ public class User_Group_Updating extends BaseTestCase {
 	}
 
 	// Steps 6_7
-	@Test(dependsOnMethods = "clickCancelWithoutdata", alwaysRun = true)
+	@Test(dependsOnMethods = "clickCancelWithoutData", alwaysRun = true)
 	public void clickCancelClickN0() {
 		action.waitObjVisibleAndClick(By.xpath(UserGroup.FILTER_XPATH));
 		action.inputTextField(UserGroup.NAME_FILTER, newGroupName);
