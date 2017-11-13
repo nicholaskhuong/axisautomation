@@ -1,4 +1,4 @@
-package com.abb.ventyx.axis.authencation;
+package com.abb.ventyx.axis.Authencation;
 
 import static org.testng.Assert.assertEquals;
 
@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
+import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
+import com.abb.ventyx.axis.objects.pagedefinitions.UserPreferences;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
@@ -49,16 +51,6 @@ public class AxisSupportDashboard extends BaseTestCase {
 	String auditLog = "Audit Log";
 	String userGuide = "User Guide";
 	String about = "About";
-	String maintainAxisSupportUsers = "Maintain Axis Support Users";
-	String resetUserPassword = "Reset User Password";
-	String maintainUIXMLConfig = "Maintain UI XML Configuration";
-	String axisUserGroup = "Maintain Axis User Groups";
-	String supplierUserGroup = "Maintain Supplier User Groups";
-	String supplierAdministratorPage = "Maintain Suppliers";
-	String documentInErrorPage = "Documents in Error";
-	String cachePage = "Maintain Cache";
-	String axisB2BAdaptersPage = "Axis B2B Adapters";
-	String maitainDocumentTypePage = "Maintain Document Types";
 	@Test
 	public void openScreen() {
 		// Step 1
@@ -137,55 +129,23 @@ public class AxisSupportDashboard extends BaseTestCase {
 		action.waitObjVisible(By.id(AxisConfigMenu.USER_GUIDE));
 		assertEquals(driver.findElement(By.id(AxisConfigMenu.USER_GUIDE)).getText(), userGuide);
 		assertEquals(driver.findElement(By.id(AxisConfigMenu.ABOUT)).getText(), about);
-
 	}
 
 	@Test(dependsOnMethods = "submenuOfDocumentation")
-	public void pageOfAxisAdmistration() {
-		// Step 8-15
-		action.clickBtn(By.cssSelector(AxisConfigMenu.DOCUMENTATION));
-		action.clickBtn(By.cssSelector(AxisConfigMenu.AXIS_ADMIN));
-		action.waitObjVisible(By.cssSelector(AxisConfigMenu.USER_CUSTOMER_ADMIN));
-		action.clickBtn(By.cssSelector(AxisConfigMenu.USER_CUSTOMER_ADMIN));
-		action.waitObjVisible(By.cssSelector(AxisConfigMenu.ADD_ICON));
-		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.HEADER_OF_PAGE)).getText(), maintainAxisSupportUsers);
-		action.clickBtn(By.cssSelector(AxisConfigMenu.RESET_USER_PASSWORD));
-		action.waitObjVisible(By.id(AxisConfigMenu.USER_NO_RESET_PASSWORD_PAGE));
-		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.HEADER_OF_PAGE)).getText(), resetUserPassword);
-		action.clickBtn(By.id(AxisConfigMenu.CONFIGURE_UI_XML));
-		action.waitObjVisible(By.cssSelector(AxisConfigMenu.ADD_ICON));
-		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.HEADER_OF_PAGE)).getText(), maintainUIXMLConfig);
-		action.clickBtn(By.id(AxisConfigMenu.AXIS_USERGROUP_ID));
-		action.clickBtn(By.id(AxisConfigMenu.USER_TAB));
-		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.HEADER_OF_PAGE)).getText(), axisUserGroup);
-		action.clickBtn(By.id(AxisConfigMenu.SUPPLIER_ADMINISTRATOR));
-		action.waitObjVisible(By.cssSelector(AxisConfigMenu.ADD_ICON));
-		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.HEADER_OF_PAGE)).getText(), supplierAdministratorPage);
-		action.waitObjVisibleAndClick(By.id(AxisConfigMenu.DOCUMENT_IN_ERROR));
-		action.pause(3000);
-		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.HEADER_OF_PAGE)).getText(), documentInErrorPage);
-		action.waitObjVisibleAndClick(By.id(AxisConfigMenu.CACHE));
-		action.pause(3000);
-		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.HEADER_OF_PAGE)).getText(), cachePage);
+	public void nameOfUser() {
+		// step 8
+		action.pause(800);
+		assertEquals(driver.findElement(By.id(UserPreferences.PROFILE_PANEL)).getText(), userName);
+		action.clickBtn(By.id(UserPreferences.PROFILE_PANEL));
+		action.waitObjVisible(By.id(ScreenObjects.SIGNOUT_BUTTON));
+		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.USER_LOGIN)).getText(), userName);
+		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.USER_ID)).getText(), userID);
 	}
 
-	@Test(dependsOnMethods = "pageOfAxisAdmistration")
-	public void pageOfSystemConfiguration() {
-		action.clickBtn(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION));
-		action.waitObjVisible(By.id(AxisConfigMenu.AXIS_B2B_ADAPTERS));
-		action.clickBtn(By.id(AxisConfigMenu.AXIS_B2B_ADAPTERS));
-		action.waitObjVisible(By.cssSelector(AxisConfigMenu.ADD_ICON));
-		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.HEADER_OF_PAGE)).getText(), axisB2BAdaptersPage);
-		/*
-		 * action.clickBtn(By.id(AxisConfigMenu.DOC_TYPE));
-		 * action.waitObjVisible(By.cssSelector(AxisConfigMenu.ADD_ICON));
-		 * assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.HEADER_OF_PAGE)
-		 * ).getText(), maitainDocumentTypePage);
-		 */
-
-
+	@Test(dependsOnMethods = "nameOfUser")
+	public void logout() {
+		// step 9
+		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
 	}
-
-
 
 }
