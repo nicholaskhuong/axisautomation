@@ -23,9 +23,7 @@ public class User_Customer_Deleting extends BaseTestCase {
 	TableFunction table;
 	int waitTime = 1000;
 	WebElement index;
-	public static String userUpdate = "customer_user1";
 	String password = "Testuser1";
-	public static String emailUpdate = "customer_user1@abb.com";
 
 	@Test
 	public void openCustomerScreen() {
@@ -34,7 +32,7 @@ public class User_Customer_Deleting extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.USERS));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
-		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), Users.TITLE_ADMINISTRATION_USERS);
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), Users.TITLE_MAINTENANCE_USERS);
 		assertEquals(table.getValueTableHeader(1), "ID");
 		assertEquals(table.getValueTableHeader(2), "Name");
 		assertEquals(table.getValueTableHeader(3), "Status");
@@ -57,8 +55,8 @@ public class User_Customer_Deleting extends BaseTestCase {
 
 	@Test(dependsOnMethods = "clickCustomerIDOnCustomerScreen", alwaysRun = true)
 	public void clickFiterButtonOnMaintainCustomerUsersScreen() {
-		table.clikFilterAndInputWithColumn(userUpdate, Users.USER_ID_FILTER, true);
-		assertEquals(table.getValueRow(2, 1), userUpdate);
+		table.clikFilterAndInputWithColumn(User_Customer_Updating.userUpdate, Users.USER_ID_FILTER, true);
+		assertEquals(table.getValueRow(2, 1), User_Customer_Updating.userUpdate);
 	}
 
 	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomerUsersScreen", alwaysRun = true)
