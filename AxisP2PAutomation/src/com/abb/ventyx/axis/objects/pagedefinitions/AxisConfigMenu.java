@@ -62,5 +62,7 @@ public class AxisConfigMenu {
 	public static final String SUPPLIER_COMBOBOX = "suppCombo";
 	public static final String FILTER_BUTTON = "#HeaderMenuBar > span > span > span";
 	public static final String EX = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div > div.v-grid-tablewrapper > table > thead > tr > th:nth-child(1) > div.v-grid-column-header-content.v-grid-column-default-header-content";
-
+	public static final String SUPPLIER_LIST = "#supplierMenu > span > span";
+	public static final String DOCUMENT_FILTERS = "#customerDefinedFilters > span > span";
+	public static final String ADDRESS_AND_CONTACT = "#maintainContactButton > span > span";
 }
