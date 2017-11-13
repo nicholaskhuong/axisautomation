@@ -61,6 +61,7 @@ public class User_Administration_Updating extends BaseTestCase {
 	// Step 2
 	@Test(dependsOnMethods = "openUserScreen", alwaysRun = true)
 	public void clickFiterButtonOnUserScreen() {
+		action.clickVerticalScrollBar();
 		table = new TableFunction(driver);
 		table.clikFilterAndInputWithColumn(User_Administration_Creating.user, Users.USER_ID_FILTER, true);
 		index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH, 1, 1);

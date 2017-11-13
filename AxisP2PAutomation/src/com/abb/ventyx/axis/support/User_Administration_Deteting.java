@@ -44,6 +44,7 @@ public class User_Administration_Deteting extends BaseTestCase {
 
 	@Test(dependsOnMethods = "openUserScreen", alwaysRun = true)
 	public void clickFiterButton() {
+		action.clickVerticalScrollBar();
 		table.clikFilterAndInputWithColumn(User_Administration_Updating.userUpdate, Users.USER_ID_FILTER, true);
 		action.pause(3000);
 	}
