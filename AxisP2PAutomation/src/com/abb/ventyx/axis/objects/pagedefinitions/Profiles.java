@@ -2,6 +2,8 @@ package com.abb.ventyx.axis.objects.pagedefinitions;
 
 public class Profiles {
 	public static final String TITLE_PROFILES = "Maintain Customer Defined Profiles";
+	public static final String PROFILE_NAME_CUSTOMER_FILTER = "(//input[@id='filterField'])[1]";
+	public static final String CUSTOMER_NAME1_FILTER = "(//input[@id='filterField'])[1]";
 	public static final String PROFILE_NAME_FILTER = "(//input[@id='filterField'])[2]";
 	public static final String TABLEBODY = "//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']";
 	public static final String PROFILE_NAME_COLUMN = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div.v-grid-tablewrapper > table > thead > tr > th:nth-child(2) > div.v-grid-column-header-content.v-grid-column-default-header-content";

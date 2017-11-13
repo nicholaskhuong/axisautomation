@@ -102,9 +102,7 @@ public class Profile_Update_Default_Profile_Step09 extends BaseTestCase {
 
 	@Test(dependsOnMethods = "openMaintainCustomerScreenWithAccountCustomer", alwaysRun = true)
 	public void clickFiterButtonOnMaintainCustomerScreen1() {
-		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
-		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
-		action.inputTextField(ScreenObjects.FILTER_FIELD_ID, profileName);
+		table.clikFilterAndInputWithColumn(profileName, Profiles.PROFILE_NAME_CUSTOMER_FILTER, true);
 	}
 
 	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomerScreen1", alwaysRun = true)
@@ -170,8 +168,8 @@ public class Profile_Update_Default_Profile_Step09 extends BaseTestCase {
 	@Test(dependsOnMethods = "verifyDataOnModifyProfileScreen", alwaysRun = true)
 	public void untickCheckBoxandSaveButtonOnModifyProfileScreen() {
 		action.clickCheckBoxN(0);
-		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
+		action.pause(waitTime);
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ERROR_MESSAGE);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
@@ -248,12 +246,7 @@ public class Profile_Update_Default_Profile_Step09 extends BaseTestCase {
 
 	@Test(dependsOnMethods = "openMaintainCustomerScreen3", alwaysRun = true)
 	public void clickFiterButtonOnMaintainCustomer3() {
-		action.pause(3000);
-		WebElement filterButton = driver.findElement(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
-		filterButton.click();
-		ScreenAction action = new ScreenAction(driver);
-		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
-		action.inputTextField(ScreenObjects.FILTER_FIELD_ID, customerName);
+		table.clikFilterAndInputWithColumn(customerName, Profiles.CUSTOMER_NAME1_FILTER, true);
 	}
 
 	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomer3", alwaysRun = true)
