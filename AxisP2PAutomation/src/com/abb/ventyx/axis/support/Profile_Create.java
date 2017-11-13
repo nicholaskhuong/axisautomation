@@ -97,7 +97,7 @@ public class Profile_Create extends BaseTestCase {
 	public void inputMissingAllFields() {
 		action.waitObjVisible(By.id(Profiles.PROFILE_NAME_ID));
 		action.inputTextField(Profiles.PROFILE_NAME_ID, "");
-		action.waitObjVisible(By.id(Profiles.SAVE_BTN));
+		action.pause(800);
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.MESSAGE_MISSING_ALL_FIELD);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
