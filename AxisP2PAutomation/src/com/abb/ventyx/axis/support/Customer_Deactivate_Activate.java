@@ -102,9 +102,8 @@ public class Customer_Deactivate_Activate extends BaseTestCase {
 	// Step 10
 	@Test(dependsOnMethods = "clickDeactiveYesOnCustomerScreen", alwaysRun = true)
 	public void clickFiterButtonToSearchInActiveCustomer() {
-		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
-		action.pause(waitTime);
-		table.clikFilterAndInputWithColumn(emailAddress, CustomerList.EMAIL_FILTER, true);
+		table.inputFilterAtIndex(emailAddress, CustomerList.EMAIL_FILTER, true);
+		action.clickVerticalScrollBar();
 		action.pause(waitTime);
 		WebElement cell = table.getCellObject(1, 1);
 		cell.click();
@@ -148,6 +147,7 @@ public class Customer_Deactivate_Activate extends BaseTestCase {
 	// Steps 13_14
 	@Test(dependsOnMethods = "clickFiterButtonOnCustomerScreen2", alwaysRun = true)
 	public void clickActiveNoOnCustomerScreen() {
+		action.waitObjVisible(By.xpath(ScreenObjects.TABLE_ROW_XPATH_CUSTOMER));
 		WebElement row = driver.findElement(By.xpath(ScreenObjects.TABLE_ROW_XPATH_CUSTOMER));
 		row.click();
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerList.ACTIVE));
