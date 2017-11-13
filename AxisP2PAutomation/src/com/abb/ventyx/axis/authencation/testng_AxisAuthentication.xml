@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Axis Authentication" parallel="none">
+ 
+	<test name="Axis Support Dashboard">
+		<classes>
+				<class name="com.abb.ventyx.axis.supplier.AxisSupportDashboard" />			
+		</classes>	
+  	</test>
+</suite> 

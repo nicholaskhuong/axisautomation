@@ -55,5 +55,12 @@ public class AxisConfigMenu {
 	public static final String PROCESS_COMPONENTS = "maintainProcessComponentButton";
 	public static final String USER_GUIDE = "userGuideMenuItemButton";
 	public static final String ABOUT = "aboutButton";
+	public static final String HEADER_OF_PAGE = "#common-header-left-layout > div > div";
+	public static final String ADD_ICON = "#HeaderMenuBar > span:nth-child(2) > span > span";
+	public static final String USER_NO_RESET_PASSWORD_PAGE = "userSeqNo";
+	public static final String USER_TAB = "userGridTab";
+	public static final String SUPPLIER_COMBOBOX = "suppCombo";
+	public static final String FILTER_BUTTON = "#HeaderMenuBar > span > span > span";
+	public static final String EX = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div > div.v-grid-tablewrapper > table > thead > tr > th:nth-child(1) > div.v-grid-column-header-content.v-grid-column-default-header-content";
 
 }
