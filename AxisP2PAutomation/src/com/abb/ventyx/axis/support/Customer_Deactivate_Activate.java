@@ -114,9 +114,6 @@ public class Customer_Deactivate_Activate extends BaseTestCase {
 		cell.click();
 		action.pause(waitTime);
 		assertEquals(action.isElementPresent(By.id(CustomerList.STATUS)), false);
-		// Check to make sure its status here is Inactive too.
-		// assertEquals(action.getTextField(By.id(CustomerList.STATUS)),
-		// "Inactive");
 	}
 
 	// Step 11
