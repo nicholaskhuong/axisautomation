@@ -5,7 +5,7 @@
  
 	<test name="Axis Support Dashboard">
 		<classes>
-				<class name="com.abb.ventyx.axis.supplier.AxisSupportDashboard" />			
+				<class name="com.abb.ventyx.axis.authencation.AxisSupportDashboard" />			
 		</classes>	
   	</test>
 </suite> 
