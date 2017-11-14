@@ -12,6 +12,7 @@ public class ScreenObjects {
 	public static final String BACK_ID = "backBtn";
 	public static final String SCREEN_TITLE_ID = "common-header-left-layout";
 	public static final String SCREEN_TITLE_CSS = "#common-header-left-layout > div > div";
+	public static final String SCREEN_IN_TITLE_CSS = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div.v-slot.v-slot-v-default-page-header-layout > div > div > div > div";
 	public static final String DOCUMENT_TITLE_CSS = "#common-header-left-layout > div:nth-child(2) > div";
 	public static final String FILTER_FIELD_ID = "filterField";
 	public static final String CREATE_BTN_ID = "createBtn";

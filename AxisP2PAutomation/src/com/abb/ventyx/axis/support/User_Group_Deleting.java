@@ -61,8 +61,8 @@ public class User_Group_Deleting extends BaseTestCase {
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.xpath(UserGroup.FILTER_XPATH));
 		action.inputTextField(UserGroup.NAME_FILTER, newGroupName);
-		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(Users.DELETE_BUTTON + row));
+		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.NO_BTN_ID));
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(Users.DELETE_BUTTON + row));

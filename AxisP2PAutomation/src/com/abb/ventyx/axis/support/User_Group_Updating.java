@@ -12,8 +12,6 @@ import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 import com.abb.ventyx.axis.objects.pagedefinitions.UserGroup;
 import com.abb.ventyx.axis.objects.pagedefinitions.Users;
 import com.abb.ventyx.utilities.ALM;
-import com.abb.ventyx.utilities.BaseDropDownList;
-import com.abb.ventyx.utilities.BaseGrid;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
 import com.abb.ventyx.utilities.ScreenAction;
@@ -26,8 +24,6 @@ public class User_Group_Updating extends BaseTestCase {
 	String customerName = "Tanya Customer 11";
 	String userGroupName = "Cry Group";
 	String newGroupName = "Cryy Group";
-	BaseDropDownList list;
-	BaseGrid userGroupList;
 	int row = 0;
 	ScreenAction action;
 	TableFunction table;
@@ -58,6 +54,7 @@ public class User_Group_Updating extends BaseTestCase {
 		action.pause(waitTime);
 		WebElement customer = driver.findElement(By.className(UserGroup.CUSTOMER_CLASS));
 		customer.sendKeys(customerName);
+		action.pause(waitTime);
 		action.selectStatus(ScreenObjects.DROPDOWNLIST_CSS, customerName);
 		action.waitObjVisibleAndClick(By.xpath(UserGroup.FILTER_XPATH));
 		action.inputTextField(UserGroup.NAME_FILTER, "Cry Group");
@@ -68,11 +65,12 @@ public class User_Group_Updating extends BaseTestCase {
 	// Step 3
 	@Test(dependsOnMethods = "selectCustomerAndClickOneRowInGrid", alwaysRun = true)
 	public void updateWithNewName() {
+		action.waitObjVisible(By.id(UserGroup.USERGROUP_NAME_ID));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_IN_TITLE_CSS)).getText(), UserGroup.MODIFY_USERGROUP_TITLE);
 		action.pause(2000);
 		WebElement newGroupUser1 = driver.findElement(By.id(UserGroup.USERGROUP_NAME_ID));
 		newGroupUser1.clear();
 		newGroupUser1.sendKeys(newGroupName);
-		action.waitObjVisible(By.id(UserGroup.SAVE_ID));
 		action.waitObjVisibleAndClick(By.id(UserGroup.SAVE_ID));
 		action.pause(waitTime);
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USERGROUP_UPDATE_SUCCESSFULLY);
@@ -94,6 +92,7 @@ public class User_Group_Updating extends BaseTestCase {
 		action.clickCheckBoxN(3);
 		action.waitObjVisible(By.id(UserGroup.SAVE_ID));
 		action.waitObjVisibleAndClick(By.id(UserGroup.SAVE_ID));
+		action.pause(waitTime);
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USERGROUP_UPDATE_SUCCESSFULLY);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 	}

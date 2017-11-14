@@ -2,6 +2,9 @@ package com.abb.ventyx.axis.objects.pagedefinitions;
 
 public class UserGroup {
 	public static final String CUSTOMER_USERGROUP_TITLE = "Maintain User Groups";
+	public static final String CREATE_USERGROUP_TITLE = "Create User Group";
+	public static final String MODIFY_USERGROUP_TITLE = "Modify User Group";
+
 	public static final String ADD_BTN_CSS = "#HeaderMenuBar > span:nth-child(2)";
 	public static final String FILTER_CSS = "#HeaderMenuBar > span:nth-child(1)";
 	public static final String USERGROUP_NAME_ID = "userGroupName";
