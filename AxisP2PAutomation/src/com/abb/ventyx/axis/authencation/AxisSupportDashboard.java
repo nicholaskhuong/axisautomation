@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
+import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
+import com.abb.ventyx.axis.objects.pagedefinitions.UserPreferences;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
@@ -17,6 +19,7 @@ import com.abb.ventyx.utilities.TableFunction;
 public class AxisSupportDashboard extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
+	int milliseconds = 3000;
 	String axisSupportTitleHeader = "Axis Support Dashboard";
 	String axisAdmin = "Axis Administration";
 	String axisConfiguration = "System Configuration";
@@ -59,6 +62,18 @@ public class AxisSupportDashboard extends BaseTestCase {
 	String cachePage = "Maintain Cache";
 	String axisB2BAdaptersPage = "Axis B2B Adapters";
 	String maitainDocumentTypePage = "Maintain Document Types";
+	String maintainPermission = "Maintain Permissions";
+	String maintainProcessComponents = "Maintain Process Components";
+	String maintainBusniessCodeSetType = "Maintain Business Code Set Type";
+	String filterFields = "Filter Fields";
+	String searchOption = "Search Options";
+	String searchFilter = "System Filters";
+	String maintainDocumentFilterField = "Maintain Document Filter Field";
+	String maitainDocumentFilterFieldSearchOption = "Maintain Document Filter Field Search Option";
+	String systemDocumentFilters = "System Document Filters";
+	String customers = "Customers";
+	String maintainCustomerDefinedProfiles = "Maintain Customer Defined Profiles";
+	String maintainBusinessCodeSets = "Maintain Business Code Sets";
 	@Test
 	public void openScreen() {
 		// Step 1
@@ -115,7 +130,7 @@ public class AxisSupportDashboard extends BaseTestCase {
 		// step 6
 		action.clickBtn(By.cssSelector(AxisConfigMenu.AXIS_ADMIN));
 		action.clickBtn(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION));
-		action.pause(800);
+		action.pause(milliseconds);
 		action.clickBtn(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE));
 		action.waitObjVisible(By.cssSelector(AxisConfigMenu.CUSTOMER_LIST));
 		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.CUSTOMER_LIST)).getText(), customerList);
@@ -135,6 +150,7 @@ public class AxisSupportDashboard extends BaseTestCase {
 		action.clickBtn(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE));
 		action.clickBtn(By.cssSelector(AxisConfigMenu.DOCUMENTATION));
 		action.waitObjVisible(By.id(AxisConfigMenu.USER_GUIDE));
+		action.pause(milliseconds);
 		assertEquals(driver.findElement(By.id(AxisConfigMenu.USER_GUIDE)).getText(), userGuide);
 		assertEquals(driver.findElement(By.id(AxisConfigMenu.ABOUT)).getText(), about);
 
@@ -161,29 +177,96 @@ public class AxisSupportDashboard extends BaseTestCase {
 		action.clickBtn(By.id(AxisConfigMenu.SUPPLIER_ADMINISTRATOR));
 		action.waitObjVisible(By.cssSelector(AxisConfigMenu.ADD_ICON));
 		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.HEADER_OF_PAGE)).getText(), supplierAdministratorPage);
-		action.waitObjVisibleAndClick(By.id(AxisConfigMenu.DOCUMENT_IN_ERROR));
-		action.pause(3000);
+		action.clickBtn(By.id(AxisConfigMenu.DOCUMENT_IN_ERROR));
+		action.pause(milliseconds);
 		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.HEADER_OF_PAGE)).getText(), documentInErrorPage);
-		action.waitObjVisibleAndClick(By.id(AxisConfigMenu.CACHE));
-		action.pause(3000);
+		action.clickBtn(By.id(AxisConfigMenu.CACHE));
+		action.waitObjVisible(By.id(AxisConfigMenu.REFRESH_BUTTON));
+		action.pause(milliseconds);
 		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.HEADER_OF_PAGE)).getText(), cachePage);
 	}
 
 	@Test(dependsOnMethods = "pageOfAxisAdmistration")
 	public void pageOfSystemConfiguration() {
+		// step 16 -17
 		action.clickBtn(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION));
 		action.waitObjVisible(By.id(AxisConfigMenu.AXIS_B2B_ADAPTERS));
 		action.clickBtn(By.id(AxisConfigMenu.AXIS_B2B_ADAPTERS));
 		action.waitObjVisible(By.cssSelector(AxisConfigMenu.ADD_ICON));
+		action.pause(milliseconds);
 		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.HEADER_OF_PAGE)).getText(), axisB2BAdaptersPage);
-		/*
-		 * action.clickBtn(By.id(AxisConfigMenu.DOC_TYPE));
-		 * action.waitObjVisible(By.cssSelector(AxisConfigMenu.ADD_ICON));
-		 * assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.HEADER_OF_PAGE)
-		 * gi ).getText(), maitainDocumentTypePage);
-		 */
+		action.clickBtn(By.cssSelector(AxisConfigMenu.DOC_TYPE));
+		action.waitObjVisible(By.cssSelector(AxisConfigMenu.ADD_ICON));
+		action.pause(milliseconds);
+		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.HEADER_OF_PAGE)).getText(), maitainDocumentTypePage);
+		action.clickBtn(By.cssSelector(AxisConfigMenu.PERMISSIONS));
+		action.waitObjVisible(By.cssSelector(AxisConfigMenu.ADD_ICON));
+		action.pause(milliseconds);
+		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.HEADER_OF_PAGE)).getText(), maintainPermission);
+		action.clickBtn(By.id(AxisConfigMenu.PROCESS_COMPONENTS));
+		action.waitObjVisible(By.cssSelector(AxisConfigMenu.ADD_ICON));
+		action.pause(milliseconds);
+		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.HEADER_OF_PAGE)).getText(), maintainProcessComponents);
+		action.clickBtn(By.cssSelector(AxisConfigMenu.BUSINESS_CODE_SET_TYPE));
+		action.waitObjVisible(By.cssSelector(AxisConfigMenu.ADD_ICON));
+		action.pause(milliseconds);
+		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.HEADER_OF_PAGE)).getText(), maintainBusniessCodeSetType);
+	}
+
+	@Test(dependsOnMethods = "pageOfSystemConfiguration")
+	public void submenuOfFilterConfiguration() {
+		// Step 18
+		action.clickBtn(By.cssSelector(AxisConfigMenu.FILTER_CONFIG));
+		action.waitObjVisible(By.cssSelector(AxisConfigMenu.FILTER_FIELD));
+		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.FILTER_FIELD)).getText(), filterFields);
+		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.SEARCH_OPTION)).getText(), searchOption);
+		assertEquals(driver.findElement(By.id(AxisConfigMenu.SYSTEM_FILTER)).getText(), searchFilter);
+	}
+
+	@Test(dependsOnMethods = "submenuOfFilterConfiguration")
+	public void pageOfFilterConfiguration() {
+		// step 19
+		action.clickBtn(By.cssSelector(AxisConfigMenu.FILTER_FIELD));
+		action.waitObjVisible(By.cssSelector(AxisConfigMenu.ADD_ICON));
+		action.pause(milliseconds);
+		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.HEADER_OF_PAGE)).getText(), maintainDocumentFilterField);
+		action.clickBtn(By.cssSelector(AxisConfigMenu.SEARCH_OPTION));
+		action.waitObjVisible(By.cssSelector(AxisConfigMenu.ADD_ICON));
+		action.pause(milliseconds);
+		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.HEADER_OF_PAGE)).getText(), maitainDocumentFilterFieldSearchOption);
+		action.clickBtn(By.id(AxisConfigMenu.SYSTEM_FILTER));
+		action.waitObjVisible(By.cssSelector(AxisConfigMenu.ADD_ICON));
+		action.pause(milliseconds);
+		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.HEADER_OF_PAGE)).getText(), systemDocumentFilters);
+	}
+
+	@Test(dependsOnMethods = "pageOfFilterConfiguration")
+	public void pageOfCustomerMaintainace() {
+		action.clickBtn(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION));
+		action.clickBtn(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE));
+		action.waitObjVisible(By.cssSelector(AxisConfigMenu.CUSTOMER_LIST));
+		action.clickBtn(By.cssSelector(AxisConfigMenu.CUSTOMER_LIST));
+		action.waitObjVisible(By.cssSelector(AxisConfigMenu.ICON_DEACTIVE));
+		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.HEADER_OF_PAGE)).getText(), customers);
 
 	}
 
+	@Test(dependsOnMethods = "pageOfFilterConfiguration")
+	public void nameOfUser() {
+		// step 21
+		action.pause(800);
+		assertEquals(driver.findElement(By.id(UserPreferences.PROFILE_PANEL)).getText(), userName);
+		action.clickBtn(By.id(UserPreferences.PROFILE_PANEL));
+		action.waitObjVisible(By.id(ScreenObjects.SIGNOUT_BUTTON));
+		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.USER_LOGIN)).getText(), userName);
+		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.USER_ID)).getText(), userID);
+	}
+
+	@Test(dependsOnMethods = "nameOfUser")
+	public void logout() {
+		// step 22
+		action.pause(800);
+		action.signOut();
+	}
 
 }
