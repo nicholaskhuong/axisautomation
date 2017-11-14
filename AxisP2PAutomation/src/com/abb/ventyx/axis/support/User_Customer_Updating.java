@@ -76,7 +76,7 @@ public class User_Customer_Updating extends BaseTestCase {
 	@Test(dependsOnMethods = "clickCustomerIDOnCustomerScreen", alwaysRun = true)
 	public void clickFiterButtonOnMaintainCustomerUsersScreen() {
 		action.pause(3000);
-		table.clikFilterAndInputWithColumn(User_Customer_Creating.user, Users.USER_ID_FILTER, true);
+		table.clikFilterAndInputWithColumn(User_Customer_Creating.email, Users.EMAIL_FILTER, true);
 		action.pause(waitTime);
 		assertEquals(table.getValueRow(2, 1), User_Customer_Creating.user);
 	}
@@ -103,7 +103,7 @@ public class User_Customer_Updating extends BaseTestCase {
 	public void inputMandatoryFields() {
 		Random rand = new Random();
 		long drand = (long) (rand.nextDouble() * 100000000L);
-		userUpdate = String.format("customer_user1 %s", drand);
+		userUpdate = String.format("customer_user1%s", drand);
 		emailUpdate = String.format("customer_user1%s@abb.com", drand);
 		action.inputTextField(Users.EMAIL_ID, emailUpdate);
 		action.clickCheckBoxN(6);

@@ -83,7 +83,7 @@ public class User_Customer_Creating extends BaseTestCase {
 	public void clickAddButtonAndInputLackMandatoryFields() {
 		Random rand = new Random();
 		long drand = (long) (rand.nextDouble() * 100000000L);
-		user = String.format("customer_usera %s", drand);
+		user = String.format("customer_usera%s", drand);
 		email = String.format("customer_usera%s@abb.com", drand);
 		action.waitObjVisibleAndClick(By.cssSelector(Profiles.ADD_PROFILE));
 		action.waitObjVisible(By.id(Users.USER_ID));
