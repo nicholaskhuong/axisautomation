@@ -49,6 +49,7 @@ public class AxisSupportDashboard extends BaseTestCase {
 	String auditLog = "Audit Log";
 	String userGuide = "User Guide";
 	String about = "About";
+<<<<<<< ac8a1eaa1df4ead13a94967eeaf1c40520e5b950
 	String maintainAxisSupportUsers = "Maintain Axis Support Users";
 	String resetUserPassword = "Reset User Password";
 	String maintainUIXMLConfig = "Maintain UI XML Configuration";
@@ -59,6 +60,8 @@ public class AxisSupportDashboard extends BaseTestCase {
 	String cachePage = "Maintain Cache";
 	String axisB2BAdaptersPage = "Axis B2B Adapters";
 	String maitainDocumentTypePage = "Maintain Document Types";
+=======
+>>>>>>> Rename package
 	@Test
 	public void openScreen() {
 		// Step 1
