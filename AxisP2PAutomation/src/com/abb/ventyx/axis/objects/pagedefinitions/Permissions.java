@@ -1,6 +1,9 @@
 package com.abb.ventyx.axis.objects.pagedefinitions;
 
 public class Permissions {
+	public static final String MAINTAIN_PERMISSIONS = "Maintain Permissions";
+	public static final String ADD_PERMISSIONS = "Add Permission";
+	public static final String PERMISSION_CSS = "#permissioncreatewindow > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-default-page-header-layout > div > div > div > div";
 
 	public static final String GRID = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div > div.v-grid-tablewrapper > table > tbody";
 	public static final String TABLEBODY = "//div[@class='v-grid-tablewrapper']//table//tbody[@class='v-grid-body']";

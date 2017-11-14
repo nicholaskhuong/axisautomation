@@ -58,6 +58,9 @@ public class User_Administration_Creating extends BaseTestCase {
 	@Test(dependsOnMethods = "openUserScreen", alwaysRun = true)
 	public void clickAddButtonAndInputLackMandatoryFields() {
 		action.waitObjVisibleAndClick(By.cssSelector(Users.ADD_USERS));
+		action.waitObjVisible(By.id(Users.USER_ID));
+		action.waitObjVisible(By.id(Users.PASSWORD_ID));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_IN_TITLE_CSS)).getText(), Users.CREATE_USER);
 		Random rand = new Random();
 		long drand = (long) (rand.nextDouble() * 100000000L);
 		user = String.format("Taumato%s", drand);

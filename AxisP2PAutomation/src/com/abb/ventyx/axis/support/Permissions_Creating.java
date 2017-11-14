@@ -37,6 +37,7 @@ public class Permissions_Creating extends BaseTestCase {
 	String axisAdminUserGroupName = "AXIS_ADMIN";
 	String custAdminUserGroupName = "CUST_ADMIN";
 	String POTypeDescription = "Purchase Orders";
+	int waitTime = 1000;
 
 	// Step 1
 	@Test
@@ -49,6 +50,7 @@ public class Permissions_Creating extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PERMISSIONS));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), Permissions.MAINTAIN_PERMISSIONS);
 		assertEquals(table.getValueTableHeader(1), "Permission ID");
 		assertEquals(table.getValueTableHeader(2), "Document Type");
 		assertEquals(table.getValueTableHeader(3), "Permission Name");
@@ -64,14 +66,17 @@ public class Permissions_Creating extends BaseTestCase {
 		permissionName = String.format("Permision %s", drand);
 
 		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
+		action.waitObjVisible(By.id(Permissions.PERMISSION_NAME));
+		assertEquals(driver.findElement(By.cssSelector(Permissions.PERMISSION_CSS)).getText(), Permissions.ADD_PERMISSIONS);
+
 		action.inputTextField(Permissions.PERMISSION_NAME, permissionName);
 		action.pause(500);
 		permissionsAction.selectDocTypebyText(POTypeDescription);
 		permissionsAction.selectUserType(Permissions.AXIS_ADMIN);
 		permissionsAction.selectUserType(Permissions.CUSTOMER);
 		permissionsAction.selectUserType(Permissions.SUPPLIER);
-		action.pause(2000);
-		action.clickBtn(By.id(Permissions.SAVE));
+		action.pause(waitTime);
+		action.waitObjVisibleAndClick(By.id(Permissions.SAVE));
 
 		action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)).getText(), Messages.PERMISSION_CREATED_SUCCESSFULLY);
@@ -85,9 +90,9 @@ public class Permissions_Creating extends BaseTestCase {
 		// Filter
 		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 		action.inputTextField(By.xpath(Permissions.PERMISSION_NAME_FILTER), Permissions_Creating.permissionName);
-		action.pause(1000);
+		action.pause(waitTime);
 		action.inputTextField(By.xpath(Permissions.DOC_TYPE_FILTER), "PurchaseOrder");
-		action.pause(1000);
+		action.pause(waitTime);
 		action.waitObjVisible(By.cssSelector(Permissions.PNROW1));
 		action.waitObjVisible(By.cssSelector(Permissions.UTROW1));
 		action.waitObjVisible(By.cssSelector(Permissions.DTROW1));
@@ -116,14 +121,14 @@ public class Permissions_Creating extends BaseTestCase {
 
 		action.assertTextEqual(By.cssSelector(UserGroup.ADMIN_USERGROUPNAME_CSS), supplierAdminUserGroupName);
 
-		action.pause(2000);
+		action.pause(waitTime);
 		int row = table.findRowByString(UserGroup.USERGROUP_GRID_XPATH, 3, POTypeDescription, true);
 
 		assertEquals(table.getCellObjectUserGroup(UserGroup.USERGROUP_GRID_XPATH, row, 3).getText(), POTypeDescription);
 
 		table.clickArrowDownToShowPermission(row, 2);
 
-		action.pause(2000);
+		action.pause(waitTime);
 
 		assertEquals(table.isPermissionExisting(permissionName, row - 1), true);
 	}
@@ -140,14 +145,14 @@ public class Permissions_Creating extends BaseTestCase {
 
 		action.assertTextEqual(By.cssSelector(UserGroup.ADMIN_USERGROUPNAME_CSS), axisAdminUserGroupName);
 
-		action.pause(2000);
+		action.pause(waitTime);
 		int row = table.findRowByString(UserGroup.USERGROUP_GRID_XPATH, 3, POTypeDescription, true);
 
 		assertEquals(table.getCellObjectUserGroup(UserGroup.USERGROUP_GRID_XPATH, row, 3).getText(), POTypeDescription);
 
 		table.clickArrowDownToShowPermission(row, 2);
 
-		action.pause(2000);
+		action.pause(waitTime);
 
 		assertEquals(table.isPermissionExisting(permissionName, row - 1), true);
 
@@ -163,19 +168,19 @@ public class Permissions_Creating extends BaseTestCase {
 		action.waitObjVisible(By.id(UserGroup.SYSTEM_TAB_ID));
 
 		action.waitObjVisibleAndClick(By.id(UserGroup.ADMINUSERGROUP_ID));
-		action.pause(1000);
+		action.pause(waitTime);
 		action.waitObjVisible(By.cssSelector(UserGroup.ADMIN_USERGROUPNAME_CSS));
 
 		action.assertTextEqual(By.cssSelector(UserGroup.ADMIN_USERGROUPNAME_CSS), custAdminUserGroupName);
 
-		action.pause(2000);
+		action.pause(waitTime);
 		int row = table.findRowByString(UserGroup.USERGROUP_GRID_XPATH, 3, POTypeDescription, true);
 
 		assertEquals(table.getCellObjectUserGroup(UserGroup.USERGROUP_GRID_XPATH, row, 3).getText(), POTypeDescription);
 
 		table.clickArrowDownToShowPermission(row, 2);
 
-		action.pause(2000);
+		action.pause(waitTime);
 		assertEquals(table.isPermissionExisting(permissionName, row - 1), true);
 		action.waitObjVisibleAndClick(By.id(AxisConfigMenu.CUSTOMER_MAINTENANCE_ID));
 
@@ -211,7 +216,7 @@ public class Permissions_Creating extends BaseTestCase {
 		// Step 8
 
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.NO_BTN_ID));
-		action.pause(1000);
+		action.pause(waitTime);
 		action.assertTextEqual(By.cssSelector(Permissions.PERMISSIONWINDOWHEADER), addPermissionHeader);
 
 		// Step 9
@@ -219,13 +224,13 @@ public class Permissions_Creating extends BaseTestCase {
 
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.YES_BTN_ID));
 
-		action.pause(2000);
+		action.pause(waitTime);
 		action.assertTextEqual(By.cssSelector(Permissions.PERMISSIONHEADER), maintainPermissionHeader);
 		// Step 10
 		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
 
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.CANCEL_ID));
-		action.pause(2000);
+		action.pause(waitTime);
 		assertEquals(action.isElementPresent(By.cssSelector(Permissions.CONFIRMATION_OF_DELETION)), false);
 		assertEquals(action.isElementPresent(By.cssSelector(Permissions.PERMISSIONWINDOWHEADER)), false);
 		action.assertTextEqual(By.cssSelector(Permissions.PERMISSIONHEADER), maintainPermissionHeader);

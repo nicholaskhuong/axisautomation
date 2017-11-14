@@ -50,6 +50,10 @@ public class Search_Option_Creating extends BaseTestCase {
 	@Test(dependsOnMethods = "openSearchOptionsScreen", alwaysRun = true)
 	public void clickAddButtonAndInputData() {
 		action.waitObjVisibleAndClick(By.cssSelector(SearchOption.ADD));
+		action.waitObjVisible(By.id(SearchOption.FIELD_TYPE_ADD));
+		action.waitObjVisible(By.id(SearchOption.FILTER_SUB_TYPE_ADD));
+		assertEquals(driver.findElement(By.cssSelector(SearchOption.SEARCH_OPTION_CSS)).getText(), SearchOption.ADD_FILTER_FIELD_SEARCH_OPTION);
+		action.waitObjVisible(By.id(SearchOption.OPTION_ADD));
 		action.inputTextField(SearchOption.FIELD_TYPE_ADD, fieldType);
 		action.inputTextField(SearchOption.FILTER_SUB_TYPE_ADD, filterSubType);
 		action.inputTextField(SearchOption.OPTION_ADD, option);

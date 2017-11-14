@@ -51,11 +51,11 @@ public class User_Administration_Updating extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), Users.TITLE_ADMINISTRATION_USERS);
 		action.waitObjVisible(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
-		assertEquals(table.getValueTableHeader(1), "User Number");
-		assertEquals(table.getValueTableHeader(2), "User ID");
-		assertEquals(table.getValueTableHeader(3), "Email");
-		assertEquals(table.getValueTableHeader(4), "User Groups");
 		assertEquals(table.getValueTableHeader(5), "Status");
+		assertEquals(table.getValueTableHeader(4), "User Groups");
+		assertEquals(table.getValueTableHeader(3), "Email");
+		assertEquals(table.getValueTableHeader(2), "User ID");
+		assertEquals(table.getValueTableHeader(1), "User Number");
 	}
 
 	// Step 2
@@ -66,6 +66,8 @@ public class User_Administration_Updating extends BaseTestCase {
 		table.clikFilterAndInputWithColumn(User_Administration_Creating.user, Users.USER_ID_FILTER, true);
 		index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH, 1, 1);
 		index.click();
+		action.waitObjVisible(By.id(Users.USER_ID));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_IN_TITLE_CSS)).getText(), Users.MODIFY_AXIS_ADMINSISTRATOR_USER);
 	}
 
 	// Step 3

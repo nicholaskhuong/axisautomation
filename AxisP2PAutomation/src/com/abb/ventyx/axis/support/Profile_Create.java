@@ -47,8 +47,9 @@ public class Profile_Create extends BaseTestCase {
 
 	@Test(dependsOnMethods = "openMaintainCustomerDefinedProfilesScreen", alwaysRun = true)
 	public void clickAddButton() {
-
 		action.waitObjVisibleAndClick(By.cssSelector(Profiles.ADD_PROFILE));
+		action.waitObjVisible(By.id(Profiles.PROFILE_NAME_ID));
+		assertEquals(driver.findElement(By.cssSelector(Profiles.PROFILES_CSS)).getText(), Profiles.CREATE_PROFILES);
 	}
 
 	@Test(dependsOnMethods = "clickAddButton", alwaysRun = true)
@@ -73,7 +74,7 @@ public class Profile_Create extends BaseTestCase {
 	public void slelectAuthorisedDocumentTypes() {
 		action.clickCheckBoxN(4);
 		action.waitObjVisible(By.id(Profiles.SAVE_BTN));
-		action.clickBtn(By.id(Profiles.SAVE_BTN));
+		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
 		action.pause(milliseconds);
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.MESSAGE_SUCCESSFULLY);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
@@ -89,6 +90,7 @@ public class Profile_Create extends BaseTestCase {
 	public void inputProfileNameandCustomerNameOnCreatePage() {
 		action.waitObjVisible(By.id(Profiles.PROFILE_NAME_ID));
 		action.inputTextField(Profiles.PROFILE_NAME_ID, "Profile4");
+		action.pause(800);
 		action.waitObjVisible(By.id(Profiles.PROFILE_NAME_ID));
 		action.cancelClickNo(Profiles.TITLE_MAINTAIN_CUSTOMER);
 	}

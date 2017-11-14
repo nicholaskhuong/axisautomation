@@ -68,6 +68,8 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 		action.clickHorizontalScrollBar();
 		index = table.getCellObject(2, 5);
 		index.click();
+		action.waitObjVisible(By.id(Profiles.PROFILE_NAME_ID));
+		assertEquals(driver.findElement(By.cssSelector(Profiles.PROFILES_CSS)).getText(), Profiles.MODIFY_PROFILES);
 	}
 
 	@Test(dependsOnMethods = "clickPencilIconOnMaintainCustomerScreen", alwaysRun = true)

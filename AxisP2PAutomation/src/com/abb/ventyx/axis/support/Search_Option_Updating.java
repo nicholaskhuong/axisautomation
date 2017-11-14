@@ -53,6 +53,10 @@ public class Search_Option_Updating extends BaseTestCase {
 		action.pause(milliseconds);
 		index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH, 1, 1);
 		index.click();
+		action.waitObjVisible(By.id(SearchOption.FIELD_TYPE_ADD));
+		action.waitObjVisible(By.id(SearchOption.FILTER_SUB_TYPE_ADD));
+		assertEquals(driver.findElement(By.cssSelector(SearchOption.SEARCH_OPTION_CSS)).getText(), SearchOption.EDIT_FILTER_FIELD_SEARCH_OPTION);
+		action.waitObjVisible(By.id(SearchOption.OPTION_ADD));
 		action.inputTextField(SearchOption.FIELD_TYPE_ADD, fieldTypeUpdate);
 		action.waitObjVisible(By.id(SearchOption.SAVE_ADD));
 		action.waitObjVisibleAndClick(By.id(SearchOption.SAVE_ADD));

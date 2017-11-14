@@ -28,6 +28,7 @@ public class Permissions_Updating extends BaseTestCase {
 	String axisAdminUserGroupName = "AXIS_ADMIN";
 	TableFunction table;
 	String supplierAdminUserGroupName = "SUPP_ADMIN";
+
 	// Step 1
 	@Test
 	public void openMaintainPermissionScreen() {
@@ -39,13 +40,14 @@ public class Permissions_Updating extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PERMISSIONS));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
+		action.waitObjVisible(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), Permissions.MAINTAIN_PERMISSIONS);
 
 		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 		action.inputTextField(By.xpath(Permissions.PERMISSION_NAME_FILTER), Permissions_Creating.permissionName);
 		action.pause(2000);
 
-		if(!driver.findElement(By.cssSelector(Permissions.PNROW1)).getText().equals(Permissions_Creating.permissionName))
-		{
+		if (!driver.findElement(By.cssSelector(Permissions.PNROW1)).getText().equals(Permissions_Creating.permissionName)) {
 			action.pause(3000);
 
 		}
@@ -66,7 +68,7 @@ public class Permissions_Updating extends BaseTestCase {
 
 		// Step 2 update
 		permissionsAction.selectDocTypebyText(invoiceTypeName);
-		// Unselect Customer 
+		// Unselect Customer
 		permissionsAction.selectUserType(Permissions.CUSTOMER_CHECKBOX);
 		// Unselect Supplier
 		permissionsAction.selectUserType(Permissions.SUPPLIER_CHECKBOX);
@@ -78,8 +80,7 @@ public class Permissions_Updating extends BaseTestCase {
 		action.inputTextField(By.xpath(Permissions.PERMISSION_NAME_FILTER), Permissions_Creating.permissionName);
 		action.pause(2000);
 
-		if(!driver.findElement(By.cssSelector(Permissions.PNROW1)).getText().equals(Permissions_Creating.permissionName))
-		{
+		if (!driver.findElement(By.cssSelector(Permissions.PNROW1)).getText().equals(Permissions_Creating.permissionName)) {
 			action.pause(3000);
 
 		}
@@ -88,6 +89,7 @@ public class Permissions_Updating extends BaseTestCase {
 		assertEquals(driver.findElement(By.cssSelector(Permissions.DTROW1)).getText(), invoiceTypeDescription);
 
 	}
+
 	// Step 3
 	@Test(dependsOnMethods = "updatePermissionWithValidValue", alwaysRun = true)
 	public void checkNewPermissionAvailableInAxisUserGroup() {
@@ -113,6 +115,7 @@ public class Permissions_Updating extends BaseTestCase {
 		assertEquals(table.isPermissionExisting(Permissions_Creating.permissionName, row - 1), true);
 
 	}
+
 	@Test(dependsOnMethods = "checkNewPermissionAvailableInAxisUserGroup", alwaysRun = true)
 	public void checkNewPermissionAvailableInSupplierUserGroup() {
 
@@ -144,7 +147,7 @@ public class Permissions_Updating extends BaseTestCase {
 		action.pause(1000);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.PERMISSIONS));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
-		
+
 		// Step 4 Click 1st instance ID
 		action.waitObjVisibleAndClick(By.xpath(Permissions.GRID_PERMISSIONIDCELL));
 		action.waitObjVisible(By.cssSelector(Permissions.PERMISSIONWINDOWHEADER));
@@ -157,7 +160,7 @@ public class Permissions_Updating extends BaseTestCase {
 
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.NO_BTN_ID));
 		action.waitObjInvisible(By.id(ScreenObjects.NO_BTN_ID));
-		
+
 		// Step 6
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.CANCEL_ID));
 

@@ -3,6 +3,9 @@ package com.abb.ventyx.axis.objects.pagedefinitions;
 public class Users {
 
 	public static final String TITLE_ADMINISTRATION_USERS = "Maintain Axis Support Users";
+	public static final String CREATE_USER = "Create User";
+	public static final String MODIFY_CUSTOMER_ADMINISTRATOR_USER = "Modify Customer Administrator User";
+	public static final String MODIFY_AXIS_ADMINSISTRATOR_USER = "Modify Axis Administrator User";
 	public static final String TITLE_MAINTENANCE_USERS = "Customers";
 	public static final String TITLE_MAINTENANCE_CUSTOMER_USERS = "Maintain Customer Users";
 	public static final String TITLE_CREATE_USERS = "Maintain Customer Users";
