@@ -106,9 +106,7 @@ public class CustomerDashboard extends BaseTestCase {
 		assertEquals(driver.findElement(By.id(CustomerMenu.CONFIGURE_DOCUMENT)).getText(), configureDocument);
 		assertEquals(driver.findElement(By.id(CustomerMenu.USER_GUIDE)).getText(), userGuide);
 		assertEquals(driver.findElement(By.id(CustomerMenu.ABOUT)).getText(), about);
-
 	}
-
 	@Test(dependsOnMethods = "checkDocumentMenu")
 	public void checkPageOfCustomerMaintainance() {
 		action.clickBtn(By.id(CustomerMenu.DOCUMENTATION));

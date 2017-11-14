@@ -116,6 +116,7 @@ public class AxisSupportDashboard extends BaseTestCase {
 	public void submenuOfSystemconfiguration() {
 		// Step 5
 		action.clickBtn(By.cssSelector(AxisConfigMenu.AXIS_CONFIGURATION));
+		action.pause(milliseconds);
 		action.waitObjVisible(By.id(AxisConfigMenu.AXIS_B2B_ADAPTERS));
 		assertEquals(driver.findElement(By.id(AxisConfigMenu.AXIS_B2B_ADAPTERS)).getText(), axisB2BAdapters);
 		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.DOC_TYPE)).getText(), documentTypes);
