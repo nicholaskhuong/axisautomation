@@ -12,4 +12,9 @@
 				<class name="com.abb.ventyx.axis.support.Customer_Deactivate_Activate" />
 		</classes>	
   	</test>
+  	<test name="Maintenance Access Customer And Supplier">
+		<classes>
+				<class name="com.abb.ventyx.axis.support.Access_Customer_And_Supplier" />
+		</classes>	
+  	</test>
 </suite> 
