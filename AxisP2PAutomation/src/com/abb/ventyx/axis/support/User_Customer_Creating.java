@@ -54,7 +54,7 @@ public class User_Customer_Creating extends BaseTestCase {
 	public void clickFiterButtonOnCustomerScreen() {
 		table.clikFilterAndInputWithColumn("435", Users.USER_NUMBER_FILTER, true);
 		action.pause(waitTime);
-		assertEquals(table.getValueRow(2, 1), "QATest");
+		// assertEquals(table.getValueRow(2, 1), "QATest");
 	}
 
 	// Step3
@@ -64,7 +64,10 @@ public class User_Customer_Creating extends BaseTestCase {
 				"//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div/div/div/div[3]/table/tbody", 1, 1);
 		action.pause(2000);
 		index.click();
-
+		action.pause(2000);
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_MAINTAIN_CSS)).getText(), Users.TITLE_MAINTENANCE_CUSTOMER_USERS);
+		action.waitObjVisible(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
+		action.waitObjVisible(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 	}
 
 	// Step 4
@@ -83,6 +86,9 @@ public class User_Customer_Creating extends BaseTestCase {
 		user = String.format("customer_usera%s", drand);
 		email = String.format("customer_usera%s@abb.com", drand);
 		action.waitObjVisibleAndClick(By.cssSelector(Profiles.ADD_PROFILE));
+		action.waitObjVisible(By.id(Users.USER_ID));
+		action.waitObjVisible(By.id(Users.PASSWORD_ID));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_IN_TITLE_CSS)).getText(), Users.CREATE_USER);
 		action.inputTextField(Users.USER_ID, user);
 		action.inputTextField(Users.PASSWORD_ID, password);
 		action.waitObjVisibleAndClick(By.id(Users.SAVE_BTN_ID));

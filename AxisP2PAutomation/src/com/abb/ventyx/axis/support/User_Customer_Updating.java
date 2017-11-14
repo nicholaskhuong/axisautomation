@@ -56,7 +56,7 @@ public class User_Customer_Updating extends BaseTestCase {
 	public void clickFiterButtonOnCustomerScreen() {
 		table.clikFilterAndInputWithColumn("435", Users.USER_NUMBER_FILTER, true);
 		action.pause(waitTime);
-		assertEquals(table.getValueRow(2, 1), "QATest");
+		// assertEquals(table.getValueRow(2, 1), "QATest");
 	}
 
 	// Step3
@@ -66,6 +66,10 @@ public class User_Customer_Updating extends BaseTestCase {
 				"//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div/div/div/div[3]/table/tbody", 1, 1);
 		action.pause(waitTime);
 		index.click();
+		action.pause(2000);
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_MAINTAIN_CSS)).getText(), Users.TITLE_MAINTENANCE_CUSTOMER_USERS);
+		action.waitObjVisible(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
+		action.waitObjVisible(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 	}
 
 	// Step 4
@@ -74,12 +78,16 @@ public class User_Customer_Updating extends BaseTestCase {
 		table.clikFilterAndInputWithColumn(User_Customer_Creating.user, Users.USER_ID_FILTER, true);
 		action.pause(waitTime);
 		assertEquals(table.getValueRow(2, 1), User_Customer_Creating.user);
+		action.pause(waitTime);
 	}
 
 	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomerUsersScreen", alwaysRun = true)
 	public void clickUserNumberOnMaintainCustomerUsersScreen() {
 		index1 = table.getCellObject("//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div[3]/table/tbody", 1, 1);
 		index1.click();
+		action.waitObjVisible(By.id(Users.USER_ID));
+		action.waitObjVisible(By.id(Users.EMAIL_ID));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_IN_TITLE_CSS)).getText(), Users.MODIFY_CUSTOMER_ADMINISTRATOR_USER);
 	}
 
 	@Test(dependsOnMethods = "clickUserNumberOnMaintainCustomerUsersScreen", alwaysRun = true)
