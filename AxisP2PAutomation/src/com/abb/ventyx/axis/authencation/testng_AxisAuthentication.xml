@@ -8,4 +8,9 @@
 				<class name="com.abb.ventyx.axis.authencation.AxisSupportDashboard" />			
 		</classes>	
   	</test>
+  	<test name="Axis Support Dashboard">
+		<classes>
+				<class name="com.abb.ventyx.axis.authencation.CustomerDashboard" />			
+		</classes>	
+  	</test>
 </suite> 
