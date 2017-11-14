@@ -1,4 +1,4 @@
-package com.abb.ventyx.axis.authencation;
+package com.abb.ventyx.axis.Authencation;
 
 import static org.testng.Assert.assertEquals;
 
@@ -51,7 +51,6 @@ public class AxisSupportDashboard extends BaseTestCase {
 	String auditLog = "Audit Log";
 	String userGuide = "User Guide";
 	String about = "About";
-
 	@Test
 	public void openScreen() {
 		// Step 1
