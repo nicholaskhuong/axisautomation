@@ -3,6 +3,9 @@ package com.abb.ventyx.axis.objects.pagedefinitions;
 public class BusinessCodeTypes {
 	public static final String MAINTAIN_BUSINESS_CODE_SET_TYPE = "Maintain Business Code Set Type";
 	public static final String CREATE_BUSINESS_CODE_SET_TYPE = "Create Code Set Type";
+	public static final String EDIT_BUSINESS_CODE_SET_TYPE = "Edit Code Set Type";
+
+	public static final String BUSINESS_CODE_SET_TYPE_CSS = "#codesettypecreateeditview > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-default-page-header-layout > div > div > div > div";
 	public static final String CODE_TYPE = "//*[@id='codesettypecreateeditview']/div/div/div[3]/div/div/div[2]/div/div[1]/div/div/div/div[1]/div/input";
 	public static final String CODE_DESCRIPTION = "//*[@id='codesettypecreateeditview']/div/div/div[3]/div/div/div[2]/div/div[1]/div/div/div/div[3]/div/input";
 	public static final String SAVE_BUTTON = "//*[@id='codesettypecreateeditview']/div/div/div[3]/div/div/div[2]/div/div[3]/div/div/div/div/div[3]";

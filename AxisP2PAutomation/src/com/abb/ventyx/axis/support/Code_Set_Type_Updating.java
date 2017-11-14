@@ -19,8 +19,6 @@ import com.abb.ventyx.utilities.TableFunction;
 @ALM(id = "535")
 @Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class Code_Set_Type_Updating extends BaseTestCase {
-	String codeType = "AUDITCODE";
-	String codeDecs = "Audit Log Action Code";
 	String codeDecsUpdate = "Audit Log Action Code Update";
 	ScreenAction action;
 	int milliseconds = 1000;
@@ -44,10 +42,14 @@ public class Code_Set_Type_Updating extends BaseTestCase {
 	// Step 02_03
 	@Test(dependsOnMethods = "openBusinessCodeSetTypeScreen", alwaysRun = true)
 	public void selectOneRecordOnGrid() {
-		table.clikFilterAndInputWithColumn(codeType, BusinessCodeTypes.CODE_TYPE_FILTER, true);
+		table.clikFilterAndInputWithColumn(Code_Set_Type_Creating.codeType, BusinessCodeTypes.CODE_TYPE_FILTER, true);
 		action.pause(milliseconds);
 		index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH, 1, 1);
 		index.click();
+		action.waitObjVisible(By.xpath(BusinessCodeTypes.CODE_TYPE));
+		action.waitObjVisible(By.xpath(BusinessCodeTypes.CODE_DESCRIPTION));
+		assertEquals(driver.findElement(By.cssSelector(BusinessCodeTypes.BUSINESS_CODE_SET_TYPE_CSS)).getText(),
+				BusinessCodeTypes.EDIT_BUSINESS_CODE_SET_TYPE);
 		action.waitObjVisible(By.xpath(BusinessCodeTypes.CODE_TYPE));
 		WebElement codeType = driver.findElement(By.xpath(BusinessCodeTypes.CODE_TYPE));
 		codeType.isDisplayed();
@@ -70,7 +72,7 @@ public class Code_Set_Type_Updating extends BaseTestCase {
 	// Step 04+05
 	@Test(dependsOnMethods = "updateValueForCodeDecs", alwaysRun = true)
 	public void updateValueWithCancelYesAndCheckFilterButton() {
-		table.inputFilterAtIndex(codeType, BusinessCodeTypes.CODE_TYPE_FILTER, true);
+		table.inputFilterAtIndex(Code_Set_Type_Creating.codeType, BusinessCodeTypes.CODE_TYPE_FILTER, true);
 		action.pause(milliseconds);
 		index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH, 1, 1);
 		index.click();

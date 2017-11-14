@@ -20,7 +20,6 @@ import com.abb.ventyx.utilities.TableFunction;
 @Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class Code_Set_Type_Deleting extends BaseTestCase {
 	String codeSetCodeType = "UOM";
-	String codeType = "AUDITCODE";
 	String codeDecsUpdate = "Audit Log Action Code Update";
 	ScreenAction action;
 	int milliseconds = 1000;
@@ -65,7 +64,7 @@ public class Code_Set_Type_Deleting extends BaseTestCase {
 	// Step 03
 	@Test(dependsOnMethods = "deleteCodeTypeWithCodeSet", alwaysRun = true)
 	public void deleteCodeTypeWithoutCodeSet() {
-		table.inputFilterAtIndex(codeType, BusinessCodeTypes.CODE_TYPE_FILTER, true);
+		table.inputFilterAtIndex(Code_Set_Type_Creating.codeType, BusinessCodeTypes.CODE_TYPE_FILTER, true);
 		action.pause(milliseconds);
 		index = table.getCellObject(1, 3);
 		index.click();

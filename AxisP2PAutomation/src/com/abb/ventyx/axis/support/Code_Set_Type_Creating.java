@@ -2,6 +2,8 @@ package com.abb.ventyx.axis.support;
 
 import static org.testng.Assert.assertEquals;
 
+import java.util.Random;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
@@ -19,7 +21,7 @@ import com.abb.ventyx.utilities.TableFunction;
 @ALM(id = "520")
 @Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class Code_Set_Type_Creating extends BaseTestCase {
-	String codeType = "AUDITCODE";
+	public static String codeType = "AUDITCODE";
 	String codeDecs = "Audit Log Action Code";
 	String codeType2 = "UOM";
 	ScreenAction action;
@@ -45,6 +47,13 @@ public class Code_Set_Type_Creating extends BaseTestCase {
 	@Test(dependsOnMethods = "openBusinessCodeSetTypeScreen", alwaysRun = true)
 	public void clickAddButtonAndInputData() {
 		action.waitObjVisibleAndClick(By.cssSelector(BusinessCodeTypes.ADD));
+		action.waitObjVisible(By.xpath(BusinessCodeTypes.CODE_TYPE));
+		action.waitObjVisible(By.xpath(BusinessCodeTypes.CODE_DESCRIPTION));
+		assertEquals(driver.findElement(By.cssSelector(BusinessCodeTypes.BUSINESS_CODE_SET_TYPE_CSS)).getText(),
+				BusinessCodeTypes.CREATE_BUSINESS_CODE_SET_TYPE);
+		Random rand = new Random();
+		long drand = (long) (rand.nextDouble() * 10000L);
+		codeType = String.format("AUDITCODE %s", drand);
 		action.inputTextField(By.xpath(BusinessCodeTypes.CODE_TYPE), codeType);
 		action.inputTextField(By.xpath(BusinessCodeTypes.CODE_DESCRIPTION), codeDecs);
 		action.waitObjVisibleAndClick(By.xpath(BusinessCodeTypes.SAVE_BUTTON));
