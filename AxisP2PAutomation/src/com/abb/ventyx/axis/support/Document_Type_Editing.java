@@ -64,6 +64,9 @@ public class Document_Type_Editing extends BaseTestCase {
 		action.pause(milliseconds);
 		index = table.getCellObject(ScreenObjects.TABLE_BODY_DOCUMENT_XPATH, 1, 1);
 		index.click();
+		action.waitObjVisible(By.id(DocType.DOCTYPES));
+		action.waitObjVisible(By.id(DocType.DESC));
+		assertEquals(driver.findElement(By.cssSelector(DocType.DOCUMENT_TYPES_CSS)).getText(), DocType.EDIT_DOCUMENT_TYPES);
 		action.inputTextField(By.id(DocType.DESC), description);
 		action.waitObjVisible(By.id(DocType.CANCEL));
 		action.waitObjVisibleAndClick(By.id(DocType.CANCEL));

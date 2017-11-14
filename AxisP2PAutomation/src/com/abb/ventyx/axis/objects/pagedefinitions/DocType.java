@@ -2,6 +2,10 @@ package com.abb.ventyx.axis.objects.pagedefinitions;
 
 public class DocType {
 	public static final String TITLE_MAINTAIN_DOCUMENT_TYPES = "Maintain Document Types";
+	public static final String ADD_DOCUMENT_TYPES = "Add Document Type";
+	public static final String EDIT_DOCUMENT_TYPES = "Edit Document Types";
+	public static final String DOCUMENT_TYPES_CSS = "#documenttypecreatewindow > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-default-page-header-layout > div > div > div > div";
+
 	public static final String GRID = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div.v-grid-tablewrapper > table";
 	public static final String ADD = "#HeaderMenuBar > span:nth-child(2)";
 	public static final String DTROW1 = "docTypeBtn0";

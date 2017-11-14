@@ -47,6 +47,9 @@ public class Document_Type_Creating extends BaseTestCase {
 	@Test(dependsOnMethods = "openDocumentTypesScreen", alwaysRun = true)
 	public void clickAddButtonAndInputData() {
 		action.waitObjVisibleAndClick(By.cssSelector(DocType.ADD));
+		action.waitObjVisible(By.id(DocType.DOCTYPES));
+		action.waitObjVisible(By.id(DocType.DESC));
+		assertEquals(driver.findElement(By.cssSelector(DocType.DOCUMENT_TYPES_CSS)).getText(), DocType.ADD_DOCUMENT_TYPES);
 		Random rand = new Random();
 		long drand = (long) (rand.nextDouble() * 10000L);
 		documentTypes = String.format("DocType %s", drand);
