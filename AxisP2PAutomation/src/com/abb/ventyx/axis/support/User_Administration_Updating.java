@@ -51,11 +51,10 @@ public class User_Administration_Updating extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), Users.TITLE_ADMINISTRATION_USERS);
 		action.waitObjVisible(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
-		assertEquals(table.getValueTableHeader(5), "Status");
-		assertEquals(table.getValueTableHeader(4), "User Groups");
-		assertEquals(table.getValueTableHeader(3), "Email");
-		assertEquals(table.getValueTableHeader(2), "User ID");
 		assertEquals(table.getValueTableHeader(1), "User Number");
+		assertEquals(table.getValueTableHeader(2), "User ID");
+		assertEquals(table.getValueTableHeader(3), "Email");
+		assertEquals(table.getValueTableHeader(4), "User Groups");
 	}
 
 	// Step 2

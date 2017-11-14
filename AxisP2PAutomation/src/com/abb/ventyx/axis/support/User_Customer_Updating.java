@@ -78,7 +78,7 @@ public class User_Customer_Updating extends BaseTestCase {
 		action.pause(3000);
 		table.clikFilterAndInputWithColumn(User_Customer_Creating.email, Users.EMAIL_FILTER, true);
 		action.pause(waitTime);
-		assertEquals(table.getValueRow(2, 1), User_Customer_Creating.user);
+		assertEquals(table.getValueRow(3, 1), User_Customer_Creating.email);
 	}
 
 	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomerUsersScreen", alwaysRun = true)
@@ -87,7 +87,7 @@ public class User_Customer_Updating extends BaseTestCase {
 		index1.click();
 		action.waitObjVisible(By.id(Users.USER_ID));
 		action.waitObjVisible(By.id(Users.EMAIL_ID));
-		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_IN_TITLE_CSS)).getText(), Users.MODIFY_CUSTOMER_ADMINISTRATOR_USER);
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_IN_TITLE_CSS)).getText(), Users.MODIFY_USER);
 	}
 
 	@Test(dependsOnMethods = "clickUserNumberOnMaintainCustomerUsersScreen", alwaysRun = true)
