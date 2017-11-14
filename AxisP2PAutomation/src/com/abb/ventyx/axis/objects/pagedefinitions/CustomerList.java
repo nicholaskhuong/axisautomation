@@ -4,6 +4,9 @@ public class CustomerList {
 
 	// Customer
 	public static final String TITLE_CUSTOMERS_PAGE = "Customers";
+	public static final String CREATE_NEW_CUSTOMERS_PAGE = "Create New Customer";
+	public static final String TITLE_CUSTOMERS_DASHBOARD = "Customer Dashboard";
+
 	public static final String CUSTOMERUSERS_HEADER = "#common-header-left-layout > div > div";
 	public static final String ADD_BUTTON = "#HeaderMenuBar > span:nth-child(2)";
 	public static final String SAVE_BUTTON_ID = "saveBtn";

@@ -56,12 +56,16 @@ public class Customer_Creating extends BaseTestCase {
 		assertEquals(table.getValueTableHeader(2), "Name");
 		assertEquals(table.getValueTableHeader(3), "Status");
 		assertEquals(table.getValueTableHeader(4), "Email");
+		assertEquals(table.getValueTableHeader(5), "Homepage");
 	}
 
 	// Step 2
 	@Test(dependsOnMethods = "openCustomerScreen", alwaysRun = true)
 	public void clickAddButtonAndInputLackMandatoryFields() {
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerList.ADD_BUTTON));
+		action.waitObjVisible(By.id(CustomerList.CUSTOMER_NAME));
+		action.waitObjVisible(By.id(CustomerList.EMAIL_ADDRESS));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_IN_TITLE_CSS)).getText(), CustomerList.CREATE_NEW_CUSTOMERS_PAGE);
 		// Don't input email address
 		action.inputTextField(CustomerList.CUSTOMER_NAME, customerName);
 		action.waitObjVisibleAndClick(By.id(CustomerList.SAVE_BUTTON_ID));

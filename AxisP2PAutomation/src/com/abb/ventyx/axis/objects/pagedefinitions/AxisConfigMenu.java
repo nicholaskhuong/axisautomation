@@ -68,5 +68,8 @@ public class AxisConfigMenu {
 	public static final String SYSTEM_FILTER = "maintainSystemDocumentFilters";
 	public static final String ICON_DEACTIVE = "#HeaderMenuBar > span:nth-child(3) > span > span";
 	public static final String FILTER_BUTTON_1 = "#HeaderMenuBar > span:nth-child(1)";
+	// ---
+	public static final String CUSTOMER_DASHBOARD = "#menuItemCustomerAdmin > span > span.valo-menu-item-caption";
+	public static final String NOTIFICATIONS = "#notificationButton > span > span.valo-menu-item-caption";
 
 }

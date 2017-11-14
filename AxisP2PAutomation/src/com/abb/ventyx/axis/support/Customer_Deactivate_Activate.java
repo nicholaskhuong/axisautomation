@@ -45,12 +45,17 @@ public class Customer_Deactivate_Activate extends BaseTestCase {
 		assertEquals(table.getValueTableHeader(2), "Name");
 		assertEquals(table.getValueTableHeader(3), "Status");
 		assertEquals(table.getValueTableHeader(4), "Email");
+		assertEquals(table.getValueTableHeader(5), "Homepage");
+
 	}
 
 	// Steps 02_04
 	@Test(dependsOnMethods = "openCustomerScreen", alwaysRun = true)
 	public void clickAddButtonOn() {
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerList.ADD_BUTTON));
+		action.waitObjVisible(By.id(CustomerList.CUSTOMER_NAME));
+		action.waitObjVisible(By.id(CustomerList.EMAIL_ADDRESS));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_IN_TITLE_CSS)).getText(), CustomerList.CREATE_NEW_CUSTOMERS_PAGE);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_LIST));
 	}
 
@@ -92,7 +97,7 @@ public class Customer_Deactivate_Activate extends BaseTestCase {
 	public void clickDeactiveYesOnCustomerScreen() {
 		action.waitObjVisible(By.cssSelector(CustomerList.DEACTIVE));
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerList.DEACTIVE));
-		action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
+		action.pause(waitTime);
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.CONFIRMATION)).getText(), Messages.CUSTOMER_DEACTIAVTE);
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.YES_BTN_ID));
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.DEACTIVATE_CUSTOMER_SUCCESSFULLY);
@@ -108,6 +113,7 @@ public class Customer_Deactivate_Activate extends BaseTestCase {
 		WebElement cell = table.getCellObject(1, 1);
 		cell.click();
 		action.pause(waitTime);
+		assertEquals(action.isElementPresent(By.id(CustomerList.STATUS)), false);
 		// Check to make sure its status here is Inactive too.
 		// assertEquals(action.getTextField(By.id(CustomerList.STATUS)),
 		// "Inactive");
@@ -177,5 +183,10 @@ public class Customer_Deactivate_Activate extends BaseTestCase {
 		action.signOut();
 		action.pause(waitTime);
 		action.signIn(emailAddress, password);
+		action.waitObjVisible(By.cssSelector(AxisConfigMenu.CUSTOMER_DASHBOARD));
+		action.waitObjVisible(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE_WITH_CUSTOMER));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), CustomerList.TITLE_CUSTOMERS_DASHBOARD);
+		action.waitObjVisible(By.cssSelector(AxisConfigMenu.NOTIFICATIONS));
+		action.waitObjVisible(By.cssSelector(AxisConfigMenu.DOCUMENTATION));
 	}
 }
