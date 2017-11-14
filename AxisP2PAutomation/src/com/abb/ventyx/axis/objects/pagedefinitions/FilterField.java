@@ -2,6 +2,10 @@ package com.abb.ventyx.axis.objects.pagedefinitions;
 
 public class FilterField {
 	public static final String TITLE_FILTER_FIELDS = "Maintain Document Filter Field";
+	public static final String ADD_FILTER_FIELD = "Add Filter Field";
+	public static final String EDIT_FILTER_FIELD = "Edit Filter Field";
+	public static final String TITLE_FILTER_FIELDS_CSS = "#DocFilterFieldCreateModifyWindow > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-default-page-header-layout > div > div > div > div";
+
 	public static final String ADD = "#HeaderMenuBar > span:nth-child(2) > span > span";
 	public static final String FIROW1 = "docTypeBtn0";
 	public static final String FIROW2 = "docTypeBtn1";

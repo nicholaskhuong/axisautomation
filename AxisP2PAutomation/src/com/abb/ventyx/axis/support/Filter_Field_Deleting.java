@@ -48,6 +48,7 @@ public class Filter_Field_Deleting extends BaseTestCase {
 	@Test(dependsOnMethods = "openFilterField", alwaysRun = true)
 	public void clickTrashBinIcon() {
 		table.clikFilterAndInputWithColumn(fieldNameUpdate, FilterField.FIELD_NAME_FILTER, true);
+		action.pause(milliseconds);
 		index = table.getCellObject(1, 8);
 		index.click();
 	}

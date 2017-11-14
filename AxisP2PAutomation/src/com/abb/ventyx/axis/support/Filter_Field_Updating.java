@@ -45,6 +45,9 @@ public class Filter_Field_Updating extends BaseTestCase {
 		table.clikFilterAndInputWithColumn(fieldName, FilterField.FIELD_NAME_FILTER, true);
 		index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH, 1, 1);
 		index.click();
+		action.waitObjVisible(By.id(FilterField.FIELD_NAME));
+		action.waitObjVisible(By.id(FilterField.DOC_TYPE));
+		assertEquals(driver.findElement(By.cssSelector(FilterField.TITLE_FILTER_FIELDS_CSS)).getText(), FilterField.EDIT_FILTER_FIELD);
 	}
 
 	// Step 03

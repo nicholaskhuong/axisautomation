@@ -47,6 +47,9 @@ public class Filter_Field_Creating extends BaseTestCase {
 	@Test(dependsOnMethods = "openFilterFieldAddInputDocType", alwaysRun = true)
 	public void clickAddButtonAndInputValue() {
 		action.waitObjVisibleAndClick(By.cssSelector(FilterField.ADD));
+		action.waitObjVisible(By.id(FilterField.FIELD_NAME));
+		action.waitObjVisible(By.id(FilterField.DOC_TYPE));
+		assertEquals(driver.findElement(By.cssSelector(FilterField.TITLE_FILTER_FIELDS_CSS)).getText(), FilterField.ADD_FILTER_FIELD);
 		action.inputTextField(FilterField.FIELD_NAME, filedName);
 		action.waitObjVisibleAndClick(By.id(FilterField.ADD_SAVE));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
