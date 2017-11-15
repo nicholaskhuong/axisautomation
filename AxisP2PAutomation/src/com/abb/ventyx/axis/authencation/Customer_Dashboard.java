@@ -45,6 +45,12 @@ public class Customer_Dashboard extends BaseTestCase {
 	String maitainUserGroups = "Maintain User Groups";
 	String maintainCustomerUsers = "Maintain Customer Users";
 	String maintainCustomerDefinedProfiles = "Maintain Customer Defined Profiles";
+	String maintainBusinessCodeSets = "Maintain Business Code Sets";
+	String customerDefinedFilters = "Customer Defined Filters";
+	String maintainAddressContact = "Maintain Address & Contact";
+	String maintainLiteralsForACustomer = "Maintain Literals for a Customer";
+	String documentsInError = "Documents in Error";
+	String configureDocumentation = "Configure Documentation";
 	@Test
 	public void openScreen() {
 		// Step 1
@@ -109,21 +115,56 @@ public class Customer_Dashboard extends BaseTestCase {
 	}
 	@Test(dependsOnMethods = "checkDocumentMenu")
 	public void checkPageOfCustomerMaintainance() {
+		// Step 9
 		action.clickBtn(By.id(CustomerMenu.DOCUMENTATION));
 		action.clickBtn(By.cssSelector(CustomerMenu.SUPPLIER_LIST));
 		action.waitObjVisible(By.cssSelector(CustomerMenu.DEACTIVE_ICON));
+		action.pause(milliseconds);
 		assertEquals(driver.findElement(By.cssSelector(CustomerMenu.HEADER_OF_PAGE)).getText(), maintainSuppliers);
 		action.clickBtn(By.id(CustomerMenu.USER_GROUPS));
-		action.waitObjVisible(By.cssSelector(CustomerMenu.ADD_ICON));
+		action.waitObjVisible(By.cssSelector(CustomerMenu.DOCUMENT_FILTER_HEADER));
 		action.pause(milliseconds);
-		assertEquals(driver.findElement(By.cssSelector(CustomerMenu.HEADER_OF_PAGE)).getText(), maitainUserGroups);
+		assertEquals(driver.findElement(By.cssSelector(CustomerMenu.DOCUMENT_FILTER_HEADER)).getText(), maitainUserGroups);
 		action.clickBtn(By.id(CustomerMenu.USERS));
 		action.pause(milliseconds);
 		assertEquals(driver.findElement(By.cssSelector(CustomerMenu.HEADER_OF_PAGE)).getText(), maintainCustomerUsers);
 		action.clickBtn(By.id(CustomerMenu.PROFILES));
 		action.waitObjVisible(By.cssSelector(CustomerMenu.MENU_ICON));
 		assertEquals(driver.findElement(By.cssSelector(CustomerMenu.HEADER_OF_PAGE)).getText(), maintainCustomerDefinedProfiles);
+		action.clickBtn(By.id(CustomerMenu.DOCUMENT_FILTERS));
+		action.waitObjVisible(By.cssSelector(CustomerMenu.DOCUMENT_FILTER_HEADER));
+		assertEquals(driver.findElement(By.cssSelector(CustomerMenu.HEADER_OF_PAGE)).getText(), customerDefinedFilters);
+		action.clickBtn(By.id(CustomerMenu.BUSINESS_CODE_SET));
+		action.waitObjVisible(By.cssSelector(CustomerMenu.BUSINESS_CODE_SETS_HEADER));
+		assertEquals(driver.findElement(By.cssSelector(CustomerMenu.HEADER_OF_PAGE)).getText(), maintainBusinessCodeSets);
+		action.clickBtn(By.cssSelector(CustomerMenu.ADDRESS_CONTACT_MENU));
+		action.pause(milliseconds);
+		assertEquals(driver.findElement(By.cssSelector(CustomerMenu.HEADER_OF_PAGE)).getText(), maintainAddressContact);
+		action.clickBtn(By.id(CustomerMenu.CUSTOMISE_LITERALS));
+		action.waitObjVisible(By.cssSelector(CustomerMenu.HEADER_OF_PAGE));
+		action.pause(milliseconds);
+		assertEquals(driver.findElement(By.cssSelector(CustomerMenu.HEADER_OF_PAGE)).getText(), maintainLiteralsForACustomer);
+		action.clickBtn(By.id(CustomerMenu.DOCUMENT_IN_ERROR));
+		action.waitObjVisible(By.cssSelector(CustomerMenu.HEADER_OF_PAGE));
+		action.pause(milliseconds);
+		assertEquals(driver.findElement(By.cssSelector(CustomerMenu.HEADER_OF_PAGE)).getText(), documentsInError);
+		action.clickBtn(By.id(CustomerMenu.AUDIT_LOG));
+		action.waitObjVisible(By.cssSelector(CustomerMenu.HEADER_OF_PAGE));
+		action.pause(milliseconds);
+		assertEquals(driver.findElement(By.cssSelector(CustomerMenu.HEADER_OF_PAGE)).getText(), auditLog);
+	}
 
+	@Test(dependsOnMethods = "checkPageOfCustomerMaintainance")
+	public void checkPageOfDocumentation() {
+		// step 10
+		action.clickBtn(By.id(CustomerMenu.DOCUMENTATION));
+		action.waitObjVisible(By.id(CustomerMenu.CONFIGURE_DOCUMENT));
+		action.clickBtn(By.id(CustomerMenu.CONFIGURE_DOCUMENT));
+		action.waitObjVisible(By.cssSelector(CustomerMenu.HEADER_OF_PAGE));
+		action.pause(milliseconds);
+		assertEquals(driver.findElement(By.cssSelector(CustomerMenu.HEADER_OF_PAGE)).getText(), configureDocumentation);
+		// Step 11
+		action.signOut();
 	}
 
 

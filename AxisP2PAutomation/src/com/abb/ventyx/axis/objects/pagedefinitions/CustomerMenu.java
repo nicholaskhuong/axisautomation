@@ -36,5 +36,7 @@ public class CustomerMenu {
 	public static final String ADD_ICON = "#HeaderMenuBar > span:nth-child(2)";
 	public static final String PROFILES = "maintainCustomerProfileButton";
 	public static final String MENU_ICON = "#HeaderMenuBar > span:nth-child(3)";
+	public static final String DOCUMENT_FILTER_HEADER = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div > div.v-slot.v-slot-v-default-page-header-layout > div > div > div:nth-child(1) > div";
+	public static final String BUSINESS_CODE_SETS_HEADER = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div.v-slot.v-slot-v-default-page-header-layout > div > div > div:nth-child(1) > div";
 	
 }
