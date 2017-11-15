@@ -5,12 +5,12 @@
  
 	<test name="Axis Support Dashboard">
 		<classes>
-				<class name="com.abb.ventyx.axis.authencation.AxisSupportDashboard" />			
+				<class name="com.abb.ventyx.axis.authencation.Axis_Support_Dashboard" />			
 		</classes>	
   	</test>
   	<test name="Customer Dashboard">
 		<classes>
-				<class name="com.abb.ventyx.axis.authencation.CustomerDashboard" />			
+				<class name="com.abb.ventyx.axis.authencation.Customer_Dashboard" />			
 		</classes>	
   	</test>
 </suite> 

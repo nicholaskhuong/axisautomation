@@ -17,7 +17,7 @@ import com.abb.ventyx.utilities.TableFunction;
 
 @ALM(id = "493")
 @Credentials(user = "customer_user_1@abb.com", password = "Testuser1")
-public class CustomerDashboard extends BaseTestCase {
+public class Customer_Dashboard extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
 	int milliseconds = 3000;

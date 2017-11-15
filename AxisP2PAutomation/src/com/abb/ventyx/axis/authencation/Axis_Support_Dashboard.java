@@ -16,7 +16,7 @@ import com.abb.ventyx.utilities.TableFunction;
 
 @ALM(id = "472")
 @Credentials(user = "axis_support_4@abb.com", password = "Testuser2")
-public class AxisSupportDashboard extends BaseTestCase {
+public class Axis_Support_Dashboard extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
 	int milliseconds = 3000;
