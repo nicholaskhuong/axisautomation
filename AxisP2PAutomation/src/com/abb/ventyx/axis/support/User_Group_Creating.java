@@ -2,6 +2,8 @@ package com.abb.ventyx.axis.support;
 
 import static org.testng.Assert.assertEquals;
 
+import java.util.Random;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
@@ -21,7 +23,7 @@ import com.abb.ventyx.utilities.TableFunction;
 public class User_Group_Creating extends BaseTestCase {
 	String systemGroupName = "CUST_ADMIN";
 	String customerName = "Tanya Customer 11";
-	String userGroupName = "Cry Group";
+	public static String userGroupName = "Cry Group";
 	ScreenAction action;
 	TableFunction table;
 	int waitTime = 1000;
@@ -57,6 +59,9 @@ public class User_Group_Creating extends BaseTestCase {
 		action.selectStatus(ScreenObjects.DROPDOWNLIST_CSS, customerName);
 		action.waitObjVisibleAndClick(By.xpath(UserGroup.ADD_XPATH));
 		action.waitObjVisible(By.id(UserGroup.USERGROUP_NAME_ID));
+		Random rand = new Random();
+		long drand = (long) (rand.nextDouble() * 10000L);
+		userGroupName = String.format("Cry Group %s", drand);
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_IN_TITLE_CSS)).getText(), UserGroup.CREATE_USERGROUP_TITLE);
 		action.inputTextField(UserGroup.USERGROUP_NAME_ID, userGroupName);
 		action.waitObjVisible(By.id(UserGroup.SAVE_ID));

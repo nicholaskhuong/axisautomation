@@ -24,7 +24,6 @@ import com.abb.ventyx.utilities.TableFunction;
 public class User_Group_Deleting extends BaseTestCase {
 	String systemGroupName = "CUST_ADMIN";
 	String customerName = "Tanya Customer 11";
-	String newGroupName = "Cryy Group";
 	BaseDropDownList list;
 	BaseGrid userGroupList;
 	int row = 0;
@@ -60,9 +59,9 @@ public class User_Group_Deleting extends BaseTestCase {
 		action.selectStatus(ScreenObjects.DROPDOWNLIST_CSS, customerName);
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.xpath(UserGroup.FILTER_XPATH));
-		action.inputTextField(UserGroup.NAME_FILTER, newGroupName);
+		action.inputTextField(UserGroup.NAME_FILTER, User_Group_Updating.newGroupName);
+		action.pause(2000);
 		action.waitObjVisibleAndClick(By.id(Users.DELETE_BUTTON + row));
-		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.NO_BTN_ID));
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(Users.DELETE_BUTTON + row));

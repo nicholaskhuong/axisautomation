@@ -2,6 +2,8 @@ package com.abb.ventyx.axis.support;
 
 import static org.testng.Assert.assertEquals;
 
+import java.util.Random;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
@@ -22,8 +24,7 @@ import com.abb.ventyx.utilities.TableFunction;
 public class User_Group_Updating extends BaseTestCase {
 	String systemGroupName = "CUST_ADMIN";
 	String customerName = "Tanya Customer 11";
-	String userGroupName = "Cry Group";
-	String newGroupName = "Cryy Group";
+	public static String newGroupName = "Cryy Group";
 	int row = 0;
 	ScreenAction action;
 	TableFunction table;
@@ -57,7 +58,7 @@ public class User_Group_Updating extends BaseTestCase {
 		action.pause(waitTime);
 		action.selectStatus(ScreenObjects.DROPDOWNLIST_CSS, customerName);
 		action.waitObjVisibleAndClick(By.xpath(UserGroup.FILTER_XPATH));
-		action.inputTextField(UserGroup.NAME_FILTER, "Cry Group");
+		action.inputTextField(UserGroup.NAME_FILTER, User_Group_Creating.userGroupName);
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(Users.GROUPNAME_LINKID + row));
 	}
@@ -68,6 +69,9 @@ public class User_Group_Updating extends BaseTestCase {
 		action.waitObjVisible(By.id(UserGroup.USERGROUP_NAME_ID));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_IN_TITLE_CSS)).getText(), UserGroup.MODIFY_USERGROUP_TITLE);
 		action.pause(2000);
+		Random rand = new Random();
+		long drand = (long) (rand.nextDouble() * 10000L);
+		newGroupName = String.format("Cryy Group %s", drand);
 		WebElement newGroupUser1 = driver.findElement(By.id(UserGroup.USERGROUP_NAME_ID));
 		newGroupUser1.clear();
 		newGroupUser1.sendKeys(newGroupName);
@@ -113,7 +117,7 @@ public class User_Group_Updating extends BaseTestCase {
 		action.inputTextField(UserGroup.NAME_FILTER, newGroupName);
 		action.waitObjVisibleAndClick(By.id(Users.GROUPNAME_LINKID + row));
 		action.waitObjVisible(By.id(UserGroup.USERGROUP_NAME_ID));
-		action.inputTextField(UserGroup.USERGROUP_NAME_ID, userGroupName);
+		action.inputTextField(UserGroup.USERGROUP_NAME_ID, User_Group_Creating.userGroupName);
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(UserGroup.CANCEL_ID));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
