@@ -13,6 +13,11 @@
 				<class name="com.abb.ventyx.axis.authencation.Customer_Dashboard" />			
 		</classes>	
   	</test>
+  	<test name="Supplier Administration Dashboard">
+		<classes>
+				<class name="com.abb.ventyx.axis.authencation.Supplier_Administrator_Dashboard" />			
+		</classes>	
+  	</test>
 </suite> 
 
 
