@@ -21,7 +21,6 @@ public class CustomerMenu {
 	public static final String DOCUMENTATION_WITHOUT_ICON = "#docTabParentButton > span > span.valo-menu-item-caption > div > span.v-menu-item-caption";
 	public static final String USER_GROUPS = "maintainCustomerUsergroupButton";
 	public static final String USERS = "maintainUserButton";
-	public static final String PROFLES = "maintainCustomerProfileButton";
 	public static final String DOCUMENT_FILTERS = "customerDefinedFilters";
 	public static final String BUSINESS_CODE_SET = "maintainCodeSetButton";
 	public static final String ADDRESS_CONTACT = "maintainContactButton";

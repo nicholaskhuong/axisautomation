@@ -81,7 +81,7 @@ public class CustomerDashboard extends BaseTestCase {
 		assertEquals(driver.findElement(By.cssSelector(CustomerMenu.SUPPLIER_LIST)).getText(), supplierList);
 		assertEquals(driver.findElement(By.id(CustomerMenu.USER_GROUPS)).getText(), userGroups);
 		assertEquals(driver.findElement(By.id(CustomerMenu.USERS)).getText(), users);
-		assertEquals(driver.findElement(By.id(CustomerMenu.PROFLES)).getText(), profiles);
+		assertEquals(driver.findElement(By.id(CustomerMenu.PROFILES)).getText(), profiles);
 		assertEquals(driver.findElement(By.id(CustomerMenu.DOCUMENT_FILTERS)).getText(), documentFilters);
 		assertEquals(driver.findElement(By.id(CustomerMenu.BUSINESS_CODE_SET)).getText(), busniessCodeSets);
 		assertEquals(driver.findElement(By.id(CustomerMenu.ADDRESS_CONTACT)).getText(), addressContact);
