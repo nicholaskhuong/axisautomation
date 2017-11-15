@@ -37,8 +37,8 @@ public class Customer_Creating extends BaseTestCase {
 	String newPassword = "Testuser1";
 	String password;
 	String passwordUser = "Testuser2";
-	String userID = String.format("customer_user %s", drand);
-	String emailUser = String.format("customer_user%s@abb.com", drand);
+	String userID = String.format("cus %s", drand);
+	String emailUser = String.format("cus_user%s@abb.com", drand);
 	String confirmPassword = "Testuser2";
 
 	@Test

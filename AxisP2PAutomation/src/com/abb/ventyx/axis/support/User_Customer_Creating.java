@@ -26,8 +26,8 @@ public class User_Customer_Creating extends BaseTestCase {
 	TableFunction table;
 	int waitTime = 1000;
 	WebElement index;
-	public static String user = "customer_userab";
-	public static String email = "customer_userab@abb.com";
+	public static String user = "user1";
+	public static String email = "user1@abb.com";
 	String password = "Testuser1";
 	String emailInvalid = "111";
 	String emailAlready = "thuy15@abb.com";
@@ -83,8 +83,8 @@ public class User_Customer_Creating extends BaseTestCase {
 	public void clickAddButtonAndInputLackMandatoryFields() {
 		Random rand = new Random();
 		long drand = (long) (rand.nextDouble() * 100000000L);
-		user = String.format("customer_usera%s", drand);
-		email = String.format("customer_usera%s@abb.com", drand);
+		user = String.format("user1%s", drand);
+		email = String.format("user1%s@abb.com", drand);
 		action.waitObjVisibleAndClick(By.cssSelector(Profiles.ADD_PROFILE));
 		action.waitObjVisible(By.id(Users.USER_ID));
 		action.waitObjVisible(By.id(Users.PASSWORD_ID));

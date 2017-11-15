@@ -28,9 +28,9 @@ public class User_Customer_Updating extends BaseTestCase {
 	TableFunction table;
 	int waitTime = 1000;
 	WebElement index, index1;
-	public static String userUpdate = "customer_user1";
+	public static String userUpdate = "user2";
 	String password = "Testuser1";
-	public static String emailUpdate = "customer_user1@abb.com";
+	public static String emailUpdate = "user2@abb.com";
 	String emailInvalid = "111";
 	String emailAlready = "thuy15@abb.com";
 	String confirmPassword = "Testuser2";
@@ -103,8 +103,8 @@ public class User_Customer_Updating extends BaseTestCase {
 	public void inputMandatoryFields() {
 		Random rand = new Random();
 		long drand = (long) (rand.nextDouble() * 100000000L);
-		userUpdate = String.format("customer_user1%s", drand);
-		emailUpdate = String.format("customer_user1%s@abb.com", drand);
+		userUpdate = String.format("user2%s", drand);
+		emailUpdate = String.format("user2%s@abb.com", drand);
 		action.inputTextField(Users.EMAIL_ID, emailUpdate);
 		action.clickCheckBoxN(6);
 		action.waitObjVisible(By.id(Users.SAVE_BTN_ID));
