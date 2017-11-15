@@ -25,6 +25,7 @@ public class AxisConfigMenu {
 	public static final String PDF_FORMAT_PARAMETERS = "#maintainPdfFormatParams > span > span";
 	public static final String FOP_RESOURCE_PROFILES = "#maintainFOPResource > span > span";
 	public static final String CUSTOMISE_LITERALS = "#maintainTranslatedText > span > span";
+	public static final String DOCUMENT_IN_ERROR_CSS = "#documentErrorButton > span > span";
 	public static final String AUDIT_LOG = "#auditLogButton > span > span";
 	public static final String CUSTOMER_MAINTENANCE_WITH_CUSTOMER = "#custConfigParentButton > span > span.valo-menu-item-caption > div > span.v-menu-item-caption";
 	public static final String PROFILE_CUSTOMER = "#maintainCustomerProfileButton > span > span";
@@ -68,6 +69,8 @@ public class AxisConfigMenu {
 	public static final String SYSTEM_FILTER = "maintainSystemDocumentFilters";
 	public static final String ICON_DEACTIVE = "#HeaderMenuBar > span:nth-child(3) > span > span";
 	public static final String FILTER_BUTTON_1 = "#HeaderMenuBar > span:nth-child(1)";
+	public static final String ADMINISTRATION = "#suppAdminParentButton > span > span.valo-menu-item-caption > div > span.v-menu-item-caption";
+
 	// ---
 	public static final String CUSTOMER_DASHBOARD = "#menuItemCustomerAdmin > span > span.valo-menu-item-caption";
 	public static final String NOTIFICATIONS = "#notificationButton > span > span.valo-menu-item-caption";

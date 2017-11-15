@@ -23,4 +23,21 @@ public class CustomerList {
 	public static final String SUPPLIER_LIST = "#supplierMenu > span > span";
 	public static final String TABLE_AUTHORISED_DOCUMENT_TYPES = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div.v-slot.v-slot-v-common-page-content-layout > div > div.v-slot.v-slot-v-horizontal-layout-with-border > div > div";
 
+	// Axis Supplier Portal
+	public static final String TITLE_CUSTOMER_DASHBOARD_PAGE = "Customer Dashboard";
+	public static final String TITLE_SUPPLIER_LIST = "Maintain Suppliers";
+	public static final String TITLE_USER_GROUPS = "Maintain User Groups";
+	public static final String TITLE_USERS = "Maintain Customer Users";
+	public static final String TITLE_PROFILES = "Maintain Customer Defined Profiles";
+	public static final String TITLE_DOCUMENT_FILTERS = "Customer Defined Filters";
+	public static final String TITLE_BUSINESS_CODE_SETS = "Maintain Business Code Sets";
+	public static final String TITLE_ADDRESS_CONTACT = "Maintain Address & Contact";
+	public static final String TITLE_CUSTOMISE_LITERALS = "Maintain Literals for a Customer";
+	public static final String TITLE_DOCUMENTS_IN_ERROR = "Documents in Error";
+	public static final String TITLE_AUDITLOG = "Audit Log";
+	public static final String TITLE_AXIS_SUPPORT_DASHBOARD = "Axis Support Dashboard";
+	public static final String TITLE_EDIT_SUPPLIER = "Edit Supplier";
+	public static final String TITLE_SUPPLIER_DASHBOARD = "Supplier DashboardS";
+	public static final String EDIT_SUPPLIER_CSS = "#createsupplierwindow > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-default-page-header-layout > div > div > div > div";
+
 }

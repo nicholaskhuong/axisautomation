@@ -53,15 +53,15 @@ public class ScreenAction {
 	}
 
 	public void assertTitleScreen(String titleScreen) {
-		WebElement screenTitle = (new WebDriverWait(driver, timeout))
-				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)));
+		WebElement screenTitle = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)));
 
 		assertEquals(screenTitle.getText(), titleScreen, "Title is wrong");
 	}
 
 	public void assertDocumentTitle(String titleScreen) {
-		WebElement screenTitle = (new WebDriverWait(driver, timeout))
-				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.DOCUMENT_TITLE_CSS)));
+		WebElement screenTitle = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(ScreenObjects.DOCUMENT_TITLE_CSS)));
 
 		assertEquals(screenTitle.getText(), titleScreen, "Title is wrong");
 	}
@@ -202,15 +202,15 @@ public class ScreenAction {
 	}
 
 	public void clickYesUpdatePasswordRadio() {
-		WebElement radioButton = (new WebDriverWait(driver, 15))
-				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.YESUPDATEPASSWORD_RADIOBUTTON)));
+		WebElement radioButton = (new WebDriverWait(driver, 15)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(CustomerUsers.YESUPDATEPASSWORD_RADIOBUTTON)));
 		radioButton.findElement(By.tagName("label")).click();
 	}
 
 	public void clickNoUpdatePasswordRadio() {
 
-		WebElement radioButton = (new WebDriverWait(driver, 15))
-				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(CustomerUsers.NOUPDATEPASSWORD_RADIOBUTTON)));
+		WebElement radioButton = (new WebDriverWait(driver, 15)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(CustomerUsers.NOUPDATEPASSWORD_RADIOBUTTON)));
 
 		radioButton.findElement(By.tagName("label")).click();
 	}
@@ -222,8 +222,8 @@ public class ScreenAction {
 
 	public void checkAddSuccess(String msg) {
 
-		WebElement flashMessage1 = (new WebDriverWait(driver, timeout))
-				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)));
+		WebElement flashMessage1 = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(ScreenObjects.SUCCESS_MESSAGE)));
 		Assert.assertEquals(flashMessage1.getText(), msg);
 		flashMessage1.click();
 	}
@@ -241,8 +241,8 @@ public class ScreenAction {
 		int sumRow = tableRows.size();
 		for (int i = 1; i <= sumRow; i++) {
 
-			WebElement columnValue = driver
-					.findElement(By.xpath("//div[@id='VAADIN_COMBOBOX_OPTIONLIST']//div//div[2]//table//tbody//tr[" + i + "]//td//span"));
+			WebElement columnValue = driver.findElement(By.xpath("//div[@id='VAADIN_COMBOBOX_OPTIONLIST']//div//div[2]//table//tbody//tr[" + i
+					+ "]//td//span"));
 
 			// System.out.println("Status " + columnValue.getText());
 			if (columnValue.getText().equals(value)) {
@@ -309,8 +309,8 @@ public class ScreenAction {
 	public void cancelClickNo(String titleScreen) {
 
 		driver.findElement(By.id(ScreenObjects.CANCEL_ID)).click();
-		WebElement msgDialog = (new WebDriverWait(driver, timeout))
-				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.CONFIRMATION)));
+		WebElement msgDialog = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(ScreenObjects.CONFIRMATION)));
 		assertEquals(msgDialog.getText(), Messages.UNSAVED_CHANGE);
 		driver.findElement(By.id(ScreenObjects.NO_BTN_ID)).click();
 		assertTitleScreen(titleScreen);
@@ -336,8 +336,8 @@ public class ScreenAction {
 	public void cancelByMenuClickNo(By obj, String titleScreen) {
 
 		driver.findElement(obj).click();
-		WebElement msgDialog = (new WebDriverWait(driver, timeout))
-				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.CONFIRMATION)));
+		WebElement msgDialog = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(ScreenObjects.CONFIRMATION)));
 		assertEquals(msgDialog.getText(), Messages.UNSAVED_CHANGE);
 		driver.findElement(By.id(ScreenObjects.NO_BTN_ID)).click();
 		assertTitleScreen(titleScreen);
@@ -363,11 +363,11 @@ public class ScreenAction {
 	public void deleteClickNo(String msgConfirm) throws Exception {
 
 		// Click No on dialog
-		WebElement deleteConfirm = (new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.CONFIRMATION)));
+		WebElement deleteConfirm = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(ScreenObjects.CONFIRMATION)));
 		assertThat(deleteConfirm.getText(), containsString(msgConfirm));
-		WebElement deleteNoBtn = (new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.DELETE_NO)));
+		WebElement deleteNoBtn = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(ScreenObjects.DELETE_NO)));
 		deleteNoBtn.click();
 		Thread.sleep(2000);
 
@@ -376,11 +376,11 @@ public class ScreenAction {
 	public void deleteClickYes(String msgDelete) throws Exception {
 
 		(new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.CONFIRMATION)));
-		WebElement deleteYesBtn = (new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.DELETE_YES)));
+		WebElement deleteYesBtn = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(ScreenObjects.DELETE_YES)));
 		deleteYesBtn.click();
-		WebElement flashMessage = (new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)));
+		WebElement flashMessage = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(ScreenObjects.SUCCESS_MESSAGE)));
 		assertEquals(flashMessage.getText(), msgDelete);
 
 	}
@@ -519,19 +519,20 @@ public class ScreenAction {
 	}
 
 	public void addressTypeDropDown(String addressType) {
-		WebElement addresTypeDropdown = (new WebDriverWait(driver, 20))
-				.until(ExpectedConditions.presenceOfElementLocated(By.id(AddressContact.ADDRESS_TYPE)));
+		WebElement addresTypeDropdown = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By
+				.id(AddressContact.ADDRESS_TYPE)));
 		addresTypeDropdown.click();
-		WebElement baseTable = (new WebDriverWait(driver, 30)).until(ExpectedConditions
-				.presenceOfElementLocated(By.cssSelector("#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table")));
+		WebElement baseTable = (new WebDriverWait(driver, 30)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector("#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table")));
 		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
 		int sumRow = tableRows.size();
 
 		System.out.print(sumRow + " test");
 
 		for (int i = 1; i <= sumRow; i++) {
-			WebElement POAckType = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(
-					"#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table > tbody > tr:nth-child(" + i + ") > td > span")));
+			WebElement POAckType = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By
+					.cssSelector("#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table > tbody > tr:nth-child(" + i
+							+ ") > td > span")));
 			if (POAckType.getText().equals(addressType)) {
 				((JavascriptExecutor) driver).executeScript("arguments[0].click();", POAckType);
 				break;
