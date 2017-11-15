@@ -56,7 +56,7 @@ public class User_Customer_Deleting extends BaseTestCase {
 	@Test(dependsOnMethods = "clickCustomerIDOnCustomerScreen", alwaysRun = true)
 	public void clickFiterButtonOnMaintainCustomerUsersScreen() {
 		table.clikFilterAndInputWithColumn(User_Customer_Updating.emailUpdate, Users.EMAIL_FILTER, true);
-		assertEquals(table.getValueRow(2, 1), User_Customer_Updating.emailUpdate);
+		assertEquals(table.getValueRow(3, 1), User_Customer_Updating.emailUpdate);
 	}
 
 	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomerUsersScreen", alwaysRun = true)

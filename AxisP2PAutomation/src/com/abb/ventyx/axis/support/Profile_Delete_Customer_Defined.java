@@ -49,7 +49,6 @@ public class Profile_Delete_Customer_Defined extends BaseTestCase {
 	@Test(dependsOnMethods = "openMaintainCustomerDefinedProfilesScreen", alwaysRun = true)
 	public void clickFiterButtonOnMaintainCustomerScreen() {
 		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
-		ScreenAction action = new ScreenAction(driver);
 		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
 		action.inputTextField(ScreenObjects.FILTER_FIELD_ID, customerName);
 	}
