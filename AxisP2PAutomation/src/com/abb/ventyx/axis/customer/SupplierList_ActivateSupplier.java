@@ -43,7 +43,7 @@ public class SupplierList_ActivateSupplier extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.SUPPLIERLIST_SUBMENU));
 		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
 		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER)).getText(), "Maintain Suppliers");
-		table.filter(SupplierList.SUPPLIER_EMAIL_FILTER_XPATH, SupplierList_DeactivateSupplier.supplierAdmin);
+		table.clickFilterAndInput(SupplierList.SUPPLIER_EMAIL_FILTER_XPATH, SupplierList_DeactivateSupplier.supplierAdmin);
 		action.pause(3000);
 		i = table.findRowByString(6, SupplierList_DeactivateSupplier.supplierAdmin);
 		Assert.assertTrue(i >= 0, "Record not found!");

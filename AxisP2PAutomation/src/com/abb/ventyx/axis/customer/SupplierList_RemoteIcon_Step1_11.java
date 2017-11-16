@@ -59,7 +59,7 @@ public class SupplierList_RemoteIcon_Step1_11 extends BaseTestCase {
 	public void assertRemoteIconDisableForTestSupplier() {
 		// table.filter(SupplierList.SUPPLIER_EMAIL_FILTER_XPATH,
 		// supplierEmail);
-		table.filter(SupplierList.SUPPLIER_ID_FILTER_XPATH, supplierID);
+		table.clickFilterAndInput(SupplierList.SUPPLIER_ID_FILTER_XPATH, supplierID);
 		i = table.findRowByString(1, supplierID);
 		// supplierID = table.getCellObject(ScreenObjects.TABLE_BODY_XPATH, i,
 		// 1).getText();
@@ -125,7 +125,7 @@ public class SupplierList_RemoteIcon_Step1_11 extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.SUPPLIERLIST_SUBMENU));
 		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
-		table.filter(SupplierList.SUPPLIER_ID_FILTER_XPATH, supplierID);
+		table.clickFilterAndInput(SupplierList.SUPPLIER_ID_FILTER_XPATH, supplierID);
 		i = table.findRowByString(1, supplierID);
 		Assert.assertTrue(i >= 0, String.format("Supplier %s not found", supplierID));
 		action.clickRemoteIcon(i);
@@ -163,7 +163,7 @@ public class SupplierList_RemoteIcon_Step1_11 extends BaseTestCase {
 		action.waitObjVisible(By.id("componentId0"));
 
 		// Check ASN in Error
-		table.filter(DocumentsInError.DOC_TYPE_FILTER_XPATH, ASNType);
+		table.clickFilterAndInput(DocumentsInError.DOC_TYPE_FILTER_XPATH, ASNType);
 		table.getCellObject(1, 2).click();
 		action.pause(1000);
 		if (action.isElementPresent(By.cssSelector(ScreenObjects.ERROR_CSS))) {
@@ -181,7 +181,7 @@ public class SupplierList_RemoteIcon_Step1_11 extends BaseTestCase {
 	@Test(dependsOnMethods = "checkDocumentsInError", alwaysRun = true)
 	public void filterDocumentInvoice() {
 		// Check Invoice in Error
-		table.filter(DocumentsInError.DOC_TYPE_FILTER_XPATH, invoiceType);
+		table.clickFilterAndInput(DocumentsInError.DOC_TYPE_FILTER_XPATH, invoiceType);
 		i = table.findRowByString(3, invoiceType);
 		Assert.assertTrue(i >= 0);
 		table.getCellObject(i, 1).click();
@@ -201,7 +201,7 @@ public class SupplierList_RemoteIcon_Step1_11 extends BaseTestCase {
 	@Test(dependsOnMethods = "filterDocumentInvoice", alwaysRun = true)
 	public void filterDocumentPOAckType() {
 		// Check PO Ack in Error
-		table.filter(DocumentsInError.DOC_TYPE_FILTER_XPATH, POAckType);
+		table.clickFilterAndInput(DocumentsInError.DOC_TYPE_FILTER_XPATH, POAckType);
 		table.getCellObject(1, 2).click();
 		action.pause(1000);
 		if (action.isElementPresent(By.cssSelector(ScreenObjects.ERROR_CSS))) {

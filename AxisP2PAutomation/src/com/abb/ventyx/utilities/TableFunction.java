@@ -188,11 +188,11 @@ public class TableFunction {
 		row.click();
 	}
 
-	public void filterPermission(String filterPermissionName) {
+	public void clickFilterAndInputPermissionName(String filterPermissionName) {
 		clickFilterAndInputWithColumn(filterPermissionName, Permissions.PERMISSION_NAME_FILTER, true);
 	}
 
-	public void filter(String columnXpath, String filterValue) {
+	public void clickFilterAndInput(String columnXpath, String filterValue) {
 		clickFilterAndInputWithColumn(filterValue, columnXpath, true);
 	}
 

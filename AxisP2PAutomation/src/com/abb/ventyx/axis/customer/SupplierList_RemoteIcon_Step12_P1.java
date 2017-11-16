@@ -42,7 +42,7 @@ public class SupplierList_RemoteIcon_Step12_P1 extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
 		action.assertTitleScreen("Maintain Suppliers");
 
-		table.filter(SupplierList.SUPPLIER_ID_FILTER_XPATH, supplierID);
+		table.clickFilterAndInput(SupplierList.SUPPLIER_ID_FILTER_XPATH, supplierID);
 		assertEquals(action.isRemoteIconDisable(1), false);
 		assertEquals(table.getValueRow(4, 1), activeStatus);
 	}
@@ -73,7 +73,7 @@ public class SupplierList_RemoteIcon_Step12_P1 extends BaseTestCase {
 		action.waitObjVisible(By.id("componentId0"));
 
 		// Check Invoice in Error
-		table.filter(DocumentsInError.DOC_TYPE_FILTER_XPATH, invoiceType);
+		table.clickFilterAndInput(DocumentsInError.DOC_TYPE_FILTER_XPATH, invoiceType);
 		table.getCellObject(1, 2).click();
 		action.pause(1000);
 		if (action.isElementPresent(By.cssSelector(ScreenObjects.ERROR_CSS))) {
@@ -88,7 +88,7 @@ public class SupplierList_RemoteIcon_Step12_P1 extends BaseTestCase {
 		action.assertTitleScreen("Documents in Error");
 
 		// Check PO Ack in Error
-		table.filter(DocumentsInError.DOC_TYPE_FILTER_XPATH, POAckType);
+		table.clickFilterAndInput(DocumentsInError.DOC_TYPE_FILTER_XPATH, POAckType);
 		table.getCellObject(1, 2).click();
 		action.pause(1000);
 		if (action.isElementPresent(By.cssSelector(ScreenObjects.ERROR_CSS))) {

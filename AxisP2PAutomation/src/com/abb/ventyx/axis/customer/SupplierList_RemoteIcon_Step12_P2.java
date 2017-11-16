@@ -31,7 +31,7 @@ public class SupplierList_RemoteIcon_Step12_P2 extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
 		action.assertTitleScreen("Maintain Suppliers");
 
-		table.filter(SupplierList.SUPPLIER_STATUS_FILTER_XPATH, "Pending");
+		table.clickFilterAndInput(SupplierList.SUPPLIER_STATUS_FILTER_XPATH, "Pending");
 		action.pause(2000);
 		assertEquals(action.isRemoteIconDisable(1), true);
 	}

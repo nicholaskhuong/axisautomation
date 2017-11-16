@@ -97,7 +97,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.SUPPLIER_CREATED_SUCCESSFULLY);
-		table.filter(SupplierList.SUPPLIER_EMAIL_FILTER_XPATH, supplierEmail);
+		table.clickFilterAndInput(SupplierList.SUPPLIER_EMAIL_FILTER_XPATH, supplierEmail);
 		i = table.findRowByString(6, supplierEmail);
 		Assert.assertTrue(i >= 0, "Supplier doesn't exist");
 		assertEquals(table.getValueRow(2, i), companyRegistrationNo);
@@ -201,7 +201,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.SUPPLIERLIST_SUBMENU));
 		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
-		table.filter(SupplierList.SUPPLIER_EMAIL_FILTER_XPATH, supplierEmail);
+		table.clickFilterAndInput(SupplierList.SUPPLIER_EMAIL_FILTER_XPATH, supplierEmail);
 		i = table.findRowByString(6, supplierEmail);
 		Assert.assertTrue(i >= 0, String.format("Supplier %s not found!", supplierEmail));
 		WebElement supplierIDCell = table.getCellObject(i, 1);

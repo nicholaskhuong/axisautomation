@@ -59,7 +59,7 @@ public class SupplierList_UpdateSupplier_ByAdmin_Step1_8 extends BaseTestCase {
 	@Test(dependsOnMethods="openSupplierListScreen")
 	public void updateSupplierWithBlankMandatoryField(){
 
-		table.filter(SupplierList.SUPPLIER_EMAIL_FILTER_XPATH, SupplierList_CreateNewSupplier_ByAdmin.supplierEmail);
+		table.clickFilterAndInput(SupplierList.SUPPLIER_EMAIL_FILTER_XPATH, SupplierList_CreateNewSupplier_ByAdmin.supplierEmail);
 		i = table.findRowByString(6, SupplierList_CreateNewSupplier_ByAdmin.supplierEmail);
 		Assert.assertTrue(1 >= 0, "Item doesn't exist!");
 		assertEquals(table.getValueRow(2, i), SupplierList_CreateNewSupplier_ByAdmin.companyRegistrationNo);
