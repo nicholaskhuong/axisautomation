@@ -35,6 +35,7 @@ public class User_Group_Updating extends BaseTestCase {
 	@Test
 	public void openUserGroupScreen() {
 		action = new ScreenAction(driver);
+		table = new TableFunction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMERMAINTAINCE_MENU_CSS));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.USERGROUP_SUBMENU_CSS));
 		action.waitObjVisible(By.id(UserGroup.SYSTEM_TAB_ID));
@@ -86,8 +87,15 @@ public class User_Group_Updating extends BaseTestCase {
 	public void selectCustomerAndClickOneRowInGrid2() {
 		action.waitObjVisibleAndClick(By.xpath(UserGroup.FILTER_XPATH));
 		action.inputTextField(UserGroup.NAME_FILTER, newGroupName);
-		action.pause(2000);
-		action.waitObjVisibleAndClick(By.id(Users.GROUPNAME_LINKID + row));
+
+		int actualIndex = table.findRealIndexByCell(1, 1, Users.GROUPNAME_LINKID);
+
+		WebElement name = driver.findElement(By.id(Users.GROUPNAME_LINKID + actualIndex));
+		System.out.println(actualIndex + "actualIndex:");
+		name.click();
+
+		// action.pause(2000);
+		// action.waitObjVisibleAndClick(By.id(Users.GROUPNAME_LINKID + row));
 
 	}
 
@@ -106,7 +114,12 @@ public class User_Group_Updating extends BaseTestCase {
 	public void clickCancelWithoutData() {
 		action.waitObjVisibleAndClick(By.xpath(UserGroup.FILTER_XPATH));
 		action.inputTextField(UserGroup.NAME_FILTER, newGroupName);
-		action.waitObjVisibleAndClick(By.id(Users.GROUPNAME_LINKID + row));
+		int actualIndex = table.findRealIndexByCell(1, 1, Users.GROUPNAME_LINKID);
+		WebElement name = driver.findElement(By.id(Users.GROUPNAME_LINKID + actualIndex));
+		name.click();
+
+		//
+		// action.waitObjVisibleAndClick(By.id(Users.GROUPNAME_LINKID + row));
 		action.waitObjVisibleAndClick(By.id(UserGroup.CANCEL_ID));
 	}
 
