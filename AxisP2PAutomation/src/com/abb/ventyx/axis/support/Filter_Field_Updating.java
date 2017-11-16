@@ -42,7 +42,7 @@ public class Filter_Field_Updating extends BaseTestCase {
 	// Step 02
 	@Test(dependsOnMethods = "openFilterField", alwaysRun = true)
 	public void selectOneRowOnGrid() {
-		table.clikFilterAndInputWithColumn(fieldName, FilterField.FIELD_NAME_FILTER, true);
+		table.clickFilterAndInputWithColumn(fieldName, FilterField.FIELD_NAME_FILTER, true);
 		index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH, 1, 1);
 		index.click();
 		action.waitObjVisible(By.id(FilterField.FIELD_NAME));
@@ -64,7 +64,7 @@ public class Filter_Field_Updating extends BaseTestCase {
 	public void selectOneRowOnGridSecondTime() {
 		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 		action.pause(milliseconds);
-		table.clikFilterAndInputWithColumn(fieldName, FilterField.FIELD_NAME_FILTER, true);
+		table.clickFilterAndInputWithColumn(fieldName, FilterField.FIELD_NAME_FILTER, true);
 		index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH, 1, 1);
 		index.click();
 	}

@@ -43,7 +43,7 @@ public class Document_Type_Deleting extends BaseTestCase {
 
 	@Test(dependsOnMethods = "openDocumentTypesScreen", alwaysRun = true)
 	public void deleteDocumentType() {
-		table.clikFilterAndInputWithColumn(Document_Type_Creating.documentTypes, DocType.FIELD_TYPE_FILTER, true);
+		table.clickFilterAndInputWithColumn(Document_Type_Creating.documentTypes, DocType.FIELD_TYPE_FILTER, true);
 		action.pause(milliseconds);
 		index = table.getCellObject(1, 3);
 		index.click();

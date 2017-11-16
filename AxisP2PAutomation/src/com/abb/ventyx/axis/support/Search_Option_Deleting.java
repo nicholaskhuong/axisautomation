@@ -44,7 +44,7 @@ public class Search_Option_Deleting extends BaseTestCase {
 	// Step 02_03
 	@Test(dependsOnMethods = "openSearchOptionScreen", alwaysRun = true)
 	public void clickFilterButtonAndClickTrashBin() {
-		table.clikFilterAndInputWithColumn(fieldTypeUpdate, SearchOption.FIELD_TYPE_FILTER, true);
+		table.clickFilterAndInputWithColumn(fieldTypeUpdate, SearchOption.FIELD_TYPE_FILTER, true);
 		index = table.getCellObject(1, 4);
 		index.click();
 		action.pause(milliseconds);

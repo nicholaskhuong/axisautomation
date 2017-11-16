@@ -42,7 +42,7 @@ public class Code_Set_Type_Updating extends BaseTestCase {
 	// Step 02_03
 	@Test(dependsOnMethods = "openBusinessCodeSetTypeScreen", alwaysRun = true)
 	public void selectOneRecordOnGrid() {
-		table.clikFilterAndInputWithColumn(Code_Set_Type_Creating.codeType, BusinessCodeTypes.CODE_TYPE_FILTER, true);
+		table.clickFilterAndInputWithColumn(Code_Set_Type_Creating.codeType, BusinessCodeTypes.CODE_TYPE_FILTER, true);
 		action.pause(milliseconds);
 		index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH, 1, 1);
 		index.click();

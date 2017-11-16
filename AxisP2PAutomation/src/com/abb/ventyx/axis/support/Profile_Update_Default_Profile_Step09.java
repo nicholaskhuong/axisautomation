@@ -102,7 +102,7 @@ public class Profile_Update_Default_Profile_Step09 extends BaseTestCase {
 
 	@Test(dependsOnMethods = "openMaintainCustomerScreenWithAccountCustomer", alwaysRun = true)
 	public void clickFiterButtonOnMaintainCustomerScreen1() {
-		table.clikFilterAndInputWithColumn(profileName, Profiles.PROFILE_NAME_CUSTOMER_FILTER, true);
+		table.clickFilterAndInputWithColumn(profileName, Profiles.PROFILE_NAME_CUSTOMER_FILTER, true);
 	}
 
 	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomerScreen1", alwaysRun = true)
@@ -246,7 +246,7 @@ public class Profile_Update_Default_Profile_Step09 extends BaseTestCase {
 
 	@Test(dependsOnMethods = "openMaintainCustomerScreen3", alwaysRun = true)
 	public void clickFiterButtonOnMaintainCustomer3() {
-		table.clikFilterAndInputWithColumn(customerName, Profiles.CUSTOMER_NAME1_FILTER, true);
+		table.clickFilterAndInputWithColumn(customerName, Profiles.CUSTOMER_NAME1_FILTER, true);
 	}
 
 	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomer3", alwaysRun = true)

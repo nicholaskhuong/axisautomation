@@ -62,7 +62,7 @@ public class User_Administration_Updating extends BaseTestCase {
 	public void clickFiterButtonOnUserScreen() {
 		action.clickVerticalScrollBar();
 		table = new TableFunction(driver);
-		table.clikFilterAndInputWithColumn(User_Administration_Creating.user, Users.USER_ID_FILTER, true);
+		table.clickFilterAndInputWithColumn(User_Administration_Creating.user, Users.USER_ID_FILTER, true);
 		index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH, 1, 1);
 		index.click();
 		action.waitObjVisible(By.id(Users.USER_ID));

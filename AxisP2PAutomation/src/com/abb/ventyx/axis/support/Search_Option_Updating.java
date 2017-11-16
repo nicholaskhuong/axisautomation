@@ -49,7 +49,7 @@ public class Search_Option_Updating extends BaseTestCase {
 	// Step 02_03
 	@Test(dependsOnMethods = "openSearchOptionScreen", alwaysRun = true)
 	public void clickFilterButtonAndEditDataFilterType() {
-		table.clikFilterAndInputWithColumn(fieldType, SearchOption.FIELD_TYPE_FILTER, true);
+		table.clickFilterAndInputWithColumn(fieldType, SearchOption.FIELD_TYPE_FILTER, true);
 		action.pause(milliseconds);
 		index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH, 1, 1);
 		index.click();

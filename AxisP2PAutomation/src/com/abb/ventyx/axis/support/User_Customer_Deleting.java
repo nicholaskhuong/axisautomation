@@ -40,7 +40,7 @@ public class User_Customer_Deleting extends BaseTestCase {
 
 	@Test(dependsOnMethods = "openCustomerScreen", alwaysRun = true)
 	public void clickFiterButtonOnCustomerScreen() {
-		table.clikFilterAndInputWithColumn("435", Users.USER_NUMBER_FILTER, true);
+		table.clickFilterAndInputWithColumn("435", Users.USER_NUMBER_FILTER, true);
 		action.pause(waitTime);
 		assertEquals(table.getValueRow(2, 1), "QATest");
 	}
@@ -55,7 +55,7 @@ public class User_Customer_Deleting extends BaseTestCase {
 
 	@Test(dependsOnMethods = "clickCustomerIDOnCustomerScreen", alwaysRun = true)
 	public void clickFiterButtonOnMaintainCustomerUsersScreen() {
-		table.clikFilterAndInputWithColumn(User_Customer_Updating.emailUpdate, Users.EMAIL_FILTER, true);
+		table.clickFilterAndInputWithColumn(User_Customer_Updating.emailUpdate, Users.EMAIL_FILTER, true);
 		assertEquals(table.getValueRow(3, 1), User_Customer_Updating.emailUpdate);
 	}
 

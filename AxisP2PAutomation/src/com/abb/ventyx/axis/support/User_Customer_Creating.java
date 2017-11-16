@@ -52,7 +52,7 @@ public class User_Customer_Creating extends BaseTestCase {
 	// Step 2
 	@Test(dependsOnMethods = "openCustomerScreen", alwaysRun = true)
 	public void clickFiterButtonOnCustomerScreen() {
-		table.clikFilterAndInputWithColumn("435", Users.USER_NUMBER_FILTER, true);
+		table.clickFilterAndInputWithColumn("435", Users.USER_NUMBER_FILTER, true);
 		action.pause(waitTime);
 		// assertEquals(table.getValueRow(2, 1), "QATest");
 	}
@@ -74,7 +74,7 @@ public class User_Customer_Creating extends BaseTestCase {
 	@Test(dependsOnMethods = "clickCustomerIDOnCustomerScreen", alwaysRun = true)
 	public void clickFiterButtonOnMaintainCustomerUsersScreen() {
 		action.pause(2000);
-		table.clikFilterAndInputWithColumn("axisuser1", Users.USER_ID_FILTER, true);
+		table.clickFilterAndInputWithColumn("axisuser1", Users.USER_ID_FILTER, true);
 		assertEquals(table.getValueRow(2, 1), "axisuser1");
 	}
 

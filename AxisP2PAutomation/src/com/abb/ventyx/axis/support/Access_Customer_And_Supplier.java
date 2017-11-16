@@ -50,7 +50,7 @@ public class Access_Customer_And_Supplier extends BaseTestCase {
 	// Step 2
 	@Test(dependsOnMethods = "openCustomerListScreen", alwaysRun = true)
 	public void clickDeactivateAnCustomer() {
-		table.clikFilterAndInputWithColumn(nameCustomerList, CustomerList.NAME_FILTER, true);
+		table.clickFilterAndInputWithColumn(nameCustomerList, CustomerList.NAME_FILTER, true);
 		action.pause(3000);
 		WebElement row = driver.findElement(By.xpath(ScreenObjects.TABLE_ROW_XPATH_CUSTOMER));
 		row.click();
@@ -148,7 +148,7 @@ public class Access_Customer_And_Supplier extends BaseTestCase {
 	public void accessActiveCustomer() {
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_LIST));
-		table.clikFilterAndInputWithColumn(nameCustomerList, CustomerList.NAME_FILTER, true);
+		table.clickFilterAndInputWithColumn(nameCustomerList, CustomerList.NAME_FILTER, true);
 		action.pause(waitTime);
 		index = table.getCellObject(1, 6);
 		index.click();

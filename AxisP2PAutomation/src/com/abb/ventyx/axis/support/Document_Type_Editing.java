@@ -45,7 +45,7 @@ public class Document_Type_Editing extends BaseTestCase {
 	// Step 02
 	@Test(dependsOnMethods = "openDocumentTypesScreen", alwaysRun = true)
 	public void clickAddButtonAndInputData() {
-		table.clikFilterAndInputWithColumn(Document_Type_Creating.documentTypes, DocType.FIELD_TYPE_FILTER, true);
+		table.clickFilterAndInputWithColumn(Document_Type_Creating.documentTypes, DocType.FIELD_TYPE_FILTER, true);
 		action.pause(3000);
 		index = table.getCellObject(ScreenObjects.TABLE_BODY_DOCUMENT_XPATH, 1, 1);
 		index.click();

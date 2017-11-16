@@ -146,7 +146,7 @@ public class Customer_Deactivate_Activate extends BaseTestCase {
 
 	@Test(dependsOnMethods = "clickActiveOnCustomerScreen", alwaysRun = true)
 	public void clickFiterButtonOnCustomerScreen2() {
-		table.clikFilterAndInputWithColumn(emailAddress, CustomerList.EMAIL_FILTER, true);
+		table.clickFilterAndInputWithColumn(emailAddress, CustomerList.EMAIL_FILTER, true);
 	}
 
 	// Steps 13_14

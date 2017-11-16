@@ -83,7 +83,7 @@ public class Search_Option_Creating extends BaseTestCase {
 	@Test(dependsOnMethods = "clickAddButtonAndClickCancelButton", alwaysRun = true)
 	public void clickFilterButtonAndNoInputMandatoryFilter() {
 		table = new TableFunction(driver);
-		table.clikFilterAndInputWithColumn(fieldType, SearchOption.FIELD_TYPE_FILTER, true);
+		table.clickFilterAndInputWithColumn(fieldType, SearchOption.FIELD_TYPE_FILTER, true);
 		index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH, 1, 1);
 		index.click();
 		action.inputTextField(SearchOption.FIELD_TYPE_ADD, fieldType);
