@@ -3,8 +3,8 @@
     <property name="test.set" value="${test.set}" />
 	<property name="newreport.dir" value="report" />
     <property name="report.tmp" value="${report.dir}/tmp" />
-    <property name="dashboard.dir" value="src/com/abb/ventyx/axis/dashboard/" />
-    <property name="customer.dir" value="src/com/abb/ventyx/axis/customer/" />
+    <property name="dashboard" value="src/com/abb/ventyx/axis/dashboard/" />
+    <property name="customer" value="src/com/abb/ventyx/axis/customer/" />
     <property name="supplier" value="src/com/abb/ventyx/axis/supplier" />
     <property name="support" value="src/com/abb/ventyx/axis/support" />
 	<property environment="env"/>
@@ -14,7 +14,6 @@
 			<include name="${other.source.expression}" />
 		</fileset>
 	</path>
-    
     <path id="all.source.path">
         <sort>
             <fileset dir="${src.dir}">                
@@ -24,53 +23,53 @@
     </path>    
     <path id="dashboard.source.path">
         <sort>
-            <fileset dir="${dashboard.dir}">
+            <fileset dir="${dashboard}">
                 <include name="**/testng_*.xml" />                                
             </fileset>
         </sort>
     </path>    
     <path id="support.source.path">
         <sort>
-            <fileset dir="${support.dir}">
+            <fileset dir="${support}">
                 <include name="**/testng_*.xml" />                
             </fileset>
         </sort>
     </path>   
     <path id="supplier.source.path">
         <sort>
-            <fileset dir="${supplier.dir}">
+            <fileset dir="${supplier}">
                 <include name="**/testng_*.xml" />                
             </fileset>
         </sort>
     </path>    
     <path id="customer.source.path">
         <sort>
-            <fileset dir="${customer.dir}">
+            <fileset dir="${customer}">
                 <include name="**/testng_*.xml" />                
             </fileset>
         </sort>
     </path>   
 	<switch value="${test.set}">
 		<case value="dashboard">
-			<property name="src.dir" value="${dashboard.dir}" />
+			<property name="src.dir" value="${dashboard}" />
 			<path id="test.set.source.path">
 				<path refid="dashboard.source.path" />
 			</path>
 		</case>
 		<case value="support">
-			<property name="src.dir" value="${support.dir}" />
+			<property name="src.dir" value="${support}" />
 			<path id="test.set.source.path">
 				<path refid="support.source.path" />
 			</path>
 		</case>
 		<case value="supplier">
-			<property name="src.dir" value="${supplier.dir}" />
+			<property name="src.dir" value="${supplier}" />
 			<path id="test.set.source.path">
 				<path refid="supplier.source.path" />
 			</path>
 		</case>
 		<case value="customer">
-			<property name="src.dir" value="${customer.dir}" />
+			<property name="src.dir" value="${customer}" />
 			<path id="test.set.source.path">
 				<path refid="customer.source.path" />
 			</path>
