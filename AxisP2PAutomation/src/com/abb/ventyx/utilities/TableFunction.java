@@ -277,13 +277,13 @@ public class TableFunction {
 		return cell;
 	}
 
-	public WebElement getCellObject(String tableXpath, int row, int column) {
-		WebElement cell = driver.findElement(By.xpath(String.format("%s/tr[%s]/td[%s]/div/div", tableXpath, row, column)));
+	public WebElement getCellObject(String tableXpathToBody, int row, int column) {
+		WebElement cell = driver.findElement(By.xpath(String.format("%s/tr[%s]/td[%s]/div/div", tableXpathToBody, row, column)));
 		return cell;
 	}
 
-	public WebElement getCellObjectUserGroup(String tableXpath, int row, int column) {
-		WebElement cell = driver.findElement(By.xpath(String.format("%s/tr[%s]/td[%s]", tableXpath, row, column)));
+	public WebElement getCellObjectUserGroup(String tableXpathToBody, int row, int column) {
+		WebElement cell = driver.findElement(By.xpath(String.format("%s/tr[%s]/td[%s]", tableXpathToBody, row, column)));
 		action.scrollToElement(cell);
 		return cell;
 	}
@@ -315,8 +315,8 @@ public class TableFunction {
 		return getIDValue(ScreenObjects.TABLE_BODY_XPATH, column, row);
 	}
 
-	public String getIDValue(String tableXpath, int column, int row) {
-		return getValueRow(String.format("%s//tr[%s]//td[%s]/div/div/span/span", tableXpath, row, column), column, row);
+	public String getIDValue(String tableXpathToBody, int column, int row) {
+		return getValueRow(String.format("%s//tr[%s]//td[%s]/div/div/span/span", tableXpathToBody, row, column), column, row);
 	}
 
 	public String getValueRow(int column, int row) {
