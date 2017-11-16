@@ -66,7 +66,7 @@ public class SupplierUser_Filter extends BaseTestCase {
 		// index.click();
 		int actualIndex = table.findRealIndexByCell(1, 1, "usrSequenceIdStrBtn");
 		WebElement userNumber = driver.findElement(By.id("usrSequenceIdStrBtn" + actualIndex));
-		action.scrollToElementWithColumnNo(userNumber, 1);
+		// action.scrollToElementWithColumnNo(userNumber, 1);
 		userNumber.click();
 		action.waitObjVisible(By.id(ScreenObjects.CANCEL_ID));
 		action.clickBtn(By.id(ScreenObjects.CANCEL_ID));
@@ -78,7 +78,7 @@ public class SupplierUser_Filter extends BaseTestCase {
 		action.inputTextField(By.xpath(Users.USER_GROUP_FILTER), userGroup);
 		int actualIndex = table.findRealIndexByCell(1, 6, "deleteItemBtn");
 		WebElement deleteIcon = driver.findElement(By.id("deleteItemBtn" + actualIndex));
-		action.scrollToElementWithColumnNo(deleteIcon, 6);
+		// action.scrollToElementWithColumnNo(deleteIcon, 6);
 		deleteIcon.click();
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.DELETE_USER_CONFIRM);
