@@ -235,8 +235,9 @@ public class Axis_Support_Dashboard extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(AxisConfigMenu.ADD_ICON));
 		action.pause(milliseconds);
 		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.HEADER_OF_PAGE)).getText(), maitainDocumentFilterFieldSearchOption);
+
 		action.clickBtn(By.id(AxisConfigMenu.SYSTEM_FILTER));
-		action.waitObjVisible(By.cssSelector(AxisConfigMenu.ADD_ICON));
+		// action.waitObjVisible(By.cssSelector(AxisConfigMenu.ADD_ICON));
 		action.pause(milliseconds);
 		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.HEADER_OF_PAGE)).getText(), systemDocumentFilters);
 	}
