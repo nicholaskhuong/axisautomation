@@ -111,7 +111,7 @@ public class SupplierList_RemoteIcon_Step1_11 extends BaseTestCase {
 	}
 
 	// Step 5
-	@Test(dependsOnMethods = "checkPenIconInvisible", alwaysRun = true)
+	@Test(dependsOnMethods = "assertPenIconInvisible", alwaysRun = true)
 	public void signOutAndAssertBackToCustomerView() {
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
 		action.pause(2000);
