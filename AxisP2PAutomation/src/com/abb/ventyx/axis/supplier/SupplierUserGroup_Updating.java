@@ -19,7 +19,7 @@ import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
 
 @ALM(id = "620")
-@Credentials(user = "mail232@abb.com", password = "Testuser1")
+@Credentials(user = "mail232@abb.com", password = "Testuser2")
 public class SupplierUserGroup_Updating extends BaseTestCase {
 	String USER_GROUP_NAME = "POGroup";
 	ScreenAction action;
