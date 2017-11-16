@@ -138,7 +138,7 @@ public class BaseTestCase {
 	@AfterClass(alwaysRun = true)
 	public void afterClass() throws IOException {
 		// Save to disk
-		// driver.quit();
+		driver.quit();
 		Serializion serializer = new Serializion();
 		serializer.saveToDisk(resultAdapters);
 		exportALMReferenceCsv(testCaseName, testCaseStatus);
