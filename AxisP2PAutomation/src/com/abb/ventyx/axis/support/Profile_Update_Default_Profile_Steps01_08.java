@@ -126,9 +126,6 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), Profiles.TITLE_PROFILES);
 		action.waitObjVisible(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
-		assertEquals(table.getValueTableHeader(1), "Profile Name");
-		assertEquals(table.getValueTableHeader(2), "Document Types");
-		assertEquals(table.getValueTableHeader(3), "Default");
 	}
 
 	@Test(dependsOnMethods = "openMaintainCustomerScreenWithAccountCustomer", alwaysRun = true)
