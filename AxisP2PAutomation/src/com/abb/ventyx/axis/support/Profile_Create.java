@@ -73,7 +73,7 @@ public class Profile_Create extends BaseTestCase {
 	@Test(dependsOnMethods = "inputProfileNameandCustomerName", alwaysRun = true)
 	public void slelectAuthorisedDocumentTypes() {
 		action.clickCheckBoxN(4);
-		action.pause(milliseconds);
+		action.pause(2000);
 		action.waitObjVisible(By.id(Profiles.SAVE_BTN));
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
 		action.pause(milliseconds);
