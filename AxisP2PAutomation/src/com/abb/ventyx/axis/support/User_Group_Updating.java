@@ -86,7 +86,7 @@ public class User_Group_Updating extends BaseTestCase {
 	public void selectCustomerAndClickOneRowInGrid2() {
 		action.waitObjVisibleAndClick(By.xpath(UserGroup.FILTER_XPATH));
 		action.inputTextField(UserGroup.NAME_FILTER, newGroupName);
-		action.pause(waitTime);
+		action.pause(2000);
 		action.waitObjVisibleAndClick(By.id(Users.GROUPNAME_LINKID + row));
 
 	}
