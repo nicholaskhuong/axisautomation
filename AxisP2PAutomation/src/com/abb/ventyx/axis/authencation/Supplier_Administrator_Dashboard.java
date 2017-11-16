@@ -37,6 +37,10 @@ public class Supplier_Administrator_Dashboard extends BaseTestCase {
 	String documentInError = "Documents in Error";
 	String maintainSupplierUserGroups = "Maintain Supplier User Groups";
 	String maintainSupplierUsers = "Maintain Supplier Users";
+	String maintainAddressContact = "Maintain Address & Contact";
+	String supplierCodeSets = "Supplier Code Sets";
+	String userGuide = "User Guide";
+	String about = "About";
 	@Test
 	public void openScreen() {
 		// Step 1
@@ -45,7 +49,7 @@ public class Supplier_Administrator_Dashboard extends BaseTestCase {
 	}
 	@Test(dependsOnMethods = "openScreen")
 	public void checkTopRibbon() {
-		// step 2
+		// step 2,10
 		assertEquals(driver.findElement(By.id(AxisConfigMenu.LANGUAGE)).getText(), "EN");
 		assertEquals(driver.findElement(By.id(UserPreferences.PROFILE_PANEL)).getText(), userName);
 		action.clickBtn(By.id(UserPreferences.PROFILE_PANEL));
@@ -103,16 +107,41 @@ public class Supplier_Administrator_Dashboard extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(SupplierMenu.HEADER_OF_PAGE));
 		action.pause(milliseconds);
 		assertEquals(driver.findElement(By.cssSelector(SupplierMenu.HEADER_OF_PAGE)).getText(), maintainSupplierUserGroups);
-
 		action.clickBtn(By.id(SupplierMenu.USERS_ID));
 		action.waitObjVisible(By.cssSelector(SupplierMenu.HEADER_OF_PAGE));
 		action.pause(milliseconds);
 		assertEquals(driver.findElement(By.cssSelector(SupplierMenu.HEADER_OF_PAGE)).getText(), maintainSupplierUsers);
-
-
+		action.clickBtn(By.id(SupplierMenu.ADDRESS_CONTACT_ID));
+		action.waitObjVisible(By.cssSelector(SupplierMenu.HEADER_OF_PAGE));
+		action.pause(milliseconds);
+		assertEquals(driver.findElement(By.cssSelector(SupplierMenu.HEADER_OF_PAGE)).getText(), maintainAddressContact);
+		action.clickBtn(By.id(SupplierMenu.AUDIT_LOG_ID));
+		action.waitObjVisible(By.cssSelector(SupplierMenu.HEADER_OF_PAGE));
+		action.pause(milliseconds);
+		assertEquals(driver.findElement(By.cssSelector(SupplierMenu.HEADER_OF_PAGE)).getText(), auditLog);
+		action.clickBtn(By.id(SupplierMenu.BUSINESS_CODE_SETS_ID));
+		action.waitObjVisible(By.cssSelector(SupplierMenu.HEADER_OF_PAGE));
+		action.pause(milliseconds);
+		assertEquals(driver.findElement(By.cssSelector(SupplierMenu.HEADER_OF_PAGE)).getText(), supplierCodeSets);
+		action.clickBtn(By.id(SupplierMenu.DOCUMENT_IN_ERROR_ID));
+		action.waitObjVisible(By.cssSelector(SupplierMenu.HEADER_OF_PAGE));
+		action.pause(milliseconds);
+		assertEquals(driver.findElement(By.cssSelector(SupplierMenu.HEADER_OF_PAGE)).getText(), documentInError);
 	}
 
+	@Test(dependsOnMethods = "checkPageOfAdministration")
+	public void checkSubmenuDocumentation() {
+		// step 9
+		action.clickBtn(By.id(SupplierMenu.DOCUMENTATION_ID));
+		action.waitObjVisible(By.id(SupplierMenu.USER_GUIDE_ID));
+		assertEquals(driver.findElement(By.id(SupplierMenu.USER_GUIDE_ID)).getText(), userGuide);
+		assertEquals(driver.findElement(By.id(SupplierMenu.ABOUT_ID)).getText(), about);
+	}
 
+	@Test(dependsOnMethods = "checkSubmenuDocumentation")
+	public void signOut() {
+		// step 11
+		action.signOut();
 
-
+	}
 }
