@@ -74,9 +74,8 @@ public class Profile_Create extends BaseTestCase {
 	@Test(dependsOnMethods = "inputProfileNameandCustomerName", alwaysRun = true)
 	public void slelectAuthorisedDocumentTypes() {
 		action.clickCheckBoxN(4);
-		WebElement btn = (new WebDriverWait(driver, 30)).until(ExpectedConditions.presenceOfElementLocated(By.id(Profiles.SAVE_BTN)));
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
-		action.pause(milliseconds);
+		WebElement saveBtn = driver.findElement(By.id(Profiles.SAVE_BTN));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", saveBtn);
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.MESSAGE_SUCCESSFULLY);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 	}
