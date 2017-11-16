@@ -3,6 +3,7 @@ package com.abb.ventyx.axis.support;
 import static org.testng.Assert.assertEquals;
 
 import java.util.List;
+import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -28,9 +29,7 @@ public class Profile_Update_Customer_Defined_Step07 extends BaseTestCase {
 	TableFunction table1;
 	int row;
 	int waitTime = 1000;
-	String nameCustomer = "QATest2";
-	String profileName = "Profile2";
-	String profileNameEdited = "Profile3";
+	public static String profileNameEdited2 = "Profile3";
 	WebElement index;
 	String userLogin = "admin_customer22@abb.com";
 	String userPassword = "Testuser1";
@@ -56,16 +55,15 @@ public class Profile_Update_Customer_Defined_Step07 extends BaseTestCase {
 	// Step2
 	@Test(dependsOnMethods = "openMaintainCustomerDefinedProfilesScreen", alwaysRun = true)
 	public void clickFiterButtonOnMaintainCustomerScreen() {
-		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
-		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
-		action.inputTextField(ScreenObjects.FILTER_FIELD_ID, nameCustomer);
+		action.pause(waitTime);
+		table.clickFilterAndInputWithColumn(Profile_Update_Customer_Defined_Steps01_06.profileNameEdited, Profiles.PROFILE_NAME_FILTER, true);
 	}
 
 	@Test(dependsOnMethods = "openMaintainCustomerDefinedProfilesScreen", alwaysRun = true)
 	public void clickPencilIconOnMaintainCustomerScreen() {
 		action.pause(waitTime);
 		action.clickHorizontalScrollBar();
-		index = table.getCellObject(2, 5);
+		index = table.getCellObject(1, 5);
 		index.click();
 		action.waitObjVisible(By.id(Profiles.PROFILE_NAME_ID));
 		assertEquals(driver.findElement(By.cssSelector(Profiles.PROFILES_CSS)).getText(), Profiles.MODIFY_PROFILES);
@@ -83,11 +81,14 @@ public class Profile_Update_Customer_Defined_Step07 extends BaseTestCase {
 
 	@Test(dependsOnMethods = "checkStatusProfileAndCustomerName", alwaysRun = true)
 	public void editProfileNameonModifyProfileSreen() {
+		Random rand = new Random();
+		long drand = (long) (rand.nextDouble() * 10000L);
+		profileNameEdited2 = String.format("Profile3 %s", drand);
 		action.waitObjVisible(By.id(Profiles.PROFILE_NAME_ID));
 		WebElement fileName = driver.findElement(By.id(Profiles.PROFILE_NAME_ID));
 		fileName.clear();
 		action.pause(waitTime);
-		fileName.sendKeys(profileNameEdited);
+		fileName.sendKeys(profileNameEdited2);
 		action.pause(2000);
 		action.clickCheckBoxN(2);
 	}
@@ -146,18 +147,15 @@ public class Profile_Update_Customer_Defined_Step07 extends BaseTestCase {
 
 	@Test(dependsOnMethods = "openMaintainCustomerDefinedProfilesScreenAgain", alwaysRun = true)
 	public void clickFiterButtonAgainOnMaintainCustomerScreen() {
-		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
-		ScreenAction action = new ScreenAction(driver);
-		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
-		action.inputTextField(ScreenObjects.FILTER_FIELD_ID, nameCustomer);
 		action.pause(waitTime);
+		table.clickFilterAndInputWithColumn(Profile_Update_Customer_Defined_Step07.profileNameEdited2, Profiles.PROFILE_NAME_FILTER, true);
 	}
 
 	@Test(dependsOnMethods = "clickFiterButtonAgainOnMaintainCustomerScreen", alwaysRun = true)
 	public void clickEditIconAgainOnMaintainCustomerScreen() {
 		action.pause(waitTime);
 		action.clickHorizontalScrollBar();
-		index = table.getCellObject(2, 5);
+		index = table.getCellObject(1, 5);
 		index.click();
 	}
 

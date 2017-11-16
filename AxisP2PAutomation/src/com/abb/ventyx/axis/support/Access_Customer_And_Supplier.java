@@ -170,6 +170,7 @@ public class Access_Customer_And_Supplier extends BaseTestCase {
 
 	@Test(dependsOnMethods = "viewSupplierListOfCustomer", alwaysRun = true)
 	public void editAvaliableDocuments() {
+		action.pause(waitTime);
 		index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH, 1, 1);
 		index.click();
 		action.pause(waitTime);

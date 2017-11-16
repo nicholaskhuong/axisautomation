@@ -2,6 +2,8 @@ package com.abb.ventyx.axis.support;
 
 import static org.testng.Assert.assertEquals;
 
+import java.util.Random;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -27,7 +29,7 @@ public class Profile_Create extends BaseTestCase {
 	BaseDropDownList list;
 	int row;
 	String nameCustomer = "QATest2";
-	String profileName = "Profile1";
+	public static String profileName = "Profile1";
 	int milliseconds = 1000;
 	TableFunction table;
 
@@ -55,6 +57,9 @@ public class Profile_Create extends BaseTestCase {
 
 	@Test(dependsOnMethods = "clickAddButton", alwaysRun = true)
 	public void inputProfileNameandCustomerName() {
+		Random rand = new Random();
+		long drand = (long) (rand.nextDouble() * 10000L);
+		profileName = String.format("Profile1 %s", drand);
 		action.waitObjVisible(By.id(Profiles.PROFILE_NAME_ID));
 		action.inputTextField(Profiles.PROFILE_NAME_ID, profileName);
 		action.waitObjVisible(By.className(Profiles.CUSTOMER_CLASS));

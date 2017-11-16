@@ -48,9 +48,8 @@ public class Profile_Delete_Customer_Defined extends BaseTestCase {
 
 	@Test(dependsOnMethods = "openMaintainCustomerDefinedProfilesScreen", alwaysRun = true)
 	public void clickFiterButtonOnMaintainCustomerScreen() {
-		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
-		action.waitObjVisible(By.id(ScreenObjects.FILTER_FIELD_ID));
-		action.inputTextField(ScreenObjects.FILTER_FIELD_ID, customerName);
+		action.pause(waitTime);
+		table.clickFilterAndInputWithColumn(customerName, Profiles.CUSTOMER_NAME1_FILTER, true);
 	}
 
 	// #1: Default Profile
@@ -65,9 +64,10 @@ public class Profile_Delete_Customer_Defined extends BaseTestCase {
 	// #2 Non-default Profile
 	@Test(dependsOnMethods = "checkDefaultProfileOnMaintainCustomerScreen", alwaysRun = true)
 	public void checkNonDefaultProfileOnMaintainCustomerScreen() {
+		table.inputFilterAtIndex(Profile_Update_Customer_Defined_Step07.profileNameEdited2, Profiles.PROFILE_NAME_FILTER, true);
 		action.pause(waitTime);
 		action.clickHorizontalScrollBar();
-		index = table.getCellObject(2, 6);
+		index = table.getCellObject(1, 6);
 		index.isEnabled();
 	}
 

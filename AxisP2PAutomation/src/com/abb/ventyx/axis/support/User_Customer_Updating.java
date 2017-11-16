@@ -187,6 +187,7 @@ public class User_Customer_Updating extends BaseTestCase {
 	// Step 10-13
 	@Test(dependsOnMethods = "clickAddButtonAndNoInputData", alwaysRun = true)
 	public void clickAddButtonAndInputDataName() {
+		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.cssSelector(Profiles.ADD_PROFILE));
 		action.inputTextField(Users.USER_ID, userUpdate);
 		action.pause(waitTime);

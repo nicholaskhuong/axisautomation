@@ -55,6 +55,7 @@ public class User_Customer_Deleting extends BaseTestCase {
 
 	@Test(dependsOnMethods = "clickCustomerIDOnCustomerScreen", alwaysRun = true)
 	public void clickFiterButtonOnMaintainCustomerUsersScreen() {
+		action.pause(waitTime);
 		table.clickFilterAndInputWithColumn(User_Customer_Updating.emailUpdate, Users.EMAIL_FILTER, true);
 		assertEquals(table.getValueRow(3, 1), User_Customer_Updating.emailUpdate);
 	}
@@ -64,8 +65,8 @@ public class User_Customer_Deleting extends BaseTestCase {
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
 		index = table.getCellObject(1, 6);
-		action.pause(waitTime);
 		index.click();
+		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.NO_BTN_ID));
 		action.pause(waitTime);
 		index.click();
