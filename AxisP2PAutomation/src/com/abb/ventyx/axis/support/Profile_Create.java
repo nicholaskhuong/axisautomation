@@ -3,6 +3,7 @@ package com.abb.ventyx.axis.support;
 import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -72,10 +73,9 @@ public class Profile_Create extends BaseTestCase {
 
 	@Test(dependsOnMethods = "inputProfileNameandCustomerName", alwaysRun = true)
 	public void slelectAuthorisedDocumentTypes() {
-		action.pause(2000);
 		action.clickCheckBoxN(4);
-		action.waitObjVisible(By.id(Profiles.SAVE_BTN));
-		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
+		WebElement btn = (new WebDriverWait(driver, 30)).until(ExpectedConditions.presenceOfElementLocated(By.id(Profiles.SAVE_BTN)));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
 		action.pause(milliseconds);
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.MESSAGE_SUCCESSFULLY);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
@@ -83,7 +83,6 @@ public class Profile_Create extends BaseTestCase {
 
 	@Test(dependsOnMethods = "slelectAuthorisedDocumentTypes", alwaysRun = true)
 	public void clickAddButton2() {
-		action.waitObjVisible(By.cssSelector(Profiles.ADD_PROFILE));
 		action.waitObjVisibleAndClick(By.cssSelector(Profiles.ADD_PROFILE));
 	}
 
