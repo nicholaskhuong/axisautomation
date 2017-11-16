@@ -49,13 +49,11 @@ public class Document_Type_Deleting extends BaseTestCase {
 		index.click();
 		action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.CONFIRMATION)).getText(), Messages.DEL_CONFIRM);
-		action.waitObjVisible(By.id(BusinessCodeTypes.NO));
 		action.waitObjVisibleAndClick(By.id(BusinessCodeTypes.NO));
 		index = table.getCellObject(1, 3);
 		index.click();
 		action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.CONFIRMATION)).getText(), Messages.DEL_CONFIRM);
-		action.waitObjVisible(By.id(BusinessCodeTypes.YES));
 		action.waitObjVisibleAndClick(By.id(BusinessCodeTypes.YES));
 		action.pause(milliseconds);
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.DOCUMENT_DELETE_SUCCESSFULLY);
@@ -71,13 +69,11 @@ public class Document_Type_Deleting extends BaseTestCase {
 		index.click();
 		action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.CONFIRMATION)).getText(), Messages.DEL_CONFIRM);
-		action.waitObjVisible(By.id(BusinessCodeTypes.NO));
 		action.waitObjVisibleAndClick(By.id(BusinessCodeTypes.NO));
 		index = table.getCellObject(1, 3);
 		index.click();
 		action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.CONFIRMATION)).getText(), Messages.DEL_CONFIRM);
-		action.waitObjVisible(By.id(BusinessCodeTypes.YES));
 		action.waitObjVisibleAndClick(By.id(BusinessCodeTypes.YES));
 		action.pause(milliseconds);
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.DEL_DOC_TYPES_ERROR);

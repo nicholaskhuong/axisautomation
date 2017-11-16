@@ -62,7 +62,6 @@ public class Code_Set_Type_Updating extends BaseTestCase {
 	@Test(dependsOnMethods = "selectOneRecordOnGrid", alwaysRun = true)
 	public void updateValueForCodeDecs() {
 		action.inputTextField(By.xpath(BusinessCodeTypes.CODE_DESCRIPTION), codeDecsUpdate);
-		action.waitObjVisible(By.xpath(BusinessCodeTypes.SAVE_BUTTON));
 		action.waitObjVisibleAndClick(By.xpath(BusinessCodeTypes.SAVE_BUTTON));
 		action.pause(milliseconds);
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.UPDATE_CODE_SET_TYPE_SUCCESSFULLY);
@@ -81,14 +80,12 @@ public class Code_Set_Type_Updating extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.xpath(BusinessCodeTypes.CANCEL_BUTTON));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
-		action.waitObjVisible(By.id(BusinessCodeTypes.NO));
 		action.waitObjVisibleAndClick(By.id(BusinessCodeTypes.NO));
 		action.pause(milliseconds);
 		action.waitObjVisibleAndClick(By.xpath(BusinessCodeTypes.CANCEL_BUTTON));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
 		action.pause(milliseconds);
-		action.waitObjVisible(By.id(BusinessCodeTypes.YES));
 		action.waitObjVisibleAndClick(By.id(BusinessCodeTypes.YES));
 	}
 }

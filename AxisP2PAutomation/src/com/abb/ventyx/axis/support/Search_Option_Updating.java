@@ -74,7 +74,6 @@ public class Search_Option_Updating extends BaseTestCase {
 		index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH, 1, 1);
 		index.click();
 		action.inputTextField(SearchOption.FILTER_SUB_TYPE_ADD, filterSubTypeUpdate2);
-		action.waitObjVisible(By.id(SearchOption.CANCEL_ADD));
 		action.waitObjVisibleAndClick(By.id(SearchOption.CANCEL_ADD));
 		action.pause(milliseconds);
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));

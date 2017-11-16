@@ -78,12 +78,10 @@ public class Code_Set_Type_Creating extends BaseTestCase {
 	@Test(dependsOnMethods = "clickAddButtonAndInputLeaveTwoFilterEmpty", alwaysRun = true)
 	public void clickAddButtonAndInputCodeType() {
 		action.inputTextField(By.xpath(BusinessCodeTypes.CODE_TYPE), codeType2);
-		action.waitObjVisible(By.xpath(BusinessCodeTypes.CANCEL_BUTTON));
 		action.waitObjVisibleAndClick(By.xpath(BusinessCodeTypes.CANCEL_BUTTON));
 		action.pause(milliseconds);
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
-		action.waitObjVisible(By.id(BusinessCodeTypes.NO));
 		action.waitObjVisibleAndClick(By.id(BusinessCodeTypes.NO));
 		action.pause(milliseconds);
 		action.waitObjVisibleAndClick(By.xpath(BusinessCodeTypes.CANCEL_BUTTON));

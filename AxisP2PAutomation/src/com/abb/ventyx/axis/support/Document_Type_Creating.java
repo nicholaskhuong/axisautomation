@@ -79,18 +79,15 @@ public class Document_Type_Creating extends BaseTestCase {
 	// Step 04_07
 	@Test(dependsOnMethods = "clickAddButtonAndInputLeaveTwoFilterEmpty", alwaysRun = true)
 	public void inputValueAndClickCancel() {
-		action.waitObjVisible(By.id(DocType.CANCEL));
 		action.waitObjVisibleAndClick(By.id(DocType.CANCEL));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
-		action.waitObjVisible(By.id(BusinessCodeTypes.NO));
 		action.waitObjVisibleAndClick(By.id(BusinessCodeTypes.NO));
 		action.pause(milliseconds);
 		action.waitObjVisibleAndClick(By.id(DocType.CANCEL));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
 		action.pause(milliseconds);
-		action.waitObjVisible(By.id(BusinessCodeTypes.YES));
 		action.waitObjVisibleAndClick(By.id(BusinessCodeTypes.YES));
 	}
 

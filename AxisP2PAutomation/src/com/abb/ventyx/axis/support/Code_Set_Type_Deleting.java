@@ -49,13 +49,11 @@ public class Code_Set_Type_Deleting extends BaseTestCase {
 		index.click();
 		action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.CONFIRMATION)).getText(), Messages.DEL_CODE_SET_TYPE);
-		action.waitObjVisible(By.id(BusinessCodeTypes.NO));
 		action.waitObjVisibleAndClick(By.id(BusinessCodeTypes.NO));
 		index = table.getCellObject(1, 3);
 		index.click();
 		action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.CONFIRMATION)).getText(), Messages.DEL_CODE_SET_TYPE);
-		action.waitObjVisible(By.id(BusinessCodeTypes.YES));
 		action.waitObjVisibleAndClick(By.id(BusinessCodeTypes.YES));
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.DEL_CODE_SET_WITH_CODE_TYPE);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
@@ -70,7 +68,6 @@ public class Code_Set_Type_Deleting extends BaseTestCase {
 		index.click();
 		action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.CONFIRMATION)).getText(), Messages.DEL_CODE_SET_TYPE);
-		action.waitObjVisible(By.id(BusinessCodeTypes.YES));
 		action.waitObjVisibleAndClick(By.id(BusinessCodeTypes.YES));
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.DEL_CODE_SET);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));

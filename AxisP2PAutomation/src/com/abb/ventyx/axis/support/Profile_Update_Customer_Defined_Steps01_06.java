@@ -95,7 +95,6 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 
 	@Test(dependsOnMethods = "editProfileNameonModifyProfileSreen", alwaysRun = true)
 	public void clickSaveButtonAndDisplayMessageSuccessfully() {
-		action.waitObjVisible(By.id(Profiles.SAVE_BTN));
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
 		action.pause(waitTime);
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.MESSAGE_EDIT_PROFILE_NAME_SUCCESSFULLY);

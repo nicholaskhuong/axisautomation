@@ -103,12 +103,10 @@ public class Search_Option_Creating extends BaseTestCase {
 		action.pause(milliseconds);
 		action.inputTextField(SearchOption.FILTER_SUB_TYPE_ADD, filterSubTypeExit);
 		action.inputTextField(SearchOption.OPTION_ADD, optionExit);
-		action.waitObjVisible(By.id(SearchOption.SAVE_ADD));
 		action.waitObjVisibleAndClick(By.id(SearchOption.SAVE_ADD));
 		action.pause(milliseconds);
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.DUPLICATE_FIELD_TYPE);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
-		action.waitObjVisible(By.id(SearchOption.CANCEL_ADD));
 		action.waitObjVisibleAndClick(By.id(SearchOption.CANCEL_ADD));
 		action.pause(milliseconds);
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));

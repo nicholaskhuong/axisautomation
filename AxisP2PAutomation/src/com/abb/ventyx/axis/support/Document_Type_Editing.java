@@ -72,15 +72,12 @@ public class Document_Type_Editing extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.id(DocType.CANCEL));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
-		action.waitObjVisible(By.id(DocType.NO));
 		action.waitObjVisibleAndClick(By.id(DocType.NO));
 		action.pause(milliseconds);
-		action.waitObjVisible(By.id(DocType.CANCEL));
 		action.waitObjVisibleAndClick(By.id(DocType.CANCEL));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
 		action.pause(milliseconds);
-		action.waitObjVisible(By.id(DocType.YES));
 		action.waitObjVisibleAndClick(By.id(DocType.YES));
 		assertEquals(driver.findElement(By.xpath(DocType.MAINTAIN_DOCUMENT_TYPES_TITLE)).getText(), documentTypeTitle);
 	}
