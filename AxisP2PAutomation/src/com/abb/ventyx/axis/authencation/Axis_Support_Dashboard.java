@@ -182,7 +182,7 @@ public class Axis_Support_Dashboard extends BaseTestCase {
 		action.pause(milliseconds);
 		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.HEADER_OF_PAGE)).getText(), documentInErrorPage);
 		action.clickBtn(By.id(AxisConfigMenu.CACHE));
-		action.waitObjVisible(By.id(AxisConfigMenu.REFRESH_BUTTON));
+		// action.waitObjVisible(By.id(AxisConfigMenu.REFRESH_BUTTON));
 		action.pause(milliseconds);
 		assertEquals(driver.findElement(By.cssSelector(AxisConfigMenu.HEADER_OF_PAGE)).getText(), cachePage);
 	}
