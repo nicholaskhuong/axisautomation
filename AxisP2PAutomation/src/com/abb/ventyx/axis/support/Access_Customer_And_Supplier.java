@@ -10,6 +10,7 @@ import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
 import com.abb.ventyx.axis.objects.pagedefinitions.CustomerList;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
+import com.abb.ventyx.axis.objects.pagedefinitions.SupplierList;
 import com.abb.ventyx.axis.objects.pagedefinitions.UserPreferences;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseTestCase;
@@ -165,7 +166,7 @@ public class Access_Customer_And_Supplier extends BaseTestCase {
 		assertEquals(table.getValueTableHeader(4), "Supplier Status");
 		assertEquals(table.getValueTableHeader(5), "Supplier Name");
 		assertEquals(table.getValueTableHeader(6), "Supplier Notification Email");
-		assertEquals(table.getValueTableHeader(7), "Profile Name");
+		// assertEquals(table.getValueTableHeader(7), "Profile Name");
 	}
 
 	@Test(dependsOnMethods = "viewSupplierListOfCustomer", alwaysRun = true)
@@ -178,23 +179,43 @@ public class Access_Customer_And_Supplier extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.CANCEL_ID));
 	}
 
-	// @Test(dependsOnMethods = "editAvaliableDocuments", alwaysRun = true)
-	// public void accessSupplier() {
-	// table.clikFilterAndInputWithColumn(companyRegistrationNo,
-	// CustomerList.NAME_FILTER, true);
-	// action.clickHorizontalScrollBar();
-	// index = table.getCellObject(1, 8);
-	// index.click();
-	// action.pause(waitTime);
-	// assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(),
-	// CustomerList.TITLE_SUPPLIER_DASHBOARD);
-	// }
-	//
-	// @Test(dependsOnMethods = "accessSupplier", alwaysRun = true)
-	// public void accessAddressAndContact() {
-	// action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.ADMINISTRATION));
-	// action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.ADDRESS_AND_CONTACT));
-	//
-	// }
+	@Test(dependsOnMethods = "editAvaliableDocuments", alwaysRun = true)
+	public void accessSupplier() {
+		action.pause(waitTime);
+		table.clickFilterAndInputWithColumn(companyRegistrationNo, CustomerList.NAME_FILTER, true);
+		action.clickHorizontalScrollBar();
+		index = table.getCellObject(1, 8);
+		index.click();
+		action.pause(waitTime);
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), CustomerList.TITLE_SUPPLIER_DASHBOARD);
+	}
 
+	@Test(dependsOnMethods = "accessSupplier", alwaysRun = true)
+	public void accessAddressAndContact() {
+		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.ADMINISTRATION));
+		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.ADDRESS_AND_CONTACT));
+		action.waitObjVisible(By.id(SupplierList.SUPPLIER_NAME_ID));
+		action.waitObjVisible(By.id(SupplierList.COMPANY_REGISTRATION_NO_ID));
+		action.waitObjVisible(By.id(SupplierList.TAX_REGRISTRATION_NO_ID));
+		action.waitObjVisible(By.id(SupplierList.SUPPLIER_NOTIFICATION_EMAILID));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), CustomerList.TITLE_ADDRESS_CONTACT);
+		WebElement supplierName = driver.findElement(By.id(SupplierList.SUPPLIER_NAME_ID));
+		supplierName.isDisplayed();
+		WebElement companyRegistrationNoID = driver.findElement(By.id(SupplierList.COMPANY_REGISTRATION_NO_ID));
+		companyRegistrationNoID.isDisplayed();
+		WebElement taxRegistrationNoID = driver.findElement(By.id(SupplierList.TAX_REGRISTRATION_NO_ID));
+		taxRegistrationNoID.isDisplayed();
+		WebElement supplierNotificationEmailID = driver.findElement(By.id(SupplierList.SUPPLIER_NOTIFICATION_EMAILID));
+		supplierNotificationEmailID.isDisplayed();
+		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
+		action.waitObjVisible(By.id(ScreenObjects.SIGNOUT_BUTTON));
+		assertEquals(action.isElementPresent(By.id(UserPreferences.EDITPROFILE_ID)), false);
+	}
+
+	@Test(dependsOnMethods = "accessAddressAndContact", alwaysRun = true)
+	public void clickBackToCustomerDashBoard() {
+		action.waitObjVisibleAndClick(By.id(CustomerList.SIGN_OUT_BUTTON));
+		action.pause(waitTime);
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), CustomerList.TITLE_CUSTOMERS_DASHBOARD);
+	}
 }

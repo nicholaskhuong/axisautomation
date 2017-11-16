@@ -16,6 +16,7 @@ public class CustomerList {
 	public static final String NAME_FILTER = "(//input[@id='filterField'])[2]";
 	public static final String STATUS = "custStatusCB";
 	public static final String REMOVE = "removeLogoBtn";
+	public static final String SIGN_OUT_BUTTON = "signOutBtn";
 
 	// Create New Customer
 	public static final String CUSTOMER_NAME = "custNameField";
@@ -37,7 +38,7 @@ public class CustomerList {
 	public static final String TITLE_AUDITLOG = "Audit Log";
 	public static final String TITLE_AXIS_SUPPORT_DASHBOARD = "Axis Support Dashboard";
 	public static final String TITLE_EDIT_SUPPLIER = "Edit Supplier";
-	public static final String TITLE_SUPPLIER_DASHBOARD = "Supplier DashboardS";
+	public static final String TITLE_SUPPLIER_DASHBOARD = "Supplier Dashboard";
 	public static final String EDIT_SUPPLIER_CSS = "#createsupplierwindow > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-default-page-header-layout > div > div > div > div";
 
 }
