@@ -87,15 +87,10 @@ public class User_Group_Updating extends BaseTestCase {
 	public void selectCustomerAndClickOneRowInGrid2() {
 		action.waitObjVisibleAndClick(By.xpath(UserGroup.FILTER_XPATH));
 		action.inputTextField(UserGroup.NAME_FILTER, newGroupName);
-
 		int actualIndex = table.findRealIndexByCell(1, 1, Users.GROUPNAME_LINKID);
-
 		WebElement name = driver.findElement(By.id(Users.GROUPNAME_LINKID + actualIndex));
 		System.out.println(actualIndex + "actualIndex:");
 		name.click();
-
-		// action.pause(2000);
-		// action.waitObjVisibleAndClick(By.id(Users.GROUPNAME_LINKID + row));
 
 	}
 
@@ -117,9 +112,6 @@ public class User_Group_Updating extends BaseTestCase {
 		int actualIndex = table.findRealIndexByCell(1, 1, Users.GROUPNAME_LINKID);
 		WebElement name = driver.findElement(By.id(Users.GROUPNAME_LINKID + actualIndex));
 		name.click();
-
-		//
-		// action.waitObjVisibleAndClick(By.id(Users.GROUPNAME_LINKID + row));
 		action.waitObjVisibleAndClick(By.id(UserGroup.CANCEL_ID));
 	}
 
