@@ -35,7 +35,7 @@ public class Axis_Support_Dashboard extends BaseTestCase {
 	String supplierUsergroup = "Supplier Usergroup";
 	String supplierAdministrator = "Supplier Administrator";
 	String documentInError = "Documents in Error";
-	String cache = "Cache";
+	String cache = "Cache Management";
 	String axisB2BAdapters = "Axis B2B Adapters";
 	String documentTypes = "Document Types";
 	String permissions = "Permissions";

@@ -60,10 +60,6 @@ public class SupplierUser_Filter extends BaseTestCase {
 	@Test(dependsOnMethods = "filterFunction")
 	public void selectRowAfterFilter() {
 		action.pause(800);
-		// WebElement index = table.getCellObject(ScreenObjects.TABLE_BODY_USER_XPATH,
-		// 1, 1);
-		// action.scrollToElementWithColumnNo(index, 6);
-		// index.click();
 		int actualIndex = table.findRealIndexByCell(1, 1, "usrSequenceIdStrBtn");
 		WebElement userNumber = driver.findElement(By.id("usrSequenceIdStrBtn" + actualIndex));
 		// action.scrollToElementWithColumnNo(userNumber, 1);
