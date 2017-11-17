@@ -36,7 +36,6 @@ public class Login_Page extends BaseTestCase {
 	String axisSupplierPort = "Axis Supplier Portal";
 	String newPassword = "Testuser1";
 	String newConfirmPassword = "Testuser1";
-
 	@Test
 	public void openScreen() {
 		// Pre-condition
@@ -70,7 +69,11 @@ public class Login_Page extends BaseTestCase {
 	@Test(dependsOnMethods = "createNewUser")
 	public void checkLoginTheFirstTime() {
 		action.waitObjVisible(By.id(Users.PASSWORD_ID));
+		action.pause(milliseconds);
 		action.inputTextField(Users.PASSWORD_ID, password);
+		action.inputTextField(Users.NEW_PASSWORD, newPassword);
+		action.inputEmailField(Users.CONFIMRPASSWORD_ID, newConfirmPassword);
+
 
 
 
