@@ -185,8 +185,8 @@ public class ScreenAction {
 		table = new TableFunction(driver);
 		List<WebElement> listCheckbox = driver.findElements(By.xpath("//input[@type='checkbox']"));
 		int row = table.findRowByString(tableBody, columnn, text, true);
-		if (listCheckbox.get(row + 1).isDisplayed()) {
-			listCheckbox.get(row + 1).click();
+		if (listCheckbox.get(row).isDisplayed()) {
+			listCheckbox.get(row).click();
 		} else {
 			((JavascriptExecutor) driver).executeScript("arguments[0].click();", listCheckbox.get(row + 1));
 		}

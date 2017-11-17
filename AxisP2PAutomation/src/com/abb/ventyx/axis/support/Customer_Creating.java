@@ -6,6 +6,7 @@ import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
@@ -30,21 +31,27 @@ public class Customer_Creating extends BaseTestCase {
 	TableFunction table;
 	int waitTime = 1000;
 	WebElement index;
-	Random rand = new Random();
-	int drand = rand.nextInt(10000);
-	String customerName = String.format("customer %s", drand);
-	String emailAddress = String.format("customer%s@abb.com", drand);
+	String customerName;
+	String emailAddress;
 	String newPassword = "Testuser1";
 	String password;
 	String passwordUser = "Testuser2";
-	String userID = String.format("cus %s", drand);
-	String emailUser = String.format("cus_user%s@abb.com", drand);
+	String userID;
+	String emailUser;
 	String confirmPassword = "Testuser2";
 
 	@Test
 	public void openCustomerScreen() {
 		action = new ScreenAction(driver);
 		table = new TableFunction(driver);
+
+		Random rand = new Random();
+		int drand = rand.nextInt(10000);
+		customerName = String.format("customer %s", drand);
+		emailAddress = String.format("customer%s@abb.com", drand);
+		userID = String.format("cus %s", drand);
+		emailUser = String.format("cus_user%s@abb.com", drand);
+
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_MAINTENANCE));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMER_LIST));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
@@ -99,6 +106,14 @@ public class Customer_Creating extends BaseTestCase {
 	}
 
 	@Test(dependsOnMethods = "inputDataOnCustomerListScreen", alwaysRun = true)
+	public void checkDataAgainAfterCreated() {
+		table.clickFilterAndInput("(//input[@id='filterField'])[4]", emailAddress);
+		action.pause(3000);
+		int i = table.findRowByString(4, emailAddress);
+		Assert.assertTrue(i >= 0, String.format("Customer list: %s not found!", emailAddress));
+	}
+
+	@Test(dependsOnMethods = "checkDataAgainAfterCreated", alwaysRun = true)
 	public void openResetUserPasswordScreen() {
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.AXIS_ADMIN));
