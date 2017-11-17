@@ -5,6 +5,7 @@ import static org.testng.Assert.assertEquals;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
@@ -60,7 +61,12 @@ public class Profile_Update_Default_Profile_Steps03_08 extends BaseTestCase {
 		// index = table.getCellObject(1, 5);
 		int actualIndex = table.findRealIndexByCell(1, 5, "editItemBtn");
 		WebElement editButton = driver.findElement(By.id("editItemBtn" + actualIndex));
-		action.scrollToElementWithColumnNo(editButton, 5);
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", editButton);
+
+		// int actualIndex = table.findRealIndexByCell(1, 5, "editItemBtn");
+		// WebElement editButton = driver.findElement(By.id("editItemBtn" +
+		// actualIndex));
+		// action.scrollToElementWithColumnNo(editButton, 5);
 		// action.clickHorizontalScrollBar();
 		// index = table.getCellObject(1, 5);
 		editButton.click();
