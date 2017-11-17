@@ -172,6 +172,18 @@ public class ScreenAction {
 		return driver.findElement(by).getAttribute("value");
 	}
 
+	public void clickCheckBoxByText(String text) {
+		List<WebElement> listCheckbox = driver.findElements(By.xpath("//input[@type='checkbox']"));
+		for (WebElement webElement : listCheckbox) {
+			webElement.getText();
+			if (webElement.getText().trim().toLowerCase().equals(text.toLowerCase()))
+ {
+				webElement.click();
+				break;
+			}
+		}
+	}
+
 	public void clickCheckBoxN(int n) {
 		List<WebElement> listCheckbox = driver.findElements(By.xpath("//input[@type='checkbox']"));
 		if (listCheckbox.size() > 0) {
