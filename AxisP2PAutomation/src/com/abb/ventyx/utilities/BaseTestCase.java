@@ -15,10 +15,6 @@ import java.util.Properties;
 import java.util.Random;
 import java.util.Vector;
 
-import jxl.Sheet;
-import jxl.Workbook;
-import jxl.read.biff.BiffException;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.logging.impl.Log4JLogger;
 import org.apache.log4j.xml.DOMConfigurator;
@@ -36,10 +32,13 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 
-import au.com.bytecode.opencsv.CSVReader;
-
 import com.abb.ventyx.axis.objects.pages.LoginPage;
 import com.abb.ventyx.utilities.report.TestMethodResultAdapter;
+
+import au.com.bytecode.opencsv.CSVReader;
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
 
 public class BaseTestCase {
 
