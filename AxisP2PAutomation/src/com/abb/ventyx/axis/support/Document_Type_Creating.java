@@ -54,11 +54,8 @@ public class Document_Type_Creating extends BaseTestCase {
 		long drand = (long) (rand.nextDouble() * 10000L);
 		documentTypes = String.format("DocType %s", drand);
 		description = String.format("AA_MAINTAIN_DOCTYPES%s", drand);
-		action.waitObjVisible(By.id(DocType.DOCTYPES));
 		action.inputTextField(By.id(DocType.DOCTYPES), documentTypes);
-		action.waitObjVisible(By.id(DocType.DESC));
 		action.inputTextField(By.id(DocType.DESC), description);
-		action.waitObjVisible(By.id(DocType.SAVE));
 		action.waitObjVisibleAndClick(By.id(DocType.SAVE));
 		action.pause(milliseconds);
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.DOCUMENT_CREATE_SUCCESSFULLY);
@@ -70,7 +67,6 @@ public class Document_Type_Creating extends BaseTestCase {
 	public void clickAddButtonAndInputLeaveTwoFilterEmpty() {
 		action.waitObjVisibleAndClick(By.cssSelector(DocType.ADD));
 		action.inputTextField(By.id(DocType.DOCTYPES), documentTypes);
-		action.waitObjVisible(By.id(DocType.SAVE));
 		action.waitObjVisibleAndClick(By.id(DocType.SAVE));
 		action.pause(milliseconds);
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
