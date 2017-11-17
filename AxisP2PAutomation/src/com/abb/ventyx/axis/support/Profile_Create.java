@@ -140,10 +140,9 @@ public class Profile_Create extends BaseTestCase {
 
 	@Test(dependsOnMethods = "inputMissingProfileName")
 	public void inputDuplicationProfileName() {
+		action.waitObjVisible(By.id(Profiles.PROFILE_NAME_ID));
 		action.inputTextField(Profiles.PROFILE_NAME_ID, profileName);
-		action.waitObjVisible(By.className(Profiles.CUSTOMER_CLASS));
-		WebElement customerClass = driver.findElement(By.className(Profiles.CUSTOMER_CLASS));
-		customerClass.sendKeys(nameCustomer);
+		action.clickCheckBoxN(0);
 		action.clickCheckBoxN(4);
 		saveBtn = driver.findElement(By.id(Profiles.SAVE_BTN));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", saveBtn);
