@@ -8,9 +8,14 @@
 				<class name="com.abb.ventyx.axis.authencation.Axis_Support_Dashboard" />			
 		</classes>	
   	</test>
-  	<test name="Customer Dashboard">
+  	<test name="Customer Administrator Dashboard">
 		<classes>
 				<class name="com.abb.ventyx.axis.authencation.Customer_Administrator_Dashboard" />			
+		</classes>	
+  	</test>
+  	<test name="Customer User Dashboard">
+		<classes>
+				<class name="com.abb.ventyx.axis.authencation.Customer_User_Dashboard" />			
 		</classes>	
   	</test>
   	<test name="Supplier Administration Dashboard">
