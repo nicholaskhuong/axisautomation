@@ -29,7 +29,6 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 	String CONFIRMPASSWORD ="Testuser3";
 	String NEWPASSWORD ="Testuser4";
 	String NEWUSERID ="Automator 1 1";
-	String USERID ="Automator 1";
 	String ACTIONSTATUS ="Active";
 	String CREATEDSTATUS ="Created";
 	int i;
@@ -52,8 +51,8 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 	public void openModifyUserScreen() {
 		action.pause(1000);
 		i = table.findRowByString(3, CustomerUser_Created_ByAdmin.USEREMAILADDRESS);
-		Assert.assertTrue(i >= 0, "Customer user not found!");
-		assertEquals(table.getValueRow(2, i), USERID);
+		Assert.assertTrue(i >= 0, String.format("Customer user: %s not found!", CustomerUser_Created_ByAdmin.USEREMAILADDRESS));
+		assertEquals(table.getValueRow(2, i), CustomerUser_Created_ByAdmin.USERID);
 		assertEquals(table.getValueRow(4, i), "All Permissions");
 		assertEquals(table.getValueRow(5, i), CREATEDSTATUS);
 		userNo = table.getValueRow(1, i);
