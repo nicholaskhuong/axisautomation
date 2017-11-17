@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
@@ -96,7 +97,8 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 
 	@Test(dependsOnMethods = "editProfileNameonModifyProfileSreen", alwaysRun = true)
 	public void clickSaveButtonAndDisplayMessageSuccessfully() {
-		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
+		WebElement saveBtn = driver.findElement(By.id(Profiles.SAVE_BTN));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", saveBtn);
 		action.pause(waitTime);
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.MESSAGE_EDIT_PROFILE_NAME_SUCCESSFULLY);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
@@ -172,7 +174,8 @@ public class Profile_Update_Customer_Defined_Steps01_06 extends BaseTestCase {
 
 	@Test(dependsOnMethods = "editAuthorisedDocumentTypes", alwaysRun = true)
 	public void clickSaveBtnAndDisplayMessageSuccessfully() {
-		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
+		WebElement saveBtn = driver.findElement(By.id(Profiles.SAVE_BTN));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", saveBtn);
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.MESSAGE_EDIT_PROFILE_NAME_SUCCESSFULLY);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 	}
