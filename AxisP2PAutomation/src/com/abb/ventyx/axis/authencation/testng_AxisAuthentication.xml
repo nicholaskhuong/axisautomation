@@ -10,7 +10,7 @@
   	</test>
   	<test name="Customer Dashboard">
 		<classes>
-				<class name="com.abb.ventyx.axis.authencation.Customer_Dashboard" />			
+				<class name="com.abb.ventyx.axis.authencation.Customer_Administrator_Dashboard" />			
 		</classes>	
   	</test>
   	<test name="Supplier Administration Dashboard">
