@@ -49,7 +49,7 @@ public class CustomerUser_Deleted_ByAdmin extends BaseTestCase {
 		action.pause(1000);
 		i = table.findRowByString(3, CustomerUser_Created_ByAdmin.USEREMAILADDRESS);
 		Assert.assertTrue(i >= 0, String.format("Customer user: %s not found!", CustomerUser_Created_ByAdmin.USEREMAILADDRESS));
-		assertEquals(table.getValueRow(2, i), CustomerUser_Created_ByAdmin.USERID);
+		assertEquals(table.getValueRow(2, i), CustomerUser_Updated_ByAdmin.NEWUSERID);
 		action.clickBtn(By.id("deleteItemBtn" + (i - 1)));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.CONFIRMATION)).getText(), Messages.DELETE_USER_CONFIRM);

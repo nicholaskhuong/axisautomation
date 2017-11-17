@@ -28,7 +28,7 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 	String PASSWORD ="Testuser2";
 	String CONFIRMPASSWORD ="Testuser3";
 	String NEWPASSWORD ="Testuser4";
-	String NEWUSERID ="Automator 1 1";
+	public static String NEWUSERID = "Automator 1 1";
 	String ACTIONSTATUS ="Active";
 	String CREATEDSTATUS ="Created";
 	int i;
