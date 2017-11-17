@@ -26,18 +26,16 @@
 		</classes>	
   	</test>
 
-  	 <test name="Update Default Profile Steps01_08">
+  	 <test name="Update Default Profile Step01_02">
 		<classes>
-				<class name="com.abb.ventyx.axis.support.Profile_Update_Default_Profile_Steps01_08" />
+				<class name="com.abb.ventyx.axis.support.Profile_Update_Default_Profile_Step01_02" />
 		</classes>	
   	</test>
-  	
-   	<test name="Update Default Profile Step_09">
-		<classes>		
-				<class name="com.abb.ventyx.axis.support.Profile_Update_Default_Profile_Step09" />
+  	 <test name="Update Default Profile Steps03_08">
+		<classes>
+				<class name="com.abb.ventyx.axis.support.Profile_Update_Default_Profile_Steps03_08" />
 		</classes>	
-  	</test>
-  	
+  	</test> 	
    <test name="Filter And Sort">
 		<classes>
 				<class name="com.abb.ventyx.axis.support.Profile_Filter_Sort" />
