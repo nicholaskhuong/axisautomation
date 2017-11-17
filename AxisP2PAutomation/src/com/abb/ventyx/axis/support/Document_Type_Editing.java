@@ -2,6 +2,8 @@ package com.abb.ventyx.axis.support;
 
 import static org.testng.Assert.assertEquals;
 
+import java.util.Random;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
@@ -20,8 +22,7 @@ import com.abb.ventyx.utilities.TableFunction;
 @ALM(id = "543")
 @Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class Document_Type_Editing extends BaseTestCase {
-	String description = "AA_MAINTAIN_DOCTYPES";
-	String descriptionUpdate = "AA_MAINTAIN_DOCTYPES_UPDATE";
+	public static String descriptionUpdate = "AA_MAINTAIN_DOCTYPES_UPDATE";
 	ScreenAction action;
 	int milliseconds = 1000;
 	TableFunction table;
@@ -49,6 +50,9 @@ public class Document_Type_Editing extends BaseTestCase {
 		action.pause(3000);
 		index = table.getCellObject(ScreenObjects.TABLE_BODY_DOCUMENT_XPATH, 1, 1);
 		index.click();
+		Random rand = new Random();
+		long drand = (long) (rand.nextDouble() * 10000L);
+		descriptionUpdate = String.format("AA_MAINTAIN_DOC_UPDATE%s", drand);
 		action.waitObjVisible(By.id(DocType.DESC));
 		action.inputTextField(By.id(DocType.DESC), descriptionUpdate);
 		action.waitObjVisibleAndClick(By.id(DocType.SAVE));
@@ -67,7 +71,7 @@ public class Document_Type_Editing extends BaseTestCase {
 		action.waitObjVisible(By.id(DocType.DOCTYPES));
 		action.waitObjVisible(By.id(DocType.DESC));
 		assertEquals(driver.findElement(By.cssSelector(DocType.DOCUMENT_TYPES_CSS)).getText(), DocType.EDIT_DOCUMENT_TYPES);
-		action.inputTextField(By.id(DocType.DESC), description);
+		action.inputTextField(By.id(DocType.DESC), Document_Type_Creating.description);
 		action.waitObjVisible(By.id(DocType.CANCEL));
 		action.waitObjVisibleAndClick(By.id(DocType.CANCEL));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));

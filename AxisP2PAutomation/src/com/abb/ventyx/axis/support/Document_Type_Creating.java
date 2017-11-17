@@ -23,7 +23,7 @@ import com.abb.ventyx.utilities.TableFunction;
 @Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class Document_Type_Creating extends BaseTestCase {
 	public static String documentTypes = "DocType50";
-	String description = "AA_MAINTAIN_DOCTYPES";
+	public static String description = "AA_MAINTAIN_DOCTYPES";
 	ScreenAction action;
 	int milliseconds = 1000;
 	TableFunction table;
@@ -53,6 +53,7 @@ public class Document_Type_Creating extends BaseTestCase {
 		Random rand = new Random();
 		long drand = (long) (rand.nextDouble() * 10000L);
 		documentTypes = String.format("DocType %s", drand);
+		description = String.format("AA_MAINTAIN_DOCTYPES%s", drand);
 		action.waitObjVisible(By.id(DocType.DOCTYPES));
 		action.inputTextField(By.id(DocType.DOCTYPES), documentTypes);
 		action.waitObjVisible(By.id(DocType.DESC));
