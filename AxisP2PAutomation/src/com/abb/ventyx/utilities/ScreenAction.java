@@ -27,10 +27,12 @@ import com.abb.ventyx.axis.objects.pagedefinitions.UserPreferences;
 
 public class ScreenAction {
 	WebDriver driver;
+	TableFunction table;
 	int timeout = 60;
 
 	public ScreenAction(WebDriver driver) {
 		this.driver = driver;
+
 	}
 
 	public void waitObjInvisible(By obj) {
@@ -173,14 +175,20 @@ public class ScreenAction {
 	}
 
 	public void clickCheckBoxByText(String text) {
+		clickCheckBoxByText(2, text, ScreenObjects.TABLE_BODY_CUSTOMER_LIST_DOCTYPE_XPATH);
+	}
+
+	public void clickCheckBoxByText(int columnn, String text) {
+		clickCheckBoxByText(columnn, text, ScreenObjects.TABLE_BODY_CUSTOMER_LIST_DOCTYPE_XPATH);
+	}
+	public void clickCheckBoxByText(int columnn, String text, String tableBody) {
+		table = new TableFunction(driver);
 		List<WebElement> listCheckbox = driver.findElements(By.xpath("//input[@type='checkbox']"));
-		for (WebElement webElement : listCheckbox) {
-			webElement.getText();
-			if (webElement.getText().trim().toLowerCase().equals(text.toLowerCase()))
- {
-				webElement.click();
-				break;
-			}
+		int row = table.findRowByString(tableBody, columnn, text, true);
+		if (listCheckbox.get(row + 1).isDisplayed()) {
+			listCheckbox.get(row + 1).click();
+		} else {
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", listCheckbox.get(row + 1));
 		}
 	}
 

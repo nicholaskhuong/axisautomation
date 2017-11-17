@@ -78,7 +78,7 @@ public class Customer_Creating extends BaseTestCase {
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 		// Upload LOGO
 		action.pause(waitTime);
-		action.clickCheckBoxN(0);
+		action.clickCheckBoxByText("Advance Shipping Notice");
 		// Can't automation.
 		// Only manual test
 		// action.inputTextField(Users.HOME_URL_FIELS, "apple.JPG");

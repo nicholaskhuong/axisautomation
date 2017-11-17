@@ -62,4 +62,6 @@ public class ScreenObjects {
 	// Configuration Business Code Set Types
 	public static final String BUSINESS_CODE_TYPES = "//*[@id=\"content-component\"]/div/div[2]/div/div/div[1]/div/div/div[1]";
 	public static final String CREATE_BUSINESS_CODE_TYPES = "#codesettypecreateeditview > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-default-page-header-layout > div > div > div >div";
+	public static final String TABLE_BODY_CUSTOMER_LIST_DOCTYPE_XPATH = "//*[@id='tDocTypeGrid']/div[3]/table/tbody";
+
 }

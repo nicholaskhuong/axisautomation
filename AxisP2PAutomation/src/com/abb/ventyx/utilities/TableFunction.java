@@ -42,10 +42,8 @@ public class TableFunction {
 		} else {
 			baseTable = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(tableBody)));
 		}
-
 		if (null == baseTable)
 			return row;
-
 		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
 		int sumRow;
 		if (isXpath) {
@@ -62,7 +60,7 @@ public class TableFunction {
 					columnValue = driver.findElement(By.cssSelector(String.format("%s> table > tbody > tr:nth-child(%s) > td:nth-child(%s)",
 							tableBody, i, columnindex)));
 				}
-				if (columnValue.getText().equals(value)) {
+				if (columnValue.getText().trim().toLowerCase().equals(value.toLowerCase())) {
 					row = i;
 					break;
 				}
