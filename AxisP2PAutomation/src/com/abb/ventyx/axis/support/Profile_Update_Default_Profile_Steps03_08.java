@@ -58,17 +58,9 @@ public class Profile_Update_Default_Profile_Steps03_08 extends BaseTestCase {
 	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomerScreen", alwaysRun = true)
 	public void clickEditButtonOnMaintainCustomerScreen() {
 		action.pause(waitTime);
-		// index = table.getCellObject(1, 5);
 		int actualIndex = table.findRealIndexByCell(1, 5, "editItemBtn");
 		WebElement editButton = driver.findElement(By.id("editItemBtn" + actualIndex));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", editButton);
-
-		// int actualIndex = table.findRealIndexByCell(1, 5, "editItemBtn");
-		// WebElement editButton = driver.findElement(By.id("editItemBtn" +
-		// actualIndex));
-		// action.scrollToElementWithColumnNo(editButton, 5);
-		// action.clickHorizontalScrollBar();
-		// index = table.getCellObject(1, 5);
 		editButton.click();
 	}
 
@@ -97,7 +89,8 @@ public class Profile_Update_Default_Profile_Steps03_08 extends BaseTestCase {
 	@Test(dependsOnMethods = "untickCheckBoxandSaveButtonOnModifyProfileScreen", alwaysRun = true)
 	public void tickCheckBoxOnModifyProfileScreen() {
 		action.clickCheckBoxN(2);
-		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
+		WebElement saveBtn = driver.findElement(By.id(Profiles.SAVE_BTN));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", saveBtn);
 		action.checkAddSuccess(Messages.MESSAGE_EDIT_PROFILE_NAME_SUCCESSFULLY);
 	}
 
@@ -176,7 +169,8 @@ public class Profile_Update_Default_Profile_Steps03_08 extends BaseTestCase {
 		List<WebElement> checkBoxIndex0 = driver.findElements(By
 				.xpath("//*[@id='configurationGrid-AdvanceShippingNotice']/div[3]/table/tbody/tr[1]/td[1]"));
 		checkBoxIndex0.get(0).click();
-		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
+		WebElement saveBtn = driver.findElement(By.id(Profiles.SAVE_BTN));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", saveBtn);
 		action.checkAddSuccess(Messages.MESSAGE_EDIT_PROFILE_NAME_SUCCESSFULLY);
 	}
 

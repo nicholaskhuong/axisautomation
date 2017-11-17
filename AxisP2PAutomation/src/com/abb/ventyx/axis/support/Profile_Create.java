@@ -114,7 +114,9 @@ public class Profile_Create extends BaseTestCase {
 	public void inputMissingCustomerName() {
 		action.waitObjVisible(By.id(Profiles.PROFILE_NAME_ID));
 		action.inputTextField(Profiles.PROFILE_NAME_ID, "Profile4");
-		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
+		WebElement saveBtn = driver.findElement(By.id(Profiles.SAVE_BTN));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", saveBtn);
+		action.pause(800);
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.MESSAGE_MISSING_CUSTOMER_NAME);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
@@ -144,7 +146,8 @@ public class Profile_Create extends BaseTestCase {
 		WebElement customerClass = driver.findElement(By.className(Profiles.CUSTOMER_CLASS));
 		customerClass.sendKeys(nameCustomer);
 		action.clickCheckBoxN(4);
-		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
+		WebElement saveBtn = driver.findElement(By.id(Profiles.SAVE_BTN));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", saveBtn);
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.MESSAGE_DUPLICATED_PROFILE_NAME);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
