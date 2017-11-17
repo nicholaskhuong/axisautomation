@@ -57,11 +57,13 @@ public class Profile_Update_Default_Profile_Steps03_08 extends BaseTestCase {
 	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomerScreen", alwaysRun = true)
 	public void clickEditButtonOnMaintainCustomerScreen() {
 		action.pause(waitTime);
-		index = table.getCellObject(1, 5);
-		action.scrollToElementWithColumnNo(index, 5);
+		// index = table.getCellObject(1, 5);
+		int actualIndex = table.findRealIndexByCell(1, 5, "editItemBtn");
+		WebElement editButton = driver.findElement(By.id("editItemBtn" + actualIndex));
+		action.scrollToElementWithColumnNo(editButton, 5);
 		// action.clickHorizontalScrollBar();
 		// index = table.getCellObject(1, 5);
-		index.click();
+		editButton.click();
 	}
 
 	@Test(dependsOnMethods = "clickEditButtonOnMaintainCustomerScreen", alwaysRun = true)
