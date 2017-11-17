@@ -15,6 +15,10 @@ import java.util.Properties;
 import java.util.Random;
 import java.util.Vector;
 
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.logging.impl.Log4JLogger;
 import org.apache.log4j.xml.DOMConfigurator;
@@ -32,13 +36,10 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 
+import au.com.bytecode.opencsv.CSVReader;
+
 import com.abb.ventyx.axis.objects.pages.LoginPage;
 import com.abb.ventyx.utilities.report.TestMethodResultAdapter;
-
-import au.com.bytecode.opencsv.CSVReader;
-import jxl.Sheet;
-import jxl.Workbook;
-import jxl.read.biff.BiffException;
 
 public class BaseTestCase {
 
@@ -119,8 +120,8 @@ public class BaseTestCase {
 
 			skipMethods = testResult.getTestContext().getSkippedTests();
 		}
-		TestMethodResultAdapter resultAdapter = new TestMethodResultAdapter(testResult, screenShotPath,
-				testResult.getTestContext().getCurrentXmlTest().getSuite().getFileName(), getALMAnnotation());
+		TestMethodResultAdapter resultAdapter = new TestMethodResultAdapter(testResult, screenShotPath, testResult.getTestContext()
+				.getCurrentXmlTest().getSuite().getFileName(), getALMAnnotation());
 		resultAdapter.setValue(testResult.getName());
 
 		Reporter.allResults.add(resultAdapter);
@@ -217,9 +218,9 @@ public class BaseTestCase {
 	}
 
 	/**
-	 * This data provider reads all lines from the CSV associated with the current
-	 * test. Current test will be whatever has extended AbstractGuicedTestNGTest.
-	 * Returns null if not found CSV file.
+	 * This data provider reads all lines from the CSV associated with the
+	 * current test. Current test will be whatever has extended
+	 * AbstractGuicedTestNGTest. Returns null if not found CSV file.
 	 * 
 	 * @throws IOException
 	 */

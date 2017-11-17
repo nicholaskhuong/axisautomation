@@ -32,6 +32,7 @@ public class Profile_Create extends BaseTestCase {
 	public static String profileName = "Profile1";
 	int milliseconds = 1000;
 	TableFunction table;
+	WebElement saveBtn;
 
 	@Test
 	public void openMaintainCustomerDefinedProfilesScreen() {
@@ -79,7 +80,7 @@ public class Profile_Create extends BaseTestCase {
 	@Test(dependsOnMethods = "inputProfileNameandCustomerName", alwaysRun = true)
 	public void slelectAuthorisedDocumentTypes() {
 		action.clickCheckBoxN(4);
-		WebElement saveBtn = driver.findElement(By.id(Profiles.SAVE_BTN));
+		saveBtn = driver.findElement(By.id(Profiles.SAVE_BTN));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", saveBtn);
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.MESSAGE_SUCCESSFULLY);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
@@ -104,26 +105,25 @@ public class Profile_Create extends BaseTestCase {
 		action.waitObjVisible(By.id(Profiles.PROFILE_NAME_ID));
 		action.inputTextField(Profiles.PROFILE_NAME_ID, "");
 		action.pause(800);
-		WebElement saveBtn = driver.findElement(By.id(Profiles.SAVE_BTN));
+		saveBtn = driver.findElement(By.id(Profiles.SAVE_BTN));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", saveBtn);
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.MESSAGE_MISSING_ALL_FIELD);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
+		((JavascriptExecutor) driver).executeScript("window.focus();");
 	}
 
 	@Test(dependsOnMethods = "inputMissingAllFields", alwaysRun = true)
 	public void inputMissingCustomerName() {
-		action.waitObjVisible(By.id(Profiles.PROFILE_NAME_ID));
 		action.inputTextField(Profiles.PROFILE_NAME_ID, "Profile4");
-		WebElement saveBtn = driver.findElement(By.id(Profiles.SAVE_BTN));
+		action.clickCheckBoxN(0);
+		saveBtn = driver.findElement(By.id(Profiles.SAVE_BTN));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", saveBtn);
-		action.pause(800);
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.MESSAGE_MISSING_CUSTOMER_NAME);
-		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
+		((JavascriptExecutor) driver).executeScript("window.focus();");
 	}
 
-	@Test(dependsOnMethods = "inputMissingCustomerName", alwaysRun = true)
+	@Test(dependsOnMethods = "inputMissingCustomerName")
 	public void inputMissingProfileName() {
-		action.waitObjVisible(By.id(Profiles.PROFILE_NAME_ID));
 		action.inputTextField(Profiles.PROFILE_NAME_ID, "");
 		action.waitObjVisible(By.className(Profiles.CUSTOMER_CLASS));
 		WebElement customerClass = driver.findElement(By.className(Profiles.CUSTOMER_CLASS));
@@ -135,18 +135,17 @@ public class Profile_Create extends BaseTestCase {
 		rowClick.click();
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.MESSAGE_MISSING_PROFILE_FIELD);
-		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
+		((JavascriptExecutor) driver).executeScript("window.focus();");
 	}
 
-	@Test(dependsOnMethods = "inputMissingProfileName", alwaysRun = true)
+	@Test(dependsOnMethods = "inputMissingProfileName")
 	public void inputDuplicationProfileName() {
-		action.waitObjVisible(By.id(Profiles.PROFILE_NAME_ID));
 		action.inputTextField(Profiles.PROFILE_NAME_ID, profileName);
 		action.waitObjVisible(By.className(Profiles.CUSTOMER_CLASS));
 		WebElement customerClass = driver.findElement(By.className(Profiles.CUSTOMER_CLASS));
 		customerClass.sendKeys(nameCustomer);
 		action.clickCheckBoxN(4);
-		WebElement saveBtn = driver.findElement(By.id(Profiles.SAVE_BTN));
+		saveBtn = driver.findElement(By.id(Profiles.SAVE_BTN));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", saveBtn);
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.MESSAGE_DUPLICATED_PROFILE_NAME);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
