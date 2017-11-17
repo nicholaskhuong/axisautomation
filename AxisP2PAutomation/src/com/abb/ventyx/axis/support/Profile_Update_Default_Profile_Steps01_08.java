@@ -63,6 +63,9 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 	@Test(dependsOnMethods = "openCustomersScreen", alwaysRun = true)
 	public void clickAddButtonOnMaintainCustomerScreen() {
 		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
+		action.waitObjVisible(By.id(CustomerList.CUSTOMER_NAME));
+		action.waitObjVisible(By.id(CustomerList.EMAIL_ADDRESS));
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), CustomerList.CREATE_NEW_CUSTOMERS_PAGE);
 	}
 
 	@Test(dependsOnMethods = "clickAddButtonOnMaintainCustomerScreen", alwaysRun = true)
@@ -169,8 +172,10 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomerScreen", alwaysRun = true)
 	public void clickEditButtonOnMaintainCustomerScreen() {
 		action.pause(waitTime);
-		action.clickHorizontalScrollBar();
 		index = table.getCellObject(1, 5);
+		action.scrollToElementWithColumnNo(index, 5);
+		// action.clickHorizontalScrollBar();
+		// index = table.getCellObject(1, 5);
 		index.click();
 	}
 
@@ -199,7 +204,6 @@ public class Profile_Update_Default_Profile_Steps01_08 extends BaseTestCase {
 	@Test(dependsOnMethods = "untickCheckBoxandSaveButtonOnModifyProfileScreen", alwaysRun = true)
 	public void tickCheckBoxOnModifyProfileScreen() {
 		action.clickCheckBoxN(2);
-		action.clickCheckBoxN(3);
 		action.waitObjVisibleAndClick(By.id(Profiles.SAVE_BTN));
 		action.checkAddSuccess(Messages.MESSAGE_EDIT_PROFILE_NAME_SUCCESSFULLY);
 	}
