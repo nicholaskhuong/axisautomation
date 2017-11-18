@@ -23,6 +23,7 @@ public class ScreenObjects {
 	public static final String CONFIRMATION = "#confirmation-window > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-confirmation-window-text-and-button-layout > div > div:nth-child(1) > div";
 	public static final String SUCCESS_MESSAGE = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-success-notification.v-Notification-v-success-notification > div > div > h1 > div > div > div.v-slot.v-align-center.v-align-middle.v-notification-inline-caption";
 	public static final String POPUP_SUCCESS = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-success-notification.v-Notification-v-success-notification";
+	public static final String SUCCESS_MESSAGE_CSS = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-success-notification-no-icon.v-Notification-v-success-notification-no-icon > div > div > h1";
 	public static final String ERROR_CSS = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-error-notification.v-Notification-v-error-notification > div > div > h1 > div > div > div.v-slot.v-align-center.v-align-middle.v-notification-inline-caption";
 	public static final String ERROR_ICON_CSS = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-error-notification.v-Notification-v-error-notification";
 	public static final String ERROR_WITHOUT_ICON_CSS = "#SupplierPortal-1227837064-overlays > div.v-Notification.v-error-notification-no-icon.v-Notification-v-error-notification-no-icon";

@@ -160,6 +160,7 @@ public class SupplierList_CreateActiveSupplier_ByAdmin extends BaseTestCase {
 		action.signIn(supplierEmail, password);
 		action.waitObjVisible(By.id(ScreenObjects.NEWPASSWORD_ID));
 	}
+	
 	// Step 7
 	@Test(dependsOnMethods = "loginTheNewSupplier")
 	public void changePassword() {
@@ -175,8 +176,11 @@ public class SupplierList_CreateActiveSupplier_ByAdmin extends BaseTestCase {
 	public void acceptTradingRelationshipRequest() {
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.ACCEPT_BUTTON_CSS)));
 		action.clickBtn(By.cssSelector(ScreenObjects.ACCEPT_BUTTON_CSS));
-
+		action.waitObjVisible(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS));
+		action.assertTextEqual(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE_CSS), Messages.TRADING_RELATIONSHIP_ACCEPTED_SUCCESS);
+		action.assertTitleScreen("Supplier Dashboard");
 	}
+	
 	// Step 9
 	@Test(dependsOnMethods = "acceptTradingRelationshipRequest", alwaysRun = true)
 	public void checkAddressAndContact() {

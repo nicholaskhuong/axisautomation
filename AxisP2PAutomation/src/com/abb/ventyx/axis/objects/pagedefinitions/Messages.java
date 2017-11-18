@@ -143,4 +143,7 @@ public class Messages {
 
 	// Configuration Document Types
 	public static final String DEL_DOC_TYPES_ERROR = "The selected Document Type is used as a reference key. Please delete the related data first";
+	
+	// Trading Relationship
+	public static final String TRADING_RELATIONSHIP_ACCEPTED_SUCCESS = "Trading Relationship request has been accepted";
 }
