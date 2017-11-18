@@ -5,9 +5,10 @@ public class SupplierList {
 	public static final String COMPANYREGISTRATIONNO_ID = "psuCoRegnNo";
 	public static final String TAXREGRISTRATIONNO_ID = "psuTaxRegnNo";
 	public static final String SUPPLIEREMAIL_ID = "emailAddress";
-	public static final String SUPPLIERSTATUS_ID = "gwt-uid-154";
-	public static final String SUPPLIERPROFILE_ID = "gwt-uid-156";
-
+	public static final String SUPPLIERSTATUS_XPATH = "//*[@id='psuStatus']/div";
+	public static final String FIRSTSTATUS = "//*[@id='VAADIN_COMBOBOX_OPTIONLIST']/div/div[2]/table/tbody/tr[1]/td/span";
+	public static final String SECONDSTATUS = "//*[@id='VAADIN_COMBOBOX_OPTIONLIST']/div/div[2]/table/tbody/tr[2]/td/span";
+	public static final String CREATENEWSUPPLIERTITLE = "//*[@id='createsupplierwindow']/div/div/div[3]/div/div/div[1]/div/div/div/div/div/div";
 	public static final String SAVEBTN_ID = "createEditBtn";
 	public static final String SUPPLIERNAME_SEARCHFIELD_ID = "psuNameTxt";
 	public static final String SUPPLIERADMINUSERID_ID = "gwt-uid-41";

@@ -67,13 +67,51 @@ public class SupplierList_CreateNewSupplier_ByAdmin_Invalid_Data extends BaseTes
 		assertEquals(table.getValueTableHeader(7), "Profile Name");
 	}
 
-
-	// Step 5
+	// Step 2
 	@Test(dependsOnMethods = "openSupplierListScreen", alwaysRun = true)
-	public void createSupplierWithBlankMandatoryField() {
-		action.clickBtn(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
+	public void clickAddButton() {
+		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
+		action.waitObjVisible(By.id(ScreenObjects.CREATE_BTN_ID));
+		action.assertDocumentTitle("Check Suppliers");
+	}
+
+	// Step 3
+	@Test(dependsOnMethods = "clickAddButton", alwaysRun = true)
+	public void clickCreateButton() {
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.CREATE_BTN_ID));
 		action.waitObjVisible(By.id(SupplierList.SUPPLIERNAME_ID));
+		action.assertTextEqual(By.xpath(SupplierList.CREATENEWSUPPLIERTITLE), "Create New Supplier");
+		action.pause(1000);
+		action.assertTextEqual(By.id(SupplierList.SUPPLIERNAME_ID), "");
+		action.assertTextEqual(By.id(SupplierList.COMPANYREGISTRATIONNO_ID), "");
+		action.assertTextEqual(By.id(SupplierList.TAXREGRISTRATIONNO_ID), "");
+		action.assertTextEqual(By.id(SupplierList.SUPPLIEREMAIL_ID), "");
+
+		action.clickBtn(By.xpath(SupplierList.SUPPLIERSTATUS_XPATH));
+		action.pause(1000);
+		int row = table.countRow(SupplierList.COMBOBOX_CSS);
+		assertEquals(row, 2);
+		action.assertTextEqual(By.xpath(SupplierList.FIRSTSTATUS), "Active");
+		action.assertTextEqual(By.xpath(SupplierList.SECONDSTATUS), "Inactive");
+		// Close combo box 
+		action.clickBtn(By.xpath(SupplierList.SUPPLIERSTATUS_XPATH));
+	}
+	// Step 4
+	@Test(dependsOnMethods = "clickCreateButton", alwaysRun = true)
+	public void clickSaveWithoutInput() {		
+		// Leave all textbox empty
+		// Click Save
+		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
+		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
+
+		driver.findElement(By.id(SupplierList.SUPPLIERNAME_ID)).click();
+		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
+	}
+
+
+	// Step 7
+	@Test(dependsOnMethods = "clickSaveWithoutInput", alwaysRun = true)
+	public void createSupplierWithBlankMandatoryField() {
 		// Empty Supplier Name
 		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, supplierEmail_draft);
 		action.inputTextField(SupplierList.COMPANYREGISTRATIONNO_ID, companyRegistrationNo_draft);
@@ -84,7 +122,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin_Invalid_Data extends BaseTes
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
 
-	// Step 3
+	// Step 8
 	@Test(dependsOnMethods = "createSupplierWithBlankMandatoryField", alwaysRun = true)
 	public void createSupplierWithEmptyCompanyRegistrationNo() {
 		// Empty Company Registration No
@@ -96,7 +134,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin_Invalid_Data extends BaseTes
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
 
-	// Step 3
+	// Step 9
 	@Test(dependsOnMethods = "createSupplierWithEmptyCompanyRegistrationNo", alwaysRun = true)
 	public void createSupplierWithEmptyTaxRegistrationNo() {
 		// Empty Tax Registration No
@@ -108,7 +146,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin_Invalid_Data extends BaseTes
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
 
-	// Step 3
+	// Step 5
 	@Test(dependsOnMethods = "createSupplierWithEmptyTaxRegistrationNo", alwaysRun = true)
 	public void createSupplierWithEmptySupplierEmail() {
 		// Empty Supplier Email
@@ -120,7 +158,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin_Invalid_Data extends BaseTes
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
 
-	// Step 3
+	// Step 5
 	@Test(dependsOnMethods = "createSupplierWithEmptySupplierEmail", alwaysRun = true)
 	public void createSupplierWithInvalidEmail() {
 
@@ -133,9 +171,9 @@ public class SupplierList_CreateNewSupplier_ByAdmin_Invalid_Data extends BaseTes
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
 
-	// Step 4
+	// Step 10
 	@Test(dependsOnMethods = "createSupplierWithInvalidEmail", alwaysRun = true)
-	public void createSupplierWithDuplicatedValue() {
+	public void createSupplierWithDuplicatedEmail() {
 
 		// Duplicated email
 		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, duplicatedSupplierEmail);
@@ -143,10 +181,9 @@ public class SupplierList_CreateNewSupplier_ByAdmin_Invalid_Data extends BaseTes
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.DUPLICATEDEMAIL);
 		driver.findElement(By.id(SupplierList.SUPPLIEREMAIL_ID)).click();
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_CSS));
-		// Step 4
 	}
 
-	@Test(dependsOnMethods = "createSupplierWithDuplicatedValue", alwaysRun = true)
+	@Test(dependsOnMethods = "createSupplierWithDuplicatedEmail", alwaysRun = true)
 	public void createSupplierWithDuplicatedCompanyRegistrationNo() {
 		// Duplicated Comp. Registration Number
 		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, supplierEmail_draft);
@@ -172,48 +209,6 @@ public class SupplierList_CreateNewSupplier_ByAdmin_Invalid_Data extends BaseTes
 		action.assertTextEqual(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS), Messages.UNSAVED_CHANGE);
 		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
 
-	}
-
-	@Test(dependsOnMethods = "createSupplierWithDuplicatedTaxRegistrationNo", alwaysRun = true)
-	public void checkCancelButtonWithoutInput() {
-
-		action.waitObjVisibleAndClick(By.id(ScreenObjects.CREATE_BTN_ID));
-		action.waitObjVisible(By.id(SupplierList.SUPPLIERNAME_ID));
-		action.waitObjVisibleAndClick(By.id(ScreenObjects.CANCEL_ID));
-		action.pause(1000);
-		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)), false);
-		assertEquals(action.isElementPresent(By.id(SupplierList.SUPPLIERNAME_SEARCHFIELD_ID)), true);
-		// action.assertTitleScreen("Check Suppliers");
-	}
-
-	// Step 9,10 Check No button on Unsaved Changes dialog
-	@Test(dependsOnMethods = "checkCancelButtonWithoutInput", alwaysRun = true)
-	public void checkNoButtonOnUnsavedChangesDialog() {
-
-		action.waitObjVisibleAndClick(By.id(ScreenObjects.CREATE_BTN_ID));
-		action.waitObjVisible(By.id(SupplierList.SUPPLIERNAME_ID));
-		action.inputTextField(SupplierList.SUPPLIERNAME_ID, "test");
-		action.clickBtn(By.id(ScreenObjects.CANCEL_ID));
-		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
-		action.assertTextEqual(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS), Messages.UNSAVED_CHANGE);
-		action.waitObjVisibleAndClick(By.id(ScreenObjects.NO_BTN_ID));
-		action.waitObjInvisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
-		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)), false);
-		// action.assertTitleScreen("Create New Supplier");
-	}
-
-	// Step 11,12 Check Cancel button on Unsaved Changes dialog
-	@Test(dependsOnMethods = "checkNoButtonOnUnsavedChangesDialog", alwaysRun = true)
-	public void checkYesButtonOnUnsavedChangesDialog() {
-
-		action.waitObjVisibleAndClick(By.id(ScreenObjects.CANCEL_ID));
-		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
-		action.assertTextEqual(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS), Messages.UNSAVED_CHANGE);
-		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
-		action.waitObjInvisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
-		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)), false);
-		// action.assertTitleScreen("Check Suppliers");
-		assertEquals(action.isElementPresent(By.id(SupplierList.SUPPLIERNAME_SEARCHFIELD_ID)), true);
 	}
 
 }
