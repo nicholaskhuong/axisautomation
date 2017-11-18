@@ -20,6 +20,7 @@ import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 import com.abb.ventyx.axis.objects.pagedefinitions.SupplierList;
 import com.abb.ventyx.axis.objects.pagedefinitions.SupplierMenu;
+import com.abb.ventyx.axis.objects.pagedefinitions.UserPreferences;
 import com.abb.ventyx.utilities.ALM;
 import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
@@ -39,7 +40,6 @@ public class SupplierList_CreateActiveSupplier_ByAdmin extends BaseTestCase {
 	public static String taxRegistrationNo = "Tax84307777";
 	String pendingStatus = "Pending";
 	public static String profile = "All Document Types";
-	String passwordOriginally = "Testuser2";
 	String newPassword = "Testuser1";
 	String axisSupportEmail = "axis_support@abb.com";
 	String axisSupportPWD = "Testuser1";
@@ -70,16 +70,38 @@ public class SupplierList_CreateActiveSupplier_ByAdmin extends BaseTestCase {
 		assertEquals(table.getValueTableHeader(7), "Profile Name");
 	}
 
+	// Step 2
 	@Test(dependsOnMethods = "openSupplierListScreen", alwaysRun = true)
-	public void openCreateSupplierForm() {
-
-		action.clickBtn(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
-		action.waitObjVisibleAndClick(By.id(ScreenObjects.CREATE_BTN_ID));
-		action.waitObjVisible(By.id(SupplierList.SUPPLIERNAME_ID));
+	public void clickAddButton() {
+		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
+		action.waitObjVisible(By.id(ScreenObjects.CREATE_BTN_ID));
+		action.assertDocumentTitle("Check Suppliers");
 	}
 
-	// Step 2
-	@Test(dependsOnMethods = "openCreateSupplierForm", alwaysRun = true)
+	// Step 3
+	@Test(dependsOnMethods = "clickAddButton", alwaysRun = true)
+	public void clickCreateButton() {
+		action.waitObjVisibleAndClick(By.id(ScreenObjects.CREATE_BTN_ID));
+		action.waitObjVisible(By.id(SupplierList.SUPPLIERNAME_ID));
+		action.assertTextEqual(By.xpath(SupplierList.CREATENEWSUPPLIERTITLE), "Create New Supplier");
+		action.pause(1000);
+		action.assertTextEqual(By.id(SupplierList.SUPPLIERNAME_ID), "");
+		action.assertTextEqual(By.id(SupplierList.COMPANYREGISTRATIONNO_ID), "");
+		action.assertTextEqual(By.id(SupplierList.TAXREGRISTRATIONNO_ID), "");
+		action.assertTextEqual(By.id(SupplierList.SUPPLIEREMAIL_ID), "");
+
+		action.clickBtn(By.xpath(SupplierList.SUPPLIERSTATUS_XPATH));
+		action.pause(1000);
+		int row = table.countRow(SupplierList.COMBOBOX_CSS);
+		assertEquals(row, 2);
+		action.assertTextEqual(By.xpath(SupplierList.FIRSTSTATUS), "Active");
+		action.assertTextEqual(By.xpath(SupplierList.SECONDSTATUS), "Inactive");
+		// Close combo box 
+		action.clickBtn(By.xpath(SupplierList.SUPPLIERSTATUS_XPATH));
+	}
+
+	// Step 4
+	@Test(dependsOnMethods = "clickCreateButton", alwaysRun = true)
 	public void createSupplierWithValidValue() {
 
 		action.inputTextField(SupplierList.SUPPLIEREMAIL_ID, supplierEmail);
@@ -99,26 +121,19 @@ public class SupplierList_CreateActiveSupplier_ByAdmin extends BaseTestCase {
 		assertEquals(table.getValueRow(5, i), supplierName);
 		assertEquals(table.getValueRow(6, i), supplierEmail);
 		assertEquals(table.getValueRow(7, i), profile);
-		WebElement accessCell = table.getCellObject(i, 8);
-		action.isFieldDisable(accessCell);
-		// String supplierID = table.getIDValue(i);
+		WebElement accessSupplier = table.getCellObject(i, 8);
+		action.isFieldDisable(accessSupplier);
 	}
-	// Step 3
+	// Step 5
 	@Test(dependsOnMethods = "createSupplierWithValidValue", alwaysRun = true)
 	public void signOut() {
-		action.signOut();
+		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
+		action.pause(3000);
+		action.waitObjVisibleAndClick(By.id(ScreenObjects.SIGNOUT_BUTTON));
 	}
 
-	// Step 4
+
 	@Test(dependsOnMethods = "signOut", alwaysRun = true)
-	public void loginAsTheCreatedSupplier() {
-
-		action.signIn(supplierEmail, passwordOriginally);
-		action.waitObjVisible(By.cssSelector(ScreenObjects.ERROR_CSS));
-		action.assertTextEqual(By.cssSelector(ScreenObjects.ERROR_CSS), Messages.USERNOTFOUND);
-	}
-
-	@Test(dependsOnMethods = "loginAsTheCreatedSupplier", alwaysRun = true)
 	public void getPasswordForTheNewSupplier() {
 
 		action.signIn(axisSupportEmail, axisSupportPWD);
@@ -134,18 +149,20 @@ public class SupplierList_CreateActiveSupplier_ByAdmin extends BaseTestCase {
 		String message = driver.findElement(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)).getText();
 		password = action.getPassword(message);
 	}
-
-	// Step 5
 	@Test(dependsOnMethods = "getPasswordForTheNewSupplier", alwaysRun = true)
-	public void signOutToGetPassword() {
+	public void signOut2nd() {
 		action.signOut();
 	}
 
-	// Step 16
-	@Test(dependsOnMethods = "signOutToGetPassword")
-	public void changePassword() {
+	// Step 6
+	@Test(dependsOnMethods = "signOut2nd")
+	public void loginTheNewSupplier() {
 		action.signIn(supplierEmail, password);
 		action.waitObjVisible(By.id(ScreenObjects.NEWPASSWORD_ID));
+	}
+	// Step 7
+	@Test(dependsOnMethods = "loginTheNewSupplier")
+	public void changePassword() {
 		action.inputTextField(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID, password);
 		action.inputTextField(ScreenObjects.NEWPASSWORD_ID, newPassword);
 		action.inputTextField(ScreenObjects.CONFIRMPASSWORD_ID, newPassword);
@@ -153,15 +170,14 @@ public class SupplierList_CreateActiveSupplier_ByAdmin extends BaseTestCase {
 		password = newPassword;
 	}
 
-	// Step 6
+	// Step 8
 	@Test(dependsOnMethods = "changePassword")
 	public void acceptTradingRelationshipRequest() {
-
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ScreenObjects.ACCEPT_BUTTON_CSS)));
 		action.clickBtn(By.cssSelector(ScreenObjects.ACCEPT_BUTTON_CSS));
 
 	}
-	// Step 7
+	// Step 9
 	@Test(dependsOnMethods = "acceptTradingRelationshipRequest", alwaysRun = true)
 	public void checkAddressAndContact() {
 
@@ -175,6 +191,7 @@ public class SupplierList_CreateActiveSupplier_ByAdmin extends BaseTestCase {
 		action.assertTextEqual(By.id(AddressContact.SUPPLIER_EMAIL), supplierEmail);
 	}
 
+	// Step 10
 	@Test(dependsOnMethods = "checkAddressAndContact", alwaysRun = true)
 	public void signOutAgain() {
 		action.signOut();
@@ -198,7 +215,7 @@ public class SupplierList_CreateActiveSupplier_ByAdmin extends BaseTestCase {
 		int indexOfSupplier = table.findRealIndexByCell(supplierIDCell, "spIdBtn");
 		assertEquals(table.getValueRow(4, i), "Active");
 		assertEquals(action.isFieldDisable(By.id("accessSupplierBtn" + indexOfSupplier)), false);
-	
+
 	}
 
 }
