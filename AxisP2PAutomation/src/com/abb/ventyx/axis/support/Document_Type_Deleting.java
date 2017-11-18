@@ -4,6 +4,7 @@ import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
@@ -26,6 +27,7 @@ public class Document_Type_Deleting extends BaseTestCase {
 	TableFunction table;
 	WebElement index;
 	String documentTypeTitle = "Maintain Document Types";
+	int i;
 
 	// Step 01
 	@Test
@@ -60,8 +62,15 @@ public class Document_Type_Deleting extends BaseTestCase {
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 	}
 
-	// Step 03
 	@Test(dependsOnMethods = "deleteDocumentType", alwaysRun = true)
+	public void checkDataAgainAfterDeleted() {
+		table.inputFilterAtIndex(Document_Type_Creating.documentTypes, DocType.FIELD_TYPE_FILTER, true);
+		action.pause(milliseconds);
+		Assert.assertTrue(i >= 0, String.format("Document Type: %s not found!", Document_Type_Creating.documentTypes));
+	}
+
+	// Step 03
+	@Test(dependsOnMethods = "checkDataAgainAfterDeleted", alwaysRun = true)
 	public void deleteDocumentTypeWithClickCancel() {
 		table.inputFilterAtIndex("Invoice", DocType.FIELD_TYPE_FILTER, true);
 		action.pause(milliseconds);

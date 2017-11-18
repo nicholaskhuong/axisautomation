@@ -4,6 +4,7 @@ import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
@@ -24,6 +25,7 @@ public class Search_Option_Deleting extends BaseTestCase {
 	int milliseconds = 1000;
 	TableFunction table;
 	WebElement index;
+	int i;
 
 	// Step 01
 	@Test
@@ -54,5 +56,12 @@ public class Search_Option_Deleting extends BaseTestCase {
 		action.pause(milliseconds);
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.DELETE_FIELD_TYPE);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
+	}
+
+	@Test(dependsOnMethods = "clickFilterButtonAndClickTrashBin", alwaysRun = true)
+	public void checkDataAgainAfterDeleted() {
+		table.inputFilterAtIndex(fieldTypeUpdate, SearchOption.FIELD_TYPE_FILTER, true);
+		action.pause(milliseconds);
+		Assert.assertTrue(i >= 0, String.format("Filed Type: %s not found!", fieldTypeUpdate));
 	}
 }

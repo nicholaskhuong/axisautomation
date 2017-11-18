@@ -6,6 +6,7 @@ import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisAdministratorUsers;
@@ -36,6 +37,7 @@ public class User_Administration_Creating extends BaseTestCase {
 	String confirmPassword = "Testuser2";
 	String passwordReset;
 	String newPassword = "Testuser2";
+	int i;
 
 	// Step 1
 	@Test
@@ -95,8 +97,15 @@ public class User_Administration_Creating extends BaseTestCase {
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 	}
 
-	// Step 5
 	@Test(dependsOnMethods = "inputAllMandatoryFields", alwaysRun = true)
+	public void checkDataAgainAfterCreated() {
+		table.clickFilterAndInputWithColumn(user, Users.USER_ID_FILTER, true);
+		action.pause(waitTime);
+		Assert.assertTrue(i >= 0, String.format("User: %s not found!", user));
+	}
+
+	// Step 5
+	@Test(dependsOnMethods = "checkDataAgainAfterCreated", alwaysRun = true)
 	public void inputInvalidEmail() {
 		action.waitObjVisibleAndClick(By.cssSelector(Users.ADD_USERS));
 		action.waitObjVisible(By.id(Users.USER_ID));

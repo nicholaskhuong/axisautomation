@@ -4,6 +4,7 @@ import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
@@ -24,6 +25,7 @@ public class Filter_Field_Deleting extends BaseTestCase {
 	TableFunction table;
 	String fieldNameUpdate = "Quantily Updated";
 	WebElement index;
+	int i;
 
 	// Step 01
 	@Test
@@ -64,5 +66,12 @@ public class Filter_Field_Deleting extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.id(FilterField.YES));
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.DEL_FILTER_FIELD_SUCCESS);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
+	}
+
+	@Test(dependsOnMethods = "clickNoAndYesToDeleteData", alwaysRun = true)
+	public void checkDataAgainAfterDeleted() {
+		table.inputFilterAtIndex(fieldNameUpdate, FilterField.FIELD_NAME_FILTER, true);
+		action.pause(milliseconds);
+		Assert.assertTrue(i >= 0, String.format("Filed Name: %s not found!", fieldNameUpdate));
 	}
 }

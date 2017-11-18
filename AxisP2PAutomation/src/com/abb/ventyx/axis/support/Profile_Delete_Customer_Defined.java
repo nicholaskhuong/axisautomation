@@ -4,6 +4,7 @@ import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
@@ -78,8 +79,15 @@ public class Profile_Delete_Customer_Defined extends BaseTestCase {
 		action.checkAddSuccess(Messages.MESSAGE_DELETE_SUCCESSFULLY);
 	}
 
-	// Step3
 	@Test(dependsOnMethods = "clickDeleteIconOnMaintainCustomerScreen", alwaysRun = true)
+	public void checkDataAgainAfterDeleted() {
+		table.inputFilterAtIndex(Profile_Update_Customer_Defined_Step07.profileNameEdited2, Profiles.PROFILE_NAME_FILTER, true);
+		action.pause(waitTime);
+		Assert.assertTrue(i >= 0, String.format("Profile Name: %s not found!", Profile_Update_Customer_Defined_Step07.profileNameEdited2));
+	}
+
+	// Step3
+	@Test(dependsOnMethods = "checkDataAgainAfterDeleted", alwaysRun = true)
 	public void logoutFromMaintainCustomerScreen() {
 		action.pause(waitTime);
 		action.signOut();

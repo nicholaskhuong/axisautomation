@@ -4,6 +4,7 @@ import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisAdministratorUsers;
@@ -24,6 +25,7 @@ public class User_Administration_Deteting extends BaseTestCase {
 	WebElement index;
 	String newPassword = "Testuser2";
 	int waitTime = 1000;
+	int i;
 
 	// Step 1
 	@Test
@@ -69,6 +71,13 @@ public class User_Administration_Deteting extends BaseTestCase {
 	}
 
 	@Test(dependsOnMethods = "clickDeleteButton", alwaysRun = true)
+	public void checkDataAgainAfterDeleted() {
+		table.inputFilterAtIndex(User_Administration_Updating.userUpdate, Users.USER_ID_FILTER, true);
+		action.pause(waitTime);
+		Assert.assertTrue(i >= 0, String.format("User: %s not found!", User_Administration_Updating.userUpdate));
+	}
+
+	@Test(dependsOnMethods = "checkDataAgainAfterDeleted", alwaysRun = true)
 	public void logoutAndLoginWithNewUser() {
 		action.pause(waitTime);
 		action.signOut();

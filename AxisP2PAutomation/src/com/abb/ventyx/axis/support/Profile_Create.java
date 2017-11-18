@@ -9,6 +9,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
@@ -33,6 +34,7 @@ public class Profile_Create extends BaseTestCase {
 	int milliseconds = 1000;
 	TableFunction table;
 	WebElement saveBtn;
+	int i;
 
 	@Test
 	public void openMaintainCustomerDefinedProfilesScreen() {
@@ -78,7 +80,7 @@ public class Profile_Create extends BaseTestCase {
 	}
 
 	@Test(dependsOnMethods = "inputProfileNameandCustomerName", alwaysRun = true)
-	public void slelectAuthorisedDocumentTypes() {
+	public void selectAuthorisedDocumentTypes() {
 		action.clickCheckBoxN(4);
 		saveBtn = driver.findElement(By.id(Profiles.SAVE_BTN));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", saveBtn);
@@ -86,7 +88,14 @@ public class Profile_Create extends BaseTestCase {
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 	}
 
-	@Test(dependsOnMethods = "slelectAuthorisedDocumentTypes", alwaysRun = true)
+	@Test(dependsOnMethods = "selectAuthorisedDocumentTypes", alwaysRun = true)
+	public void checkDataAgainAfterCreated() {
+		table.clickFilterAndInputWithColumn(profileName, Profiles.PROFILE_NAME_FILTER, true);
+		action.pause(milliseconds);
+		Assert.assertTrue(i >= 0, String.format("Profile Name: %s not found!", profileName));
+	}
+
+	@Test(dependsOnMethods = "checkDataAgainAfterCreated", alwaysRun = true)
 	public void clickAddButton2() {
 		action.waitObjVisibleAndClick(By.cssSelector(Profiles.ADD_PROFILE));
 	}

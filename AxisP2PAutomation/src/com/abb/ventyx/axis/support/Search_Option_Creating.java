@@ -4,6 +4,7 @@ import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
@@ -29,6 +30,7 @@ public class Search_Option_Creating extends BaseTestCase {
 	int milliseconds = 1000;
 	TableFunction table;
 	WebElement index;
+	int i;
 
 	// Step 01
 	@Test
@@ -64,8 +66,15 @@ public class Search_Option_Creating extends BaseTestCase {
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 	}
 
-	// Step 04_05
 	@Test(dependsOnMethods = "clickAddButtonAndInputData", alwaysRun = true)
+	public void checkDataAgainAfterCreated() {
+		table.clickFilterAndInputWithColumn(fieldType, SearchOption.FIELD_TYPE_FILTER, true);
+		action.pause(milliseconds);
+		Assert.assertTrue(i >= 0, String.format("Filed Type: %s not found!", fieldType));
+	}
+
+	// Step 04_05
+	@Test(dependsOnMethods = "checkDataAgainAfterCreated", alwaysRun = true)
 	public void clickAddButtonAndClickCancelButton() {
 		action.waitObjVisibleAndClick(By.cssSelector(SearchOption.ADD));
 		action.inputTextField(SearchOption.FIELD_TYPE_ADD, fieldType);

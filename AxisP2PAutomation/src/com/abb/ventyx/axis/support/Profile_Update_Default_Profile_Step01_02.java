@@ -6,6 +6,7 @@ import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
@@ -35,6 +36,7 @@ public class Profile_Update_Default_Profile_Step01_02 extends BaseTestCase {
 	WebElement index;
 	String mailAdminLogin = "axis_support@abb.com";
 	String PasswordAdmin = "Testuser1";
+	int i;
 
 	// Step 1
 	@Test
@@ -77,7 +79,14 @@ public class Profile_Update_Default_Profile_Step01_02 extends BaseTestCase {
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 	}
 
-	@Test(dependsOnMethods = "clickAddButtonOnMaintainCustomerScreen", alwaysRun = true)
+	@Test(dependsOnMethods = "inputDataOnCustomerListScreen", alwaysRun = true)
+	public void checkDataAgainAfterCreated() {
+		table.clickFilterAndInputWithColumn(customerName, CustomerList.NAME_FILTER, true);
+		action.pause(waitTime);
+		Assert.assertTrue(i >= 0, String.format("Name: %s not found!", customerName));
+	}
+
+	@Test(dependsOnMethods = "checkDataAgainAfterCreated", alwaysRun = true)
 	public void openResetUserPasswordScreen() {
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.AXIS_ADMIN));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.RESET_USER_PASSWORD));

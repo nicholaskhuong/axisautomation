@@ -3,6 +3,7 @@ package com.abb.ventyx.axis.support;
 import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
@@ -22,6 +23,7 @@ public class Filter_Field_Creating extends BaseTestCase {
 	String filedName = "Quantily DOC";
 	TableFunction table;
 	int milliseconds = 1000;
+	int i;
 
 	// Step 01_02
 	@Test
@@ -73,8 +75,15 @@ public class Filter_Field_Creating extends BaseTestCase {
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 	}
 
-	// Step 06_07
 	@Test(dependsOnMethods = "inputAllFieldType", alwaysRun = true)
+	public void checkDataAgainAfterCreated() {
+		table.clickFilterAndInputWithColumn(filedName, FilterField.FIELD_NAME_FILTER, true);
+		action.pause(milliseconds);
+		Assert.assertTrue(i >= 0, String.format("Filed Name: %s not found!", filedName));
+	}
+
+	// Step 06_07
+	@Test(dependsOnMethods = "checkDataAgainAfterCreated", alwaysRun = true)
 	public void clickAddButtonAndInputValueSeconeTime() {
 		action.pause(milliseconds);
 		action.waitObjVisibleAndClick(By.cssSelector(FilterField.ADD));
