@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Supplier_List" parallel="none">
-  	<test name="Create New Supplier By Admin">
+  	<test name="Create Active Supplier By Admin">
 		<classes>
-				<class name="com.abb.ventyx.axis.customer.SupplierList_CreateNewSupplier_ByAdmin" />
+				<class name="com.abb.ventyx.axis.customer.SupplierList_CreateActiveSupplier_ByAdmin" />
 		</classes>
 	</test>	
   	<test name="Create New Supplier By Admin With Invalid Data">

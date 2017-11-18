@@ -113,7 +113,7 @@ public class SupplierList_DeactivateSupplier extends BaseTestCase {
 	@Test(dependsOnMethods = "signOut")
 	public void loginAsInactiveUser(){
 		//Admin
-		action.signIn(supplierAdmin, SupplierList_CreateNewSupplier_ByAdmin.password);
+		action.signIn(supplierAdmin, SupplierList_CreateActiveSupplier_ByAdmin.password);
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.SUPPLIER_INACTIVE);
 	}
 

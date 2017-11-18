@@ -25,9 +25,9 @@ import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
 import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
-@ALM(id = "607")
+@ALM(id = "970")
 @Credentials(user = "cadmin1@abb.com", password = "Testuser1")
-public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
+public class SupplierList_CreateActiveSupplier_ByAdmin extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
 	WebDriverWait wait;
@@ -39,14 +39,8 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 	public static String taxRegistrationNo = "Tax84307777";
 	String pendingStatus = "Pending";
 	public static String profile = "All Document Types";
-	String invalidEmail = "<HTML>";
 	String passwordOriginally = "Testuser2";
 	String newPassword = "Testuser1";
-
-	String dupplicatedName = "ENCLAVE";
-	String duplicatedCompanyRegistrationNo = "ENCLAVE";
-	String duplicatedTaxRegistrationNo = "ENCLAVE";
-	String duplicatedSupplierEmail = "perla@enclave.vn";
 	String axisSupportEmail = "axis_support@abb.com";
 	String axisSupportPWD = "Testuser1";
 	public static String password = "Testuser1";
@@ -76,7 +70,6 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		assertEquals(table.getValueTableHeader(7), "Profile Name");
 	}
 
-	// Step 2
 	@Test(dependsOnMethods = "openSupplierListScreen", alwaysRun = true)
 	public void openCreateSupplierForm() {
 
@@ -85,7 +78,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.waitObjVisible(By.id(SupplierList.SUPPLIERNAME_ID));
 	}
 
-	// Step 5
+	// Step 2
 	@Test(dependsOnMethods = "openCreateSupplierForm", alwaysRun = true)
 	public void createSupplierWithValidValue() {
 
@@ -110,15 +103,13 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.isFieldDisable(accessCell);
 		// String supplierID = table.getIDValue(i);
 	}
-
-	// //////////////////////////
-	// Step 14
+	// Step 3
 	@Test(dependsOnMethods = "createSupplierWithValidValue", alwaysRun = true)
 	public void signOut() {
 		action.signOut();
 	}
 
-	// Step 14
+	// Step 4
 	@Test(dependsOnMethods = "signOut", alwaysRun = true)
 	public void loginAsTheCreatedSupplier() {
 
@@ -127,7 +118,6 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.assertTextEqual(By.cssSelector(ScreenObjects.ERROR_CSS), Messages.USERNOTFOUND);
 	}
 
-	// Step 15
 	@Test(dependsOnMethods = "loginAsTheCreatedSupplier", alwaysRun = true)
 	public void getPasswordForTheNewSupplier() {
 
@@ -145,7 +135,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		password = action.getPassword(message);
 	}
 
-	// Step 16
+	// Step 5
 	@Test(dependsOnMethods = "getPasswordForTheNewSupplier", alwaysRun = true)
 	public void signOutToGetPassword() {
 		action.signOut();
@@ -163,7 +153,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		password = newPassword;
 	}
 
-	// Step 16
+	// Step 6
 	@Test(dependsOnMethods = "changePassword")
 	public void acceptTradingRelationshipRequest() {
 
@@ -171,7 +161,7 @@ public class SupplierList_CreateNewSupplier_ByAdmin extends BaseTestCase {
 		action.clickBtn(By.cssSelector(ScreenObjects.ACCEPT_BUTTON_CSS));
 
 	}
-
+	// Step 7
 	@Test(dependsOnMethods = "acceptTradingRelationshipRequest", alwaysRun = true)
 	public void checkAddressAndContact() {
 

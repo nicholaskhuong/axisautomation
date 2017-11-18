@@ -123,7 +123,7 @@ public class SupplierList_ActivateSupplier extends BaseTestCase {
 	@Test(dependsOnMethods = "signOut")
 	public void loginAsActiveUser() {
 		// Admin
-		action.signIn(SupplierList_DeactivateSupplier.supplierAdmin, SupplierList_CreateNewSupplier_ByAdmin.password);
+		action.signIn(SupplierList_DeactivateSupplier.supplierAdmin, SupplierList_CreateActiveSupplier_ByAdmin.password);
 		action.waitObjVisible(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SCREEN_TITLE_CSS)).getText(), "Supplier Dashboard");
 	}

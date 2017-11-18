@@ -20,11 +20,11 @@ public class SupplierList_UpdateSupplier_ByAdmin_Step9 extends BaseTestCase {
 	public void loginAsTheUpdatedSupplierAndCheckASNOff() {
 		action = new ScreenAction(driver);
 		action.signOut();
-		action.signIn(SupplierList_CreateNewSupplier_ByAdmin.supplierEmail, SupplierList_CreateNewSupplier_ByAdmin.password);
+		action.signIn(SupplierList_CreateActiveSupplier_ByAdmin.supplierEmail, SupplierList_CreateActiveSupplier_ByAdmin.password);
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADDRESS_CONTACT_ID));
 		action.waitObjVisible(By.id(AddressContact.COMPANY_NAME));
 		assertEquals(driver.findElement(By.id(AddressContact.COMPANY_NAME)).getAttribute("value"),
-				SupplierList_CreateNewSupplier_ByAdmin.supplierName);
+				SupplierList_CreateActiveSupplier_ByAdmin.supplierName);
 	}
 }
