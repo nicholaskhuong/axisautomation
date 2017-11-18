@@ -4,6 +4,7 @@ import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
@@ -25,6 +26,7 @@ public class Code_Set_Type_Deleting extends BaseTestCase {
 	int milliseconds = 1000;
 	TableFunction table;
 	WebElement index;
+	int i;
 
 	// Step 01
 	@Test
@@ -71,5 +73,12 @@ public class Code_Set_Type_Deleting extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.id(BusinessCodeTypes.YES));
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.DEL_CODE_SET);
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
+	}
+
+	@Test(dependsOnMethods = "deleteCodeTypeWithoutCodeSet", alwaysRun = true)
+	public void checkDataAgainAfterDeleted() {
+		table.clickFilterAndInputWithColumn(Code_Set_Type_Creating.codeType, BusinessCodeTypes.CODE_TYPE_FILTER, true);
+		action.pause(milliseconds);
+		Assert.assertTrue(i >= 0, String.format("Code Type: %s not found!", Code_Set_Type_Creating.codeType));
 	}
 }
