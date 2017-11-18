@@ -20,7 +20,7 @@ import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
 @ALM(id = "607")
 @Credentials(user = "cadmin1@abb.com", password = "Testuser1")
-public class SupplierList_CreateNewSupplier_ByAdmin_Invalid_Data extends BaseTestCase {
+public class SupplierList_CreateSupplier_ByAdmin_Invalid_Data extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
 	WebDriverWait wait;
