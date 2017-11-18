@@ -58,13 +58,6 @@ public class SupplierList_CreateSupplier_ByAdmin_Invalid_Data extends BaseTestCa
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.SUPPLIERLIST_SUBMENU));
 		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
-		assertEquals(table.getValueTableHeader(1), "Supplier ID");
-		assertEquals(table.getValueTableHeader(2), "Company Registration No");
-		assertEquals(table.getValueTableHeader(3), "Tax Registration No");
-		assertEquals(table.getValueTableHeader(4), "Supplier Status");
-		assertEquals(table.getValueTableHeader(5), "Supplier Name");
-		assertEquals(table.getValueTableHeader(6), "Supplier Notification Email");
-		assertEquals(table.getValueTableHeader(7), "Profile Name");
 	}
 
 	// Step 2
