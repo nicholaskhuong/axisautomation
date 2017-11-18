@@ -161,7 +161,7 @@ public class Customer_Creating extends BaseTestCase {
 	@Test(dependsOnMethods = "openUserGroupsWithAccountCustomer", alwaysRun = true)
 	public void createUserGroup() {
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerList.ADD_BUTTON));
-		action.inputTextField(UserGroup.USERGROUP_NAME_ID, "Invoicing");
+		action.inputTextField(UserGroup.USERGROUP_NAME_ID, "Inv Group");
 		action.clickCheckBoxN(2);
 		action.waitObjVisibleAndClick(By.id(CustomerList.SAVE_BUTTON_ID));
 	}
