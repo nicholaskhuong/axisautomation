@@ -1,7 +1,5 @@
 package com.abb.ventyx.axis.customer;
 
-import static org.testng.Assert.assertEquals;
-
 import java.util.Random;
 
 import org.openqa.selenium.By;
@@ -9,7 +7,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.CustomerMenu;
-import com.abb.ventyx.axis.objects.pagedefinitions.CustomerUsers;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 import com.abb.ventyx.axis.objects.pagedefinitions.SupplierList;
@@ -44,7 +41,7 @@ public class SupplierList_CreateSupplier_ByAdmin_Invalid_Data extends BaseTestCa
 
 	// Step 1
 	@Test
-	public void openSupplierListScreen(){
+	public void openCreateNewSupplierScreen(){
 		action = new ScreenAction(driver);
 		table = new TableFunction(driver);
 		wait = new WebDriverWait(driver, 20);
@@ -57,40 +54,13 @@ public class SupplierList_CreateSupplier_ByAdmin_Invalid_Data extends BaseTestCa
 
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.SUPPLIERLIST_SUBMENU));
-		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
-	}
-
-	// Step 2
-	@Test(dependsOnMethods = "openSupplierListScreen", alwaysRun = true)
-	public void clickAddButton() {
 		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.ADD_BTN_CSS));
-		action.waitObjVisible(By.id(ScreenObjects.CREATE_BTN_ID));
-		action.assertDocumentTitle("Check Suppliers");
-	}
-
-	// Step 3
-	@Test(dependsOnMethods = "clickAddButton", alwaysRun = true)
-	public void clickCreateButton() {
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.CREATE_BTN_ID));
 		action.waitObjVisible(By.id(SupplierList.SUPPLIERNAME_ID));
 		action.assertTextEqual(By.xpath(SupplierList.CREATENEWSUPPLIERTITLE), "Create New Supplier");
-		action.pause(1000);
-		action.assertTextEqual(By.id(SupplierList.SUPPLIERNAME_ID), "");
-		action.assertTextEqual(By.id(SupplierList.COMPANYREGISTRATIONNO_ID), "");
-		action.assertTextEqual(By.id(SupplierList.TAXREGRISTRATIONNO_ID), "");
-		action.assertTextEqual(By.id(SupplierList.SUPPLIEREMAIL_ID), "");
-
-		action.clickBtn(By.xpath(SupplierList.SUPPLIERSTATUS_XPATH));
-		action.pause(1000);
-		int row = table.countRow(SupplierList.COMBOBOX_CSS);
-		assertEquals(row, 2);
-		action.assertTextEqual(By.xpath(SupplierList.FIRSTSTATUS), "Active");
-		action.assertTextEqual(By.xpath(SupplierList.SECONDSTATUS), "Inactive");
-		// Close combo box 
-		action.clickBtn(By.xpath(SupplierList.SUPPLIERSTATUS_XPATH));
 	}
-	// Step 4
-	@Test(dependsOnMethods = "clickCreateButton", alwaysRun = true)
+	// Step 2
+	@Test(dependsOnMethods = "openCreateNewSupplierScreen", alwaysRun = true)
 	public void clickSaveWithoutInput() {		
 		// Leave all textbox empty
 		// Click Save
@@ -102,7 +72,7 @@ public class SupplierList_CreateSupplier_ByAdmin_Invalid_Data extends BaseTestCa
 	}
 
 
-	// Step 7
+	// Step 3
 	@Test(dependsOnMethods = "clickSaveWithoutInput", alwaysRun = true)
 	public void createSupplierWithBlankMandatoryField() {
 		// Empty Supplier Name
@@ -115,7 +85,7 @@ public class SupplierList_CreateSupplier_ByAdmin_Invalid_Data extends BaseTestCa
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
 
-	// Step 8
+	// Step 4
 	@Test(dependsOnMethods = "createSupplierWithBlankMandatoryField", alwaysRun = true)
 	public void createSupplierWithEmptyCompanyRegistrationNo() {
 		// Empty Company Registration No
@@ -127,7 +97,7 @@ public class SupplierList_CreateSupplier_ByAdmin_Invalid_Data extends BaseTestCa
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
 
-	// Step 9
+	// Step 5
 	@Test(dependsOnMethods = "createSupplierWithEmptyCompanyRegistrationNo", alwaysRun = true)
 	public void createSupplierWithEmptyTaxRegistrationNo() {
 		// Empty Tax Registration No
@@ -139,7 +109,7 @@ public class SupplierList_CreateSupplier_ByAdmin_Invalid_Data extends BaseTestCa
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
 
-	// Step 5
+	// Step 6
 	@Test(dependsOnMethods = "createSupplierWithEmptyTaxRegistrationNo", alwaysRun = true)
 	public void createSupplierWithEmptySupplierEmail() {
 		// Empty Supplier Email
@@ -151,7 +121,7 @@ public class SupplierList_CreateSupplier_ByAdmin_Invalid_Data extends BaseTestCa
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
 
-	// Step 5
+	// Step 7
 	@Test(dependsOnMethods = "createSupplierWithEmptySupplierEmail", alwaysRun = true)
 	public void createSupplierWithInvalidEmail() {
 
@@ -164,7 +134,7 @@ public class SupplierList_CreateSupplier_ByAdmin_Invalid_Data extends BaseTestCa
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
 	}
 
-	// Step 10
+	// Step 8
 	@Test(dependsOnMethods = "createSupplierWithInvalidEmail", alwaysRun = true)
 	public void createSupplierWithDuplicatedEmail() {
 
