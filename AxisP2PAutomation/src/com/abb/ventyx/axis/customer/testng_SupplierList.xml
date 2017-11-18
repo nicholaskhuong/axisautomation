@@ -17,6 +17,11 @@
 				<class name="com.abb.ventyx.axis.customer.SupplierList_UpdateSupplier_ByAdmin_Step9" />
 		</classes>
 	</test>	
+	<test name="Unsaved Changes Dialog">
+		<classes>
+				<class name="com.abb.ventyx.axis.customer.SupplierList_Unsaved_Changes_Dialog" />
+		</classes>
+	</test>	
 	<test name="Deactivate Supplier">
 		<classes>
 				<class name="com.abb.ventyx.axis.customer.SupplierList_DeactivateSupplier" />
