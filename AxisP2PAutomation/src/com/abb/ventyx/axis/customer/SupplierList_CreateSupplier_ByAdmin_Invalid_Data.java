@@ -90,7 +90,7 @@ public class SupplierList_CreateSupplier_ByAdmin_Invalid_Data extends BaseTestCa
 	public void createSupplierWithEmptyCompanyRegistrationNo() {
 		// Empty Company Registration No
 		action.inputTextField(SupplierList.SUPPLIERNAME_ID, supplierName_draft);
-		driver.findElement(By.id(SupplierList.TAXREGRISTRATIONNO_ID)).clear();
+		driver.findElement(By.id(SupplierList.COMPANYREGISTRATIONNO_ID)).clear();
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 		driver.findElement(By.id(SupplierList.COMPANYREGISTRATIONNO_ID)).clear();
