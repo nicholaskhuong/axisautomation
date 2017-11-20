@@ -1,8 +1,13 @@
 package com.abb.ventyx.axis.customer;
 
+import static org.testng.Assert.assertEquals;
+
 import java.util.Random;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
@@ -15,6 +20,7 @@ import com.abb.ventyx.utilities.BaseTestCase;
 import com.abb.ventyx.utilities.Credentials;
 import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
+
 @ALM(id = "607")
 @Credentials(user = "cadmin1@abb.com", password = "Testuser1")
 public class SupplierList_CreateSupplier_ByAdmin_Invalid_Data extends BaseTestCase {
@@ -38,10 +44,11 @@ public class SupplierList_CreateSupplier_ByAdmin_Invalid_Data extends BaseTestCa
 	String supplierEmail_draft = "yamaha13213@abb.com";
 	String companyRegistrationNo_draft = "COMYAMAHA12313213213";
 	String taxRegistrationNo_draft = "TAXYAMAHA123313213";
+	Actions toolAct;
 
 	// Step 1
 	@Test
-	public void openCreateNewSupplierScreen(){
+	public void openCreateNewSupplierScreen() {
 		action = new ScreenAction(driver);
 		table = new TableFunction(driver);
 		wait = new WebDriverWait(driver, 20);
@@ -59,18 +66,44 @@ public class SupplierList_CreateSupplier_ByAdmin_Invalid_Data extends BaseTestCa
 		action.waitObjVisible(By.id(SupplierList.SUPPLIERNAME_ID));
 		action.assertTextEqual(By.xpath(SupplierList.CREATENEWSUPPLIERTITLE), "Create New Supplier");
 	}
+
 	// Step 2
 	@Test(dependsOnMethods = "openCreateNewSupplierScreen", alwaysRun = true)
-	public void clickSaveWithoutInput() {		
+	public void clickSaveWithoutInput() {
 		// Leave all textbox empty
 		// Click Save
+		toolAct = new Actions(driver);
+		WebElement element = driver.findElement(By.id(SupplierList.COMPANYREGISTRATIONNO_ID));
+		toolAct.moveToElement(element).build().perform();
+		WebElement toolTipElement = driver.findElement(By.cssSelector(".v-tooltip"));
+		action.pause(1000);
+		assertEquals(toolTipElement.getText(), "Please enter Company Registration No");
+
+		WebElement supplierEmail = driver.findElement(By.id(SupplierList.SUPPLIEREMAIL_ID));
+		toolAct.moveToElement(supplierEmail).build().perform();
+		WebElement toolTipSupplierEmail = driver.findElement(By.cssSelector(".v-tooltip"));
+		action.pause(2000);
+		assertEquals(toolTipSupplierEmail.getText(), "Please enter Supplier Email");
+
+		WebElement supplierName = driver.findElement(By.id(SupplierList.SUPPLIERNAME_ID));
+		toolAct.moveToElement(supplierName).build().perform();
+		WebElement toolTipSupplierName = driver.findElement(By.cssSelector(".v-tooltip"));
+		action.pause(1000);
+		assertEquals(toolTipSupplierName.getText(), "Please enter Supplier Name");
+
+		WebElement taxRegistrationNo = driver.findElement(By.id(SupplierList.TAXREGRISTRATIONNO_ID));
+		toolAct.moveToElement(taxRegistrationNo).build().perform();
+		WebElement toolTipTaxRegistrationNo = driver.findElement(By.cssSelector(".v-tooltip"));
+		action.pause(1000);
+		assertEquals(toolTipTaxRegistrationNo.getText(), "Please enter Tax Registration No");
+
 		action.clickBtn(By.id(SupplierList.SAVEBTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 
 		driver.findElement(By.id(SupplierList.SUPPLIERNAME_ID)).click();
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.ERROR_WITHOUT_ICON_CSS));
+		((JavascriptExecutor) driver).executeScript("window.focus();");
 	}
-
 
 	// Step 3
 	@Test(dependsOnMethods = "clickSaveWithoutInput", alwaysRun = true)
