@@ -13,8 +13,7 @@
 	</test>	
 	<test name="Update Supplier By Admin">
 		<classes>
-				<class name="com.abb.ventyx.axis.customer.SupplierList_UpdateSupplier_ByAdmin_Step1_8" />
-				<class name="com.abb.ventyx.axis.customer.SupplierList_UpdateSupplier_ByAdmin_Step9" />
+				<class name="com.abb.ventyx.axis.customer.SupplierList_UpdateSupplier_ByAdmin" />
 		</classes>
 	</test>	
 	<test name="Unsaved Changes Dialog">

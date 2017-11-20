@@ -27,7 +27,7 @@ import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
 @ALM(id = "614")
 @Credentials(user = "cadmin1@abb.com", password = "Testuser1")
-public class SupplierList_UpdateSupplier_ByAdmin_Step1_8 extends BaseTestCase {
+public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 	ScreenAction action;
 	TableFunction table;
 	WebDriverWait wait;
@@ -57,7 +57,7 @@ public class SupplierList_UpdateSupplier_ByAdmin_Step1_8 extends BaseTestCase {
 
 	// Step 2 Update with null data
 	@Test(dependsOnMethods="openSupplierListScreen")
-	public void updateSupplierWithBlankMandatoryField(){
+	public void clickSupplierID(){
 
 		table.clickFilterAndInput(SupplierList.SUPPLIER_EMAIL_FILTER_XPATH, SupplierList_CreateActiveSupplier_ByAdmin.supplierEmail);
 		i = table.findRowByString(6, SupplierList_CreateActiveSupplier_ByAdmin.supplierEmail);
@@ -74,8 +74,8 @@ public class SupplierList_UpdateSupplier_ByAdmin_Step1_8 extends BaseTestCase {
 	}
 
 	// Step 3
-	@Test(dependsOnMethods = "updateSupplierWithBlankMandatoryField", alwaysRun = true)
-	public void checkErrorMessage() {
+	@Test(dependsOnMethods = "clickSupplierID", alwaysRun = true)
+	public void clearDataAndSave() {
 		action.waitObjVisible(By.id(SupplierList.SUPPLIERNAME_ID));
 		action.assertTextBoxDisable(By.id(SupplierList.COMPANYREGISTRATIONNO_ID));
 		action.assertTextBoxDisable(By.id(SupplierList.TAXREGRISTRATIONNO_ID));
@@ -88,8 +88,8 @@ public class SupplierList_UpdateSupplier_ByAdmin_Step1_8 extends BaseTestCase {
 		action.assertMessgeError(ScreenObjects.ERROR_WITHOUT_ICON_CSS, Messages.ENTER_MANDATORY_FIELDS);
 	}
 
-	// Step 3 
-	@Test(dependsOnMethods = "checkErrorMessage", alwaysRun = true)
+	// Step 4
+	@Test(dependsOnMethods = "clearDataAndSave", alwaysRun = true)
 	public void updateSupplierWithValidValue() {
 		Random rand = new Random();
 		long drand = (long) (rand.nextDouble() * 10000000000L);
@@ -105,72 +105,41 @@ public class SupplierList_UpdateSupplier_ByAdmin_Step1_8 extends BaseTestCase {
 		assertEquals(table.getValueRow(5, i), newSupplierName);
 		assertEquals(table.getValueRow(7, i), profileUpdated);
 	}
-
-	// Step 4
+	// Step 5
 	@Test(dependsOnMethods="updateSupplierWithValidValue")
-	public void checkCancelWithoutInput() {
-		action.pause(500);
-		// table.clickSupplierIDInSupplierListGrid(SupplierList_CreateNewSupplier_ByAdmin.taxRegistrationNo);
-		table.getCellObject(i, 1).click();
-		action.waitObjVisible(By.id(SupplierList.SUPPLIERNAME_ID));
-		action.waitObjVisibleAndClick(By.id(ScreenObjects.CANCEL_ID));
-		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)),false);
-		action.pause(1000);
-		action.assertTitleScreen("Maintain Suppliers");
-	}
-
-	// Step 5,6 Check No button on Unsaved Changes dialog 
-	@Test(dependsOnMethods="checkCancelWithoutInput")
-	public void checkNoButtonOnUnsavedChangesDialog() {
-
-		// table.clickSupplierIDInSupplierListGrid(SupplierList_CreateNewSupplier_ByAdmin.taxRegistrationNo);
-		table.getCellObject(i, 1).click();
-		action.pause(500);
-		action.inputTextField(SupplierList.SUPPLIERNAME_ID, "test");
-		action.waitObjVisibleAndClick(By.id(ScreenObjects.CANCEL_ID));
-		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
-		action.assertTextEqual(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS), Messages.UNSAVED_CHANGE);
-		action.waitObjVisibleAndClick(By.id(ScreenObjects.NO_BTN_ID));
-		action.pause(500);
-		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)), false);
-		assertEquals(action.isElementPresent(By.id(SupplierList.SUPPLIERNAME_ID)),true);
-	}
-
-	// Step 7,8 Check Yes button on Unsaved Changes dialog
-	@Test(dependsOnMethods="checkNoButtonOnUnsavedChangesDialog")
-	public void checkYesButtonOnUnsavedChangesDialog() {
-
-		action.waitObjVisibleAndClick(By.id(ScreenObjects.CANCEL_ID));
-		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
-		action.assertTextEqual(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS), Messages.UNSAVED_CHANGE);
-		driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
-		action.waitObjInvisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
-		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)), false);
-		assertEquals(action.isElementPresent(By.id(SupplierList.SUPPLIERNAME_ID)), false);
-		action.pause(500);
-		action.assertTitleScreen("Maintain Suppliers");
-	}
-
-	@Test(dependsOnMethods="checkYesButtonOnUnsavedChangesDialog")
 	public void accessSupplierFromCustomerAndCheckASNOff() {
 
 		action.clickRemoteIcon(i);
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADDRESS_CONTACT_ID));
 		action.waitObjVisible(By.id(AddressContact.COMPANY_NAME));
-		// action.assertTextEqual(By.id(AddressContact.COMPANY_NAME),
-		// newSupplierName);
 		System.out.println(driver.findElement(By.id(AddressContact.COMPANY_NAME)).getAttribute("value")+" Supplier Name");
 		assertEquals(driver.findElement(By.id(AddressContact.COMPANY_NAME)).getAttribute("value"), newSupplierName);
-	
+		assertEquals(action.isElementPresent(By.id(SupplierMenu.PURCHASE_ORDERS_ID)), true);
+		assertEquals(action.isElementPresent(By.id(SupplierMenu.SHIPPING_NOTICES_ID)), false);
+		assertEquals(action.isElementPresent(By.id(SupplierMenu.INVOICES_ID)), true);
 	}
 	
+	// Step 6, 7
 	@Test(dependsOnMethods = "accessSupplierFromCustomerAndCheckASNOff", alwaysRun = true)
 	public void signOutDefaultUser() {
 		action.waitObjVisibleAndClick(By.id(UserPreferences.PROFILE_PANEL));
 		action.pause(5000);
 		WebElement btn = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id(ScreenObjects.SIGNOUT_BUTTON)));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
+		action.signOut();
 	}
-
+	@Test(dependsOnMethods = "signOutDefaultUser", alwaysRun = true)
+	public void loginAsTheUpdatedSupplierAndCheckASNOff() {
+		action.signIn(SupplierList_CreateActiveSupplier_ByAdmin.supplierEmail, SupplierList_CreateActiveSupplier_ByAdmin.password);
+		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));
+		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADDRESS_CONTACT_ID));
+		action.waitObjVisible(By.id(AddressContact.COMPANY_NAME));
+		assertEquals(driver.findElement(By.id(AddressContact.COMPANY_NAME)).getAttribute("value"),
+				SupplierList_CreateActiveSupplier_ByAdmin.supplierName);
+		
+		assertEquals(action.isElementPresent(By.id(SupplierMenu.PURCHASE_ORDERS_ID)), true);
+		assertEquals(action.isElementPresent(By.id(SupplierMenu.SHIPPING_NOTICES_ID)), false);
+		assertEquals(action.isElementPresent(By.id(SupplierMenu.INVOICES_ID)), true);
+	}
 }
