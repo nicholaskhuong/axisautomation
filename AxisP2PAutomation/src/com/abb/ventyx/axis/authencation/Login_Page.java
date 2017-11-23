@@ -19,7 +19,7 @@ import com.abb.ventyx.utilities.Credentials;
 import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
 
-@ALM(id = "472")
+@ALM(id = "435")
 @Credentials(user = "supplier_user_20@abb.com", password = "Testuser1")
 public class Login_Page extends BaseTestCase {
 	ScreenAction action;
@@ -64,6 +64,7 @@ public class Login_Page extends BaseTestCase {
 		action.clickCheckBoxN(1);
 		action.clickBtn(By.id(ScreenObjects.SAVE_ID));
 		action.signOut();
+		// step 1
 		action.signIn(userEmail, password);
 	}
 	@Test(dependsOnMethods = "createNewUser")
@@ -73,9 +74,6 @@ public class Login_Page extends BaseTestCase {
 		action.inputTextField(Users.PASSWORD_ID, password);
 		action.inputTextField(Users.NEW_PASSWORD, newPassword);
 		action.inputEmailField(Users.CONFIMRPASSWORD_ID, newConfirmPassword);
-
-
-
 
 	}
 
