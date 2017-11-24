@@ -28,6 +28,7 @@ public class Login_Page extends BaseTestCase {
 	TableFunction table;
 	int milliseconds = 3000;
 	String maintainSupplierUsers = "Maintain Supplier Users";
+	String supplierDashboard = "Supplier Dashboard";
 	String userID = "User %s";
 	String userEmail = "email_supplier_user%s@abbb.com";
 	Random rand = new Random();
@@ -120,11 +121,19 @@ public class Login_Page extends BaseTestCase {
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, "Please enter valid value for new password");
 		// step 9
 		action.inputTextField(Users.PASSWORD_ID, password);
-		action.inputTextField(Users.NEW_PASSWORD, newPassword);
+		action.inputTextField(Users.NEW_PASSWORD, password);
+		action.inputEmailField(Users.CONFIMRPASSWORD_ID, password);
 		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
-		action.assertMessgeError(ScreenObjects.ERROR_CSS, "Please enter valid value for confirm password");
+		action.assertMessgeError(ScreenObjects.ERROR_CSS, "New password must be different to old password");
+
 	}
 
-
+	@Test(dependsOnMethods = "checkLoginTheFirstTime")
+	public void checkLoginConfirmSuccessfully() {
+		action.inputTextField(By.id(LoginPageDefinition.PASSWORD_TEXT_FIELD_ID), password);
+		action.inputTextField(Users.NEW_PASSWORD, newPassword);
+		action.inputEmailField(Users.CONFIMRPASSWORD_ID, newConfirmPassword);
+		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
+	}
 
 }
