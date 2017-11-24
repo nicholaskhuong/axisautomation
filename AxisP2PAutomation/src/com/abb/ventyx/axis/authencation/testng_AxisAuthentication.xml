@@ -28,6 +28,11 @@
 				<class name="com.abb.ventyx.axis.authencation.Supplier_User_Dashboard" />			
 		</classes>	
   	</test>
+  	<test name="Login Page">
+		<classes>
+				<class name="com.abb.ventyx.axis.authencation.Login_Page" />			
+		</classes>	
+  	</test>
 </suite> 
 
 
