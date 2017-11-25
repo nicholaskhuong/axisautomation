@@ -55,7 +55,7 @@ public class SupplierList_CreateActiveSupplier_ByAdmin extends BaseTestCase {
 		long drand = (long) (rand.nextDouble() * 100000000L);
 		supplierName = String.format("Name %s", drand);
 		supplierEmail = String.format("%s@abb.com", drand);
-		companyRegistrationNo = String.format("NO%s", drand);
+		companyRegistrationNo = String.format("COM%s", drand);
 		taxRegistrationNo = String.format("Tax%s", drand);
 
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
@@ -115,13 +115,15 @@ public class SupplierList_CreateActiveSupplier_ByAdmin extends BaseTestCase {
 		table.clickFilterAndInput(SupplierList.SUPPLIER_EMAIL_FILTER_XPATH, supplierEmail);
 		i = table.findRowByString(6, supplierEmail);
 		Assert.assertTrue(i >= 0, "Supplier doesn't exist");
+		WebElement accessSupplier = table.getCellObject(i, 8);
+		action.clickHorizontalScrollBar(true);
 		assertEquals(table.getValueRow(2, i), companyRegistrationNo);
 		assertEquals(table.getValueRow(3, i), taxRegistrationNo);
 		assertEquals(table.getValueRow(4, i), pendingStatus);
+		action.clickHorizontalScrollBarToElement(accessSupplier);
 		assertEquals(table.getValueRow(5, i), supplierName);
 		assertEquals(table.getValueRow(6, i), supplierEmail);
 		assertEquals(table.getValueRow(7, i), profile);
-		WebElement accessSupplier = table.getCellObject(i, 8);
 		action.isFieldDisable(accessSupplier);
 	}
 	// Step 5
