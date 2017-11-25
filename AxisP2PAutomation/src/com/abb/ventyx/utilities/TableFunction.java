@@ -18,7 +18,7 @@ import com.abb.ventyx.axis.objects.pagedefinitions.UserGroup;
 public class TableFunction {
 	WebDriver driver;
 	ScreenAction action;
-	int timeout = 60;
+	int timeout = 20;
 
 	public TableFunction(WebDriver driver) {
 		this.driver = driver;
@@ -270,31 +270,29 @@ public class TableFunction {
 	}
 
 	public WebElement getCellObject(int row, int column) {
-		WebElement cell = driver.findElement(By.xpath(String.format("%s//tr[%s]//td[%s]", ScreenObjects.TABLE_BODY_XPATH, row, column)));
+		WebElement cell = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By.xpath(String.format("%s//tr[%s]//td[%s]", ScreenObjects.TABLE_BODY_XPATH, row, column))));
 		action.scrollToElementWithColumnNo(cell, column);
 		return cell;
 	}
 
 	public WebElement getCellObject(String tableXpathToBody, int row, int column) {
-		WebElement cell = driver.findElement(By.xpath(String.format("%s/tr[%s]/td[%s]/div/div", tableXpathToBody, row, column)));
+		WebElement cell = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By.xpath(String.format("%s/tr[%s]/td[%s]/div/div", tableXpathToBody, row, column))));
 		return cell;
 	}
 
 	public WebElement getCellObjectUserGroup(String tableXpathToBody, int row, int column) {
-		WebElement cell = driver.findElement(By.xpath(String.format("%s/tr[%s]/td[%s]", tableXpathToBody, row, column)));
+		WebElement cell = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By.xpath(String.format("%s//tr[%s]//td[%s]", tableXpathToBody, row, column))));
 		action.scrollToElement(cell);
 		return cell;
 	}
 
 	public WebElement getCellObjectSupplierCodeSetDeliveryCode(int row, int column) {
-		WebElement cell = driver.findElement(By.xpath(String.format("%s//tr[%s]//td[%s]//div//div", ScreenObjects.BUSINESS_CODE_SET_DELIVERY_CODE,
-				row, column)));
+		WebElement cell = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By.xpath(String.format("%s//tr[%s]//td[%s]//div//div", ScreenObjects.BUSINESS_CODE_SET_DELIVERY_CODE, row, column))));
 		return cell;
 	}
 
 	public WebElement getCellObjectSupplierCodeSetTaxCode(int row, int column) {
-		WebElement cell = driver.findElement(By.xpath(String.format("%s//tr[%s]//td[%s]//div//div", ScreenObjects.BUSINESS_CODE_SET_TAX_CODE, row,
-				column)));
+		WebElement cell = (new WebDriverWait(driver, timeout)).until(ExpectedConditions.presenceOfElementLocated(By.xpath(String.format("%s//tr[%s]//td[%s]//div//div", ScreenObjects.BUSINESS_CODE_SET_TAX_CODE, row, column))));
 		return cell;
 	}
 
