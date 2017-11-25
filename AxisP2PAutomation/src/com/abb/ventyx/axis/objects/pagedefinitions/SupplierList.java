@@ -20,8 +20,7 @@ public class SupplierList {
 	public static final String SUPPLIER_EMAIL_FILTER_XPATH = "(//input[@id='filterField'])[6]";
 	public static final String SUPPLIER_ID_FILTER_XPATH = "(//input[@id='filterField'])[1]";
 	public static final String SUPPLIER_STATUS_FILTER_XPATH = "(//input[@id='filterField'])[4]";
-	public static final String SUPPLIER_EMAIL_FILTER_CSS = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div > div.v-grid-tablewrapper > table > thead > tr:nth-child(2) > th:nth-child(6) > input";
-
+	
 	// --- Address And Contact
 	public static final String SUPPLIER_NAME_ID = "companyNameField";
 	public static final String COMPANY_REGISTRATION_NO_ID = "companyRegistrationNoField";
