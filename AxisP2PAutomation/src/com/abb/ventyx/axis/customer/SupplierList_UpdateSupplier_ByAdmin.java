@@ -62,15 +62,20 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 		table.clickFilterAndInput(SupplierList.SUPPLIER_EMAIL_FILTER_XPATH, SupplierList_CreateActiveSupplier_ByAdmin.supplierEmail);
 		i = table.findRowByString(6, SupplierList_CreateActiveSupplier_ByAdmin.supplierEmail);
 		Assert.assertTrue(1 >= 0, "Item doesn't exist!");
+		WebElement accessSupplier = table.getCellObject(i, 8);
+		action.clickHorizontalScrollBar(true);
 		assertEquals(table.getValueRow(2, i), SupplierList_CreateActiveSupplier_ByAdmin.companyRegistrationNo);
 		assertEquals(table.getValueRow(3, i), SupplierList_CreateActiveSupplier_ByAdmin.taxRegistrationNo);
 		assertEquals(table.getValueRow(4, i), activeStatus);
+		action.clickHorizontalScrollBarToElement(accessSupplier);
 		assertEquals(table.getValueRow(5, i), SupplierList_CreateActiveSupplier_ByAdmin.supplierName);
 		assertEquals(table.getValueRow(7, i), SupplierList_CreateActiveSupplier_ByAdmin.profile);
 
 		assertEquals(action.isRemoteIconDisable(i), false);
-		// //action.scrollToElement(table.getCellObject(i, 1));
+		
 		table.getCellObject(i, 1).click();
+		action.isFieldDisable(accessSupplier);
+		
 	}
 
 	// Step 3
