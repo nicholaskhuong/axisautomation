@@ -37,14 +37,14 @@ public class CustomerUser_Deleted_ByAdmin extends BaseTestCase {
 		action.assertTitleScreen("Maintain Customer Users");
 	}
 
-	@Test(dependsOnMethods = "selectUsersSubMenu")
+	@Test(dependsOnMethods = "selectUsersSubMenu", alwaysRun = true)
 	public void deleteCustomerAdminDisable() throws InterruptedException {
 		assertEquals(driver.findElement(By.id(CustomerUsers.DELETE_ICON_ADMIN))
 				.getAttribute("aria-disabled"), "true");
 	}
 
 	// Click Trash Bin icon of the user to test
-	@Test(dependsOnMethods = "deleteCustomerAdminDisable")
+	@Test(dependsOnMethods = "deleteCustomerAdminDisable", alwaysRun = true)
 	public void clickTrashBinIconOfUser() {
 		action.pause(1000);
 		i = table.findRowByString(3, CustomerUser_Created_ByAdmin.USEREMAILADDRESS);
@@ -56,7 +56,7 @@ public class CustomerUser_Deleted_ByAdmin extends BaseTestCase {
 	}
 
 	// Step 3 Choose No
-	@Test(dependsOnMethods = "clickTrashBinIconOfUser")
+	@Test(dependsOnMethods = "clickTrashBinIconOfUser", alwaysRun = true)
 	public void clickNoButton() {
 
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.NO_BTN_ID));
@@ -70,7 +70,7 @@ public class CustomerUser_Deleted_ByAdmin extends BaseTestCase {
 	}
 
 	// Step 4 Click Trash Bin and choose Yes
-	@Test(dependsOnMethods = "clickNoButton")
+	@Test(dependsOnMethods = "clickNoButton", alwaysRun = true)
 	public void clickYesButton() {
 		action.pause(2000);
 		action.clickBtn(By.id("deleteItemBtn" + (i-1)));
@@ -85,7 +85,7 @@ public class CustomerUser_Deleted_ByAdmin extends BaseTestCase {
 	}
 
 	// Step 5 check that can't login as the deleted user
-	@Test(dependsOnMethods = "clickYesButton")
+	@Test(dependsOnMethods = "clickYesButton", alwaysRun = true)
 	public void loginAsTheDeletedUser() throws InterruptedException {
 
 		action.signOut();
@@ -96,7 +96,7 @@ public class CustomerUser_Deleted_ByAdmin extends BaseTestCase {
 						.getText(), Messages.USERNOTFOUND);
 	}
 
-	@Test(dependsOnMethods = "loginAsTheDeletedUser")
+	@Test(dependsOnMethods = "loginAsTheDeletedUser", alwaysRun = true)
 	public void loginAsCustomerUser() {
 		action.pause(1000);
 		action.signIn(customerUserEmailDefault, password);
@@ -108,7 +108,7 @@ public class CustomerUser_Deleted_ByAdmin extends BaseTestCase {
 
 	}
 
-	@Test(dependsOnMethods = "loginAsCustomerUser")
+	@Test(dependsOnMethods = "loginAsCustomerUser", alwaysRun = true)
 	public void deleteAdminDisableAndUserEnable() {
 		assertEquals(driver.findElement(By.id(CustomerUsers.DELETE_ICON_ADMIN)).getAttribute("aria-disabled"), "true");
 		assertEquals(action.isFieldDisable(By.id("deleteItemBtn1")), false);
