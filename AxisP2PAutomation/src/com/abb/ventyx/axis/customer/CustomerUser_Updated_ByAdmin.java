@@ -57,7 +57,8 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 		assertEquals(table.getValueRow(5, i), CREATEDSTATUS);
 		userNo = table.getValueRow(1, i);
 		i = table.findRowByString(1, userNo);
-		table.clickUserNo(i);
+		//table.clickUserNo(i);
+		table.getCellObject(ScreenObjects.TABLE_BODY_XPATH, i,1).click();;
 
 	}
 
@@ -124,56 +125,7 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)).getText(), Messages.USER_UPDATE_SUCCESSFULLY);
 		assertEquals(table.getValueRow(2, i), NEWUSERID);
 		assertEquals(table.getValueRow(4, i), "All Permissions");
-
-
-	}
-	// Step 7 Check Cancel button without input
-	@Test(dependsOnMethods="updateWithValidData")
-	public void checkCancelButtonWithoutInput() {
-		// table.clickUserNumber(CUSTOMERUSEREMAIL);
-		action.pause(1000);
-		table.clickUserNo(i);
-		action.waitObjVisible(By.id(CustomerUsers.USERID_TEXTBOX_ID));
-		action.waitObjVisible(By.cssSelector(CustomerUsers.CANCEL_BUTTON));
-		action.waitObjVisibleAndClick(By.cssSelector(CustomerUsers.CANCEL_BUTTON));
-		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)), false);
-		action.pause(2000);
-		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
-		action.assertTitleScreen("Maintain Customer Users");
-
-	}
-	
-	// Step 8 Check No button on Unsaved Changes dialog 
-	@Test(dependsOnMethods="checkCancelButtonWithoutInput")
-	public void checkNoButtonOnUnsavedChanges() {
-		// table.clickUserNumber(CUSTOMERUSEREMAIL);
-		table.clickUserNo(i);
-		action.waitObjVisible(By.id(CustomerUsers.USERID_TEXTBOX_ID));
-		action.inputTextField(CustomerUsers.USERID_TEXTBOX_ID, "test");
-		driver.findElement(By.cssSelector(CustomerUsers.CANCEL_BUTTON)).click();
-		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
-		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
-		driver.findElement(By.id(ScreenObjects.NO_BTN_ID)).click();
-		action.waitObjInvisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
-		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)), false);
-
-		action.assertTitleScreen("Modify User");
-
 	}
 
-	// Step 9 Check Cancel button on Unsaved Changes dialog
-	@Test(dependsOnMethods = "checkNoButtonOnUnsavedChanges")
-	public void checkYesButtonOnUnsavedChanges() {
-		driver.findElement(By.cssSelector(CustomerUsers.CANCEL_BUTTON)).click();
-
-		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
-		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
-		driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
-		action.waitObjInvisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
-		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)), false);
-		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
-		action.assertTitleScreen("Maintain Customer Users");
-
-	}
 
 }
