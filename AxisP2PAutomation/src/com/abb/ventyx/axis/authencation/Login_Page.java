@@ -125,7 +125,7 @@ public class Login_Page extends BaseTestCase {
 		action.inputEmailField(Users.CONFIMRPASSWORD_ID, password);
 		action.clickBtn(By.id(ScreenObjects.YES_BTN_ID));
 		action.assertMessgeError(ScreenObjects.ERROR_CSS, "New password must be different to old password");
-
+		action.inputEmailField(Users.CONFIMRPASSWORD_ID, newConfirmPassword);
 	}
 
 	@Test(dependsOnMethods = "checkLoginTheFirstTime")
