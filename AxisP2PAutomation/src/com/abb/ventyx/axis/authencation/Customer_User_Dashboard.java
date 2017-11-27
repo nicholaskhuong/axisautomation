@@ -129,12 +129,15 @@ public class Customer_User_Dashboard extends BaseTestCase {
 		assertEquals(driver.findElement(By.cssSelector(CustomerMenu.HEADER_OF_PAGE)).getText(), users);
 		action.clickBtn(By.id(CustomerMenu.PROFILES));
 		action.waitObjVisible(By.cssSelector(CustomerMenu.MENU_ICON));
+		action.pause(milliseconds);
 		assertEquals(driver.findElement(By.cssSelector(CustomerMenu.HEADER_OF_PAGE)).getText(), maintainCustomerDefinedProfiles);
 		action.clickBtn(By.id(CustomerMenu.DOCUMENT_FILTERS));
 		action.waitObjVisible(By.cssSelector(CustomerMenu.DOCUMENT_FILTER_HEADER));
+		action.pause(milliseconds);
 		assertEquals(driver.findElement(By.cssSelector(CustomerMenu.HEADER_OF_PAGE)).getText(), customerDefinedFilters);
 		action.clickBtn(By.id(CustomerMenu.BUSINESS_CODE_SET));
 		action.waitObjVisible(By.cssSelector(CustomerMenu.BUSINESS_CODE_SETS_HEADER));
+		action.pause(milliseconds);
 		assertEquals(driver.findElement(By.cssSelector(CustomerMenu.HEADER_OF_PAGE)).getText(), maintainBusinessCodeSets);
 		action.clickBtn(By.cssSelector(CustomerMenu.ADDRESS_CONTACT_MENU));
 		action.pause(milliseconds);
