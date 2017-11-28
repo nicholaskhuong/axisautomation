@@ -473,18 +473,7 @@ public class ScreenAction {
 	}
 
 	public void scrollToElement(WebElement element) {
-		clickVerticalScrollBar(true);
-		clickHorizontalScrollBar(true);
-
-		for (int i = 0; i < 20; i++) {
-
-			if (!element.isDisplayed()) {
-				clickHorizontalScrollBar();
-				clickVerticalScrollBar();
-			} else {
-				break;
-			}
-		}
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
 	}
 
 	public void scrollToElement(String cssObject) {
