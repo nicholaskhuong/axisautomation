@@ -5,6 +5,7 @@ import static org.testng.Assert.assertEquals;
 import java.util.Random;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
@@ -76,7 +77,7 @@ public class Permissions_Creating extends BaseTestCase {
 		permissionsAction.selectUserType(Permissions.CUSTOMER);
 		permissionsAction.selectUserType(Permissions.SUPPLIER);
 		action.pause(waitTime);
-		action.waitObjVisibleAndClick(By.id(Permissions.SAVE));
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", driver.findElement(By.id(Permissions.SAVE)));
 
 		action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)).getText(), Messages.PERMISSION_CREATED_SUCCESSFULLY);
