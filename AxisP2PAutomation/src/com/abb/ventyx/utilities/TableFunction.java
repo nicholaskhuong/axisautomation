@@ -325,6 +325,31 @@ public class TableFunction {
 		return cell.getText();
 	}
 
+	public int getHeaderIndex(String columnName) {
+		return getHeaderIndex(columnName, ScreenObjects.TABLE_HEAD_XPATH);
+	}
+
+	public int getHeaderIndex(String columnName, String xpath) {
+		return getHeaderIndex(columnName, xpath, true);
+	}
+
+	public int getHeaderIndex(String columnName, String tablePath, Boolean isXpath) {
+		WebElement baseTable;
+		WebDriverWait wait = new WebDriverWait(driver, timeout);
+		if (isXpath) {
+			baseTable = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(tablePath + "//tr")));
+		} else {
+			baseTable = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(tablePath + " > tr")));
+		}
+		List<WebElement> tableColumns = baseTable.findElements(By.tagName("th"));
+		for (int i = 0; i < tableColumns.size(); i++) {
+			action.clickHorizontalScrollBarToElement(tableColumns.get(i));
+			if (columnName.equalsIgnoreCase(tableColumns.get(i).getText().trim())) {
+				return i + 1;
+			}
+		}
+		return -1;
+	}
 	public String getValueTableHeader(int column) {
 		WebElement header = driver.findElement(By.xpath(ScreenObjects.TABLE_HEAD_XPATH + "//tr//th[" + column + "]//div[1]"));
 		action.clickHorizontalScrollBarToElement(header);
