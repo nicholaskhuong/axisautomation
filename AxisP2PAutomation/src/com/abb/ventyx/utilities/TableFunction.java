@@ -75,14 +75,14 @@ public class TableFunction {
 
 	public int findRealIndexByCell(WebElement cell, String indexString) {
 		List<WebElement> idLink = cell.findElements(By.cssSelector(String.format("div[id^=%s]", indexString)));
-		int indexOfSupplier = -1;
+		int index = -1;
 		if (idLink.size() > 0) {
 			String stringIDOfSupplier = idLink.get(0).getAttribute("id");
 			stringIDOfSupplier = stringIDOfSupplier.substring(stringIDOfSupplier.indexOf(indexString) + indexString.length(),
 					stringIDOfSupplier.length());
-			indexOfSupplier = Integer.valueOf(stringIDOfSupplier);
+			index = Integer.valueOf(stringIDOfSupplier);
 		}
-		return indexOfSupplier;
+		return index;
 	}
 
 	public boolean isValueExisting(int columnindex, String value) {
@@ -174,8 +174,22 @@ public class TableFunction {
 		}
 	}
 
+	public int countRow() {
+		return countRow(ScreenObjects.TABLE_BODY_XPATH, true);
+	}
+
 	public int countRow(String tableCSS) {
-		WebElement baseTable = driver.findElement(By.cssSelector(tableCSS));
+		return countRow(tableCSS, false);
+	}
+
+	public int countRow(String tableBody, Boolean isXpath) {
+
+		WebElement baseTable;
+		if (isXpath)
+			baseTable = driver.findElement(By.xpath(tableBody));
+		else
+			baseTable = driver.findElement(By.cssSelector(tableBody));
+
 		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
 		int sumRow = tableRows.size();
 		return sumRow;

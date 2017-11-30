@@ -54,7 +54,6 @@ public class Users {
 	public static final String ADD_USERS = "#HeaderMenuBar > span:nth-child(2) > span > span";
 	public static final String USER_NUMBER_SORT = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div > div.v-grid-tablewrapper > table > thead > tr > th.v-grid-cell.v-grid-cell-focused.sortable.sort-asc > div.v-grid-column-header-content.v-grid-column-default-header-content";
 	public static final String NEW_PASSWORD = "newPassword";
-
-
+	public static final String TABLE_BODY_XPATH = "//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div[3]/table/tbody";
 
 }

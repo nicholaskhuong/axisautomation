@@ -12,6 +12,7 @@ public class CustomerUsers {
 	public static final String SAVE_BUTTON = "saveBtn";
 	public static final String CANCEL_BUTTON = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div.v-slot.v-slot-v-common-page-content-layout > div > div:nth-child(3) > div > div.v-slot.v-align-right > div > div:nth-child(1)";
 	public static final String USERGROUP_GRID = "//div[@id='content-component']//div//div[2]//div//div[3]//div//div[3]//div//div[3]//div//div//div//div//div[3]//table//tbody";
+	public static final String TABLE_BODY_XPATH = "//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div/div/div/div[3]/table/tbody";
 	public static final String NOUPDATEPASSWORD_RADIOBUTTON ="#updatePasswordOptionGroup > span:nth-child(1)";
 	public static final String YESUPDATEPASSWORD_RADIOBUTTON ="#updatePasswordOptionGroup > span:nth-child(2)";
 	public static final String DELETE_ICON_ADMIN = "deleteItemBtn0";
