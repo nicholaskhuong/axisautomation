@@ -78,8 +78,8 @@ public class User_Customer_Deleting extends BaseTestCase {
 	// "clickDeleteButtonOnMaintainCustomerUsersScreen", alwaysRun = true)
 	// public void checkDataAgainAfterDeleted() {
 	// action.pause(waitTime);
-	// table.clickFilterAndInputWithColumn(User_Customer_Updating.emailUpdate,
-	// Users.EMAIL_FILTER, true);
+	// action.inputTextField(By.xpath(Users.EMAIL_FILTER),
+	// User_Customer_Updating.emailUpdate);
 	// Assert.assertEquals(0, table.countRow(Users.TABLE_BODY_XPATH),
 	// "Grid is not empty");
 	// }

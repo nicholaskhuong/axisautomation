@@ -61,4 +61,8 @@ public class Permissions {
 	public static final String FILTER_PERMISSION_NAME_CSS = "#content-component > div > div.v-panel-content.v-panel-content-borderless.v-panel-content-v-common-page-panel.v-scrollable > div > div > div.v-slot.v-slot-v-common-page-content-layout > div > div > div > div > div > div > div > div.v-grid-tablewrapper > table > thead > tr:nth-child(2) > th:nth-child(3)";
 	public static final String PERMISSIONHEADER = "#common-header-left-layout > div > div";
 	public static final String PERMISSIONWINDOWHEADER = "#permissioncreatewindow > div > div > div.v-window-contents > div > div > div.v-slot.v-slot-v-default-page-header-layout > div";
+	public static final String DOCUMENT_TYPE_LIST_TABLE = "#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table";
+	public static final String DOCUMENT_TYPE_TOTAL_NUMBER = "#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-status";
+	public static final String DOCUMENT_TYPE_NEXT_PAGE = "#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-nextpage";
+
 }

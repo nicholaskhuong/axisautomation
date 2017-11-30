@@ -31,36 +31,50 @@ public class PermissionsAction {
 	}
 	
 	public void selectUserType(String userTypeCSS){
-		WebElement adminUserType = (new WebDriverWait(driver, 20))
+		WebElement adminUserType = (new WebDriverWait(driver, 10))
 				.until(ExpectedConditions.presenceOfElementLocated(By
 						.cssSelector(userTypeCSS)));
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", adminUserType);
 	}
 	
 	public void selectDocTypebyText(String docType) {
-		WebElement permissionDocType = (new WebDriverWait(driver, 20))
-				.until(ExpectedConditions.presenceOfElementLocated(By
-						.id(Permissions.DOCUMENT_TYPE)));
+		WebElement permissionDocType = driver.findElement(By.id(Permissions.DOCUMENT_TYPE));
 		permissionDocType.click();
-		WebElement baseTable = (new WebDriverWait(driver, 30)).until(ExpectedConditions.presenceOfElementLocated(By
-				.cssSelector("#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table")));
+
+		WebElement numberOfDocumentType = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(Permissions.DOCUMENT_TYPE_TOTAL_NUMBER)));
+		String noOfDocType = numberOfDocumentType.getText();
+		noOfDocType = noOfDocType.substring(noOfDocType.indexOf("/") + 1, noOfDocType.length());
+		clickoOnDocumentType(docType);
+		int numberScroll = 0;
+		if (Integer.valueOf(noOfDocType) > 10) {
+			numberScroll = Integer.valueOf(noOfDocType) / 10;
+		}
+		for (int i = 0; i < numberScroll; i++) {
+			WebElement documentNextPage = driver.findElement(By.cssSelector(Permissions.DOCUMENT_TYPE_NEXT_PAGE));
+			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", documentNextPage);
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", documentNextPage);
+			clickoOnDocumentType(docType);
+
+		}
+
+	}
+
+	private void clickoOnDocumentType(String docType) {
+		WebElement baseTable = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By
+				.cssSelector(Permissions.DOCUMENT_TYPE_LIST_TABLE)));
 		List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
 		int sumRow = tableRows.size();
 		
-		System.out.print(sumRow +" test");
-		
 		for (int i = 1; i <= sumRow; i++) {
-			WebElement POAckType = (new WebDriverWait(driver, 10))
-					.until(ExpectedConditions.presenceOfElementLocated(By
-							.cssSelector("#VAADIN_COMBOBOX_OPTIONLIST > div > div.v-filterselect-suggestmenu > table > tbody > tr:nth-child("+i+") > td > span")));
-			if(POAckType.getText().equals(docType)){
+			WebElement POAckType = driver.findElement(By.cssSelector(String.format("%s > tbody > tr:nth-child(%s) > td > span",
+					Permissions.DOCUMENT_TYPE_LIST_TABLE, i)));
+			if (POAckType.getText().trim().equalsIgnoreCase(docType)) {
+				((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", POAckType);
 				((JavascriptExecutor) driver).executeScript("arguments[0].click();", POAckType);
 				break;
 			}
 				
 		}
-		//((JavascriptExecutor) driver).executeScript("arguments[0].click();", permissionDocType);
-
-	
 	}
 }
