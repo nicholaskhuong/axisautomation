@@ -76,16 +76,20 @@ public class Permissions_Creating extends BaseTestCase {
 		permissionsAction.selectUserType(Permissions.AXIS_ADMIN);
 		permissionsAction.selectUserType(Permissions.CUSTOMER);
 		permissionsAction.selectUserType(Permissions.SUPPLIER);
+	}
+
+	// Step 3
+	@Test(dependsOnMethods = "createPermissionwithValidValue", alwaysRun = true)
+	public void clicButtonSaveAndCheckSuccessfulMessage() {
 		action.pause(waitTime);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", driver.findElement(By.id(Permissions.SAVE)));
 
 		action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)).getText(), Messages.PERMISSION_CREATED_SUCCESSFULLY);
-
 	}
 
 	// Step 3
-	@Test(dependsOnMethods = "createPermissionwithValidValue", alwaysRun = true)
+	@Test(dependsOnMethods = "clicButtonSaveAndCheckSuccessfulMessage", alwaysRun = true)
 	public void checkNewlyCreatedPermissionDisplayingOnTheGrid() {
 
 		// Filter

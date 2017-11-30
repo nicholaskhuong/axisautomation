@@ -8,6 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
+import com.abb.ventyx.axis.objects.pagedefinitions.CustomerUsers;
 import com.abb.ventyx.axis.objects.pagedefinitions.Messages;
 import com.abb.ventyx.axis.objects.pagedefinitions.ScreenObjects;
 import com.abb.ventyx.axis.objects.pagedefinitions.Users;
@@ -48,8 +49,7 @@ public class User_Customer_Deleting extends BaseTestCase {
 
 	@Test(dependsOnMethods = "clickFiterButtonOnCustomerScreen", alwaysRun = true)
 	public void clickCustomerIDOnCustomerScreen() {
-		index = table.getCellObject(
-				"//*[@id='content-component']/div/div[2]/div/div/div[3]/div/div/div/div/div/div/div/div/div/div/div[3]/table/tbody", 1, 1);
+		index = table.getCellObject(CustomerUsers.TABLE_BODY_XPATH, 1, 1);
 		action.pause(waitTime);
 		index.click();
 	}
@@ -79,7 +79,7 @@ public class User_Customer_Deleting extends BaseTestCase {
 	public void checkDataAgainAfterDeleted() {
 		action.pause(waitTime);
 		table.clickFilterAndInputWithColumn(User_Customer_Updating.emailUpdate, Users.EMAIL_FILTER, true);
-		Assert.assertEquals(0, table.countRow(ScreenObjects.TABLE_BODY_XPATH), "Grid is not empty");
+		Assert.assertEquals(0, table.countRow(Users.TABLE_BODY_XPATH), "Grid is not empty");
 	}
 
 }
