@@ -37,6 +37,7 @@ public class User_Group_Deleting extends BaseTestCase {
 	@Test
 	public void openUserGroupScreen() {
 		action = new ScreenAction(driver);
+		table = new TableFunction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMERMAINTAINCE_MENU_CSS));
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.USERGROUP_SUBMENU_CSS));
 		action.waitObjVisible(By.id(UserGroup.SYSTEM_TAB_ID));
@@ -61,9 +62,10 @@ public class User_Group_Deleting extends BaseTestCase {
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.xpath(UserGroup.FILTER_XPATH));
 		action.inputTextField(UserGroup.NAME_FILTER, User_Group_Updating.newGroupName);
+		action.pause(2000);
 		WebElement cell = table.getCellObject(1, 1);
 		Assert.assertEquals(cell.getText(), User_Group_Updating.newGroupName);
-		row = table.findRealIndexByCell(1, 1, Users.DELETE_BUTTON);
+		row = table.findRealIndexByCell(1, 2, Users.DELETE_BUTTON);
 		action.waitObjVisibleAndClick(By.id(Users.DELETE_BUTTON + row));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.NO_BTN_ID));
 		action.pause(waitTime);

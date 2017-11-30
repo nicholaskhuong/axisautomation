@@ -23,7 +23,7 @@ import com.abb.ventyx.utilities.TableFunction;
 public class User_Group_Creating extends BaseTestCase {
 	String systemGroupName = "CUST_ADMIN";
 	String customerName = "Tanya Customer 11";
-	public static String userGroupName = "Cry Group";
+	public static String userGroupName = "Cry Group 5995";
 	ScreenAction action;
 	TableFunction table;
 	int waitTime = 1000;

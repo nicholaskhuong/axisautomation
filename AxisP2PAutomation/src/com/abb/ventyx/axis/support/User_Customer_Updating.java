@@ -78,7 +78,7 @@ public class User_Customer_Updating extends BaseTestCase {
 		action.pause(3000);
 		table.clickFilterAndInputWithColumn(User_Customer_Creating.email, Users.EMAIL_FILTER, true);
 		action.pause(waitTime);
-		assertEquals(table.getValueRow(3, 1), User_Customer_Creating.email);
+		assertEquals(table.getValueRow(1, 1), User_Customer_Creating.email);
 	}
 
 	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomerUsersScreen", alwaysRun = true)

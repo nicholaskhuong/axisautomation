@@ -4,6 +4,7 @@ import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
@@ -57,14 +58,14 @@ public class User_Customer_Deleting extends BaseTestCase {
 	public void clickFiterButtonOnMaintainCustomerUsersScreen() {
 		action.pause(waitTime);
 		table.clickFilterAndInputWithColumn(User_Customer_Updating.emailUpdate, Users.EMAIL_FILTER, true);
-		assertEquals(table.getValueRow(3, 1), User_Customer_Updating.emailUpdate);
+		assertEquals(table.getValueRow(1, 1), User_Customer_Updating.emailUpdate);
 	}
 
 	@Test(dependsOnMethods = "clickFiterButtonOnMaintainCustomerUsersScreen", alwaysRun = true)
 	public void clickDeleteButtonOnMaintainCustomerUsersScreen() {
 		action.clickHorizontalScrollBar();
 		action.pause(waitTime);
-		index = table.getCellObject(1, 6);
+		index = table.getCellObject(1, 5);
 		index.click();
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.NO_BTN_ID));
@@ -72,6 +73,13 @@ public class User_Customer_Deleting extends BaseTestCase {
 		index.click();
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.YES_BTN_ID));
 		action.checkAddSuccess(Messages.USER_DELETE_SUCCESSFULLY);
+	}
+
+	@Test(dependsOnMethods = "clickDeleteButtonOnMaintainCustomerUsersScreen", alwaysRun = true)
+	public void checkDataAgainAfterDeleted() {
+		action.pause(waitTime);
+		table.clickFilterAndInputWithColumn(User_Customer_Updating.emailUpdate, Users.EMAIL_FILTER, true);
+		Assert.assertEquals(0, table.countRow(ScreenObjects.TABLE_BODY_XPATH), "Grid is not empty");
 	}
 
 }

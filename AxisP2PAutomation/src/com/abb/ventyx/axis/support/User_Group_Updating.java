@@ -25,7 +25,7 @@ import com.abb.ventyx.utilities.TableFunction;
 public class User_Group_Updating extends BaseTestCase {
 	String systemGroupName = "CUST_ADMIN";
 	String customerName = "Tanya Customer 11";
-	public static String newGroupName = "Cryy Group ";
+	public static String newGroupName = "Cryy Group 4247";
 	int row = 0;
 	ScreenAction action;
 	TableFunction table;
@@ -67,7 +67,7 @@ public class User_Group_Updating extends BaseTestCase {
 		action.pause(waitTime);
 		WebElement cell = table.getCellObject(1, 1);
 		Assert.assertEquals(cell.getText(), User_Group_Creating.userGroupName);
-		cell.click();
+		action.waitObjVisibleAndClick(By.id(Users.GROUPNAME_LINKID + table.findRealIndexByCell(1, 1, Users.GROUPNAME_LINKID)));
 	}
 
 	// Step 3
