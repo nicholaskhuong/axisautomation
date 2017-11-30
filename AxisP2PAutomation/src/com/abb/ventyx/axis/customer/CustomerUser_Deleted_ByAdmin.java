@@ -47,7 +47,7 @@ public class CustomerUser_Deleted_ByAdmin extends BaseTestCase {
 	@Test(dependsOnMethods = "deleteCustomerAdminDisable", alwaysRun = true)
 	public void clickTrashBinIconOfUser() {
 		action.pause(1000);
-		i = table.findRowByString(3, CustomerUser_Created_ByAdmin.USEREMAILADDRESS);
+		i = table.findRowByString(1, CustomerUser_Created_ByAdmin.USEREMAILADDRESS);
 		Assert.assertTrue(i >= 0, String.format("Customer user: %s not found!", CustomerUser_Created_ByAdmin.USEREMAILADDRESS));
 		assertEquals(table.getValueRow(2, i), CustomerUser_Updated_ByAdmin.NEWUSERID);
 		action.clickBtn(By.id("deleteItemBtn" + (i - 1)));
@@ -61,12 +61,8 @@ public class CustomerUser_Deleted_ByAdmin extends BaseTestCase {
 
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.NO_BTN_ID));
 		action.waitObjInvisible(By.cssSelector(ScreenObjects.CONFIRMATION));
-		assertEquals(action.isElementPresent(By
-				.cssSelector(ScreenObjects.CONFIRMATION)), false);
-		assertEquals(
-				driver.findElement(
-						By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER))
-						.getText(), "Maintain Customer Users");
+		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.CONFIRMATION)), false);
+		assertEquals(driver.findElement(By.cssSelector(CustomerUsers.CUSTOMERUSERS_HEADER)).getText(), "Maintain Customer Users");
 	}
 
 	// Step 4 Click Trash Bin and choose Yes
@@ -77,11 +73,8 @@ public class CustomerUser_Deleted_ByAdmin extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.YES_BTN_ID));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
-		assertEquals(
-				driver.findElement(
-						By.cssSelector(ScreenObjects.SUCCESS_MESSAGE))
-						.getText(), Messages.USER_DELETE_SUCCESSFULLY);
-		assertEquals(table.isValueExisting(3, CustomerUser_Created_ByAdmin.USEREMAILADDRESS), false);
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)).getText(), Messages.USER_DELETE_SUCCESSFULLY);
+		assertEquals(table.isValueExisting(1, CustomerUser_Created_ByAdmin.USEREMAILADDRESS), false);
 	}
 
 	// Step 5 check that can't login as the deleted user
@@ -91,9 +84,7 @@ public class CustomerUser_Deleted_ByAdmin extends BaseTestCase {
 		action.signOut();
 		action.signIn(CustomerUser_Created_ByAdmin.USEREMAILADDRESS, password);
 		action.waitObjVisible(By.cssSelector(ScreenObjects.ERROR_CSS));
-		assertEquals(
-				driver.findElement(By.cssSelector(ScreenObjects.ERROR_CSS))
-						.getText(), Messages.USERNOTFOUND);
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.ERROR_CSS)).getText(), Messages.USERNOTFOUND);
 	}
 
 	@Test(dependsOnMethods = "loginAsTheDeletedUser", alwaysRun = true)

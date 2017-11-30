@@ -50,15 +50,12 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 	@Test(dependsOnMethods="selectUsersSubMenu")
 	public void openModifyUserScreen() {
 		action.pause(1000);
-		i = table.findRowByString(3, CustomerUser_Created_ByAdmin.USEREMAILADDRESS);
+		i = table.findRowByString(1, CustomerUser_Created_ByAdmin.USEREMAILADDRESS);
 		Assert.assertTrue(i >= 0, String.format("Customer user: %s not found!", CustomerUser_Created_ByAdmin.USEREMAILADDRESS));
 		assertEquals(table.getValueRow(2, i), CustomerUser_Created_ByAdmin.USERID);
-		assertEquals(table.getValueRow(4, i), "All Permissions");
-		assertEquals(table.getValueRow(5, i), CREATEDSTATUS);
-		userNo = table.getValueRow(1, i);
-		i = table.findRowByString(1, userNo);
-		//table.clickUserNo(i);
-		table.getCellObject(ScreenObjects.TABLE_BODY_XPATH, i,1).click();;
+		assertEquals(table.getValueRow(3, i), "All Permissions");
+		assertEquals(table.getValueRow(4, i), CREATEDSTATUS);
+		table.getCellObject(ScreenObjects.TABLE_BODY_XPATH, i, 1).click();
 
 	}
 
@@ -124,7 +121,7 @@ public class CustomerUser_Updated_ByAdmin extends BaseTestCase {
 
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)).getText(), Messages.USER_UPDATE_SUCCESSFULLY);
 		assertEquals(table.getValueRow(2, i), NEWUSERID);
-		assertEquals(table.getValueRow(4, i), "All Permissions");
+		assertEquals(table.getValueRow(3, i), "All Permissions");
 	}
 
 
