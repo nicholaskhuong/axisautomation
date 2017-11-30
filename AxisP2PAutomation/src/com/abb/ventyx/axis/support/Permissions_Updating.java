@@ -28,6 +28,7 @@ public class Permissions_Updating extends BaseTestCase {
 	String axisAdminUserGroupName = "AXIS_ADMIN";
 	TableFunction table;
 	String supplierAdminUserGroupName = "SUPP_ADMIN";
+	int row;
 
 	// Step 1
 	@Test
@@ -73,10 +74,19 @@ public class Permissions_Updating extends BaseTestCase {
 		// Unselect Supplier
 		permissionsAction.selectUserType(Permissions.SUPPLIER_CHECKBOX);
 
+	}
+
+	// Step 3
+	@Test(dependsOnMethods = "updatePermissionWithValidValue", alwaysRun = true)
+	public void clickSaveAndCheckSuccessfulMessage() {
 		action.waitObjVisibleAndClick(By.id(Permissions.SAVE));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 		action.assertTextEqual(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE), Messages.PERMISSION_UPADTED_SUCCESSFULLY);
+	}
 
+	// Step 3
+	@Test(dependsOnMethods = "updatePermissionWithValidValue", alwaysRun = true)
+	public void checkDataAfterUpdated() {
 		action.inputTextField(By.xpath(Permissions.PERMISSION_NAME_FILTER), Permissions_Creating.permissionName);
 		action.pause(2000);
 
@@ -91,8 +101,8 @@ public class Permissions_Updating extends BaseTestCase {
 	}
 
 	// Step 3
-	@Test(dependsOnMethods = "updatePermissionWithValidValue", alwaysRun = true)
-	public void checkNewPermissionAvailableInAxisUserGroup() {
+	@Test(dependsOnMethods = "checkDataAfterUpdated", alwaysRun = true)
+	public void accessToUpdatePermission() {
 		action.waitObjVisibleAndClick(By.id(AxisConfigMenu.AXIS_ADMIN_ID));
 		// Axis Usergroup sub-menu
 		action.waitObjVisibleAndClick(By.id(AxisConfigMenu.AXIS_USERGROUP_ID));
@@ -102,13 +112,22 @@ public class Permissions_Updating extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(UserGroup.ADMIN_USERGROUPNAME_CSS));
 
 		action.assertTextEqual(By.cssSelector(UserGroup.ADMIN_USERGROUPNAME_CSS), axisAdminUserGroupName);
+	}
 
+	// Step 3
+	@Test(dependsOnMethods = "accessToUpdatePermission", alwaysRun = true)
+	public void ChooseTheExistingPermissionAndCheck() {
 		action.pause(2000);
-		int row = table.findRowByString(UserGroup.USERGROUP_GRID_XPATH, 3, invoiceTypeName, true);
+		row = table.findRowByString(UserGroup.USERGROUP_GRID_XPATH, 3, invoiceTypeName, true);
 
 		assertEquals(table.getCellObjectUserGroup(UserGroup.USERGROUP_GRID_XPATH, row, 3).getText(), invoiceTypeName);
 
 		table.clickArrowDownToShowPermission(row, 2);
+	}
+
+	// Step 3
+	@Test(dependsOnMethods = "ChooseTheExistingPermissionAndCheck", alwaysRun = true)
+	public void checkNewPermissionAvailableInAxisUserGroup() {
 
 		action.pause(2000);
 
@@ -117,8 +136,7 @@ public class Permissions_Updating extends BaseTestCase {
 	}
 
 	@Test(dependsOnMethods = "checkNewPermissionAvailableInAxisUserGroup", alwaysRun = true)
-	public void checkNewPermissionAvailableInSupplierUserGroup() {
-
+	public void accessToUserGroupAdmin() {
 		// Supplier Usergroup sub-menu
 		action.waitObjVisibleAndClick(By.id(AxisConfigMenu.SUPPLIER_USERGROUP_ID));
 
@@ -128,9 +146,13 @@ public class Permissions_Updating extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(UserGroup.ADMIN_USERGROUPNAME_CSS));
 
 		action.assertTextEqual(By.cssSelector(UserGroup.ADMIN_USERGROUPNAME_CSS), supplierAdminUserGroupName);
+	}
+
+	@Test(dependsOnMethods = "accessToUserGroupAdmin", alwaysRun = true)
+	public void checkNewPermissionAvailableInSupplierUserGroup() {
 
 		action.pause(3000);
-		int row = table.findRowByString(UserGroup.USERGROUP_GRID_XPATH, 3, invoiceTypeName, true);
+		row = table.findRowByString(UserGroup.USERGROUP_GRID_XPATH, 3, invoiceTypeName, true);
 
 		assertEquals(table.getCellObjectUserGroup(UserGroup.USERGROUP_GRID_XPATH, row, 3).getText(), invoiceTypeName);
 

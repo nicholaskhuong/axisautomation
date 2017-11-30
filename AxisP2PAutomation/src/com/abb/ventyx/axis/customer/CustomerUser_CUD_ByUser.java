@@ -63,7 +63,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	// Step 1 Customer user creates another user
 	@Test(dependsOnMethods = "openUsersScreen", alwaysRun = true)
 	public void createNewUser() {
-		i = table.findRowByString(3, customerUserEmail);
+		i = table.findRowByString(1, customerUserEmail);
 		if (i > 0) {
 			action.clickBtn(By.id("deleteItemBtn" + (i - 1)));
 			action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
@@ -71,7 +71,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 			action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 			assertEquals(driver.findElement(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE)).getText(), Messages.USER_DELETE_SUCCESSFULLY);
 		}
-		i = table.findRowByString(3, userEmail2);
+		i = table.findRowByString(1, userEmail2);
 		if (i > 0) {
 			action.clickBtn(By.id("deleteItemBtn" + (i - 1)));
 			action.waitObjVisible(By.cssSelector(ScreenObjects.CONFIRMATION));
@@ -89,12 +89,10 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		action.clickBtn(By.id(CustomerUsers.SAVE_BUTTON_ID));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.SUCCESS_MESSAGE));
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_CREATE_SUCCESSFULLY);
-		i = table.findRowByString(3, customerUserEmail);
+		i = table.findRowByString(1, customerUserEmail);
 		assertEquals(table.getValueRow(2, i), userID);
-		assertEquals(table.getValueRow(3, i), customerUserEmail);
-		assertEquals(table.getValueRow(4, i), userGroupName);
-		assertEquals(table.getValueRow(5, i), createdStatus);
-		userNo = table.getIDValue(i);
+		assertEquals(table.getValueRow(3, i), userGroupName);
+		assertEquals(table.getValueRow(4, i), createdStatus);
 	}
 
 	@Test(dependsOnMethods = "createNewUser", alwaysRun = true)
@@ -120,12 +118,10 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.USERS_SUBMENU));
 
 		
-		i = table.findRowByString(3, customerUserEmail);
+		i = table.findRowByString(1, customerUserEmail);
 		assertEquals(table.getValueRow(2, i), userID);
-		assertEquals(table.getValueRow(3, i), customerUserEmail);
-		assertEquals(table.getValueRow(4, i), userGroupName);
-		assertEquals(table.getValueRow(5, i), activeStatus);
-		assertEquals(table.getValueRow(1, i), userNo);
+		assertEquals(table.getValueRow(3, i), userGroupName);
+		assertEquals(table.getValueRow(4, i), activeStatus);
 
 	}
 
@@ -153,12 +149,11 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
 		
 		
-		i = table.findRowByString(1, userNo);
+		i = table.findRowByString(1, customerUserEmail);
 		org.testng.Assert.assertTrue(1 >= 0, "User not found!");
 		assertEquals(table.getValueRow(2, i), userID);
-		assertEquals(table.getValueRow(3, i), customerUserEmail);
-		assertEquals(table.getValueRow(4, i), userGroupName);
-		assertEquals(table.getValueRow(5, i), activeStatus);
+		assertEquals(table.getValueRow(3, i), userGroupName);
+		assertEquals(table.getValueRow(4, i), activeStatus);
 
 	}
 	@Test(dependsOnMethods = "openUsersScreenAndAssertUserInfoInGrid", alwaysRun = true)
@@ -182,7 +177,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		action.pause(1000);
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_UPDATE_SUCCESSFULLY);
 		
-		assertEquals(table.getValueRow(5, i), "Inactive");	
+		assertEquals(table.getValueRow(4, i), "Inactive");
 		
 	}
 	@Test(dependsOnMethods = "updateUserStatus", alwaysRun = true)
@@ -234,7 +229,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.id(CustomerUsers.SAVE_BUTTON_ID));
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_UPDATE_SUCCESSFULLY);
 		action.pause(1000);
-		assertEquals(table.getValueRow(4, i), newUserGroupName);
+		assertEquals(table.getValueRow(3, i), newUserGroupName);
 		
 		
 	}
@@ -260,10 +255,9 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		action.assertMessgeError(ScreenObjects.SUCCESS_MESSAGE, Messages.USER_UPDATE_SUCCESSFULLY);
 
 		assertEquals(table.getValueRow(2, i), userID2);
-		assertEquals(table.getValueRow(3, i), userEmail2);
+		assertEquals(table.getValueRow(1, i), userEmail2);
 		// Status is "Created" after updating password
-		assertEquals(table.getValueRow(5, i), createdStatus);
-		assertEquals(table.getValueRow(1, i), userNo);
+		assertEquals(table.getValueRow(4, i), createdStatus);
 	}
 	
 	@Test(dependsOnMethods = "updateUserIDAndUserEmail", alwaysRun = true)
@@ -318,12 +312,9 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	@Test(dependsOnMethods = "deleteCustomerAdmin", alwaysRun = true)
 	public void clickTrashBinIconToDeleteUser() {
 
-		i = table.findRowByString(3, customerUserEmail);
+		i = table.findRowByString(1, customerUserEmail);
 		if (i <= 0) {
-			i = table.findRowByString(1, userNo);
-		}
-		if (i <= 0) {
-			i = table.findRowByString(3, userEmail2);
+			i = table.findRowByString(1, userEmail2);
 		}
 		Assert.assertTrue("User doesn't exist", i > 0);
 		action.clickBtn(By.id("deleteItemBtn" + (i - 1)));
@@ -345,12 +336,9 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 	@Test(dependsOnMethods = "clickTrashBinIconToDeleteUser")
 	public void clickYesButton() {
 
-		i = table.findRowByString(3, customerUserEmail);
+		i = table.findRowByString(1, customerUserEmail);
 		if (i <= 0) {
-			i = table.findRowByString(1, userNo);
-		}
-		if (i <= 0) {
-			i = table.findRowByString(3, userEmail2);
+			i = table.findRowByString(1, userEmail2);
 		}
 		Assert.assertTrue("User doesn't exist", i > 0);
 		action.clickBtn(By.id("deleteItemBtn" + (i - 1)));
