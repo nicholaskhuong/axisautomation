@@ -4,6 +4,7 @@ import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
@@ -60,7 +61,9 @@ public class User_Group_Deleting extends BaseTestCase {
 		action.pause(waitTime);
 		action.waitObjVisibleAndClick(By.xpath(UserGroup.FILTER_XPATH));
 		action.inputTextField(UserGroup.NAME_FILTER, User_Group_Updating.newGroupName);
-		action.pause(2000);
+		WebElement cell = table.getCellObject(1, 1);
+		Assert.assertEquals(cell.getText(), User_Group_Updating.newGroupName);
+		row = table.findRealIndexByCell(1, 1, Users.DELETE_BUTTON);
 		action.waitObjVisibleAndClick(By.id(Users.DELETE_BUTTON + row));
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.NO_BTN_ID));
 		action.pause(waitTime);

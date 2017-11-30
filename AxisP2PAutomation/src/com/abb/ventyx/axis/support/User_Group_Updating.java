@@ -6,6 +6,7 @@ import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
@@ -24,7 +25,7 @@ import com.abb.ventyx.utilities.TableFunction;
 public class User_Group_Updating extends BaseTestCase {
 	String systemGroupName = "CUST_ADMIN";
 	String customerName = "Tanya Customer 11";
-	public static String newGroupName = "Cryy Group";
+	public static String newGroupName = "Cryy Group ";
 	int row = 0;
 	ScreenAction action;
 	TableFunction table;
@@ -34,6 +35,9 @@ public class User_Group_Updating extends BaseTestCase {
 	// Step 1
 	@Test
 	public void openUserGroupScreen() {
+		Random rand = new Random();
+		long drand = (long) (rand.nextDouble() * 10000L);
+		newGroupName = String.format("Updated Group %s", drand);
 		action = new ScreenAction(driver);
 		table = new TableFunction(driver);
 		action.waitObjVisibleAndClick(By.cssSelector(AxisConfigMenu.CUSTOMERMAINTAINCE_MENU_CSS));
@@ -61,7 +65,9 @@ public class User_Group_Updating extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.xpath(UserGroup.FILTER_XPATH));
 		action.inputTextField(UserGroup.NAME_FILTER, User_Group_Creating.userGroupName);
 		action.pause(waitTime);
-		action.waitObjVisibleAndClick(By.id(Users.GROUPNAME_LINKID + row));
+		WebElement cell = table.getCellObject(1, 1);
+		Assert.assertEquals(cell.getText(), User_Group_Creating.userGroupName);
+		cell.click();
 	}
 
 	// Step 3
