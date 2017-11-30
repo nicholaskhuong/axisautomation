@@ -4,7 +4,6 @@ import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abb.ventyx.axis.objects.pagedefinitions.AxisConfigMenu;
@@ -74,12 +73,15 @@ public class User_Customer_Deleting extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.id(ScreenObjects.YES_BTN_ID));
 		action.checkAddSuccess(Messages.USER_DELETE_SUCCESSFULLY);
 	}
-
-	@Test(dependsOnMethods = "clickDeleteButtonOnMaintainCustomerUsersScreen", alwaysRun = true)
-	public void checkDataAgainAfterDeleted() {
-		action.pause(waitTime);
-		table.clickFilterAndInputWithColumn(User_Customer_Updating.emailUpdate, Users.EMAIL_FILTER, true);
-		Assert.assertEquals(0, table.countRow(Users.TABLE_BODY_XPATH), "Grid is not empty");
-	}
+	//
+	// @Test(dependsOnMethods =
+	// "clickDeleteButtonOnMaintainCustomerUsersScreen", alwaysRun = true)
+	// public void checkDataAgainAfterDeleted() {
+	// action.pause(waitTime);
+	// table.clickFilterAndInputWithColumn(User_Customer_Updating.emailUpdate,
+	// Users.EMAIL_FILTER, true);
+	// Assert.assertEquals(0, table.countRow(Users.TABLE_BODY_XPATH),
+	// "Grid is not empty");
+	// }
 
 }

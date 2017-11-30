@@ -96,8 +96,9 @@ public class Permissions_Creating extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
 		action.inputTextField(By.xpath(Permissions.PERMISSION_NAME_FILTER), Permissions_Creating.permissionName);
 		action.pause(waitTime);
-		action.inputTextField(By.xpath(Permissions.DOC_TYPE_FILTER), "PurchaseOrder");
-		action.pause(waitTime);
+		// action.inputTextField(By.xpath(Permissions.DOC_TYPE_FILTER),
+		// "PurchaseOrder");
+		// action.pause(waitTime);
 		action.waitObjVisible(By.cssSelector(Permissions.PNROW1));
 		action.waitObjVisible(By.cssSelector(Permissions.UTROW1));
 		action.waitObjVisible(By.cssSelector(Permissions.DTROW1));
