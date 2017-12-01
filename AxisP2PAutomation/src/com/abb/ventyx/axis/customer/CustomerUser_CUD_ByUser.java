@@ -370,7 +370,7 @@ public class CustomerUser_CUD_ByUser extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.CUSTOMERMAINTENANCE_MENU));
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerMenu.USERS_SUBMENU));
 		action.waitObjVisible(By.cssSelector(CustomerUsers.ADD_BUTTON));
-		table.clickUserNo(table.findRowByString(1, "4073"));
+		action.clickBtn(By.id(CustomerUsers.ADMINUSERNUMBER_ID));
 		action.waitObjVisible(By.id(CustomerUsers.SAVE_BUTTON_ID));
 
 		action.assertFieldReadOnly(By.id(CustomerUsers.USERNUMBER_MODIFYSCREEN_ID));
