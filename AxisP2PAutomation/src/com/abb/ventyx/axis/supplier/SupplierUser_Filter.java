@@ -72,8 +72,8 @@ public class SupplierUser_Filter extends BaseTestCase {
 	@Test(dependsOnMethods = "selectRowAfterFilter")
 	public void selectRowAfterFilterDelete() {
 		action.inputTextField(By.xpath(Users.USER_GROUP_FILTER), userGroup);
-		int actualIndex = table.findRealIndexByCell(1, 6, "deleteItemBtn");
-		WebElement deleteIcon = driver.findElement(By.id("deleteItemBtn" + actualIndex));
+		int actualIndex1 = table.findRealIndexByCell(1, 5, "deleteItemBtn");
+		WebElement deleteIcon = driver.findElement(By.id("deleteItemBtn" + actualIndex1));
 		// action.scrollToElementWithColumnNo(deleteIcon, 6);
 		deleteIcon.click();
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
