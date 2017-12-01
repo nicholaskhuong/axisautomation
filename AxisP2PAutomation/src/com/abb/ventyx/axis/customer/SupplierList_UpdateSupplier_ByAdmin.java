@@ -140,8 +140,7 @@ public class SupplierList_UpdateSupplier_ByAdmin extends BaseTestCase {
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADMINISTRATION_ID));
 		action.waitObjVisibleAndClick(By.id(SupplierMenu.ADDRESS_CONTACT_ID));
 		action.waitObjVisible(By.id(AddressContact.COMPANY_NAME));
-		assertEquals(driver.findElement(By.id(AddressContact.COMPANY_NAME)).getAttribute("value"),
-				SupplierList_CreateActiveSupplier_ByAdmin.supplierName);
+		assertEquals(driver.findElement(By.id(AddressContact.COMPANY_NAME)).getAttribute("value"), newSupplierName);
 		
 		assertEquals(action.isElementPresent(By.id(SupplierMenu.PURCHASE_ORDERS_ID)), true);
 		assertEquals(action.isElementPresent(By.id(SupplierMenu.SHIPPING_NOTICES_ID)), false);
