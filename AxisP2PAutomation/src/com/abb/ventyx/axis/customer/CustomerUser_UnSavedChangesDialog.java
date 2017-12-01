@@ -68,7 +68,7 @@ public class CustomerUser_UnSavedChangesDialog extends BaseTestCase{
 		action.assertTitleScreen("Create User");
 		assertEquals(action.isElementPresent(By.id(CustomerUsers.USEREMAILADDRESS_TEXTBOX_ID)), true);
 
-		driver.findElement(By.cssSelector(CustomerUsers.CANCEL_BUTTON)).click();
+		action.waitObjVisibleAndClick(By.cssSelector(CustomerUsers.CANCEL_BUTTON));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
 		driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
 
@@ -110,8 +110,7 @@ public class CustomerUser_UnSavedChangesDialog extends BaseTestCase{
 	public void checkYesButtonOnUnsavedChanges() {
 		action.waitObjVisible(By.id(CustomerUsers.USERID_TEXTBOX_ID));
 		action.inputTextField(CustomerUsers.USERID_TEXTBOX_ID, "test12");
-		driver.findElement(By.cssSelector(CustomerUsers.CANCEL_BUTTON)).click();
-
+		action.waitObjVisibleAndClick(By.cssSelector(CustomerUsers.CANCEL_BUTTON));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
 		driver.findElement(By.id(ScreenObjects.YES_BTN_ID)).click();
@@ -131,9 +130,8 @@ public class CustomerUser_UnSavedChangesDialog extends BaseTestCase{
 		action.clickBtn(By.id(Users.STATUS_ID));
 		action.pause(1000);
 		action.selectStatus(CustomerUsers.STATUSLIST, "Inactive");
+		action.waitObjVisibleAndClick(By.cssSelector(CustomerUsers.CANCEL_BUTTON));
 		action.pause(1000);
-		driver.findElement(By.cssSelector(CustomerUsers.CANCEL_BUTTON)).click();
-		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE, "Raised as defect D-134288");
 	}
 
