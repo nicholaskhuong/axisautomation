@@ -85,7 +85,7 @@ public class Permissions_Updating extends BaseTestCase {
 	}
 
 	// Step 3
-	@Test(dependsOnMethods = "updatePermissionWithValidValue", alwaysRun = true)
+	@Test(dependsOnMethods = "clickSaveAndCheckSuccessfulMessage", alwaysRun = true)
 	public void checkDataAfterUpdated() {
 		action.inputTextField(By.xpath(Permissions.PERMISSION_NAME_FILTER), Permissions_Creating.permissionName);
 		action.pause(2000);
@@ -116,7 +116,7 @@ public class Permissions_Updating extends BaseTestCase {
 
 	// Step 3
 	@Test(dependsOnMethods = "accessToUpdatePermission", alwaysRun = true)
-	public void ChooseTheExistingPermissionAndCheck() {
+	public void selectExistingPermissionAndCheck() {
 		action.pause(2000);
 		row = table.findRowByString(UserGroup.USERGROUP_GRID_XPATH, 3, invoiceTypeName, true);
 
@@ -126,7 +126,7 @@ public class Permissions_Updating extends BaseTestCase {
 	}
 
 	// Step 3
-	@Test(dependsOnMethods = "ChooseTheExistingPermissionAndCheck", alwaysRun = true)
+	@Test(dependsOnMethods = "selectExistingPermissionAndCheck", alwaysRun = true)
 	public void checkNewPermissionAvailableInAxisUserGroup() {
 
 		action.pause(2000);
