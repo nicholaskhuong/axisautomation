@@ -17,7 +17,7 @@ import com.abb.ventyx.utilities.Credentials;
 import com.abb.ventyx.utilities.ScreenAction;
 import com.abb.ventyx.utilities.TableFunction;
 
-@ALM(id = "166")
+@ALM(id = "552")
 @Credentials(user = "axis_support@abb.com", password = "Testuser1")
 public class Filter_Field_Deleting extends BaseTestCase {
 	ScreenAction action;
