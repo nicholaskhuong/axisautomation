@@ -25,7 +25,7 @@ public class Supplier_Admin_BusinessCodeSets_DeliveryCode extends BaseTestCase {
 	String supplierName = "Supplier Name";
 	String deliveryCodeLessThan15 = "001";
 	String deliveryCodeMoreThan15 = "Delivery Code example 123";
-	int milliseconds = 1000;
+	int milliseconds = 3000;
 	String codeSetDescription = "Code set";
 	String expected = "Supplier Code Sets";
 
