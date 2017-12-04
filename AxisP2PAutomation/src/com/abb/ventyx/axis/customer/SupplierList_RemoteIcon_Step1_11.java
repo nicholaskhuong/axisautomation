@@ -184,7 +184,7 @@ public class SupplierList_RemoteIcon_Step1_11 extends BaseTestCase {
 		table.clickFilterAndInput(DocumentsInError.DOC_TYPE_FILTER_XPATH, invoiceType);
 		i = table.findRowByString(3, invoiceType);
 		Assert.assertTrue(i >= 0);
-		table.getCellObject(i, 1).click();
+		table.getCellObject(i, 2).click();
 		action.pause(1000);
 		if (action.isElementPresent(By.cssSelector(ScreenObjects.ERROR_CSS))) {
 			action.assertMessgeError(ScreenObjects.ERROR_CSS, Messages.INVOICE_NOT_FOUND);
@@ -201,7 +201,8 @@ public class SupplierList_RemoteIcon_Step1_11 extends BaseTestCase {
 	@Test(dependsOnMethods = "filterDocumentInvoice", alwaysRun = true)
 	public void filterDocumentPOAckType() {
 		// Check PO Ack in Error
-		table.clickFilterAndInput(DocumentsInError.DOC_TYPE_FILTER_XPATH, POAckType);
+		//table.clickFilterAndInput(DocumentsInError.DOC_TYPE_FILTER_XPATH, POAckType);
+		table.inputFilterAtIndex(POAckType, DocumentsInError.DOC_TYPE_FILTER_XPATH, true);
 		table.getCellObject(1, 2).click();
 		action.pause(1000);
 		if (action.isElementPresent(By.cssSelector(ScreenObjects.ERROR_CSS))) {
