@@ -132,7 +132,8 @@ public class CustomerUser_UnSavedChangesDialog extends BaseTestCase{
 		action.selectStatus(CustomerUsers.STATUSLIST, "Inactive");
 		action.waitObjVisibleAndClick(By.cssSelector(CustomerUsers.CANCEL_BUTTON));
 		action.pause(1000);
-		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE, "Raised as defect D-134288");
+		assertEquals(action.isElementPresent(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)), true, "Raised as the defect D-134288");
+		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.UNSAVED_CHANGE);
 	}
 
 }
