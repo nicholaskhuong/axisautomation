@@ -3,6 +3,7 @@ package com.abb.ventyx.axis.supplier;
 import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
@@ -63,7 +64,9 @@ public class SupplierUser_Filter extends BaseTestCase {
 		int actualIndex = table.findRealIndexByCell(1, 1, "usrSequenceIdStrBtn");
 		WebElement userNumber = driver.findElement(By.id("usrSequenceIdStrBtn" + actualIndex));
 		// action.scrollToElementWithColumnNo(userNumber, 1);
-		userNumber.click();
+		// action.pause(4000);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", userNumber);
+		// userNumber.click();
 		action.waitObjVisible(By.id(ScreenObjects.CANCEL_ID));
 		action.clickBtn(By.id(ScreenObjects.CANCEL_ID));
 		action.waitObjVisible(By.cssSelector(ScreenObjects.FILTER_BTN_CSS));
@@ -75,7 +78,9 @@ public class SupplierUser_Filter extends BaseTestCase {
 		int actualIndex1 = table.findRealIndexByCell(1, 5, "deleteItemBtn");
 		WebElement deleteIcon = driver.findElement(By.id("deleteItemBtn" + actualIndex1));
 		// action.scrollToElementWithColumnNo(deleteIcon, 6);
-		deleteIcon.click();
+		// action.pause(4000);
+		// deleteIcon.click();
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", deleteIcon);
 		action.waitObjVisible(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS));
 		assertEquals(driver.findElement(By.cssSelector(ScreenObjects.UNSAVED_CHANGE_CSS)).getText(), Messages.DELETE_USER_CONFIRM);
 
