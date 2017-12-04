@@ -121,7 +121,7 @@ public class Customer_User_Dashboard extends BaseTestCase {
 		action.pause(milliseconds);
 		assertEquals(driver.findElement(By.cssSelector(CustomerMenu.HEADER_OF_PAGE)).getText(), maintainSuppliers);
 		action.clickBtn(By.id(CustomerMenu.USER_GROUPS));
-		action.waitObjVisible(By.cssSelector(CustomerMenu.DOCUMENT_FILTER_HEADER));
+		action.waitObjVisible(By.cssSelector(CustomerMenu.ADD_ICON));
 		action.pause(milliseconds);
 		assertEquals(driver.findElement(By.cssSelector(CustomerMenu.DOCUMENT_FILTER_HEADER)).getText(), maitainUserGroups);
 		action.clickBtn(By.id(CustomerMenu.USERS));
@@ -131,10 +131,6 @@ public class Customer_User_Dashboard extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(CustomerMenu.MENU_ICON));
 		action.pause(milliseconds);
 		assertEquals(driver.findElement(By.cssSelector(CustomerMenu.HEADER_OF_PAGE)).getText(), maintainCustomerDefinedProfiles);
-		action.clickBtn(By.id(CustomerMenu.DOCUMENT_FILTERS));
-		action.waitObjVisible(By.cssSelector(CustomerMenu.ADD_ICON));
-		action.pause(milliseconds);
-		assertEquals(driver.findElement(By.cssSelector(CustomerMenu.HEADER_OF_PAGE)).getText(), customerDefinedFilters);
 		action.clickBtn(By.id(CustomerMenu.BUSINESS_CODE_SET));
 		action.waitObjVisible(By.cssSelector(CustomerMenu.HEADER_OF_PAGE));
 		action.pause(milliseconds);

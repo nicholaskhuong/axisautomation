@@ -132,10 +132,6 @@ public class Customer_Administrator_Dashboard extends BaseTestCase {
 		action.waitObjVisible(By.cssSelector(CustomerMenu.MENU_ICON));
 		action.pause(milliseconds);
 		assertEquals(driver.findElement(By.cssSelector(CustomerMenu.HEADER_OF_PAGE)).getText(), maintainCustomerDefinedProfiles);
-		action.clickBtn(By.id(CustomerMenu.DOCUMENT_FILTERS));
-		action.waitObjVisible(By.cssSelector(CustomerMenu.ADD_ICON));
-		action.pause(milliseconds);
-		assertEquals(driver.findElement(By.cssSelector(CustomerMenu.HEADER_OF_PAGE)).getText(), customerDefinedFilters);
 		action.clickBtn(By.id(CustomerMenu.BUSINESS_CODE_SET));
 
 		action.waitObjVisible(By.cssSelector(CustomerMenu.HEADER_OF_PAGE));
